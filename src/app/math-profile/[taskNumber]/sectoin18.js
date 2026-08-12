@@ -3,9 +3,11 @@ import { InlineMath, BlockMath } from 'react-katex';
 
 export const section18Tasks = [
   {
-    id: 1,
-    title: 'Задача 1 (Уравнение с параметром)',
-    mathA: '\\begin{gathered} \\text{Найдите все значения параметра } a, \\text{ при каждом из которых уравнение} \\\\ (x^2 - x)a^2 + (x^4 - x^3 - x + 1)a - x^3 + x^2 = 0 \\\\ \\text{имеет ровно 2 решения.} \\end{gathered}',
+     id: 1,
+    title: 'Задача 1 (ЕГЭ 2026, основная волна, Центр)',
+    textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+    mathA: '(x^2 - x)a^2 + (x^4 - x^3 - x + 1)a - x^3 + x^2 = 0',
+    textAfter: 'имеет ровно 2 решения.',
     mathB: '',
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
@@ -119,8 +121,128 @@ export const section18Tasks = [
         </div>
       </div>
     )
-  }
+  },
+
+    {
+    id: 2,
+    title: 'Задача 2 (ЕГЭ 2026, основная волна, Центр)',
+    textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+    mathA: 'ax^4 + x^3 + (a^3 - 2a)x^2 + (a^2 - 2)x = ax^3 + x^2 + (a^3 - 2a)x + a^2 - 2',
+    textAfter: 'имеет ровно 2 решения.',
+    mathB: '',
+    solutionBuilder: () => (
+      <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+        <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+
+        <p>Перенесем все члены уравнения в левую часть и сгруппируем их:</p>
+        <BlockMath math={`(ax^4 - ax^3) + (x^3 - x^2) + (a^3 - 2a)(x^2 - x) + (a^2 - 2)(x - 1) = 0,`} />
+        <BlockMath math={`ax^3(x - 1) + x^2(x - 1) + (a^3 - 2a)x(x - 1) + (a^2 - 2)(x - 1) = 0.`} />
+
+        <p>Вынесем общий множитель <InlineMath math={`(x - 1)`} /> за скобки:</p>
+        <BlockMath math={`(x - 1)\\left[ax^3 + x^2 + (a^3 - 2a)x + a^2 - 2\\right] = 0.`} />
+
+        <p>Теперь разложим на множители выражение внутри квадратных скобок, сгруппировав слагаемые по степеням параметра <InlineMath math={`a`} />:</p>
+        <BlockMath math={`ax^3 + x^2 + a^3x - 2ax + a^2 - 2 = a^2(ax + 1) + ax(x^2 - 2) + (x^2 - 2) = 0,`} />
+        <BlockMath math={`a^2(ax + 1) + (ax + 1)(x^2 - 2) = (ax + 1)(x^2 + a^2 - 2) = 0.`} />
+
+        <p>Таким образом, исходное уравнение равносильно совокупности:</p>
+        <BlockMath math={`(x - 1)(ax + 1)(x^2 + a^2 - 2) = 0.`} />
+
+        <p>
+          Решим задачу графическим методом в координатах <InlineMath math={`(xOa)`} />. Уравнению отвечает объединение трёх кривых на плоскости <InlineMath math={`xOa`} /> (<InlineMath math={`x`} /> — ось абсцисс, <InlineMath math={`a`} /> — ось ординат):
+        </p>
+        <BlockMath math={`x = 1, \\qquad a = -\\frac{1}{x}, \\qquad x^2 + a^2 = 2.`} />
+
+        <p>Найдем точки пересечения этих кривых:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Прямая <InlineMath math={`x = 1`} /> и окружность <InlineMath math={`x^2 + a^2 = 2`} /> пересекаются в точках <InlineMath math={`(1; 1)`} /> и <InlineMath math={`(1; -1)`} />;</li>
+          <li>Прямая <InlineMath math={`x = 1`} /> и гипербола <InlineMath math={`a = -\\frac{1}{x}`} /> пересекаются в точке <InlineMath math={`(1; -1)`} />;</li>
+          <li>Гипербола <InlineMath math={`a = -\\frac{1}{x}`} /> и окружность <InlineMath math={`x^2 + a^2 = 2`} /> пересекаются в точках <InlineMath math={`(1; -1)`} /> и <InlineMath math={`(-1; 1)`} />, причем в обеих точках гипербола касается окружности.</li>
+        </ul>
+
+        <p>
+          Число решений уравнения при фиксированном <InlineMath math={`a`} /> равно числу точек пересечения горизонтальной прямой <InlineMath math={`a = \\mathrm{const}`} /> с этим объединением графиков.
+        </p>
+
+        {/* Корректный SVG график без заливки черным */}
+        <div className="flex justify-center my-6 overflow-x-auto">
+          <svg width="360" height="340" viewBox="0 0 360 340" className="select-none overflow-visible fill-none">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#475569" />
+              </marker>
+            </defs>
+
+            {/* Особые горизонтальные линии уровня */}
+            <line x1="20" y1="110" x2="310" y2="110" stroke="#94a3b8" strokeDasharray="4" strokeWidth="1" fill="none" />
+            <line x1="20" y1="130" x2="310" y2="130" stroke="#94a3b8" strokeDasharray="4" strokeWidth="1" fill="none" />
+            <line x1="20" y1="210" x2="310" y2="210" stroke="#94a3b8" strokeDasharray="4" strokeWidth="1" fill="none" />
+            <line x1="20" y1="230" x2="310" y2="230" stroke="#94a3b8" strokeDasharray="4" strokeWidth="1" fill="none" />
+            
+            <text x="315" y="114" className="text-[10px] fill-slate-400 font-sans">a=√2</text>
+            <text x="315" y="134" className="text-[10px] fill-slate-400 font-sans">a=1</text>
+            <text x="315" y="214" className="text-[10px] fill-slate-400 font-sans">a=-1</text>
+            <text x="315" y="234" className="text-[10px] fill-slate-400 font-sans">a=-√2</text>
+
+            {/* Декартовы оси */}
+            <line x1="20" y1="170" x2="310" y2="170" stroke="#475569" strokeWidth="1.5" markerEnd="url(#arrow)" fill="none" />
+            <line x1="170" y1="310" x2="170" y2="30" stroke="#475569" strokeWidth="1.5" markerEnd="url(#arrow)" fill="none" />
+            <text x="315" y="174" className="text-xs font-serif italic fill-slate-600 dark:fill-slate-400">x</text>
+            <text x="166" y="25" className="text-xs font-serif italic fill-slate-600 dark:fill-slate-400">a</text>
+
+            {/* Фиолетовая окружность */}
+            <circle cx="170" cy="170" r="56.56" stroke="#a855f7" strokeWidth="2" fill="none" />
+            <text x="115" y="245" className="text-[11px] fill-purple-500 font-sans">x²+a²=2</text>
+
+            {/* Бирюзовая прямая x=1 */}
+            <line x1="210" y1="30" x2="210" y2="310" stroke="#0d9488" strokeWidth="2" fill="none" />
+            <text x="216" y="45" className="text-[11px] fill-teal-600 font-sans">x=1</text>
+
+            {/* Оранжевая гипербола без черной заливки */}
+            <path d="M 60,154 C 110,150 124,142 130,130 C 136,118 144,70 146,30" stroke="#f97316" strokeWidth="2" fill="none" />
+            <path d="M 194,310 C 196,270 204,222 210,210 C 216,198 230,190 280,186" stroke="#f97316" strokeWidth="2" fill="none" />
+            <text x="90" y="150" className="text-[11px] fill-orange-500 font-sans">a=-1/x</text>
+
+            {/* Узловые точки */}
+            <circle cx="210" cy="130" r="3.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
+            <text x="216" y="126" className="text-[11px] font-sans font-medium fill-slate-800 dark:fill-slate-200">(1,1)</text>
+
+            <circle cx="210" cy="210" r="3.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
+            <text x="216" y="222" className="text-[11px] font-sans font-medium fill-slate-800 dark:fill-slate-200">(1,-1)</text>
+
+            <circle cx="130" cy="130" r="3.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
+            <text x="94" y="126" className="text-[11px] font-sans font-medium fill-slate-800 dark:fill-slate-200">(-1,1)</text>
+          </svg>
+        </div>
+
+        <p>Исследуем количество решений при движении горизонтальной прямой <InlineMath math={`a = \\mathrm{const}`} /> сверху вниз:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li><InlineMath math={`a > \\sqrt{2}`} />: 2 пересечения — подходит;</li>
+          <li><InlineMath math={`a = \\sqrt{2}`} />: 3 пересечения;</li>
+          <li><InlineMath math={`1 < a < \\sqrt{2}`} />: 4 пересечения;</li>
+          <li><InlineMath math={`a = 1`} />: 2 пересечения — подходит;</li>
+          <li><InlineMath math={`0 < a < 1`} />: 4 пересечения;</li>
+          <li><InlineMath math={`a = 0`} />: 3 пересечения;</li>
+          <li><InlineMath math={`-1 < a < 0`} />: 4 пересечения;</li>
+          <li><InlineMath math={`a = -1`} />: 2 пересечения — подходит;</li>
+          <li><InlineMath math={`-\\sqrt{2} < a < -1`} />: 4 пересечения;</li>
+          <li><InlineMath math={`a = -\\sqrt{2}`} />: 3 пересечения;</li>
+          <li><InlineMath math={`a < -\\sqrt{2}`} />: 2 пересечения — подходит.</li>
+        </ul>
+
+        <div className="mt-4 p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded border border-emerald-200 dark:border-emerald-800">
+          <p className="font-bold text-emerald-800 dark:text-emerald-400">
+            Ответ: <InlineMath math={`a \\in (-\\infty; -\\sqrt{2}) \\cup \\{-1\\} \\cup \\{1\\} \\cup (\\sqrt{2}; +\\infty)`} />
+          </p>
+        </div>
+      </div>
+    )
+  },
+
+
+
+
+
 
 
 ];
-
