@@ -3,9 +3,11 @@ import { InlineMath, BlockMath } from 'react-katex';
 
 export const section18Tasks = [
   {
-    id: 1,
+     id: 1,
     title: 'Задача 1 (Уравнение с параметром)',
-    mathA: '\\begin{gathered} \\text{Найдите все значения параметра } a, \\text{ при каждом из которых уравнение} \\\\ (x^2 - x)a^2 + (x^4 - x^3 - x + 1)a - x^3 + x^2 = 0 \\\\ \\text{имеет ровно 2 решения.} \\end{gathered}',
+    textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+    mathA: '(x^2 - x)a^2 + (x^4 - x^3 - x + 1)a - x^3 + x^2 = 0',
+    textAfter: 'имеет ровно 2 решения.',
     mathB: '',
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
@@ -123,4 +125,3 @@ export const section18Tasks = [
 
 
 ];
-
