@@ -3214,6 +3214,128 @@ export const section16Tasks = [
       </div>
     )
   },
+  {
+    id: 41,
+    title: "Задача 41",
+    mathA: "\\begin{array}{l} \\text{Условие. В июле 2024 года планируется взять кредит в банке на некоторую} \\\\ \\text{сумму. Условия его возврата таковы:} \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\\\ \\quad \\bullet \\text{ каждый январь долг возрастает на } r\\% \\text{ по сравнению с концом предыдущего} \\\\ \\quad \\quad \\text{года;} \\\\ \\quad \\bullet \\text{ с февраля по июнь каждого года необходимо выплатить одним платежом часть} \\\\ \\quad \\quad \\text{долга.} \\\\ \\text{Известно, что если ежегодно выплачивать по 65 610 рублей, то кредит будет полно-} \\\\ \\text{стью погашен за 4 года, а если ежегодно выплачивать по 117 450 рублей, то кредит} \\\\ \\text{будет полностью погашен за 2 года. Найдите число } r. \\end{array}",
+    mathB: "",
+    solutionBuilder: () => (
+      <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+        <p className="font-bold text-slate-800 dark:text-slate-100 pt-4 border-t border-slate-200/40">Решение.</p>
+        <p>Обозначения:</p>
+        <div className="pl-4 space-y-1">
+          <p>• <InlineMath>{"S"}</InlineMath> — сумма кредита, рублей;</p>
+          <p>• <InlineMath>{"p = 1 + \\frac{r}{100}"}</InlineMath> — множитель роста долга при начислении процентов;</p>
+          <p>• <InlineMath>{"X = 65\\,610"}</InlineMath> — ежегодный платёж при 4-летнем сроке, рублей;</p>
+          <p>• <InlineMath>{"Y = 117\\,450"}</InlineMath> — ежегодный платёж при 2-летнем сроке, рублей.</p>
+        </div>
+
+        <p>Составим таблицы для обоих вариантов погашения кредита.</p>
+        <p>Вариант 1 (срок 4 года, платёж <InlineMath>{"X"}</InlineMath>):</p>
+
+        <div className="overflow-x-auto my-2">
+          <table className="min-w-full border-collapse border border-slate-200 dark:border-purple-950/40 text-center text-xs md:text-sm">
+            <thead>
+              <tr className="bg-slate-50 dark:bg-purple-950/10">
+                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Год</th>
+                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг до роста</th>
+                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг после роста</th>
+                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг после платежа</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-slate-100 dark:border-purple-950/20">
+                <td className="p-2">1</td>
+                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td className="p-2"><InlineMath>{"pS"}</InlineMath></td>
+                <td className="p-2"><InlineMath>{"pS - X"}</InlineMath></td>
+              </tr>
+              <tr className="border-b border-slate-100 dark:border-purple-950/20">
+                <td className="p-2">2</td>
+                <td className="p-2"><InlineMath>{"pS - X"}</InlineMath></td>
+                <td className="p-2"><InlineMath>{"p(pS - X)"}</InlineMath></td>
+                <td className="p-2"><InlineMath>{"p^2S - pX - X"}</InlineMath></td>
+              </tr>
+              <tr className="border-b border-slate-100 dark:border-purple-950/20">
+                <td className="p-2">3</td>
+                <td className="p-2"><InlineMath>{"p^2S - pX - X"}</InlineMath></td>
+                <td className="p-2"><InlineMath>{"p(p^2S - pX - X)"}</InlineMath></td>
+                <td className="p-2"><InlineMath>{"p^3S - p^2X - pX - X"}</InlineMath></td>
+              </tr>
+              <tr className="border-b border-slate-100 dark:border-purple-950/20">
+                <td className="p-2">4</td>
+                <td className="p-2"><InlineMath>{"p^3S - p^2X - pX - X"}</InlineMath></td>
+                <td className="p-2"><InlineMath>{"p(p^3S - p^2X - pX - X)"}</InlineMath></td>
+                <td className="p-2">0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Так как на 4-й год кредит полностью погашается, получаем уравнение:</p>
+        <BlockMath>{"p^4S - X(p^3 + p^2 + p + 1) = 0 \\implies S = \\frac{X(p^3 + p^2 + p + 1)}{p^4} \\qquad (1)"}</BlockMath>
+
+        <p>Вариант 2 (срок 2 года, платёж <InlineMath>{"Y"}</InlineMath>):</p>
+
+        <div className="overflow-x-auto my-2">
+          <table className="min-w-full border-collapse border border-slate-200 dark:border-purple-950/40 text-center text-xs md:text-sm">
+            <thead>
+              <tr className="bg-slate-50 dark:bg-purple-950/10">
+                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Год</th>
+                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг до роста</th>
+                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг после роста</th>
+                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг после платежа</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-slate-100 dark:border-purple-950/20">
+                <td className="p-2">1</td>
+                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td className="p-2"><InlineMath>{"pS"}</InlineMath></td>
+                <td className="p-2"><InlineMath>{"pS - Y"}</InlineMath></td>
+              </tr>
+              <tr className="border-b border-slate-100 dark:border-purple-950/20">
+                <td className="p-2">2</td>
+                <td className="p-2"><InlineMath>{"pS - Y"}</InlineMath></td>
+                <td className="p-2"><InlineMath>{"p(pS - Y)"}</InlineMath></td>
+                <td className="p-2">0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Так как на 2-й год кредит полностью погашается, получаем уравнение:</p>
+        <BlockMath>{"p^2S - Y(p + 1) = 0 \\implies S = \\frac{Y(p + 1)}{p^2} \\qquad (2)"}</BlockMath>
+
+        <p>Приравняем выражения для <InlineMath>{"S"}</InlineMath> из уравнений (1) и (2):</p>
+        <BlockMath>{"\\frac{X(p^3 + p^2 + p + 1)}{p^4} = \\frac{Y(p + 1)}{p^2}"}</BlockMath>
+
+        <p>
+          Заметим, что <InlineMath>{"p^3 + p^2 + p + 1 = p^2(p + 1) + (p + 1) = (p + 1)(p^2 + 1)"}</InlineMath>. Подставим это и сократим обе части на <InlineMath>{"\\frac{p + 1}{p^2}"}</InlineMath> (так как <InlineMath>{"p > 1"}</InlineMath>):
+        </p>
+
+        <BlockMath>{"\\frac{X(p^2 + 1)}{p^2} = Y \\implies X(p^2 + 1) = Yp^2 \\implies Xp^2 + X = Yp^2"}</BlockMath>
+        <BlockMath>{"p^2(Y - X) = X \\implies p^2 = \\frac{X}{Y - X}"}</BlockMath>
+
+        <p>Подставим числовые значения <InlineMath>{"X = 65\\,610"}</InlineMath> и <InlineMath>{"Y = 117\\,450"}</InlineMath>:</p>
+        <BlockMath>{"Y - X = 117\\,450 - 65\\,610 = 51\\,840"}</BlockMath>
+        <BlockMath>{"p^2 = \\frac{65\\,610}{51\\,840} = \\frac{6561}{5184} = \\frac{81^2}{72^2} = \\left(\\frac{9}{8}\\right)^2 = 1,125^2"}</BlockMath>
+
+        <p>
+          Отсюда <InlineMath>{"p = 1,125"}</InlineMath>. Так как <InlineMath>{"p = 1 + \\frac{r}{100} = 1,125"}</InlineMath>, получаем <InlineMath>{"r = 12,5"}</InlineMath>.
+        </p>
+
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
+          <span>Ответ:</span>
+          <div style={{ whiteSpace: "nowrap" }}>
+            <InlineMath>{"12,5."}</InlineMath>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+
 
 ];
 

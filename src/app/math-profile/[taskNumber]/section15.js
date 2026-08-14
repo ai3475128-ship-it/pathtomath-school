@@ -2835,6 +2835,87 @@ export const section15Tasks = [
       </div>
     )
   },
+    {
+    id: 33,
+    title: 'Задача 33. (ЕГЭ 2025)',
+    mathA: '7\\log_{12}(x^2 - 13x + 42) \\leq 8 + \\log_{12}\\frac{(x-7)^7}{x-6}',
+    mathB: '',
+    solutionBuilder: () => (
+      <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+        <p className="font-bold text-slate-700 dark:text-slate-100">Решение неравенства:</p>
+
+        <p>Найдем область допустимых значений (ОДЗ) исходного неравенства:</p>
+        <BlockMath math={'\\begin{cases} x^2 - 13x + 42 > 0 \\\\ \\frac{(x-7)^7}{x-6} > 0 \\end{cases} \\iff \\begin{cases} (x-6)(x-7) > 0 \\\\ \\frac{x-7}{x-6} > 0 \\end{cases} \\iff x \\in (-\\infty; 6) \\cup (7; +\\infty)'} />
+
+        <p>Разложим квадратный трёхчлен на множители и перепишем логарифм дроби:</p>
+        <BlockMath math={'7\\log_{12}\\bigl((x-6)(x-7)\\bigr) \\leq 8 + \\log_{12}(x-7)^7 - \\log_{12}(x-6)'} />
+
+        <p>Учитывая ограничения ОДЗ, рассмотрим промежуток <InlineMath math={'x > 7'} />. На этом интервале выражения под знаком логарифма строго положительны, что позволяет убрать модули при раскрытии логарифма произведения:</p>
+        <BlockMath math={'7\\log_{12}(x-6) + 7\\log_{12}(x-7) \\leq 8 + 7\\log_{12}(x-7) - \\log_{12}(x-6)'} />
+
+        <div className="flex flex-wrap items-center gap-1">
+          <span>Вычтем из обеих частей неравенства слагаемое</span>
+          <InlineMath math={'7\\log_{12}(x-7)'} />
+        </div>
+
+        <p>Приведем подобные логарифмы, перенеся их в левую часть:</p>
+        <BlockMath math={'7\\log_{12}(x-6) + \\log_{12}(x-6) \\leq 8 \\iff 8\\log_{12}(x-6) \\leq 8'} />
+
+        <p>Разделим на 8 обе части и потенцируем неравенство по основанию 12 &gt; 1:</p>
+        <BlockMath math={'\\log_{12}(x-6) \\leq 1 \\iff x-6 \\leq 12 \\iff x \\leq 18'} />
+
+        <p>С учетом ОДЗ полугодовой промежуток <InlineMath math={'x < 6'} /> не содержит решений исходного неравенства. Нанесем итоговую систему условий на числовую прямую:</p>
+
+        {/* 🎨 ИСПРАВЛЕНО: Заменили y на cy, чтобы круги опустились ровно на ось x */}
+        <div className="my-6 flex justify-center w-full select-none">
+          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible total font-sans font-bold text-xs">
+            {/* Главная числовая ось X */}
+            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
+            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
+            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200">x</text>
+
+            {/* ЗАКРУГЛЕННАЯ КРЫША ИНТЕРВАЛА РЕШЕНИЯ (7; 18] */}
+            <path d="M 210 60 L 210 40 A 8 8 0 0 1 218 32 L 302 32 A 8 8 0 0 1 310 40 L 310 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400" />
+
+            {/* СИНЯЯ КУРСИВНАЯ ШТРИХОВКА ВНУТРИ КРЫШИ */}
+            <line x1="216" y1="60" x2="224" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
+            <line x1="226" y1="60" x2="234" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
+            <line x1="236" y1="60" x2="244" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
+            <line x1="246" y1="60" x2="254" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
+            <line x1="256" y1="60" x2="264" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
+            <line x1="266" y1="60" x2="274" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
+            <line x1="276" y1="60" x2="284" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
+            <line x1="286" y1="60" x2="294" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
+            <line x1="296" y1="60" x2="304" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
+
+            {/* Верхний сплошной уровень ОДЗ */}
+            <line x1="10" y1="15" x2="350" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-300 dark:text-purple-950/40" />
+
+            {/* Выколотая точка 7 (cy="60") */}
+            <circle cx="210" cy="60" r="4.5" fill="white" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <foreignObject x="200" y="68" width="20" height="30">
+              <div className="text-slate-800 dark:text-slate-200 text-center"><InlineMath math="7" /></div>
+            </foreignObject>
+
+            {/* Закрашенная точка 18 (cy="60") */}
+            <circle cx="310" cy="60" r="4.5" fill="currentColor" className="text-slate-800 dark:text-slate-200" />
+            <foreignObject x="295" y="68" width="30" height="30">
+              <div className="text-slate-800 dark:text-slate-200 text-center"><InlineMath math="18" /></div>
+            </foreignObject>
+          </svg>
+        </div>
+
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-100 dark:border-purple-950/30">
+          <span>Ответ:</span>
+          <InlineMath math={'x \\in (7; 18]'} />
+        </div>
+      </div>
+    ),
+    textBefore: '',
+    mathB: ''
+  },
+
+
   {
     id: 34,
     title: 'Задача 34 (Дробно-показательное неравенство с разложением, ЕГЭ 2025)',
@@ -3413,8 +3494,8 @@ export const section15Tasks = [
         <p>Используем формулу суммы логарифмов с одинаковым основанием. Перейдём к равносильной системе условий, содержащей ограничения на знаки аргументов всех логарифмов исходного выражения:</p>
         <BlockMath math={`\\iff \\begin{cases} \\log_3\\left[\\left(\\frac{1}{x} - 1\\right)\\left(\\frac{1}{x} + 1\\right)\\right] \\ge \\log_3(8x - 1) \\\\ \\frac{1}{x} - 1 > 0 \\\\ \\frac{1}{x} + 1 > 0 \\\\ 8x - 1 > 0 \\end{cases}`} />
         
-        <p>Свернём произведение в первом аргументе по формуле разности квадратов и упростим систему ограничений ОДЗ:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\log_3\\left(\\frac{1}{x^2} - 1\right) \\ge \\log_3(8x - 1) \\\\ \\frac{1 - x}{x} > 0 \\\\ \\frac{1 + x}{x} > 0 \\\\ x > \\frac{1}{8} \\end{cases} \\iff \\begin{cases} \\log_3\\left(\\frac{1}{x^2} - 1\\right) \\ge \\log_3(8x - 1) \\\\ 0 < x < 1 \\\\ x \\in (-\\infty; \\, -1) \\cup (0; \\, +\\infty) \\\\ x > \\frac{1}{8} \\end{cases} \\iff \\begin{cases} \\log_3\\left(\\frac{1}{x^2} - 1\\right) \\ge \\log_3(8x - 1) \\\\ \\frac{1}{8} < x < 1 \\end{cases}`} />
+        <p>Свернём произведение в первом аргументе по формуле разности квадратов и упростим систему ограничений ОДЗ</p>
+        <BlockMath math={``} />
 
         <div className="flex flex-wrap items-center gap-1">
           <span>В силу монотонного возрастания логарифмической функции с основанием</span>
@@ -3452,13 +3533,13 @@ export const section15Tasks = [
             {/* Выколотая точка 1/8 */}
             <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="45" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\\frac{1}{8}" /></div>
+              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0,125" /></div>
             </foreignObject>
 
             {/* Закрашенная точка 1/2 */}
             <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
             <foreignObject x="165" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\\frac{1}{2}" /></div>
+              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0,5" /></div>
             </foreignObject>
 
             {/* Выколотая точка 1 */}

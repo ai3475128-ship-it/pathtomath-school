@@ -23,3 +23,30 @@ body {
 .group, a, button, h1, p, span, li {
   transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out, border-color 0.4s ease-in-out, opacity 0.4s ease-in-out !important;
 }
+/* 🚀 ИСПРАВЛЕНО: Скроллбар стал ультратонким (2px) и полностью сливается с темным фоном платформы */
+::-webkit-scrollbar {
+  width: 2px !important;
+  height: 2px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+/* Светлая тема: тонкий серый маркер */
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  border-radius: 9999px !important;
+}
+
+/* Тёмная тема: ультратонкий темный фиолетовый бегунок, сливающийся с фоном карточки */
+.dark ::-webkit-scrollbar-thumb,
+:is(html.dark) ::-webkit-scrollbar-thumb {
+  background: #2e1065 !important; /* Очень темный фиолетовый (purple-950) */
+  border-radius: 9999px !important;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover,
+:is(html.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #634EE4 !important; /* Подсвечивается ярким фиолетовым только при наведении */
+}

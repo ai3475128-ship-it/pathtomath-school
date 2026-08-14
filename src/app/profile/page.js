@@ -4,36 +4,59 @@ import { open } from 'sqlite';
 import path from 'path';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
-import { initProgressTable } from './init-db';
 
-/* Сквозные импорты из текущей папки профиля */
-import { saveDailyNote, toggleTaskProgress } from './actions';
+// ИМПОРТЫ СЕКЦИЙ БАНКА ЗАДАНИЙ: Для автоматического расчёта живых знаменателей платформы
+import { section1Tasks } from '../math-profile/[taskNumber]/sectoin1';
+import { section2Tasks } from '../math-profile/[taskNumber]/sectoin2';
+import { section3Tasks } from '../math-profile/[taskNumber]/sectoin3';
+import { section4Tasks } from '../math-profile/[taskNumber]/sectoin4';
+import { section5Tasks } from '../math-profile/[taskNumber]/sectoin5';
+import { section6Tasks } from '../math-profile/[taskNumber]/sectoin6';
+import { section7Tasks } from '../math-profile/[taskNumber]/sectoin7';
+import { section8Tasks } from '../math-profile/[taskNumber]/sectoin8';
+import { section9Tasks } from '../math-profile/[taskNumber]/sectoin9';
+import { section10Tasks } from '../math-profile/[taskNumber]/sectoin10';
+import { section11Tasks } from '../math-profile/[taskNumber]/sectoin11';
+import { section12Tasks } from '../math-profile/[taskNumber]/sectoin12';
+import { section13Tasks } from '../math-profile/[taskNumber]/section13';
+import { section14Tasks } from '../math-profile/[taskNumber]/section14';
+import { section15Tasks } from '../math-profile/[taskNumber]/section15';
+import { section16Tasks } from '../math-profile/[taskNumber]/sectoin16';
+import { section17Tasks } from '../math-profile/[taskNumber]/sectoin17';
+import { section18Tasks } from '../math-profile/[taskNumber]/sectoin18';
+import { section19Tasks } from '../math-profile/[taskNumber]/sectoin19';
+
+// 🚀 ИСПРАВЛЕНО: Один чистый импорт функции базы данных из init-db и экшена из actions
+import { initProgressTable } from './init-db';
+import { saveDailyNote } from './actions';
+
+async function connectDB() {
+  return open({
+    filename: path.join(process.cwd(), 'prisma', 'dev.db'),
+    driver: sqlite3.Database
+  });
+}
 
 async function getProfileData() {
   await initProgressTable();
   const cookieStore = await cookies();
-  
-  // ИСПРАВЛЕНО: Декодируем и читаем данные из новой защищенной куки сессии userSession
   const sessionCookie = cookieStore.get('userSession');
   if (!sessionCookie) return null;
 
   let userId = null;
   try {
     const sessionData = JSON.parse(Buffer.from(sessionCookie.value, 'base64').toString('utf8'));
-    userId = sessionData.id;
+    userId = sessionData?.id || sessionData?.email;
   } catch (e) {
-    return null;
+    userId = sessionCookie.value;
   }
 
   if (!userId) return null;
 
-  const db = await open({
-    filename: path.join(process.cwd(), 'prisma', 'dev.db'),
-    driver: sqlite3.Database
-  });
-
+  let db;
   try {
-    const user = await db.get('SELECT * FROM User WHERE id = ?', [userId]);
+    db = await connectDB();
+    const user = await db.get('SELECT * FROM User WHERE id = ? OR email = ? OR password = ?', [userId, userId, sessionCookie.value]);
     if (!user) return null;
 
     const solvedRecords = await db.all('SELECT taskNumber FROM Progress WHERE userId = ?', [user.id]);
@@ -45,28 +68,30 @@ async function getProfileData() {
       notesMap[note.dateText] = note.content;
     });
 
-    return { user, solvedTasks, notesMap };
+    const homeworks = await db.all("SELECT * FROM Homework WHERE userId = ? ORDER BY createdAt DESC", [user.id]);
+    const trials = await db.all("SELECT * FROM Trial WHERE userId = ? ORDER BY date DESC", [user.id]);
+
+    return { user, solvedTasks, notesMap, homeworks, trials };
   } catch (error) {
-    console.error('Ошибка чтения профиля из БД:', error);
+    console.error(error);
     return null;
   } finally {
     if (db) await db.close();
   }
 }
-
 export default async function ProfilePage({ searchParams }) {
   const today = new Date();
   const currentYear = today.getFullYear();
   const currentMonth = today.getMonth();
   const todayStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
-  const queryParams = await searchParams;
-  const selectedDate = queryParams?.date || todayStr;
+  const resolvedSearchParams = await searchParams;
+  const selectedDate = resolvedSearchParams?.date || todayStr;
 
   const data = await getProfileData();
   if (!data) redirect('/login');
 
-  const { user, solvedTasks, notesMap } = data;
+  const { user, solvedTasks, notesMap, homeworks, trials } = data;
   const currentNoteContent = notesMap[selectedDate] || '';
 
   const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
@@ -74,13 +99,6 @@ export default async function ProfilePage({ searchParams }) {
   const firstDayIndex = new Date(currentYear, currentMonth, 1).getDay();
   const startOffset = firstDayIndex === 0 ? 6 : firstDayIndex - 1;
 
-  const handleSaveDailyNote = async (formData) => {
-    'use server';
-    const content = formData.get('noteContent');
-    await saveDailyNote(selectedDate, content);
-  };
-
-  // РАСЧЁТ ПРОГРЕССА ДЛЯ КАЖДОГО ИЗ 19 РАЗДЕЛОВ
   const solvedStatsBySection = {};
   solvedTasks.forEach(taskNumber => {
     const sectionNum = Math.floor(taskNumber / 100);
@@ -89,116 +107,168 @@ export default async function ProfilePage({ searchParams }) {
     }
   });
 
-  // Общее количество задач для каждого раздела ЕГЭ.
   const totalStatsBySection = {
-    1: 15, 2: 12, 3: 8, 4: 15, 5: 10,
-    6: 14, 7: 10, 8: 9, 9: 11, 10: 13,
-    11: 15, 12: 12, 13: 111, 14: 10, 15: 122,
-    16: 8, 17: 10, 18: 14, 19: 15
+    1: section1Tasks?.length || 0, 2: section2Tasks?.length || 0, 3: section3Tasks?.length || 0,
+    4: section4Tasks?.length || 0, 5: section5Tasks?.length || 0, 6: section6Tasks?.length || 0,
+    7: section7Tasks?.length || 0, 8: section8Tasks?.length || 0, 9: section9Tasks?.length || 0,
+    10: section10Tasks?.length || 0, 11: section11Tasks?.length || 0, 12: section12Tasks?.length || 0,
+    13: section13Tasks?.length || 0, 14: section14Tasks?.length || 0, 15: section15Tasks?.length || 0,
+    16: section16Tasks?.length || 0, 17: section17Tasks?.length || 0, 18: section18Tasks?.length || 0,
+    19: section19Tasks?.length || 0
   };
 
   const totalTasks = 19;
-  const solvedTasksSet = new Set(solvedTasks.map(num => Math.floor(num / 100)));
-  const solvedTasksList = Array.from(solvedTasksSet).filter(num => num >= 1 && num <= 19);
+  const solvedTasksList = Array.from(new Set(solvedTasks.map(num => Math.floor(num / 100)))).filter(num => num >= 1 && num <= 19);
+
+  const validTrials = trials.filter(t => t.score > 0);
+  const averageTrialScore = validTrials.length > 0 
+    ? Math.round(validTrials.reduce((sum, t) => sum + t.score, 0) / validTrials.length) 
+    : 0;
+
+  const radius = 30;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (averageTrialScore / 100) * circumference;
 
   return (
-    <div className="min-h-screen p-8 transition-colors duration-500 bg-gradient-to-br from-white via-blue-50/50 to-purple-50/10 dark:from-[#03000a] dark:via-[#0c0714] dark:to-[#03000a]">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="min-h-screen p-6 transition-colors duration-500 bg-slate-50 dark:bg-[#03000a] text-slate-800 dark:text-slate-100 font-sans">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        {/* ЛЕВАЯ КОЛОНКА */}
+        {/* ЛЕВАЯ КОЛОНКА (2/3): Чек-лист и Компактные интерактивные плитки */}
         <div className="lg:col-span-2 space-y-6">
           
-          {/* КАРТОЧКА УЧЕНИКА */}
-          <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-blue-100/50 shadow-sm flex flex-col sm:flex-row items-center gap-5 dark:bg-[#140e24]/80 dark:border-purple-500/20">
+          {/* Профиль ученика */}
+          <div className="bg-white/80 dark:bg-[#140e24]/80 p-5 rounded-3xl border border-blue-100/60 shadow-sm flex items-center justify-between gap-4">
             <div>
-              <span className="text-xs font-bold bg-blue-50 text-blue-500 px-2.5 py-1 rounded-md border border-blue-100/30 uppercase tracking-wider dark:bg-purple-950/40 dark:text-purple-300 dark:border-purple-500/20">
-                Ученик платформы
-              </span>
-              <h1 className="text-2xl font-black mt-2 text-slate-800 dark:text-slate-100">{user.name}</h1>
-              <p className="text-slate-400 dark:text-slate-500 text-sm">{user.email}</p>
+              <span className="text-[10px] font-black uppercase text-sky-600 dark:text-purple-400 bg-sky-50 dark:bg-purple-950/40 px-2.5 py-0.5 rounded-md tracking-wider">Профиль</span>
+              <h1 className="text-xl font-black text-sky-600 dark:text-purple-400 mt-1.5 tracking-tight">{user.name}</h1>
+              <p className="text-xs text-slate-400 font-medium mt-0.5">{user.email}</p>
             </div>
+            <span className="text-xs font-black uppercase tracking-wider text-sky-600 dark:text-purple-400">
+            </span>
           </div>
-          {/* ЧЕК-ЛИСТ С ИНДИВИДУАЛЬНЫМ ПРОГРЕССОМ-БАРАМИ */}
-          <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-blue-100/50 shadow-sm dark:bg-[#140e24]/80 dark:border-purple-500/20">
-            <h3 className="font-black text-xl mb-5 text-slate-800 dark:text-slate-200 tracking-tight">
-              Ваш чек-лист подготовки
-            </h3>
 
-            <div className="space-y-2.5 max-h-[550px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          {/* Чек-лист подготовки */}
+          <div className="bg-white/80 dark:bg-[#140e24]/80 p-6 rounded-3xl border border-blue-100/60 shadow-sm">
+            <h3 className="font-black text-base text-sky-600 dark:text-purple-400 tracking-tight mb-4 uppercase">Прогресс подготовки</h3>
+{/* 🚀 ИСПРАВЛЕНО: Скроллбар стал тонким, прозрачным и фиолетовым в темной теме */}
+<div className="space-y-2 max-h-[300px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-sky-200 dark:scrollbar-thumb-purple-950/60 scrollbar-track-transparent">
               {[...Array(totalTasks)].map((_, i) => {
                 const taskNum = i + 1;
                 const isSolved = solvedTasksList.includes(taskNum);
-
                 const sectionSolved = solvedStatsBySection[taskNum] || 0;
                 const sectionTotal = totalStatsBySection[taskNum] || 10;
-                const sectionPercentage = Math.min(Math.round((sectionSolved / sectionTotal) * 100), 100);
+                const sectionPercentage = sectionTotal > 0 ? Math.min(Math.round((sectionSolved / sectionTotal) * 100), 100) : 0;
 
                 return (
                   <Link 
-                    key={taskNum}
-                    href={`/math-profile/${taskNum}`}
-                    className={`group flex flex-col p-4 rounded-xl border transition-all duration-300 transform hover:-translate-y-[2px] cursor-pointer hover:bg-[#f3f7ff] hover:border-blue-400 hover:shadow-md dark:hover:bg-[#1c1532]/40 dark:hover:border-purple-500/40 ${
+                    key={taskNum} href={`/math-profile/${taskNum}`} scroll={false}
+                    className={`group flex flex-col p-3 rounded-xl border transition-all duration-300 hover:scale-[1.002] ${
                       isSolved 
-                        ? 'bg-blue-50/40 border-blue-100/30 dark:bg-purple-950/10 dark:border-purple-500/20' 
-                        : 'bg-white/40 border-slate-100/80 dark:bg-slate-900/10 dark:border-purple-500/10'
+                        ? 'bg-blue-50/30 border-blue-100/40 dark:bg-purple-950/10 dark:border-purple-500/10 hover:bg-sky-500 dark:hover:bg-[#634EE4] hover:border-sky-400 dark:hover:border-[#634EE4]' 
+                        : 'bg-white border-slate-100 dark:bg-slate-900/10 dark:border-purple-500/5 hover:bg-sky-500 dark:hover:bg-[#634EE4] hover:border-sky-400 dark:hover:border-[#634EE4]'
                     }`}
                   >
-                    <div className="flex items-center justify-between w-full min-w-0">
-                      <div className="flex items-center gap-4 min-w-0">
-                        {/* ИСПРАВЛЕНО: Убран group-hover:text-white, ломавший видимость номера */}
-                        <span className={`text-xl font-black tracking-tight transition-colors duration-300 select-none w-7 shrink-0 ${
-                          isSolved ? 'text-sky-500' : 'text-slate-400/80 dark:text-purple-400/60'
-                        }`}>
+                    <div className="flex items-center justify-between w-full text-xs font-bold">
+                      <div className="flex items-center gap-3">
+                        <span className={`font-black transition-colors duration-300 group-hover:text-white ${isSolved ? 'text-sky-600 dark:text-purple-400' : 'text-sky-600 dark:text-purple-400/80'}`}>
                           {String(taskNum).padStart(2, '0')}
                         </span>
-                        {/* ИСПРАВЛЕНО: Текст при наведении окрашивается в синий на светлой теме и в белый на темной */}
-                        <span className={`text-sm font-bold tracking-tight transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-purple-300 ${
-                          isSolved ? 'text-sky-600 dark:text-purple-300' : 'text-slate-700 dark:text-slate-300'
-                        }`}>
+                        <span className="text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors duration-300">
                           Задание №{taskNum}
                         </span>
                       </div>
-                      {/* ИСПРАВЛЕНО: Счётчик тоже корректно меняет цвет при наведении */}
-                      <span className={`text-xs font-mono font-bold transition-colors duration-300 group-hover:text-blue-500 dark:group-hover:text-purple-400 ${
-                        isSolved ? 'text-sky-500 dark:text-purple-400' : 'text-slate-400 dark:text-slate-500'
-                      }`}>
-                        {sectionSolved} / {totalStatsBySection[taskNum]}
+                      <span className="font-mono text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors duration-300">
+                        {sectionSolved}/{sectionTotal}
                       </span>
                     </div>
-
-                    {/* ТРЕК ЛИНЕЙНОГО ПРОГРЕССА */}
-                    <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden mt-3 dark:bg-slate-900/60 group-hover:bg-blue-100 dark:group-hover:bg-purple-950/40 transition-colors duration-300">
-                      <div 
-                        className={`h-full rounded-full transition-all duration-500 ${
-                          isSolved ? 'bg-sky-500 dark:bg-purple-500' : 'bg-slate-300 dark:bg-purple-900'
-                        }`}
-                        style={{ width: `${sectionPercentage}%` }}
-                      />
+                    
+                    <div className="w-full bg-slate-100 dark:bg-purple-950/40 h-1 rounded-full overflow-hidden mt-2 group-hover:bg-white/20 transition-colors">
+                      <div className="bg-sky-500 dark:bg-[#634EE4] group-hover:bg-white h-full rounded-full transition-all duration-500" style={{ width: `${sectionPercentage}%` }} />
                     </div>
                   </Link>
                 );
               })}
             </div>
           </div>
-        </div>
+          {/* Плитки ДЗ и Пробников */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            
+            {/* Домашние задания */}
+            <Link 
+              href="/homeworks" 
+              className="bg-white dark:bg-[#140e24]/75 p-6 rounded-3xl border border-blue-100/40 dark:border-purple-500/10 shadow-sm flex flex-col justify-between group hover:border-sky-400 dark:hover:border-[#634EE4] hover:bg-sky-500 dark:hover:bg-[#634EE4] transition-all duration-300 h-44"
+            >
+              <div className="space-y-1">
+                <span className="text-[10px] font-black uppercase text-slate-400 group-hover:text-sky-100 tracking-wider">Раздел обучения</span>
+                <h3 className="text-lg font-black text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors tracking-tight">Домашние задания</h3>
+              </div>
 
-        {/* ПРАВАЯ КОЛОНКА */}
+              <div className="border-t border-slate-100 dark:border-purple-950/40 group-hover:border-white/20 pt-3 flex justify-between items-center text-[10px] font-black uppercase tracking-wider text-slate-400 group-hover:text-white transition-colors">
+                <span className="px-2 py-0.5 rounded bg-sky-50 text-sky-600 dark:bg-purple-950/40 dark:text-purple-300 group-hover:bg-white/20 group-hover:text-white">
+                  Домашние Задания: {homeworks.length}
+                </span>
+                <span></span>
+              </div>
+            </Link>
+
+            {/* Пробные экзамены */}
+            <Link 
+              href="/trials" 
+              className="bg-white dark:bg-[#140e24]/75 p-6 rounded-3xl border border-blue-100/40 dark:border-purple-500/10 shadow-sm flex flex-col justify-between group hover:border-sky-400 dark:hover:border-[#634EE4] hover:bg-sky-500 dark:hover:bg-[#634EE4] transition-all duration-300 h-44"
+            >
+              <div className="flex justify-between items-start gap-4">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-black uppercase text-slate-400 group-hover:text-sky-100 tracking-wider">Официальный трек</span>
+                  <h3 className="text-lg font-black text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors tracking-tight">Пробные экзамены</h3>
+                </div>
+
+                <div className="relative w-16 h-16 shrink-0 flex items-center justify-center">
+                  <svg className="w-full h-full transform -rotate-90">
+                    <circle cx="32" cy="32" r={radius} className="stroke-slate-100 dark:stroke-purple-950/60 fill-none group-hover:stroke-white/20" strokeWidth="4" />
+                    <circle 
+                      cx="32" cy="32" r={radius} 
+                      className="stroke-sky-500 dark:stroke-purple-400 fill-none group-hover:stroke-white transition-all duration-500" 
+                      strokeWidth="4" 
+                      strokeDasharray={circumference}
+                      strokeDashoffset={strokeDashoffset}
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-xl font-black tracking-tighter text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors duration-300 select-none">
+                      {averageTrialScore < 10 && averageTrialScore > 0 ? `0${averageTrialScore}` : averageTrialScore === 0 ? '00' : averageTrialScore}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t border-slate-100 dark:border-purple-950/40 group-hover:border-white/20 pt-3 flex justify-between items-center text-[10px] font-black uppercase tracking-wider text-slate-400 group-hover:text-white transition-colors">
+                <span className="px-2 py-0.5 rounded bg-sky-50 text-sky-600 dark:bg-purple-950/40 dark:text-purple-300 group-hover:bg-white/20 group-hover:text-white">
+                  Пробники: {trials.length}
+                </span>
+                <span></span>
+              </div>
+            </Link>
+
+          </div>
+        </div>
+        {/* ПРАВАЯ КОЛОНКА (1/3): Календарь планов */}
         <div className="space-y-6">
-          <div className="bg-white/80 backdrop-blur-md p-5 rounded-2xl border border-blue-100/50 shadow-sm dark:bg-purple-950/10 dark:border-purple-500/20">
-            <h3 className="font-black text-lg text-slate-800 dark:text-slate-200 mb-4 flex justify-between items-center">
+          <div className="bg-white/80 dark:bg-[#140e24]/80 p-5 rounded-3xl border border-blue-100/60 shadow-sm">
+            <h3 className="font-black text-sky-600 dark:text-purple-400 text-xs mb-4 flex justify-between items-center uppercase tracking-wider">
               <span>План подготовки</span>
-              <span className="text-xs bg-blue-50 text-blue-500 px-2 py-1 rounded font-bold font-mono dark:bg-purple-950/40 dark:text-purple-300">
+              <span className="text-xs font-bold bg-blue-50 text-sky-600 px-2 py-0.5 rounded dark:bg-purple-950/40 dark:text-purple-300">
                 {monthNames[currentMonth]} {currentYear}
               </span>
             </h3>
 
-            <div className="grid grid-cols-7 gap-1 text-center text-xs font-bold text-slate-400 dark:text-slate-500 mb-2">
+            <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2">
               <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
             </div>
 
             <div className="grid grid-cols-7 gap-1">
               {[...Array(startOffset)].map((_, i) => (
-                <div key={`empty-${i}`} className="aspect-square"></div>
+                <div key={`empty-${i}`} className="aspect-square" />
               ))}
 
               {[...Array(daysInMonth)].map((_, i) => {
@@ -210,53 +280,44 @@ export default async function ProfilePage({ searchParams }) {
 
                 return (
                   <Link
-                    key={dayNum}
-                    href={`/profile?date=${formattedDayStr}`}
-                    className={`aspect-square rounded-lg flex flex-col items-center justify-center text-xs font-semibold relative transition ${
+                    key={dayNum} href={`/profile?date=${formattedDayStr}`} scroll={false}
+                    className={`aspect-square rounded-lg text-xs font-bold flex flex-col items-center justify-center relative border transition-all duration-300 ${
                       isSelected
-                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-purple-600 dark:to-indigo-600 text-white font-black shadow-md'
+                        ? 'bg-sky-500 dark:bg-[#634EE4] text-white border-transparent'
                         : isToday
-                        ? 'border border-blue-300 text-blue-500 bg-blue-50/30 dark:border-purple-500/50 dark:text-purple-400 dark:bg-purple-950/30'
-                        : 'bg-slate-50 hover:bg-slate-100 text-slate-600 dark:bg-slate-900/40 dark:hover:bg-purple-950/20 dark:text-slate-400'
+                        ? 'border-sky-500 text-sky-600 font-black dark:border-purple-500'
+                        : 'bg-slate-50/50 border-slate-100 hover:bg-sky-500 hover:text-white hover:border-sky-400 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4] text-sky-600 dark:text-purple-400 dark:bg-slate-900/20 dark:border-purple-500/5'
                     }`}
                   >
                     <span>{dayNum}</span>
                     {hasNote && !isSelected && (
-                      <span className="w-1.5 h-1.5 bg-blue-400 dark:bg-purple-400 rounded-full absolute bottom-1"></span>
+                      <span className="w-1 h-1 bg-sky-500 dark:bg-purple-400 rounded-full absolute bottom-1" />
                     )}
                   </Link>
                 );
               })}
             </div>
-          </div>
 
-          <div className="bg-white/80 backdrop-blur-md p-5 rounded-2xl border border-blue-100/50 shadow-sm dark:bg-purple-950/10 dark:border-purple-500/20">
-            <div className="className-3">
-              <h4 className="font-bold text-sm text-slate-700 dark:text-slate-200">Планы на выбранную дату:</h4>
-              <span className="text-xs text-blue-500 dark:text-purple-400 font-semibold font-mono">
-                {selectedDate === todayStr ? 'Сегодня, ' : ''}{selectedDate}
-              </span>
+            <div className="mt-5 pt-4 border-t border-slate-100 dark:border-purple-950/20">
+              <h4 className="text-xs font-black uppercase tracking-wider text-slate-400 mb-1">Планы на дату:</h4>
+              <span className="text-xs font-mono font-bold text-sky-600 dark:text-purple-400">{selectedDate === todayStr ? 'Сегодня' : selectedDate}</span>
+
+              <form action={saveDailyNote} className="space-y-4 mt-3">
+                <input type="hidden" name="userId" value={user.id} />
+                <input type="hidden" name="selectedDate" value={selectedDate} />
+                <textarea
+                  name="noteContent" rows="4" placeholder="Планы..." defaultValue={currentNoteContent} key={selectedDate}
+                  className="w-full bg-slate-50 dark:bg-[#0c0714] border border-blue-100 rounded-xl p-3 text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none"
+                />
+                <button type="submit" className="w-full bg-sky-500 dark:bg-[#634EE4] hover:brightness-105 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-all cursor-pointer shadow-sm uppercase tracking-wider">
+                  Сохранить заметку
+                </button>
+              </form>
             </div>
 
-            <form action={handleSaveDailyNote} className="space-y-4 mt-3">
-              <textarea
-                name="noteContent"
-                rows="4"
-                placeholder="Планы..."
-                defaultValue={currentNoteContent}
-                key={selectedDate}
-                className="w-full bg-slate-50 border border-blue-100 rounded-xl p-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-400 dark:bg-purple-950/40 dark:border-purple-500/20 dark:text-slate-200 transition-colors"
-              />
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-bold py-2.5 px-4 rounded-xl transition shadow-md hover:scale-[1.01] hover:brightness-110 cursor-pointer dark:from-purple-600 dark:to-indigo-600"
-              >
-                Сохранить заметку
-              </button>
-            </form>
           </div>
-
         </div>
+
       </div>
     </div>
   );
