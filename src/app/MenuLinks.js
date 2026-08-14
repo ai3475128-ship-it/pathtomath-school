@@ -7,7 +7,8 @@ import { usePathname } from 'next/navigation';
 export default function MenuLinks({ hasUser, userRole }) {
   const pathname = usePathname();
 
-  const isPremiumOrAdmin = userRole === 'PREMIUM_STUDENT' || userRole === 'ADMIN';
+  // 🚀 ИСПРАВЛЕНО: Добавили роль TEACHER в условие, чтобы у преподавателя тоже горели вкладки
+  const isPremiumOrAdminOrTeacher = userRole === 'PREMIUM_STUDENT' || userRole === 'ADMIN' || userRole === 'TEACHER';
 
   const navLinks = [
     { href: '/', label: 'Главная' },
@@ -15,7 +16,7 @@ export default function MenuLinks({ hasUser, userRole }) {
     { href: '/math-profile', label: 'Банк заданий' },
   ];
 
-  if (hasUser && isPremiumOrAdmin) {
+  if (hasUser && isPremiumOrAdminOrTeacher) {
     navLinks.push(
       { href: '/homeworks', label: 'Домашние задания' },
       { href: '/trials', label: 'Пробники' }
@@ -29,7 +30,7 @@ export default function MenuLinks({ hasUser, userRole }) {
 
         return (
           <div key={link.href} className="relative flex flex-col items-center justify-center h-full">
-            {/* 🚀 ИСПРАВЛЕНО: Цвет активной вкладки теперь СТРОГО голубой в светлой теме и фиолетовый в темной */}
+            {/* Родная подсветка разделов Данилы возвращена в исходный вид */}
             <Link 
               href={link.href} 
               scroll={false} 
@@ -42,7 +43,7 @@ export default function MenuLinks({ hasUser, userRole }) {
               {link.label}
             </Link>
             
-            {/* Нижняя неоновая полоска под цвет темы */}
+            {/* Родная нижняя неоновая полоска под цвет темы сохранена в идеале */}
             {isActive && (
               <span className="absolute bottom-0 w-full h-[2.5px] rounded-full bg-sky-500 shadow-[0_0_10px_rgba(56,189,248,0.7)] dark:bg-purple-500 dark:shadow-[0_0_12px_rgba(168,85,247,0.5)] transition-all duration-300" />
             )}

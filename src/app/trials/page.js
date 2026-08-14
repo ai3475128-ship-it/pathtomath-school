@@ -314,50 +314,86 @@ return (
                 <p className="text-xs font-medium text-slate-400 text-center py-8 bg-white dark:bg-[#140e24]/75 rounded-3xl border border-blue-100/60">На платном курсе пока нет учеников.</p>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {studentsList.map((student) => {
-                    const studentTrials = trialsList.filter(t => t.userId === student.id);
-                    const uncheckedCount = studentTrials.filter(t => t.score === 0 && t.solutionUrl).length;
-                    
-                    // 🚀 РАСЧЁТ ЖИВОЙ ЦИФРЫ КИМ: Считаем экзамены, где решение solutionUrl реально отправлено учеником
-                    const submittedTrialsCount = studentTrials.filter(t => t.solutionUrl && t.solutionUrl.trim() !== '').length;
+                  {studentsList.map((student) => {/* 🚀 ИСПРАВЛЕНО: Убраны белые рамки, добавлено круговое SVG-кольцо среднего балла справа на карточке */
+const studentTrials = trialsList.filter(t => t.userId === student.id);
+const uncheckedCount = studentTrials.filter(t => t.score === 0 && t.solutionUrl).length;
 
-                    return (
-                      <div key={student.id} className="bg-white dark:bg-[#140e24]/75 p-5 rounded-3xl border border-blue-100/60 shadow-sm flex flex-col justify-between group hover:border-sky-400 dark:hover:border-[#634EE4] hover:bg-sky-500 dark:hover:bg-[#634EE4] transition-all duration-300">
-                        <div className="space-y-1">
-                          {/* 🚀 ИСПРАВЛЕНО: Теперь цифра сверху показывает честное количество написанных учеником КИМ (00 или 02) */}
-                          <div className="text-xl font-black text-sky-500 dark:text-purple-400 group-hover:text-white transition-colors duration-300 tracking-tighter">
-                            {submittedTrialsCount < 10 ? `0${submittedTrialsCount}` : submittedTrialsCount}
-                          </div>
-                          <h4 className="text-sm font-black text-slate-800 dark:text-slate-100 group-hover:text-white transition-colors duration-300 tracking-tight truncate">{student.name}</h4>
-                          <p className="text-[10px] text-slate-400 group-hover:text-sky-100 transition-colors duration-300 truncate">{student.email}</p>
-                        </div>
+// Расчёт живого счетчика сданных бланков
+const submittedTrialsCount = studentTrials.filter(t => t.solutionUrl && t.solutionUrl.trim() !== '').length;
 
-                        {/* Панель куратора: Вывод прямых экспресс-ссылок на бланки решений учеников */}
-                        <div className="mt-6 pt-3 border-t border-slate-100 dark:border-purple-950/40 group-hover:border-white/20 transition-colors duration-300 flex flex-col gap-2">
-                          {studentTrials.filter(t => t.solutionUrl).map((trialWithSol) => (
-                            <a 
-                              key={trialWithSol.id}
-                              href={trialWithSol.solutionUrl} 
-                              target="_blank" 
-                              rel="noopener noreferrer" 
-                              className="w-full text-center bg-sky-50 hover:bg-sky-100 dark:bg-purple-950/40 dark:hover:bg-purple-900/50 text-sky-600 dark:text-purple-300 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider block transition-colors border border-sky-100/30 dark:border-purple-500/10 cursor-pointer"
-                            >
-                              📄 Бланки КИМ: {trialWithSol.title}
-                            </a>
-                          ))}
+// Высчитываем средний тестовый балл ученика по проверенным пробникам
+const checkedTrials = studentTrials.filter(t => t.score > 0);
+const avgScore = checkedTrials.length > 0 
+  ? Math.round(checkedTrials.reduce((sum, t) => sum + t.score, 0) / checkedTrials.length) 
+  : 0;
 
-                          <div className="flex items-center justify-between mt-1">
-                            <span className={`px-2 py-1 rounded-xl text-[9px] font-black uppercase tracking-wider transition-colors duration-300 ${
-                              uncheckedCount > 0 
-                                ? 'bg-amber-50 text-amber-600 dark:bg-amber-950/30 dark:text-amber-400 group-hover:bg-white/20 group-hover:text-white' 
-                                : 'bg-sky-50 text-sky-600 dark:bg-purple-950/40 dark:text-purple-300 group-hover:bg-white/20 group-hover:text-white'
-                            }`}>{uncheckedCount > 0 ? `Проверить: ${uncheckedCount}` : 'Всё проверено'}</span>
-                            <a href={`/supervisor/students/${student.id}`} className="text-[10px] font-black uppercase tracking-widest text-sky-500 dark:text-purple-400 group-hover:text-white transition-colors duration-300 underline underline-offset-4 cursor-pointer"></a>
-                          </div>
-                        </div>
+// Параметры для математики SVG-круга
+const radius = 22;
+const circumference = 2 * Math.PI * radius;
+const strokeDashoffset = circumference - (avgScore / 100) * circumference;
 
-                      </div>
-                    );
+return (
+  <div key={student.id} className="bg-white dark:bg-[#140e24]/75 p-5 rounded-3xl border-none shadow-sm flex flex-col justify-between group hover:border-sky-400 dark:hover:border-[#634EE4] hover:bg-sky-500 dark:hover:bg-[#634EE4] transition-all duration-300 min-h-44">
+    
+    {/* Верхняя половина карточки с именем и круглым виджетом балла */}
+    <div className="flex justify-between items-start gap-4">
+      <div className="space-y-1 min-w-0">
+        <div className="text-xl font-black text-sky-500 dark:text-purple-400 group-hover:text-white transition-colors duration-300 tracking-tighter">
+          {submittedTrialsCount < 10 ? `0${submittedTrialsCount}` : submittedTrialsCount}
+        </div>
+        <h4 className="text-sm font-black text-slate-800 dark:text-slate-100 group-hover:text-white transition-colors duration-300 tracking-tight truncate">{student.name}</h4>
+        <p className="text-[10px] text-slate-400 group-hover:text-sky-100 transition-colors duration-300 truncate">{student.email}</p>
+      </div>
+
+      {/* 🚀 ИСПРАВЛЕНО: Шкала среднего балла увеличена в размерах, а цифра отцентрирована и стала мега-заметной */}
+<div className="relative w-16 h-16 shrink-0 flex items-center justify-center">
+  <svg className="w-full h-full transform -rotate-90">
+    <circle cx="32" cy="32" r="30" className="stroke-slate-100 dark:stroke-purple-950/60 fill-none group-hover:stroke-white/20" strokeWidth="4" />
+    <circle 
+      cx="32" cy="32" r="30" 
+      className="stroke-sky-500 dark:stroke-purple-400 fill-none group-hover:stroke-white transition-all duration-500" 
+      strokeWidth="4" 
+      strokeDasharray={2 * Math.PI * 30}
+      strokeDashoffset={2 * Math.PI * 30 - (avgScore / 100) * (2 * Math.PI * 30)}
+      strokeLinecap="round"
+    />
+  </svg>
+  <div className="absolute inset-0 flex items-center justify-center">
+    <span className="text-sm font-black tracking-tighter text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors duration-300 select-none">
+      {avgScore < 10 && avgScore > 0 ? `0${avgScore}` : avgScore === 0 ? '00' : avgScore}
+    </span>
+  </div>
+</div>
+
+    </div>
+    
+    {/* Нижняя панель действий куратора с бланками */}
+    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-purple-950/40 group-hover:border-white/20 transition-colors duration-300 flex flex-col gap-2">
+      {studentTrials.filter(t => t.solutionUrl).map((trialWithSol) => (
+        <a 
+          key={trialWithSol.id}
+          href={trialWithSol.solutionUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="w-full text-center bg-sky-50 hover:bg-sky-100 dark:bg-purple-950/40 dark:hover:bg-purple-900/50 text-sky-600 dark:text-purple-300 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider block transition-colors border border-sky-100/30 dark:border-purple-500/10 cursor-pointer"
+        >
+          Бланки КИМ: {trialWithSol.title}
+        </a>
+      ))}
+
+      <div className="flex items-center justify-between mt-1">
+        <span className={`px-2 py-1 rounded-xl text-[9px] font-black uppercase tracking-wider transition-colors duration-300 ${
+          uncheckedCount > 0 
+            ? 'bg-amber-50 text-amber-600 dark:bg-amber-950/30 dark:text-amber-400 group-hover:bg-white/20 group-hover:text-white' 
+            : 'bg-sky-50 text-sky-600 dark:bg-purple-950/40 dark:text-purple-300 group-hover:bg-white/20 group-hover:text-white'
+        }`}>{uncheckedCount > 0 ? `Проверить: ${uncheckedCount}` : 'Всё проверено'}</span>
+        <a href={`/supervisor/students/${student.id}`} className="text-[10px] font-black uppercase tracking-widest text-sky-500 dark:text-purple-400 group-hover:text-white transition-colors duration-300 underline underline-offset-4 cursor-pointer"></a>
+      </div>
+    </div>
+
+  </div>
+);
+
                   })}
                 </div>
               )}
@@ -370,7 +406,14 @@ return (
                 <h4 className="text-[11px] font-black uppercase tracking-wider text-slate-500">Загрузить новый пробник</h4>
                 <form action={createBulkTrial} className="space-y-3">
                   <input type="text" name="title" required placeholder="Месяц и номер пробника" className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-4 py-2.5 text-xs font-bold focus:outline-none focus:border-sky-500" />
-                  <input type="file" name="pdfFile" accept=".pdf" required className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-3 py-2 text-xs font-bold text-slate-400 file:mr-2 file:py-0.5 file:px-2 file:rounded file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-sky-50 file:text-sky-600 cursor-pointer" />
+{/* 🚀 ИСПРАВЛЕНО: Кнопка выбора файла больше не белая, она идеально сочетается со стилем панели дня и ночи */}
+<input 
+  type="file" 
+  name="pdfFile" 
+  accept=".pdf" 
+  required 
+  className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-3 py-2 text-xs font-bold text-slate-400 file:mr-2 file:py-0.5 file:px-2 file:rounded file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-sky-50 file:text-sky-600 dark:file:bg-purple-950/40 dark:file:text-purple-300 cursor-pointer" 
+/>
                   <input type="submit" value="Опубликовать на курс" className="w-full bg-sky-500 hover:bg-sky-600 dark:bg-[#634EE4] dark:hover:bg-[#523fd1] text-white text-xs font-black uppercase tracking-wider py-2.5 rounded-xl shadow-md transition-all cursor-pointer text-center" />
                 </form>
               </div>

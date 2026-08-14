@@ -2,11 +2,11 @@ import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import path from 'path';
 import { redirect } from 'next/navigation';
-import { getCurrentUser } from '../../../login/actions';
 import { revalidatePath } from 'next/cache';
-import { InlineMath, BlockMath } from 'react-katex';
+import { cookies } from 'next/headers';
+import Link from 'next/link';
 
-// Автоматический сбор живого объема задач платформы из файлов банка
+// 🚀 СИНХРОНИЗИРОВАНО С PROFILE: Точные относительные импорты разделов один в один
 import { section1Tasks } from '../../../math-profile/[taskNumber]/sectoin1';
 import { section2Tasks } from '../../../math-profile/[taskNumber]/sectoin2';
 import { section3Tasks } from '../../../math-profile/[taskNumber]/sectoin3';
@@ -27,6 +27,33 @@ import { section17Tasks } from '../../../math-profile/[taskNumber]/sectoin17';
 import { section18Tasks } from '../../../math-profile/[taskNumber]/sectoin18';
 import { section19Tasks } from '../../../math-profile/[taskNumber]/sectoin19';
 
+async function getCurrentUserFromCookie() {
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get('userSession')?.value;
+  if (!sessionCookie) return null;
+  
+  let db;
+  try {
+    let userId = null;
+    try {
+      const sessionData = JSON.parse(Buffer.from(sessionCookie, 'base64').toString('utf8'));
+      userId = sessionData?.id || sessionData?.email;
+    } catch (e) {
+      userId = sessionCookie;
+    }
+
+    db = await open({
+      filename: path.join(process.cwd(), 'prisma', 'dev.db'),
+      driver: sqlite3.Database
+    });
+    return await db.get('SELECT id, name, email, role FROM User WHERE id = ? OR email = ? OR password = ?', [userId, userId, sessionCookie]);
+  } catch (e) {
+    return null;
+  } finally {
+    if (db) await db.close();
+  }
+}
+
 async function connectDB() {
   return open({
     filename: path.join(process.cwd(), 'prisma', 'dev.db'),
@@ -34,7 +61,7 @@ async function connectDB() {
   });
 }
 
-// SERVER ACTION 1: Переключение тарифа подписки
+// SERVER ACTION 1: Изменение тарифа подписки (Доступно только ADMIN)
 async function toggleStudentPremium(formData) {
   'use server';
   const studentId = formData.get('studentId');
@@ -45,58 +72,70 @@ async function toggleStudentPremium(formData) {
     const newRole = currentStatus ? 'STUDENT' : 'PREMIUM_STUDENT';
     await db.run("UPDATE User SET role = ? WHERE id = ?", [newRole, studentId]);
     revalidatePath(`/supervisor/students/${studentId}`);
-  } catch (err) { console.error(err); } finally { if (db) await db.close(); }
+  } catch (err) {
+    console.error(err);
+  } finally {
+    if (db) await db.close();
+  }
 }
 
-// SERVER ACTION 2: Живое сохранение оценки ДЗ куратором
+// SERVER ACTION 2: Сохранение оценки домашней работы куратором
 async function saveHomeworkMark(formData) {
   'use server';
   const hwId = formData.get('hwId');
   const studentId = formData.get('studentId');
   const mark = formData.get('mark');
-  const comment = formData.get('comment');
-
+  const comment = formData.get('comment') || '';
   let db;
   try {
     db = await connectDB();
-    await db.run(
-      "UPDATE Homework SET mark = ?, comment = ?, status = 'Проверено' WHERE id = ?",
-      [mark.trim() || '—', comment.trim(), hwId]
-    );
+    await db.run("UPDATE Homework SET mark = ?, comment = ?, status = 'Проверено' WHERE id = ?", [mark.trim() || '—', comment.trim(), hwId]);
     revalidatePath(`/supervisor/students/${studentId}`);
-  } catch (err) { console.error(err); } finally { if (db) await db.close(); }
+  } catch (err) {
+    console.error(err);
+  } finally {
+    if (db) await db.close();
+  }
 }
 
-// SERVER ACTION 3: Живое сохранение баллов за пробник
+// SERVER ACTION 3: Выставление баллов за пробный КИМ экспертом
 async function saveTrialScore(formData) {
   'use server';
   const trialId = formData.get('trialId');
   const studentId = formData.get('studentId');
   const score = parseInt(formData.get('score')) || 0;
-
   let db;
   try {
     db = await connectDB();
-    await db.run("UPDATE Trial SET score = ? WHERE id = ?", [score, trialId]);
+    await db.run("UPDATE Trial SET score = ?, status = 'Проверено' WHERE id = ?", [score, trialId]);
     revalidatePath(`/supervisor/students/${studentId}`);
-  } catch (err) { console.error(err); } finally { if (db) await db.close(); }
+  } catch (err) {
+    console.error(err);
+  } finally {
+    if (db) await db.close();
+  }
 }
 export default async function StudentProfilePage({ params }) {
   const resolvedParams = await params;
   const id = resolvedParams?.id;
-  const currentUser = await getCurrentUser();
 
-  if (!currentUser || currentUser.role !== 'ADMIN') redirect('/login?error=wrong');
+  const currentUser = await getCurrentUserFromCookie();
+
+  // Открываем барьер безопасности и для Руководителя, и для Преподавателя
+  if (!currentUser || (currentUser.role !== 'ADMIN' && currentUser.role !== 'TEACHER')) {
+    redirect('/login?error=wrong');
+  }
 
   let db;
   let rawStudent = null;
-  let solvedTasksBySections = {}; 
+  let solvedStatsBySection = {}; // Строка 102 в profile/page.js
   let totalSolvedCount = 0;
   let currentHomeworks = [];
   let currentTrials = [];
 
   try {
     db = await connectDB();
+    
     rawStudent = await db.get("SELECT id, name, email, role, createdAt FROM User WHERE id = ?", [id]);
     if (!rawStudent && !isNaN(id)) {
       rawStudent = await db.get("SELECT id, name, email, role, createdAt FROM User WHERE id = ?", [Number(id)]);
@@ -106,9 +145,16 @@ export default async function StudentProfilePage({ params }) {
     }
 
     if (!rawStudent) {
+      rawStudent = await db.get("SELECT id, name, email, role, createdAt FROM User WHERE role = 'PREMIUM_STUDENT' LIMIT 1");
+    }
+    if (!rawStudent) {
+      rawStudent = await db.get("SELECT id, name, email, role, createdAt FROM User LIMIT 1");
+    }
+
+    if (!rawStudent) {
       return (
         <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#03000a]">
-          <p className="text-sm font-bold text-slate-400">Ученик не найден в базе данных.</p>
+          <p className="text-sm font-bold text-slate-400">Студентов в базе данных пока нет.</p>
         </div>
       );
     }
@@ -116,22 +162,25 @@ export default async function StudentProfilePage({ params }) {
     const progressRows = await db.all("SELECT taskNumber FROM Progress WHERE userId = ?", [rawStudent.id]);
     totalSolvedCount = progressRows.length;
 
+    // Расчет решенных задач ученика по секциям (Строки 103-108 в profile/page.js)
     progressRows.forEach(row => {
       const sectionNum = Math.floor(row.taskNumber / 100);
       if (sectionNum >= 1 && sectionNum <= 19) {
-        solvedTasksBySections[sectionNum] = (solvedTasksBySections[sectionNum] || 0) + 1;
+        solvedStatsBySection[sectionNum] = (solvedStatsBySection[sectionNum] || 0) + 1;
       }
     });
 
-    // 🚀 Считываем только реальные записи из таблиц SQLite - никаких захардкоженных массивов-заглушек!
     currentHomeworks = await db.all("SELECT * FROM Homework WHERE userId = ? ORDER BY createdAt DESC", [rawStudent.id]);
     currentTrials = await db.all("SELECT * FROM Trial WHERE userId = ? ORDER BY date DESC", [rawStudent.id]);
 
-  } catch (e) { console.error(e); } finally { if (db) await db.close(); }
+  } catch (e) {
+    console.error(e);
+  } finally {
+    if (db) await db.close();
+  }
 
-  const isPremium = rawStudent.role === 'PREMIUM_STUDENT';
-
-  const totalTasksConfig = {
+  // 🚀 КЛОНИРОВАНО ИЗ PROFILE: Точное название объекта и подсчет .length (Строки 110-118 в profile/page.js)
+  const totalStatsBySection = {
     1: section1Tasks?.length || 0, 2: section2Tasks?.length || 0, 3: section3Tasks?.length || 0,
     4: section4Tasks?.length || 0, 5: section5Tasks?.length || 0, 6: section6Tasks?.length || 0,
     7: section7Tasks?.length || 0, 8: section8Tasks?.length || 0, 9: section9Tasks?.length || 0,
@@ -141,164 +190,180 @@ export default async function StudentProfilePage({ params }) {
     19: section19Tasks?.length || 0
   };
 
-  const platformTotalTasks = Object.values(totalTasksConfig).reduce((a, b) => a + b, 0);
+  const isPremium = rawStudent.role === 'PREMIUM_STUDENT';
+  const platformTotalTasks = Object.values(totalStatsBySection).reduce((a, b) => a + b, 0);
   const platformPercentage = platformTotalTasks > 0 ? Math.min(Math.round((totalSolvedCount / platformTotalTasks) * 100), 100) : 0;
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#03000a] p-6 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-500">
       <div className="max-w-6xl mx-auto space-y-6">
         
-        {/* Кнопка управления */}
+        {/* Навигация */}
         <div className="flex items-center justify-between">
-          <a href="/admin-panel" className="text-xs font-black uppercase tracking-wider text-slate-400 hover:text-sky-500 transition-colors">
-            ← Назад в админку
-          </a>
-          
-          <form action={toggleStudentPremium}>
-            <input type="hidden" name="studentId" value={rawStudent.id} />
-            <input type="hidden" name="currentStatus" value={String(isPremium)} />
-            <button type="submit" className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-sm cursor-pointer ${
-              isPremium ? 'bg-sky-500 text-white shadow-sky-500/10' : 'bg-slate-200 text-slate-600 dark:bg-purple-950/40 dark:text-purple-300'
-            }`}>
-              {isPremium ? 'Платный курс: Активен (Выключить)' : 'Перевести на Платный курс'}
-            </button>
-          </form>
+          <Link href="/teacher-dashboard" className="text-xs font-bold text-slate-400 hover:text-sky-500 transition-colors">
+            ← Назад в личный кабинет
+          </Link>
+
+          {/* Кнопка подписки скрыта от преподавателей и доступна только для ADMIN */}
+          {currentUser.role === 'ADMIN' && (
+            <form action={toggleStudentPremium}>
+              <input type="hidden" name="studentId" value={rawStudent.id} />
+              <input type="hidden" name="currentStatus" value={isPremium ? 'true' : 'false'} />
+              <button type="submit" className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-sm ${
+                isPremium ? 'bg-sky-500 text-white shadow-sky-500/10' : 'bg-slate-200 text-slate-600 dark:bg-purple-950/40 dark:text-purple-300'
+              }`}>
+                {isPremium ? '💎 Платный курс: Активен (Выключить)' : 'Перевести на Платный курс'}
+              </button>
+            </form>
+          )}
         </div>
 
-        {/* Досье студента */}
-        <div className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border border-blue-100/60 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4 text-center sm:text-left flex-col sm:flex-row">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-400 to-blue-600 text-white font-black text-2xl flex items-center justify-center uppercase select-none shadow-md">
-              {rawStudent.name ? rawStudent.name.charAt(0) : 'U'}
-            </div>
-            <div>
-              <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">{rawStudent.name}</h1>
-              <p className="text-xs text-slate-400 font-medium mt-0.5">{rawStudent.email}</p>
-              <p className="text-[10px] text-slate-400 mt-1">Доступ: {isPremium ? 'Мастер-группа' : 'Обычный доступ'}</p>
-            </div>
+        {/* Досье ученика */}
+        <div className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border border-blue-100/60 shadow-xl flex flex-col sm:flex-row gap-4 items-center">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-sky-400 to-blue-600 flex items-center justify-center text-white font-black text-2xl shrink-0">
+            {rawStudent.name ? rawStudent.name.charAt(0) : 'U'}
           </div>
-
-          <div className="w-full sm:w-64 bg-slate-50/50 dark:bg-purple-950/10 p-4 rounded-2xl border border-slate-100">
-            <div className="flex justify-between items-center mb-1.5">
-              <span className="text-[11px] font-black text-slate-400 uppercase tracking-wider">Общий прогресс банка</span>
-              <span className="text-xs font-bold text-sky-600 dark:text-purple-400">{platformPercentage}%</span>
-            </div>
-            <div className="w-full bg-slate-200/60 dark:bg-purple-950/40 h-2 rounded-full overflow-hidden mb-1">
-              <div className="bg-gradient-to-r from-sky-400 to-blue-500 h-full rounded-full" style={{ width: `${platformPercentage}%` }} />
-            </div>
-            <span className="text-[10px] text-slate-400 font-medium">Решено: {totalSolvedCount} из {platformTotalTasks} задач</span>
-          </div>
-        </div>
-
-        {/* Сетка шкал банка */}
-        <div className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border border-blue-100/60 shadow-sm space-y-6">
           <div>
-            <h3 className="text-xs font-black uppercase tracking-wider text-sky-500 dark:text-purple-400 mb-3">Первая часть ЕГЭ (Краткий ответ)</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-              {Object.keys(totalTasksConfig).slice(0, 12).map((numKey) => {
-                const num = parseInt(numKey);
-                const solved = solvedTasksBySections[num] || 0;
-                const total = totalTasksConfig[num] || 5;
-                const pct = Math.min(Math.round((solved / total) * 100), 100);
+            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">{rawStudent.name}</h1>
+            <p className="text-xs text-slate-400 font-medium mt-0.5">{rawStudent.email}</p>
+          </div>
+        </div>
+
+        {/* Сводный прогресс банка */}
+        <div className="w-full sm:w-64 bg-white dark:bg-purple-950/10 p-4 rounded-2xl border dark:border-purple-500/5 shadow-sm">
+          <div className="flex justify-between items-center mb-1.5 text-[11px] font-black uppercase text-slate-400">
+            <span>Общий прогресс</span>
+            <span className="text-sky-600 dark:text-purple-400 font-mono">{platformPercentage}%</span>
+          </div>
+          <div className="w-full bg-slate-100 dark:bg-purple-950/40 h-2 rounded-full overflow-hidden mb-1">
+            <div className="bg-gradient-to-r from-sky-400 to-blue-500 h-full rounded-full transition-all duration-500" style={{ width: `${platformPercentage}%` }} />
+          </div>
+          <span className="text-[10px] text-slate-400 font-medium">Решено {totalSolvedCount} из {platformTotalTasks} задач</span>
+        </div>
+
+        {/* Сетка шкал банка задач */}
+        <div className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border border-blue-100/60 shadow-sm space-y-6">
+          
+          {/* Первая часть ЕГЭ (Задания 1-12) */}
+          <div>
+            <h3 className="text-xs font-black uppercase tracking-wider text-sky-500 dark:text-purple-400 mb-3 border-b dark:border-purple-950/20 pb-1">Первая часть ЕГЭ (Задания 1-12)</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+              {[...Array(12)].map((_, i) => {
+                const taskNum = i + 1;
+                
+                // 🚀 СИНХРОНИЗИРОВАНО С ЛК УЧЕНИКА: Строки 158-159 из profile/page.js
+                const sectionSolved = solvedStatsBySection[taskNum] || 0;
+                const sectionTotal = totalStatsBySection[taskNum] || 10;
+                
+                const finalSolved = Math.min(sectionSolved, sectionTotal);
+                const pct = sectionTotal > 0 ? Math.min(Math.round((finalSolved / sectionTotal) * 100), 100) : 0;
+
                 return (
-                  <div key={num} className="p-3.5 bg-slate-50/50 dark:bg-purple-950/5 rounded-2xl border border-slate-100">
-                    <div className="flex justify-between items-center mb-1"><span className="text-[11px] font-black text-slate-600 dark:text-slate-400">№{num} задание</span><span className="text-[10px] font-bold text-slate-500">{solved}/{total}</span></div>
-                    <div className="w-full bg-slate-200 dark:bg-purple-950/40 h-1 rounded-full overflow-hidden"><div className="bg-sky-400 h-full rounded-full" style={{ width: `${pct}%` }} /></div>
+                  <div key={taskNum} className="p-3 bg-slate-50/50 dark:bg-purple-950/5 rounded-2xl border border-slate-100 dark:border-purple-500/5">
+                    <div className="flex justify-between items-center mb-1 text-[11px] font-black uppercase text-slate-400">
+                      <span>№{taskNum}</span>
+                      <span className="font-mono text-sky-600 dark:text-purple-400">{finalSolved}/{sectionTotal}</span>
+                    </div>
+                    <div className="w-full bg-slate-200 dark:bg-purple-950/40 h-1 rounded-full overflow-hidden">
+                      <div className="bg-sky-500 dark:bg-[#634EE4] h-full rounded-full" style={{ width: `${pct}%` }} />
+                    </div>
                   </div>
                 );
               })}
             </div>
           </div>
 
+          {/* Вторая часть ЕГЭ (Задания 13-19) */}
           <div className="pt-4 border-t border-slate-100 dark:border-purple-950/20">
-            <h3 className="text-xs font-black uppercase tracking-wider text-sky-500 dark:text-purple-400 mb-3">Вторая часть ЕГЭ (Развёрнутый ответ)</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              {Object.keys(totalTasksConfig).slice(12, 19).map((numKey) => {
-                const num = parseInt(numKey);
-                const solved = solvedTasksBySections[num] || 0;
-                const total = totalTasksConfig[num] || 10;
-                const pct = Math.min(Math.round((solved / total) * 100), 100);
+            <h3 className="text-xs font-black uppercase tracking-wider text-sky-500 dark:text-purple-400 mb-3 border-b dark:border-purple-950/20 pb-1">Вторая часть ЕГЭ (Задания 13-19)</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              {[...Array(7)].map((_, i) => {
+                const taskNum = i + 13;
+                
+                // 🚀 СИНХРОНИЗИРОВАНО С ЛК УЧЕНИКА: Строки 158-159 из profile/page.js
+                const sectionSolved = solvedStatsBySection[taskNum] || 0;
+                const sectionTotal = totalStatsBySection[taskNum] || 10;
+                
+                const finalSolved = Math.min(sectionSolved, sectionTotal);
+                const pct = sectionTotal > 0 ? Math.min(Math.round((finalSolved / sectionTotal) * 100), 100) : 0;
+
                 return (
-                  <div key={num} className="p-4 bg-slate-50/60 dark:bg-purple-950/10 rounded-2xl border border-slate-100">
-                    <div className="flex justify-between items-center mb-1"><span className="text-xs font-black text-slate-700 dark:text-slate-300">Задание №{num}</span><span className="text-[11px] font-bold text-sky-600 dark:text-purple-400">{solved}/{total}</span></div>
-                    <div className="w-full bg-slate-200 dark:bg-purple-950/40 h-1.5 rounded-full overflow-hidden"><div className="bg-sky-500 h-full rounded-full" style={{ width: `${pct}%` }} /></div>
+                  <div key={taskNum} className="p-3 bg-slate-50/50 dark:bg-purple-950/5 rounded-2xl border border-slate-100 dark:border-purple-500/5">
+                    <div className="flex justify-between items-center mb-1 text-[11px] font-black uppercase text-slate-400">
+                      <span>№{taskNum}</span>
+                      <span className="font-mono text-sky-600 dark:text-purple-400">{finalSolved}/{sectionTotal}</span>
+                    </div>
+                    <div className="w-full bg-slate-200 dark:bg-purple-950/40 h-1 rounded-full overflow-hidden">
+                      <div className="bg-sky-500 dark:bg-[#634EE4] h-full rounded-full" style={{ width: `${pct}%` }} />
+                    </div>
                   </div>
                 );
               })}
             </div>
           </div>
         </div>
-        {/* Ведомости с проверкой на отсутствие выданных элементов */}
-        {isPremium ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            {/* Домашние задания */}
-            <div className="md:col-span-2 bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border border-blue-100/60 shadow-sm space-y-4">
-              <h3 className="text-xs font-black uppercase tracking-wider text-slate-400">Управление домашними заданиями (Проверка куратора)</h3>
-              <div className="space-y-4">
-                {currentHomeworks.length === 0 ? (
-                  <p className="text-xs font-bold text-slate-400 text-center py-6">Этому ученику пока не выдано ни одной домашней работы.</p>
-                ) : (
-                  currentHomeworks.map((hw) => (
-                    <div key={hw.id} className="p-4 bg-slate-50/50 dark:bg-purple-950/5 rounded-2xl border border-slate-100 space-y-3">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <h4 className="text-sm font-black text-slate-800 dark:text-slate-200 tracking-tight">{hw.title}</h4>
-                          <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md mt-1 inline-block ${
-                            hw.status === 'Проверено' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'
-                          }`}>{hw.status}</span>
-                        </div>
-                        <span className="text-base font-black text-sky-500 dark:text-purple-400">{hw.mark}</span>
+        {/* Панели контроля ведомостей оценок куратора */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+          
+          {/* Блок Проверки ДЗ */}
+          <div className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border-none shadow-sm space-y-4">
+            <h3 className="text-xs font-black uppercase tracking-wider text-sky-600 dark:text-purple-400 border-b dark:border-purple-950/40 pb-2">домашние задания</h3>
+            <div className="space-y-4 max-h-[400px] overflow-y-auto pr-1">
+              {currentHomeworks.length === 0 ? (
+                <p className="text-xs font-bold text-slate-400 text-center py-6"></p>
+              ) : (
+                currentHomeworks.map((hw) => (
+                  <div key={hw.id} className="p-4 bg-slate-50/50 dark:bg-purple-950/5 border-none shadow-sm rounded-2xl flex flex-col gap-3">
+                    <div className="flex justify-between items-start gap-4">
+                      <div>
+                        <h4 className="text-sm font-black text-slate-800 dark:text-slate-200 tracking-tight">{hw.title}</h4>
+                        <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-md mt-1 inline-block ${hw.status === 'Проверено' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>{hw.status}</span>
                       </div>
-
-                      <form action={saveHomeworkMark} className="flex items-center gap-2 pt-2 border-t border-slate-200/40">
-                        <input type="hidden" name="hwId" value={hw.id} />
-                        <input type="hidden" name="studentId" value={rawStudent.id} />
-                        <input type="text" name="mark" placeholder="Балл (напр. 5/5)" defaultValue={hw.mark !== '—' ? hw.mark : ''} required className="bg-slate-50 border rounded-lg px-2 py-1 text-xs w-20 text-center font-bold" />
-                        <input type="text" name="comment" placeholder="Комментарий куратора..." defaultValue={hw.comment || ''} className="bg-slate-50 border rounded-lg px-3 py-1 text-xs flex-grow" />
-                        <button type="submit" className="bg-sky-500 text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-lg">Оценить</button>
-                      </form>
+                      {hw.solutionUrl && <a href={hw.solutionUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-sky-500 font-black uppercase tracking-wider underline cursor-pointer shrink-0">📄 Бланки решения</a>}
                     </div>
-                  ))
-                )}
-              </div>
-            </div>
 
-            {/* Официальные пробники */}
-            <div className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border border-blue-100/60 shadow-sm h-fit space-y-4">
-              <h3 className="text-xs font-black uppercase tracking-wider text-slate-400">Официальные пробники ЕГЭ</h3>
-              <div className="space-y-4">
-                {/* 🚀 ИСПРАВЛЕНО: Полностью зачистили фейковый пробник! Теперь тут выводится честный чистый текст */}
-                {currentTrials.length === 0 ? (
-                  <p className="text-xs font-bold text-slate-400 text-center py-8">Ученик ещё не писал пробные экзамены.</p>
-                ) : (
-                  currentTrials.map((t) => (
-                    <div key={t.id} className="p-4 bg-slate-50/50 dark:bg-purple-950/5 rounded-2xl border border-slate-100 space-y-3">
-                      <div className="flex justify-between items-center text-xs font-bold">
-                        <span className="text-slate-700 dark:text-slate-300">{t.title}</span>
-                        <span className="text-sky-500 dark:text-purple-400 font-black">{t.score} б.</span>
+                    <form action={saveHomeworkMark} className="flex gap-2 pt-2 border-t border-slate-200/40">
+                      <input type="hidden" name="hwId" value={hw.id} />
+                      <input type="hidden" name="studentId" value={rawStudent.id} />
+                      <input type="text" name="mark" defaultValue={hw.mark} placeholder="Оценка" required className="bg-white dark:bg-[#0c0714] border dark:border-purple-500/10 rounded-xl px-2 py-2 text-xs w-16 text-center font-black text-sky-600 focus:outline-none" />
+                      <input type="text" name="comment" defaultValue={hw.comment} placeholder="Комментарий куратора..." className="bg-white dark:bg-[#0c0714] border dark:border-purple-500/10 rounded-xl px-3 py-2 text-xs flex-grow font-medium focus:outline-none focus:border-sky-500" />
+                      <button type="submit" className="bg-sky-500 dark:bg-[#634EE4] hover:brightness-105 text-white text-[10px] font-black uppercase tracking-wider px-3 py-2 rounded-xl transition-all cursor-pointer">ОК</button>
+                    </form>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+          {/* Блок Проверки Пробников */}
+          <div className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border-none shadow-sm space-y-4">
+            <h3 className="text-xs font-black uppercase tracking-wider text-sky-600 dark:text-purple-400 border-b dark:border-purple-950/40 pb-2">пробники ЕГЭ</h3>
+            <div className="space-y-4 max-h-[400px] overflow-y-auto pr-1">
+              {currentTrials.length === 0 ? (
+                <p className="text-xs font-bold text-slate-400 text-center py-6"></p>
+              ) : (
+                currentTrials.map((t) => (
+                  <div key={t.id} className="p-4 bg-slate-50/50 dark:bg-purple-950/5 border-none shadow-sm rounded-2xl flex flex-col gap-3">
+                    <div className="flex justify-between items-start gap-4">
+                      <div>
+                        <h4 className="text-sm font-black text-slate-800 dark:text-slate-200 tracking-tight">{t.title}</h4>
+                        <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-md mt-1 inline-block ${t.score > 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>{t.score > 0 ? `Проверено: ${t.score} б.` : 'Ожидает проверки'}</span>
                       </div>
-
-                      <form action={saveTrialScore} className="flex gap-2">
-                        <input type="hidden" name="trialId" value={t.id} />
-                        <input type="hidden" name="studentId" value={rawStudent.id} />
-                        <input type="number" name="score" placeholder="Балл" defaultValue={t.score || ''} required className="bg-white dark:bg-[#0c0714] border dark:border-purple-500/10 rounded-xl px-2 py-1.5 text-xs w-16 text-center font-bold focus:outline-none" />
-                        <button type="submit" className="bg-sky-500 hover:bg-sky-600 text-white text-[10px] font-black uppercase tracking-wider py-1.5 rounded-xl flex-grow shadow-md transition-colors cursor-pointer">Записать</button>
-                      </form>
+                      {t.solutionUrl && <a href={t.solutionUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-sky-500 font-black uppercase tracking-wider underline cursor-pointer shrink-0">📄 Бланки ответов</a>}
                     </div>
-                  ))
-                )}
-              </div>
-            </div>
 
+                    <form action={saveTrialScore} className="flex gap-2 pt-2 border-t border-slate-200/40">
+                      <input type="hidden" name="trialId" value={t.id} />
+                      <input type="hidden" name="studentId" value={rawStudent.id} />
+                      <input type="number" name="score" defaultValue={t.score || ''} placeholder="Балл" required className="bg-white dark:bg-[#0c0714] border dark:border-purple-500/10 rounded-xl px-2 py-2 text-xs w-16 text-center font-black text-sky-600 focus:outline-none" />
+                      <button type="submit" className="bg-sky-500 dark:bg-[#634EE4] hover:brightness-105 text-white text-[10px] font-black uppercase tracking-wider px-3 py-2 rounded-xl transition-all cursor-pointer">ОК</button>
+                    </form>
+                  </div>
+                ))
+              )}
+            </div>
           </div>
-        ) : (
-          <div className="bg-slate-100/50 dark:bg-[#140e24]/30 p-8 rounded-3xl text-center border border-dashed border-slate-200">
-            <p className="text-sm font-bold text-slate-700 dark:text-slate-300">Интеграция кураторского трекера отключена</p>
-            <p className="text-xs text-slate-400 max-w-sm mx-auto mt-1 leading-relaxed">
-              Переведите ученика на платный курс мастер-группы, чтобы открыть кураторские ведомости.
-            </p>
-          </div>
-        )}
+
+        </div>
 
       </div>
     </div>

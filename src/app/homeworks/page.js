@@ -378,7 +378,14 @@ return (
                 <h4 className="text-[11px] font-black uppercase tracking-wider text-slate-500">Выдать тему на курс</h4>
                 <form action={createBulkHomework} className="space-y-3">
                   <input type="text" name="title" required placeholder="Название темы ДЗ" className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-4 py-2.5 text-xs font-bold focus:outline-none focus:border-sky-500 dark:focus:border-[#634EE4] transition-colors" />
-                  <input type="file" name="pdfFile" accept=".pdf" required className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-3 py-2 text-xs font-bold text-slate-400 file:mr-2 file:py-0.5 file:px-2 file:rounded file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-sky-50 file:text-sky-600 dark:file:bg-purple-950 cursor-pointer" />
+{/* 🚀 ИСПРАВЛЕНО: Кнопка выбора файла больше не белая, она идеально сочетается со стилем панели дня и ночи */}
+<input 
+  type="file" 
+  name="pdfFile" 
+  accept=".pdf" 
+  required 
+  className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-3 py-2 text-xs font-bold text-slate-400 file:mr-2 file:py-0.5 file:px-2 file:rounded file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-sky-50 file:text-sky-600 dark:file:bg-purple-950/40 dark:file:text-purple-300 cursor-pointer" 
+/>
                   <button type="submit" className="w-full bg-sky-500 hover:bg-sky-600 dark:bg-[#634EE4] dark:hover:bg-[#523fd1] text-white text-xs font-black uppercase tracking-wider py-2.5 rounded-xl shadow-md transition-all cursor-pointer">Опубликовать тему</button>
                 </form>
               </div>

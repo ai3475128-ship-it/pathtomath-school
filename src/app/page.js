@@ -43,15 +43,16 @@ export default async function Home() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24 pt-[240px] pb-12 flex flex-col justify-start">
         
         <div className="max-w-xl lg:max-w-2xl">
-          {/* Заголовок */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1E56DE] dark:text-white mb-6 leading-tight transition-colors duration-300">
-            Курсы ЕГЭ <br />
-            по математике
-          </h1>
+         {/* 🚀 ИСПРАВЛЕНО: Весь заголовок целиком переведен на один сочный неоново-голубой цвет */}
+<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-sky-500 dark:text-purple-400 mb-6 leading-tight transition-colors duration-300">
+  Курсы ЕГЭ <br />
+  по математике
+</h1>
+
 
           {/* Подзаголовок */}
           <p className="text-base md:text-lg text-slate-800 dark:text-slate-200 mb-10 font-medium leading-relaxed max-w-lg transition-colors duration-300">
-            Системная подготовка, опытные преподаватели и уверенность в результате вместе с PATHtoMATH
+            Системная подготовка, опытные преподаватели и уверенность в результате вместе с Aзимут
           </p>
         </div>
 
@@ -59,70 +60,78 @@ export default async function Home() {
         <div className="flex flex-wrap gap-4 mb-16 items-center">
           {isAuthenticated ? (
             <Link 
-              href="/profile"
-              className="px-8 py-3.5 font-bold rounded-2xl shadow-md transition-all duration-300 uppercase tracking-wider text-xs whitespace-nowrap
-                         bg-gradient-to-r from-sky-300 via-sky-400 to-blue-400 text-white shadow-sky-400/10 hover:shadow-xl hover:shadow-sky-400/20
-                         dark:from-[#E3D5FF] dark:via-[#C9B3FF] dark:to-[#A387FF] dark:text-[#1E293B] dark:shadow-purple-900/10"
-            >
-              Прогресс
+
+href="/teachers"
+/* 🚀 ИСПРАВЛЕНО: Полностью возвращена красивая форма rounded-2xl и отступы, но цвета зафиксированы в строгом однотонном неоне */
+className="px-8 py-3.5 font-bold rounded-2xl shadow-md transition-all duration-300 uppercase tracking-wider text-xs whitespace-nowrap cursor-pointer
+           bg-sky-500 hover:bg-sky-600 text-white shadow-sky-500/20 hover:shadow-xl hover:shadow-sky-500/40
+           dark:bg-[#7C3AED] dark:hover:bg-[#6D28D9] dark:text-white dark:border dark:border-purple-500/20 dark:shadow-[0_0_15px_rgba(124,58,237,0.3)] dark:hover:shadow-[0_0_25px_rgba(124,58,237,0.6)]"
+
+>
+  Преподаватели
+
             </Link>
           ) : (
             <Link 
               href="/register"
-              className="px-8 py-3.5 font-bold rounded-2xl shadow-md transition-all duration-300 uppercase tracking-wider text-xs whitespace-nowrap
-                         bg-gradient-to-r from-sky-300 via-sky-400 to-blue-400 text-white shadow-sky-400/10 hover:shadow-xl hover:shadow-sky-400/20
-                         dark:from-[#E3D5FF] dark:via-[#C9B3FF] dark:to-[#A387FF] dark:text-[#1E293B] dark:shadow-purple-900/10"
+className="px-8 py-3.5 font-bold rounded-2xl shadow-md transition-all duration-300 uppercase tracking-wider text-xs whitespace-nowrap
+           bg-gradient-to-r from-sky-300 via-sky-400 to-blue-400 text-white shadow-sky-400/10 hover:shadow-xl hover:shadow-sky-400/20
+           dark:from-[#7C3AED] dark:via-[#634EE4] dark:to-[#4F46E5] dark:text-white dark:border dark:border-purple-500/20 dark:shadow-[0_0_15px_rgba(99,78,228,0.3)] dark:hover:shadow-[0_0_25px_rgba(99,78,228,0.6)] dark:hover:brightness-110"
             >
               Зарегистрироваться
             </Link>
           )}
 
-          <Link 
-            href="/math-profile"
-            className="px-8 py-3.5 bg-gradient-to-r from-[#F7F2FF] to-[#EFE7FF] dark:from-purple-950/20 dark:to-indigo-950/20 text-[#2D3748] dark:text-purple-300 font-bold text-xs uppercase tracking-wider rounded-2xl border border-blue-100/20 dark:border-purple-500/10 transition-all duration-300 hover:scale-[1.01]"
-          >
-            Банк заданий
-          </Link>
+<Link 
+  href="/math-profile"
+  className="px-8 py-3.5 font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.01] cursor-pointer border
+             bg-white text-sky-500 border-sky-400/40 shadow-sm hover:border-sky-600 hover:text-sky-600 hover:shadow-[0_0_15px_rgba(14,165,233,0.2)]
+             dark:bg-[#140e24]/40 dark:text-purple-400 dark:border-purple-500/30 dark:hover:border-purple-400 dark:hover:text-purple-300 dark:hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+>
+  Банк заданий
+</Link>
+
         </div>
 
-        {/* 🛠️ СЕТКА ПРЕИМУЩЕСТВ */}
-        <div className="grid grid-cols-2 gap-x-8 gap-y-6 max-w-md border-t border-slate-300/40 dark:border-white/15 pt-8 transition-colors duration-300">
-          <div>
-            <span className="block text-[10px] font-bold tracking-widest text-[#634EE4] dark:text-purple-400 uppercase mb-1">
-              Подготовка
-            </span>
-            <p className="text-xs md:text-sm font-semibold text-slate-800 dark:text-slate-200">
-              Эффективная и современная система образования
-            </p>
+                  {/* 🚀 ИСПРАВЛЕНО: Все четыре подзаголовка преимуществ переведены со старого фиолетового цвета на чистый неоново-голубой text-sky-500 */}
+          <div className="grid grid-cols-2 gap-x-8 gap-y-6 max-w-md border-t border-slate-300/40 dark:border-white/15 pt-8 transit">
+            <div>
+              <span className="block text-[10px] font-bold tracking-widest text-sky-500 dark:text-purple-400 uppercase mb-1">
+                Подготовка
+              </span>
+              <p className="text-xs md:text-sm font-semibold text-slate-800 dark:text-slate-200">
+                Эффективная и современная система образования
+              </p>
+            </div>
+
+            <div>
+              <span className="block text-[10px] font-bold tracking-widest text-sky-500 dark:text-purple-400 uppercase mb-1">
+                Высокие баллы
+              </span>
+              <p className="text-xs md:text-sm font-semibold text-slate-800 dark:text-slate-200">
+                Неизбежность достижения поставленной цели
+              </p>
+            </div>
+
+            <div>
+              <span className="block text-[10px] font-bold tracking-widest text-sky-500 dark:text-purple-400 uppercase mb-1">
+                Мощные преподаватели
+              </span>
+              <p className="text-xs md:text-sm font-semibold text-slate-800 dark:text-slate-200">
+                За нашими плечами опыт и крутые результаты
+              </p>
+            </div>
+
+            <div>
+              <span className="block text-[10px] font-bold tracking-widest text-sky-500 dark:text-purple-400 uppercase mb-1">
+                Забота
+              </span>
+              <p className="text-xs md:text-sm font-semibold text-slate-800 dark:text-slate-200">
+                Индивидуальный подход и заряд мотивации
+              </p>
+            </div>
           </div>
 
-          <div>
-            <span className="block text-[10px] font-bold tracking-widest text-[#634EE4] dark:text-purple-400 uppercase mb-1">
-              Высокие баллы
-            </span>
-            <p className="text-xs md:text-sm font-semibold text-slate-800 dark:text-slate-200">
-              Неизбежность достижения поставленной цели
-            </p>
-          </div>
-
-          <div>
-            <span className="block text-[10px] font-bold tracking-widest text-[#634EE4] dark:text-purple-400 uppercase mb-1">
-              Мощные преподаватели
-            </span>
-            <p className="text-xs md:text-sm font-semibold text-slate-800 dark:text-slate-200">
-              За нашими плечами опыт и крутые результаты
-            </p>
-          </div>
-
-          <div>
-            <span className="block text-[10px] font-bold tracking-widest text-[#634EE4] dark:text-purple-400 uppercase mb-1">
-              Забота
-            </span>
-            <p className="text-xs md:text-sm font-semibold text-slate-800 dark:text-slate-200">
-              Индивидуальный подход и заряд мотивации
-            </p>
-          </div>
-        </div>
 
       </div>
     </main>
