@@ -26,7 +26,7 @@ import { section17Tasks } from '../math-profile/[taskNumber]/sectoin17';
 import { section18Tasks } from '../math-profile/[taskNumber]/sectoin18';
 import { section19Tasks } from '../math-profile/[taskNumber]/sectoin19';
 
-// 🚀 ИСПРАВЛЕНО: Один чистый импорт функции базы данных из init-db и экшена из actions
+// Один чистый импорт функции базы данных из init-db и экшена из actions
 import { initProgressTable } from './init-db';
 import { saveDailyNote } from './actions';
 
@@ -68,8 +68,8 @@ async function getProfileData() {
       notesMap[note.dateText] = note.content;
     });
 
-    const homeworks = await db.all("SELECT * FROM Homework WHERE userId = ? ORDER BY createdAt DESC", [user.id]);
-    const trials = await db.all("SELECT * FROM Trial WHERE userId = ? ORDER BY date DESC", [user.id]);
+    const homeworks = await db.all('SELECT * FROM Homework WHERE userId = ? ORDER BY createdAt DESC', [user.id]);
+    const trials = await db.all('SELECT * FROM Trial WHERE userId = ? ORDER BY date DESC', [user.id]);
 
     return { user, solvedTasks, notesMap, homeworks, trials };
   } catch (error) {
@@ -83,9 +83,9 @@ export default async function ProfilePage({ searchParams }) {
   const today = new Date();
   const currentYear = today.getFullYear();
   const currentMonth = today.getMonth();
-  const todayStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-
+  
   const resolvedSearchParams = await searchParams;
+  const todayStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
   const selectedDate = resolvedSearchParams?.date || todayStr;
 
   const data = await getProfileData();
@@ -108,9 +108,9 @@ export default async function ProfilePage({ searchParams }) {
   });
 
   const totalStatsBySection = {
-    1: section1Tasks?.length || 0, 2: section2Tasks?.length || 0, 3: section3Tasks?.length || 0,
-    4: section4Tasks?.length || 0, 5: section5Tasks?.length || 0, 6: section6Tasks?.length || 0,
-    7: section7Tasks?.length || 0, 8: section8Tasks?.length || 0, 9: section9Tasks?.length || 0,
+    1: section1Tasks?.length || 0,  2: section2Tasks?.length || 0,  3: section3Tasks?.length || 0,
+    4: section4Tasks?.length || 0,  5: section5Tasks?.length || 0,  6: section6Tasks?.length || 0,
+    7: section7Tasks?.length || 0,  8: section8Tasks?.length || 0,  9: section9Tasks?.length || 0,
     10: section10Tasks?.length || 0, 11: section11Tasks?.length || 0, 12: section12Tasks?.length || 0,
     13: section13Tasks?.length || 0, 14: section14Tasks?.length || 0, 15: section15Tasks?.length || 0,
     16: section16Tasks?.length || 0, 17: section17Tasks?.length || 0, 18: section18Tasks?.length || 0,
@@ -121,8 +121,8 @@ export default async function ProfilePage({ searchParams }) {
   const solvedTasksList = Array.from(new Set(solvedTasks.map(num => Math.floor(num / 100)))).filter(num => num >= 1 && num <= 19);
 
   const validTrials = trials.filter(t => t.score > 0);
-  const averageTrialScore = validTrials.length > 0 
-    ? Math.round(validTrials.reduce((sum, t) => sum + t.score, 0) / validTrials.length) 
+  const averageTrialScore = validTrials.length > 0
+    ? Math.round(validTrials.reduce((sum, t) => sum + t.score, 0) / validTrials.length)
     : 0;
 
   const radius = 30;
@@ -131,27 +131,27 @@ export default async function ProfilePage({ searchParams }) {
 
   return (
     <div className="min-h-screen p-6 transition-colors duration-500 bg-slate-50 dark:bg-[#03000a] text-slate-800 dark:text-slate-100 font-sans">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 pt-24">
         
-        {/* ЛЕВАЯ КОЛОНКА (2/3): Чек-лист и Компактные интерактивные плитки */}
+        {/* ЛЕВАЯ КОЛОНКА (2/3) */}
         <div className="lg:col-span-2 space-y-6">
           
           {/* Профиль ученика */}
-          <div className="bg-white/80 dark:bg-[#140e24]/80 p-5 rounded-3xl border border-blue-100/60 shadow-sm flex items-center justify-between gap-4">
+          <div className="bg-white dark:bg-[#140e24]/80 p-5 rounded-3xl border border-blue-100/60 shadow-sm flex items-center justify-between">
             <div>
-              <span className="text-[10px] font-black uppercase text-sky-600 dark:text-purple-400 bg-sky-50 dark:bg-purple-950/40 px-2.5 py-0.5 rounded-md tracking-wider">Профиль</span>
-              <h1 className="text-xl font-black text-sky-600 dark:text-purple-400 mt-1.5 tracking-tight">{user.name}</h1>
+              <span className="text-[10px] font-black uppercase text-sky-600 dark:text-purple-400 bg-sky-50 dark:bg-purple-950/40 px-2 py-0.5 rounded-md mt-1.5 tracking-tight">Профиль ученика</span>
+              <h1 className="text-xl font-black text-slate-600 dark:text-purple-400 tracking-tight mt-1">{user.name}</h1>
               <p className="text-xs text-slate-400 font-medium mt-0.5">{user.email}</p>
             </div>
             <span className="text-xs font-black uppercase tracking-wider text-sky-600 dark:text-purple-400">
+              Тариф: {user.role === 'PREMIUM_STUDENT' ? 'Мастер-Группа' : user.role === 'ADMIN' ? 'Администратор' : user.role === 'TEACHER' ? 'Преподаватель' : 'Базовый'}
             </span>
           </div>
 
-          {/* Чек-лист подготовки */}
-          <div className="bg-white/80 dark:bg-[#140e24]/80 p-6 rounded-3xl border border-blue-100/60 shadow-sm">
-            <h3 className="font-black text-base text-sky-600 dark:text-purple-400 tracking-tight mb-4 uppercase">Прогресс подготовки</h3>
-{/* 🚀 ИСПРАВЛЕНО: Скроллбар стал тонким, прозрачным и фиолетовым в темной теме */}
-<div className="space-y-2 max-h-[300px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-sky-200 dark:scrollbar-thumb-purple-950/60 scrollbar-track-transparent">
+          {/* Чек-лист подготовки шкал */}
+          <div className="bg-white dark:bg-[#140e24]/80 p-6 rounded-3xl border border-blue-100/60 shadow-sm">
+            <h3 className="text-sm font-black text-slate-600 dark:text-purple-400 tracking-tight mb-4 uppercase">Прогресс подготовки по темам КИМ</h3>
+            <div className="space-y-2 max-h-[300px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-sky-200 dark:scrollbar-thumb-purple-950">
               {[...Array(totalTasks)].map((_, i) => {
                 const taskNum = i + 1;
                 const isSolved = solvedTasksList.includes(taskNum);
@@ -160,104 +160,102 @@ export default async function ProfilePage({ searchParams }) {
                 const sectionPercentage = sectionTotal > 0 ? Math.min(Math.round((sectionSolved / sectionTotal) * 100), 100) : 0;
 
                 return (
-                  <Link 
+                  <Link
                     key={taskNum} href={`/math-profile/${taskNum}`} scroll={false}
                     className={`group flex flex-col p-3 rounded-xl border transition-all duration-300 hover:scale-[1.002] ${
-                      isSolved 
-                        ? 'bg-blue-50/30 border-blue-100/40 dark:bg-purple-950/10 dark:border-purple-500/10 hover:bg-sky-500 dark:hover:bg-[#634EE4] hover:border-sky-400 dark:hover:border-[#634EE4]' 
-                        : 'bg-white border-slate-100 dark:bg-slate-900/10 dark:border-purple-500/5 hover:bg-sky-500 dark:hover:bg-[#634EE4] hover:border-sky-400 dark:hover:border-[#634EE4]'
+                      isSolved
+                        ? 'bg-blue-50/30 border-blue-100/40 dark:bg-purple-950/10 dark:border-purple-500/10 hover:bg-sky-500 dark:hover:bg-[#634EE4]'
+                        : 'bg-white border-slate-100 dark:bg-slate-900/10 dark:border-purple-500/5 hover:bg-sky-500 dark:hover:bg-[#634EE4]'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full text-xs font-bold">
                       <div className="flex items-center gap-3">
-                        <span className={`font-black transition-colors duration-300 group-hover:text-white ${isSolved ? 'text-sky-600 dark:text-purple-400' : 'text-sky-600 dark:text-purple-400/80'}`}>
-                          {String(taskNum).padStart(2, '0')}
-                        </span>
-                        <span className="text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors duration-300">
-                          Задание №{taskNum}
-                        </span>
+                        <span className="text-slate-600 dark:text-purple-400 group-hover:text-white transition-colors">Задание №{taskNum}</span>
                       </div>
-                      <span className="font-mono text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors duration-300">
+                      <span className="font-mono text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors">
                         {sectionSolved}/{sectionTotal}
                       </span>
                     </div>
-                    
-                    <div className="w-full bg-slate-100 dark:bg-purple-950/40 h-1 rounded-full overflow-hidden mt-2 group-hover:bg-white/20 transition-colors">
-                      <div className="bg-sky-500 dark:bg-[#634EE4] group-hover:bg-white h-full rounded-full transition-all duration-500" style={{ width: `${sectionPercentage}%` }} />
+                    <div className="w-full bg-slate-100 dark:bg-purple-950/40 h-1 rounded-full overflow-hidden mt-2 group-hover:bg-white/20">
+                      <div className="bg-sky-500 dark:bg-[#634EE4] h-full rounded-full transition-all group-hover:bg-white" style={{ width: `${sectionPercentage}%` }} />
                     </div>
                   </Link>
                 );
               })}
             </div>
           </div>
-          {/* Плитки ДЗ и Пробников */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            
-            {/* Домашние задания */}
-            <Link 
-              href="/homeworks" 
-              className="bg-white dark:bg-[#140e24]/75 p-6 rounded-3xl border border-blue-100/40 dark:border-purple-500/10 shadow-sm flex flex-col justify-between group hover:border-sky-400 dark:hover:border-[#634EE4] hover:bg-sky-500 dark:hover:bg-[#634EE4] transition-all duration-300 h-44"
-            >
-              <div className="space-y-1">
-                <span className="text-[10px] font-black uppercase text-slate-400 group-hover:text-sky-100 tracking-wider">Раздел обучения</span>
-                <h3 className="text-lg font-black text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors tracking-tight">Домашние задания</h3>
-              </div>
-
-              <div className="border-t border-slate-100 dark:border-purple-950/40 group-hover:border-white/20 pt-3 flex justify-between items-center text-[10px] font-black uppercase tracking-wider text-slate-400 group-hover:text-white transition-colors">
-                <span className="px-2 py-0.5 rounded bg-sky-50 text-sky-600 dark:bg-purple-950/40 dark:text-purple-300 group-hover:bg-white/20 group-hover:text-white">
-                  Домашние Задания: {homeworks.length}
-                </span>
-                <span></span>
-              </div>
-            </Link>
-
-            {/* Пробные экзамены */}
-            <Link 
-              href="/trials" 
-              className="bg-white dark:bg-[#140e24]/75 p-6 rounded-3xl border border-blue-100/40 dark:border-purple-500/10 shadow-sm flex flex-col justify-between group hover:border-sky-400 dark:hover:border-[#634EE4] hover:bg-sky-500 dark:hover:bg-[#634EE4] transition-all duration-300 h-44"
-            >
-              <div className="flex justify-between items-start gap-4">
+          {/* 🚀 ИСПРАВЛЕНО: Карточки теперь загораются точь-в-точь как чек-лист заданий! Полная заливка голубым цветом и белый текст при наведении курсора */}
+          {(user.role === 'PREMIUM_STUDENT' || user.role === 'ADMIN' || user.role === 'TEACHER') && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              
+              {/* Домашние задания */}
+              <Link
+                href="/homeworks"
+                className="bg-white dark:bg-[#140e24]/75 p-6 rounded-3xl border border-blue-100/40 dark:border-purple-500/10 shadow-sm flex flex-col justify-between group transition-all duration-300 hover:scale-[1.002] hover:bg-sky-500 dark:hover:bg-[#634EE4] hover:border-transparent dark:hover:border-transparent"
+              >
                 <div className="space-y-1">
-                  <span className="text-[10px] font-black uppercase text-slate-400 group-hover:text-sky-100 tracking-wider">Официальный трек</span>
-                  <h3 className="text-lg font-black text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors tracking-tight">Пробные экзамены</h3>
+                  <span className="text-[10px] font-black uppercase text-slate-400 group-hover:text-sky-100/80 dark:group-hover:text-purple-200/80 tracking-wider transition-colors">Раздел обучения</span>
+                  <h3 className="text-lg font-black text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors tracking-tight">Домашние задания</h3>
                 </div>
+                
+                <div className="border-t border-slate-100 dark:border-purple-950/40 group-hover:border-white/20 pt-3 flex justify-between items-center text-xs font-bold text-slate-400 transition-colors">
+                  <span className="px-2 py-0.5 rounded bg-sky-50 text-sky-600 dark:bg-purple-950/40 dark:text-purple-300 group-hover:bg-white/20 group-hover:text-white transition-all">
+                    Домашние задания: {homeworks.length}
+                  </span>
+                  <span></span>
+                </div>
+              </Link>
 
-                <div className="relative w-16 h-16 shrink-0 flex items-center justify-center">
-                  <svg className="w-full h-full transform -rotate-90">
-                    <circle cx="32" cy="32" r={radius} className="stroke-slate-100 dark:stroke-purple-950/60 fill-none group-hover:stroke-white/20" strokeWidth="4" />
-                    <circle 
-                      cx="32" cy="32" r={radius} 
-                      className="stroke-sky-500 dark:stroke-purple-400 fill-none group-hover:stroke-white transition-all duration-500" 
-                      strokeWidth="4" 
-                      strokeDasharray={circumference}
-                      strokeDashoffset={strokeDashoffset}
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-xl font-black tracking-tighter text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors duration-300 select-none">
-                      {averageTrialScore < 10 && averageTrialScore > 0 ? `0${averageTrialScore}` : averageTrialScore === 0 ? '00' : averageTrialScore}
-                    </span>
+              {/* Пробные экзамены */}
+              <Link
+                href="/trials"
+                className="bg-white dark:bg-[#140e24]/75 p-6 rounded-3xl border border-blue-100/40 dark:border-purple-500/10 shadow-sm flex flex-col justify-between group transition-all duration-300 hover:scale-[1.002] hover:bg-sky-500 dark:hover:bg-[#634EE4] hover:border-transparent dark:hover:border-transparent"
+              >
+                <div className="flex justify-between items-start gap-4">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-black uppercase text-slate-400 group-hover:text-sky-100/80 dark:group-hover:text-purple-200/80 tracking-wider transition-colors">Официальный трек</span>
+                    <h3 className="text-lg font-black text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors tracking-tight">Пробные экзамены</h3>
+                  </div>
+
+                  <div className="relative w-16 h-16 shrink-0 flex items-center justify-center">
+                    <svg className="w-full h-full transform -rotate-90">
+                      <circle cx="32" cy="32" r={radius} className="stroke-slate-100 dark:stroke-purple-950/60 fill-none group-hover:stroke-white/10 transition-colors" strokeWidth="4" />
+                      <circle
+                        cx="32" cy="32" r={radius}
+                        className="stroke-sky-500 dark:stroke-purple-400 fill-none group-hover:stroke-white transition-all duration-500"
+                        strokeWidth="4"
+                        strokeDasharray={circumference}
+                        strokeDashoffset={strokeDashoffset}
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-xl font-black tracking-tight text-sky-600 dark:text-purple-400 group-hover:text-white transition-colors">
+                        {averageTrialScore < 10 && averageTrialScore > 0 ? `0${averageTrialScore}` : averageTrialScore === 0 ? '00' : averageTrialScore}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="border-t border-slate-100 dark:border-purple-950/40 group-hover:border-white/20 pt-3 flex justify-between items-center text-[10px] font-black uppercase tracking-wider text-slate-400 group-hover:text-white transition-colors">
-                <span className="px-2 py-0.5 rounded bg-sky-50 text-sky-600 dark:bg-purple-950/40 dark:text-purple-300 group-hover:bg-white/20 group-hover:text-white">
-                  Пробники: {trials.length}
-                </span>
-                <span></span>
-              </div>
-            </Link>
+                <div className="border-t border-slate-100 dark:border-purple-950/40 group-hover:border-white/20 pt-3 flex justify-between items-center text-xs font-bold text-slate-400 transition-colors">
+                  <span className="px-2 py-0.5 rounded bg-sky-50 text-sky-600 dark:bg-purple-950/40 dark:text-purple-300 group-hover:bg-white/20 group-hover:text-white transition-all">
+                    Пробники: {trials.length}
+                  </span>
+                  <span></span>
+                </div>
+              </Link>
 
-          </div>
+            </div>
+          )}
+
+
         </div>
         {/* ПРАВАЯ КОЛОНКА (1/3): Календарь планов */}
         <div className="space-y-6">
-          <div className="bg-white/80 dark:bg-[#140e24]/80 p-5 rounded-3xl border border-blue-100/60 shadow-sm">
-            <h3 className="font-black text-sky-600 dark:text-purple-400 text-xs mb-4 flex justify-between items-center uppercase tracking-wider">
-              <span>План подготовки</span>
-              <span className="text-xs font-bold bg-blue-50 text-sky-600 px-2 py-0.5 rounded dark:bg-purple-950/40 dark:text-purple-300">
+          <div className="bg-white dark:bg-[#140e24]/80 p-5 rounded-3xl border border-blue-100/60 shadow-sm">
+            <h3 className="font-black text-slate-800 dark:text-slate-200 text-xs mb-4 flex justify-between items-center uppercase tracking-wider">
+              <span>план подготовки</span>
+              <span className="text-xs font-bold bg-blue-50 text-sky-600 px-2 py-0.5 rounded dark:bg-purple-950/40 dark:text-purple-400">
                 {monthNames[currentMonth]} {currentYear}
               </span>
             </h3>
@@ -278,38 +276,45 @@ export default async function ProfilePage({ searchParams }) {
                 const isToday = todayStr === formattedDayStr;
                 const hasNote = !!notesMap[formattedDayStr];
 
+                {/* 🚀 ИСПРАВЛЕНО: Серые плашки заменены на глубокий полупрозрачный фиолетовый неон, а при ховере карточка сочно загорается в цвет кнопки! */}
                 return (
                   <Link
                     key={dayNum} href={`/profile?date=${formattedDayStr}`} scroll={false}
-                    className={`aspect-square rounded-lg text-xs font-bold flex flex-col items-center justify-center relative border transition-all duration-300 ${
+                    className={`aspect-square rounded-xl text-xs font-mono font-bold flex flex-col items-center justify-center relative border transition-all duration-300 hover:scale-[1.05] ${
                       isSelected
-                        ? 'bg-sky-500 dark:bg-[#634EE4] text-white border-transparent'
+                        ? 'bg-sky-500 dark:bg-[#634EE4] text-white border-transparent shadow-lg shadow-sky-500/20 dark:shadow-[#634EE4]/30'
                         : isToday
-                        ? 'border-sky-500 text-sky-600 font-black dark:border-purple-500'
-                        : 'bg-slate-50/50 border-slate-100 hover:bg-sky-500 hover:text-white hover:border-sky-400 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4] text-sky-600 dark:text-purple-400 dark:bg-slate-900/20 dark:border-purple-500/5'
+                        ? 'border-sky-500 text-sky-600 font-black dark:border-purple-500 dark:text-purple-400 bg-sky-500/5 dark:bg-purple-500/5'
+                        : 'bg-slate-100/70 border-slate-200/60 hover:bg-sky-500 hover:text-white hover:border-transparent dark:bg-purple-950/20 dark:border-purple-500/10 dark:text-purple-200 dark:hover:bg-[#634EE4] dark:hover:text-white dark:hover:border-transparent dark:hover:shadow-[0_0_15px_rgba(99,78,228,0.4)]'
                     }`}
                   >
                     <span>{dayNum}</span>
                     {hasNote && !isSelected && (
-                      <span className="w-1 h-1 bg-sky-500 dark:bg-purple-400 rounded-full absolute bottom-1" />
+                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-purple-400 rounded-full absolute bottom-1.5 shadow-[0_0_8px_rgba(168,85,247,0.8)]" />
                     )}
                   </Link>
                 );
+
               })}
             </div>
 
             <div className="mt-5 pt-4 border-t border-slate-100 dark:border-purple-950/20">
               <h4 className="text-xs font-black uppercase tracking-wider text-slate-400 mb-1">Планы на дату:</h4>
-              <span className="text-xs font-mono font-bold text-sky-600 dark:text-purple-400">{selectedDate === todayStr ? 'Сегодня' : selectedDate}</span>
-
               <form action={saveDailyNote} className="space-y-4 mt-3">
                 <input type="hidden" name="userId" value={user.id} />
                 <input type="hidden" name="selectedDate" value={selectedDate} />
                 <textarea
-                  name="noteContent" rows="4" placeholder="Планы..." defaultValue={currentNoteContent} key={selectedDate}
-                  className="w-full bg-slate-50 dark:bg-[#0c0714] border border-blue-100 rounded-xl p-3 text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none"
+                  name="noteContent"
+                  rows="4"
+                  placeholder="Планы..."
+                  defaultValue={currentNoteContent}
+                  key={selectedDate}
+                  className="w-full bg-slate-50 dark:bg-[#0c0714] border border-blue-100 rounded-xl p-3 text-sm text-slate-800 dark:text-white focus:outline-none focus:border-sky-500 resize-none h-24"
                 />
-                <button type="submit" className="w-full bg-sky-500 dark:bg-[#634EE4] hover:brightness-105 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-all cursor-pointer shadow-sm uppercase tracking-wider">
+                <button
+                  type="submit"
+                  className="w-full bg-sky-500 dark:bg-[#634EE4] hover:brightness-105 text-white font-bold text-xs py-2.5 rounded-xl transition-all shadow-sm cursor-pointer"
+                >
                   Сохранить заметку
                 </button>
               </form>
