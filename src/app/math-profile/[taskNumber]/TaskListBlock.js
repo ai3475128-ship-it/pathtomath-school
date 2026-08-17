@@ -170,6 +170,11 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
 
               <div className="transition-opacity duration-150">
                 <BlockMath math={task.mathA} />
+                {task.textAfter && (
+                  <p className="mt-2 text-base font-normal text-slate-800 dark:text-slate-200">
+                    {task.textAfter}
+                  </p>
+                )}
               </div>
 
               <p className="mt-4 mb-2">
