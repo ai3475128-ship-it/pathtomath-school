@@ -163,17 +163,23 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
               )}
               
               <p>
-                {(num === 13 || num === 19) && 'а) Решите уравнение:'}
+                {num === 13 && 'а) Решите уравнение:'}
                 {num === 14 && 'а) Докажите, что:'}
                 {num === 17 && 'а) Докажите, что:'}
+                {num === 15 && ' Решите неравенство:'}
               </p>
 
               <div className="transition-opacity duration-150">
                 <BlockMath math={task.mathA} />
+                {task.textAfter && (
+                  <p className="mt-2 text-base font-normal text-slate-800 dark:text-slate-200">
+                    {task.textAfter}
+                  </p>
+                )}
               </div>
 
               <p className="mt-4 mb-2">
-                {(num === 13 || num === 19) && 'б) Найдите корни этого уравнения:'}
+                {num === 13 && 'б) Найдите корни этого уравнения, принадлежащие отркзку:'}
                 {num === 14 && 'б) Найдите:'}
                 {num === 17 && 'б) Найдите:'}
               </p>
