@@ -2331,6 +2331,7 @@ export const section18Tasks = [
 
 
 
+<<<<<<< HEAD
 {
   id: 21,
   title: 'Задача 21 (ЕГЭ 2024, основная волна, Дальний Восток)',
@@ -5406,6 +5407,12 @@ export const section18Tasks = [
     </div>
   )
 },
+=======
+
+
+
+
+>>>>>>> 38be11936502c66d2f15e1dba3ba91f6ee15c1c7
 
 
 
