@@ -2331,10 +2331,3081 @@ export const section18Tasks = [
 
 
 
+{
+  id: 21,
+  title: 'Задача 21 (ЕГЭ 2024, основная волна, Дальний Восток)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} 2x + 2ay + a - 3 = 0, \\\\ x|y| + 2x - 3 = 0 \\end{cases}',
+  textAfter: ' имеет ровно два различных решения',
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>Выразим переменную <InlineMath math={`x`} /> из второго уравнения системы, которое не содержит параметра:</p>
+      <BlockMath math={`x(|y| + 2) = 3 \\implies x = \\frac{3}{|y| + 2}`} />
+      
+      <p>
+        Рассмотрим координатную плоскость, в которой горизонтальной осью будет ось <InlineMath math={`y`} />, а вертикальной — ось <InlineMath math={`x`} />. Функция <InlineMath math={`x(y) = \\frac{3}{|y| + 2}`} /> определена для всех <InlineMath math={`y \\in \\mathbb{R}`} /> и является чётной, то есть её график симметричен относительно вертикальной оси <InlineMath math={`Ox`} />.
+      </p>
+      <p>
+        При <InlineMath math={`y = 0`} /> функция достигает своего максимума в вершине <InlineMath math={`V(0; 1{,}5)`} />. При <InlineMath math={`y \\to \\pm\\infty`} /> значения <InlineMath math={`x \\to 0^+`} />, то есть горизонтальной асимптотой служит ось <InlineMath math={`Oy`} />. График представляет собой плавный «холм» с изломом в вершине <InlineMath math={`V`} />.
+      </p>
+      
+      <p>Преобразуем первое уравнение системы, переписав его как уравнение пучка прямых на плоскости <InlineMath math={`yOx`} />:</p>
+      <BlockMath math={`2x - 3 + a(2y + 1) = 0`} />
+      
+      <p>При любом значении параметра <InlineMath math={`a`} /> эта линия является прямой, проходящей через фиксированный центр пучка <InlineMath math={`P`} />. Найдём его координаты, приравняв к нулю выражения при параметре и без него:</p>
+      <BlockMath math={`\\begin{cases} 2y + 1 = 0 \\implies y = -0{,}5, \\\\ 2x - 3 = 0 \\implies x = 1{,}5. \\end{cases}`} />
+      
+      <p>Таким образом, фиксированная точка имеет координаты <InlineMath math={`P(-0{,}5; 1{,}5)`} />. Заметим, что она лежит на той же высоте, что и вершина «холма» <InlineMath math={`V(0; 1{,}5)`} />, но смещена левее неё.</p>
+      <p>Поскольку точка пучка <InlineMath math={`P(-0{,}5; 1{,}5)`} /> расположена строго выше левой ветви графика (<InlineMath math={`y < 0`} />), любая невертикальная прямая пучка (при <InlineMath math={`a \\neq 0`} />) всегда пересекает левую ветвь «холма» ровно в одной точке.</p>
+      <p>Чтобы вся система уравнений имела ровно два различных решения, прямая пучка обязана пересекать правую ветвь графика (<InlineMath math={`y \\geq 0`} />) также ровно в одной точке. Геометрически это соответствует случаю касания прямой пучка и правой нисходящей ветви «холма».</p>
+
+            {/* Высокоточный и сбалансированный SVG-график задачи в осях yOx (max-w-[480px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 520 280" className="w-full max-w-[480px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Координатные оси (Центр: x=250, y=220 соответствует (0,0)) */}
+          {/* Масштаб: 1 ед = 80px */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="40" y1="220" x2="460" y2="220" />  {/* Axis Oy */}
+            <line x1="250" y1="30" x2="250" y2="250" />  {/* Axis Ox */}
+          </g>
+          <path d="M 460,220 L 452,216 M 460,220 L 452,224" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 250,30 L 246,38 M 250,30 L 254,38" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="472" y="224" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="244" y="22" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="236" y="234" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Синий холм x = 3 / (|y| + 2). Вершина V(0; 1.5) -> (250, 100) */}
+          <path d="M 50,165 C 120,155 180,135 250,100 C 320,135 380,155 450,165" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Описание синего графика аккуратно смещено вправо и поднято */}
+          <g className="font-serif text-xs">
+            <text x="385" y="142" fill="#2563eb">x =</text>
+            <text x="407" y="134" fill="#2563eb">3</text>
+            <line x1="405" y1="138" x2="440" y2="138" stroke="#2563eb" strokeWidth="1" />
+            <text x="407" y="149" fill="#2563eb">|y| + 2</text>
+          </g>
+          <text x="258" y="96" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">V(0; 1,5)</text>
+          <circle cx="250" cy="100" r="3.5" fill="#000000" />
+
+          {/* Полностью пересчитанная красная пунктирная касательная линия a = 1/3 */}
+          {/* Проходит математически строго ТАКЖЕ через центр обеих красных точек: P(210, 100) и касания (330, 140) */}
+          <line x1="90" y1="60" x2="450" y2="180" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="5 4" />
+          <text x="456" y="184" fill="#dc2626" className="font-serif text-xs">a = 1/3</text>
+
+          {/* Точка пучка P(-0.5; 1.5) -> (210, 100) */}
+          <circle cx="210" cy="100" r="3.5" fill="#dc2626" />
+          <text x="125" y="94" fill="#dc2626" className="font-serif text-xs">P(-0,5; 1,5)</text>
+
+          {/* Точка касания (1; 1) -> (330, 140) */}
+          <circle cx="330" cy="140" r="3.5" fill="#dc2626" />
+          <text x="338" y="132" fill="#dc2626" className="font-serif text-xs">(1; 1)</text>
+        </svg>
+      </div>
 
 
 
 
+      <p>Для нахождения условия касания подставим уравнение правой ветви <InlineMath math={`x = \\frac{3}{y + 2}`} /> в уравнение прямой пучка:</p>
+      <BlockMath math={`2\\left(\\frac{3}{y + 2}\\right) + 2ay + a - 3 = 0`} />
+      <BlockMath math={`6 + (2ay + a - 3)(y + 2) = 0`} />
+      <BlockMath math={`6 + 2ay^2 + 4ay + ay + 2a - 3y - 6 = 0`} />
+      <BlockMath math={`2ay^2 + (5a - 3)y + 2a = 0`} />
+      
+      <p>Полученное квадратное уравнение имеет единственный корень (случай касания), когда его дискриминант равен нулю:</p>
+      <BlockMath math={`D = (5a - 3)^2 - 4 \\cdot 2a \\cdot 2a = 25a^2 - 30a + 9 - 16a^2 = 9a^2 - 30a + 9 = 0`} />
+      <BlockMath math={`a^2 - \\frac{10}{3}a + 1 = 0 \\implies a = 3 \\text{ или } a = \\frac{1}{3}.`} />
+      
+      <p>Проверим знаки абсцисс <InlineMath math={`y`} /> точек касания для каждого значения параметра:</p>
+      <ul className="list-bullet pl-5 space-y-2">
+        <li>
+          При <InlineMath math={`a = 3`} /> уравнение принимает вид <InlineMath math={`6y^2 + 12y + 6 = 0 \\implies 6(y + 1)^2 = 0 \\implies y = -1`} />. Это значение отрицательно, что противоречит условию правой ветви (<InlineMath math={`y \\geq 0`} />). Касания на правой ветви нет.
+        </li>
+        <li>
+          При <InlineMath math={`a = \\frac{1}{3}`} /> уравнение принимает вид <InlineMath math={`\\frac{2}{3}y^2 - \\frac{4}{3}y + \\frac{2}{3} = 0 \\implies \\frac{2}{3}(y - 1)^2 = 0 \\implies y = 1`} />. Условию <InlineMath math={`y \\geq 0`} /> удовлетворяет, это истинная точка касания <InlineMath math={`(1; 1)`} />.
+        </li>
+      </ul>
+      
+      <p>
+        При <InlineMath math={`a = \\frac{1}{3}`} /> прямая касается правой ветви (1 решение) и пересекает левую ветвь (1 решение), давая в сумме ровно два различных решения исходной системы.
+      </p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a = \\frac{1}{3}`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 22,
+  title: 'Задача 22 (ЕГЭ 2024, основная волна, Сибирь)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} x + y = a, \\\\ |y| = |x^2 - 2x| \\end{cases}',
+  textAfter: 'имеет ровно два различных решения.',
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Рассмотрим второе уравнение системы, не содержащее параметра: <InlineMath math={`|y| = |x^2 - 2x|`} />. По свойству равенства модулей, данное уравнение равносильно совокупности двух уравнений:
+      </p>
+      <BlockMath math={`\\left[ \\begin{array}{l} y = x^2 - 2x, \\\\ y = -(x^2 - 2x) = -x^2 + 2x. \\end{array} \\right.`} />
+      
+      <p>Таким образом, графиком второго уравнения на координатной плоскости <InlineMath math={`xOy`} /> является объединение двух парабол:</p>
+      <ul className="list-disc pl-5 space-y-1">
+        <li>Парабола <InlineMath math={`y = x^2 - 2x`} /> с вершиной в точке <InlineMath math={`(1; -1)`} />, ветви которой направлены вверх. Она пересекает ось абсцисс в точках <InlineMath math={`(0; 0)`} /> и <InlineMath math={`(2; 0)`} />.</li>
+        <li>Парабола <InlineMath math={`y = -x^2 + 2x`} /> с вершиной в точке <InlineMath math={`(1; 1)`} />, ветви которой направлены вниз. Она пересекает ось абсцисс в тех же точках <InlineMath math={`(0; 0)`} /> и <InlineMath math={`(2; 0)`} />.</li>
+      </ul>
+      
+      <p>Вместе эти две параболы образуют симметричную замкнутую «петлю» (линзу) между точками <InlineMath math={`x = 0`} /> и <InlineMath math={`x = 2`} />, переходящую в бесконечные ветви при <InlineMath math={`x < 0`} /> и <InlineMath math={`x > 2`} />.</p>
+      <p>Первое уравнение системы <InlineMath math={`y = -x + a`} /> задаёт семейство параллельных прямых с наклоном <InlineMath math={`-1`} />. Нам необходимо определить, при каких значениях <InlineMath math={`a`} /> (задающих сдвиг прямой по вертикали) эта сканирующая прямая имеет ровно две общие точки с объединением парабол.</p>
+      
+      <p>Изобразим графическую ситуацию в осях <InlineMath math={`xOy`} />:</p>
+
+                  {/* Высокоточный SVG-график Задачи 22 (max-w-[430px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 500 360" className="w-full max-w-[430px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Серая фоновая рамка-сетка из оригинального чертежа */}
+          <rect x="135" y="65" width="230" height="230" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" className="dark:stroke-slate-800" />
+
+          {/* Координатные оси (Центр (0,0) зафиксирован строго на x=180, y=180. Масштаб: 1 ед = 85px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="40" y1="180" x2="440" y2="180" /> {/* Ось Ox */}
+            <line x1="180" y1="30" x2="180" y2="330" />  {/* Ось Oy */}
+          </g>
+          <path d="M 440,180 L 432,176 M 440,180 L 432,184" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 180,30 L 176,38 M 180,30 L 184,38" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="452" y="184" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="174" y="22" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="164" y="196" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Истинный график уравнения |y| = |x^2 - 2x| — ЖЕСТКО ЗАФИКСИРОВАН БЕЗ ИЗМЕНЕНИЙ */}
+          {/* Линия 1: y = |x^2 - 2x| */}
+          <path d="M 132.5,70 Q 180,180 180,180 Q 222.5,95 265,95 Q 307.5,95 350,180 Q 350,180 397.5,70" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Линия 2: y = -|x^2 - 2x| */}
+          <path d="M 132.5,290 Q 180,180 180,180 Q 222.5,265 265,265 Q 307.5,265 350,180 Q 350,180 397.5,290" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+
+          {/* Строго параллельные сканирующие прямые y = -x + a (наклон ровно -1, угол 135 градусов) */}
+          <g stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 4">
+            {/* a = -0.25 Опущена еще на 0,1 единицы масштаба (суммарно на 0,5 от исходного: 0,1 * 85px = 8.5px вниз) */}
+            {/* Изменено с y1="125" на "133.5", с y2="370" на "378.5". Параллельный наклон сохранен */}
+            <line x1="110" y1="133.5" x2="355" y2="378.5" />
+            <text x="315" y="360.5" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">a = -0,25</text>
+
+            {/* a = 0 Проходит идеально точно через начало координат (180, 180) */}
+            <line x1="100" y1="100" x2="330" y2="330" />
+            <text x="295" y="303" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">a = 0</text>
+
+            {/* a = 2 Проходит идеально точно через правый узел линзы x=2 -> 180 + 2*85 = 350, y=180 */}
+            <line x1="180" y1="10" x2="450" y2="280" />
+            <text x="405" y="262" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">a = 2</text>
+
+            {/* a = 2.25 Зафиксирована на прежней позиции */}
+            <line x1="195" y1="4.5" x2="460" y2="269.5" />
+            <text x="415" y="226.5" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">a = 2,25</text>
+          </g>
+
+          {/* Метки ключевых точек */}
+          <text x="249" y="85" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">(1; 1)</text>
+          <text x="243" y="283" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">(1; -1)</text>
+          <text x="354" y="196" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">2</text>
+
+          {/* Чёрные маркерные узловые точки и вершины строго на своих местах */}
+          <circle cx="180" cy="180" r="3.5" fill="#000000" />
+          <circle cx="350" cy="180" r="3.5" fill="#000000" />
+          <circle cx="265" cy="95" r="3.5" fill="#000000" />
+          <circle cx="265" cy="265" r="3.5" fill="#000000" />
+        </svg>
+      </div>
+
+
+
+      <p>Найдем аналитические значения параметра <InlineMath math={`a`} />, соответствующие моментам касания сканирующей прямой с каждой из парабол.</p>
+      
+      <p><b>1) Касание с нижней параболой <InlineMath math={`y = x^2 - 2x`} />:</b></p>
+      <BlockMath math={`-x + a = x^2 - 2x \\implies x^2 - x - a = 0`} />
+      <BlockMath math={`D = 1 - 4(1)(-a) = 1 + 4a = 0 \\implies a = -0{,}25.`} />
+      <p>
+        Точка касания имеет абсциссу <InlineMath math={`x = 0{,}5`} />. В этом положении прямая касается нижней параболы (1 точка) и пересекает две внешние ветви верхней параболы (2 точки), давая в сумме 3 решения.
+      </p>
+      
+      <p><b>2) Касание с верхней параболой <InlineMath math={`y = -x^2 + 2x`} />:</b></p>
+      <BlockMath math={`-x + a = -x^2 + 2x \\implies x^2 - 3x + a = 0`} />
+      <BlockMath math={`D = 9 - 4(1)(a) = 9 - 4a = 0 \\implies a = 2{,}25.`} />
+      <p>
+        Точка касания имеет абсциссу <InlineMath math={`x = 1{,}5`} />. В этом положении прямая касается верхней параболы (1 точка) и пересекает две внешние ветви нижней параболы (2 точки), давая в сумме 3 решения.
+      </p>
+      
+      <p><b>3) Проход прямой через узловые точки пересечения парабол <InlineMath math={`(0; 0)`} /> and <InlineMath math={`(2; 0)`} />:</b></p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>Через <InlineMath math={`(0; 0)`} />: <InlineMath math={`0 + 0 = a \\implies a = 0`} />.</li>
+        <li>Через <InlineMath math={`(2; 0)`} />: <InlineMath math={`2 + 0 = a \\implies a = 2`} />.</li>
+      </ul>
+      
+      <p>Проанализируем количество решений (точек пересечения) при движении сканирующей прямой снизу вверх (с увеличением <InlineMath math={`a`} />):</p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>При <InlineMath math={`a < -0{,}25`} /> прямая лежит строго ниже области касания и пересекает только две внешние ветви парабол. Имеем <b>ровно 2 решения</b>.</li>
+        <li>При <InlineMath math={`a = -0{,}25`} /> прямая касается нижней параболы. Имеем 3 решения.</li>
+        <li>При <InlineMath math={`a \\in (-0{,}25; 0)`} /> прямая пересекает внешние ветви и дважды пересекает нижнюю параболу. Имеем 4 решения.</li>
+        <li>При <InlineMath math={`a = 0`} /> прямая проходит через <InlineMath math={`(0; 0)`} />, пересекает вершину верхней параболы в точке <InlineMath math={`(2; 0)`} /> и внешнюю ветвь. Имеем 3 решения.</li>
+        <li>При <InlineMath math={`a \\in (0; 2)`} /> прямая пересекает внутреннюю «петлю» и внешние ветви. Имеем 4 решения.</li>
+        <li>При <InlineMath math={`a = 2`} /> прямая проходит через <InlineMath math={`(2; 0)`} />, пересекает <InlineMath math={`(0; 0)`} /> и внешнюю ветвь. Имеем 3 решения.</li>
+        <li>При <InlineMath math={`a \\in (2; 2{,}25)`} /> прямая дважды пересекает верхнюю параболу и внешние ветви. Имеем 4 решения.</li>
+        <li>При <InlineMath math={`a = 2{,}25`} /> прямая касается верхней параболы. Имеем 3 решения.</li>
+        <li>При <InlineMath math={`a > 2{,}25`} /> прямая уходит выше области касания и пересекает только две уходящие вверх внешние ветви исходных парабол. Имеем <b>ровно 2 решения</b>.</li>
+      </ul>
+      
+      <p>Таким образом, ровно два различных решения система имеет, когда прямая находится вне зоны внутренних пересечений и касаний.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-\\infty; -0{,}25) \\cup (2{,}25; +\\infty)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 23,
+  title: 'Задача 23 (ЕГЭ 2024, основная волна, Дагестан)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} |y| + |x| = a, \\\\ y = \\sqrt{x + 9} \\end{cases}',
+  textAfter: 'имеет два различных решения.',
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Рассмотрим второе уравнение системы, не содержащее параметра: <InlineMath math={`y = \\sqrt{x + 9}`} />. Графиком этой функции является верхняя ветвь параболы с вершиной в точке <InlineMath math={`A(-9; 0)`} />, направленная вправо. Она пересекает ось ординат в точке <InlineMath math={`(0; 3)`} />. По определению квадратного корня, для всех точек этого графика выполнены условия <InlineMath math={`x \\geq -9`} /> и <InlineMath math={`y \\geq 0`} />.
+      </p>
+      
+      <p>
+        Первое уравнение системы при <InlineMath math={`a > 0`} /> задаёт на плоскости ромб с центром в начале координат <InlineMath math={`(0; 0)`} /> and вершинами в точках <InlineMath math={`(a; 0), (0; a), (-a; 0), (0; -a)`} />. Поскольку парабола целиком лежит в области <InlineMath math={`y \\geq 0`} />, нас интересует её пересечение только с двумя верхними сторонами ромба:
+      </p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>Правая верхняя сторона: <InlineMath math={`y = -x + a`} /> при <InlineMath math={`x \\geq 0`} />.</li>
+        <li>Левая верхняя сторона: <InlineMath math={`y = x + a`} /> при <InlineMath math={`x \\leq 0`} />.</li>
+      </ul>
+      
+      <p>Изобразим графическую ситуацию на координатной плоскости <InlineMath math={`xOy`} />:</p>
+
+            {/* Высокоточный и чистый SVG-график Задачи 23 (max-w-[450px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 500 360" className="w-full max-w-[430px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Серая фоновая рамка-сетка из оригинального чертежа */}
+          <rect x="135" y="65" width="230" height="230" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" className="dark:stroke-slate-800" />
+
+          {/* Координатные оси (Центр (0,0) на x=250, y=180. Масштаб: 1 ед = 13px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="40" y1="180" x2="440" y2="180" /> {/* Ось Ox */}
+            <line x1="250" y1="30" x2="250" y2="330" />  {/* Ось Oy */}
+          </g>
+          <path d="M 440,180 L 432,176 M 440,180 L 432,184" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 250,30 L 246,38 M 250,30 L 254,38" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="452" y="184" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="244" y="22" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="236" y="196" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Вспомогательные серые пунктирные ромбы малых параметров */}
+          <path d="M 211,180 L 250,141 L 289,180 L 250,219 Z" fill="none" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" opacity="0.6" />
+
+          {/* Семейство ромбов (Красные линии с наклоном ровно 45 градусов, т.е. delta x = delta y) */}
+          {/* 1) Ромб a = 3 (Сплошной красный) */}
+          <path d="M 211,180 L 250,141 L 289,180 L 250,219 Z" fill="none" stroke="#dc2626" strokeWidth="1.8" />
+          <text x="222" y="152" fill="#dc2626" className="font-serif italic text-[11px]">a = 3</text>
+
+          {/* 2) Ромб касания a = 9.25 (Пунктирный красный) */}
+          <path d="M 129.75,180 L 250,59.75 L 370.25,180 L 250,300.25 Z" fill="none" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" />
+          <text x="110" y="140" fill="#dc2626" stroke="none" className="font-serif italic text-[11px] font-normal">a = 37/4</text>
+
+          {/* 3) Ромб a = 9 (Пунктирный красный, проходит строго через (-9,0) -> 250-117=133) */}
+          <path d="M 133,180 L 250,63 L 367,180 L 250,297 Z" fill="none" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" />
+          {/* Подвинута ещё чуть-чуть правее! Координата x изменена с 205 на 217. Теперь надпись идеально сидит строго посередине между линиями ромбов */}
+          <text x="217" y="105" fill="#dc2626" className="font-serif italic text-[11px]">a = 9</text>
+
+          {/* Синий график параболы y = sqrt(x + 9). Вершина в (-9,0) -> (133, 180), точка (0,3) -> (250, 141) */}
+          <path d="M 133,180 C 145,165 200,147 250,141 C 300,135 370,123 410,115" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="325" y="110" fill="#2563eb" className="font-serif text-xs">y = √(x + 9)</text>
+
+          {/* Ключевые точки */}
+          <text x="118" y="194" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">-9</text>
+
+          {/* Чёрные маркерные точки вершин и пересечений */}
+          <circle cx="133" cy="180" r="3.5" fill="#000000" />  {/* Вершина параболы (-9,0) */}
+          <circle cx="250" cy="141" r="3.5" fill="#000000" />  {/* Точка пересечения (0,3) */}
+        </svg>
+      </div>
+
+
+      <p>Проанализируем количество решений системы при различных значениях параметра <InlineMath math={`a`} /> (при расширении ромба от начала координат):</p>
+      
+      <p>
+        1) При <InlineMath math={`a \\in (0; 3]`} /> правая верхняя сторона ромба пересекает параболу строго в одной точке при <InlineMath math={`x \\geq 0`} />. Левая верхняя сторона проходит ниже параболы и не пересекает её. Система имеет <b>ровно 1 решение</b>.
+      </p>
+      
+      <p>
+        2) При <InlineMath math={`a \\in (3; 9)`} /> правая сторона ромба пересекает параболу в одной точке при <InlineMath math={`x > 0`} />. Левая сторона ромба <InlineMath math={`y = x + a`} /> пересекает левую ветвь параболы ровно 1 раз, так как левая вершина ромба <InlineMath math={`(-a; 0)`} /> находится строго правее начальной точки параболы <InlineMath math={`A(-9; 0)`} />. Система имеет <InlineMath math={`1 + 1 = 2`} /> решения.
+      </p>
+      
+      <p>
+        3) При <InlineMath math={`a = 9`} /> левая вершина ромба попадает в точку <InlineMath math={`A(-9; 0)`} />. Левая сторона пересекает параболу в точке <InlineMath math={`A(-9; 0)`} /> и из-за своей крутизны пересекает её ещё один раз на интервале <InlineMath math={`x \\in (-9; 0)`} />. Правая сторона даёт 1 пересечение. Система имеет <InlineMath math={`2 + 1 = 3`} /> решения.
+      </p>
+      
+      <p>
+        4) При <InlineMath math={`a \\in (9; 9{,}25)`} /> левая вершина ромба уходит левее точки <InlineMath math={`A`} />, а левая сторона опускается ниже и пересекает левую ветвь параболы 2 раза. Правая сторона даёт 1 пересечение. Система имеет <InlineMath math={`2 + 1 = 3`} /> решения.
+      </p>
+      
+      <p>
+        5) При <InlineMath math={`a = 9{,}25`} /> достигается случай касания левой верхней стороны ромба <InlineMath math={`y = x + a`} /> и ветви параболы при <InlineMath math={`x \\leq 0`} />:
+      </p>
+      <BlockMath math={`x + a = \\sqrt{x + 9} \\implies (x + a)^2 = x + 9 \\implies x^2 + (2a - 1)x + a^2 - 9 = 0`} />
+      <BlockMath math={`D = (2a - 1)^2 - 4(a^2 - 9) = -4a + 37 = 0 \\implies a = \\frac{37}{4} = 9{,}25.`} />
+      <p>
+        Абсцисса точки касания: <InlineMath math={`x = \\frac{1 - 2a}{2} = \\frac{1 - 18{,}5}{2} = -8{,}75`} />. Эта точка принадлежит области определения <InlineMath math={`x \\in [-9; 0]`} />. В данном положении левая сторона касается параболы (1 точка), а правая сторона пересекает её при <InlineMath math={`x > 0`} /> (1 точка). Система имеет <b>ровно 2 решения</b>.
+      </p>
+      
+      <p>
+        6) При <InlineMath math={`a > 9{,}25`} /> левая сторона ромба поднимается выше параболы и больше не касается её. Единственное пересечение остаётся на правой стороне ромба при <InlineMath math={`x > 0`} />. Система имеет <b>ровно 1 решение</b>.
+      </p>
+      
+      <p>
+        Таким образом, ровно два различных решения исходная система имеет при всех значениях параметра из интервала <InlineMath math={`(3; 9)`} />, а также в изолированной точке касания <InlineMath math={`a = 9{,}25`} />.
+      </p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (3; 9) \\cup \\left\\{\\frac{37}{4}\\right\\}`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 24,
+  title: 'Задача 24 (ЕГЭ 2024, основная волна, Центр)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} 2x - y + a = 0, \\\\ 2|y| - x^2 + 2x = 0 \\end{cases}',
+  textAfter: 'имеет ровно два различных решения.',
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Рассмотрим второе уравнение системы, не содержащее параметра: <InlineMath math={`2|y| = x^2 - 2x`} />. Так как левая часть уравнения неотрицательна, то правая часть накладывает ограничение на ОДЗ переменной <InlineMath math={`x`} />:
+      </p>
+      <BlockMath math={`x^2 - 2x \\geq 0 \\iff x \\in (-\\infty; 0] \\cup [2; +\\infty).`} />
+      <p>Внутри полосы <InlineMath math={`x \\in (0; 2)`} /> график функции отсутствует.</p>
+      
+      <p>Раскрывая модуль по определению, получаем совокупность двух уравнений парабол на ОДЗ:</p>
+      <BlockMath math={`\\left[ \\begin{array}{l} y = 0{,}5x^2 - x, \\\\ y = -0{,}5x^2 + x. \\end{array} \\right.`} />
+      <p>График представляет собой две пары симметричных ветвей парабол, сходящихся в узловых точках <InlineMath math={`(0;0)`} /> и <InlineMath math={`(2;0)`} />.</p>
+      
+      <p>
+        Первое уравнение системы задаёт семейство параллельных прямых <InlineMath math={`y = 2x + a`} /> с угловым коэффициентом <InlineMath math={`k = 2`} />. Нам необходимо определить число точек пересечения этих прямых с ветвями парабол при различных значениях <InlineMath math={`a`} />.
+      </p>
+
+            {/* Высокоточный SVG-график Задачи 24 (max-w-[440px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 500 380" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Серая фоновая рамка-сетка */}
+          <rect x="100" y="50" width="300" height="280" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" className="dark:stroke-slate-800" />
+
+          {/* Координатные оси (Центр (0,0) зафиксирован строго на x=200, y=190. Масштаб: 1 ед = 50px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="40" y1="180" x2="440" y2="180" /> {/* Ось Ox */}
+            <line x1="200" y1="30" x2="200" y2="340" />  {/* Ось Oy */}
+          </g>
+          <path d="M 440,190 L 432,176 M 440,190 L 432,194" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 200,30 L 196,38 M 200,30 L 204,38" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="452" y="194" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="194" y="22" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="186" y="204" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">0</text>
+          <text x="302" y="206" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">2</text>
+
+          {/* Синие непрерывные ветви парабол с пустотой на интервале (0; 2) */}
+          <path d="M 60,40 C 110,120 160,170 200,190 C 160,210 110,260 60,340" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <path d="M 300,190 C 340,170 390,120 440,40 M 300,190 C 340,210 390,260 440,340" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+
+          {/* Строго параллельные сканирующие прямые y = 2x + a (наклон k = 2) */}
+          <g stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 4">
+            {/* a = 0,5 */}
+            <line x1="60" y1="340" x2="210" y2="40" />
+            <text x="140" y="32" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">a = 0,5</text>
+
+            {/* a = 0 — Проходит идеально точно через начало координат (200, 190) */}
+            <line x1="125" y1="340" x2="275" y2="40" />
+            <text x="250" y="35" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">a = 0</text>
+
+            {/* a = -4 — Проходит идеально точно через правый узел (2,0) -> (300, 190) */}
+            <line x1="225" y1="340" x2="375" y2="40" />
+            <text x="345" y="65" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">a = -4</text>
+
+            {/* a = -4,5 (Сдвинута вправо на 1.6 единицы масштаба: 1.6 * 50px = 80px вправо. x1 и x2 увеличены на 80px) */}
+            {/* Было x1="210" стало "290", было x2="360" стало "440". Теперь она наглядно и четко касается правой параболы */}
+            <line x1="290" y1="340" x2="440" y2="40" />
+            <text x="445" y="45" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">a = -4,5</text>
+          </g>
+
+          {/* Чёрные маркерные узловые точки слияния веток */}
+          <circle cx="200" cy="190" r="3.5" fill="#000000" />
+          <circle cx="300" cy="190" r="3.5" fill="#000000" />
+        </svg>
+      </div>
+
+
+      <p><b>1) Найдем условия пересечения с правой верхней ветвью (<InlineMath math={`x \\geq 2, \\ y = 0{,}5x^2 - x`} />):</b></p>
+      <BlockMath math={`2x + a = 0{,}5x^2 - x \\implies 0{,}5x^2 - 3x - a = 0 \\implies D = 9 + 2a.`} />
+      <p>
+        Касание происходит при <InlineMath math={`D = 0 \\implies a = -4{,}5`} /> в точке <InlineMath math={`x = 3 \\geq 2`} /> (корень принадлежит ОДЗ). При <InlineMath math={`a < -4{,}5`} /> решений нет. При <InlineMath math={`a \\in (-4{,}5; -4]`} /> имеем 2 решения, при <InlineMath math={`a > -4`} /> — 1 решение.
+      </p>
+      
+      <p><b>2) Найдем условия пересечения с левой нижней ветвью (<InlineMath math={`x \\leq 0, \\ y = -0{,}5x^2 + x`} />):</b></p>
+      <BlockMath math={`2x + a = -0{,}5x^2 + x \\implies 0{,}5x^2 + x + a = 0 \\implies D = 1 - 2a.`} />
+      <p>
+        Касание происходит при <InlineMath math={`D = 0 \\implies a = 0{,}5`} /> в точке <InlineMath math={`x = -1 \\leq 0`} /> (корень принадлежит ОДЗ). При <InlineMath math={`a > 0{,}5`} /> решений нет. При <InlineMath math={`a \\in [0; 0{,}5)`} /> имеем 2 решения, при <InlineMath math={`a < 0`} /> — 1 решение.
+      </p>
+      
+      <p>Совместим результаты для всех четырёх ветвей при движении сканирующей прямой слева направо (с увеличением <InlineMath math={`a`} />):</p>
+      <ul className="list-bullet pl-5 space-y-2">
+        <li>При <InlineMath math={`a < -4{,}5`} />: прямая пересекает только 1 раз левую нижнюю ветвь и 1 раз правую нижнюю ветвь. Имеем <b>ровно 2 решения</b>.</li>
+        <li>При <InlineMath math={`a = -4{,}5`} />: добавляется точка касания на правой верхней ветви. Имеем 3 решения.</li>
+        <li>При <InlineMath math={`a \\in (-4{,}5; -4)`} />: прямая пересекает левую нижнюю (1), правую нижнюю (1) и дважды правую верхнюю ветвь (2). Имеем 4 решения.</li>
+        <li>При <InlineMath math={`a = -4`} />: прямая проходит через узел <InlineMath math={`(2;0)`} /> (склеивание 2-х ветвей) и пересекает левую нижнюю и правую верхнюю ветви. Имеем 3 решения.</li>
+        <li>При <InlineMath math={`a \\in (-4; 0)`} />: прямая пересекает только левую нижнюю (1) и правую верхнюю (1) ветви. Имеем <b>ровно 2 решения</b>.</li>
+        <li>При <InlineMath math={`a = 0`} />: прямая проходит через узел <InlineMath math={`(0;0)`} /> (склеивание 2-х ветвей) и пересекает левую нижнюю и правую верхнюю ветви. Имеем 3 решения.</li>
+        <li>При <InlineMath math={`a \\in (0; 0{,}5)`} />: прямая дважды пересекает левую нижнюю (2), 1 раз левую верхнюю (1) и 1 раз правую верхнюю (1) ветви. Имеем 4 решения.</li>
+        <li>При <InlineMath math={`a = 0{,}5`} />: прямая касается левой нижней ветви (1), пересекает левую верхнюю (1) и правую верхнюю (1). Имеем 3 решения.</li>
+        <li>При <InlineMath math={`a > 0{,}5`} />: левая нижняя ветвь больше не пересекается. Прямая пересекает только левую верхнюю (1) и правую верхнюю (1) ветви. Имеем <b>ровно 2 решения</b>.</li>
+      </ul>
+      
+      <p>Следовательно, ровно два различных решения достигаются на трёх открытых промежутках.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-\\infty; -4{,}5) \\cup (-4; 0) \\cup (0{,}5; +\\infty)`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 25,
+  title: 'Задача 25 (ЕГЭ 2024, досрочная волна)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: 'x^2 - (x - 1)\\sqrt{2x - a} = x',
+  textAfter: 'имеет ровно один корень.',
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Перенесем слагаемые, не содержащие радикал, в правую часть уравнения:
+      </p>
+      <BlockMath math={`x^2 - x = (x - 1)\\sqrt{2x - a} \\implies x(x - 1) - (x - 1)\\sqrt{2x - a} = 0`} />
+      
+      <p>Вынесем общий множитель <InlineMath math={`(x - 1)`} /> за скобки:</p>
+      <BlockMath math={`(x - 1)(x - \\sqrt{2x - a}) = 0`} />
+      
+      <p>
+        Данное уравнение на своей области определения (при условии <InlineMath math={`2x - a \\geq 0 \\iff a \\leq 2x`} />) равносильно совокупности двух независимых уравнений:
+      </p>
+      
+      <p>
+        <b>1)</b> <InlineMath math={`x - 1 = 0 \\implies x_1 = 1`} />. Найдём условие существования этого корня из неравенства ОДЗ подкоренного выражения:
+      </p>
+      <BlockMath math={`2(1) - a \\geq 0 \\implies a \\leq 2.`} />
+      <p>
+        Таким образом, корень <InlineMath math={`x_1 = 1`} /> существует при всех <InlineMath math={`a \\in (-\\infty; 2]`} />. На плоскости <InlineMath math={`xOa`} /> этот корень задаёт вертикальный луч.
+      </p>
+      
+      <p>
+        <b>2)</b> <InlineMath math={`x - \\sqrt{2x - a} = 0 \\implies \\sqrt{2x - a} = x`} />. Возведём уравнение в квадрат при естественном условии <InlineMath math={`x \\geq 0`} />:
+      </p>
+      <BlockMath math={`2x - a = x^2 \\implies a = -x^2 + 2x.`} />
+      <p>
+        Данный корень задаёт на плоскости <InlineMath math={`xOa`} /> дугу параболы <InlineMath math={`a = -x^2 + 2x`} /> при <InlineMath math={`x \\geq 0`} bitumen />. Проверим её соответствие базовому неравенству ОДЗ <InlineMath math={`a \\leq 2x`} />:
+      </p>
+      <BlockMath math={`-x^2 + 2x \\leq 2x \\iff -x^2 \\leq 0,`} />
+      <p>
+        что справедливо для всех действительных значений <InlineMath math={`x`} />. Значит, дуга параболы при <InlineMath math={`x \\geq 0`} /> целиком лежит внутри области допустимых значений.
+      </p>
+      
+      <p>
+        Построим графическую иллюстрацию полученных линий в координатной плоскости <InlineMath math={`xOa`} />, где горизонтальная сканирующая прямая на уровне параметра <InlineMath math={`a`} /> своим количеством пересечений будет определять число корней исходного уравнения.
+      </p>
+
+      {/* Высокоточный SVG-график Задачи 25 в осях xOa (max-w-[460px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 580 420" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Серая фоновая рамка-сетка */}
+          <rect x="135" y="45" width="250" height="330" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" className="dark:stroke-slate-800" />
+
+          {/* Координатные оси (Центр (0,0) зафиксирован строго на x=180, y=260. Масштаб: 1 ед = 85px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="40" y1="260" x2="520" y2="260" /> {/* Ось Ox продлена под viewBox */}
+            <line x1="180" y1="30" x2="180" y2="390" />  {/* Ось Oa */}
+          </g>
+          <path d="M 520,260 L 512,256 M 520,260 L 512,264" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 180,30 L 176,38 M 180,30 L 184,38" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="532" y="264" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="166" y="22" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+          <text x="166" y="274" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Синие линии решений в плоскости xOa */}
+          {/* Вертикальный луч x = 1 (180 + 85 = 265), идущий снизу до точки a = 2 (260 - 170 = 90) */}
+          <line x1="265" y1="90" x2="265" y2="390" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Истинный график параболы a = -x^2 + 2x. Её вершина СТРОГО И ПРИНУДИТЕЛЬНО находится в точке (1;1) -> (265, 175) */}
+          <path d="M 180,260 Q 222.5,175 265,175 Q 307.5,175 350,340" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+
+          {/* Вспомогательные надписи к синим графикам */}
+          <text x="225" y="340" fill="#2563eb" className="font-serif italic text-xs">x = 1</text>
+          <text x="315" y="220" fill="#2563eb" className="font-serif italic text-xs">a = -x² + 2x</text>
+
+          {/* Горизонтальные параллельные сканирующие прямые (красный пунктир) */}
+          <g stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 4">
+            {/* a = 2 (Верхняя граница луча, y = 260 - 2*85 = 90) */}
+            <line x1="50" y1="90" x2="410" y2="90" />
+            <text x="420" y="94" fill="#dc2626" stroke="none" className="font-serif italic text-[11px] font-normal">a = 2</text>
+            {/* Шрифт меток точек сделан тонким font-normal и переведен в font-sans, как у пунктирных прямых */}
+            <text x="275" y="82" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[11px] font-normal">(1; 2)</text>
+
+            {/* a = 1 (Вершина параболы и точка пересечения с лучом, y = 260 - 1*85 = 175) */}
+            <line x1="50" y1="175" x2="410" y2="175" />
+            <text x="420" y="179" fill="#dc2626" stroke="none" className="font-serif italic text-[11px] font-normal">a = 1</text>
+            {/* Шрифт меток точек сделан тонким font-normal и переведен в font-sans, как у пунктирных прямых */}
+            <text x="275" y="167" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[11px] font-normal">(1; 1)</text>
+
+            {/* a = 0 (Ось абсцисс, y = 260) */}
+            <line x1="40" y1="260" x2="532" y2="260" />
+            <text x="550" y="264" fill="#dc2626" stroke="none" className="font-serif italic text-[11px] font-normal">a = 0</text>
+          </g>
+
+          {/* Чёрные маркерные точки ключевых узлов */}
+          <circle cx="180" cy="260" r="3.5" fill="#000000" /> {/* (0;0) */}
+          <circle cx="265" cy="175" r="3.5" fill="#000000" /> {/* (1;1) */}
+          <circle cx="265" cy="90" r="3.5" fill="#000000" />  {/* (1;2) */}
+        </svg>
+      </div>
+
+
+
+      <p>Найдем точки пересечения и совпадения ветвей:</p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>Точка пересечения вертикального луча <InlineMath math={`x = 1`} /> и параболы: <InlineMath math={`a = -1^2 + 2(1) = 1`} />, точка <InlineMath math={`(1; 1)`} />. Заметим, что эта точка одновременно является вершиной параболы.</li>
+        <li>Точка начала параболы при <InlineMath math={`x = 0`} />: <InlineMath math={`a = 0`} />, точка <InlineMath math={`(0; 0)`} />.</li>
+        <li>Верхняя граница существования вертикального луча: <InlineMath math={`a = 2`} />, точка <InlineMath math={`(1; 2)`} />.</li>
+      </ul>
+
+      <p>Проанализируем количество корней (точек пересечения графика с горизонтальной прямой) при различных значениях параметра <InlineMath math={`a`} /> (двигаясь снизу вверх):</p>
+      <ul className="list-bullet pl-5 space-y-2">
+        <li>При <InlineMath math={`a < 0`} />: прямая пересекает вертикальный луч <InlineMath math={`x = 1`} /> и правую ветвь параболы (при <InlineMath math={`x > 2`} />). Имеем ровно 2 корня.</li>
+        <li>При <InlineMath math={`a = 0`} />: прямая проходит через точку <InlineMath math={`(0;0)`} /> на параболе и пересекает луч <InlineMath math={`x = 1`} bitumen />. Имеем ровно 2 корня (<InlineMath math={`x = 0`} /> и <InlineMath math={`x = 1`} />).</li>
+        <li>При <InlineMath math={`a \\in (0; 1)`} />: прямая дважды пересекает дугу параболы (по обе стороны от вершины) и пересекает вертикальный луч <InlineMath math={`x = 1`} />. Имеем 3 корня.</li>
+        <li>При <InlineMath math={`a = 1`} />: прямая проходит через вершину параболы, где она касается её и пересекает луч <InlineMath math={`x = 1`} />. Так как эти точки совпадают (<InlineMath math={`(1; 1)`} />), серии корней склеиваются. Имеем <b>ровно 1 корень</b> (<InlineMath math={`x = 1`} bitumen />).</li>
+        <li>При <InlineMath math={`a \\in (1; 2)`} />: парабола в этой области больше не существует, прямая пересекает только вертикальный луч <InlineMath math={`x = 1`} bitumen />. Имеем <b>ровно 1 корень</b>.</li>
+        <li>При <InlineMath math={`a = 2`} />: прямая проходит через крайнюю верхнюю точку луча <InlineMath math={`x = 1`} />. Имеем <b>ровно 1 корень</b>.</li>
+        <li>При <InlineMath math={`a > 2`} />: вертикальный луч закончился, параболы нет. Уравнение не имеет решений (0 корней).</li>
+      </ul>
+
+      <p>
+        Таким образом, ровно один корень исходное уравнение имеет, когда горизонтальная сканирующая прямая находится на промежутке от вершины параболы до верхнего конца луча включительно.
+      </p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in [1; 2]`} />
+      </div>
+    </div>
+  )
+},
+
+{
+  id: 26,
+  title: 'Задача 26 (ЕГЭ 2024, резервный день)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '(1 - (x - 2a + 1)^2)^3 - (1 - (x - 2a + 1)^2)^2 = 2^{3|x + 2a|} - 2^{2|x + 2a|}',
+  textAfter: 'имеет хотя бы один корень.',
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>Пусть <InlineMath math={`f(t) = t^3 - t^2 = t^2(t - 1)`} />. Уравнение принимает вид:</p>
+      <BlockMath math={`f\\left(1 - (x - 2a + 1)^2\\right) = f\\left(2^{|x + 2a|}\\right)`} />
+      
+      <p>Обозначим аргументы функций через <InlineMath math={`u`} /> и <InlineMath math={`v`} /> и оценим их области значений:</p>
+      <BlockMath math={`u = 1 - (x - 2a + 1)^2 \\leq 1`} />
+      <BlockMath math={`v = 2^{|x + 2a|} \\geq 2^0 = 1`} />
+      
+      <p>
+        Если <InlineMath math={`t \\leq 1`} />, то <InlineMath math={`f(t) \\leq 0`} />. Если <InlineMath math={`t \\geq 1`} />, то <InlineMath math={`f(t) \\geq 0`} />. 
+        Тогда так как <InlineMath math={`u \\leq 1`} /> и <InlineMath math={`v \\geq 1`} />, то получаем, что <InlineMath math={`f(u) \\leq 0`} /> и <InlineMath math={`f(v) \\geq 0`} />, то есть равенство достигается только при одновременном равенстве нулю:
+      </p>
+      <BlockMath math={`f(u) = f(v) = 0 \\iff \\begin{cases} \\left[ \\begin{array}{l} u = 1, \\\\ u = 0, \\end{array} \\right. \\\\ v = 1. \\end{cases}`} />
+
+      <p>Из уравнения для <InlineMath math={`v`} /> находим связь переменных:</p>
+      <BlockMath math={`2^{|x + 2a|} = 1 \\iff |x + 2a| = 0 \\iff x = -2a`} />
+
+      <p>Выполняем равносильные переходы для двух возможных случаев:</p>
+
+      <p><b>Случай 1. При <InlineMath math={`u = 1`} />:</b></p>
+      <BlockMath math={`\\begin{cases} 1 - (x - 2a + 1)^2 = 1 \\\\ x = -2a \\end{cases} \\iff \\begin{cases} (x - 2a + 1)^2 = 0 \\\\ x = -2a \\end{cases} \\iff \\begin{cases} x - 2a + 1 = 0 \\\\ x = -2a \\end{cases}`} />
+      <BlockMath math={`\\iff -2a - 2a + 1 = 0 \\iff -4a = -1 \\implies a = 0{,}25`} />
+
+      <p><b>Случай 2. При <InlineMath math={`u = 0`} />:</b></p>
+      <BlockMath math={`\\begin{cases} 1 - (x - 2a + 1)^2 = 0 \\\\ x = -2a \\end{cases} \\iff \\begin{cases} (x - 2a + 1)^2 = 1 \\\\ x = -2a \\end{cases} \\iff \\begin{cases} \\left[ \\begin{array}{l} x - 2a + 1 = 1, \\\\ x - 2a + 1 = -1, \\end{array} \\right. \\\\ x = -2a \\end{cases}`} />
+      <BlockMath math={`\\iff \\left[ \\begin{array}{l} -2a - 2a + 1 = 1 \\\\ -2a - 2a + 1 = -1 \\end{array} \\right. \\iff \\left[ \\begin{array}{l} -4a = 0 \\\\ -4a = -2 \\end{array} \\right. \\implies \\left[ \\begin{array}{l} a = 0, \\\\ a = 0{,}5. \\end{array} \\right.`} />
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\{0; 0{,}25; 0{,}5\\}`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 27,
+  title: 'Задача 27 (ЕГЭ 2024, резервный день)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '(3 + 2|x + a|)^3 - (3 + 2|x + a|)^2 = (7 - x^2 - 2ax - 2a^2)^3 - (7 - x^2 - 2ax - 2a^2)^2',
+  textAfter: 'имеет хотя бы один корень.',
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>Пусть <InlineMath math={`f(t) = t^3 - t^2 = t^2(t - 1)`} />. Уравнение принимает вид:</p>
+      <BlockMath math={`f(3 + 2|x + a|) = f(7 - (x + a)^2 - a^2)`} />
+      
+      <p>Обозначим аргументы через <InlineMath math={`u`} /> и <InlineMath math={`v`} /> и оценим их области значений:</p>
+      <BlockMath math={`u = 3 + 2|x + a| \\geq 3`} />
+      <BlockMath math={`v = 7 - (x + a)^2 - a^2 \\leq 7`} />
+      
+      <p>
+        При <InlineMath math={`t \\geq 1`} /> оба множителя функции <InlineMath math={`f(t) = t^2(t - 1)`} /> неотрицательны, а её производная <InlineMath math={`f'(t) = 3t^2 - 2t > 0`} />, что гарантирует строгую монотонность (возрастание) на всём промежутке <InlineMath math={`[1; +\\infty)`} />.
+      </p>
+      <p>
+        Так как оба аргумента <InlineMath math={`u`} /> и <InlineMath math={`v`} /> заведомо находятся в области возрастания функции, равенство <InlineMath math={`f(u) = f(v)`} /> возможно тогда и только тогда, когда равны сами аргументы:
+      </p>
+      <BlockMath math={`3 + 2|x + a| = 7 - (x + a)^2 - a^2 \\iff (x + a)^2 + 2|x + a| + a^2 - 4 = 0`} />
+
+      <p>Пусть <InlineMath math={`y = |x + a|`} />, где <InlineMath math={`y \\geq 0`} />. Уравнение принимает вид:</p>
+      <BlockMath math={`y^2 + 2y + a^2 - 4 = 0 \\iff a^2 = -y^2 - 2y + 4`} />
+
+      <p>Изобразим эскиз графика функции <InlineMath math={`g(y) = -y^2 - 2y + 4`} /> в координатах <InlineMath math={`yOa^2`} />:</p>
+
+      {/* Высокоточный и наглядный SVG-график Задачи 27 (max-w-[360px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 400 360" className="w-full max-w-[360px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Вертикальная сетка-рамка для наглядности */}
+          <rect x="70" y="45" width="260" height="260" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" className="dark:stroke-slate-800" />
+
+          {/* Координатные оси (Начало координат (0,0) на x=160, y=250. Масштаб: 1 ед = 40px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="40" y1="250" x2="360" y2="250" /> {/* Ось Oy */}
+            <line x1="160" y1="20" x2="160" y2="330" />  {/* Ось O(a^2) */}
+          </g>
+          <path d="M 360,250 L 352,246 M 360,250 L 352,254" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 160,20 L 156,28 M 160,20 L 164,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="372" y="254" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="136" y="24" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">a²</text>
+          <text x="146" y="264" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* ЛЕВАЯ ЧАСТЬ ПАРАБОЛЫ (y < 0): СТРОГО И НАГЛЯДНО ПУНКТИРОМ */}
+          {/* Вершина полной параболы находится в (-1; 5) -> x = 160 - 40 = 120, y = 250 - 5*40 = 50 */}
+          <path d="M 60,210 Q 120,50 160,90" fill="none" stroke="#94a3b8" strokeWidth="1.5" strokeDasharray="4 4" />
+
+          {/* ПРАВАЯ ЧАСТЬ ПАРАБОЛЫ (y >= 0): ИДЕАЛЬНАЯ НЕПРЕРЫВНАЯ СИНЯЯ ЛИНИЯ */}
+          {/* Выходит из (0;4) -> (160, 90) и падает в корень y = sqrt(5)-1 ~= 1.236 -> (210, 250) */}
+          <path d="M 160,90 Q 185,150 210,250" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="215" y="140" fill="#2563eb" className="font-serif text-xs">g(y) = -y² - 2y + 4</text>
+
+          {/* Ключевые маркерные метки на осях */}
+          <text x="146" y="94" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">4</text>
+          <text x="146" y="54" fill="#94a3b8" className="font-sans text-xs">5</text>
+          <text x="212" y="266" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">√5 - 1</text>
+          <text x="110" y="266" fill="#94a3b8" className="font-sans text-xs">-1</text>
+
+          {/* Чёрные маркерные граничные точки и вершина */}
+          <circle cx="160" cy="90" r="3.5" fill="#000000" />  {/* Граничная точка (0;4) */}
+          <circle cx="210" cy="250" r="3.5" fill="#000000" /> {/* Корень */}
+          <circle cx="120" cy="50" r="2.5" fill="#94a3b8" />  {/* Скрытая вершина параболы (-1;5) */}
+        </svg>
+      </div>
+
+      <p>
+        Исходное уравнение имеет корни, если полученное уравнение имеет хотя бы один неотрицательный корень (<InlineMath math={`y \\geq 0`} />). Из эскиза графика видно, что область значений функции при <InlineMath math={`y \\geq 0`} /> составляет:
+      </p>
+      <BlockMath math={`E(g) = (-\\infty; 4]`} />
+
+      <p>Следовательно, уровень горизонтальной прямой должен удовлетворять условию:</p>
+      <BlockMath math={`a^2 \\leq 4 \\iff |a| \\leq 2 \\iff a \\in [-2; 2].`} />
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in [-2; 2]`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 28,
+  title: 'Задача 28 (ЕГЭ 2024, резервная волна)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '\\sin 3x + a \\sin x = 0',
+  textAfter: <span>не имеет решений на промежутке <InlineMath math={"\\left(0; \\frac{\\pi}{4}\\right)."} /></span>,
+
+
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>Используем формулу синуса тройного угла <InlineMath math={`\\sin 3x = 3\\sin x - 4\\sin^3 x`} />:</p>
+      <BlockMath math={`3\\sin x - 4\\sin^3 x + a\\sin x = 0 \\iff \\sin x \\cdot (3 - 4\\sin^2 x + a) = 0`} />
+      
+      <p>
+        На интервале <InlineMath math={`x \\in \\left(0; \\frac{\\pi}{4}\\right)`} /> выполнено условие <InlineMath math={`\\sin x \\neq 0`} />, поэтому разделим обе части на <InlineMath math={`\\sin x`} /> и выразим параметр <InlineMath math={`a`} />:
+      </p>
+      <BlockMath math={`3 - 4\\sin^2 x + a = 0 \\iff a = 4\\sin^2 x - 3`} />
+      
+      <p>
+        Исходное уравнение <b>не имеет решений</b> на заданном промежутке, если значение параметра <InlineMath math={`a`} /> не попадает в область значений функции <InlineMath math={`g(x) = 4\\sin^2 x - 3`} /> при <InlineMath math={`x \\in \\left(0; \\frac{\\pi}{4}\\right)`} />.
+      </p>
+      
+      <p>Определим область значений функции <InlineMath math={`g(x)`} /> последовательной оценкой:</p>
+      <BlockMath math={`0 < x < \\frac{\\pi}{4} \\implies 0 < \\sin x < \\frac{\\sqrt{2}}{2} \\implies 0 < \\sin^2 x < \\frac{1}{2}`} />
+      <BlockMath math={`\\iff 0 < 4\\sin^2 x < 2 \\iff -3 < 4\\sin^2 x - 3 < -1 \\implies E(g) = (-3; -1)`} />
+      
+      <p>
+        Таким образом, при <InlineMath math={`a \\in (-3; -1)`} /> уравнение имеет решения. Следовательно, решений нет при всех остальных значениях параметра <InlineMath math={`a`} />, включая границы интервала.
+      </p>
+      
+      <p>Изобразим схему отбора на числовой прямой параметра <InlineMath math={`a`} />:</p>
+
+      {/* Высокоточный и наглядный SVG-график Задачи 28 (max-w-[400px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 460 140" className="w-full max-w-[400px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Паттерн для штриховки областей "решений нет" */}
+          <defs>
+            <pattern id="hatch-gray" width="5" height="5" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="5" stroke="#cbd5e1" strokeWidth="1" className="dark:stroke-slate-800" />
+            </pattern>
+          </defs>
+
+          {/* Прямоугольники зон со штриховкой */}
+          <rect x="50" y="50" width="80" height="40" fill="url(#hatch-gray)" />
+          <rect x="250" y="50" width="100" height="40" fill="url(#hatch-gray)" />
+
+          {/* Границы и линии областей */}
+          <path d="M 50,50 L 130,50 L 130,90" fill="none" stroke="#2563eb" strokeWidth="1.5" />
+          <path d="M 130,90 L 250,90 M 130,50 L 250,50" fill="none" stroke="#dc2626" strokeWidth="1.5" />
+          <path d="M 250,90 L 250,50 L 350,50" fill="none" stroke="#2563eb" strokeWidth="1.5" />
+
+          {/* Главная ось параметра a */}
+          <line x1="30" y1="90" x2="420" y2="90" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <path d="M 420,90 L 412,86 M 420,90 L 412,94" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="430" y="94" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+
+          {/* Текстовые метки над графиком */}
+          <text x="62" y="38" fill="#2563eb" className="font-sans text-[11px] font-normal">решений нет</text>
+          <text x="162" y="38" fill="#dc2626" className="font-sans text-[11px] font-normal">есть решения</text>
+          <text x="272" y="38" fill="#2563eb" className="font-sans text-[11px] font-normal">решений нет</text>
+
+          {/* Метки координат на оси */}
+          <text x="123" y="112" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">-3</text>
+          <text x="243" y="112" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">-1</text>
+          <text x="317" y="112" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">0</text>
+
+          {/* Выколотые точки -3 и -1 */}
+          <circle cx="130" cy="90" r="3.5" fill="white" stroke="#000000" strokeWidth="1.2" className="fill-white dark:fill-slate-950 dark:stroke-slate-400" />
+          <circle cx="250" cy="90" r="3.5" fill="white" stroke="#000000" strokeWidth="1.2" className="fill-white dark:fill-slate-950 dark:stroke-slate-400" />
+          {/* Закрашенная точка 0 */}
+          <circle cx="320" cy="90" r="3" fill="#000000" className="dark:fill-slate-400" />
+        </svg>
+      </div>
+
+      <p>Из геометрической схемы получаем итоговые промежутки для параметра <InlineMath math={`a`} />.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-\\infty; -3] \\cup [-1; +\\infty)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 29,
+  title: 'Задача 29 (ЕГЭ 2024, резервная волна)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '2\\sin x + \\cos x = a',
+  textAfter: <span>имеет единственное решение на отрезке <InlineMath math={"\\left[\\frac{\\pi}{4}; \\frac{3\\pi}{4}\\right]."} /></span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Пусть <InlineMath math={`f(x) = 2\\sin x + \\cos x`} />. Найдем критические точки функции на заданном отрезке с помощью производной:
+      </p>
+      <BlockMath math={`f'(x) = 2\\cos x - \\sin x = 0 \\iff \\tan x = 2`} />
+      
+      <p>
+        Так как <InlineMath math={`\\tan x = 2 > 0`} />, то единственная точка экстремума на отрезке — это <InlineMath math={`x_0 = \\arctan 2`} />. Поскольку <InlineMath math={`\\tan \\frac{\\pi}{4} = 1 < 2`} />, а при <InlineMath math={`x \\to \\frac{\\pi}{2}`} /> тангенс стремится к <InlineMath math={`+\\infty`} />, точка максимума лежит внутри отрезка: <InlineMath math={`x_0 \\in \\left(\\frac{\\pi}{4}; \\frac{\\pi}{2}\\right)`} />.
+      </p>
+      
+      <p>Вычислим значения функции в точке максимума и на границах отрезка:</p>
+      <BlockMath math={`f(x_0) = \\sqrt{2^2 + 1^2} = \\sqrt{5}, \\quad \\text{так как } \\sin x_0 = \\frac{2}{\\sqrt{5}}, \\ \\cos x_0 = \\frac{1}{\\sqrt{5}}`} />
+      <BlockMath math={`f\\left(\\frac{\\pi}{4}\\right) = 2 \\cdot \\frac{\\sqrt{2}}{2} + \\frac{\\sqrt{2}}{2} = \\frac{\\sqrt{2}}{2} = \\frac{3\\sqrt{2}}{2}`} />
+      <BlockMath math={`f\\left(\\frac{3\\pi}{4}\\right) = 2 \\cdot \\frac{\\sqrt{2}}{2} - \\frac{\\sqrt{2}}{2} = \\frac{\\sqrt{2}}{2}`} />
+      
+      <p>Сравним полученные граничные значения между собой и с точкой максимума:</p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>Очевидно, что <InlineMath math={`\\frac{3\\sqrt{2}}{2} > \\frac{\\sqrt{2}}{2}`} />.</li>
+        <li>Сравним <InlineMath math={`\\sqrt{5}`} /> and <InlineMath math={`\\frac{3\\sqrt{2}}{2}`} />, возведя оба положительных числа в квадрат:</li>
+      </ul>
+      <BlockMath math={`(\\sqrt{5})^2 = 5 = \\frac{20}{4}; \\quad \\left(\\frac{3\\sqrt{2}}{2}\\right)^2 = \\frac{18}{4} \\implies \\sqrt{5} > \\frac{3\\sqrt{2}}{2}.`} />
+      
+      <p>
+        Функция непрерывно возрастает на промежутке <InlineMath math={`\\left[\\frac{\\pi}{4}; x_0\\right]`} /> и непрерывно убывает на промежутке <InlineMath math={`\\left[x_0; \\frac{3\\pi}{4}\\right]`} />. С учётом строгого неравенства <InlineMath math={`\\frac{\\sqrt{2}}{2} < \\frac{3\\sqrt{2}}{2} < \\sqrt{5}`} />, уравнение <InlineMath math={`f(x) = a`} /> имеет ровно один корень в двух случаях:
+      </p>
+      <ul className="list-bullet pl-5 space-y-2">
+        <li><b>1.</b> В точке глобального максимума: при <InlineMath math={`a = \\sqrt{5}`} />.</li>
+        <li><b>2.</b> На полуинтервале, где значения функции на левом возрастающем усе уже не перекрываются правым убывающим усом: при <InlineMath math={`a \\in \\left[\\frac{\\sqrt{2}}{2}; \\frac{3\\sqrt{2}}{2}\\right)`} />.</li>
+      </ul>
+      
+      <p>Изобразим графическую схему поведения функции на заданном отрезке и сканирующие горизонтальные прямые уровня <InlineMath math={`y = a`} />:</p>
+
+            {/* Высокоточный и понятный график функции g(x) со сканированием горизонтальных линий (max-w-[480px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 500 360" className="w-full max-w-[480px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Серая фоновая рамка-сетка */}
+          <rect x="90" y="50" width="320" height="260" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" className="dark:stroke-slate-800" />
+
+          {/* Координатные оси (Начало (0,0) зафиксировано на x=130, y=280. Масштаб: 1 ед_x = 100px, 1 ед_y = 90px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="40" y1="280" x2="450" y2="280" /> {/* Ось Ox */}
+            <line x1="130" y1="30" x2="130" y2="330" />  {/* Ось Oy */}
+          </g>
+          <path d="M 450,280 L 442,276 M 450,280 L 442,284" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 130,30 L 126,38 M 130,30 L 134,38" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="462" y="284" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="116" y="22" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="116" y="294" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Синие график функции f(x) = 2sin(x) + cos(x) на отрезке [pi/4; 3pi/4] */}
+          <path d="M 208.5,89 Q 224.6,79 240.7,79 Q 303.1,79 365.6,216" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="285" y="115" fill="#2563eb" className="font-serif text-xs">y = 2·sin x + cos x</text>
+
+          {/* Вертикальные вспомогательные пунктиры от точек графика к оси абсцисс */}
+          <g stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3">
+            <line x1="208.5" y1="89" x2="208.5" y2="280" />
+            <line x1="240.7" y1="79" x2="240.7" y2="280" />
+            <line x1="365.6" y1="216" x2="365.6" y2="280" />
+            
+            {/* Горизонтальные пунктиры к оси ординат */}
+            <line x1="240.7" y1="79" x2="130" y2="79" />
+            <line x1="208.5" y1="89" x2="130" y2="89" />
+            <line x1="365.6" y1="216" x2="130" y2="216" />
+          </g>
+
+          {/* Подписи координат на осях */}
+          <text x="193" y="296" fill="#000000" className="dark:fill-slate-300 font-serif text-[11px]">π/4</text>
+          <text x="232" y="296" fill="#000000" className="dark:fill-slate-300 font-serif text-[11px]">x₀</text>
+          <text x="350" y="296" fill="#000000" className="dark:fill-slate-300 font-serif text-[11px]">3π/4</text>
+
+          <text x="100" y="83" fill="#000000" className="dark:fill-slate-300 font-serif text-[11px]">√5</text>
+          <text x="85" y="93" fill="#000000" className="dark:fill-slate-300 font-serif text-[11px]">3√2/2</text>
+          <text x="94" y="220" fill="#000000" className="dark:fill-slate-300 font-serif text-[11px]">√2/2</text>
+
+          {/* Горизонтальные сканирующие прямые y = a (красный пунктир) */}
+          <g stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 4">
+            {/* a = sqrt(5) — Изолированное касание вершины */}
+            <line x1="80" y1="79" x2="420" y2="79" />
+            <text x="426" y="83" fill="#dc2626" stroke="none" className="font-serif italic text-[11px]">a = √5 (1 р.)</text>
+
+            {/* Пример линии из зоны одного решения (полуинтервал) */}
+            <line x1="80" y1="170" x2="420" y2="170" />
+            <text x="426" y="174" fill="#dc2626" stroke="none" className="font-serif italic text-[11px]">a ∈ полуинт. (1 р.)</text>
+          </g>
+
+          {/* Чёрные маркерные узловые точки на графике */}
+          <circle cx="208.5" cy="89" r="3" fill="#000000" />
+          <circle cx="240.7" cy="79" r="3" fill="#000000" />
+          <circle cx="365.6" cy="216" r="3" fill="#000000" />
+        </svg>
+      </div>
+
+
+      <p>Объединяя изолированную точку максимума и найденный полуинтервал, получаем итоговый результат.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left[\\frac{\\sqrt{2}}{2}; \\frac{3\\sqrt{2}}{2}\\right) \\cup \\{\\sqrt{5}\\}`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 30,
+  title: 'Задача 30 (ЕГЭ 2024, пересдача ДВ)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} |4x| + |3y| = 12a, \\\\ x^2 + y^2 + 10y = 0 \\end{cases}',
+  textAfter: <span>имеет ровно два различных решения.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Преобразуем второе уравнение системы, выделив полный квадрат относительно переменной <InlineMath math={`y`} />:
+      </p>
+      <BlockMath math={`x^2 + (y^2 + 10y + 25) - 25 = 0 \\implies x^2 + (y + 5)^2 = 25.`} />
+      <p>
+        Данное уравнение задаёт окружность с центром в точке <InlineMath math={`M(0; -5)`} /> и радиусом <InlineMath math={`R = 5`} />. Окружность касается оси абсцисс в начале координат <InlineMath math={`(0; 0)`} /> и целиком расположена в нижней полуплоскости <InlineMath math={`y \\leq 0`} />.
+      </p>
+      
+      <p>
+        Рассмотрим первое уравнение системы при условии <InlineMath math={`a > 0`} /> (случай <InlineMath math={`a < 0`} /> невозможен, так как сумма модулей неотрицательна; при <InlineMath math={`a = 0`} /> ромб схлопывается в точку <InlineMath math={`(0; 0)`} />, лежащую на окружности, что даёт 1 решение).
+      </p>
+      <p>
+        Уравнение задаёт семейство ромбов с центром в начале координат <InlineMath math={`(0; 0)`} /> и вершинами на осях: <InlineMath math={`(\\pm 3a; 0)`} /> и <InlineMath math={`(0; \\pm 4a)`} />.
+      </p>
+      <p>
+        Так как окружность расположена в полуплоскости <InlineMath math={`y \\leq 0`} />, точки пересечения могут возникать только с нижними сторонами ромба. Уравнение прямой, содержащей правую нижнюю сторону ромба (при <InlineMath math={`x \\geq 0, y \\leq 0`} />), имеет вид:
+      </p>
+      <BlockMath math={`4x - 3y = 12a \\implies 4x - 3y - 12a = 0.`} />
+
+      <p>Изобразим графическую ситуацию на координатной плоскости <InlineMath math={`xOy`} />:</p>
+
+      {/* Высокоточный и наглядный SVG-график Задачи 30 (max-w-[450px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 500 500" className="w-full max-w-[450px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Координатная сетка */}
+          <g stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" className="dark:stroke-slate-800">
+            <line x1="50" y1="410" x2="450" y2="410" />
+            <line x1="50" y1="90" x2="450" y2="90" />
+          </g>
+
+          {/* Координатные оси (Начало (0,0) зафиксировано на x=250, y=250. Масштаб: 1 ед = 16px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="50" y1="250" x2="450" y2="250" /> {/* Ось Ox */}
+            <line x1="250" y1="30" x2="250" y2="470" />  {/* Ось Oy */}
+          </g>
+          <path d="M 450,250 L 442,246 M 450,250 L 442,254" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 250,30 L 246,38 M 250,30 L 254,38" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="462" y="254" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="244" y="22" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="236" y="264" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Идеальная синяя окружность. Центр M(0, -5) -> (250, 250 + 5*16 = 330), R=5*16=80 */}
+          <circle cx="250" cy="330" r="80" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <circle cx="250" cy="330" r="3.5" fill="#000000" /> {/* Точка центра M */}
+          <text x="260" y="334" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">M(0; -5)</text>
+          <text x="256" y="422" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">(0; -10)</text>
+
+          {/* Семейство ромбов */}
+          {/* 1) Серый пунктирный ромб при a = 2.5. Вершины: x = +-3*2.5 = +-7.5 -> 250 +- 120 = 130 / 370. y = +-4*2.5 = +-10 -> 250 +- 160 = 90 / 410 */}
+          <path d="M 130,250 L 250,90 L 370,250 L 250,410 Z" fill="none" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
+          <text x="144" y="180" fill="#94a3b8" className="font-serif italic text-[11px]">a = 2,5</text>
+
+          {/* 2) Красный сплошной ромб касания при a = 10/3 ~= 3.33. Вершины: x = +-10 -> 250 +- 160 = 90 / 410. y = +-13.33 -> 250 +- 213.3 = 36.7 / 463.3 */}
+          <path d="M 90,250 L 250,36.7 L 410,250 L 250,463.3 Z" fill="none" stroke="#dc2626" strokeWidth="1.8" />
+          <text x="325" y="160" fill="#dc2626" stroke="none" className="font-serif italic text-[11px]">a = 10/3 (касание)</text>
+
+          {/* Чёрные маркерные узловые точки пересечений на осях */}
+          <circle cx="250" cy="250" r="3.5" fill="#000000" />   {/* (0;0) */}
+          <circle cx="250" cy="410" r="3.5" fill="#000000" />   {/* (0;-10) */}
+        </svg>
+      </div>
+
+      <p>
+        Нижние стороны ромба касаются окружности, если расстояние от центра <InlineMath math={`M(0; -5)`} /> до этих прямых равно радиусу <InlineMath math={`R = 5`} />:
+      </p>
+      <BlockMath math={`\\frac{|4(0) - 3(-5) - 12a|}{\\sqrt{4^2 + (-3)^2}} = 5 \\implies \\frac{|15 - 12a|}{5} = 5 \\implies |15 - 12a| = 25.`} />
+      
+      <p>Учитывая условие <InlineMath math={`a > 0`} />, раскрываем модуль с противоположным знаком:</p>
+      <BlockMath math={`15 - 12a = -25 \\implies 12a = 40 \\implies a = \\frac{10}{3}.`} />
+      <p>
+        При <InlineMath math={`a = \\frac{10}{3}`} /> нижние боковые стороны ромба касаются окружности в двух симметричных точках.
+      </p>
+      
+      <p>
+        Найдем значение параметра, при котором нижняя вершина ромба <InlineMath math={`(0; -4a)`} /> проходит через самую нижнюю точку окружности <InlineMath math={`(0; -10)`} />:
+      </p>
+      <BlockMath math={`-4a = -10 \\implies a = \\frac{5}{2} = 2{,}5.`} />
+
+      <p>Проанализируем количество решений системы при изменении параметра <InlineMath math={`a > 0`} />:</p>
+      <ul className="list-bullet pl-5 space-y-2">
+        <li>
+          <b>1.</b> При <InlineMath math={`a \\in \\left(0; \\frac{5}{2}\\right)`} /> ромб маленький, его нижняя вершина находится выше точки <InlineMath math={`(0; -10)`} />. Нижние боковые стороны ромба пересекают окружность ровно в двух точках. Имеем <b>ровно 2 решения</b>.
+        </li>
+        <li>
+          <b>2.</b> При <InlineMath math={`a = \\frac{5}{2}`} /> нижняя вершина ромба касается окружности в точке <InlineMath math={`(0; -10)`} />, а боковые стороны пересекают её ещё в двух точках. Имеем 3 решения.
+        </li>
+        <li>
+          <b>3.</b> При <InlineMath math={`a \\in \\left(\\frac{5}{2}; \\frac{10}{3}\\right)`} /> ромб пересекает окружность в четырёх точках. Имеем 4 решения.
+        </li>
+        <li>
+          <b>4.</b> При <InlineMath math={`a = \\frac{10}{3}`} /> нижние боковые стороны ромба касаются окружности. Имеем <b>ровно 2 решения</b>.
+        </li>
+        <li>
+          <b>5.</b> При <InlineMath math={`a > \\frac{10}{3}`} /> ромб становится слишком большим и не имеет общих точек с окружностью. Решений нет.
+        </li>
+      </ul>
+      
+      <p>Таким образом, ровно два различных решения исходная система имеет на открытом интервале и в изолированной точке касания.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left(0; \\frac{5}{2}\\right) \\cup \\left\\{\\frac{10}{3}\\right\\}`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 31,
+  title: 'Задача 31 (ЕГЭ 2024, основная волна)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '\\sqrt{x - a} \\sin x = -\\sqrt{x - a} \\cos x',
+  textAfter: <span>имеет ровно одно решение на отрезке <InlineMath math={"[0; \\pi]."} /></span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Найдем область допустимых значений (ОДЗ) уравнения, определяемую подкоренным выражением:
+      </p>
+      <BlockMath math={`x - a \\geq 0 \\iff x \\geq a.`} />
+      <p>
+        Нас интересуют корни, принадлежащие отрезку <InlineMath math={`[0; \\pi]`} />. С учётом ОДЗ рабочий промежуток для поиска решений принимает вид: <InlineMath math={`x \\in [a; \\pi]`} /> при <InlineMath math={`a \\leq \\pi`} />. Если <InlineMath math={`a > \\pi`} />, рабочий промежуток пуст, решений нет.
+      </p>
+      
+      <p>Перенесем все слагаемые в левую часть и вынесем общий множитель за скобки:</p>
+      <BlockMath math={`\\sqrt{x - a} \\sin x + \\sqrt{x - a} \\cos x = 0 \\implies \\sqrt{x - a}(\\sin x + \\cos x) = 0.`} />
+      
+      <p>Данная группа распадается на две независимые серии потенциальных корней:</p>
+      <p>
+        <b>1)</b> <InlineMath math={`\\sqrt{x - a} = 0 \\implies x_1 = a`} />. Этот корень существует всегда при условии, что он попадает в рассматриваемый отрезок <InlineMath math={`[0; \\pi]`} />, то есть при <InlineMath math={`a \\in [0; \\pi]`} />.
+      </p>
+      <p>
+        <b>2)</b> <InlineMath math={`\\sin x + \\cos x = 0 \\implies \\tan x = -1`} />. Получаем корень <InlineMath math={`x_2 = \\frac{3\\pi}{4}`} />. Он всегда принадлежит отрезку <InlineMath math={`[0; \\pi]`} /> и существует, если удовлетворяет ОДЗ:
+      </p>
+      <BlockMath math={`x_2 \\geq a \\iff \\frac{3\\pi}{4} \\geq a \\iff a \\in \\left(-\\infty; \\frac{3\\pi}{4}\\right].`} />
+      
+      <p>Определим значение параметра, при котором серии корней совпадают (склеиваются):</p>
+      <BlockMath math={`x_1 = x_2 \\implies a = \\frac{3\\pi}{4}.`} />
+      <p>В этой точке вместо двух корней мы получаем ровно один корень.</p>
+
+      <p>Проанализируем количество решений уравнения на отрезке <InlineMath math={`[0; \\pi]`} /> при различных значениях параметра <InlineMath math={`a`} />:</p>
+      <ul className="list-bullet pl-5 space-y-2">
+        <li>
+          <b>1.</b> При <InlineMath math={`a < 0`} /> корень <InlineMath math={`x_1 = a`} /> лежит левее отрезка и не рассматривается. Существует только корень <InlineMath math={`x_2 = \\frac{3\\pi}{4}`} />. Имеем <b>ровно 1 решение</b>.
+        </li>
+        <li>
+          <b>2.</b> При <InlineMath math={`a \\in \\left[0; \\frac{3\\pi}{4}\\right)`} /> на отрезке существуют оба корня <InlineMath math={`x_1 = a`} /> и <InlineMath math={`x_2 = \\frac{3\\pi}{4}`} />, причём они различны. Имеем 2 решения.
+        </li>
+        <li>
+          <b>3.</b> При <InlineMath math={`a = \\frac{3\\pi}{4}`} /> корни совпадают (<InlineMath math={`x_1 = x_2 = \\frac{3\\pi}{4}`} />). Имеем <b>ровно 1 решение</b>.
+        </li>
+        <li>
+          <b>4.</b> При <InlineMath math={`a \\in \\left(\\frac{3\\pi}{4}; \\pi\\right]`} /> корень <InlineMath math={`x_2 = \\frac{3\\pi}{4}`} /> больше не удовлетворяет ОДЗ (<InlineMath math={`x_2 < a`} />) и исчезает. На отрезке остается только корень <InlineMath math={`x_1 = a`} />. Имеем <b>ровно 1 решение</b>.
+        </li>
+        <li>
+          <b>5.</b> При <InlineMath math={`a > \\pi`} /> рабочий промежуток пуст. Решений нет.
+        </li>
+      </ul>
+
+      <p>Изобразим многоярусную схему отбора на числовой прямой параметра <InlineMath math={`a`} />:</p>
+
+      {/* Высокоточный и наглядный SVG-график Задачи 31 (max-w-[400px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 460 160" className="w-full max-w-[400px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Паттерн для штриховки областей "ровно 1 решение" */}
+          <defs>
+            <pattern id="hatch-red" width="5" height="5" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="5" stroke="#fca5a5" strokeWidth="1" className="dark:stroke-rose-950/40" />
+            </pattern>
+          </defs>
+
+          {/* Прямоугольники зон со штриховкой ответа (ровно 1 решение) */}
+          <rect x="40" y="80" width="100" height="20" fill="url(#hatch-red)" />
+          <rect x="230" y="80" width="110" height="20" fill="url(#hatch-red)" />
+
+          {/* Главная ось параметра a */}
+          <line x1="30" y1="90" x2="420" y2="90" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <path d="M 420,90 L 412,86 M 420,90 L 412,94" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="430" y="94" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+
+          {/* Ярус 1: существует x1 (от 0 до pi) */}
+          {/* x=0 -> 140, x=pi -> 340 */}
+          <path d="M 140,90 L 140,30 L 340,30 L 340,90" fill="none" stroke="#2563eb" strokeWidth="1.5" />
+          <text x="210" y="24" fill="#2563eb" className="font-sans text-[11px] font-normal">существует x₁</text>
+
+          {/* Ярус 2: существует x2 (от -inf до 3pi/4) */}
+          {/* x=3pi/4 -> 290 */}
+          <path d="M 40,55 L 290,55 L 290,90" fill="none" stroke="#16a34a" strokeWidth="1.5" />
+          <text x="135" y="48" fill="#16a34a" className="font-sans text-[11px] font-normal">существует x₂</text>
+
+          {/* Красные маркерные линии выделения итогового ответа на оси */}
+          <line x1="40" y1="90" x2="140" y2="90" stroke="#dc2626" strokeWidth="2" />
+          <line x1="290" y1="90" x2="340" y2="90" stroke="#dc2626" strokeWidth="2" />
+
+          {/* Метки координат на оси */}
+          <text x="136" y="112" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">0</text>
+          <text x="278" y="112" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">3π/4</text>
+          <text x="336" y="112" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">π</text>
+
+          {/* Точки стыков и границ */}
+          {/* Закрашенные точки 0, 3pi/4, pi */}
+          <circle cx="140" cy="90" r="3.5" fill="#000000" className="dark:fill-slate-400" />
+          <circle cx="290" cy="90" r="3.5" fill="#000000" className="dark:fill-slate-400" />
+          <circle cx="340" cy="90" r="3.5" fill="#000000" className="dark:fill-slate-400" />
+        </svg>
+      </div>
+
+      <p>Из геометрической схемы получаем итоговые промежутки для параметра <InlineMath math={`a`} />.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-\\infty; 0) \\cup \\left[\\frac{3\\pi}{4}; \\pi\\right]`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 32,
+  title: 'Задача 32 (ЕГЭ 2023, резервная волна)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '\\sqrt{x^2 + 6x + 8} = \\sqrt{a - 3x}',
+  textAfter: <span>имеет корни (хотя бы один), ровно один из которых отрицательный.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Перейдем к равносильной системе, возведя уравнение в квадрат и зафиксировав ОДЗ через более простое подкоренное выражение:
+      </p>
+      <BlockMath math={`\\begin{cases} x^2 + 6x + 8 = a - 3x, \\\\ x^2 + 6x + 8 \\geq 0 \\end{cases} \\iff \\begin{cases} a = x^2 + 9x + 8, \\\\ (x + 2)(x + 4) \\geq 0. \\end{cases}`} />
+      
+      <p>
+        Решением неравенства ОДЗ является множество <InlineMath math={`x \\in (-\\infty; -4] \\cup [-2; +\\infty)`} />. Внутри полосы <InlineMath math={`x \\in (-4; -2)`} /> график функции параметра отсутствует. Дополнительно по условию задачи нас интересуют только отрицательные корни исходного уравнения (<InlineMath math={`x < 0`} />).
+      </p>
+      
+      <p>
+        Решим задачу графически в координатах <InlineMath math={`xOa`} />, где <InlineMath math={`a = x^2 + 9x + 8`} /> является параболой, ограниченной рабочими промежутками ОДЗ и условием отрицательности корней.
+      </p>
+      
+      <p>Найдем координаты ключевых точек параболы для разметки графика:</p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>Вершина параболы: <InlineMath math={`x_0 = -4{,}5`} />; <InlineMath math={`a_0 = (-4{,}5)^2 + 9(-4{,}5) + 8 = -12{,}25`} /> (точка <InlineMath math={`V`} />, непрерывна).</li>
+        <li>Граничная точка слева: при <InlineMath math={`x = -4`} /> получаем <InlineMath math={`a = (-4 + 1)(-4 + 8) = -12`} /> (точка <InlineMath math={`C(-4; -12)`} />, закрашена).</li>
+        <li>Граничная точка справа: при <InlineMath math={`x = -2`} /> получаем <InlineMath math={`a = (-2 + 1)(-2 + 8) = -6`} /> (точка <InlineMath math={`B(-2; -6)`} />, закрашена).</li>
+        <li>Правая граница отрицательности: при <InlineMath math={`x = 0`} /> получаем <InlineMath math={`a = 8`} /> (точка <InlineMath math={`A(0; 8)`} />, строго выколотая).</li>
+      </ul>
+
+      <p>Изобразим графическую ситуацию на координатной плоскости <InlineMath math={`xOa`} />:</p>
+
+      {/* Высокоточный SVG-график Задачи 32 с разрывом ОДЗ (max-w-[380px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 400 520" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Серая полоса запрещенной зоны ОДЗ x in (-4, -2) */}
+          {/* Масштаб: x=0 на 260, 1 ед_x = 40px -> x=-4 это 100, x=-2 это 180. y=0 на 200, 1 ед_y = 18px */}
+          <rect x="100" y="30" width="80" height="460" fill="#f1f5f9" className="dark:fill-slate-900" opacity="0.9" />
+          <line x1="100" y1="30" x2="100" y2="490" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3 3" className="dark:stroke-slate-800" />
+          <line x1="180" y1="30" x2="180" y2="490" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3 3" className="dark:stroke-slate-800" />
+
+          {/* Координатные оси */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="30" y1="200" x2="360" y2="200" /> {/* Ось Ox */}
+            <line x1="260" y1="20" x2="260" y2="500" />  {/* Ось Oa */}
+          </g>
+          <path d="M 360,200 L 352,196 M 360,200 L 352,204" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 260,20 L 256,28 M 260,20 L 264,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="372" y="204" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="246" y="22" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+          <text x="246" y="214" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Синие ветви разрешенной ОДЗ параболы a = x^2 + 9x + 8 */}
+          {/* Левое крыло: x <= -4. Вершина в (-4.5; -12.25) -> (80, 200 + 12.25*18 = 420.5). Точка C(-4; -12) -> (100, 200 + 12*18 = 416) */}
+          <path d="M 40,310 Q 60,420.5 80,420.5 Q 90,420.5 100,416" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Правое крыло: x >= -2. Точка B(-2; -6) -> (180, 200 + 6*18 = 308). Точка A(0; 8) -> (260, 200 - 8*18 = 56) */}
+          <path d="M 180,308 Q 220,182 260,56 M 260,56 L 264,42" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+
+          {/* Горизонтальные сканирующие прямые уровня параметров (красный пунктир) */}
+          <g stroke="#dc2626" strokeWidth="1.1" strokeDasharray="4 4">
+            {/* a = 8 */}
+            <line x1="40" y1="56" x2="330" y2="56" />
+            <text x="336" y="60" fill="#dc2626" stroke="none" className="font-sans text-[11px]">a = 8</text>
+
+            {/* a = -6 */}
+            <line x1="40" y1="308" x2="330" y2="308" />
+            <text x="336" y="312" fill="#dc2626" stroke="none" className="font-sans text-[11px]">a = -6</text>
+
+            {/* a = -12 */}
+            <line x1="40" y1="416" x2="330" y2="416" />
+            <text x="336" y="420" fill="#dc2626" stroke="none" className="font-sans text-[11px]">a = -12</text>
+
+            {/* a = -12.25 */}
+            <line x1="40" y1="420.5" x2="330" y2="420.5" />
+            <text x="376" y="424" fill="#dc2626" stroke="none" className="font-sans text-[11px]">a = -12,25</text>
+          </g>
+
+          {/* Метки координат ОДЗ по оси Ox */}
+          <text x="92" y="214" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">-4</text>
+          <text x="172" y="214" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">-2</text>
+
+          {/* Маркерные точки */}
+          <circle cx="100" cy="416" r="3.5" fill="#000000" /> {/* Точка C, закрашена */}
+          <text x="106" y="414" fill="#000000" className="dark:fill-slate-300 font-sans text-[10px]">C</text>
+          
+          <circle cx="180" cy="308" r="3.5" fill="#000000" /> {/* Точка B, закрашена */}
+          <text x="186" y="304" fill="#000000" className="dark:fill-slate-300 font-sans text-[10px]">B</text>
+
+          <circle cx="80" cy="420.5" r="3.5" fill="#000000" /> {/* Вершина V */}
+          <text x="66" y="434" fill="#000000" className="dark:fill-slate-300 font-sans text-[10px]">V</text>
+
+          {/* Строго ВЫКОЛОТАЯ точка A(0, 8) */}
+          <circle cx="260" cy="56" r="3.5" fill="white" stroke="#000000" strokeWidth="1.2" className="fill-white dark:fill-slate-950 dark:stroke-slate-400" />
+          <text x="268" y="60" fill="#000000" className="dark:fill-slate-300 font-sans text-[10px]">A(0; 8)</text>
+        </svg>
+      </div>
+
+      <p>Проанализируем количество точек пересечения графика с горизонтальной сканирующей прямой при различных уровнях параметра <InlineMath math={`a`} /> (двигаясь снизу вверх):</p>
+      <ul className="list-bullet pl-5 space-y-1.5">
+        <li>При <InlineMath math={`a < -12{,}25`} />: пересечений нет (0 отрицательных корней).</li>
+        <li>При <InlineMath math={`a = -12{,}25`} />: прямая касается параболы в её вершине <InlineMath math={`V`} />. Имеем <b>ровно 1 отрицательный корень</b>.</li>
+        <li>При <InlineMath math={`a \\in (-12{,}25; -12)`} />: прямая дважды пересекает левую ветвь параболы. Имеем 2 корня.</li>
+        <li>При <InlineMath math={`a = -12`} />: прямая проходит через точку <InlineMath math={`C(-4; -12)`} /> и пересекает левое крыло левее вершины. Имеем ровно 2 корня.</li>
+        <li>При <InlineMath math={`a \\in (-12; -6)`} />: левая ветвь даёт только 1 точку пересечения, а на правом участке параболы графика нет. Имеем <b>ровно 1 отрицательный корень</b>.</li>
+        <li>При <InlineMath math={`a = -6`} />: прямая проходит через точку <InlineMath math={`B(-2; -6)`} /> и пересекает левое крыло. Имеем ровно 2 корня.</li>
+        <li>При <InlineMath math={`a \\in (-6; 8)`} />: прямая пересекает левое крыло параболы (при <InlineMath math={`x < -4`} />) и правое крыло параболы (при <InlineMath math={`x \\in (-2; 0)`} />). Имеем 2 корня.</li>
+        <li>При <InlineMath math={`a = 8`} />: прямая проходит через выколотую точку <InlineMath math={`A(0; 8)`} />, пересечение справа исчезает, остаётся только 1 точка пересечения на левом крыле. Имеем <b>ровно 1 отрицательный корень</b>.</li>
+        <li>При <InlineMath math={`a > 8`} />: правое крыло вышло из зоны отрицательных <InlineMath math={`x`} />, прямая пересекает только левое крыло параболы. Имеем <b>ровно 1 отрицательный корень</b>.</li>
+      </ul>
+      
+      <p>
+        Условие задачи (ровно один отрицательный корень) выполняется в изолированной точке касания вершины, на полуинтервале от точки <InlineMath math={`C`} /> до точки <InlineMath math={`B`} />, а также при всех значениях параметра начиная от выколотой точки <InlineMath math={`A`} /> и выше.
+      </p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\{-12{,}25\\} \\cup (-12; -6) \\cup [8; +\\infty)`} />
+      </div>
+    </div>
+  )
+},
+
+{
+  id: 33,
+  title: 'Задача 33 (ЕГЭ 2023, резервный день)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: 'x\\sqrt{x - a} = \\sqrt{6x^2 - (6a + 3)x + 3a}',
+  textAfter: <span>имеет ровно один корень на отрезке <InlineMath math={"[0; 1]."} /></span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Разложим квадратный трёхчлен под радикалом в правой части уравнения на множители. Для этого найдем его корни относительно переменной <InlineMath math={`x`} />:
+      </p>
+      <BlockMath math={`6x^2 - (6a + 3)x + 3a = 0.`} />
+      
+      <p>Дискриминант этого уравнения равен:</p>
+      <BlockMath math={`D = (6a + 3)^2 - 4 \\cdot 6 \\cdot 3a = 36a^2 + 36a + 9 - 72a = 36a^2 - 36a + 9 = (6a - 3)^2.`} />
+      
+      <p>Тогда корни равны:</p>
+      <BlockMath math={`x = \\frac{6a + 3 \\pm (6a - 3)}{12} \\implies x_1 = a, \\quad x_2 = \\frac{6}{12} = \\frac{1}{2}.`} />
+      
+      <p>
+        Таким образом, правая часть исходного уравнения принимает вид <InlineMath math={`\\sqrt{6(x - a)\\left(x - \\frac{1}{2}\\right)}`} />. Перепишем уравнение:
+      </p>
+      <BlockMath math={`x\\sqrt{x - a} = \\sqrt{6(x - a)\\left(x - \\frac{1}{2}\\right)}.`} />
+      
+      <p>Перейдем к равносильной системе. Уравнение имеет смысл при выполнении ОДЗ: <InlineMath math={`x - a \\geq 0 \\iff x \\geq a`} />. При этом условии возведем обе части уравнения в квадрат:</p>
+      <BlockMath math={`\\begin{cases} x \\geq a, \\\\ x^2(x - a) = 6(x - a)\\left(x - \\frac{1}{2}\\right) \\end{cases} \\iff \\begin{cases} x \\geq a, \\\\ (x - a)(x^2 - 6x + 3) = 0. \\end{cases}`} />
+      
+      <p>Равенство нулю произведения дает две независимые серии корней:</p>
+      <p>
+        <b>1)</b> <InlineMath math={`x - a = 0 \\implies x_1 = a`} />. Этот корень автоматически удовлетворяет условию <InlineMath math={`x \\geq a`} />. Чтобы он подходил под условие задачи, он должен принадлежать отрезку <InlineMath math={`[0; 1]`} />, то есть:
+      </p>
+      <BlockMath math={`a \\in [0; 1].`} />
+      
+      <p>
+        <b>2)</b> <InlineMath math={`x^2 - 6x + 3 = 0`} />. Корни этого квадратного уравнения равны:
+      </p>
+      <BlockMath math={`x = 3 \\pm \\sqrt{9 - 3} \\implies x_2 = 3 - \\sqrt{6}, \\quad x_3 = 3 + \\sqrt{6}.`} />
+      
+      <p>
+        Так как <InlineMath math={`2 < \\sqrt{6} < 2{,}5`} />, то корень <InlineMath math={`x_3 = 3 + \\sqrt{6} > 5`} /> заведомо не принадлежит отрезку <InlineMath math={`[0; 1]`} />. Корень же <InlineMath math={`x_2 = 3 - \\sqrt{6}`} /> попадает на отрезок <InlineMath math={`[0; 1]`} />, поскольку <InlineMath math={`0{,}5 < 3 - \\sqrt{6} < 1`} />. Чтобы корень <InlineMath math={`x_2`} /> существовал, он должен удовлетворять условию <InlineMath math={`x \\geq a`} />:
+      </p>
+      <BlockMath math={`3 - \\sqrt{6} \\geq a \\iff a \\in (-\\infty; 3 - \\sqrt{6}].`} />
+      
+      <p>Определим значение параметра, при котором серии корней <InlineMath math={`x_1`} /> и <InlineMath math={`x_2`} /> совпадают (склеиваются):</p>
+      <BlockMath math={`x_1 = x_2 \\implies a = 3 - \\sqrt{6}.`} />
+      <p>В этой точке вместо двух различных корней мы получаем один уникальный корень.</p>
+
+      <p>Проанализируем количество решений исходного уравнения на отрезке <InlineMath math={`[0; 1]`} /> при различных значениях параметра <InlineMath math={`a`} />:</p>
+      <ul className="list-bullet pl-5 space-y-2">
+        <li>
+          <b>1.</b> При <InlineMath math={`a < 0`} /> корень <InlineMath math={`x_1 = a`} /> лежит левее отрезка и не рассматривается. Корень <InlineMath math={`x_2 = 3 - \\sqrt{6}`} /> удовлетворяет условию <InlineMath math={`a \\leq 3 - \\sqrt{6}`} /> и существует. Имеем <b>ровно 1 решение</b>.
+        </li>
+        <li>
+          <b>2.</b> При <InlineMath math={`a \\in [0; 3 - \\sqrt{6})`} /> на отрезке существуют оба корня <InlineMath math={`x_1 = a`} /> и <InlineMath math={`x_2 = 3 - \\sqrt{6}`} />, причём они различны. Имеем 2 решения.
+        </li>
+        <li>
+          <b>3.</b> При <InlineMath math={`a = 3 - \\sqrt{6}`} /> корни совпадают (<InlineMath math={`x_1 = x_2 = 3 - \\sqrt{6}`} />). Имеем <b>ровно 1 решение</b>.
+        </li>
+        <li>
+          <b>4.</b> При <InlineMath math={`a \\in (3 - \\sqrt{6}; 1]`} /> корень <InlineMath math={`x_2 = 3 - \\sqrt{6}`} /> больше не удовлетворяет условию существования (<InlineMath math={`x_2 < a`} />) и исчезает. На отрезке остается только корень <InlineMath math={`x_1 = a`} />. Имеем <b>ровно 1 решение</b>.
+        </li>
+        <li>
+          <b>5.</b> При <InlineMath math={`a > 1`} /> корень <InlineMath math={`x_1 = a`} /> уходит правее отрезка <InlineMath math={`[0; 1]`} />, а корень <InlineMath math={`x_2`} /> не существует. Решений нет.
+        </li>
+      </ul>
+
+      <p>Изобразим многоярусную схему существования и отбора корней на числовой прямой параметра <InlineMath math={`a`} />:</p>
+
+      {/* Высокоточный и чистый SVG-график Задачи 33 (max-w-[400px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 460 160" className="w-full max-w-[400px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Паттерн для штриховки областей "ровно 1 решение" */}
+          <defs>
+            <pattern id="hatch-red-33" width="5" height="5" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="5" stroke="#fca5a5" strokeWidth="1" className="dark:stroke-rose-950/40" />
+            </pattern>
+          </defs>
+
+          {/* Прямоугольники зон со штриховкой ответа */}
+          <rect x="40" y="80" width="100" height="20" fill="url(#hatch-red-33)" />
+          <rect x="210" y="80" width="80" height="20" fill="url(#hatch-red-33)" />
+
+          {/* Главная ось параметра a */}
+          <line x1="30" y1="90" x2="420" y2="90" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <path d="M 420,90 L 412,86 M 420,90 L 412,94" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="430" y="94" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+
+          {/* Ярус 1: существует x1 (от 0 до 1) */}
+          {/* x=0 -> 140, x=1 -> 290 */}
+          <path d="M 140,90 L 140,30 L 290,30 L 290,90" fill="none" stroke="#2563eb" strokeWidth="1.5" />
+          <text x="180" y="24" fill="#2563eb" className="font-sans text-[11px] font-normal">существует x₁</text>
+
+          {/* Ярус 2: существует x2 (от -inf до 3 - sqrt(6)) */}
+          {/* x = 3 - sqrt(6) ~= 0.55 -> 140 + 0.55*150 = 222.5 */}
+          <path d="M 40,55 L 222.5,55 L 222.5,90" fill="none" stroke="#16a34a" strokeWidth="1.5" />
+          <text x="105" y="48" fill="#16a34a" className="font-sans text-[11px] font-normal">существует x₂</text>
+
+          {/* Маркерные линии выделения итогового ответа на оси */}
+          <line x1="40" y1="90" x2="140" y2="90" stroke="#dc2626" strokeWidth="2" />
+          <line x1="222.5" y1="90" x2="290" y2="90" stroke="#dc2626" strokeWidth="2" />
+
+          {/* Метки координат на оси */}
+          <text x="136" y="112" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">0</text>
+          <text x="200" y="112" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">3 - √6</text>
+          <text x="286" y="112" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">1</text>
+
+          {/* Точки стыков и границ на оси */}
+          <circle cx="140" cy="90" r="3.5" fill="#000000" className="dark:fill-slate-400" />
+          <circle cx="222.5" cy="90" r="3.5" fill="#000000" className="dark:fill-slate-400" />
+          <circle cx="290" cy="90" r="3.5" fill="#000000" className="dark:fill-slate-400" />
+        </svg>
+      </div>
+
+      <p>Из геометрической схемы получаем итоговые промежутки для параметра <InlineMath math={`a`} />.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-\\infty; 0) \\cup [3 - \\sqrt{6}; 1]`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 34,
+  title: 'Задача 34 (СтатГрад)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '(2x - x^2)^2 - 4\\sqrt{2x - x^2} = a^2 - 4a',
+  textAfter: <span>имеет хотя бы один корень.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>Пусть <InlineMath math={`t = \\sqrt{2x - x^2}`} />, где по определению квадратного корня <InlineMath math={`t \\geq 0`} />.</p>
+      
+      <p>
+        Выясним точные границы изменения переменной <InlineMath math={`t`} />. Подкоренное выражение представляет собой квадратичную функцию <InlineMath math={`y(x) = 2x - x^2`} />, график которой — парабола, ветви которой направлены вниз. Вершина параболы находится в точке <InlineMath math={`x_0 = -\\frac{2}{2 \\cdot (-1)} = 1`} />, а её максимальное значение равно:
+      </p>
+      <BlockMath math={`y(1) = 2(1) - 1^2 = 1.`} />
+      
+      <p>
+        Следовательно, для существования действительных значений <InlineMath math={`x`} /> подкоренное выражение должно удовлетворять ОДЗ:
+      </p>
+      <BlockMath math={`0 \\leq 2x - x^2 \\leq 1 \\implies 0 \\leq \\sqrt{2x - x^2} \\leq 1.`} />
+      <p>Таким образом, область значений новой переменной: <InlineMath math={`t \\in [0; 1]`} />.</p>
+      
+      <p>
+        Выразим левую часть исходного уравнения через <InlineMath math={`t`} />. Поскольку <InlineMath math={`(2x - x^2)^2 = (t^2)^2 = t^4`} />, исходное уравнение принимает вид:
+      </p>
+      <BlockMath math={`t^4 - 4t = a^2 - 4a.`} />
+      <p>
+        Оно имеет хотя бы один корень <InlineMath math={`x`} /> тогда и только тогда, когда полученное уравнение относительно <InlineMath math={`t`} /> имеет хотя бы один корень на отрезке <InlineMath math={`[0; 1]`} />.
+      </p>
+      
+      <p>
+        Рассмотрим функцию в левой части: <InlineMath math={`f(t) = t^4 - 4t`} />. Исследуем её поведение на промежутке <InlineMath math={`[0; 1]`} /> с помощью производной:
+      </p>
+      <BlockMath math={`f'(t) = 4t^3 - 4 = 4(t^3 - 1).`} />
+      <p>
+        Для любого <InlineMath math={`t \\in [0; 1)`} /> выполнено условие <InlineMath math={`t^3 < 1`} />, откуда <InlineMath math={`f'(t) < 0`} bitumen />. Это означает, что функция <InlineMath math={`f(t)`} /> строго убывает на всем отрезке <InlineMath math={`[0; 1]`} />.
+      </p>
+      
+      <p>Найдем значения функции на границах этого отрезка:</p>
+      <BlockMath math={`f(0) = 0^4 - 4 \\cdot 0 = 0,`} />
+      <BlockMath math={`f(1) = 1^4 - 4 \\cdot 1 = -3.`} />
+      
+      <p>
+        Так как функция непрерывна и строго убывает, областью её значений на отрезке <InlineMath math={`[0; 1]`} /> является отрезок <InlineMath math={`[-3; 0]`} />.
+      </p>
+      <p>
+        Таким образом, уравнение <InlineMath math={`f(t) = a^2 - 4a`} /> имеет решения тогда и только тогда, когда правая часть попадает в область значений левой части:
+      </p>
+      <BlockMath math={`-3 \\leq a^2 - 4a \\leq 0.`} />
+      
+      <p>Решим полученную систему двойных неравенств:</p>
+      <BlockMath math={`\\begin{cases} a^2 - 4a \\geq -3, \\\\ a^2 - 4a \\leq 0 \\end{cases} \\iff \\begin{cases} a^2 - 4a + 3 \\geq 0, \\\\ a(a - 4) \\leq 0 \\end{cases} \\iff \\begin{cases} (a - 1)(a - 3) \\geq 0, \\\\ a(a - 4) \\leq 0. \\end{cases}`} />
+      
+      <p>Изобразим решение системы на числовой прямой параметра <InlineMath math={`a`} />:</p>
+
+      {/* Высокоточный и наглядный SVG-график Задачи 34 (max-w-[400px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 460 160" className="w-full max-w-[400px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Паттерн для штриховки пересечения множеств */}
+          <defs>
+            <pattern id="hatch-red-34" width="5" height="5" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="5" stroke="#fca5a5" strokeWidth="1" className="dark:stroke-rose-950/40" />
+            </pattern>
+          </defs>
+
+          {/* Прямоугольники итогового ответа со штриховкой */}
+          <rect x="100" y="90" width="40" height="20" fill="url(#hatch-red-34)" />
+          <rect x="220" y="90" width="40" height="20" fill="url(#hatch-red-34)" />
+
+          {/* Главная ось параметра a */}
+          <line x1="30" y1="100" x2="420" y2="100" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <path d="M 420,100 L 412,96 M 420,100 L 412,104" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="430" y="104" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+
+          {/* Верхний зеленый ярус: 0 <= a <= 4 */}
+          {/* x=0 -> 100, x=4 -> 260 */}
+          <path d="M 100,100 L 100,30 L 260,30 L 260,100" fill="none" stroke="#16a34a" strokeWidth="1.5" />
+          <text x="160" y="24" fill="#16a34a" className="font-sans text-[11px] font-normal">0 ≤ a ≤ 4</text>
+
+          {/* Нижний синий ярус: a <= 1 и a >= 3 */}
+          {/* x=1 -> 140, x=3 -> 220 */}
+          <path d="M 40,60 L 140,60 L 140,100" fill="none" stroke="#2563eb" strokeWidth="1.5" />
+          <text x="70" y="54" fill="#2563eb" className="font-sans text-[11px] font-normal">a ≤ 1</text>
+          
+          <path d="M 220,100 L 220,60 L 320,60" fill="none" stroke="#2563eb" strokeWidth="1.5" />
+          <text x="250" y="54" fill="#2563eb" className="font-sans text-[11px] font-normal">a ≥ 3</text>
+
+          {/* Яркие маркерные отрезки итогового пересечения на оси */}
+          <line x1="100" y1="100" x2="140" y2="100" stroke="#dc2626" strokeWidth="2.5" />
+          <line x1="220" y1="100" x2="260" y2="100" stroke="#dc2626" strokeWidth="2.5" />
+
+          {/* Метки координат на оси */}
+          <text x="96" y="122" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">0</text>
+          <text x="136" y="122" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">1</text>
+          <text x="216" y="122" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">3</text>
+          <text x="256" y="122" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">4</text>
+
+          {/* Все граничные точки закрашены */}
+          <circle cx="100" cy="100" r="3.5" fill="#000000" className="dark:fill-slate-400" />
+          <circle cx="140" cy="100" r="3.5" fill="#000000" className="dark:fill-slate-400" />
+          <circle cx="220" cy="100" r="3.5" fill="#000000" className="dark:fill-slate-400" />
+          <circle cx="260" cy="100" r="3.5" fill="#000000" className="dark:fill-slate-400" />
+        </svg>
+      </div>
+
+      <p>Пересечением множеств решений является объединение отрезков <InlineMath math={`a \\in [0; 1] \\cup [3; 4]`} />.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in [0; 1] \\cup [3; 4]`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 35,
+  title: 'Задача 35 (ЕГЭ, Демоверсия)',
+  textBefore: 'Найдите все положительные значения a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} (|x| - 5)^2 + (y - 4)^2 = 9, \\\\ (x + 2)^2 + y^2 = a^2 \\end{cases}',
+  textAfter: <span>имеет ровно одно решение.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>Решим задачу геометрическим методом в координатной плоскости <InlineMath math={`xOy`} />.</p>
+      <p>
+        <b>1)</b> Первое уравнение системы задает две неподвижные окружности радиуса <InlineMath math={`R = 3`} />:
+      </p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>Окружность <InlineMath math={`\\omega_1`} /> с центром в точке <InlineMath math={`C_1(5; 4)`} /> при <InlineMath math={`x \\geq 0`} />.</li>
+        <li>Окружность <InlineMath math={`\\omega_2`} /> с центром в точке <InlineMath math={`C_2(-5; 4)`} /> при <InlineMath math={`x < 0`} />.</li>
+      </ul>
+      
+      <p>
+        <b>2)</b> Второе уравнение при <InlineMath math={`a > 0`} /> задает подвижную окружность <InlineMath math={`\\omega_a`} /> радиуса <InlineMath math={`r = a`} /> с центром в точке <InlineMath math={`A(-2; 0)`} />. С увеличением параметра <InlineMath math={`a`} /> её радиус непрерывно растет.
+      </p>
+      <p>
+        Система имеет ровно одно решение, когда окружность <InlineMath math={`\\omega_a`} /> касается ровно одной из окружностей <InlineMath math={`\\omega_1`} /> или <InlineMath math={`\\omega_2`} />, не пересекая при этом другую.
+      </p>
+      <p>Найдем точные расстояния от центра подвижной окружности <InlineMath math={`A(-2; 0)`} /> до центров <InlineMath math={`C_1`} /> и <InlineMath math={`C_2`} />:</p>
+      <BlockMath math={`AC_2 = \\sqrt{(-5 - (-2))^2 + (4 - 0)^2} = \\sqrt{(-3)^2 + 4^2} = 5,`} />
+      <BlockMath math={`AC_1 = \\sqrt{(5 - (-2))^2 + (4 - 0)^2} = \\sqrt{7^2 + 4^2} = \\sqrt{65}.`} />
+
+            {/* Высокоточный и наглядный SVG-график Задачи 35 (max-w-[460px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 500 480" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Координатные оси (Начало (0,0) зафиксировано на x=250, y=260. Масштаб: 1 ед = 16px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="40" y1="260" x2="460" y2="260" /> {/* Ось Ox */}
+            <line x1="250" y1="30" x2="250" y2="450" />  {/* Ось Oy */}
+          </g>
+          <path d="M 460,260 L 442,256 M 460,260 L 442,284" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 250,30 L 246,38 M 250,30 L 254,38" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="472" y="264" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="244" y="22" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="236" y="274" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Неподвижные синие окружности R=3*16=48px */}
+          {/* C1(5, 4) -> (250 + 5*16 = 330, 260 - 4*16 = 196) */}
+          <circle cx="330" cy="196" r="48" fill="none" stroke="#2563eb" strokeWidth="2" />
+          <circle cx="330" cy="196" r="3" fill="#2563eb" />
+          <text x="324" y="185" fill="#2563eb" className="font-serif text-xs">C₁</text>
+
+          {/* C2(-5, 4) -> (250 - 5*16 = 170, 260 - 4*16 = 196) */}
+          <circle cx="170" cy="196" r="48" fill="none" stroke="#2563eb" strokeWidth="2" />
+          <circle cx="170" cy="196" r="3" fill="#2563eb" />
+          <text x="164" y="185" fill="#2563eb" className="font-serif text-xs">C₂</text>
+
+          {/* Point of interest: центр подвижной окружности A(-2, 0) -> (250 - 2*16 = 218, 260) */}
+          <circle cx="218" cy="260" r="3.5" fill="#000000" />
+          <text x="214" y="276" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">A</text>
+
+          {/* Подвижные красные окружности в моменты верных касаний */}
+          {/* 1) Внешнее касание ближней окружности при a = 2 (r = 2*16 = 32px) */}
+          <circle cx="218" cy="260" r="32" fill="none" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4 4" />
+          <text x="155" y="280" fill="#dc2626" stroke="none" className="font-serif italic text-[10px]">a = 2</text>
+
+          {/* 2) Внутреннее касание дальней окружности при a = sqrt(65)+3 ~= 11.06 (r = 11.06*16 = 177px) */}
+          <circle cx="218" cy="260" r="177" fill="none" stroke="#dc2626" strokeWidth="1.8" />
+          <text x="325" y="415" fill="#dc2626" stroke="none" className="font-serif italic text-[10px]">a = √65 + 3</text>
+        </svg>
+      </div>
+
+
+      <p>Поскольку центры окружностей фиксированы, ровно одно решение возможно только в моменты касания. Сформулируем строгие условия для каждого случая:</p>
+      
+      <p>
+        <b>1. Внешнее касание с ближней окружностью <InlineMath math={`\\omega_2`} />:</b> достигается при <InlineMath math={`a = AC_2 - R = 5 - 3 = 2`} />.
+      </p>
+      <p>
+        Для того чтобы при этом значении параметра отсутствовали точки пересечения с дальней окружностью <InlineMath math={`\\omega_1`} />, радиус <InlineMath math={`a = 2`} /> должен быть строго меньше минимального расстояния от точки <InlineMath math={`A`} /> до окружности <InlineMath math={`\\omega_1`} />. Докажем это неравенство:
+      </p>
+      <BlockMath math={`2 < AC_1 - R \\iff 2 < \\sqrt{65} - 3 \\iff 5 < \\sqrt{65} \\iff 25 < 65.`} />
+      <p>Неравенство верно. Значит, при <InlineMath math={`a = 2`} /> окружность <InlineMath math={`\\omega_a`} /> имеет ровно 1 общую точку с <InlineMath math={`\\omega_2`} /> и не дотягивается до <InlineMath math={`\\omega_1`} />. Значение подходит.</p>
+
+      <p>
+        <b>2. Внутреннее касание с ближней окружностью <InlineMath math={`\\omega_2`} />:</b> достигается при <InlineMath math={`a = AC_2 + R = 5 + 3 = 8`} />.
+      </p>
+      <p>
+        Проверим, пересекает ли окружность <InlineMath math={`\\omega_a`} /> в этот момент дальнюю окружность <InlineMath math={`\\omega_1`} />. Пересечение имеет место, если радиус <InlineMath math={`a = 8`} /> лежит строго между минимальным и максимальным расстояниями от <InlineMath math={`A`} /> до <InlineMath math={`\\omega_1`} />:
+      </p>
+      <BlockMath math={`\\sqrt{65} - 3 < 8 < \\sqrt{65} + 3.`} />
+      <p>Следовательно, при <InlineMath math={`a = 8`} /> окружность дополнительно пересекает <InlineMath math={`\\omega_1`} /> в двух точках. Всего получается 3 решения (не подходит).</p>
+
+      <p>
+        <b>3. Внешнее касание с дальней окружностью <InlineMath math={`\\omega_1`} />:</b> достигается при <InlineMath math={`a = AC_1 - R = \\sqrt{65} - 3`} />.
+      </p>
+      <p>
+        Проверим взаимное расположение с окружностью <InlineMath math={`\\omega_2`} />. Окружность <InlineMath math={`\\omega_a`} /> пересекает <InlineMath math={`\\omega_2`} />, если её радиус лежит в интервале между <InlineMath math={`AC_2 - R`} /> и <InlineMath math={`AC_2 + R`} />, то есть:
+      </p>
+      <BlockMath math={`2 < \\sqrt{65} - 3 < 8 \\iff 5 < \\sqrt{65} < 11 \\iff 25 < 65 < 121.`} />
+      <p>Это двойное неравенство абсолютно верно. Следовательно, в данный момент система имеет 3 решения (не подходит).</p>
+
+      <p>
+        <b>4. Внутреннее касание с дальней окружностью <InlineMath math={`\\omega_1`} />:</b> достигается при <InlineMath math={`a = AC_1 + R = \\sqrt{65} + 3`} />.
+      </p>
+      <p>
+        Для того чтобы в этот момент не было точек пересечения с окружностью <InlineMath math={`\\omega_2`} />, радиус должен быть строго больше максимального расстояния до неё:
+      </p>
+      <BlockMath math={`\\sqrt{65} + 3 > 8 \\iff \\sqrt{65} > 5 \\iff 65 < 25.`} />
+      <p>Неравенство верно, окружность <InlineMath math={`\\omega_a`} /> полностью поглотила <InlineMath math={`\\omega_2`} /> и не пересекается с ней. Таким образом, остается ровно одна общая точка — точка касания с <InlineMath math={`\\omega_1`} bitumen />. Значение подходит.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a = 2, \\quad a = \\sqrt{65} + 3`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 36,
+  title: 'Задача 36 (ЕГЭ 2023, Основная волна)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} (xy - x + 8) \\cdot \\sqrt{y - x + 8} = 0, \\\\ y = 2x + a \\end{cases}',
+  textAfter: <span>имеет ровно два решения.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        <b>1) ОДЗ системы:</b> Подкоренное выражение накладывает ограничение: 
+        <InlineMath math={`y - x + 8 \\geq 0 \\iff y \\geq x - 8.`} />
+        Геометрически это полуплоскость, расположенная не ниже граничной прямой <InlineMath math={`y = x - 8`} />.
+      </p>
+      
+      <p>
+        <b>2) Анализ первого уравнения:</b> На ОДЗ первое уравнение равносильно совокупности:
+      </p>
+      <BlockMath math={`\\left[ \\begin{array}{l} y = x - 8 \\quad \\text{(граничная прямая)}, \\\\ xy - x + 8 = 0 \\implies y = 1 - \\frac{8}{x} \\quad \\text{(гипербола)}. \\end{array} \\right.`} />
+      
+      <p>
+        Найдем точки пересечения гиперболы с границей ОДЗ:
+      </p>
+      <BlockMath math={`x - 8 = 1 - \\frac{8}{x} \\iff x^2 - 9x + 8 = 0 \\implies x_1 = 1, \\ x_2 = 8.`} />
+      <p>Получаем две узловые точки: <InlineMath math={`A(1; -7)`} /> и <InlineMath math={`B(8; 0)`} />.</p>
+      
+      <p>
+        Методом интервалов определяем, что условию ОДЗ <InlineMath math={`1 - \\frac{8}{x} \\geq x - 8`} /> удовлетворяют:
+      </p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>Левая ветвь гиперболы целиком (<InlineMath math={`x < 0`} />).</li>
+        <li>Ограниченная дуга <InlineMath math={`AB`} /> правой ветви при <InlineMath math={`x \\in [1; 8]`} />. Внешние лучи при <InlineMath math={`x \\in (0; 1)`} /> и <InlineMath math={`x > 8`} /> лежат ниже прямой и исключаются.</li>
+      </ul>
+      
+      <p>
+        <b>3) Семейство сканирующих прямых:</b> Второе уравнение системы <InlineMath math={`y = 2x + a`} /> задает параллельные прямые с наклоном <InlineMath math={`k = 2`} />. Так как они круче линии ОДЗ (<InlineMath math={`k = 1`} bitumen />), каждая такая прямая всегда пересекает прямую <InlineMath math={`y = x - 8`} /> ровно один раз.
+      </p>
+
+            {/* Высокоточный и наглядный SVG-график Задачи 36 (max-w-[460px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 500 500" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Фоновая координатная сетка */}
+          <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
+            {[-8, -6, -4, -2, 2, 4, 6, 8, 10].map(i => (
+              <g key={i}>
+                <line x1={250 + i*20} y1="30" x2={250 + i*20} y2="470" />
+                <line x1="30" y1={220 - i*20} x2="470" y2={220 - i*20} />
+              </g>
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="30" y1="220" x2="470" y2="220" /> {/* Ox */}
+            <line x1="250" y1="30" x2="250" y2="470" />  {/* Oy */}
+          </g>
+          <path d="M 470,220 L 462,216 M 470,220 L 462,224" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 250,30 L 246,38 M 250,30 L 254,38" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="482" y="224" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="236" y="22" fill="#000000" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="236" y="234" fill="#000000" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Серый пунктирный вспомогательный хвост гиперболы ниже точки А */}
+          <path d="M 264,410 C 267,390 268.5,375 270,360" fill="none" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="3 3" />
+
+          {/* Неподвижный график: Граничная прямая y = x - 8 */}
+          <line x1="160" y1="470" x2="450" y2="180" stroke="#000000" strokeWidth="2.5" />
+          <text x="425" y="195" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">y = x - 8</text>
+
+          {/* Более округлая левая ветвь гиперболы y = 1 - 8/x (x < 0) */}
+          <path d="M 50,230 C 130,228 175,220 210,180 C 228,158 234,120 236,40" fill="none" stroke="#000000" strokeWidth="2.5" />
+          <text x="50" y="245" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">y = 1 - 8/x</text>
+
+          {/* Дуга AB правой ветви гиперболы (от A(1;-7) до B(8;0)) */}
+          <path d="M 270,360 C 285,280 340,230 410,220" fill="none" stroke="#000000" strokeWidth="2.5" />
+
+          {/* Семейство сканирующих прямых y = 2x + a. Все прямые СТРОГО параллельны друг другу (k = 2) */}
+          <g stroke="#2563eb" strokeWidth="1.2" strokeDasharray="4 3">
+            {/* (1) Без изменений */}
+            <line x1="98" y1="410" x2="278" y2="50" />
+            <text x="258" y="45" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">(1)</text>
+
+            {/* (3) Без изменений */}
+            <line x1="216" y1="470" x2="426" y2="50" />
+            <text x="410" y="45" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">(3)</text>
+
+            {/* (2) Без изменений */}
+            <line x1="204" y1="470" x2="414" y2="50" />
+            <text x="418" y="65" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">(2)</text>
+
+            {/* (4) Сдвинута ЕЩЁ на 0.1 единицы масштаба вправо (0.1 * 20px = 2px вправо) */}
+            {/* Было x1=281 стало 285, было x2=493 стало 495. Координаты идеально выверены */}
+            <line x1="285" y1="470" x2="495" y2="50" />
+            <text x="488" y="70" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">(4)</text>
+          </g>
+
+          {/* Вспомогательный серый горизонтальный пунктир справа от точки B */}
+          <line x1="410" y1="220" x2="460" y2="216" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+
+          {/* Ключевые маркерные узловые точки и их подписи */}
+          <circle cx="270" cy="360" r="3.5" fill="#000000" /> {/* A(1; -7) */}
+          <text x="280" y="375" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs font-normal">A(1; -7)</text>
+          
+          <circle cx="410" cy="220" r="3.5" fill="#000000" /> {/* B(8; 0) */}
+          <text x="418" y="235" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs font-normal">B(8; 0)</text>
+        </svg>
+      </div>
+
+
+      <p>
+        Найдем значения параметра <InlineMath math={`a`} /> для критических положений через касание сканирующей прямой и гиперболы:
+      </p>
+      <BlockMath math={`2x + a = 1 - \\frac{8}{x} \\iff 2x^2 + (a - 1)x + 8 = 0.`} />
+      <p>
+        Условие касания: <InlineMath math={`D = (a - 1)^2 - 64 = 0 \\implies a = 9`} /> или <InlineMath math={`a = -7`} />.
+      </p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>При <InlineMath math={`a = 9`} />: абсцисса <InlineMath math={`x_0 = -2 < 0`} /> (касание на левой ветви) — <b>Положение (1)</b>.</li>
+        <li>При <InlineMath math={`a = -7`} />: абсцисса <InlineMath math={`x_0 = 2 \\in [1; 8]`} /> (касание на дуге <InlineMath math={`AB`} />) — <b>Положение (3)</b>.</li>
+      </ul>
+
+      <p>Движение сканирующей прямой сверху вниз (с уменьшением <InlineMath math={`a`} />) определяет число корней:</p>
+      <ul className="list-bullet pl-5 space-y-1.5">
+        <li>При <InlineMath math={`a > 9`} />: 3 решения.</li>
+        <li>При <InlineMath math={`a = 9`} />: прямая касается левой ветви (1) и пересекает ОДЗ (1) — <b>ровно 2 решения</b>.</li>
+        <li>При <InlineMath math={`a \\in (-7; 9)`} />: пересечений с гиперболой нет, только 1 пересечение с линией ОДЗ — 1 решение.</li>
+        <li>При <InlineMath math={`a = -7`} />: прямая касается дуги <InlineMath math={`AB`} /> (1) и пересекает ОДЗ (1) — <b>ровно 2 решения</b>.</li>
+        <li>При <InlineMath math={`a \\in (-9; -7)`} />: 3 решения.</li>
+        <li>При <InlineMath math={`a = -9`} />: прямая проходит через узел <InlineMath math={`A`} /> (1) и пересекает дугу во второй точке — <b>ровно 2 решения</b>.</li>
+        <li>При <InlineMath math={`a \\in (-16; -9)`} />: один корень гиперболы выходит за ОДЗ, а второй остается на дуге <InlineMath math={`AB`} /> (1) + пересечение ОДЗ (1) — <b>ровно 2 решения</b>.</li>
+        <li>При <InlineMath math={`a = -16`} />: прямая проходит через точку <InlineMath math={`B`} />. Имеется только 1 уникальное решение в точке <InlineMath math={`B`} />.</li>
+        <li>При <InlineMath math={`a < -16`} />: 1 решение.</li>
+      </ul>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-16; -9] \\cup \\{-7\\} \\cup \\{9\\}`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 37,
+  title: 'Задача 37 (ЕГЭ 2022, Основная волна)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: 'x^2 + a^2 - 2x - 6a = |6x - 2a|',
+  textAfter: <span>имеет ровно два различных корня.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Раскроем модуль, рассмотрев два случая в зависимости от знака подмодульного выражения:
+      </p>
+      
+      <p>
+        <b>1)</b> При <InlineMath math={`a \\leq 3x`} /> уравнение преобразуется в дугу окружности <InlineMath math={`\\omega_1`} /> с центром <InlineMath math={`C_1(4; 2)`} /> и радиусом <InlineMath math={`R = 2\\sqrt{5}`} />:
+      </p>
+      <BlockMath math={`(x - 4)^2 + (a - 2)^2 = 20.`} />
+      
+      <p>
+        <b>2)</b> При <InlineMath math={`a > 3x`} /> уравнение преобразуется в дугу окружности <InlineMath math={`\\omega_2`} /> с центром <InlineMath math={`C_2(-2; 4)`} /> и радиусом <InlineMath math={`R = 2\\sqrt{5}`} />:
+      </p>
+      <BlockMath math={`(x + 2)^2 + (a - 4)^2 = 20.`} />
+      
+      <p>
+        Общие точки окружностей с границей <InlineMath math={`a = 3x`} /> задают узлы стыка: <InlineMath math={`O(0; 0)`} /> и <InlineMath math={`M(2; 6)`} />. В системе координат <InlineMath math={`xOa`} /> график представляет собой замкнутую «восьмерку» из двух внешних дуг.
+      </p>
+
+      {/* Высокоточный SVG-график Задачи 37 в осях xOa (max-w-[460px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 540 440" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Координатная сетка */}
+          <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
+            {[-6, -4, -2, 2, 4, 6, 8].map(i => (
+              <g key={i}>
+                <line x1={220 + i*22} y1="20" x2={220 + i*22} y2="400" />
+                <line x1="20" y1={310 - i*22} x2="490" y2={310 - i*22} />
+              </g>
+            ))}
+          </g>
+
+          {/* Оси координат (Центр зафиксирован на x=220, y=310. Масштаб: 1 ед = 22px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="310" x2="490" y2="310" />  {/* Ox */}
+            <line x1="220" y1="20" x2="220" y2="420" />  {/* Oa */}
+          </g>
+          <path d="M 490,310 L 482,306 M 490,310 L 482,314" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 220,20 L 216,28 M 220,20 L 224,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="502" y="314" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="206" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+          <text x="206" y="324" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Разделяющая прямая a = 3x, проходящая СТРОГО через точки (0;0) и (1;3) */}
+          <line x1="186.7" y1="410" x2="316.7" y2="20" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
+          <text x="321.7" y="32" fill="#94a3b8" stroke="none" className="font-sans text-xs">a = 3x</text>
+
+          {/* Синяя дуга окружности w2 (выше прямой a = 3x) */}
+          <path d="M 220,310 A 98.4,98.4 0 1,1 264,178" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <circle cx="176" cy="222" r="3" fill="#2563eb" />
+          <text x="110" y="215" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">C₂(-2; 4)</text>
+          <text x="80" y="235" fill="#2563eb" stroke="none" className="font-sans text-[10px] font-normal">(x+2)²+(a-4)² = 20</text>
+
+          {/* Красная дуга окружности w1 (ниже прямой a = 3x) */}
+          <path d="M 264,178 A 98.4,98.4 0 1,1 220,310" fill="none" stroke="#dc2626" strokeWidth="2.5" />
+          <circle cx="308" cy="266" r="3" fill="#dc2626" />
+          <text x="316" y="275" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">C₁(4; 2)</text>
+          <text x="310" y="160" fill="#dc2626" stroke="none" className="font-sans text-[10px] font-normal">(x-4)²+(a-2)² = 20</text>
+
+          {/* Горизонтальные сканирующие прямые параметрических уровней (серый тонкий пунктир) */}
+          <g stroke="#64748b" strokeWidth="1" strokeDasharray="3 3">
+            <line x1="30" y1="123.6" x2="430" y2="123.6" />
+            <text x="436" y="127" fill="#64748b" stroke="none" className="font-sans text-[11px] font-normal">a = 4 + 2√5</text>
+
+            <line x1="30" y1="167.6" x2="430" y2="167.6" />
+            <text x="436" y="171" fill="#64748b" stroke="none" className="font-sans text-[11px] font-normal">a = 2 + 2√5</text>
+
+            <line x1="30" y1="178" x2="430" y2="178" />
+            <text x="436" y="182" fill="#64748b" stroke="none" className="font-sans text-[11px] font-normal">a = 6</text>
+
+            <line x1="30" y1="320.4" x2="430" y2="320.4" />
+            <text x="436" y="324" fill="#64748b" stroke="none" className="font-sans text-[11px] font-normal">a = 4 - 2√5</text>
+
+            <line x1="30" y1="364.4" x2="430" y2="364.4" />
+            <text x="436" y="368" fill="#64748b" stroke="none" className="font-sans text-[11px] font-normal">a = 2 - 2√5</text>
+          </g>
+
+          {/* Маркерные точки стыка */}
+          <circle cx="220" cy="310" r="3.5" fill="#000000" />
+          <text x="175" y="324" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs font-normal">O(0; 0)</text>
+          
+          <circle cx="264" cy="178" r="3.5" fill="#000000" />
+          <text x="220" y="172" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs font-normal">M(2; 6)</text>
+        </svg>
+      </div>
+
+      <p>
+        Количество корней исходного уравнения определяется числом пересечений графика с горизонтальной сканирующей прямой уровня <InlineMath math={`a`} />:
+      </p>
+      
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>При <InlineMath math={`a < 2 - 2\\sqrt{5}`} /> или <InlineMath math={`a > 4 + 2\\sqrt{5}`} />: 0 корней.</li>
+        <li>При <InlineMath math={`a = 2 - 2\\sqrt{5}`} /> или <InlineMath math={`a = 4 + 2\\sqrt{5}`} />: 1 корень (прямая касается вершины одной из дуг).</li>
+        <li>При <b><InlineMath math={`a \\in (2 - 2\\sqrt{5}; 4 - 2\\sqrt{5})`} /></b>: <b>ровно 2 корня</b> (прямая пересекает две ветви дуги <InlineMath math={`\\omega_1`} />).</li>
+        <li>При <InlineMath math={`a = 4 - 2\\sqrt{5}`} />: 3 корня (касание снизу дуги <InlineMath math={`\\omega_2`} /> и два пересечения <InlineMath math={`\\omega_1`} />).</li>
+        <li>При <InlineMath math={`a \\in (4 - 2\\sqrt{5}; 0)`} />: 4 корня (прямая четырежды пересекает ветви обеих дуг).</li>
+        <li>При <InlineMath math={`a = 0`} />: 3 корня (проход через узел стыка <InlineMath math={`O(0;0)`} /> и две внешние ветви).</li>
+        <li>При <b><InlineMath math={`a \\in (0; 6)`} /></b>: <b>ровно 2 корня</b> (прямая находится между узлами <InlineMath math={`O`} /> и <InlineMath math={`M`} /> и пересекает 2 внутренние дуги).</li>
+        <li>При <InlineMath math={`a = 6`} />: 3 корня (проход через верхний узел стыка <InlineMath math={`M(2;6)`} /> и две внешние ветви).</li>
+        <li>При <InlineMath math={`a \\in (6; 2 + 2\\sqrt{5})`} />: 4 корня (прямая четырежды пересекает график).</li>
+        <li>При <InlineMath math={`a = 2 + 2\\sqrt{5}`} />: 3 корня (касание вершины <InlineMath math={`\\omega_1`} /> и два пересечения ветвей <InlineMath math={`\\omega_2`} />).</li>
+        <li>При <b><InlineMath math={`a \\in (2 + 2\\sqrt{5}; 4 + 2\\sqrt{5})`} /></b>: <b>ровно 2 корня</b> (прямая пересекает только две верхние ветви дуги <InlineMath math={`\\omega_2`} />).</li>
+      </ul>
+
+      <p>Объединяя все интервалы, где уравнение имеет ровно два различных решения, получаем итоговый результат.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (2 - 2\\sqrt{5}; 4 - 2\\sqrt{5}) \\cup (0; 6) \\cup (2 + 2\\sqrt{5}; 4 + 2\\sqrt{5})`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 38,
+  title: 'Задача 38 (ЕГЭ 2022, Основная волна)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '|x^2 + a^2 - 7x + 5a| = x - a',
+  textAfter: <span>имеет ровно два различных корня.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Так как левая часть уравнения содержит модуль и неотрицательна, правая часть обязана подчиняться условию ОДЗ: <InlineMath math={`x - a \\geq 0 \\iff a \\leq x`} />. График исходного уравнения должен располагаться строго не выше прямой <InlineMath math={`a = x`} />.
+      </p>
+      
+      <p>Раскроем модуль по определению, перейдя к совокупности:</p>
+      <BlockMath math={`\\left[ \\begin{array}{l} x^2 + a^2 - 7x + 5a = x - a \\\\ x^2 + a^2 - 7x + 5a = -(x - a) \\end{array} \\right. \\iff \\left[ \\begin{array}{l} x^2 - 8x + a^2 + 6a = 0 \\\\ x^2 - 6x + a^2 + 4a = 0 \\end{array} \\right.`} />
+      
+      <p>Выделим полные квадраты в каждом уравнении:</p>
+      <BlockMath math={`\\left[ \\begin{array}{l} (x - 4)^2 + (a + 3)^2 = 25 \\quad \\text{(окружность } \\omega_1\\text{)} \\\\ (x - 3)^2 + (a + 2)^2 = 13 \\quad \\text{(окружность } \\omega_2\\text{)} \\end{array} \\right.`} />
+      
+      <p>
+        Подставив <InlineMath math={`a = x`} /> в оба уравнения, находим общие граничные точки стыка дуг окружностей: <InlineMath math={`O(0; 0)`} /> и <InlineMath math={`A(1; 1)`} />. В этих точках окружности пересекают границу ОДЗ.
+      </p>
+
+      {/* Высокоточный и наглядный SVG-график Задачи 38 (max-w-[460px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 540 480" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Координатная сетка */}
+          <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
+            {[-4, -2, 2, 4, 6, 8, 10].map(i => (
+              <g key={i}>
+                <line x1={200 + i*22} y1="20" x2={200 + i*22} y2="440" />
+                <line x1="20" y1={120 - i*22} x2="510" y2={120 - i*22} />
+              </g>
+            ))}
+          </g>
+
+          {/* Оси координат (Центр зафиксирован точно на x=200, y=120. Масштаб: 1 ед = 22px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="120" x2="510" y2="120" />  {/* Ox */}
+            <line x1="200" y1="20" x2="200" y2="450" />  {/* Oa */}
+          </g>
+          <path d="M 510,120 L 502,116 M 510,120 L 502,124" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 200,20 L 196,28 M 200,20 L 204,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="522" y="124" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="186" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+          <text x="186" y="134" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Ограничительная прямая a = x */}
+          <line x1="40" y1="280" x2="350" y2="-30" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
+          <text x="290" y="-1" fill="#94a3b8" stroke="none" className="font-sans text-xs">a = x</text>
+
+          {/* Красная дуга окружности w1. Центр C1(4, -3) */}
+          <path d="M 222,98 A 110,110 0 1,1 200,120" fill="none" stroke="#dc2626" strokeWidth="2.5" />
+          <circle cx="288" cy="186" r="3" fill="#dc2626" />
+          <text x="296" y="196" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">C₁(4; -3)</text>
+          <text x="320" y="275" fill="#dc2626" stroke="none" className="font-sans text-[10px] font-normal">(x-4)²+(a+3)² = 25</text>
+
+          {/* Синяя дуга окружности w2. Центр C2(3, -2) */}
+          <path d="M 200,120 A 79.3,79.3 0 1,0 222,98" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <circle cx="266" cy="164" r="3" fill="#2563eb" />
+          <text x="216" y="172" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">C₂(3; -2)</text>
+          <text x="220" y="225" fill="#2563eb" stroke="none" className="font-sans text-[10px] font-normal">(x-3)²+(a+2)² = 13</text>
+
+          {/* Горизонтальные сканирующие прямые параметрических уровней (серый тонкий пунктир) */}
+          <g stroke="#64748b" strokeWidth="1" strokeDasharray="3 3">
+            <line x1="30" y1="98" x2="440" y2="98" />
+            <text x="446" y="102" fill="#64748b" stroke="none" className="font-sans text-[11px] font-normal">a = 1</text>
+            <line x1="30" y1="243.2" x2="440" y2="243.2" />
+            <text x="446" y="247" fill="#64748b" stroke="none" className="font-sans text-[11px] font-normal">a = -2 - √13</text>
+            <line x1="30" y1="296" x2="440" y2="296" />
+            <text x="446" y="300" fill="#64748b" stroke="none" className="font-sans text-[11px] font-normal">a = -8</text>
+          </g>
+
+          {/* Маркерные точки стыка */}
+          <circle cx="200" cy="120" r="3.5" fill="#000000" />
+          <text x="160" y="116" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs font-normal">O(0; 0)</text>
+          <circle cx="222" cy="98" r="3.5" fill="#000000" />
+          <text x="210" y="88" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs font-normal">A(1; 1)</text>
+        </svg>
+      </div>
+
+      <p>
+        Найдем ординаты нижних точек для обеих дуг окружностей:
+      </p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>Для <InlineMath math={`\\omega_1`} />: <InlineMath math={`a_{\\min 1} = y_{C_1} - R_1 = -3 - 5 = -8`} />.</li>
+        <li>Для <InlineMath math={`\\omega_2`} />: <InlineMath math={`a_{\\min 2} = y_{C_2} - R_2 = -2 - \\sqrt{13}`} />.</li>
+      </ul>
+
+      <p>Проведем горизонтальную сканирующую прямую уровня <InlineMath math={`a`} /> снизу вверх и определим количество решений по числу пересечений с графиком:</p>
+      <ul className="list-bullet pl-5 space-y-1.5">
+        <li>При <InlineMath math={`a < -8`} /> или <InlineMath math={`a > 4`} />: 0 корней.</li>
+        <li>При <InlineMath math={`a = -8`} /> или <InlineMath math={`a = 4`} />: 1 корень.</li>
+        <li>При <b><InlineMath math={`a \\in (-8; -2 - \\sqrt{13})`} /></b>: прямая пересекает две боковые ветви <InlineMath math={`\\omega_1`} /> — <b>ровно 2 корня</b>.</li>
+        <li>При <InlineMath math={`a = -2 - \\sqrt{13}`} />: 3 корня (касание нижней точки <InlineMath math={`\\omega_2`} /> и два пересечения <InlineMath math={`\\omega_1`} />).</li>
+        <li>При <InlineMath math={`a \\in (-2 - \\sqrt{13}; 0)`} />: 4 корня.</li>
+        <li>При <InlineMath math={`a = 0`} />: 3 корня (проход через излом <InlineMath math={`O(0;0)`} /> и две правые ветви под ОДЗ).</li>
+        <li>При <b><InlineMath math={`a \\in (0; 1)`} /></b>: прямая находится выше точки <InlineMath math={`O`} />, но ниже точки <InlineMath math={`A`} />, пересекая правые ветви обеих окружностей — <b>ровно 2 корня</b>.</li>
+        <li>При <InlineMath math={`a = 1`} />: 1 корень (проход через узел <InlineMath math={`A(1;1)`} />, пересечений ниже ОДЗ больше нет).</li>
+        <li>При <InlineMath math={`a \\in (1; -2 + \\sqrt{13})`} />: 4 корня.</li>
+        <li>При <InlineMath math={`a = -2 + \\sqrt{13}`} />: 3 корня.</li>
+        <li>При <b><InlineMath math={`a \\in (-2 + \\sqrt{13}; 2)`} /></b>: прямая повторно пересекает ветви верхней части — <b>ровно 2 корня</b>.</li>
+      </ul>
+
+      <p>Объединяя все найденные интервалы, получаем итоговый результат.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-8; -2 - \\sqrt{13}) \\cup (0; 1) \\cup (-2 + \\sqrt{13}; 2)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 39,
+  title: 'Задача 39 (ЕГЭ 2022, Основная волна)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: 'a^2 - 2ax - 3x^2 - 4a - 4x + 8|x| = 0',
+  textAfter: <span>имеет ровно четыре различных корня.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Раскроем модуль, рассмотрев два случая в зависимости от знака переменной <InlineMath math={`x`} />. Исходное уравнение имеет ровно 4 корня тогда и только тогда, когда совокупность систем имеет в сумме ровно 4 решения.
+      </p>
+      
+      <p>
+        <b>1) Случай <InlineMath math={`x \\geq 0`} />:</b> Получаем квадратное уравнение относительно <InlineMath math={`x`} />:
+      </p>
+      <BlockMath math={`3x^2 + 2(a - 2)x - (a^2 - 4a) = 0.`} />
+      <p>Найдем четверть дискриминанта данного уравнения:</p>
+      <BlockMath math={`D_1/4 = (a - 2)^2 - 3\\cdot(-(a^2 - 4a)) = 4(a^2 - 4a + 1).`} />
+      <p>
+        Чтобы уравнение имело два различных неотрицательных корня (<InlineMath math={`x_1 \\geq 0, x_2 \\geq 0`} />), по теореме Виета должны одновременно выполняться условия:
+      </p>
+      <BlockMath math={`\\begin{cases} D_1 > 0 \\\\ x_1 x_2 \\geq 0 \\\\ x_1 + x_2 \\geq 0 \\end{cases} \\iff \\begin{cases} a^2 - 4a + 1 > 0 \\\\ a(a - 4) \\leq 0 \\\\ a - 2 \\leq 0 \\end{cases} \\iff \\begin{cases} a \\in (-\\infty; 2 - \\sqrt{3}) \\cup (2 + \\sqrt{3}; +\\infty) \\\\ 0 \\leq a \\leq 4 \\\\ a \\leq 2 \\end{cases}`} />
+      <p>Пересекая эти интервалы, получаем область для первого случая: <InlineMath math={`a \\in [0; 2 - \\sqrt{3})`} />.</p>
+      
+      <p>
+        <b>2) Случай <InlineMath math={`x < 0`} />:</b> Получаем квадратное уравнение:
+      </p>
+      <BlockMath math={`3x^2 + 2(a + 6)x - (a^2 - 4a) = 0.`} />
+      <p>Четверть дискриминанта этого уравнения всегда положительна:</p>
+      <BlockMath math={`D_2/4 = (a + 6)^2 - 3\\cdot(-(a^2 - 4a)) = 4a^2 + 36 > 0.`} />
+      <p>
+        Чтобы уравнение имело два различных строго отрицательных корня (<InlineMath math={`x_3 < 0, x_4 < 0`} />), по теореме Виета должны выполняться условия:
+      </p>
+      <BlockMath math={`\\begin{cases} x_3 x_4 > 0 \\\\ x_3 + x_4 < 0 \\end{cases} \\iff \\begin{cases} a(a - 4) < 0 \\\\ a + 6 > 0 \\end{cases} \\iff \\begin{cases} 0 < a < 4 \\\\ a > -6 \\end{cases} \\implies a \\in (0; 4).`} />
+
+            {/* Высокоточный и наглядный геометрический SVG-график отбора интервалов Задачи 39 (max-w-[445px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 460 140" className="w-full max-w-[445px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Паттерн для штриховки области пересечения */}
+          <defs>
+            <pattern id="hatch-red-39" width="5" height="5" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="5" stroke="#fca5a5" strokeWidth="1" className="dark:stroke-rose-950/40" />
+            </pattern>
+          </defs>
+
+          {/* Область итогового ответа со штриховкой */}
+          <rect x="130" y="80" width="40" height="10" fill="url(#hatch-red-39)" />
+
+          {/* Главная ось параметра a */}
+          <line x1="30" y1="90" x2="420" y2="90" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <path d="M 420,90 L 412,86 M 420,90 L 412,94" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="432" y="94" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+
+          {/* Ярус 1: корни из случая 1 (от 0 закрашенной до 2-sqrt(3) выколотой) */}
+          <path d="M 130,90 L 130,30 L 170,30 L 170,90" fill="none" stroke="#2563eb" strokeWidth="1.5" />
+          <text x="105" y="24" fill="#2563eb" stroke="none" className="font-sans text-[10px] font-normal">2 корня при x ≥ 0</text>
+
+          {/* Ярус 2: корни из случая 2 (от 0 выколотой до 4 выколотой) */}
+          <path d="M 130,55 L 320,55 L 320,90" fill="none" stroke="#16a34a" strokeWidth="1.5" />
+          <text x="195" y="48" fill="#16a34a" stroke="none" className="font-sans text-[10px] font-normal">2 корня при x &lt; 0</text>
+
+          {/* Красная маркерная линия пересечения */}
+          <line x1="130" y1="90" x2="170" y2="90" stroke="#dc2626" strokeWidth="2.5" />
+
+          {/* Метки координат на оси */}
+          <text x="126" y="112" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">0</text>
+          <text x="152" y="112" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-xs">2 - √3</text>
+          <text x="316" y="112" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">4</text>
+
+          {/* Граничные точки */}
+          <circle cx="130" cy="90" r="3.5" fill="#000000" className="dark:fill-slate-400" />
+          <circle cx="170" cy="90" r="3.5" fill="white" stroke="#000000" strokeWidth="1.2" className="fill-white dark:fill-slate-950 dark:stroke-slate-400" />
+          <circle cx="320" cy="90" r="3.5" fill="white" stroke="#000000" strokeWidth="1.2" className="fill-white dark:fill-slate-950 dark:stroke-slate-400" />
+        </svg>
+      </div>
+
+
+      <p><b>Объединение условий:</b> Поскольку положительные и отрицательные корни никогда не совпадают между собой, общее число корней равно сумме решений из обоих случаев:</p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>Если <InlineMath math={`a \\in (0; 2 - \\sqrt{3})`} />, то первый случай дает 2 корня и второй случай дает 2 корня. Итого — <b>ровно 4 различных корня</b>.</li>
+        <li>Если <InlineMath math={`a = 0`} />, корень <InlineMath math={`x = 0`} /> учитывается один раз, общее число решений равно 3.</li>
+        <li>При остальных <InlineMath math={`a`} /> суммарное число решений строго меньше четырёх.</li>
+      </ul>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (0; 2 - \\sqrt{3})`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 40,
+  title: 'Задача 40 (ЕГЭ 2022, резервный день)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '\\sqrt{x} + \\sqrt{2a - x} = a',
+  textAfter: <span>имеет ровно два различных корня.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>Запишем условия существования корней (ОДЗ):</p>
+      <BlockMath math={`\\begin{cases} x \\geq 0 \\\\ 2a - x \\geq 0 \\iff x \\leq 2a \\end{cases} \\implies 0 \\leq x \\leq 2a.`} />
+      <p>
+        Левая часть уравнения неотрицательна, поэтому для существования решений должно выполняться условие <InlineMath math={`a \\geq 0`} />. Если <InlineMath math={`a = 0`} />, получаем единственный корень <InlineMath math={`x = 0`} />, что не подходит. Далее считаем <InlineMath math={`a > 0`} />.
+      </p>
+      
+      <p>Перепишем уравнение в виде равенства двух функций:</p>
+      <BlockMath math={`\\sqrt{x} = a - \\sqrt{2a - x}.`} />
+      <p>
+        Рассмотрим функции <InlineMath math={`f(x) = \\sqrt{x}`} /> и <InlineMath math={`g(x) = a - \\sqrt{2a - x}`} /> в координатной плоскости <InlineMath math={`xOy`} />. График функции <InlineMath math={`g(x)`} /> получается отражением и сдвигом стандартного графика корня. Его правая крайняя точка (вершина) имеет координаты <InlineMath math={`(2a; a)`} />, которая движется по траектории <InlineMath math={`y = \\frac{x}{2}`} />.
+      </p>
+
+      {/* Высокоточный и наглядный SVG-график Задачи 40 (max-w-[450px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 500 360" className="w-full max-w-[450px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Координатная сетка (Масштаб: 1 ед = 36px. Начало (0,0) зафиксировано на x=100, y=280) */}
+          <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
+            {Array.from({ length: 11 }).map((_, i) => (
+              <line key={`x-${i}`} x1={100 + i*36} y1="40" x2={100 + i*36} y2="320" />
+            ))}
+            {Array.from({ length: 8 }).map((_, i) => (
+              <line key={`y-${i}`} x1="60" y1={280 - i*36} x2="480" y2={280 - i*36} />
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="60" y1="280" x2="480" y2="280" /> {/* Ось Ox */}
+            <line x1="100" y1="40" x2="100" y2="320" />  {/* Axis Oy */}
+          </g>
+          {/* Наконечники стрелок для осей */}
+          <path d="M 480,280 L 472,276 M 480,280 L 472,284" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 100,40 L 96,48 M 100,40 L 104,48" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="492" y="284" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="86" y="35" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="86" y="294" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+          
+          {/* Единичные штрихи */}
+          <line x1="136" y1="276" x2="136" y2="284" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <text x="133" y="296" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[11px]">1</text>
+          
+          <line x1="96" y1="244" x2="104" y2="244" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <text x="84" y="248" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[11px]">1</text>
+
+          {/* Траектория вершин y = x/2 (зеленый пунктир) */}
+          <line x1="100" y1="280" x2="480" y2="90" stroke="#16a34a" strokeWidth="1.5" strokeDasharray="4 4" />
+          <text x="490" y="94" fill="#16a34a" stroke="none" className="font-sans text-xs font-normal">y = x/2</text>
+
+          {/* f(x) = sqrt(x) (синяя кривая) */}
+          <path d="M 100,280 C 130,225 180,212 244,208 C 320,203 400,195 480,190" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="490" y="194" fill="#2563eb" stroke="none" className="font-serif italic text-sm">f(x)</text>
+
+          {/* Подвижные красные графики g(x) */}
+          {/* 1) a = 2: вершина строго в (4;2)->(244,208), падает в (0;0)->(100,280) */}
+          <path d="M 244,208 C 242,235 150,280 100,280" fill="none" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4 3" />
+          <text x="252" y="222" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">g(x)</text>
+          <text x="195" y="270" fill="#2563eb" stroke="none" className="font-sans text-[10px] font-normal">a = 2</text>
+
+          {/* 2) a = 4: вершина строго зафиксирована в точке (8;4)->(388,136). */}
+          {/* График сделан более округлым, круче сбегая из вершины строго по касательной траектории к синей линии f(x) */}
+          <path d="M 388,136 C 360,165 300,205 244,208 C 210,210 145,214 100,217" fill="none" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4 3" />
+          <text x="396" y="150" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">g(x)</text>
+          <text x="290" y="250" fill="#dc2626" stroke="none" className="font-sans text-[10px] font-normal">a = 4</text>
+
+          {/* Ключевые маркерные точки */}
+          <circle cx="244" cy="208" r="3.5" fill="#2563eb" />
+          <text x="235" y="195" fill="#2563eb" stroke="none" className="font-sans text-xs font-normal">(4; 2)</text>
+
+          <circle cx="388" cy="136" r="3.5" fill="#dc2626" />
+          <text x="360" y="126" fill="#dc2626" stroke="none" className="font-sans text-xs font-normal">(8; 4)</text>
+        </svg>
+      </div>
+
+
+
+      <p>Рассмотрим граничные положения аналитически:</p>
+      
+      <p>
+        <b>(I) Проход графика <InlineMath math={`g(x)`} /> через начало координат <InlineMath math={`(0; 0)`} />:</b>
+      </p>
+      <BlockMath math={`g(0) = 0 \\iff a - \\sqrt{2a} = 0 \\iff \\sqrt{2a} = a \\implies 2a = a^2 \\implies a(a - 2) = 0.`} />
+      <p>
+        Учитывая <InlineMath math={`a > 0`} />, получаем <InlineMath math={`a = 2`} />. При <InlineMath math={`a = 2`} /> графики пересекаются в начале координат и в вершине <InlineMath math={`(4; 2)`} />, которая лежит на кривой <InlineMath math={`f(x)`} />. Значит, уравнение имеет ровно два различных корня. Значение <InlineMath math={`a = 2`} /> <b>включается</b> в ответ.
+      </p>
+      
+      <p>
+        <b>(II) Касание графиков функций <InlineMath math={`f(x)`} /> и <InlineMath math={`g(x)`} />:</b>
+      </p>
+      <p>В точке касания должны совпадать значения их производных:</p>
+      <BlockMath math={`f'(x) = \\frac{1}{2\\sqrt{x}}, \\quad g'(x) = \\frac{1}{2\\sqrt{2a - x}} \\implies \\frac{1}{2\\sqrt{x}} = \\frac{1}{2\\sqrt{2a - x}} \\iff x = a.`} />
+      <p>Подставим точку предполагаемого касания <InlineMath math={`x = a`} /> в исходное уравнение:</p>
+      <BlockMath math={`\\sqrt{a} + \\sqrt{2a - a} = a \\iff 2\\sqrt{a} = a \\implies 4a = a^2 \\implies a(a - 4) = 0.`} />
+      <p>
+        Получаем критическое значение <InlineMath math={`a = 4`} />. При этом значении графики касаются, что дает единственный корень, поэтому точка <InlineMath math={`a = 4`} /> <b>выкалывается</b>.
+      </p>
+      
+      <p>
+        При всех промежуточных значениях параметров <InlineMath math={`a \\in [2; 4)`} /> график <InlineMath math={`g(x)`} /> пересекает ветвь <InlineMath math={`f(x)`} /> ровно в двух различных точках.
+      </p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in [2; 4)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 41,
+  title: 'Задача 41 (ЕГЭ 2022, резервная волна)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '\\sqrt{x^4 - 9x^2 + a^2} = x^2 + 3x - a',
+  textAfter: <span>имеет ровно 3 различных решения.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+            <p>
+        Исходное уравнение равносильно следующей системе:
+      </p>
+      <BlockMath math={`\\begin{cases} x^2 + 3x - a \\geq 0, \\\\ x^4 - 9x^2 + a^2 = (x^2 + 3x - a)^2. \\end{cases}`} />
+      
+      <p>
+        Ограничение <InlineMath math={`x^2 + 3x - a \\geq 0 \\iff a \\leq x^2 + 3x`} /> задает область допустимых значений (ОДЗ) на плоскости <InlineMath math={`xOa`} />, расположенную ниже параболы.
+      </p>
+      
+      <p>Раскроем квадрат в правой части второго уравнения:</p>
+      <BlockMath math={`x^4 - 9x^2 + a^2 = x^4 + 9x^2 + a^2 + 6x^3 - 2ax^2 - 6ax.`} />
+      <p>Приведем подобные слагаемые и перенесем всё в одну сторону:</p>
+      <BlockMath math={`18x^2 + 6x^3 - 2ax^2 - 6ax = 0 \\iff 2x(3x^2 + 9x - ax - 3a) = 0.`} />
+      
+      <p>Сгруппируем слагаемые внутри скобки:</p>
+      <BlockMath math={`2x(3x(x + 3) - a(x + 3)) = 0 \\iff 2x(x + 3)(3x - a) = 0.`} />
+      
+      <p>Таким образом, уравнение распадается на три независимые ветви решений:</p>
+      <BlockMath math={`x_1 = 0, \\quad x_2 = -3, \\quad x_3 = \\frac{a}{3} \\implies a = 3x.`} />
+      
+      <p>
+        Решим задачу графически в системе координат <InlineMath math={`xOa`} />. График представляет собой две вертикальные прямые <InlineMath math={`x = 0`} />, <InlineMath math={`x = -3`} /> и наклонную прямую <InlineMath math={`a = 3x`} />, рассматриваемые только в области ОДЗ (<InlineMath math={`a \\leq x^2 + 3x`} />).
+      </p>
+      
+      <p>Найдем точки пересечения прямых с границей ОДЗ (параболой <InlineMath math={`y(x) = x^2 + 3x`} />):</p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>Для <InlineMath math={`x = 0`} />: <InlineMath math={`a = 0^2 + 3 \\cdot 0 = 0`} />. Получаем точку <InlineMath math={`O(0;0)`} />. Соответственно, корень <InlineMath math={`x_1 = 0`} /> существует при <InlineMath math={`a \\leq 0`} />.</li>
+        <li>Для <InlineMath math={`x = -3`} />: <InlineMath math={`a = (-3)^2 + 3 \\cdot (-3) = 0`} />. Получаем точку <InlineMath math={`A(-3;0)`} />. Корень <InlineMath math={`x_2 = -3`} /> существует при <InlineMath math={`a \\leq 0`} />.</li>
+        <li>Для <InlineMath math={`a = 3x`} />: приравняем к параболе: <InlineMath math={`3x = x^2 + 3x \\iff x^2 = 0 \\implies x = 0`} />. Прямая касается параболы в точке <InlineMath math={`O(0;0)`} />. Неравенство <InlineMath math={`3x \\leq x^2 + 3x \\iff x^2 \\geq 0`} /> выполняется всегда, то есть корень <InlineMath math={`x_3`} /> существует при любых <InlineMath math={`a`} />.</li>
+      </ul>
+      
+      <p>Найдем точки взаимного пересечения корней между собой:</p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li><InlineMath math={`x_1 = x_2 \\implies 0 = -3`} /> (нет пересечений).</li>
+        <li><InlineMath math={`x_1 = x_3 \\implies 0 = \\frac{a}{3} \\implies a = 0`} /> (корни склеиваются в точке <InlineMath math={`O`} bitumen />).</li>
+        <li><InlineMath math={`x_2 = x_3 \\implies -3 = \\frac{a}{3} \\implies a = -9`} /> (корни склеиваются в точке <InlineMath math={`B(-3; -9)`} />).</li>
+      </ul>
+
+      {/* Высокоточный SVG-график Задачи 41 с точной параболой ОДЗ */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 460 520" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Статическая координатная сетка */}
+          <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
+            <line x1="60" y1="148" x2="420" y2="148" />
+            <line x1="60" y1="220" x2="420" y2="220" />
+            <line x1="60" y1="292" x2="420" y2="292" />
+            <line x1="60" y1="364" x2="420" y2="364" />
+            <line x1="60" y1="436" x2="420" y2="436" />
+            <line x1="156" y1="20" x2="156" y2="480" />
+            <line x1="252" y1="20" x2="252" y2="480" />
+          </g>
+
+          {/* Оси координат (Центр зафиксирован на x=252, y=148. Масштаб: 1 ед_x = 32px, 1 ед_y = 36px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="40" y1="148" x2="420" y2="148" />
+            <line x1="252" y1="20" x2="252" y2="480" />
+          </g>
+          <path d="M 420,148 L 412,144 M 420,148 L 412,152" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 252,20 L 248,28 M 252,20 L 256,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="430" y="152" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="238" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+          <text x="238" y="162" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+          
+          <line x1="284" y1="144" x2="284" y2="152" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <text x="281" y="164" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[11px]">1</text>
+
+          {/* Сдвинутая серая пунктирная парабола a = x^2 + 3x */}
+          {/* Проходит СТРОГО через (-3;0) -> (156,148) и (0;0) -> (252,148). Вершина в x = -1.5 -> 204, y = -2.25 -> 229 */}
+          <path d="M 124,40 C 136,110 170,229 204,229 C 238,229 244,170 274,40" fill="none" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
+          <text x="280" y="44" fill="#94a3b8" stroke="none" className="font-sans text-xs">a = x² + 3x</text>
+
+
+          {/* Сплошные синие рабочие линии корней под ОДЗ */}
+          <line x1="252" y1="148" x2="252" y2="500" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="258" y="455" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">x = 0</text>
+
+          <line x1="156" y1="148" x2="156" y2="500" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="122" y="425" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">x = -3</text>
+
+          <line x1="146" y1="500" x2="280" y2="52" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="284" y="65" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">a = 3x</text>
+
+          {/* Красные горизонтальные пунктирные линии уровней пересечений */}
+          <g stroke="#dc2626" strokeWidth="1.1" strokeDasharray="4 3">
+            <line x1="40" y1="148" x2="420" y2="148" />
+            <line x1="40" y1="472" x2="420" y2="472" />
+          </g>
+          <text x="236" y="468" fill="#dc2626" stroke="none" className="font-sans text-xs">-9</text>
+
+          {/* Узловые маркерные точки */}
+          <circle cx="252" cy="148" r="3.5" fill="#000000" />
+          <text x="238" y="142" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">O</text>
+          <circle cx="156" cy="148" r="3.5" fill="#000000" />
+          <text x="142" y="140" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">A(-3)</text>
+          <circle cx="156" cy="472" r="3.5" fill="#000000" />
+          <text x="74" y="476" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">B(-3; -9)</text>
+        </svg>
+      </div>
+
+            <p>Исследуем количество решений с помощью горизонтальной линии:</p>
+        <ul className="list-bullet pl-5 space-y-1.5">
+        <li>
+          1. При <InlineMath math={`a > 0`} />: прямые <InlineMath math={`x = 0`} /> и <InlineMath math={`x = -3`} /> исключены по ОДЗ. Прямая уровня <InlineMath math={`a`} /> пересекает только наклонную прямую <InlineMath math={`a = 3x`} /> — 1 решение.
+        </li>
+        <li>
+          2. При <InlineMath math={`a = 0`} />: прямая проходит через точки <InlineMath math={`O(0;0)`} /> и <InlineMath math={`A(-3;0)`} />. В точке <InlineMath math={`O`} /> совпадают линии <InlineMath math={`x = 0`} /> и <InlineMath math={`a = 3x`} />. Имеем два различных корня: <InlineMath math={`x = 0`} /> и <InlineMath math={`x = -3`} /> — 2 решения.
+        </li>
+        <li>
+          3. При <InlineMath math={`a \\in (-9; 0)`} />: прямая пересекает все три независимые линии графика (<InlineMath math={`x = 0, \\ x = -3, \\ a = 3x`} />), при этом все три точки пересечения различны — <b>ровно 3 решения</b> (подходит).
+        </li>
+        <li>
+          4. При <InlineMath math={`a = -9`} />: прямая проходит через точку <InlineMath math={`B(-3; -9)`} />, где пересекаются линии <InlineMath math={`x = -3`} /> и <InlineMath math={`a = 3x`} bitumen />. Имеем два корня: <InlineMath math={`x = -3`} /> и <InlineMath math={`x = 0`} /> — 2 решения.
+        </li>
+        <li>
+          5. При <InlineMath math={`a < -9`} />: прямая пересекает все три синие линии, давая 3 различных решения — <b>ровно 3 решения</b> (подходит).
+        </li>
+      </ul>
+
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-\\infty; -9) \\cup (-9; 0)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 42,
+  title: 'Задача 42 (ЕГЭ)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: 'a|x + 1| + (1 - a)|x - 1| + 2 = 0',
+  textAfter: <span>имеет ровно два различных решения.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Перепишем уравнение в виде равенства двух функций:
+      </p>
+      <BlockMath math={`a|x + 1| + (1 - a)|x - 1| = -2.`} />
+      <p>
+        Пусть <InlineMath math={`f(x) = a|x + 1| + (1 - a)|x - 1|`} />, а <InlineMath math={`g(x) = -2`} />. 
+        Найдем нули подмодульных выражений: <InlineMath math={`x = \\pm 1`} />. Раскроем модули на каждом из получившихся интервалов в соответствии с расстановкой знаков:
+      </p>
+      
+      <p>
+        <b>1)</b> При <InlineMath math={`x \\in (-\\infty; -1)`} />:
+      </p>
+      <BlockMath math={`f(x) = -a(x + 1) - (1 - a)(x - 1) = -ax - a - x + 1 + ax - a = -x - 2a + 1.`} />
+      
+      <p>
+        <b>2)</b> При <InlineMath math={`x \\in [-1; 1]`} />:
+      </p>
+      <BlockMath math={`f(x) = a(x + 1) - (1 - a)(x - 1) = ax + a - x + 1 + ax - a = (2a - 1)x + 1.`} />
+      
+      <p>
+        <b>3)</b> При <InlineMath math={`x \\in (1; +\\infty)`} />:
+      </p>
+      <BlockMath math={`f(x) = a(x + 1) + (1 - a)(x - 1) = ax + a + x - 1 - ax + a = x + 2a - 1.`} />
+      
+      <p>Вычислим значения функции <InlineMath math={`f(x)`} /> в точках излома ломаной:</p>
+      <BlockMath math={`f(-1) = 2 - 2a, \\quad f(1) = 2a.`} />
+      
+      <p>
+        Поведение центрального звена ломаной зависит от знака углового коэффициента <InlineMath math={`k = 2a - 1`} />. Рассмотрим три возможных случая:
+      </p>
+      
+      <p>
+        <b>I Случай</b> <InlineMath math={`2a - 1 > 0 \\iff a > \\frac{1}{2}`} />: В этом случае центральное звено ломаной возрастает, поэтому <InlineMath math={`f(-1) < f(1)`} />. Боковые лучи направлены вверх (<InlineMath math={`k_1 = -1, \\ k_3 = 1`} />). График представляет собой ломаную в форме «корыта» со скошенным дном, где наинизшей точкой является левый излом <InlineMath math={`x = -1`} />.
+      </p>
+      <p>
+        Чтобы функции <InlineMath math={`f(x)`} /> и <InlineMath math={`g(x)`} /> имели ровно две общие точки, необходимо и достаточно, чтобы горизонтальная прямая <InlineMath math={`y = -2`} /> проходила строго выше этой наинизшей точки излома:
+      </p>
+      <BlockMath math={`f(-1) < -2 \\iff 2 - 2a < -2 \\iff 4 < 2a \\iff a > 2.`} />
+      <p>С учетом условия <InlineMath math={`a > \\frac{1}{2}`} /> получаем первый интервал: <InlineMath math={`a \\in (2; +\\infty)`} />.</p>
+
+      {/* Высокоточный и наглядный SVG-график для Случая I (max-w-[420px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 400 240" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Оси координат (Начало (0,0) зафиксировано на x=200, y=170. Масштаб: 1 ед = 45px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="60" y1="170" x2="340" y2="170" /> {/* Ox */}
+            <line x1="200" y1="30" x2="200" y2="210" />  {/* Oy */}
+          </g>
+          <path d="M 340,170 L 332,166 M 340,170 L 332,174" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 200,30 L 196,38 M 200,30 L 204,38" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="350" y="174" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="186" y="25" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="186" y="182" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Метки -1 и 1 на оси Ox */}
+          <line x1="155" y1="166" x2="155" y2="174" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <text x="148" y="192" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">-1</text>
+          <line x1="245" y1="166" x2="245" y2="174" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <text x="242" y="192" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">1</text>
+
+          {/* Ломаная f(x): Изломы в x=-1 (155, 140) и x=1 (245, 95) */}
+          <path d="M 110,60 L 155,140 L 245,95 L 290,30" fill="none" stroke="#000000" strokeWidth="2.5" className="dark:stroke-slate-200" />
+          <circle cx="155" cy="140" r="3" fill="#000000" className="dark:fill-slate-200" />
+          <circle cx="245" cy="95" r="3" fill="#000000" className="dark:fill-slate-200" />
+
+          {/* Зеленые пунктирные линии уровней ординат изломов */}
+          <line x1="155" y1="140" x2="200" y2="140" stroke="#16a34a" strokeWidth="1" strokeDasharray="3 3" />
+          <text x="206" y="144" fill="#16a34a" stroke="none" className="font-sans text-[11px]">2 - 2a</text>
+          
+          <line x1="245" y1="95" x2="200" y2="95" stroke="#16a34a" strokeWidth="1" strokeDasharray="3 3" />
+          <text x="175" y="99" fill="#16a34a" stroke="none" className="font-sans text-[11px]">2a</text>
+        </svg>
+      </div>
+
+      <p>
+        <b>II Случай</b> <InlineMath math={`a = \\frac{1}{2}`} />: Подставим <InlineMath math={`a = \\frac{1}{2}`} /> в исходное уравнение:
+      </p>
+      <BlockMath math={`\\frac{1}{2}|x + 1| + \\frac{1}{2}|x - 1| = -2 \\iff |x + 1| + |x - 1| = -4.`} />
+      <p>Так как сумма модулей всегда неотрицательна, данное уравнение не имеет решений (<InlineMath math={`a \\in \\varnothing`} />).</p>
+      
+      <p>
+        <b>III Случай</b> <InlineMath math={`2a - 1 < 0 \\iff a < \\frac{1}{2}`} />: В этом случае центральное звено ломаной убывает, поэтому <InlineMath math={`f(-1) > f(1)`} />. Боковые лучи по-прежнему направлены вверх. Ломаная снова имеет форму «корыта», но её наинизшей точкой является правый излом <InlineMath math={`x = 1`} />.
+      </p>
+      <p>
+        Чтобы функции <InlineMath math={`f(x)`} /> и <InlineMath math={`g(x)`} /> имели ровно две общие точки, прямая <InlineMath math={`y = -2`} /> обязана проходить строго выше второго излома:
+      </p>
+      <BlockMath math={`f(1) < -2 \\iff 2a < -2 \\iff a < -1.`} />
+      <p>С учетом условия <InlineMath math={`a < \\frac{1}{2}`} /> получаем второй интервал: <InlineMath math={`a \\in (-\\infty; -1)`} />.</p>
+
+      {/* Высокоточный и наглядный SVG-график для Случая III (max-w-[420px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 400 240" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Оси координат (Начало (0,0) зафиксировано на x=200, y=170. Масштаб: 1 ед = 45px) */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="60" y1="170" x2="340" y2="170" /> {/* Ox */}
+            <line x1="200" y1="30" x2="200" y2="210" />  {/* Oy */}
+          </g>
+          <path d="M 340,170 L 332,166 M 340,170 L 332,174" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 200,30 L 196,38 M 200,30 L 204,38" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="350" y="174" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="186" y="25" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="186" y="182" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Метки -1 и 1 на оси Ox */}
+          <line x1="155" y1="166" x2="155" y2="174" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <text x="148" y="192" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">-1</text>
+          <line x1="245" y1="166" x2="245" y2="174" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <text x="242" y="192" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">1</text>
+
+          {/* Ломаная f(x): Изломы в x=-1 (155, 95) и x=1 (245, 140) */}
+          <path d="M 110,30 L 155,95 L 245,140 L 290,60" fill="none" stroke="#000000" strokeWidth="2.5" className="dark:stroke-slate-200" />
+          <circle cx="155" cy="95" r="3" fill="#000000" className="dark:fill-slate-200" />
+          <circle cx="245" cy="140" r="3" fill="#000000" className="dark:fill-slate-200" />
+
+          {/* Зеленые пунктирные линии уровней ординат изломов */}
+          <line x1="155" y1="95" x2="200" y2="95" stroke="#16a34a" strokeWidth="1" strokeDasharray="3 3" />
+          <text x="206" y="99" fill="#16a34a" stroke="none" className="font-sans text-[11px]">2 - 2a</text>
+          
+          <line x1="245" y1="140" x2="200" y2="140" stroke="#16a34a" strokeWidth="1" strokeDasharray="3 3" />
+          <text x="175" y="144" fill="#16a34a" stroke="none" className="font-sans text-[11px]">2a</text>
+
+         </svg>
+      </div>
+
+      <p>Объединяя результаты всех рассмотренных случаев, получаем итоговый ответ.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math="a \in (-\infty; -1) \cup (2; +\infty)" />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 43,
+  title: 'Задача 43 (ЕГЭ-2021. Досрочная волна)',
+  textBefore: 'Найдите все значения a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} 2^{\\ln y} = 4^{|x|}, \\\\ \\log_2(x^4y^2 + 2a^2) = \\log_2(1 - ax^2y^2) + 1 \\end{cases}',
+  textAfter: <span>имеет ровно одно решение.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Заметим, что если пара <InlineMath math={`(x_0; y_0)`} /> — решение, то <InlineMath math={`(-x_0; y_0)`} /> — также решение. Для единственности решения необходимо выполнение условия <InlineMath math={`x = 0`} />.
+      </p>
+      
+      <p>Подставим <InlineMath math={`x = 0`} /> в исходную систему для поиска критических значений параметра <InlineMath math={`a`} />:</p>
+      <BlockMath math={`\\begin{cases} 2^{\\ln y} = 4^0 \\\\ \\log_2(2a^2) = \\log_2(1) + 1 \\end{cases} \\iff \\begin{cases} \\ln y = 0 \\\\ \\log_2(2a^2) = 1 \\end{cases} \\iff \\begin{cases} y = 1 \\\\ 2a^2 = 2 \\implies a = \\pm 1 \\end{cases}`} />
+      
+      <p>Проведем проверку найденных значений <InlineMath math={`a`} />, предварительно упростив первое уравнение для любого <InlineMath math={`a`} />:</p>
+      <BlockMath math={`2^{\\ln y} = 2^{2|x|} \\iff \\ln y = 2|x| \\iff y = e^{2|x|} \\quad \\text{(причем } y \\geq 1\\text{)}.`} />
+      
+      <p>
+        <b>I Проверка</b> <InlineMath math={`a = -1`} />: Второе уравнение принимает вид:
+      </p>
+      <BlockMath math={`\\log_2(x^4y^2 + 2) = \\log_2(1 + x^2y^2) + \\log_2 2 \\iff \\log_2(x^4y^2 + 2) = \\log_2(2 + 2x^2y^2).`} />
+      
+      <p>Потенциируя полученное равенство, имеем:</p>
+      <BlockMath math={`x^4y^2 + 2 = 2 + 2x^2y^2 \\iff x^2y^2(x^2 - 2) = 0 \\iff \\left[ \\begin{array}{l} x^2y^2 = 0 \\\\ x^2 = 2 \\end{array} \\right.`} />
+      
+      <p>Так как <InlineMath math={`y \\geq 1`} bitumen />, получаем корни <InlineMath math={`x = 0`} /> и <InlineMath math={`x = \\pm\\sqrt{2}`} />. Система имеет не менее 3 решений — <InlineMath math={`a = -1`} /> не подходит.</p>
+
+            <p>
+        <b>II Проверка</b> <InlineMath math={`a = 1`} />: Второе уравнение принимает вид:
+      </p>
+      <BlockMath math={`\\log_2(x^4y^2 + 2) = \\log_2(1 - x^2y^2) + \\log_2 2 \\iff \\begin{cases} x^4y^2 + 2 = 2(1 - x^2y^2), \\\\ 1 - x^2y^2 > 0. \\end{cases}`} />
+      
+      <p>Преобразуем уравнение полученной системы:</p>
+      <BlockMath math={`x^4y^2 + 2 = 2 - 2x^2y^2 \\iff x^4y^2 + 2x^2y^2 = 0 \\iff x^2y^2(x^2 + 2) = 0.`} />
+      
+      <p>Поскольку выражение <InlineMath math={`x^2 + 2 \\geq 2 > 0`} /> при любых действительных значениях переменной, уравнение равносильно:</p>
+      <BlockMath math={`x^2y^2 = 0 \\implies x = 0 \\quad \\text{(так как } y \\geq 1\\text{)}.`} />
+      
+      <p>Подставив найденное значение <InlineMath math={`x = 0`} /> в строгое условие неравенства ОДЗ логарифма <InlineMath math={`1 - x^2y^2 > 0`} />, получаем истинное числовое неравенство <InlineMath math={`1 > 0`} /> (верно). Единственное решение системы — пара чисел <InlineMath math={`(0; 1)`} />. Значение параметра <InlineMath math={`a = 1`} /> <b>подходит</b>.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a = 1`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 44,
+  title: 'Задача 44',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '|x^2 - a^2| + 20 = 4 \\cdot |x - a| + 5 \\cdot |x + a|',
+  textAfter: <span>имеет ровно два положительных корня.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Используя свойство модуля <InlineMath math="|x^2 - a^2| = |x - a| \cdot |x + a|" />, преобразуем уравнение методом группировки:
+      </p>
+      <BlockMath math="|x - a| \cdot |x + a| - 4|x - a| - 5|x + a| + 20 = 0 \iff (|x - a| - 5)(|x + a| - 4) = 0." />
+      
+      <p>Данное уравнение равносильно совокупности четырех прямых линий в плоскости <InlineMath math="xOa" />:</p>
+      <BlockMath math="\left[ \begin{array}{l} |x - a| = 5 \\ |x + a| = 4 \end{array} \right. \iff \left[ \begin{array}{ll} a = x - 5 & (l_1), \\ a = x + 5 & (l_2), \\ a = 4 - x & (l_3), \\ a = -4 - x & (l_4). \end{array} \right." />
+      
+      <p>
+        Изобразим эти прямые линии в системе координат <InlineMath math="xOa" />. По условию задачи нас интересуют только положительные корни <InlineMath math="x > 0" />, поэтому мы рассматриваем исключительно части прямых, лежащие строго в правой полуплоскости.
+      </p>
+      
+      <p>Найдем ординаты точек пересечения (границ и изломов) этих линий с осью <InlineMath math="Oa" /> (при <InlineMath math="x = 0" />) и между собой:</p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>Пересечения с осью <InlineMath math="Oa" />: для <InlineMath math="l_1 \implies a = -5" />; для <InlineMath math="l_2 \implies a = 5" />; для <InlineMath math="l_3 \implies a = 4" />; для <InlineMath math="l_4 \implies a = -4" />.</li>
+        <li>Пересечение <InlineMath math="l_1" /> и <InlineMath math="l_3" />: <InlineMath math="x - 5 = 4 - x \iff 2x = 9 \implies x = 4.5" />. Получаем точку пересечения <InlineMath math="M(4.5; -0.5)" />.</li>
+        <li>Пересечение <InlineMath math="l_1" /> и <InlineMath math="l_4" />: <InlineMath math="x - 5 = -4 - x \iff 2x = 1 \implies x = 0.5" />. Получаем точку <InlineMath math="N(0.5; -4.5)" />.</li>
+        <li>Пересечение <InlineMath math="l_2" /> и <InlineMath math="l_3" />: <InlineMath math="x + 5 = 4 - x \iff 2x = -1 \implies x = -0.5" /> (не лежит в правой полуплоскости).</li>
+        <li>Пересечение <InlineMath math="l_2" /> и <InlineMath math="l_4" />: <InlineMath math="x + 5 = -4 - x \iff 2x = -9 \implies x = -4.5" /> (не лежит в правой полуплоскости).</li>
+      </ul>
+
+
+            {/* Высокоточный и наглядный SVG-график Задачи 44 (max-w-[440px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 420 540" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Координатная сетка (Начало (0,0) зафиксировано на x=120, y=240) */}
+          <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
+            <line x1="72" y1="20" x2="72" y2="520" />
+            <line x1="120" y1="20" x2="120" y2="520" />
+            <line x1="168" y1="20" x2="168" y2="520" />
+            <line x1="216" y1="20" x2="216" y2="520" />
+            <line x1="264" y1="20" x2="264" y2="520" />
+            <line x1="312" y1="20" x2="312" y2="520" />
+            <line x1="360" y1="20" x2="360" y2="520" />
+            <line x1="40" y1="48" x2="380" y2="48" />
+            <line x1="40" y1="96" x2="380" y2="96" />
+            <line x1="40" y1="144" x2="380" y2="144" />
+            <line x1="40" y1="192" x2="380" y2="192" />
+            <line x1="40" y1="240" x2="380" y2="240" />
+            <line x1="40" y1="288" x2="380" y2="288" />
+            <line x1="40" y1="336" x2="380" y2="336" />
+            <line x1="40" y1="384" x2="380" y2="384" />
+            <line x1="40" y1="432" x2="380" y2="432" />
+            <line x1="40" y1="480" x2="380" y2="480" />
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="40" y1="240" x2="380" y2="240" /> {/* Axis Ox */}
+            <line x1="120" y1="20" x2="120" y2="520" />  {/* Axis Oa */}
+          </g>
+          <path d="M 380,240 L 372,236 M 380,240 L 372,244" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 120,20 L 116,28 M 120,20 L 124,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="392" y="244" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="106" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+          <text x="106" y="254" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Единичные штрихи */}
+          <line x1="144" y1="236" x2="144" y2="244" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <text x="141" y="256" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">1</text>
+          <line x1="116" y1="216" x2="124" y2="216" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <text x="104" y="220" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">1</text>
+
+          {/* Четыре синих луча корней в правой полуплоскости x > 0 */}
+          <line x1="120" y1="120" x2="220" y2="20" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="225" y="24" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₂</text>
+
+          <line x1="120" y1="144" x2="340" y2="364" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="344" y="375" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₃</text>
+
+          <line x1="120" y1="360" x2="360" y2="120" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="364" y="120" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₁</text>
+
+          <line x1="120" y1="336" x2="200" y2="416" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="204" y="425" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₄</text>
+
+          {/* Выколотые граничные точки на оси Oa (x = 0) */}
+          <circle cx="120" cy="120" r="3" fill="white" stroke="#2563eb" strokeWidth="1.5" />
+          <text x="128" y="124" fill="#64748b" stroke="none" className="font-sans text-xs">5</text>
+          
+          <circle cx="120" cy="144" r="3" fill="white" stroke="#2563eb" strokeWidth="1.5" />
+          <text x="128" y="148" fill="#64748b" stroke="none" className="font-sans text-xs">4</text>
+          
+          <circle cx="120" cy="336" r="3" fill="white" stroke="#2563eb" strokeWidth="1.5" />
+          <text x="128" y="340" fill="#64748b" stroke="none" className="font-sans text-xs">-4</text>
+          
+          <circle cx="120" cy="360" r="3" fill="white" stroke="#2563eb" strokeWidth="1.5" />
+          <text x="128" y="364" fill="#64748b" stroke="none" className="font-sans text-xs">-5</text>
+
+          {/* Узловые заполненные точки пересечений */}
+          <circle cx="228" cy="252" r="3.5" fill="#000000" />
+          <text x="236" y="256" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">M</text>
+
+          <circle cx="132" cy="348" r="3.5" fill="#000000" />
+          <text x="138" y="358" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">N</text>
+
+          {/* Горизонтальные сканирующие маркерные линии параметров уровней (красный пунктир) */}
+          <g stroke="#dc2626" strokeWidth="1" strokeDasharray="3 3">
+            <line x1="40" y1="120" x2="380" y2="120" />
+            <text x="384" y="124" fill="#dc2626" stroke="none" className="font-sans text-[10px]">a = 5</text>
+
+            <line x1="40" y1="144" x2="380" y2="144" />
+            <text x="384" y="148" fill="#dc2626" stroke="none" className="font-sans text-[10px]">a = 4</text>
+
+            <line x1="40" y1="252" x2="380" y2="252" />
+            <text x="384" y="256" fill="#dc2626" stroke="none" className="font-sans text-[10px]">a = -0.5</text>
+
+            <line x1="40" y1="336" x2="380" y2="336" />
+            <text x="384" y="340" fill="#dc2626" stroke="none" className="font-sans text-[10px]">a = -4</text>
+
+            <line x1="40" y1="348" x2="380" y2="348" />
+            <text x="384" y="352" fill="#dc2626" stroke="none" className="font-sans text-[10px]">a = -4.5</text>
+
+            <line x1="40" y1="360" x2="380" y2="360" />
+            <text x="384" y="364" fill="#dc2626" stroke="none" className="font-sans text-[10px]">a = -5</text>
+          </g>
+        </svg>
+      </div>
+
+
+            <p>
+        Количество положительных корней исходного уравнения равно числу точек пересечения синих лучей с горизонтальной сканирующей прямой уровня <InlineMath math="a" />:
+      </p>
+      <ul className="list-bullet pl-5 space-y-1.5">
+        <li>
+          1. При <InlineMath math="a \leq -5" />: прямая пересекает лучи <InlineMath math="l_3" /> и <InlineMath math="l_4" /> — <b>ровно 2 решения</b>.
+        </li>
+        <li>
+          2. При <InlineMath math="a \in (-5; -4.5)" />: прямая пересекает лучи <InlineMath math="l_1, \ l_3" /> и <InlineMath math="l_4" /> — 3 решения.
+        </li>
+        <li>
+          3. При <InlineMath math="a = -4.5" />: прямая проходит через узел пересечения <InlineMath math="N(0.5; -4.5)" /> линий <InlineMath math="l_1" /> и <InlineMath math="l_4" />, а также пересекает <InlineMath math="l_3" /> — <b>ровно 2 решения</b>.
+        </li>
+        <li>
+          4. При <InlineMath math="a \in (-4.5; -4)" />: прямая пересекает лучи <InlineMath math="l_1, \ l_3" /> и <InlineMath math="l_4" /> — 3 решения.
+        </li>
+        <li>
+          5. При <InlineMath math="a \in [-4; 4)" />: на уровне <InlineMath math="a = -0.5" /> прямая проходит через точку <InlineMath math="M" />, где <InlineMath math="l_1 = l_3" />, давая 1 решение. На остальной части интервала <InlineMath math="[-4; 4)" /> прямая пересекает лучи <InlineMath math="l_1" /> и <InlineMath math="l_3" /> — <b>ровно 2 решения</b>.
+        </li>
+        <li>
+          6. При <InlineMath math="a \in [4; 5]" />: луч <InlineMath math="l_3" /> ушел влево, прямая пересекает только луч <InlineMath math="l_1" /> — 1 решение.
+        </li>
+        <li>
+          7. При <InlineMath math="a > 5" />: прямая пересекает уходящие вправо лучи <InlineMath math="l_1" /> и <InlineMath math="l_2" /> — <b>ровно 2 решения</b>.
+        </li>
+      </ul>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math="a \in (-\infty; -5] \cup \{-4.5\} \cup [-4; -0.5) \cup (-0.5; 4) \cup (5; +\infty)" />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 45,
+  title: 'Задача 45 (ЕГЭ 2021, Основная волна)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '|x^2 - a^2| = |x + a| \\cdot \\sqrt{a^2 + 3x - 6a}',
+  textAfter: <span>имеет ровно два различных корня.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Используя свойство модуля <InlineMath math={`|x^2 - a^2| = |x + a| \\cdot |x - a|`} />, перенесем все слагаемые в левую часть и вынесем общий множитель за скобки:
+      </p>
+      <BlockMath math={`|x + a| \\cdot \\left(|x - a| - \\sqrt{a^2 + 3x - 6a}\\right) = 0.`} />
+      
+      <p>Данное уравнение равносильно совокупности:</p>
+      <BlockMath math={`\\left[ \\begin{array}{l} |x + a| = 0, \\\\ \\begin{cases} |x - a| = \\sqrt{a^2 + 3x - 6a}, \\\\ a^2 + 3x - 6a \\geq 0 \\end{cases} \\end{array} \\right. \\iff \\left[ \\begin{array}{l} x = -a \\quad (l_1), \\\\ \\begin{cases} (x - a)^2 = a^2 + 3x - 6a, \\\\ a^2 + 3x - 6a \\geq 0 \\end{cases} \\end{array} \\right.`} />
+      
+      <p>Преобразуем уравнение внутри второй системы:</p>
+      <BlockMath math={`x^2 - 2ax + a^2 = a^2 + 3x - 6a \\iff x^2 - (2a + 3)x + 6a = 0.`} />
+      
+      <p>По теореме Виета корнями этого квадратного уравнения являются:</p>
+      <BlockMath math={`x = 2a \\quad (l_2) \\quad \\text{и} \\quad x = 3 \\quad (l_3).`} />
+      
+      <p>
+        Ограничение системы (ОДЗ) перепишем в виде: <InlineMath math={`3x \\geq 6a - a^2 \\iff x \\geq 2a - \\frac{1}{3}a^2`} />. Графически это область, лежащая правее или на параболе <InlineMath math={`x(a) = -\\frac{1}{3}a^2 + 2a`} /> с вершиной в точке <InlineMath math={`V(3; 3)`} />.
+      </p>
+      
+      <p>Определим области существования корней, подставив их в неравенство ОДЗ:</p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li>Для <InlineMath math={`x_1 = -a`} />: <InlineMath math={`-a \\geq 2a - \\frac{1}{3}a^2 \\iff a^2 - 9a \\geq 0 \\implies a \\in (-\\infty; 0] \\cup [9; +\\infty)`} />.</li>
+        <li>Для <InlineMath math={`x_2 = 2a`} />: <InlineMath math={`2a \\geq 2a - \\frac{1}{3}a^2 \\iff a^2 \\geq 0`} /> (выполняется всегда).</li>
+        <li>Для <InlineMath math={`x_3 = 3`} />: <InlineMath math={`3 \\geq 2a - \\frac{1}{3}a^2 \\iff a^2 - 6a + 9 \\geq 0 \\iff (a - 3)^2 \\geq 0`} /> (выполняется всегда).</li>
+      </ul>
+      
+      <p>Найдем точки взаимного пересечения (склеивания) прямых линий между собой:</p>
+      <ul className="list-bullet pl-5 space-y-1">
+        <li><InlineMath math={`l_1 \\cap l_2 \\implies -a = 2a \\iff a = 0`} /> (точка <InlineMath math={`O(0;0)`} />).</li>
+        <li><InlineMath math={`l_1 \\cap l_3 \\implies -a = 3 \\iff a = -3`} /> (точка <InlineMath math={`A(3;-3)`} />).</li>
+        <li><InlineMath math={`l_2 \\cap l_3 \\implies 2a = 3 \\iff a = 1.5`} /> (точка <InlineMath math={`B(3;1.5)`} />).</li>
+      </ul>
+
+      {/* Высокоточный и наглядный SVG-график Задачи 45 (max-w-[440px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 440 440" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Координатная сетка */}
+          <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
+            <line x1="40" y1="20" x2="40" y2="420" />
+            <line x1="76" y1="20" x2="76" y2="420" />
+            <line x1="112" y1="20" x2="112" y2="420" />
+            <line x1="148" y1="20" x2="148" y2="420" />
+            <line x1="184" y1="20" x2="184" y2="420" />
+            <line x1="220" y1="20" x2="220" y2="420" />
+            <line x1="256" y1="20" x2="256" y2="420" />
+            <line x1="292" y1="20" x2="292" y2="420" />
+            <line x1="328" y1="20" x2="328" y2="420" />
+            <line x1="364" y1="20" x2="364" y2="420" />
+            <line x1="400" y1="20" x2="400" y2="420" />
+            <line x1="20" y1="80" x2="420" y2="80" />
+            <line x1="20" y1="116" x2="420" y2="116" />
+            <line x1="20" y1="152" x2="420" y2="152" />
+            <line x1="20" y1="188" x2="420" y2="188" />
+            <line x1="20" y1="224" x2="420" y2="224" />
+            <line x1="20" y1="260" x2="420" y2="260" />
+            <line x1="20" y1="296" x2="420" y2="296" />
+            <line x1="20" y1="332" x2="420" y2="332" />
+            <line x1="20" y1="368" x2="420" y2="368" />
+            <line x1="20" y1="404" x2="420" y2="404" />
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="260" x2="420" y2="260" />
+            <line x1="220" y1="20" x2="220" y2="420" />
+          </g>
+          <path d="M 420,260 L 412,256 M 420,260 L 412,264" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 220,20 L 216,28 M 220,20 L 224,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="432" y="264" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="206" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+          <text x="206" y="274" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+          
+
+          <line x1="216" y1="242" x2="224" y2="242" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <text x="204" y="246" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">1</text>
+
+          {/* Граница ОДЗ: Серая парабола x = -1/3 a^2 + 2a, положенная на бок */}
+          {/* Абсолютно гладкие канонические дуги параболы Безье с постоянной выпуклостью вправо */}
+          {/* Нижняя ветвь аккуратно приподнята на 0.1 деления (3.6px) без разрушения геометрии круглой вершины V */}
+          <g fill="none" stroke="#94a3b8" strokeWidth="1.5" strokeDasharray="4 4" className="opacity-80">
+            {/* 1) Верхняя ветвь: выходит из вершины V(3;3)->(274,206) и плавно выгибается ВВЕРХ к точке C(-9;9)->(58,98) */}
+            <path d="M 274,206 C 240,165 140,110 58,98 C 45,96 40,92 24,88" />
+            
+            {/* 2) Нижняя ветвь: округлый купол в вершине сохранен, средняя часть приподнята вверх над l2, точка O(0;0)->(220,260) и продление выверены */}
+            <path d="M 274,206 C 274,228 246,244 220,260 C 200,265 170,281 145,291 C 130,297 118,302 100,307" />
+          </g>
+
+          {/* Текстовое сопровождение и маркер вершины */}
+          <text x="242" y="195" fill="#94a3b8" stroke="none" className="font-sans text-[10px] select-none">ОДЗ</text>
+          <circle cx="274" cy="206" r="3" fill="#94a3b8" />
+          <text x="284" y="202" fill="#94a3b8" stroke="none" className="font-sans text-xs select-none">V(3;3)</text>
+
+
+
+          {/* Сплошные синие рабочие линии корней */}
+          <line x1="58" y1="98" x2="30" y2="70" stroke="#2563eb" strokeWidth="2.5" />
+          <line x1="220" y1="260" x2="300" y2="340" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="285" y="352" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₁</text>
+
+          <line x1="130" y1="305" x2="380" y2="180" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="384" y="180" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₂</text>
+
+          <line x1="274" y1="20" x2="274" y2="420" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="268" y="16" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₃</text>
+
+          <g stroke="#dc2626" strokeWidth="1" strokeDasharray="3 3">
+            <line x1="30" y1="98" x2="410" y2="98" />
+            <text x="414" y="102" fill="#dc2626" stroke="none" className="font-sans text-[10px]">a = 9</text>
+            <line x1="30" y1="233" x2="410" y2="233" />
+            <text x="414" y="237" fill="#dc2626" stroke="none" className="font-sans text-[10px]">a = 1.5</text>
+            <line x1="30" y1="314" x2="410" y2="314" />
+            <text x="464" y="264" fill="#dc2626" stroke="none" className="font-sans text-[10px]">a = 0</text>
+            <line x1="30" y1="260" x2="460" y2="260" />
+            <text x="414" y="318" fill="#dc2626" stroke="none" className="font-sans text-[10px]">a = -3</text>
+          </g>
+
+          <circle cx="220" cy="260" r="3.5" fill="#000000" />
+          <text x="226" y="272" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">(0;0)</text>
+          <circle cx="274" cy="314" r="3.5" fill="#000000" />
+          <text x="282" y="326" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">A(3;-3)</text>
+          <circle cx="274" cy="233" r="3.5" fill="#000000" />
+          <text x="282" y="233" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">B(3;1.5)</text>
+          <circle cx="58" cy="98" r="3.5" fill="#000000" />
+          <text x="32" y="94" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">C(-9;9)</text>
+        </svg>
+      </div>
+
+            <p>
+        Количество уникальных корней уравнения равно числу точек пересечения построенного графика с горизонтальной сканирующей прямой уровня <InlineMath math={`a`} />:
+      </p>
+      
+      <ul className="list-bullet pl-5 space-y-1.5">
+        <li>1. При <InlineMath math={`a < -3`} />: пересечение с лучами <InlineMath math={`l_1, \\ l_2`} /> и <InlineMath math={`l_3`} /> — 3 корня.</li>
+        <li>2. При <InlineMath math={`a = -3`} />: проход через узел пересечения <InlineMath math={`A(3;-3)`} /> линий <InlineMath math={`l_1`} /> и <InlineMath math={`l_3`} />, а также пересечение с <InlineMath math={`l_2`} /> — <b>ровно 2 корня</b>.</li>
+        <li>3. При <InlineMath math={`a \\in (-3; 0)`} />: пересечение с лучами <InlineMath math={`l_1, \\ l_2`} /> и <InlineMath math={`l_3`} /> — 3 корня.</li>
+        <li>4. При <InlineMath math={`a = 0`} />: проход через узел <InlineMath math={`O(0;0)`} /> линий <InlineMath math={`l_1`} /> и <InlineMath math={`l_2`} />, а также пересечение с <InlineMath math={`l_3`} /> — <b>ровно 2 корня</b>.</li>
+        <li>5. При <InlineMath math={`a \\in (0; 1.5)`} />: луч <InlineMath math={`l_1`} /> отсутствует по ОДЗ, прямая пересекает только лучи <InlineMath math={`l_2`} /> и <InlineMath math={`l_3`} /> — <b>ровно 2 корня</b>.</li>
+        <li>6. При <InlineMath math={`a = 1.5`} />: проход через узел пересечения <InlineMath math={`B(3;1.5)`} /> линий <InlineMath math={`l_2`} /> и <InlineMath math={`l_3`} /> — ровно 1 корень.</li>
+        <li>7. При <InlineMath math={`a \\in (1.5; 9)`} />: луч <InlineMath math={`l_1`} /> отсутствует, прямая пересекает лучи <InlineMath math={`l_2`} /> и <InlineMath math={`l_3`} /> — <b>ровно 2 корня</b>.</li>
+        <li>8. При <InlineMath math={`a \\geq 9`} />: луч <InlineMath math={`l_1`} /> снова появляется из-за границы ОДЗ параболы, пересечение с тремя лучами — 3 корня.</li>
+      </ul>
+
+      <p>Объединяя все подходящие значения и промежутки, получаем итоговый результат.</p>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\{-3\\} \\cup [0; 1.5) \\cup (1.5; 9)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 46,
+  title: 'Задача 46 (ЕГЭ-2021. Основная волна)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: 'a|x^2 - 9| + a|x - 3| - 1 = 0',
+  textAfter: <span>имеет ровно два различных корня.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Заметим, что если <InlineMath math={`a = 0`} />, то уравнение принимает вид <InlineMath math={`-1 = 0`} />, что не имеет решений. Следовательно, <InlineMath math={`a \\neq 0`} />. Разделим обе части уравнения на <InlineMath math={`a`} /> и разложим разность квадратов под первым модулем:
+      </p>
+      <BlockMath math={`|x - 3| \\cdot |x + 3| + |x - 3| = \\frac{1}{a} \\iff |x - 3| \\cdot (|x + 3| + 1) = \\frac{1}{a}.`} />
+      
+      <p>
+        Раскроем модули методом интервалов. Корнями подмодульных выражений являются критические точки <InlineMath math={`x = -3`} /> и <InlineMath math={`x = 3`} />. Рассмотрим три получившихся промежутка:
+      </p>
+      
+      <p>
+        <b>1) При <InlineMath math={`x > 3`} /> (знаки модулей <InlineMath math={`++`} />):</b>
+      </p>
+      <BlockMath math={`(x - 3)(x + 3) + x - 3 = \\frac{1}{a} \\iff x^2 - 12 + x = \\frac{1}{a} \\implies a = \\frac{1}{(x - 3)(x + 4)}.`} />
+      
+      <p>
+        <b>2) При <InlineMath math={`-3 \\leq x \\leq 3`} /> (знаки модулей <InlineMath math={`+-`} />):</b>
+      </p>
+      <BlockMath math={`-(x - 3)(x + 3) - (x - 3) = \\frac{1}{a} \\iff (3 - x)(x + 4) = \\frac{1}{a} \\implies a = \\frac{1}{(3 - x)(x + 4)}.`} />
+      <p>
+        Заметим, что знаменатель этой функции представляет собой параболу ветвями вниз с вершиной в точке <InlineMath math={`x_0 = -0.5`} />. При этом всей дроби соответствует локальный минимум:
+      </p>
+      <BlockMath math={`a_{\\min} = \\frac{1}{(3 - (-0.5))(-0.5 + 4)} = \\frac{1}{12.25} = \\frac{4}{49}.`} />
+      
+      <p>
+        <b>3) При <InlineMath math={`x < -3`} /> (знаки модулей <InlineMath math={`--`} />):</b>
+      </p>
+      <BlockMath math={`-(x - 3)(-(x + 3)) - (x - 3) = \\frac{1}{a} \\iff (x - 3)(x + 2) = \\frac{1}{a} \\implies a = \\frac{1}{(x - 3)(x + 2)}.`} />
+      <p>
+        При <InlineMath math={`x \\to -3`} /> слева знаменатель стремится к <InlineMath math={`(-3 - 3)(-3 + 2) = 6`} />, то есть график подходит к точке <InlineMath math={`A\\left(-3; \\frac{1}{6}\\right)`} />. Прямые <InlineMath math={`x = -3`} /> и <InlineMath math={`x = 3`} /> являются вертикальными асимптотами для ветвей графика.
+      </p>
+
+            <p>Изобразим полученное множество решений в координатной плоскости <InlineMath math={`xOa`} />:</p>
+
+      {/* Высокоточный и наглядный SVG-график Задачи 46 (max-w-[460px]) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 540 300" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none">
+          {/* Легкая сетка: Шаг 24px по Ox, Шаг 36px по Oa. Центр (0,0) на x=240, y=200 */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[-8, -6, -4, -2, 2, 4, 6, 8, 10, 12].map(i => (
+              <line key={`x-${i}`} x1={240 + i*24} y1="20" x2={240 + i*24} y2="260" />
+            ))}
+            {[-4, -2, 2, 4, 6].map(i => (
+              <line key={`y-${i}`} x1="20" y1={200 - i*36} x2="520" y2={200 - i*36} />
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="200" x2="520" y2="200" /> {/* Ox */}
+            <line x1="240" y1="20" x2="240" y2="260" />  {/* Oa */}
+          </g>
+          <path d="M 520,200 L 512,196 M 520,200 L 512,204" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 240,20 L 236,28 M 240,20 L 244,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="532" y="204" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="226" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+          <text x="226" y="214" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Метки на оси Ox */}
+          <line x1="168" y1="196" x2="168" y2="204" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <text x="160" y="216" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">-3</text>
+          <line x1="312" y1="196" x2="312" y2="204" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <text x="310" y="216" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">3</text>
+          <text x="220" y="234" fill="#000000" stroke="none" className="dark:fill-slate-400 font-sans text-[11px]">-1/2</text>
+
+          {/* Вертикальные асимптоты (черный штрихпунктир) */}
+          <g stroke="#475569" strokeWidth="1" strokeDasharray="5 3 2 3">
+            <line x1="168" y1="20" x2="168" y2="260" /> {/* x = -3 */}
+            <line x1="312" y1="20" x2="312" y2="260" /> {/* x = 3 */}
+          </g>
+
+          {/* Красные маркерные линии уровней (горизонтальный пунктир) */}
+          <g stroke="#dc2626" strokeWidth="1" strokeDasharray="3 3">
+            <line x1="20" y1="120" x2="520" y2="120" /> {/* a = 1/6 (y = 200 - 80 = 120) */}
+            <text x="475" y="114" fill="#dc2626" stroke="none" className="font-sans text-[11px]">a = 1/6</text>
+            
+            <line x1="20" y1="160" x2="520" y2="160" /> {/* a = 4/49 (y = 200 - 40 = 160) */}
+            <text x="475" y="154" fill="#dc2626" stroke="none" className="font-sans text-[11px]">a = 4/49</text>
+          </g>
+
+          {/* Синие ветви графиков функций */}
+          {/* 1) Левая ветвь (x < -3): плавно поднимается от оси Ox к точке A(-3; 1/6) */}
+          <path d="M 20,185 C 60,180 120,165 168,120" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="40" y="105" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 1/((x-3)(x+2))</text>
+
+          {/* 2) Центральное корыто (-3 <= x <= 3): выходит из A, падает к M(-0.5; 4/49), круто улетает вверх к x = 3 */}
+          <path d="M 168,120 C 195,145 210,160 228,160 C 255,160 290,120 306,20" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="245" y="105" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 1/((3-x)(x+4))</text>
+
+          {/* 3) Правая ветвь (x > 3): падает из бесконечности вдоль x = 3, плавно стремится к оси Ox */}
+          <path d="M 318,20 C 324,110 360,175 520,188" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="385" y="105" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 1/((x-3)(x+4))</text>
+
+          {/* Маркерные узлы */}
+          <circle cx="168" cy="120" r="3.5" fill="#000000" /> {/* Точка A */}
+          <text x="156" y="112" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs font-semibold">A</text>
+
+          <circle cx="228" cy="160" r="3.5" fill="#000000" /> {/* Точка M */}
+          <text x="224" y="150" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs font-semibold">M</text>
+        </svg>
+      </div>
+
+      <p>
+        Количество решений исходного уравнения при каждом фиксированном значении <InlineMath math={`a`} /> равно числу точек пересечения построенного графика с горизонтальной сканирующей прямой уровня <InlineMath math={`a`} />:
+      </p>
+
+      <ul className="list-bullet pl-5 space-y-1.5">
+        <li>
+          1. При <InlineMath math={`a \\leq 0`} />: точек пересечения с синим графиком нет — 0 решений.
+        </li>
+        <li>
+          2. При <InlineMath math={`a \\in \\left(0; \\frac{4}{49}\\right)`} />: прямая пересекает уходящую влево ветвь <InlineMath math={`l_3 \\ (x < -3)`} /> и уходящую вправо ветвь <InlineMath math={`l_1 \\ (x > 3)`} /> — <b>ровно 2 решения</b> (подходит).
+        </li>
+        <li>
+          3. При <InlineMath math={`a = \\frac{4}{49}`} />: прямая касается «дна» центральной ветви в вершине <InlineMath math={`M\\left(-0.5; \\frac{4}{49}\\right)`} /> и пересекает две крайние ветви — всего 3 решения.
+        </li>
+        <li>
+          4. При <InlineMath math={`a \\in \\left(\\frac{4}{49}; \\frac{1}{6}\\right)`} />: прямая пересекает левую ветвь, две ветви центрального корыта и крайнюю правую ветвь — всего 4 решения.
+        </li>
+        <li>
+          5. При <InlineMath math={`a = \\frac{1}{6}`} />: прямая проходит через точку стыка <InlineMath math={`A\\left(-3; \\frac{1}{6}\\right)`} />, пересекает правый склон центрального корыта и крайнюю правую ветвь — всего 3 решения.
+        </li>
+        <li>
+          6. При <InlineMath math={`a > \\frac{1}{6}`} />: центральное корыто уходит выше уровня сканирования. Прямая пересекает левую ветвь (которая уходит вдоль асимптоты <InlineMath math={`x = -3`} /> вверх к <InlineMath math={`+\\infty`} />) и крайнюю правую ветвь — <b>ровно 2 решения</b> (подходит).
+        </li>
+      </ul>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left(0; \\frac{4}{49}\\right) \\cup \\left(\\frac{1}{6}; +\\infty\\right)`} />
+      </div>
+    </div>
+  )
+},
 
 
 
