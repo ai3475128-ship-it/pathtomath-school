@@ -76,25 +76,42 @@ if (sessionCookie && (sessionCookie.includes('ai3475128') || JSON.stringify(sess
         {/* Шапка сайта с жесткой разметкой */}
         <header className="w-full sticky top-0 z-50 h-20 transition-all duration-300 bg-white border-b border-slate-200/60 dark:bg-[#03000a] dark:border-purple-950/40">
           <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-{/* 🚀 РЕБРЕНДИНГ: Размер неоновых букв АЗИМУТ увеличен до h-11, а блок эмблемы полностью убран для чистоты кода */}
-<Link href="/" scroll={false} className="flex items-center group select-none py-1 h-full bg-transparent">
+{/* 🚀 РЕБРЕНДИНГ: Сова увеличена до h-26, текст до h-13. Отступ убран (-ml-2), сова прижата вплотную, попиксельная фиксация сохранена! */}
+<Link href="/" scroll={false} className="flex items-center group select-none py-1 h-full bg-transparent transition-all duration-300">
   
-  {/* Этот неоново-голубой логотип будет виден ТОЛЬКО в светлой теме. mix-blend-multiply стирает белый фон картинки */}
-  <img 
-    src="/logo-light.png" 
-    alt="АЗИМУТ Онлайн-школа" 
-    className="h-11 w-auto object-contain bg-transparent block dark:hidden transition-all duration-500 hover:scale-[1.01] hover:brightness-110 mix-blend-multiply" 
-  />
+  {/* 🦉 МАКСИМАЛЬНЫЙ БЛОК СОВЫ: Размеры подняты до h-26 (w-26). Контуры застыли как влитые! */}
+  <div className="w-26 h-26 flex items-center justify-center shrink-0 bg-transparent">
+    <img 
+      src="/icon-dark.png" 
+      alt="Иконка АЗИМУТ" 
+      className="h-26 w-auto object-contain bg-transparent transition-transform duration-500 group-hover:scale-[1.02] 
+                 block dark:hidden filter invert hue-rotate-[140deg] contrast-[120%] brightness-[1.1] mix-blend-multiply" 
+    />
+    <img 
+      src="/icon-dark.png" 
+      alt="Иконка АЗИМУТ" 
+      className="h-26 w-auto object-contain bg-transparent transition-transform duration-500 group-hover:scale-[1.02] 
+                 hidden dark:block mix-blend-screen" 
+    />
+  </div>
 
-  {/* Этот неоново-фиолетовый логотип включится ТОЛЬКО в тёмной теме. mix-blend-screen стирает тёмный фон картинки */}
-  <img 
-    src="/logo-dark.png" 
-    alt="АЗИМУТ Онлайн-школа" 
-    className="h-11 w-auto object-contain bg-transparent hidden dark:block transition-all duration-500 hover:scale-[1.01] hover:brightness-110 mix-blend-screen" 
-  />
+  {/* 📐 УВЕЛИЧЕННАЯ НАДПИСЬ «АЗИМУТ» (КАРТИНКА): Масштаб поднят до h-13, добавлен сдвиг -ml-2 вплотную к сове! */}
+  <div className="w-48 h-13 flex items-center justify-start shrink-0 bg-transparent -ml-2">
+    <img 
+      src="/logo-dark.png" 
+      alt="АЗИМУТ Онлайн-школа" 
+      className="h-13 w-auto object-contain object-left bg-transparent transition-transform duration-500 group-hover:scale-[1.01] 
+                 block dark:hidden filter invert hue-rotate-[140deg] contrast-[120%] brightness-[1.1] mix-blend-multiply" 
+    />
+    <img 
+      src="/logo-dark.png" 
+      alt="АЗИМУТ Онлайн-школа" 
+      className="h-13 w-auto object-contain object-left bg-transparent transition-transform duration-500 group-hover:scale-[1.01] group-hover:brightness-110 
+                 hidden dark:block mix-blend-screen" 
+    />
+  </div>
 
 </Link>
-
 
             {/* ДИНАМИЧЕСКОЕ МЕНЮ С НЕОНОВОЙ ПОДСВЕТКОЙ: Передаем статус и живую роль из базы */}
             <MenuLinks hasUser={hasUser} userRole={userRole} />
