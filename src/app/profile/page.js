@@ -144,7 +144,7 @@ export default async function ProfilePage({ searchParams }) {
               <p className="text-xs text-slate-400 font-medium mt-0.5">{user.email}</p>
             </div>
             <span className="text-xs font-black uppercase tracking-wider text-sky-600 dark:text-purple-400">
-              Тариф: {user.role === 'PREMIUM_STUDENT' ? 'Мастер-Группа' : user.role === 'ADMIN' ? 'Администратор' : user.role === 'TEACHER' ? 'Преподаватель' : 'Базовый'}
+               {user.role === 'PREMIUM_STUDENT' ? '' : user.role === 'ADMIN' ? 'Руководитель' : user.role === 'TEACHER' ? 'Преподаватель' : ''}
             </span>
           </div>
 
