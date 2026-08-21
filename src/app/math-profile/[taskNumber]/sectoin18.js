@@ -9150,6 +9150,4179 @@ export const section18Tasks = [
 },
 
 
+{
+  id: 76,
+  title: 'Задача 76 (ЕГЭ-2016. Основная волна)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '\\sqrt{x^4 - x^2 + a^2} = x^2 + x - a',
+  textAfter: <span>имеет ровно три различных корня.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Левая часть уравнения определена и неотрицательна при всех допустимых значениях переменных. Следовательно, исходное уравнение равносильно системе, состоящей из условия неотрицательности правой части и уравнения, полученного возведением обеих частей в квадрат:
+      </p>
+      <BlockMath math={`\\begin{cases} x^2 + x - a \\geq 0, \\\\ x^4 - x^2 + a^2 = (x^2 + x - a)^2. \\end{cases}`} />
+      
+      <p>Раскроем квадрат трёхчлена в правой части второго уравнения:</p>
+      <BlockMath math={`x^4 - x^2 + a^2 = x^4 + 2x^3 + x^2 - 2ax^2 - 2ax + a^2`} />
+      <p>Приведём подобные слагаемые и перенесём все члены в одну сторону:</p>
+      <BlockMath math={`2x^3 + 2x^2 - 2ax^2 - 2ax = 0 \\iff 2x\\left(x^2 + x - ax - a\\right) = 0`} />
+      <BlockMath math={`2x\\bigl(x(x + 1) - a(x + 1)\\bigr) = 0 \\iff 2x(x + 1)(x - a) = 0.`} />
+      
+      <p>Корнями полученного уравнения являются три значения переменной:</p>
+      <BlockMath math={`x_1 = 0, \\quad x_2 = -1, \\quad x_3 = a.`} />
+      
+      <p>Чтобы эти значения являлись корнями исходного уравнения, они должны удовлетворять условию <InlineMath math={`x^2 + x - a \\geq 0`} />. Проверим каждый корень по отдельности:</p>
+      <ul className="list-bullet pl-5 space-y-2">
+        <li>
+          Для <InlineMath math={`x_1 = 0`} /> получаем: <InlineMath math={`0^2 + 0 - a \\geq 0 \\iff a \\leq 0`} />.
+        </li>
+        <li>
+          Для <InlineMath math={`x_2 = -1`} /> получаем: <InlineMath math={`(-1)^2 + (-1) - a \\geq 0 \\iff 1 - 1 - a \\geq 0 \\iff a \\leq 0`} />.
+        </li>
+        <li>
+          Для <InlineMath math={`x_3 = a`} /> получаем: <InlineMath math={`a^2 + a - a \\geq 0 \\iff a^2 \\geq 0`} />. Данное неравенство верно при любом значении параметра <InlineMath math={`a`} />.
+        </li>
+      </ul>
+      
+      <p>
+        Таким образом, при <InlineMath math={`a \\leq 0`} /> все три числа являются корнями исходного уравнения. Чтобы уравнение имело <b>ровно три различных</b> корня, эти значения должны быть попарно различны:
+      </p>
+      <BlockMath math={`\\begin{cases} x_1 \\neq x_2 \\iff 0 \\neq -1 \\quad (\\text{выполнено}), \\\\ x_1 \\neq x_3 \\iff a \\neq 0, \\\\ x_2 \\neq x_3 \\iff a \\neq -1. \\end{cases}`} />
+      
+      <p>Изобразим полученные условия отбора корней на числовой прямой параметра <InlineMath math={`a`} />:</p>
+
+      {/* Высокоточный и наглядный график числовой прямой параметра а */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 440 100" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Главная ось параметра а */}
+          <line x1="20" y1="50" x2="400" y2="50" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
+          <path d="M 400,50 L 392,46 M 400,50 L 392,54" stroke="#000000" strokeWidth="1.5" fill="none" className="dark:stroke-slate-400" />
+          <text x="412" y="54" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+
+          {/* Заштрихованная область от минус бесконечности до 0 */}
+          <line x1="20" y1="50" x2="340" y2="50" stroke="#000000" strokeWidth="3" className="dark:stroke-slate-300" />
+          {Array.from({ length: 40 }).map((_, i) => {
+            const x = 25 + i * 8;
+            if (x < 340 && Math.abs(x - 200) > 4 && Math.abs(x - 340) > 4) {
+              return <line key={`sh-${i}`} x1={x} y1="50" x2={x + 6} y2="40" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-500" />;
+            }
+            return null;
+          })}
+
+          {/* Точки выкалывания на числовой оси */}
+          {/* Выколотая точка a = -1 */}
+          <circle cx="200" cy="50" r="4" fill="white" stroke="#000000" strokeWidth="1.5" className="fill-white dark:fill-slate-950 dark:stroke-slate-400" />
+
+          {/* Выколотая точка a = 0 */}
+          <circle cx="340" cy="50" r="4" fill="white" stroke="#000000" strokeWidth="1.5" className="fill-white dark:fill-slate-950 dark:stroke-slate-400" />
+
+          {/* Контейнеры foreignObject для каноничных подписей точек */}
+          <foreignObject x="160" y="60" width="80" height="30">
+            <div className="flex justify-center items-start text-sm text-slate-900 dark:text-slate-100 font-sans">
+              -1
+            </div>
+          </foreignObject>
+
+          <foreignObject x="300" y="60" width="80" height="30">
+            <div className="flex justify-center items-start text-sm text-slate-900 dark:text-slate-100 font-sans">
+              0
+            </div>
+          </foreignObject>
+        </svg>
+      </div>
+
+      <p>Следовательно, ровно три различных корня исходное уравнение имеет при:</p>
+      <BlockMath math={`a \\in (-\\infty; -1) \\cup (-1; 0).`} />
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-\\infty; -1) \\cup (-1; 0)`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 77,
+  title: 'Задача 77 (ЕГЭ-2016. Основная волна)',
+  textBefore: 'Найдите все значения a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} x(x^2 + y^2 - y - 2) = |x|(y - 2), \\\\ y = a + x \\end{cases}',
+  textAfter: <span>имеет ровно три различных решения.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Рассмотрим первое уравнение системы. Если <InlineMath math={`x = 0`} />, то левая и правая части обращаются в нуль при любом значении <InlineMath math={`y`} />. Значит, вся ось <InlineMath math={`Oy`} /> является частью графика первого уравнения.
+      </p>
+      <p>Раскроем модуль при ненулевых значениях переменной:</p>
+      <ul className="list-bullet pl-5 space-y-2">
+        <li>
+          При <InlineMath math={`x > 0`} /> получаем:
+          <BlockMath math={`x^2 + y^2 - y - 2 = y - 2 \\iff x^2 + y^2 - 2y = 0 \\iff x^2 + (y - 1)^2 = 1.`} />
+          Это правая полуокружность с центром в точке <InlineMath math={`(0; 1)`} /> и радиусом <InlineMath math={`R = 1`} />.
+        </li>
+        <li>
+          При <InlineMath math={`x < 0`} /> получаем:
+          <BlockMath math={`x^2 + y^2 - y - 2 = -(y - 2) \\iff x^2 + y^2 = 4.`} />
+          Это левая полуокружность с центром в точке <InlineMath math={`(0; 0)`} /> и радиусом <InlineMath math={`R = 2`} />.
+        </li>
+      </ul>
+      
+      <p>
+        Второе уравнение исходной системы <InlineMath math={`y = x + a`} /> задаёт семейство параллельных прямых с наклоном <InlineMath math={`k = 1`} />.
+      </p>
+
+      {/* Высокоточный и крупный центрированный SVG-график Задачи 77 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 380 380" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Легкая сетка (Шаг: 1 деление = 24px. Центр (0,0) зафиксирован на x=180, y=200) */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6].map(i => (
+              <line key={`x-${i}`} x1={180 + i*24} y1="20" x2={180 + i*24} y2="360" />
+            ))}
+            {[-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6].map(i => (
+              <line key={`y-${i}`} x1="20" y1={200 - i*24} x2="360" y2={200 - i*24} />
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="200" x2="360" y2="200" /> {/* Ось Ox */}
+            <line x1="180" y1="20" x2="180" y2="360" />  {/* Ось Oy */}
+          </g>
+          <path d="M 360,200 L 352,196 M 360,200 L 352,204" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 180,20 L 176,28 M 180,20 L 184,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="370" y="204" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="166" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="166" y="214" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Метки делений осей */}
+          {[-5, -4, -3, -2, -1, 1, 2, 3, 4, 5].map(i => (
+            <g key={`lbl-x-${i}`}>
+              <line x1={180 + i*24} y1="196" x2={180 + i*24} y2="204" stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400" />
+              <text x={180 + i*24 - 4} y="216" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px]">{i}</text>
+            </g>
+          ))}
+          {[-5, -4, -3, -2, -1, 1, 2, 3, 4, 5].map(i => (
+            <g key={`lbl-y-${i}`}>
+              <line x1="176" y1={200 - i*24} x2="184" y2={200 - i*24} stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400" />
+              <text x="164" y={200 - i*24 + 4} fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px]">{i}</text>
+            </g>
+          ))}
+
+          {/* Синий график решений */}
+          <line x1="180" y1="20" x2="180" y2="360" stroke="#2563eb" strokeWidth="3" opacity="0.8" />
+          <path d="M 180,152 A 24,24 0 0,1 180,200" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <path d="M 180,248 A 48,48 0 0,1 180,152" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+
+          {/* СДВИГ КРАСНЫХ ПРЯМЫХ ЕЩЁ НА 0,3 ЕДИНИЦЫ ВНИЗ */}
+          {/* Дополнительное смещение по оси y вниз составляет 0.3 * 24px = 7.2px */}
+          {/* Итоговые координаты y1 и y2 увеличены на 7.2px по сравнению с прошлым шагом */}
+          {/* Параметры на подписях уменьшились ещё на 0.3: 0,83 -> 0,53; 0 -> -0,3; -2 -> -2,3; -2,41 -> -2,71 */}
+          <line x1="20" y1="305.1" x2="190.1" y2="115.2" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" /> {/* a = 0,53 */}
+          <line x1="20" y1="328.2" x2="210" y2="118.2" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" />   {/* a = -0,3 */}
+          <line x1="20" y1="373.2" x2="258" y2="115.2" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" />   {/* a = -2,3 */}
+          <line x1="20" y1="383.1" x2="267.9" y2="115.2" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" /> {/* a = -2,71 */}
+
+          {/* Маркерные точки */}
+          <circle cx="180" cy="176" r="2.5" fill="#000000" />
+          <circle cx="180" cy="200" r="2.5" fill="#000000" />
+          <circle cx="180" cy="152" r="2.5" fill="#000000" />
+          <circle cx="200" cy="190" r="2.5" fill="#000000" />
+          <circle cx="145" cy="167" r="2.5" fill="#000000" />
+          
+          {/* Текстовые подписи к кривым и критическим уровням, сбалансированные под сдвиг */}
+          <text x="265" y="135.2" fill="#dc2626" className="font-sans text-[10px] font-semibold">a = 1 - √2</text>
+          <text x="250" y="105.2" fill="#dc2626" className="font-sans text-[10px] font-semibold">a = 0</text>
+          <text x="200" y="133.2" fill="#dc2626" className="font-sans text-[10px] font-semibold">a = 2</text>
+          <text x="182" y="100.2" fill="#dc2626" className="font-sans text-[10px] font-semibold">a = 2√2</text>
+
+        </svg>
+      </div>
+
+
+      <p>
+        Каждая прямая семейства <InlineMath math={`y = x + a`} /> пересекает вертикальную ось <InlineMath math={`Oy`} /> ровно в одной точке <InlineMath math={`(0; a)`} /> при любом значении параметра. Поэтому <b>одно решение гарантировано всегда</b>.
+      </p>
+      
+      <div className="space-y-2">
+        <div>
+          <b>1. Пересечение с правой полуокружностью <InlineMath math={`x^2 + (y - 1)^2 = 1 \\ (x > 0)`} />:</b>
+        </div>
+        <div>
+          Подставим уравнение прямой в уравнение полуокружности: <InlineMath math={`x^2 + (x + a - 1)^2 = 1 \\iff 2x^2 + 2(a - 1)x + (a - 1)^2 - 1 = 0`} />.
+        </div>
+        <div>
+          Касание (один корень) происходит, когда дискриминант равен нулю:
+        </div>
+        <BlockMath math={`D/4 = (a - 1)^2 - 2((a - 1)^2 - 1) = 0 \\iff 2 - (a - 1)^2 = 0 \\iff a = 1 \\pm \\sqrt{2}.`} />
+        <div>
+          Поскольку полуокружность расположена в правой полуплоскости, касание происходит при нижнем значении <InlineMath math={`a = 1 - \\sqrt{2}`} />. При <InlineMath math={`1 - \\sqrt{2} < a < 0`} /> прямая даёт два решения, при <InlineMath math={`0 \\leq a < 2`} /> — одно решение, а при <InlineMath math={`a \\geq 2`} /> пересечений нет.
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <div>
+          <b>2. Пересечение с левой полуокружностью <InlineMath math={`x^2 + y^2 = 4 \\ (x < 0)`} />:</b>
+        </div>
+        <div>
+          Подставив <InlineMath math={`y = x + a`} />, получаем <InlineMath math={`x^2 + (x + a)^2 = 4 \\iff 2x^2 + 2ax + a^2 - 4 = 0`} />.
+        </div>
+        <div>
+          Момент касания: <InlineMath math={`D/4 = a^2 - 2(a^2 - 4) = 0 \\iff 8 - a^2 = 0 \\iff a = 2\\sqrt{2}`} /> (для левой полуплоскости).
+        </div>
+        <div>
+          При <InlineMath math={`-2 < a < 2`} /> прямая даёт ровно одно пересечение в области <InlineMath math={`x < 0`} />. При <InlineMath math={`2 < a < 2\\sqrt{2}`} /> получаем два пересечения.
+        </div>
+      </div>
+
+      <p>Сведём количество решений в единую таблицу для наглядного интервального отбора:</p>
+
+      {/* Адаптивная таблица анализа количества решений с поддержкой KaTeX */}
+      <div className="overflow-x-auto my-4">
+        <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-sm">
+          <thead>
+            <tr className="bg-slate-50 dark:bg-slate-900/50">
+              <th className="px-4 py-2 text-left font-semibold text-slate-700 dark:text-slate-200">Значение параметра a</th>
+              <th className="px-4 py-2 text-center font-semibold text-slate-700 dark:text-slate-200">Общее количество различных решений</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
+            <tr>
+              <td className="px-4 py-2 font-mono"><InlineMath math={`a < 1 - \\sqrt{2}`} /></td>
+              <td className="px-4 py-2 text-center">2 решения</td>
+            </tr>
+            <tr className="bg-slate-50/50 dark:bg-slate-900/20">
+              <td className="px-4 py-2 font-mono"><InlineMath math={`a = 1 - \\sqrt{2}`} /></td>
+              <td className="px-4 py-2 text-center font-semibold text-blue-600 dark:text-blue-400">3 решения (касание правой полуокружности)</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-2 font-mono"><InlineMath math={`1 - \\sqrt{2} < a < 0`} /></td>
+              <td className="px-4 py-2 text-center">4 решения</td>
+            </tr>
+            <tr className="bg-slate-50/50 dark:bg-slate-900/20">
+              <td className="px-4 py-2 font-mono"><InlineMath math={`0 \\leq a < 2`} /></td>
+              <td className="px-4 py-2 text-center font-semibold text-blue-600 dark:text-blue-400">3 решения (переход через узлы Ox/Oy)</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-2 font-mono"><InlineMath math={`a = 2`} /></td>
+              <td className="px-4 py-2 text-center">2 решения</td>
+            </tr>
+            <tr className="bg-slate-50/50 dark:bg-slate-900/20">
+              <td className="px-4 py-2 font-mono"><InlineMath math={`2 < a < 2\\sqrt{2}`} /></td>
+              <td className="px-4 py-2 text-center font-semibold text-blue-600 dark:text-blue-400">3 решения (два пересечения слева + одно на Oy)</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-2 font-mono"><InlineMath math={`a = 2\\sqrt{2}`} /></td>
+              <td className="px-4 py-2 text-center">2 решения (касание левой полуокружности)</td>
+            </tr>
+            <tr className="bg-slate-50/50 dark:bg-slate-900/20">
+              <td className="px-4 py-2 font-mono"><InlineMath math={`a > 2\\sqrt{2}`} /></td>
+              <td className="px-4 py-2 text-center">1 решение</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <p>Выбирая из таблицы строки, где система имеет ровно 3 решения, получаем окончательный ответ:</p>
+      <BlockMath math={`a \\in \\left\\{1 - \\sqrt{2}\\right\\} \\cup [0; 2) \\cup \\left(2; 2\\sqrt{2}\\right).`} />
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left\\{1 - \\sqrt{2}\\right\\} \\cup [0; 2) \\cup \\left(2; 2\\sqrt{2}\\right)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 78,
+  title: 'Задача 78 (ЕГЭ-2016. Основная волна)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '\\sqrt{x^4 - 9x^2 + a^2} = x^2 - 3x - a',
+  textAfter: <span>имеет ровно три различных корня.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Левая часть уравнения определена и неотрицательна при всех допустимых значениях переменных. Следовательно, исходное уравнение равносильно системе, состоящей из условия неотрицательности правой части и уравнения, полученного возведением обеих частей в квадрат:
+      </p>
+      <BlockMath math={`\\begin{cases} x^2 - 3x - a \\geq 0, \\\\ x^4 - 9x^2 + a^2 = (x^2 - 3x - a)^2. \\end{cases}`} />
+      
+      <p>Раскроем квадрат трёхчлена в правой части второго уравнения:</p>
+      <BlockMath math={`x^4 - 9x^2 + a^2 = x^4 - 6x^3 + (9 - 2a)x^2 + 6ax + a^2`} />
+      <p>Приведём подобные слагаемые и перенесём все члены в одну сторону:</p>
+      <BlockMath math={`6x^3 - 18x^2 + 2ax^2 - 6ax = 0 \\iff 2x\\left(3x^2 - 9x + ax - 3a\\right) = 0`} />
+      <BlockMath math={`2x\\bigl(3x(x - 3) + a(x - 3)\\bigr) = 0 \\iff 2x(3x + a)(x - 3) = 0.`} />
+      
+      <p>Корнями полученного уравнения являются три значения переменной:</p>
+      <BlockMath math={`x_1 = 0, \\quad x_2 = 3, \\quad x_3 = -\\dfrac{a}{3}.`} />
+
+            <div className="space-y-2">
+        <div>
+          Чтобы эти значения являлись корнями исходного уравнения, они должны удовлетворять условию <InlineMath math={`x^2 - 3x - a \\geq 0`} />. Проверим каждый корень по отдельности:
+        </div>
+        <ul className="list-bullet pl-5 space-y-2">
+          <li>
+            Для <InlineMath math={`x_1 = 0`} /> получаем: <InlineMath math={`0^2 - 3(0) - a \\geq 0 \\iff -a \\geq 0 \\iff a \\leq 0`} />.
+          </li>
+          <li>
+            Для <InlineMath math={`x_2 = 3`} /> получаем: <InlineMath math={`3^2 - 3(3) - a \\geq 0 \\iff 9 - 9 - a \\geq 0 \\iff a \\leq 0`} />.
+          </li>
+          <li>
+            Для <InlineMath math={`x_3 = -\\dfrac{a}{3}`} /> получаем: <InlineMath math={`\\left(-\\dfrac{a}{3}\\right)^2 - 3\\left(-\\dfrac{a}{3}\\right) - a = \\dfrac{a^2}{9} + a - a = \\dfrac{a^2}{9} \\geq 0`} />. Данное неравенство выполняется при любом значении параметра <InlineMath math={`a`} />.
+          </li>
+        </ul>
+      </div>
+      
+      <p>
+        Таким образом, при <InlineMath math={`a \\leq 0`} /> все три числа являются корнями исходного уравнения. Чтобы уравнение имело <b>ровно три различных</b> корня, эти значения должны быть попарно различны:
+      </p>
+      <BlockMath math={`\\begin{cases} x_1 \\neq x_2 \\iff 0 \\neq 3 \\quad (\\text{выполнено}), \\\\[1.5em] x_1 \\neq x_3 \\iff -\\dfrac{a}{3} \\neq 0 \\iff a \\neq 0, \\\\[1.5em] x_2 \\neq x_3 \\iff -\\dfrac{a}{3} \\neq 3 \\iff a \\neq -9. \\end{cases}`} />
+
+      <p>Изобразим полученные условия отбора корней на числовой прямой параметра <InlineMath math={`a`} />:</p>
+
+      {/* Высокоточный и наглядный график числовой прямой параметра а */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 440 100" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Главная ось параметра а */}
+          <line x1="20" y1="50" x2="400" y2="50" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
+          <path d="M 400,50 L 392,46 M 400,50 L 392,54" stroke="#000000" strokeWidth="1.5" fill="none" className="dark:stroke-slate-400" />
+          <text x="412" y="54" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+
+          {/* Заштрихованная область от минус бесконечности до 0 */}
+          <line x1="20" y1="50" x2="340" y2="50" stroke="#000000" strokeWidth="3" className="dark:stroke-slate-300" />
+          {Array.from({ length: 40 }).map((_, i) => {
+            const x = 25 + i * 8;
+            if (x < 340 && Math.abs(x - 200) > 4 && Math.abs(x - 340) > 4) {
+              return <line key={`sh-${i}`} x1={x} y1="50" x2={x + 6} y2="40" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-500" />;
+            }
+            return null;
+          })}
+
+          {/* Выколотая точка a = -9 */}
+          <circle cx="200" cy="50" r="4" fill="white" stroke="#000000" strokeWidth="1.5" className="fill-white dark:fill-slate-950 dark:stroke-slate-400" />
+          <text x="194" y="74" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-sm">-9</text>
+
+          {/* Выколотая точка a = 0 */}
+          <circle cx="340" cy="50" r="4" fill="white" stroke="#000000" strokeWidth="1.5" className="fill-white dark:fill-slate-950 dark:stroke-slate-400" />
+          <text x="336" y="74" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-sm">0</text>
+        </svg>
+      </div>
+
+      <p>
+        При <InlineMath math={`a > 0`} /> корни <InlineMath math={`x_1 = 0`} /> и <InlineMath math={`x_2 = 3`} /> не удовлетворяют условию неотрицательности правой части исходного уравнения, поэтому трёх различных корней быть не может.
+      </p>
+      
+      <p>Следовательно, ровно три различных корня исходное уравнение имеет при:</p>
+      <BlockMath math={`a \\in (-\\infty; -9) \\cup (-9; 0).`} />
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-\\infty; -9) \\cup (-9; 0)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 79,
+  title: 'Задача 79 (ЕГЭ-2015. Досрочная волна)',
+  textBefore: 'Найдите все значения a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} \\dfrac{(y^2 - xy + 3x - y - 6)\\sqrt{x + 2}}{\\sqrt{6 - x}} = 0, \\\\ x + y - a = 0 \\end{cases}',
+  textAfter: <span>имеет ровно два различных решения.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <p>
+        Запишем область допустимых значений (ОДЗ) системы, исходя из условий существования квадратных корней в числителе и строго положительности подкоренного выражения в знаменателе:
+      </p>
+      <BlockMath math={`\\begin{cases} x + 2 \\geq 0, \\\\ 6 - x > 0 \\end{cases} \\iff -2 \\leq x < 6.`} />
+      
+      <p>Рассмотрим первое уравнение системы. Дробь равна нулю, когда её числитель равен нулю:</p>
+      <BlockMath math={`(y^2 - xy + 3x - y - 6)\\sqrt{x + 2} = 0.`} />
+      
+      <div className="space-y-2">
+        <p>Данное уравнение на ОДЗ распадается на два случая:</p>
+        <ul className="list-bullet pl-5 space-y-2">
+          <li>
+            При <InlineMath math={`x = -2`} /> множитель <InlineMath math={`\\sqrt{x + 2} = 0`} />, поэтому уравнение обращается в верное равенство при любом значении переменной <InlineMath math={`y`} />. Таким образом, вертикальный отрезок прямой <InlineMath math={`x = -2`} /> является частью графика.
+          </li>
+          <li>
+            При <InlineMath math={`-2 < x < 6`} /> множитель <InlineMath math={`\\sqrt{x + 2} \\neq 0`} />, поэтому нулю должна быть равна большая скобка числителя. Разложим её на множители методом группировки:
+            <BlockMath math={`y^2 - xy - y + 3x - 6 = y(y - x) - (y - 3x + 6) \\implies (y - 3)(y - x + 2) = 0.`} />
+            Это задаёт две прямые линии ограничений: горизонтальную <InlineMath math={`y = 3`} /> и наклонную <InlineMath math={`y = x - 2`} />.
+          </li>
+        </ul>
+      </div>
+      
+      <p>
+        Второе уравнение исходной системы перепишем в виде <InlineMath math={`y = a - x`} />. Оно задаёт сканирующее семейство параллельных прямых с наклоном <InlineMath math={`k = -1`} />.
+      </p>
+
+      {/* Высокоточный центрированный SVG-график Задачи 79 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 380 380" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Легкая координатная сетка (Шаг: 1 деление = 20px. Центр (0,0) зафиксирован на x=140, y=200) */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[-5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(i => (
+              <line key={`x-${i}`} x1={140 + i*20} y1="20" x2={140 + i*20} y2="360" />
+            ))}
+            {[-7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7].map(i => (
+              <line key={`y-${i}`} x1="20" y1={200 - i*20} x2="360" y2={200 - i*20} />
+            ))}
+          </g>
+
+          {/* Левая граница ОДЗ x = -2 (СПЛОШНАЯ СИНЯЯ ЛИНИЯ) и Правая выколотая серая граница ОДЗ x = 6 (пунктир) */}
+          <line x1="100" y1="20" x2="100" y2="360" stroke="#2563eb" strokeWidth="1.2" />
+          <line x1="260" y1="20" x2="260" y2="360" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
+          <text x="80" y="16" fill="#2563eb" stroke="none" className="font-sans font-semibold text-[9px]">x = -2</text>
+          <text x="252" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[9px]">x = 6</text>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="200" x2="360" y2="200" /> {/* Ось Ox */}
+            <line x1="140" y1="20" x2="140" y2="360" />  {/* Ось Oy */}
+          </g>
+          <path d="M 360,200 L 352,196 M 360,200 L 352,204" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 140,20 L 136,28 M 140,20 L 144,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="370" y="204" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="126" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="126" y="214" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Числовые метки делений осей */}
+          {[-3, -2, -1, 1, 2, 3, 4, 5, 6, 7].map(i => (
+            <g key={`lbl-x-${i}`}>
+              <line x1={140 + i*20} y1="196" x2={140 + i*20} y2="204" stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400" />
+              <text x={140 + i*20 - 4} y="216" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[9px]">{i}</text>
+            </g>
+          ))}
+          {[-5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6].map(i => (
+            <g key={`lbl-y-${i}`}>
+              <line x1="136" y1={200 - i*20} x2="144" y2={200 - i*20} stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400" />
+              <text x="124" y={200 - i*20 + 4} fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[9px]">{i}</text>
+            </g>
+          ))}
+
+          {/* Неподвижный синий график решений первого уравнения */}
+          {/* Вертикальный отрезок x = -2 (от y = -4 до y = 3) */}
+          <line x1="100" y1="140" x2="100" y2="280" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Горизонтальный отрезок y = 3 (от x = -2 до выколотой точки x = 6) */}
+          <line x1="100" y1="140" x2="260" y2="140" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Наклонный отрезок y = x - 2 (от x = -2, y = -4 до выколотой точки x = 6, y = 4) */}
+          <line x1="100" y1="280" x2="260" y2="120" stroke="#2563eb" strokeWidth="2.5" />
+
+          {/* Выколотые правые граничные точки по ОДЗ на линии x = 6 */}
+          <circle cx="260" cy="140" r="3" fill="white" stroke="#2563eb" strokeWidth="1.5" className="fill-white dark:fill-slate-950" /> {/* (6; 3) */}
+          <circle cx="260" cy="120" r="3" fill="white" stroke="#2563eb" strokeWidth="1.5" className="fill-white dark:fill-slate-950" /> {/* (6; 4) */}
+
+          {/* ИСПРАВЛЕННЫЕ КРАСНЫЕ ПРЯМЫЕ СЕМЕЙСТВА y = a - x С ТОЧНЫМ ПРОХОЖДЕНИЕМ ЧЕРЕЗ ОСЬ OY */}
+          {/* Каждая прямая пересекает ось Oy (x=140) строго в точке (0; a), где 1 деление = 20px */}
+          {/* ИСПРАВЛЕННЫЕ КРАСНЫЕ ПРЯМЫЕ СЕМЕЙСТВА y = a - x С КОРРЕКТНЫМ ОГРАНИЧЕНИЕМ СВЕРХУ */}
+          {/* Верхние точки x1 и y1 сдвинуты вправо-вниз по наклону 45 градусов, чтобы линии не улетали за сетку */}
+          <line x1="20" y1="200" x2="220" y2="400" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" />   {/* a = -6 */}
+          <line x1="20" y1="60" x2="280" y2="320" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" />    {/* a = 1  */}
+          <line x1="80" y1="-20" x2="360" y2="260" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" />   {/* a = 8  */}
+          <line x1="100" y1="-20" x2="360" y2="240" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" />  {/* a = 9  */}
+          <line x1="120" y1="-20" x2="360" y2="220" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" />  {/* a = 10 */}
+
+
+          {/* Текстовые подписи к линиям параметров, выровненные строго по ходу убывания прямых */}
+          <text x="25" y="105" fill="#dc2626" className="font-sans text-[9px] font-semibold">a = 1</text>
+          <text x="110" y="325" fill="#dc2626" className="font-sans text-[9px] font-semibold">a = -6</text>
+          <text x="290" y="220" fill="#dc2626" className="font-sans text-[9px] font-semibold">a = 8</text>
+          <text x="363" y="240" fill="#dc2626" className="font-sans text-[9px] font-semibold">a = 9</text>
+          <text x="330" y="165" fill="#dc2626" className="font-sans text-[9px] font-semibold">a = 10</text>
+
+
+
+          {/* Ключевые точки пересечений на синих графиках */}
+          <circle cx="240" cy="140" r="3.5" fill="#000000" /> {/* Точка пересечения (5; 3) */}
+          <circle cx="100" cy="140" r="3.5" fill="#000000" /> {/* Точка излома (-2; 3) */}
+          <circle cx="100" cy="280" r="3.5" fill="#000000" /> {/* Точка излома (-2; -4) */}
+
+          {/* Текстовые подписи к линиям параметров, развернутые вдоль убывающих прямых */}
+          <text x="170" y="152" fill="#2563eb" className="font-sans text-[9px]">y = 3</text>
+          <text x="270" y="115" fill="#2563eb" className="font-sans text-[9px]">y = x - 2</text>
+        </svg>
+      </div>
+
+
+      <p>
+        Каждая прямая семейства <InlineMath math={`y = a - x`} /> пересекает неподвижный вертикальный отрезок <InlineMath math={`x = -2`} /> в точке с координатами <InlineMath math={`(-2; a + 2)`} />. Это даёт ровно <b>одно гарантированное решение при любом значении параметра a</b>.
+      </p>
+
+      <div className="space-y-3">
+        <div>
+          <b>1. Пересечение с прямой <InlineMath math={`y = 3`} />:</b>
+          <BlockMath math={`a - x = 3 \\iff x = a - 3.`} />
+          С учётом строгих границ открытого интервала ОДЗ <InlineMath math={`-2 < x < 6`} /> получаем:
+          <BlockMath math={`-2 < a - 3 < 6 \\iff 1 < a < 9.`} />
+          При <InlineMath math={`a = 1`} /> точка пересечения попадает на левую границу <InlineMath math={`x = -2`} /> и уже учтена. При <InlineMath math={`a = 9`} /> точка пересечения попадает на выколотую правую границу ОДЗ <InlineMath math={`x = 6`} /> и не даёт решений.
+        </div>
+
+        <div>
+          <b>2. Пересечение с прямой <InlineMath math={`y = x - 2`} />:</b>
+          <BlockMath math={`a - x = x - 2 \\iff 2x = a + 2 \\iff x = \\dfrac{a + 2}{2}.`} />
+          С учётом ограничений интервала ОДЗ <InlineMath math={`-2 < x < 6`} /> получаем:
+          <BlockMath math={`-2 < \\dfrac{a + 2}{2} < 6 \\iff -4 < a + 2 < 12 \\iff -6 < a < 10.`} />
+          При <InlineMath math={`a = -6`} /> точка пересечения совпадает с концом вертикального отрезка <InlineMath math={`(-2; -4)`} />. При <InlineMath math={`a = 10`} /> точка пересечения попадает на выколотую границу ОДЗ <InlineMath math={`x = 6`} />.
+        </div>
+      </div>
+
+      <div className="space-y-2 pt-2">
+        <p>Сопоставим пересечения на всех промежутках изменения параметра:</p>
+        <ul className="list-bullet pl-5 space-y-1">
+          <li>
+            При <InlineMath math={`-6 < a \\leq 1`} /> имеются ровно два различных решения: одно на вертикальном отрезке <InlineMath math={`x = -2`} /> и одно на наклонной прямой.
+          </li>
+          <li>
+            При <InlineMath math={`1 < a < 8`} /> прямая пересекает все три линии, давая 3 решения.
+          </li>
+          <li>
+            При <InlineMath math={`a = 8`} /> прямые пересекаются в точке <InlineMath math={`(5; 3)`} />. В этой точке решения сливаются, поэтому остаётся ровно <b>два различных решения</b>.
+          </li>
+          <li>
+            При <InlineMath math={`8 < a < 9`} /> снова образуется 3 решения.
+          </li>
+          <li>
+            При <InlineMath math={`9 \\leq a < 10`} /> пересечение с горизонтальной линией выходит за ОДЗ, поэтому остаются ровно <b>два различных решения</b>: на отрезке <InlineMath math={`x = -2`} /> и на наклонной прямой.
+          </li>
+        </ul>
+      </div>
+
+      <p>Объединяя все подходящие промежутки, получаем итоговое множество:</p>
+      <BlockMath math={`a \\in (-6; 1] \\cup \\{8\\} \\cup [9; 10).`} />
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-6; 1] \\cup \\{8\\} \\cup [9; 10)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 80,
+  title: 'Задача 80 (ЕГЭ-2014. Досрочная волна, резервный день)',
+  textBefore: 'Найдите все значения a, при которых любое решение уравнения',
+  mathA: '3\\sqrt[5]{6,2x - 5,2} + 4\\log_{5}(4x + 1) + 5a = 0',
+  textAfter: <span>принадлежит отрезку [1; 6].</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>Найдем область определения уравнения, которая задается условием строго положительности аргумента логарифма:</p>
+        <BlockMath math={`4x + 1 > 0 \\iff x > -\\dfrac{1}{4}.`} />
+      </div>
+      
+      <p>Перенесем слагаемые с переменной и параметром в разные стороны:</p>
+      <BlockMath math={`3\\sqrt[5]{6,2x - 5,2} = -4\\log_{5}(4x + 1) - 5a.`} />
+      
+      <p>Рассмотрим функции в левой и правой частях уравнения:</p>
+      <BlockMath math={`f(x) = 3\\sqrt[5]{6,2x - 5,2}, \\quad g(x) = -4\\log_{5}(4x + 1) - 5a.`} />
+      
+      <p>
+        Функция <InlineMath math={`f(x)`} /> монотонно возрастает на своей области определения, а функция <InlineMath math={`g(x)`} /> монотонно убывает (поскольку основание логарифма <InlineMath math={`5 > 1`} />, а перед ним стоит отрицательный коэффициент). 
+        Следовательно, их графики имеют <b>не более одной общей точки</b>. Условие задачи выполняется тогда и только тогда, когда точка пересечения графиков существует и находится на отрезке <InlineMath math={`[1; 6]`} />.
+      </p>
+
+      {/* Высокоточный и крупный центрированный SVG-график Задачи 80 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 380 380" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Легкая сетка (Шаг: 1 деление = 24px. Центр (0,0) зафиксирован на x=40, y=320) */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => (
+              <line key={`x-${i}`} x1={40 + i*24} y1="20" x2={40 + i*24} y2="340" />
+            ))}
+            {[-1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(i => (
+              <line key={`y-${i}`} x1="20" y1={320 - i*24} x2="360" y2={320 - i*24} />
+            ))}
+          </g>
+
+          {/* Вертикальные границы отрезка x=1 и x=6 (пунктир) */}
+          <line x1="64" y1="20" x2="64" y2="340" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
+          <line x1="184" y1="20" x2="184" y2="340" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
+          <text x="56" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[9px]">x = 1</text>
+          <text x="176" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[9px]">x = 6</text>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="320" x2="360" y2="320" /> {/* Ось Ox */}
+            <line x1="40" y1="20" x2="40" y2="360" />   {/* Ось Oy */}
+          </g>
+          <path d="M 360,320 L 352,316 M 360,320 L 352,324" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 40,20 L 36,28 M 40,20 L 44,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="370" y="324" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="26" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="26" y="334" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Штрихи делений на осях БЕЗ ЧИСЛОВЫХ МЕТОК строго по ТЗ */}
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => (
+            <line key={`tick-x-${i}`} x1={40 + i*24} y1="316" x2={40 + i*24} y2="324" stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400" />
+          ))}
+          {[-1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(i => (
+            <line key={`tick-y-${i}`} x1="36" y1={320 - i*24} x2="44" y2={320 - i*24} stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400" />
+          ))}
+
+          {/* Возрастающий синий график f(x) = 3*⁵√(6.2x - 5.2) */}
+          <path d="M 60,320 C 60.5,290 62,254 64,248 C 76,212 110,186 184,176 C 220,171.2 260,167 320,163" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="192" y="194" fill="#2563eb" className="font-serif italic text-[10px]">f(x)</text>
+
+          {/* Убывающий красный график g(x) при a = -7/5 (сплошной) */}
+          <path d="M 64,248 C 80,290 120,330 184,344" fill="none" stroke="#dc2626" strokeWidth="2" />
+          <text x="188" y="354" fill="#dc2626" className="font-serif italic text-[10px]">g(x), a = -7/5</text>
+
+          {/* Убывающий красный график g(x) при a = -14/5 (пунктир) */}
+          <path d="M 64,80 C 80,122 120,162 184,176" fill="none" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4 3" />
+          <text x="148" y="150" fill="#dc2626" className="font-serif italic text-[10px]">g(x), a = -14/5</text>
+
+          {/* ВСЕ ЧЕРНЫЕ МАРКЕРНЫЕ ТОЧКИ И ИХ ТЕКСТОВЫЕ ПОДПИСИ (1;3) И (6;6) ПОЛНОСТЬЮ УДАЛЕНЫ ПО ТЗ */}
+        </svg>
+      </div>
+
+
+      <div className="space-y-4">
+        <div>
+          <p className="font-semibold text-slate-800 dark:text-slate-200">1. Рассмотрим поведение функций на левой границе отрезка при <InlineMath math={`x = 1`} />:</p>
+          Для того чтобы точка пересечения графиков лежала на отрезке или правее него, на левой границе возрастающая функция должна быть ниже или совпадать с убывающей:
+          <BlockMath math={`f(1) \\leq g(1) \\iff 3 \\leq -4 - 5a \\iff 5a \\leq -7 \\iff a \\leq -\\dfrac{7}{5}.`} />
+        </div>
+
+        <div>
+          <p className="font-semibold text-slate-800 dark:text-slate-200">2. Рассмотрим поведение функций на правой границе отрезка при <InlineMath math={`x = 6`} />:</p>
+          Для того чтобы точка пересечения графиков лежала на отрезке или левее него, на правой границе возрастающая функция должна быть выше или совпадать с убывающей:
+          <BlockMath math={`f(6) \\geq g(6) \\iff 6 \\geq -8 - 5a \\iff 5a \\geq -14 \\iff a \\geq -\\dfrac{14}{5}`} />
+        </div>
+      </div>
+
+      <p className="pt-2">
+        Объединяя оба условия в общую систему неравенств, находим пересечение промежутков параметра:
+      </p>
+      <BlockMath math={`\\begin{cases} a \\geq -\\dfrac{14}{5}, \\\\[0.5em] a \\leq -\\dfrac{7}{5} \\end{cases} \\iff a \\in \\left[-\\dfrac{14}{5}; -\\dfrac{7}{5}\\right].`} />
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left[-\\dfrac{14}{5}; -\\dfrac{7}{5}\\right]`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 81,
+  title: 'Задача 81 (ЕГЭ-2014. Основная волна)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '\\sqrt{x^4 + (a - 5)^4} = |x + a - 5| + |x - a + 5|',
+  textAfter: <span>имеет ровно один корень.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p><b>1. Анализ чётности (инвариантность):</b> Заметим, что если значение <InlineMath math={`x_0`} /> является корнем данного уравнения, то значение <InlineMath math={`-x_0`} /> также является его корнем:</p>
+        <BlockMath math={`\\sqrt{(-x_0)^4 + (a - 5)^4} = |-x_0 + a - 5| + |-x_0 - a + 5| = |x_0 - a + 5| + |x_0 + a - 5|.`} />
+        <p>Для того чтобы уравнение имело единственный корень, необходимо, чтобы этим корнем был <InlineMath math={`x = 0`} />.</p>
+      </div>
+      
+      <div className="space-y-2">
+        <p><b>2. Необходимое условие:</b> Подставим <InlineMath math={`x = 0`} /> в исходное уравнение:</p>
+        <BlockMath math={`\\sqrt{0^4 + (a - 5)^4} = |0 + a - 5| + |0 - a + 5| \\iff (a - 5)^2 = 2|a - 5|.`} />
+        <p>Сделаем замену <InlineMath math={`t = |a - 5| \\geq 0`} />:</p>
+        <BlockMath math={`t^2 - 2t = 0 \\iff t(t - 2) = 0 \\iff \\begin{cases} t = 0 \\\\[0.5em] t = 2 \\end{cases}`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>Разберём полученные случаи для поиска кандидатов:</p>
+        <ul className="list-bullet pl-5 space-y-2">
+          <li>
+            Если <InlineMath math={`t = 0`} />: <InlineMath math={`|a - 5| = 0 \\iff a = 5`} />.
+          </li>
+          <li>
+            Если <InlineMath math={`t = 2`} />: <InlineMath math={`|a - 5| = 2 \\iff \\begin{cases} a - 5 = 2 \\\\[0.5em] a - 5 = -2 \\end{cases} \\iff \\begin{cases} a = 7 \\\\[0.5em] a = 3 \\end{cases}`} />.
+          </li>
+        </ul>
+        <p>Таким образом, кандидатами на ответ являются значения <InlineMath math={`a \\in \\{3; 5; 7\\}`} />.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p><b>3. Проверим значения параметра на достаточность:</b></p>
+        <p><u>Случай <InlineMath math={`a = 5`} />:</u> Подставим <InlineMath math={`a = 5`} /> в исходное уравнение:</p>
+        <BlockMath math={`\\sqrt{x^4 + 0} = |x| + |x| \\iff x^2 = 2|x| \\iff |x|(|x| - 2) = 0 \\iff \\begin{cases} x = 0 \\\\[0.5em] x = 2 \\\\[0.5em] x = -2 \\end{cases}`} />
+        <p>Уравнение имеет три корня. Значение <InlineMath math={`a = 5`} /> не подходит.</p>
+      </div>
+
+            <div className="space-y-4">
+        <div>
+          <p><u>Случай <InlineMath math={`a = 7`} /> или <InlineMath math={`a = 3`} />:</u></p>
+          <p className="mt-1">
+            При <InlineMath math={`a = 7`} /> имеем <InlineMath math={`a - 5 = 2`} />, а при <InlineMath math={`a = 3`} /> имеем <InlineMath math={`a - 5 = -2`} />. Заметим, что выражение <InlineMath math={`(a - 5)^4 = 16`} />, а правая часть равенства в обоих случаях принимает вид <InlineMath math={`|x + 2| + |x - 2|`} />. Получаем уравнение:
+          </p>
+          <BlockMath math={`\\sqrt{x^4 + 16} = |x + 2| + |x - 2|.`} />
+        </div>
+
+        <div className="space-y-2">
+          <p>Используем свойства неравенств для оценки левой и правой частей уравнения:</p>
+          <div className="pl-4 space-y-2">
+            <div>
+              <b>а) Левая часть:</b>
+              <BlockMath math={`x^4 \\geq 0 \\implies x^4 + 16 \\geq 16 \\implies \\sqrt{x^4 + 16} \\geq \\sqrt{16} = 4.`} />
+              Причём равенство <InlineMath math={`\\sqrt{x^4 + 16} = 4`} /> достигается только при <InlineMath math={`x = 0`} />.
+            </div>
+            <div>
+              <b>б) Правая часть:</b>
+              <br />
+              По неравенству треугольника <InlineMath math={`|u| + |v| \\geq |u - v|`} /> имеем:
+              <BlockMath math={`|x + 2| + |2 - x| \\geq |(x + 2) + (2 - x)| = 4.`} />
+              Причём <InlineMath math={`|x + 2| + |x - 2| = 4`} /> достигается тогда и только тогда, когда <InlineMath math={`x \\in [-2; 2]`} />.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p>
+            При <InlineMath math={`x \\in [-2; 2]`} /> правая часть равенства равна <InlineMath math={`4`} />, а левая часть <InlineMath math={`\\sqrt{x^4 + 16} > 4`} /> при всех <InlineMath math={`x \\neq 0`} />. Значит, на промежутках <InlineMath math={`(-2; 0)`} /> и <InlineMath math={`(0; 2)`} /> решений нет.
+          </p>
+          <p className="mt-2">
+            При <InlineMath math={`|x| > 2`} /> правая часть равна <InlineMath math={`2|x|`} />. Рассмотрев уравнение <InlineMath math={`\\sqrt{x^4 + 16} = 2|x|`} />:
+          </p>
+          <BlockMath math={`x^4 + 16 = 4x^2 \\iff x^4 - 4x^2 + 16 = 0.`} />
+          <p>
+            Дискриминант относительно <InlineMath math={`x^2`} /> равен: <InlineMath math={`D = 16 - 64 = -48 < 0`} />, действительных корней нет.
+          </p>
+          <p className="mt-2">
+            Следовательно, при <InlineMath math={`a = 3`} /> и <InlineMath math={`a = 7`} /> единственным решением уравнения является <InlineMath math={`x = 0`} />.
+          </p>
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\{3; 7\\}`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 82,
+  title: 'Задача 82 (ЕГЭ-2014. Основная волна)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '(|x - 2| + |x - a|)^2 + (a - 30)(|x - 2| + |x - a|) + 90a - 12a^2 = 0',
+  textAfter: <span>имеет не менее четырёх различных корней.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p><b>1. Замена:</b> Обозначим <InlineMath math={`t = |x - 2| + |x - a|, \\quad t \\geq 0.`} /></p>
+        <p>Геометрически <InlineMath math={`t`} /> представляет собой график кусочно-линейной функции («корыто») в осях <InlineMath math={`xOt`} />.</p>
+      </div>
+
+      {/* Высокоточный и крупный центрированный SVG-график кусочно-линейной функции t(x) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 360 220" className="w-full max-w-[360px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="180" x2="330" y2="180" /> {/* Ось Ox */}
+            <line x1="100" y1="20" x2="100" y2="195" />  {/* Ось Ot */}
+          </g>
+          <path d="M 330,180 L 322,176 M 330,180 L 322,184" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 100,20 L 96,28 M 100,20 L 104,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="340" y="184" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="98" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">t</text>
+
+          {/* Пунктирные сеточные линии для уровней a, 2 и t0 */}
+          <line x1="170" y1="120" x2="170" y2="180" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <line x1="260" y1="120" x2="260" y2="180" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <line x1="70" y1="120" x2="260" y2="120" stroke="#16a34a" strokeWidth="1.2" strokeDasharray="3 3" />
+
+          {/* Жирный синий график функции "корыто" */}
+          <path d="M 50,60 L 170,120 L 260,120 L 310,60" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+
+          {/* Буквенные метки делений осей */}
+          <text x="166" y="195" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-sm">a</text>
+          <text x="256" y="195" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">2</text>
+          <text x="10" y="124" fill="#16a34a" stroke="none" className="font-sans font-semibold text-xs">{"t₀ = |a - 2|"}</text>
+        </svg>
+      </div>
+
+      <div className="space-y-1">
+        <p>Из графика видно:</p>
+        <ul className="list-bullet pl-5 space-y-1">
+          <li>Если <InlineMath math={`t < |a - 2|`} />, то уравнение <InlineMath math={`t(x) = t`} /> не имеет решений.</li>
+          <li>Если <InlineMath math={`t > |a - 2|`} />, то уравнение <InlineMath math={`|x - 2| + |x - a| = t`} /> имеет ровно 2 корня <InlineMath math={`x`} />.</li>
+          <li>Если <InlineMath math={`t = |a - 2|`} /> и <InlineMath math={`a \\neq 2`} />, то уравнение имеет бесконечно много решений <InlineMath math={`x`} /> (весь отрезок между <InlineMath math={`a`} /> и <InlineMath math={`2`} />).</li>
+        </ul>
+      </div>
+
+      <div className="space-y-2">
+        <p><b>2. Квадратное уравнение относительно <InlineMath math={`t`} />:</b></p>
+        <p>Подставим <InlineMath math={`t`} /> в исходное уравнение:</p>
+        <BlockMath math={`t^2 + (a - 30)t + 90a - 12a^2 = 0.`} />
+      </div>
+
+            <div className="space-y-4">
+        <div>
+          <p>Найдем дискриминант этого уравнения:</p>
+          <BlockMath math={`D = (a - 30)^2 - 4(90a - 12a^2) = a^2 - 60a + 900 - 360a + 48a^2 = 49a^2 - 420a + 900 = (7a - 30)^2.`} />
+          <p className="mt-2">Корни уравнения относительно <InlineMath math={`t`} /> равны:</p>
+          <BlockMath math={`t_1 = \\dfrac{-(a - 30) + (7a - 30)}{2} = \\dfrac{6a}{2} = 3a.`} />
+          <BlockMath math={`t_2 = \\dfrac{-(a - 30) - (7a - 30)}{2} = \\dfrac{60 - 8a}{2} = 30 - 4a.`} />
+        </div>
+
+        <div className="space-y-2">
+          <p><b>3. Анализ количества решений:</b></p>
+          <p>Чтобы исходное уравнение имело не менее 4 различных корней, необходимо и достаточно, чтобы выполнялось одно из двух условий:</p>
+          <ul className="list-bullet pl-5 space-y-2">
+            <li>
+              а) Корни <InlineMath math={`t_1`} /> и <InlineMath math={`t_2`} /> различны (<InlineMath math={`t_1 \\neq t_2`} />), и каждый удовлетворяет условию <InlineMath math={`t \\geq |a - 2|`} /> (каждый даст по 2 корня <InlineMath math={`x`} /> или один из них даст бесконечно много решений).
+            </li>
+            <li>
+              б) Если один из корней совпадает с <InlineMath math={`|a - 2|`} /> при <InlineMath math={`a \\neq 2`} />, мы получаем бесконечное число решений, что также удовлетворяет требованию «не менее 4 корней».
+            </li>
+          </ul>
+          <p className="mt-2">Таким образом, необходимо и достаточно выполнение системы нестрогих неравенств:</p>
+          <BlockMath math={`\\begin{cases} 3a \\geq |a - 2|, \\\\[1.5em] 30 - 4a \\geq |a - 2|. \\end{cases}`} />
+        </div>
+
+        <div className="space-y-2">
+          <p>Проверим точку совпадения корней:</p>
+          <BlockMath math={`t_1 = t_2 \\iff 3a = 30 - 4a \\iff 7a = 30 \\iff a = \\dfrac{30}{7}.`} />
+          <p>
+            Значение <InlineMath math={`a = \\dfrac{30}{7}`} /> дает единственный корень <InlineMath math={`t = \\dfrac{90}{7}`} />. 
+            Подставляя <InlineMath math={`a = \\dfrac{30}{7}`} /> в условие ограничения, получаем <InlineMath math={`t = \\dfrac{90}{7} > \\left|\\dfrac{30}{7} - 2\\right| = \\dfrac{16}{7}`} />, что порождает ровно 2 корня <InlineMath math={`x`} />, поэтому точка <InlineMath math={`a = \\dfrac{30}{7}`} /> не подходит.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          <p>Раскрываем неравенства с модулем:</p>
+          <div className="pl-4 space-y-3">
+            <div>
+              <InlineMath math={`\\bullet \\ 3a \\geq |a - 2| \\iff \\begin{cases} 3a \\geq a - 2 \\\\[0.5em] 3a \\geq -a + 2 \\end{cases} \\iff \\begin{cases} 2a \\geq -2 \\\\[0.5em] 4a \\geq 2 \\end{cases} \\iff a \\geq \\dfrac{1}{2}.`} />
+            </div>
+            <div>
+              <InlineMath math={`\\bullet \\ 30 - 4a \\geq |a - 2| \\iff \\begin{cases} 30 - 4a \\geq a - 2 \\\\[0.5em] 30 - 4a \\geq -a + 2 \\end{cases} \\iff \\begin{cases} 5a \\leq 32 \\\\[0.5em] 3a \\leq 28 \\end{cases} \\iff a \\leq \\dfrac{32}{5}.`} />
+            </div>
+          </div>
+          <p className="mt-2">
+            Исключая точку совпадения корней <InlineMath math={`a = \\dfrac{30}{7}`} />, получаем пересечение интервалов:
+          </p>
+          <BlockMath math={`a \\in \\left[\\dfrac{1}{2}; \\dfrac{30}{7}\\right) \\cup \\left(\\dfrac{30}{7}; \\dfrac{32}{5}\\right].`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left[\\dfrac{1}{2}; \\dfrac{30}{7}\\right) \\cup \\left(\\dfrac{30}{7}; \\dfrac{32}{5}\\right]`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 83,
+  title: 'Задача 83 (ЕГЭ-2014. Основная волна)',
+  textBefore: 'Найдите все значения a, при которых уравнение',
+  mathA: '(|x + 7| - |x - a|)^2 - 13a(|x + 7| - |x - a|) + 30a^2 + 21a - 9 = 0',
+  textAfter: <span>имеет ровно два различных корня.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p><b>1. Замена:</b> Обозначим <InlineMath math={`t = |x + 7| - |x - a|.`} /></p>
+        <p>Геометрически <InlineMath math={`t`} /> представляет собой график кусочно-линейной функции («ступенька») в осях <InlineMath math={`xOt`} />.</p>
+      </div>
+
+      {/* Высокоточный и крупный центрированный SVG-график функции "ступенька" */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 380 240" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="120" x2="350" y2="120" /> {/* Ось Ox */}
+            <line x1="240" y1="20" x2="240" y2="220" />  {/* Ось Ot */}
+          </g>
+          <path d="M 350,120 L 342,116 M 350,120 L 342,124" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 240,20 L 236,28 M 240,20 L 244,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="360" y="124" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="238" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">t</text>
+
+          {/* Пунктирные линии для уровней -7, a и значений функции */}
+          <line x1="70" y1="120" x2="70" y2="180" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <line x1="290" y1="60" x2="290" y2="120" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <line x1="20" y1="180" x2="70" y2="180" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <line x1="240" y1="60" x2="290" y2="60" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+
+          {/* Жирный синий график функции "ступенька" */}
+          <path d="M 20,180 L 70,180 L 290,60 L 350,60" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+
+          {/* Буквенные метки делений осей */}
+          <text x="62" y="112" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">-7</text>
+          <text x="286" y="134" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-sm">a</text>
+          <text x="195" y="64" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">|a + 7|</text>
+          <text x="246" y="184" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">-|a + 7|</text>
+        </svg>
+      </div>
+
+      <div className="space-y-1">
+        <p>Из графика видно, что:</p>
+        <ul className="list-bullet pl-5 space-y-1">
+          <li>При <InlineMath math={`t \\in (-|a + 7|; |a + 7|)`} /> уравнение <InlineMath math={`t(x) = t`} /> имеет ровно 1 корень <InlineMath math={`x`} />.</li>
+          <li>При <InlineMath math={`t = \\pm |a + 7|`} /> (при <InlineMath math={`a \\neq -7`} />) уравнение имеет бесконечно много решений.</li>
+        </ul>
+        <p className="pt-1">
+          Следовательно, чтобы исходное уравнение имело ровно два различных корня <InlineMath math={`x`} />, нужно, чтобы квадратное уравнение относительно <InlineMath math={`t`} /> имело два различных корня <InlineMath math={`t_1`} /> и <InlineMath math={`t_2`} />, причём каждый из них лежал строго внутри интервала <InlineMath math={`(-|a + 7|; |a + 7|)`} />.
+        </p>
+      </div>
+
+      <div className="space-y-2">
+        <p><b>2. Решение относительно <InlineMath math={`t`} />:</b></p>
+        <BlockMath math={`t^2 - 13a \\cdot t + (30a^2 + 21a - 9) = 0.`} />
+        <p>Найдем дискриминант:</p>
+        <BlockMath math={`D = 169a^2 - 4(30a^2 + 21a - 9) = 169a^2 - 120a^2 - 84a + 36 = 49a^2 - 84a + 36 = (7a - 6)^2.`} />
+        <p>Корни уравнения равны:</p>
+        <BlockMath math={`t_1 = \\dfrac{13a + (7a - 6)}{2} = \\dfrac{20a - 6}{2} = 10a - 3.`} />
+        <BlockMath math={`t_2 = \\dfrac{13a - (7a - 6)}{2} = \\dfrac{6a + 6}{2} = 3a + 3.`} />
+      </div>
+
+            <div className="space-y-4">
+        <div>
+          <p><b>3. Составление системы условий:</b> Запишем условия существования двух уникальных корней <InlineMath math={`x`} />:</p>
+          <BlockMath math={`\\begin{cases} 10a - 3 \\neq 3a + 3, \\\\[0.5em] -|a + 7| < 10a - 3 < |a + 7|, \\\\[0.5em] -|a + 7| < 3a + 3 < |a + 7| \\end{cases} \\iff \\begin{cases} a \\neq \\dfrac{6}{7}, \\\\[1em] |10a - 3| < |a + 7|, \\\\[1em] |3a + 3| < |a + 7|. \\end{cases}`} />
+        </div>
+
+        <div className="space-y-3">
+          <p>Решаем неравенства методом возведения в квадрат:</p>
+          
+          <div className="pl-4 space-y-2">
+            <div>
+              <InlineMath math={`\\bullet \\ |10a - 3| < |a + 7| \\iff (10a - 3)^2 < (a + 7)^2 \\iff (10a - 3 - a - 7)(10a - 3 + a + 7) < 0`} />
+              <BlockMath math={`\\iff (9a - 10)(11a + 4) < 0 \\iff a \\in \\left(-\\dfrac{4}{11}; \\dfrac{10}{9}\\right).`} />
+            </div>
+            
+            <div className="pt-2">
+              <InlineMath math={`\\bullet \\ |3a + 3| < |a + 7| \\iff (3a + 3)^2 < (a + 7)^2 \\iff (3a + 3 - a - 7)(3a + 3 + a + 7) < 0`} />
+              <BlockMath math={`\\iff (2a - 4)(4a + 10) < 0 \\iff a \\in (-2,5; 2).`} />
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <p><b>4. Нахождение пересечения:</b></p>
+          <p>
+            Пересекая полученные интервалы, находим общую область существования решений: <InlineMath math={`a \\in \\left(-\\dfrac{4}{11}; \\dfrac{10}{9}\\right)`} />.
+          </p>
+          <p>
+            Исключаем точку совпадения корней <InlineMath math={`a = \\dfrac{6}{7}`} />:
+          </p>
+          <BlockMath math={`a \\in \\left(-\\dfrac{4}{11}; \\dfrac{6}{7}\\right) \\cup \\left(\\dfrac{6}{7}; \\dfrac{10}{9}\\right).`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left(-\\dfrac{4}{11}; \\dfrac{6}{7}\\right) \\cup \\left(\\dfrac{6}{7}; \\dfrac{10}{9}\\right)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 84,
+  title: 'Задача 84 (ЕГЭ-2014. Основная волна)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '\\sin^{14} x + (a - 3\\sin x)^7 + \\sin^2 x + a = 3\\sin x',
+  textAfter: <span>имеет хотя бы одно решение.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p><b>1. Преобразуем исходное уравнение, сгруппировав слагаемые:</b></p>
+        <BlockMath math={`\\sin^{14} x + \\sin^2 x = -(a - 3\\sin x)^7 + 3\\sin x - a`} />
+        <BlockMath math={`\\sin^{14} x + \\sin^2 x = (3\\sin x - a)^7 + (3\\sin x - a).`} />
+      </div>
+      
+      <div className="space-y-2">
+        <p><b>2. Рассмотрим функцию <InlineMath math={`f(t) = t^7 + t`} />. Её производная:</b></p>
+        <BlockMath math={`f'(t) = 7t^6 + 1 > 0 \\quad \\text{для всех } t \\in \\mathbb{R}.`} />
+        <p>
+          Так как производная строго положительна, функция <InlineMath math={`f(t)`} /> строго возрастает на всей числовой прямой. 
+          Следовательно, равенство <InlineMath math={`f(u) = f(v)`} /> равносильно равенству аргументов <InlineMath math={`u = v`} />:
+        </p>
+        <BlockMath math={`f(\\sin^2 x) = f(3\\sin x - a) \\iff \\sin^2 x = 3\\sin x - a.`} />
+      </div>
+
+            <div className="space-y-2">
+        <p><b>3. Сделаем замену переменной:</b> <InlineMath math={`t = \\sin x`} />, где параметр зафиксирован на отрезке <InlineMath math={`t \\in [-1; 1]`} />. Перепишем полученное равенство в виде квадратного уравнения относительно <InlineMath math={`t`} />:</p>
+        <BlockMath math={`t^2 = 3t - a \\iff t^2 - 3t + a = 0.`} />
+        <p>Исходное уравнение имеет хотя бы один корень тогда и только тогда, когда квадратное уравнение имеет хотя бы одно решение на отрезке <InlineMath math={`t \\in [-1; 1]`} />.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p><b>4. Обозначим <InlineMath math={`g(t) = t^2 - 3t + a`} />:</b> Графиком <InlineMath math={`y = g(t)`} /> является парабола, ветви которой направлены вверх. Абсцисса вершины параболы равна:</p>
+        <BlockMath math={`t_0 = \\dfrac{3}{2}.`} />
+        <p>Так как вершина <InlineMath math={`t_0 > 1`} />, парабола строго убывает на всем отрезке <InlineMath math={`[-1; 1]`} />. Значит, корень принадлежит отрезку <InlineMath math={`[-1; 1]`} /> тогда и только тогда, когда значения функции на концах отрезка имеют разные знаки (или одно из них равно нулю):</p>
+      </div>
+
+      {/* Высокоточный крупный центрированный SVG-график параболы g(t) */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 420 280" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="180" x2="380" y2="180" /> {/* Ось Ot */}
+            <line x1="130" y1="20" x2="130" y2="240" />  {/* Ось Oy */}
+          </g>
+          <path d="M 380,180 L 372,176 M 380,180 L 372,184" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 130,20 L 126,28 M 130,20 L 134,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="390" y="184" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">t</text>
+          <text x="116" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+
+          {/* Вертикальные границы отрезка [-1; 1] */}
+          <line x1="75" y1="20" x2="75" y2="240" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <line x1="185" y1="20" x2="185" y2="240" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <text x="69" y="196" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-sm">-1</text>
+          <text x="181" y="196" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-sm">1</text>
+
+          {/* Пунктирные сеточные линии для вершины параболы */}
+          <line x1="220" y1="180" x2="220" y2="210" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <circle cx="220" cy="210" r="2.5" fill="#000000" />
+          <text x="212" y="172" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[11px]">{"t₀ = 3/2"}</text>
+          <text x="200" y="224" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px]">вершина</text>
+
+          {/* Математически выверенная парабола g(t) с честной вершиной строго на пунктирной оси t0 = 3/2 (x=240) */}
+          {/* Сплайн Безье полностью скорректирован: экстремум (минимум функции) зафиксирован строго в точке (240, 210) */}
+          <path d="M 50,45 C 100,210 180,210 240,210 C 275,210 320,165 360,120" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+
+
+          {/* Важные маркерные синие точки и их подписи */}
+          <circle cx="75" cy="110" r="3.5" fill="#2563eb" />
+          <text x="82" y="96" fill="#000000" className="dark:fill-slate-300 font-sans text-[10px]">g(-1) ≥ 0</text>
+
+          <circle cx="185" cy="207" r="3.5" fill="#2563eb" />
+          <text x="138" y="222" fill="#000000" className="dark:fill-slate-300 font-sans text-[10px]">g(1) ≤ 0</text>
+          
+          {/* СЛОВО КОРЕНЬ И КРАСНАЯ МАРКЕРНАЯ ТОЧКА ПОЛНОСТЬЮ УДАЛЕНЫ ПО ТЗ */}
+        </svg>
+      </div>
+
+
+      <div className="space-y-4">
+        <div>
+          <p>Запишем систему условий:</p>
+          <BlockMath math={`\\begin{cases} g(-1) \\geq 0, \\\\[0.5em] g(1) \\leq 0 \\end{cases}`} />
+          <p className="mt-2">Вычислим значения функции <InlineMath math={`g(t)`} /> на концах промежутка:</p>
+          <BlockMath math={`g(-1) = (-1)^2 - 3(-1) + a = 1 + 3 + a = 4 + a.`} />
+          <BlockMath math={`g(1) = 1^2 - 3(1) + a = 1 - 3 + a = a - 2.`} />
+        </div>
+
+        <div>
+          <p>Подставим полученные значения в систему линейных неравенств:</p>
+          <BlockMath math={`\\begin{cases} 4 + a \\geq 0, \\\\[0.5em] a - 2 \\leq 0 \\end{cases} \\iff \\begin{cases} a \\geq -4, \\\\[0.5em] a \\leq 2 \\end{cases} \\iff -4 \\leq a \\leq 2.`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in [-4; 2]`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 85,
+  title: 'Задача 85 (ЕГЭ-2013. Основная волна)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: 'ax + \\sqrt{3 - 2x - x^2} = 4a + 2',
+  textAfter: <span>имеет ровно один корень.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p><b>1. Выразим корень и перегруппируем слагаемые:</b></p>
+        <BlockMath math={`\\sqrt{3 - 2x - x^2} = -ax + 4a + 2`} />
+        <BlockMath math={`\\sqrt{3 - 2x - x^2} = -a(x - 4) + 2.`} />
+      </div>
+      
+      <div className="space-y-2">
+        <p><b>2. Рассмотрим функции в левой и правой частях уравнения:</b></p>
+        <p>Зададим уравнение линии <InlineMath math={`y = \\sqrt{3 - 2x - x^2}`} /> и выполним равносильные преобразования с учётом неотрицательности переменной <InlineMath math={`y`} />:</p>
+        <BlockMath math={`\\begin{cases} y^2 = 3 - 2x - x^2, \\\\[0.5em] y \\geq 0 \\end{cases} \\iff \\begin{cases} x^2 + 2x + 1 + y^2 = 4, \\\\[0.5em] y \\geq 0 \\end{cases} \\iff \\begin{cases} (x + 1)^2 + y^2 = 2^2, \\\\[0.5em] y \\geq 0. \\end{cases}`} />
+        <p>
+          Графиком функции является <b>верхняя полуокружность</b> с центром в точке <InlineMath math={`C(-1; 0)`} /> и радиусом <InlineMath math={`R = 2`} />. Концы дуги находятся в точках <InlineMath math={`A(-3; 0)`} /> и <InlineMath math={`B(1; 0)`} />.
+        </p>
+        <p>
+          Уравнение <InlineMath math={`y = -a(x - 4) + 2`} /> задаёт пучок прямых, проходящих через фиксированную точку <InlineMath math={`P(4; 2)`} /> с угловым коэффициентом <InlineMath math={`k = -a`} />.
+        </p>
+      </div>
+
+            {/* Высокоточный крупный центрированный SVG-график Задачи 85 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 380 340" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Легкая сетка (Шаг: 1 деление = 24px. Центр (0,0) зафиксирован на x=160, y=200) */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[-5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6].map(i => (
+              <line key={`x-${i}`} x1={160 + i*24} y1="20" x2={160 + i*24} y2="320" />
+            ))}
+            {[-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5].map(i => (
+              <line key={`y-${i}`} x1="20" y1={200 - i*24} x2="360" y2={200 - i*24} />
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="200" x2="360" y2="200" /> {/* Ось Ox */}
+            <line x1="160" y1="20" x2="160" y2="320" />  {/* Ось Oy */}
+          </g>
+          <path d="M 360,200 L 352,196 M 360,200 L 352,204" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 160,20 L 156,28 M 160,20 L 164,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="370" y="204" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="146" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="146" y="214" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Числовые метки делений */}
+          {[-4, -3, -2, -1, 1, 2, 3, 4, 5].map(i => (
+            <g key={`lbl-x-${i}`}>
+              <line x1={160 + i*24} y1="196" x2={160 + i*24} y2="204" stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400" />
+              <text x={160 + i*24 - 4} y="216" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[9px]">{i}</text>
+            </g>
+          ))}
+          {[-5, -4, -3, -2, -1, 1, 2, 3, 4].map(i => (
+            <g key={`lbl-y-${i}`}>
+              <line x1="156" y1={200 - i*24} x2="164" y2={200 - i*24} stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400" />
+              <text x="144" y={200 - i*24 + 4} fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[9px]">{i}</text>
+            </g>
+          ))}
+
+          {/* Жирный синий график полуокружности (Центр (-1, 0) -> x=136, y=200; R = 2 -> 48px) */}
+          <path d="M 88,200 A 48,48 0 0,1 184,200" fill="none" stroke="#2563eb" strokeWidth="3" />
+
+          {/* ПУЧОК КРИТИЧЕСКИХ ПРЯМЫХ ЧЕРЕЗ НЕПОДВИЖНУЮ ТОЧКУ P(4; 2) -> x=256, y=152 */}
+          {/* Положение I (оранжевая прямая через B(1;0) -> x=184, y=200. Уклон k = 2/3) */}
+          <line x1="50" y1="289.3" x2="340" y2="96" stroke="#ea580c" strokeWidth="1.5" />
+          <text x="110" y="260" fill="#ea580c" className="font-sans font-semibold text-[10px]">I</text>
+
+          {/* Положение II (зелёная прямая через A(-3;0) -> x=88, y=200. Уклон k = 2/7) */}
+          <line x1="20" y1="219.4" x2="360" y2="122.3" stroke="#16a34a" strokeWidth="1.5" />
+          <text x="110" y="180" fill="#16a34a" className="font-sans font-semibold text-[10px]">II</text>
+
+          {/* Положение III (розовая прямая, горизонтальное касание y = 2 -> y=152. Уклон k = 0) */}
+          <line x1="20" y1="152" x2="360" y2="152" stroke="#db2777" strokeWidth="1.5" />
+          <text x="110" y="144" fill="#db2777" className="font-sans font-semibold text-[10px]">III</text>
+
+          {/* Ключевые точки и узлы */}
+          <circle cx="136" cy="200" r="3.5" fill="#000000" /> {/* Центр C(-1;0) */}
+          <circle cx="88" cy="200" r="3" fill="#000000" />   {/* Точка A(-3;0) */}
+          <circle cx="184" cy="200" r="3" fill="#000000" />  {/* Точка B(1;0) */}
+          
+          <circle cx="256" cy="152" r="3.5" fill="#dc2626" /> {/* Опорная точка пучка P(4;2) */}
+
+          {/* Буквенные обозначения точек на графике */}
+          <text x="82" y="190" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">A</text>
+          <text x="186" y="190" fill="#000000" className="dark:fill-slate-300 font-serif text-xs">B</text>
+          <text x="132" y="190" fill="#000000" className="dark:fill-slate-300 font-serif text-[10px]">C</text>
+          <text x="250" y="142" fill="#dc2626" className="font-serif font-semibold text-xs">P(4;2)</text>
+        </svg>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <p><b>3. Найдем ключевые значения параметра <InlineMath math={`a`} />:</b></p>
+          <p className="mt-1"><u>Прямая I</u> проходит через правую граничную точку <InlineMath math={`B(1; 0)`} />:</p>
+          <BlockMath math={`0 = -a(1 - 4) + 2 \\iff 3a = -2 \\iff a = -\\dfrac{2}{3}.`} />
+        </div>
+
+        <div>
+          <p><u>Прямая II</u> проходит через левую граничную точку <InlineMath math={`A(-3; 0)`} />:</p>
+          <BlockMath math={`0 = -a(-3 - 4) + 2 \\iff 7a = -2 \\iff a = -\\dfrac{2}{7}.`} />
+        </div>
+
+        <div>
+          <p><u>Прямая III</u> — горизонтальная прямая <InlineMath math={`y = 2`} />, касающаяся полуокружности в её верхней точке <InlineMath math={`(-1; 2)`} />:</p>
+          <BlockMath math={`-a = 0 \\iff a = 0.`} />
+        </div>
+
+        <div className="space-y-2">
+          <p><b>4. Анализ числа пересечений по рисунку:</b> Ровно одно пересечение прямых семейства с полуокружностью достигается в двух случаях:</p>
+          <div className="pl-4 space-y-2">
+            <p>
+              а) При вращении прямой от положения I (включая точку <InlineMath math={`B`} />) до положения II (не включая точку <InlineMath math={`A`} />, так как через неё прямая пересечёт график в двух точках):
+            </p>
+            <BlockMath math={`a \\in \\left[-\\dfrac{2}{3}; -\\dfrac{2}{7}\\right).`} />
+            <p>б) В случае касания в самой верхней точке дуги (положение III):</p>
+            <BlockMath math={`a = 0.`} />
+          </div>
+        </div>
+      </div>
+
+      <p className="pt-2">Объединяя полученные результаты, находим окончательное множество значений параметра:</p>
+      <BlockMath math={`a \\in \\left[-\\dfrac{2}{3}; -\\dfrac{2}{7}\\right) \\cup \\{0\\}.`} />
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left[-\\dfrac{2}{3}; -\\dfrac{2}{7}\\right) \\cup \\{0\\}`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 86,
+  title: 'Задача 86 (ЕГЭ*)',
+  textBefore: 'При каких а неравенство',
+  mathA: '|3\\sin x + a^2 - 22| + |7\\sin x + a + 12| \\leq 11\\sin x + |a^2 + a - 20| + 11',
+  textAfter: <span>верно для всех x?</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p><b>1. Сделаем замену переменной:</b> Пусть <InlineMath math={`\\sin x = t`} />, где параметр зафиксирован на отрезке <InlineMath math={`-1 \\leq t \\leq 1`} />. Перепишем неравенство, перенеся все члены в левую часть:</p>
+        <BlockMath math={`-11t + |3t + a^2 - 22| + |7t + a + 12| - |a^2 + a - 20| - 11 \\leq 0.`} />
+        <p>Зададим кусочно-линейную функцию <InlineMath math={`f(t) = -11t + |3t + a^2 - 22| + |7t + a + 12| - |a^2 + a - 20| - 11`} />.</p>
+      </div>
+      
+      <div className="space-y-2">
+        <p><b>2. Исследуем функцию на монотонность:</b> Заметим, что с каким бы знаком мы ни раскрывали модули, угловой коэффициент при переменной <InlineMath math={`t`} /> всегда будет строго меньше нуля. Действительно, возможные максимальное и минимальное значения коэффициента равны:</p>
+        <BlockMath math={`-11 + 3 + 7 = -1 < 0,\\\\[0.5em] -11 - 3 - 7 = -21 < 0.`} />
+        <p>Следовательно, функция <InlineMath math={`f(t)`} /> является <b>строго монотонно убывающей</b> на всей числовой прямой.</p>
+      </div>
+
+      <p>Чтобы отрезок <InlineMath math={`t \\in [-1; 1]`} /> полностью удовлетворял неравенству <InlineMath math={`f(t) \\leq 0`} />, необходимо и достаточно, чтобы максимальное значение функции (достигаемое на левой границе) было неотрицательным:</p>
+
+      {/* Высокоточный крупный центрированный SVG-график Задачи 86 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 360 220" className="w-full max-w-[360px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="140" x2="330" y2="140" /> {/* Ось Ot */}
+            <line x1="160" y1="20" x2="160" y2="200" />  {/* Ось Oy */}
+          </g>
+          {/* ИСПРАВЛЕННЫЕ КЛАССИЧЕСКИЕ СТРЕЛОЧКИ ОСЕЙ БЕЗ НАКЛОНОВ И РАЗРЫВОВ */}
+          <path d="M 330,140 L 322,136 M 330,140 L 322,144" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 160,20 L 156,28 M 160,20 L 164,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+
+          <text x="340" y="144" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">t</text>
+          <text x="146" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+
+          {/* Схематичная надпись в верхнем левом углу графика */}
+          <text x="520" y="15" fill="#94a3b8" stroke="none" className="font-sans font-medium text-[10px] tracking-wide select-none">Схематичный рисунок</text>
+
+
+          {/* Заштрихованная область отрезка [-1; 1] */}
+          <line x1="120" y1="140" x2="200" y2="140" stroke="#94a3b8" strokeWidth="3" opacity="0.4" />
+          {Array.from({ length: 11 }).map((_, i) => (
+            <line key={`sh-${i}`} x1={122 + i * 7} y1="140" x2={127 + i * 7} y2="150" stroke="#94a3b8" strokeWidth="0.8" />
+          ))}
+
+          {/* Маркерные точки делений -1 и 1 */}
+          <line x1="120" y1="136" x2="120" y2="144" stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400" />
+          <line x1="200" y1="136" x2="200" y2="144" stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400" />
+          <text x="112" y="130" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans">-1</text>
+          <text x="196" y="130" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans">1</text>
+
+          {/* Жирный синий монотонно убывающий график f(t) */}
+          <path d="M 90,40 L 120,140 L 170,190 L 220,210" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Маркерная точка прохождения графика через ноль в -1 */}
+          <circle cx="120" cy="140" r="3.5" fill="#000000" />
+        </svg>
+      </div>
+
+      <p className="pb-2">Таким образом, критерием решения является выполнение условия <InlineMath math={`f(-1) \\leq 0`} />.</p>
+        
+
+            <div className="space-y-4">
+        <div>
+          <p><b>3. Подставим <InlineMath math={`t = -1`} /> в выражение функции и упростим его:</b></p>
+          <BlockMath math={`f(-1) = 11 + | -3 + a^2 - 22 | + | -7 + a + 12 | - | a^2 + a - 20 | - 11`} />
+          <BlockMath math={`f(-1) = |a^2 - 25| + |a + 5| - |(a + 5)(a - 4)|.`} />
+          <p className="mt-2">Составим итоговое неравенство <InlineMath math={`f(-1) \\leq 0`} />:</p>
+          <BlockMath math={`|a^2 - 25| + |a + 5| - |(a + 5)(a - 4)| \\leq 0.`} />
+        </div>
+
+        <div>
+          <p>Разложим разность квадратов внутри первого модуля и вынесем общий множитель <InlineMath math={`|a + 5|`} /> за скобки:</p>
+          <BlockMath math={`|a + 5| \\cdot |a - 5| + |a + 5| - |a + 5| \\cdot |a - 4| \\leq 0`} />
+          <BlockMath math={`|a + 5| \\bigl(|a - 5| + 1 - |a - 4|\\bigr) \\leq 0.`} />
+        </div>
+
+        <div>
+          <p>Так как модуль всегда неотрицателен (<InlineMath math={`|a + 5| \\geq 0`} />), данное неравенство распадается на совокупность, состоящую из уравнения обнуления первого множителя и неравенства для второй скобки:</p>
+          <BlockMath math={`\\left[ \\begin{array}{l} a = -5, \\\\[0.5em] |a - 5| - |a - 4| + 1 \\leq 0. \\quad (1) \\end{array} \\right.`} />
+        </div>
+
+        <div className="space-y-2">
+          <p><b>4. Раскроем модули в неравенстве (1) методом интервалов на трёх промежутках:</b></p>
+          <BlockMath math={`\\left[ \\begin{array}{ll} \\begin{cases} a \\geq 5, \\\\[0.3em] a - 5 - (a - 4) + 1 \\leq 0 \\end{cases} & \\iff \\begin{cases} a \\geq 5, \\\\[0.3em] 0 \\leq 0 \\end{cases} \\quad \\implies a \\in [5; +\\infty) \\quad (\\text{Ok!}), \\\\[1.5em] \\begin{cases} 4 < a < 5, \\\\[0.3em] -(a - 5) - (a - 4) + 1 \\leq 0 \\end{cases} & \\iff \\begin{cases} 4 < a < 5, \\\\[0.3em] -2a + 10 \\leq 0 \\end{cases} \\iff \\begin{cases} 4 < a < 5, \\\\[0.3em] a \\geq 5 \\end{cases} \\implies \\varnothing, \\\\[1.5em] \\begin{cases} a \\leq 4, \\\\[0.3em] -(a - 5) - (-(a - 4)) + 1 \\leq 0 \\end{cases} & \\iff \\begin{cases} a \\leq 4, \\\\[0.3em] 2 \\leq 0 \\end{cases} \\quad \\implies \\varnothing. \\end{array} \\right.`} />
+        </div>
+
+        <div>
+          <p>Объединяя изолированный корень <InlineMath math={`a = -5`} /> и полученный луч <InlineMath math={`a \\in [5; +\\infty)`} />, находим итоговое множество значений параметра:</p>
+          <BlockMath math={`a \\in \\{-5\\} \\cup [5; +\\infty).`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\{-5\\} \\cup [5; +\\infty)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 87,
+  title: 'Задача 87 (ЕГЭ*)',
+  textBefore: 'При каких а уравнение',
+  mathA: '17|x - a| + |a^2 - 7x + 12| + |a^2 + 2x - 15| = |2a^2 - 6a + x - 3| + |4x| - |x + 3a|',
+  textAfter: <span>имеет хотя бы 1 корень?</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div>
+        Перенесем все члены уравнения в левую часть и рассмотрим кусочно-линейную функцию переменной <InlineMath math={`x`} />:
+        <BlockMath math={`f(x) = 17|x - a| + |a^2 - 7x + 12| + |a^2 + 2x - 15| - |2a^2 - 6a + x - 3| - |4x| + |x + 3a| = 0.`} />
+      </div>
+      
+      <div className="space-y-2">
+        <p>
+          <b>1. Анализ возрастания и убывания («доминантный модуль»):</b> Заметим, что поведение функции (возрастание или убывание) на бесконечности зависит от слагаемого с наибольшим по модулю коэффициентом при переменной <InlineMath math={`x`} />. В данном случае главным является модуль <InlineMath math={`17|x - a|`} />. 
+        </p>
+        <div>
+          Как бы ни раскрывались остальные модули, сумма их коэффициентов при переменной <InlineMath math={`x`} /> не может превзойти значение старшего члена:
+          <BlockMath math={`17 - 7 - 2 - 1 - 4 - 1 = +2 > 0,\\\\[0.5em] -17 + 7 + 2 + 1 + 4 + 1 = -2 < 0.`} />
+        </div>
+        <p>Следовательно, знак углового коэффициента функции полностью подчиняется первому модулю:</p>
+        <ul className="list-bullet pl-5 space-y-1">
+          <li>При <InlineMath math={`x \\geq a`} /> функция <InlineMath math={`f(x)`} /> строго возрастает.</li>
+          <li>При <InlineMath math={`x \\leq a`} /> функция <InlineMath math={`f(x)`} /> строго убывает.</li>
+        </ul>
+        <p className="pt-1">
+          Значит, в точке <InlineMath math={`x = a`} /> непрерывная функция достигает своего <b>глобального минимума</b>. Исходное уравнение имеет хотя бы один корень тогда и только тогда, когда минимальное значение функции неотрицательно: <InlineMath math={`f(a) \\leq 0`} />.
+        </p>
+      </div>
+
+      {/* Высокоточный крупный центрированный SVG-график Задачи 87 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 360 220" className="w-full max-w-[360px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Схематичная надпись перемещена строго в правый верхний угол */}
+          <text x="500" y="15" fill="#94a3b8" stroke="none" className="font-sans font-medium text-[10px] tracking-wide select-none">Схематичный рисунок</text>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="180" x2="330" y2="180" /> {/* Ось Ox */}
+            <line x1="70" y1="20" x2="70" y2="195" />   {/* Ось Oy */}
+          </g>
+          <path d="M 330,180 L 322,176 M 330,180 L 322,184" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 70,20 L 66,28 M 70,20 L 74,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="340" y="184" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="66" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+
+          {/* Вертикальная пунктирная линия к точке минимума x = a */}
+          <line x1="180" y1="140" x2="180" y2="180" stroke="#000000" strokeWidth="1" strokeDasharray="3 3" className="dark:stroke-slate-400" />
+          <text x="176" y="194" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-sm">a</text>
+
+          {/* Жирный синий график функции f(x) с изломами ("впадина") */}
+          <path d="M 40,40 L 80,100 L 120,125 L 180,140 L 230,120 L 270,80 L 310,30" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Точка минимума */}
+          <circle cx="180" cy="140" r="3.5" fill="#000000" />
+        </svg>
+      </div>
+
+            <div className="space-y-4">
+        <div>
+          <p><b>2. Подставим значение <InlineMath math={`x = a`} /> в выражение функции и запишем условие <InlineMath math={`f(a) \\leq 0`} />:</b></p>
+          <BlockMath math={`f(a) = 17|a - a| + |a^2 - 7a + 12| + |a^2 + 2a - 15| - |2a^2 - 6a + a - 3| - |4a| + |a + 3a| \\leq 0`} />
+          <BlockMath math={`f(a) = |a^2 - 7a + 12| + |a^2 + 2a - 15| - |2a^2 - 5a - 3| - |4a| + |4a| \\leq 0.`} />
+          <BlockMath math={`|a - 3||a - 4| + |a + 5||a - 3| - |a - 3||2a + 1| \\leq 0.`} />
+        </div>
+
+        <div>
+          <BlockMath math={`|a - 3| \\cdot \\bigl(|a - 4| + |a + 5| - |2a + 1|\\bigr) \\leq 0.`} />
+          <BlockMath math={`\\left[ \\begin{array}{l} a = 3, \\\\[0.5em] |a - 4| + |a + 5| - |2a + 1| \\leq 0. \\quad (1) \\end{array} \\right.`} />
+        </div>
+
+        <div className="space-y-2">
+          <p><b>3. Решим неравенство (1) методом интервалов:</b></p>
+          <p>Нулями подмодульных выражений являются точки: <InlineMath math={`a = -5`} />, <InlineMath math={`a = -\\dfrac{1}{2}`} />, <InlineMath math={`a = 4`} />.</p>
+        </div>
+
+        {/* Высокоточный наглядный график числовой оси интервалов параметра а */}
+        <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+          <svg viewBox="0 0 440 90" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+
+            {/* Главная ось параметра а */}
+            <line x1="20" y1="50" x2="400" y2="50" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
+            <path d="M 400,50 L 392,46 M 400,50 L 392,54" stroke="#000000" strokeWidth="1.5" fill="none" className="dark:stroke-slate-400" />
+            <text x="412" y="54" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+
+            {/* Критические точки (нули модулей) */}
+            <circle cx="110" cy="50" r="4" fill="#000000" />
+            <circle cx="210" cy="50" r="4" fill="#000000" />
+            <circle cx="310" cy="50" r="4" fill="#000000" />
+
+            {/* Подписи к точкам */}
+            <text x="102" y="70" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-sm">-5</text>
+            <text x="198" y="70" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-sm">-1/2</text>
+            <text x="306" y="70" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-sm">4</text>
+
+            {/* Знаки раскрытия модулей на интервалах */}
+            <text x="55" y="38" fill="#64748b" stroke="none" className="font-mono font-bold text-sm">- - -</text>
+            <text x="145" y="38" fill="#64748b" stroke="none" className="font-mono font-bold text-sm">- - +</text>
+            <text x="245" y="38" fill="#64748b" stroke="none" className="font-mono font-bold text-sm">- + +</text>
+            <text x="345" y="38" fill="#64748b" stroke="none" className="font-mono font-bold text-sm">+ + +</text>
+          </svg>
+        </div>
+
+        <div className="space-y-3">
+          <p>Раскроем модули на каждом числовом промежутке поочередно:</p>
+          <ul className="list-bullet pl-5 space-y-3">
+            <li>
+              <b>Интервал 1:</b> при <InlineMath math={`a \\leq -5`} /> все три выражения отрицательны:
+              <BlockMath math={`-(a - 4) - (a + 5) - (-(2a + 1)) \\leq 0 \\iff -a + 4 - a - 5 + 2a + 1 \\leq 0 \\iff 0 \\leq 0.`} />
+              Неравенство выполняется всегда, значит весь луч <InlineMath math={`a \\in (-\\infty; -5]`} /> <b>подходит</b>.
+            </li>
+            <li>
+              <b>Интервал 2:</b> при <InlineMath math={`-5 < a \\leq -\\dfrac{1}{2}`} /> выражение <InlineMath math={`(a+5)`} /> становится положительным:
+              <BlockMath math={`-(a - 4) + (a + 5) - (-(2a + 1)) \\leq 0 \\iff -a + 4 + a + 5 + 2a + 1 \\leq 0 \\iff 2a + 10 \\leq 0 \\iff a \\leq -5.`} />
+              С учётом границ интервала решений на данном промежутке <b>нет</b>.
+            </li>
+            <li>
+              <b>Интервал 3:</b> при <InlineMath math={`-\\dfrac{1}{2} < a < 4`} /> выражение <InlineMath math={`(2a+1)`} /> также становится положительным:
+              <BlockMath math={`-(a - 4) + (a + 5) - (2a + 1) \\leq 0 \\iff -a + 4 + a + 5 - 2a - 1 \\leq 0 \\iff -2a + 8 \\leq 0 \\iff a \\geq 4.`} />
+              С учётом границ интервала решений на данном промежутке <b>нет</b>.            </li>
+            <li>
+              <b>Интервал 4:</b> при <InlineMath math={`a \\geq 4`} /> все три выражения строго положительны:
+              <BlockMath math={`(a - 4) + (a + 5) - (2a + 1) \\leq 0 \\iff a - 4 + a + 5 - 2a - 1 \\leq 0 \\iff 0 \\leq 0.`} />
+              Неравенство выполняется всегда, значит весь открытый луч <InlineMath math={`a \\in [4; +\\infty)`} /> <b>подходит</b>.
+            </li>
+          </ul>
+        </div>
+
+        <div className="space-y-2">
+          <p><b>4. Объединение результатов:</b></p>
+          <BlockMath math={`a \\in (-\\infty; -5] \\cup \\{3\\} \\cup [4; +\\infty).`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-\\infty; -5] \\cup \\{3\\} \\cup [4; +\\infty)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 88,
+  title: 'Задача 88',
+  textBefore: 'Найдите все значения a, при которых уравнение',
+  mathA: '(x^2 - 6|x| - a)^2 + 12(x^2 - 6|x| - a) + 37 = \\cos \\dfrac{18\\pi}{a}',
+  textAfter: <span>имеет ровно два решения.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p><b>1. Оценка левой и правой частей уравнения:</b> Введём вспомогательную переменную, положив <InlineMath math={`t = x^2 - 6|x| - a`} />. Перепишем левую часть (LHS) исходного уравнения, выделив полный квадрат:</p>
+        <BlockMath math={`LHS = t^2 + 12t + 37 = (t + 6)^2 + 1.`} />
+        <p>Так как <InlineMath math={`(t + 6)^2 \\geq 0`} />, получаем оценку левой части: <InlineMath math={`LHS \\geq 1`} />.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p>Для правой части (RHS) из ограниченности тригонометрической функции косинуса имеем:</p>
+        <BlockMath math={`RHS = \\cos \\dfrac{18\\pi}{a} \\leq 1.`} />
+        <p>Равенство между левой и правой частями возможно тогда и только тогда, когда обе части одновременно равны <InlineMath math={`1`} />. Получаем равносильную систему:</p>
+        <BlockMath math={`\\begin{cases} (t + 6)^2 + 1 = 1, \\\\[0.5em] \\cos \\dfrac{18\\pi}{a} = 1 \\end{cases} \\iff \\begin{cases} t = -6, \\\\[0.5em] \\dfrac{18\\pi}{a} = 2\\pi k, \\quad k \\in \\mathbb{Z}, \\ k \\neq 0. \\end{cases}`} />
+      </div>
+
+      <div className="space-y-2">
+        <p><b>2. Исследование количества корней первого уравнения:</b> Подставим <InlineMath math={`t = -6`} /> обратно в выражение замены:</p>
+        <BlockMath math={`x^2 - 6|x| - a = -6 \\iff x^2 - 6|x| + 6 = a.`} />
+        <p>
+          Рассмотрим функцию <InlineMath math={`g(x) = x^2 - 6|x| + 6`} />. Так как функция <InlineMath math={`g(x)`} /> чётная, её график симметричен относительно оси ординат <InlineMath math={`Oy`} />. 
+          Для области <InlineMath math={`x \\geq 0`} /> функция принимает вид параболы: <InlineMath math={`g(x) = x^2 - 6x + 6 = (x - 3)^2 - 3`} />. 
+          Вершина этой параболы находится в точке <InlineMath math={`(3; -3)`} />, а точка пересечения с осью <InlineMath math={`Oy`} /> имеет координаты <InlineMath math={`(0; 6)`} />.
+        </p>
+      </div>
+
+            {/* Высокоточный крупный центрированный SVG-график Задачи 88 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 380 260" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+
+          {/* Легкая сетка (Шаг: 1 деление = 15px. Центр (0,0) на x=190, y=140) */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => (
+              <line key={`x-${i}`} x1={190 + i*15} y1="10" x2={190 + i*15} y2="240" />
+            ))}
+            {[-7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
+              <line key={`y-${i}`} x1="20" y1={140 - i*15} x2="360" y2={140 - i*15} />
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="140" x2="360" y2="140" /> {/* Ось Ox */}
+            <line x1="190" y1="10" x2="190" y2="240" />  {/* Ось Oy */}
+          </g>
+          <path d="M 360,140 L 352,136 M 360,140 L 352,144" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 190,10 L 186,18 M 190,10 L 194,18" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="370" y="144" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="176" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+
+          {/* Вертикальные оси к вершинам парабол (пунктир x=3 и x=-3) */}
+          <line x1="235" y1="10" x2="235" y2="240" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <line x1="145" y1="10" x2="145" y2="240" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <text x="231" y="134" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px]">3</text>
+          <text x="137" y="134" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px]">-3</text>
+
+          {/* Жирный синий график функции g(x) (W-образная форма параболы) */}
+          {/* Вершины в (3, -3) -> (235, 185) и (-3, -3) -> (145, 185). Пересечение Oy в (0, 6) -> (190, 50) */}
+          <path d="M 70,10 Q 107.5,185 145,185 Q 167.5,185 190,50 Q 212.5,185 235,185 Q 272.5,185 310,10" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          <text x="196" y="46" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px] font-semibold">(0;6)</text>
+
+          {/* Критический уровень у = 9 (Оранжевая линия) */}
+          <line x1="25" y1="5" x2="345" y2="5" stroke="#ea580c" strokeWidth="1.5" strokeDasharray="4 3" />
+          <text x="350" y="9" fill="#ea580c" stroke="none" className="font-sans font-semibold text-[10px]">y = 9</text>
+          <circle cx="83" cy="5" r="3.5" fill="#ea580c" />
+          <circle cx="297" cy="5" r="3.5" fill="#ea580c" />
+
+          {/* Критический уровень у = -3 (Красная линия) */}
+          <line x1="25" y1="185" x2="345" y2="185" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4 3" />
+          <text x="350" y="189" fill="#dc2626" stroke="none" className="font-sans font-semibold text-[10px]">y = -3</text>
+          <circle cx="145" cy="185" r="3.5" fill="#dc2626" />
+          <circle cx="235" cy="185" r="3.5" fill="#dc2626" />
+        </svg>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <p>По графику определяем количество решений уравнения <InlineMath math={`g(x) = a`} /> при различных высотах сканирования прямой горизонтального уровня:</p>
+          <ul className="list-bullet pl-5 space-y-1">
+            <li>При <InlineMath math={`a < -3`} /> — решений нет.</li>
+            <li>При <InlineMath math={`a = -3`} /> — ровно 2 решения (касание в вершинах парабол).</li>
+            <li>При <InlineMath math={`-3 < a < 6`} /> — 4 решения.</li>
+            <li>При <InlineMath math={`a = 6`} /> — 3 решения (включая точку излома на оси ординат).</li>
+            <li>При <InlineMath math={`a > 6`} /> — ровно 2 решения (пересечение только двух внешних ветвей).</li>
+          </ul>
+          <p className="mt-2">Таким образом, условие существования ровно двух решений исходного уравнения выполняется при:</p>
+          <BlockMath math={`a = -3 \\quad \\text{или} \\quad a > 6.`} />
+        </div>
+
+        <div className="space-y-2">
+          <p><b>3. Учёт второго условия системы:</b></p>
+          <p>Из уравнения тригонометрического равенства <InlineMath math={`\\cos \\dfrac{18\\pi}{a} = 1`} /> выразим параметр:</p>
+          <BlockMath math={`\\dfrac{18\\pi}{a} = 2\\pi k \\iff a = \\dfrac{9}{k}, \\quad k \\in \\mathbb{Z}, \\ k \\neq 0.`} />
+          <p>Проверим найденные критические зоны параметра <InlineMath math={`a`} /> на целочисленность корней серии:</p>
+        </div>
+
+        <div className="space-y-3 pl-4 border-l-2 border-slate-200 dark:border-slate-800">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200">1) Случай <InlineMath math={`a = -3`} />:</p>
+            <BlockMath math={`-3 = \\dfrac{9}{k} \\iff k = -3 \\in \\mathbb{Z} \\implies a = -3 \\quad \\text{подходит}.`} />
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200">2) Случай <InlineMath math={`a > 6`} />:</p>
+            <BlockMath math={`\\dfrac{9}{k} > 6 \\iff 0 < k < \\dfrac{9}{6} = \\dfrac{3}{2}.`} />
+            <p className="mt-1">Так как <InlineMath math={`k`} /> обязан быть целым числом (<InlineMath math={`k \\in \\mathbb{Z}`} />), из данного интервала нам подходит единственное значение <InlineMath math={`k = 1`} />, откуда получаем:</p>
+            <BlockMath math={`a = \\dfrac{9}{1} = 9 \\quad \\text{подходит}.`} />
+          </div>
+        </div>
+
+        <p className="pt-2">Объединяя все найденные подходящие дискретные значения параметра, получаем итоговый ответ:</p>
+        <BlockMath math={`a \\in \\{-3; 9\\}.`} />
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\{-3; 9\\}`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 89,
+  title: 'Задача 89 (Каталог задач Школково)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых система',
+  mathA: '\\begin{cases} y^2 + a = 4\\cos x \\\\ \\sqrt{y} + z^2 = a \\\\ (a - 2)^2 = |z^2 - 2z| + |\\sin 2x| + 4 \\end{cases}',
+  textAfter: <span>имеет хотя бы одно решение, и укажите решения для каждого найденного a.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p><b>1. Метод оценки (ограничение параметра a):</b></p>
+        <p>Поскольку выражение содержит <InlineMath math={`\\sqrt{y}`} />, должно выполняться условие <InlineMath math={`y \\geq 0`} />. Оценим значение параметра <InlineMath math={`a`} />, используя первое и второе уравнения системы:</p>
+        <BlockMath math={`\\begin{cases} a = 4\\cos x - y^2 \\leq 4\\cos x \\leq 4, \\\\[0.5em] a = \\sqrt{y} + z^2 \\geq 0 \\end{cases} \\implies a \\in [0; 4].`} />
+      </div>
+
+      <div className="space-y-2">
+        <p><b>2. Оценка третьего уравнения системы:</b></p>
+        <p>Рассмотрим правую часть третьего уравнения. Так как модули неотрицательны:</p>
+        <BlockMath math={`\\begin{cases} |z^2 - 2z| \\geq 0, \\\\[0.5em] |\\sin 2x| \\geq 0 \\end{cases} \\implies (a - 2)^2 = |z^2 - 2z| + |\\sin 2x| + 4 \\geq 4.`} />
+        <p>С другой стороны, учитывая ранее найденное ограничение <InlineMath math={`a \\in [0; 4]`} />, получаем:</p>
+        <BlockMath math={`0 \\leq a \\leq 4 \\iff -2 \\leq a - 2 \\leq 2 \\implies (a - 2)^2 \\leq 4.`} />
+        <p>Таким образом, равенство возможно тогда и только тогда, когда обе оценки достигают своего крайнего значения:</p>
+        <BlockMath math={`(a - 2)^2 = 4 \\iff \\left[ \\begin{array}{l} a = 0, \\\\[0.3em] a = 4. \\end{array} \\right.`} />
+      </div>
+
+            <div className="space-y-4">
+        <div>
+          <p>При достижении равенства <InlineMath math={`(a - 2)^2 = 4`} /> модули в третьем уравнении обязаны обратиться в нуль:</p>
+          <BlockMath math={`\\begin{cases} (a - 2)^2 = 4, \\\\[0.5em] |z^2 - 2z| = 0, \\\\[0.5em] |\\sin 2x| = 0 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{array}{l} a = 0 \\\\[0.3em] a = 4 \\end{array} \\right. \\\\[1.5em] z(z - 2) = 0, \\\\[0.5em] \\sin 2x = 0 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{array}{l} a = 0 \\\\[0.3em] a = 4 \\end{array} \\right. \\\\[1.5em] \\left[ \\begin{array}{l} z = 0 \\\\[0.3em] z = 2 \\end{array} \\right. \\\\[1.5em] x = \\dfrac{\\pi k}{2}, \\quad k \\in \\mathbb{Z}. \\end{cases}`} />
+        </div>
+
+        <div>
+          <p><b>3. Равносильная проверка найденных а:</b></p>
+          <p><u>Случай I: <InlineMath math={`a = 0`} /></u></p>
+          <p className="mt-1">Подставим <InlineMath math={`a = 0`} /> в первые два уравнения исходной системы:</p>
+          <BlockMath math={`\\begin{cases} a = 0, \\\\[0.5em] y^2 + 0 = 4\\cos x, \\\\[0.5em] \\sqrt{y} + z^2 = 0 \\end{cases} \\iff \\begin{cases} a = 0, \\\\[0.5em] y = 0, \\\\[0.5em] z = 0, \\\\[0.5em] 4\\cos x = 0 \\end{cases} \\iff \\begin{cases} a = 0, \\\\[0.5em] y = 0, \\\\[0.5em] z = 0, \\\\[0.5em] x = \\dfrac{\\pi}{2} + \\pi n, \\quad n \\in \\mathbb{Z}. \\end{cases}`} />
+          <p className="mt-2">Проверка для 3-го уравнения: <InlineMath math={`|\\sin(2(\\dfrac{\\pi}{2} + \\pi n))| = |\\sin(\\pi + 2\\pi n)| = 0`} /> — верно.</p>
+        </div>
+
+        <div>
+          <p><u>Случай II: <InlineMath math={`a = 4`} /></u></p>
+          <p className="mt-1">Подставим <InlineMath math={`a = 4`} /> в первые два уравнения исходной системы:</p>
+          <BlockMath math={`\\begin{cases} a = 4, \\\\[0.5em] y^2 + 4 = 4\\cos x, \\\\[0.5em] \\sqrt{y} + z^2 = 4 \\end{cases} \\iff \\begin{cases} a = 4, \\\\[0.5em] y^2 = 4(\\cos x - 1), \\\\[0.5em] \\sqrt{y} + z^2 = 4 \\end{cases} \\iff \\begin{cases} a = 4, \\\\[0.5em] y = 0, \\\\[0.5em] \\cos x = 1, \\\\[0.5em] z^2 = 4 \\end{cases} \\iff \\begin{cases} a = 4, \\\\[0.5em] y = 0, \\\\[0.5em] x = 2\\pi m, \\quad m \\in \\mathbb{Z}, \\\\[0.5em] \\left[ \\begin{array}{l} z = 2 \\\\[0.3em] z = -2 \\end{array} \\right. \\end{cases}`} />
+          <p className="mt-2">Проверим выполнение обязательного условия <InlineMath math={`|z^2 - 2z| = 0`} /> для найденных значений <InlineMath math={`z`} />:</p>
+          <ul className="list-bullet pl-5 space-y-1">
+            <li>При <InlineMath math={`z = 2 \\implies |4 - 4| = 0`} /> (подходит).</li>
+            <li>При <InlineMath math={`z = -2 \\implies |4 + 4| = 8 \\neq 0`} /> (не подходит).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-col gap-1 pt-2 border-t border-slate-200/40">
+        <div>Ответ:</div>
+        <div className="font-normal text-slate-700 dark:text-slate-300 pl-4 space-y-1">
+          <div>При <InlineMath math={`a = 0`} />: <InlineMath math={`\\left(\\dfrac{\\pi}{2} + \\pi n; \\ 0; \\ 0\\right), \\quad n \\in \\mathbb{Z};`} /></div>
+          <div>При <InlineMath math={`a = 4`} />: <InlineMath math={`\\left(2\\pi m; \\ 0; \\ 2\\right), \\quad m \\in \\mathbb{Z}.`} /></div>
+        </div>
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 90,
+  title: 'Задача 90 (ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: 'ax^2 - (2a + 6)|x| + a + 1 = 0',
+  textAfter: <span>не имеет корней.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p><b>1. Анализ замены:</b> Сделаем замену переменной, положив <InlineMath math={`|x| = t`} />, где <InlineMath math={`t \\geq 0`} /> (так как квадрат модуля равен квадрату самого числа: <InlineMath math={`x^2 = |x|^2 = t^2`} />). Получаем квадратное уравнение относительно <InlineMath math={`t`} />:</p>
+        <BlockMath math={`at^2 - (2a + 6)t + a + 1 = 0.`} />
+        <p>Исходное уравнение не имеет корней, если полученное квадратное уравнение либо вообще не имеет решений, либо все его решения строго отрицательны (<InlineMath math={`t \\in (-\\infty; 0)`} />), что делает обратную замену невозможной.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p><b>2. Случай 1: Дискриминант меньше нуля (<InlineMath math={`D < 0`} />):</b></p>
+        <p>Найдем четверть дискриминанта квадратного трёхчлена:</p>
+        <BlockMath math={`\\dfrac{D}{4} = (a + 3)^2 - a(a + 1) = a^2 + 6a + 9 - a^2 - a = 5a + 9.`} />
+        <p>Условие отсутствия корней принимает вид:</p>
+        <BlockMath math={`5a + 9 < 0 \\iff a < -\\dfrac{9}{5}.`} />
+      </div>
+
+      <div className="space-y-2">
+        <p><b>3. Случай 2: Особый линейный случай при <InlineMath math={`a = 0`} />:</b></p>
+        <p>При <InlineMath math={`a = 0`} /> уравнение перестаёт быть квадратным и становится линейным:</p>
+        <BlockMath math={`-6t + 1 = 0 \\iff t = \\dfrac{1}{6}.`} />
+        <p>Так как полученный корень удовлетворяет условию <InlineMath math={`t \\geq 0`} />, обратная замена <InlineMath math={`|x| = \\dfrac{1}{6}`} /> даёт два корня исходного уравнения. Значит, значение <InlineMath math={`a = 0`} /> нам <b>не подходит</b>.</p>
+      </div>
+
+            <div className="space-y-4">
+        <div>
+          <p><b>4. Случай 3: Расположение корней квадратного трёхчлена при <InlineMath math={`D \\geq 0`} />:</b></p>
+          <p className="mt-1">
+            Чтобы квадратное уравнение <InlineMath math={`f(t) = at^2 - (2a + 6)t + a + 1 = 0`} /> имело только строго отрицательные корни (что делает обратную замену невозможной), необходимо и достаточно, чтобы точка <InlineMath math={`t = 0`} /> находилась правее обоих корней. 
+          </p>
+          <p>Это условие задаётся системой неравенств через произведение коэффициента ветвей и значения функции в нуле, а также положение вершины параболы:</p>
+          <BlockMath math={`\\begin{cases} a \\cdot f(0) > 0, \\quad (1) \\\\[0.5em] t_0 < 0. \\quad (2) \\end{cases}`} />
+        </div>
+
+        {/* Два графических чертежа взаимного расположения парабол с четким пересечением оси Ot */}
+        <div className="my-6 grid grid-cols-1 md:grid-cols-2 gap-6 bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+          {/* График А: Случай a > 0 */}
+          <div className="flex flex-col items-center">
+            <svg viewBox="0 0 200 140" className="w-full max-w-[200px] h-auto overflow-visible font-sans text-[10px] select-none">
+              <text x="-100" y="5" fill="#94a3b8" className="font-sans font-medium text-[8px]">а) Случай a &gt; 0</text>
+              <line x1="10" y1="90" x2="190" y2="90" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+              <path d="M 190,90 L 184,87 M 190,90 L 184,93" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+              <text x="194" y="93" fill="#000000" className="dark:fill-slate-300 italic">t</text>
+              
+              <line x1="130" y1="10" x2="130" y2="130" stroke="#000000" strokeWidth="1" strokeDasharray="3 3" className="dark:stroke-slate-500" />
+              <text x="100" y="20" fill="#000000" className="dark:fill-slate-400">t = 0</text>
+              <text x="134" y="100" fill="#000000" stroke="none" className="dark:fill-slate-400">0</text>
+
+              {/* ЛЕВАЯ ПАРАБОЛА ОПУЩЕНА ВНИЗ: вершина находится на y=115, что заметно ниже оси t (y=90) */}
+              <path d="M 20,40 Q 75,190 160,10" fill="none" stroke="#2563eb" strokeWidth="2" />
+              <text x="160" y="25" fill="#2563eb" className="italic font-semibold">f(t)</text>
+              
+              {/* Вершина зафиксирована в нижней точке прогиба */}
+              <circle cx="75" cy="108" r="3" fill="#000000" />
+              <line x1="75" y1="90" x2="75" y2="108" stroke="#000000" strokeWidth="0.8" strokeDasharray="2 2" className="dark:stroke-slate-400" />
+              <text x="63" y="130" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic">t₀ &lt; 0</text>
+
+              {/* Точка f(0) > 0 на оси Oy */}
+              <circle cx="130" cy="64" r="3" fill="#dc2626" />
+              <text x="140" y="59" fill="#dc2626" className="font-sans font-semibold text-[9px]">f(0) &gt; 0</text>
+            </svg>
+          </div>
+
+          {/* График Б: Случай a < 0 */}
+          <div className="flex flex-col items-center">
+            <svg viewBox="0 0 200 140" className="w-full max-w-[200px] h-auto overflow-visible font-sans text-[10px] select-none">
+              <text x="-100" y="5" fill="#94a3b8" className="font-sans font-medium text-[8px]">б) Случай a &lt; 0</text>
+              <line x1="10" y1="60" x2="190" y2="60" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+              <path d="M 190,60 L 184,57 M 190,60 L 184,63" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+              <text x="194" y="43" fill="#000000" className="dark:fill-slate-300 italic">t</text>
+              
+              <line x1="130" y1="10" x2="130" y2="130" stroke="#000000" strokeWidth="1" strokeDasharray="3 3" className="dark:stroke-slate-500" />
+              <text x="100" y="20" fill="#000000" className="dark:fill-slate-400">t = 0</text>
+              <text x="134" y="70" fill="#000000" stroke="none" className="dark:fill-slate-400">0</text>
+
+              {/* ПРАВАЯ ПАРАБОЛА ПОДНЯТА ВВЕРХ: вершина находится на y=35, что заметно выше оси t (y=60) */}
+              <path d="M 20,110 Q 75,-40 160,130" fill="none" stroke="#2563eb" strokeWidth="2" />
+              <text x="160" y="125" fill="#2563eb" className="italic font-semibold">f(t)</text>
+              
+              {/* Вершина зафиксирована в наивысшей точке прогиба */}
+              <circle cx="75" cy="40" r="3" fill="#000000" />
+              <line x1="75" y1="40" x2="75" y2="60" stroke="#000000" strokeWidth="0.8" strokeDasharray="2 2" className="dark:stroke-slate-400" />
+              <text x="63" y="26" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic">t₀ &lt; 0</text>
+
+              {/* Точка f(0) < 0 на оси Oy */}
+              <circle cx="130" cy="79" r="3" fill="#dc2626" />
+              <text x="140" y="89" fill="#dc2626" className="font-sans font-semibold text-[9px]">f(0) &lt; 0</text>
+            </svg>
+          </div>
+        </div>
+
+
+        <div className="space-y-3">
+          <p>Разберем неравенства системы по отдельности:</p>
+          <div className="pl-4 space-y-2">
+            <div>
+              <p><b>(1) Для условия пересечения знаков:</b> Так как свободный член равен <InlineMath math={`f(0) = a + 1`} />, получаем:</p>
+              <BlockMath math={`a(a + 1) > 0 \\iff a \\in (-\\infty; -1) \\cup (0; +\\infty).`} />
+            </div>
+            <div>
+              <p><b>(2) Для абсциссы вершины параболы:</b> Формула вершины <InlineMath math={`t_0 = -\\dfrac{b}{2a}`} /> принимает вид:</p>
+              <BlockMath math={`t_0 = \\dfrac{2a + 6}{2a} = \\dfrac{a + 3}{a} < 0 \\iff a \\in (-3; 0).`} />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p>Найдем пересечение решений неравенств (1) и (2):</p>
+          <BlockMath math={`\\begin{cases} a \\in (-\\infty; -1) \\cup (0; +\\infty), \\\\[0.5em] a \\in (-3; 0) \\end{cases} \\implies a \\in (-3; -1).`} />
+          <p className="mt-2">С учётом обязательного условия неотрицательности дискриминанта (<InlineMath math={`D \\geq 0 \\iff a \\geq -\\dfrac{9}{5}`} />), сужаем промежуток:</p>
+          <BlockMath math={`a \\in \\left[-\\dfrac{9}{5}; -1\\right).`} />
+        </div>
+
+        <div>
+          <p><b>5. Объединение результатов:</b></p>
+          <p>Собираем вместе область отрицательного дискриминанта из первого случая и полученную зону отрицательных корней из третьего случая:</p>
+          <BlockMath math={`a \\in \\left(-\\infty; -\\dfrac{9}{5}\\right) \\cup \\left[-\\dfrac{9}{5}; -1\\right) = (-\\infty; -1).`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-\\infty; -1)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 91,
+  title: 'Задача 91',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} (x + a - 10)^2 + (y - a)^2 = 50 \\\\ \\sqrt{x^2 + (y - 10)^2} + \\sqrt{(x - 10)^2 + y^2} = 10\\sqrt{2} \\end{cases}',
+  textAfter: <span>имеет ровно 2 решения.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p><b>1. Геометрическая интерпретация:</b></p>
+        <div>
+          Рассмотрим второе уравнение системы. Выражения под корнями представляют собой расстояния от текущей точки <InlineMath math={`(x; y)`} /> до двух фиксированных точек: <InlineMath math={`A(0; 10)`} /> и <InlineMath math={`C(10; 0)`} />. 
+          Длина отрезка <InlineMath math={`AC`} /> по формуле расстояния между точками равна:
+          <BlockMath math={`AC = \\sqrt{(10 - 0)^2 + (0 - 10)^2} = \\sqrt{100 + 100} = 10\\sqrt{2}.`} />
+        </div>
+        <p>
+          Поскольку сумма расстояний от точки графика до концов отрезка <InlineMath math={`AC`} /> в точности равна его длине (<InlineMath math={`10\\sqrt{2}`} />), второе уравнение задаёт <b>неподвижный отрезок AC</b>, лежащий на прямой <InlineMath math={`y = 10 - x`} /> при <InlineMath math={`x \\in [0; 10]`} />.
+        </p>
+        <p>
+          Первое уравнение системы задаёт семейство окружностей с переменным центром в точке <InlineMath math={`O(10 - a; a)`} /> и фиксированным радиусом <InlineMath math={`R = \\sqrt{50} = 5\\sqrt{2}`} /> (соответственно, диаметр окружности равен <InlineMath math={`2R = 10\\sqrt{2}`} />).
+        </p>
+        <p>
+          Заметим, что координаты центра окружности удовлетворяют уравнению <InlineMath math={`y = 10 - x`} />, поскольку <InlineMath math={`a = 10 - (10 - a)`} />. Это значит, что при изменении параметра <InlineMath math={`a`} /> центр окружности <InlineMath math={`O`} /> <b>скользит строго вдоль той же самой прямой</b>, на которой лежит отрезок <InlineMath math={`AC`} />.
+        </p>
+      </div>
+
+      {/* Высокоточный крупный центрированный SVG-график Задачи 91 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 380 340" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Легкая сетка (Шаг: 1 деление = 20px. Центр (0,0) зафиксирован на x=100, y=260) */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[-3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => (
+              <line key={`x-${i}`} x1={100 + i*20} y1="20" x2={100 + i*20} y2="320" />
+            ))}
+            {[-3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => (
+              <line key={`y-${i}`} x1="20" y1={260 - i*20} x2="360" y2={260 - i*20} />
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="260" x2="360" y2="260" /> {/* Ось Ox */}
+            <line x1="100" y1="20" x2="100" y2="320" />  {/* Ось Oy */}
+          </g>
+          <path d="M 360,260 L 352,256 M 360,260 L 352,264" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 100,20 L 96,28 M 100,20 L 104,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="370" y="264" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="86" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="86" y="274" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif text-sm">0</text>
+
+          {/* Важные числовые метки на осях */}
+          <g fill="#000000" className="dark:fill-slate-300 text-[10px]">
+            <line x1="300" y1="256" x2="300" y2="264" stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400" />
+            <line x1="96" y1="60" x2="104" y2="60" stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400" />
+          </g>
+
+          {/* ПЕРВОЕ УРАВНЕНИЕ: Семейство окружностей (в положении a=5 центр O(5;5) -> x=200, y=160; R = 5√2 ≈ 141.4px) */}
+          <circle cx="200" cy="160" r="141.4" fill="none" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4 3" />
+
+          {/* ВТОРОЕ УРАВНЕНИЕ: Неподвижный синий отрезок AC от A(0;10) -> (100,60) до C(10;0) -> (300,260) */}
+          <line x1="100" y1="60" x2="300" y2="260" stroke="#2563eb" strokeWidth="3" />
+          <text x="235" y="180" fill="#2563eb" className="font-serif italic font-semibold text-sm">AC</text>
+
+          {/* Ключевые точки */}
+          <circle cx="100" cy="60" r="3.5" fill="#000000" />   {/* Точка A */}
+          <circle cx="300" cy="260" r="3.5" fill="#000000" />  {/* Точка C */}
+          <circle cx="200" cy="160" r="4" fill="#dc2626" />    {/* Центр O(5;5) */}
+
+          {/* Подписи к точкам */}
+          <text x="50" y="56" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">A(0; 10)</text>
+          <text x="306" y="272" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">C(10; 0)</text>
+          <text x="210" y="156" fill="#dc2626" className="font-sans font-semibold text-xs">O(5; 5)</text>
+        </svg>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <p><b>2. Анализ количества решений:</b></p>
+          <p>
+            Окружность радиуса <InlineMath math={`R = 5\\sqrt{2}`} /> и отрезок <InlineMath math={`AC`} /> длины <InlineMath math={`10\\sqrt{2}`} /> лежат на одной прямой. Обе точки пересечения окружности с этой прямой будут принадлежать именно <i>отрезку</i> <InlineMath math={`AC`} /> тогда и только тогда, когда диаметр окружности совпадёт с самим отрезком <InlineMath math={`AC`} />.
+          </p>
+          <p>
+            Это возможно в единственном случае: когда скользящий центр окружности <InlineMath math={`O(10 - a; a)`} /> совпадает с геометрической серединой отрезка <InlineMath math={`AC`} /> — точкой с координатами <InlineMath math={`(5; 5)`} />.
+          </p>
+        </div>
+
+        <div>
+          Установим уравнение для нахождения параметра:
+          <BlockMath math={`10 - a = 5 \\iff a = 5.`} />
+          При любом другом положении центра <InlineMath math={`O`} /> окружность сместится вдоль прямой, и одна из точек пересечения выйдет за пределы отрезка <InlineMath math={`AC`} />, из-за чего система будет иметь лишь 1 решение (или 0 решений, если центр уйдёт слишком далеко).
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a = 5`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 92,
+  title: 'Задача 92 (Из вариантов Ларина)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '\\log_3 x - \\log_{\\frac{1}{3}} |x - 6| = \\log_{\\sqrt{3}}(\\log_9 a)',
+  textAfter: <span>имеет ровно 3 решения.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p><b>1. Найдём область допустимых значений (ОДЗ) уравнения:</b></p>
+        <BlockMath math={`\\begin{cases} x > 0, \\\\ |x - 6| \\neq 0, \\\\ \\log_9 a > 0 \\end{cases} \\iff \\begin{cases} x > 0, \\\\ x \\neq 6, \\\\ a > 1. \\end{cases}`} />
+      </div>
+
+      <div className="space-y-2">
+        <div>
+          <b>2. Преобразуем исходное уравнение на ОДЗ, используя свойства логарифмов:</b>
+          <br />
+          Приведём все логарифмы к основанию <InlineMath math={`3`} />, учитывая, что <InlineMath math={`\\log_{\\frac{1}{3}} |x - 6| = -\\log_3 |x - 6|`} /> и <InlineMath math={`\\log_{\\sqrt{3}} M = 2\\log_3 M`} />:
+          <BlockMath math={`\\log_3 x + \\log_3 |x - 6| = 2\\log_3(\\log_9 a)`} />
+          <BlockMath math={`\\log_3(x|x - 6|) = \\log_3(\\log_9^2 a) \\iff x|x - 6| = \\log_9^2 a.`} />
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <p><b>3. Раскроем модуль кусочной функции переменной <InlineMath math={`x`} /> с учётом ОДЗ:</b></p>
+        <BlockMath math={`f(x) = x|x - 6| = \\begin{cases} x^2 - 6x, & x > 6, \\\\ -x^2 + 6x, & 0 < x < 6. \\end{cases}`} />
+        <p>
+          График функции <InlineMath math={`y = \\log_9^2 a`} /> представляет собой горизонтальную сканирующую прямую. 
+          Построим график левой части. Для интервала <InlineMath math={`0 < x < 6`} /> вершина перевёрнутой параболы находится в точке <InlineMath math={`x_B = 3`} />, а её наибольшее значение равно:
+          <InlineMath math={`y_B = -(3)^2 + 6 \\cdot 3 = 9`} />.
+        </p>
+      </div>
+
+            {/* Высокоточный крупный центрированный SVG-график Задачи 92 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 380 340" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Координатная сетка (Шаг: 1 деление = 20px. Центр (0,0) зафиксирован на x=60, y=260) */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[-1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(i => (
+              <line key={`x-${i}`} x1={60 + i*20} y1="20" x2={60 + i*20} y2="300" />
+            ))}
+            {[-1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => (
+              <line key={`y-${i}`} x1="20" y1={260 - i*20} x2="360" y2={260 - i*20} />
+            ))}
+          </g>
+
+          {/* Пунктирные линии к вершине и выколотой точке */}
+          <line x1="120" y1="80" x2="120" y2="260" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <line x1="180" y1="80" x2="60" y2="80" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <line x1="180" y1="260" x2="180" y2="80" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="260" x2="360" y2="260" /> {/* Ось Ox */}
+            <line x1="60" y1="20" x2="60" y2="300" />   {/* Ось Oy */}
+          </g>
+          <path d="M 360,260 L 352,256 M 360,260 L 352,264" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 60,20 L 56,28 M 60,20 L 64,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="370" y="264" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="46" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+
+          {/* Числовые метки на осях */}
+          <text x="116" y="275" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px]">3</text>
+          <text x="176" y="275" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px]">6</text>
+          <text x="46" y="84" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px]">9</text>
+
+          {/* Неподвижный синий график f(x) */}
+          {/* Левая перевёрнутая парабола от x=0 до x=6. Её вершина теперь поднята строго до пунктирной линии уровня 9 (y=80) */}
+          <path d="M 60,260 C 90,80 110,80 120,80 C 130,80 150,80 180,260" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          {/* Правая возрастающая ветвь параболы строго от оси Ox вверх */}
+          <path d="M 180,260 Q 192,180 215,20" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+
+
+
+          {/* Выколотые граничные точки по ОДЗ */}
+          <circle cx="60" cy="260" r="3.5" fill="white" stroke="#2563eb" strokeWidth="2" className="fill-white dark:fill-slate-950" />
+          <circle cx="180" cy="260" r="3.5" fill="white" stroke="#2563eb" strokeWidth="2" className="fill-white dark:fill-slate-950" />
+
+          {/* Горизонтальная сканирующая прямая параметра y = log_9^2(a) (Красная линия, уровень y=160) */}
+          <line x1="20" y1="160" x2="350" y2="160" stroke="#dc2626" strokeWidth="2" />
+          <text x="355" y="164" fill="#dc2626" className="font-sans font-semibold text-[11px]">{"y = log₉² a"}</text>
+
+          {/* Точки пересечения */}
+          <circle cx="79.5" cy="160" r="3.5" fill="#dc2626" />
+          <circle cx="160.5" cy="160" r="3.5" fill="#dc2626" />
+          <circle cx="195" cy="160" r="3.5" fill="#dc2626" />
+        </svg>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <p>
+            Прямая <InlineMath math={`y = \\log_9^2 a`} /> имеет ровно 3 точки пересечения с графиком функции <InlineMath math={`f(x)`} /> тогда и только тогда, когда она проходит строго между осью абсцисс <InlineMath math={`y = 0`} /> и вершиной левой параболы <InlineMath math={`y = 9`} />:
+          </p>
+          <BlockMath math={`0 < \\log_9^2 a < 9.`} />
+        </div>
+
+        <div>
+          <p>Решим полученную систему двойных неравенств:</p>
+          <BlockMath math={`\\begin{cases} \\log_9^2 a > 0, \\\\[0.5em] \\log_9^2 a < 9 \\end{cases} \\iff \\begin{cases} \\log_9 a \\neq 0, \\\\[0.5em] -3 < \\log_9 a < 3 \\end{cases} \\iff \\begin{cases} a \\neq 1, \\\\[0.5em] 9^{-3} < a < 9^3. \\end{cases}`} />
+        </div>
+
+        <div>
+          <p>Потенциальный интервал значений параметра составляет <InlineMath math={`a \\in \\left(\\dfrac{1}{729}; 1\\right) \\cup (1; 729)`} />. Однако, возвращаясь к обязательным условиям ОДЗ нашей логарифмической системы (<InlineMath math={`a > 1`} />), мы сужаем область поиска:</p>
+          <BlockMath math={`\\begin{cases} a > 1, \\\\[0.5em] a < 729 \\end{cases} \\iff a \\in (1; 729).`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (1; 729)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 93,
+  title: 'Задача 93 (ЕГКР 2025)',
+  textBefore: 'Найдите все значения a, при каждом из которых функция',
+  mathA: 'f(x) = \\log_{a-6}\\left(\\sqrt{a^2 + 36x^2} - 6x\\right) - 2',
+  textAfter: <span>является нечётной.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-1">
+        <p>Нечётная функция должна удовлетворять двум условиям:</p>
+        <p>1. <InlineMath math={`f(-x) = -f(x)`} /></p>
+        <p>2. <InlineMath math={`D(f)`} /> (область определения) должна быть симметричной относительно нуля.</p>
+        <p>Ограничения на параметр <InlineMath math={`a`} /> из основания логарифма (Условие (*)):</p>
+      </div>
+
+      <BlockMath math={`\\begin{cases} a - 6 > 0 \\\\ a - 6 \\neq 1 \\end{cases} \\iff \\begin{cases} a > 6 \\\\ a \\neq 7 \\end{cases}`} />
+
+      <div className="space-y-2">
+        <p>1. Проверим основное условие нечётности <InlineMath math={`f(-x) = -f(x)`} />:</p>
+        <BlockMath math={`f(-x) = \\log_{a-6}\\left(\\sqrt{a^2 + 36x^2} + 6x\\right) - 2`} />
+        <BlockMath math={`-f(x) = -\\log_{a-6}\\left(\\sqrt{a^2 + 36x^2} - 6x\\right) + 2`} />
+        <p>Приравниваем <InlineMath math={`f(-x) = -f(x)`} />:</p>
+        <BlockMath math={`\\log_{a-6}\\left(\\sqrt{a^2 + 36x^2} + 6x\\right) - 2 = -\\log_{a-6}\\left(\\sqrt{a^2 + 36x^2} - 6x\\right) + 2`} />
+        <BlockMath math={`\\log_{a-6}\\left(\\sqrt{a^2 + 36x^2} + 6x\\right) + \\log_{a-6}\\left(\\sqrt{a^2 + 36x^2} - 6x\\right) = 4`} />
+        <p>По свойству суммы логарифмов:</p>
+        <BlockMath math={`\\log_{a-6}\\left(\\left(\\sqrt{a^2 + 36x^2} + 6x\\right)\\left(\\sqrt{a^2 + 36x^2} - 6x\\right)\\right) = 4`} />
+      </div>
+
+            <div className="space-y-4">
+        <BlockMath math={`\\log_{a-6}\\left(a^2 + 36x^2 - 36x^2\\right) = \\log_{a-6}(a - 6)^4`} />
+        <BlockMath math={`\\log_{a-6}\\left(a^2\\right) = \\log_{a-6}(a - 6)^4`} />
+        
+        <div>
+          <p>Приравниваем основания логарифмов:</p>
+          <BlockMath math={`a^2 = (a - 6)^4`} />
+        </div>
+
+        <BlockMath math={`\\left[ \\begin{array}{l} (a - 6)^2 = a \\quad (1) \\\\ (a - 6)^2 = -a \\quad (\\text{не уд., т. к. } a > 6) \\end{array} \\right.`} />
+
+        <div>
+          <p>Раскроем уравнение (1):</p>
+          <BlockMath math={`a^2 - 12a + 36 = a \\iff a^2 - 13a + 36 = 0`} />
+        </div>
+
+        <BlockMath math={`\\left[ \\begin{array}{l} a = 9 \\quad (\\text{подходит}) \\\\ a = 4 \\quad (\\text{не уд., т. к. } a > 6) \\end{array} \\right.`} />
+
+        <div className="space-y-2">
+          <p>2. Проверим область определения <InlineMath math={`D(f)`} /> при <InlineMath math={`a = 9`} />:</p>
+          <BlockMath math={`f(x) = \\log_{3}\\left(\\sqrt{81 + 36x^2} - 6x\\right) - 2`} />
+          <p>Подлогарифмическое выражение должно быть строго больше нуля:</p>
+          <BlockMath math={`\\sqrt{81 + 36x^2} - 6x > 0 \\iff \\sqrt{81 + 36x^2} > 6x`} />
+        </div>
+
+        <div>
+          <p>Составим совокупность неравенств:</p>
+          <BlockMath math={`\\left[ \\begin{array}{l} \\begin{cases} 6x < 0 \\\\ 81 + 36x^2 > 0 \\end{cases} \\implies x \\in (-\\infty; 0) \\\\[1.5em] \\begin{cases} 6x \\geq 0 \\\\ 81 + 36x^2 > 36x^2 \\end{cases} \\implies x \\in [0; +\\infty) \\end{array} \\right. \\implies x \\in \\mathbb{R}`} />
+        </div>
+
+        <p>
+          То есть решение неравенства является <InlineMath math={`x \\in \\mathbb{R}`} />, а значит, область определения <InlineMath math={`D(f) = (-\\infty; +\\infty)`} /> действительно симметрична относительно нуля.
+          <br />
+          Таким образом, единственное подходящее значение: <InlineMath math={`a = 9`} />.
+        </p>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a = 9`} />
+      </div>
+      {/* Источник: ЕГКР 2025 */}
+    </div>
+  )
+},
+
+
+{
+  id: 94,
+  title: 'Задача 94 (МЦКО)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '|a - 3|(x^2 - a|x| + a^2)^2 + \\log_2^2 x + x = 2\\sqrt{x} \\cdot \\log_2 x',
+  textAfter: <span>имеет хотя бы 1 решение.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-1">
+        <p>Условие (*):</p>
+        <BlockMath math={`x > 0`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>Перенесём все слагаемые в левую часть и выделим полный квадрат:</p>
+        <BlockMath math={`|a - 3|(x^2 - a|x| + a^2)^2 + \\log_2^2 x - 2\\sqrt{x}\\log_2 x + (\\sqrt{x})^2 = 0`} />
+        <BlockMath math={`|a - 3|(x^2 - a|x| + a^2)^2 + (\\log_2 x - \\sqrt{x})^2 = 0`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>Так как каждый из квадратов неотрицателен:</p>
+        <BlockMath math={`\\underbrace{|a - 3|(x^2 - a|x| + a^2)^2}_{\\geq 0} + \\underbrace{(\\log_2 x - \\sqrt{x})^2}_{\\geq 0} = 0`} />
+        <p>Сумма двух неотрицательных выражений равна нулю тогда и только тогда, когда оба выражения одновременно равны нулю:</p>
+        <BlockMath math={`\\begin{cases} f(x) = \\log_2 x - \\sqrt{x} = 0 \\\\[0.5em] g(x) = |a - 3|(x^2 - a|x| + a^2) = 0 \\end{cases}`} />
+      </div>
+
+            <div className="space-y-4">
+        <div>
+          <p>Тогда исходное уравнение равносильно системе:</p>
+          <BlockMath math={`\\begin{cases} \\left[ \\begin{array}{l} a = 3 \\\\[0.3em] |x|^2 - a|x| + a^2 = 0 \\quad (1) \\end{array} \\right. \\\\[1.5em] \\log_2 x = \\sqrt{x} \\end{cases}`} />
+        </div>
+
+        <div>
+          <p>Рассмотрим уравнение (1):</p>
+          <BlockMath math={`|x|^2 - a|x| + a^2 = 0`} />
+          <BlockMath math={`D = a^2 - 4a^2 = -3a^2`} />
+          <p className="mt-2">Уравнение имеет решение только при <InlineMath math={`D = 0 \\iff a = 0`} />. Подставим <InlineMath math={`a = 0`} /> в (1):</p>
+          <BlockMath math={`|x|^2 = 0 \\iff x = 0 \\quad (\\text{не уд. } (*), \\text{ т. к. } x > 0)`} />
+        </div>
+
+        <div>
+          <p>Следовательно, наша система равносильна:</p>
+          <BlockMath math={`\\begin{cases} a = 3 \\\\[0.5em] \\log_2 x = \\sqrt{x} \\end{cases} \\implies \\begin{cases} a = 3 \\\\[0.5em] \\left[ \\begin{array}{l} x = 4 \\\\[0.3em] x = 16 \\end{array} \\right. \\end{cases}`} />
+        </div>
+
+        <div>
+          <p>Хотя бы 1 решение будет только при <InlineMath math={`a = 3`} />.</p>
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\{3\\}`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 95,
+  title: 'Задача 95 (СтатГрад)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '9^x - 3^x \\cdot (4^a + 4) = 3^x \\cdot (16 - 2^a) + (4^a + 4)(2^a - 16)',
+  textAfter: <span>имеет ровно 1 решение.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-1">
+        <p>Сделаем замену переменной:</p>
+        <BlockMath math={`3^x = t, \\quad t > 0`} />
+        <p>Перенесем все слагаемые в левую часть:</p>
+        <BlockMath math={`t^2 - t(4^a + 4) - t(16 - 2^a) - (4^a + 4)(2^a - 16) = 0`} />
+        <BlockMath math={`t^2 - t((4^a + 4) + (16 - 2^a)) + (4^a + 4)(16 - 2^a) = 0`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>По теореме Виета корни полученного квадратного уравнения:</p>
+        <BlockMath math={`\\left[ \\begin{array}{l} t = 4^a + 4 \\quad (1) \\\\[0.3em] t = 16 - 2^a \\quad (2) \\end{array} \\right.`} />
+        <p>Заметим, что корень (1) всегда положителен при любых <InlineMath math={`a`} />, так как <InlineMath math={`4^a + 4 > 0`} />. Значит, уравнение (1) всегда дает ровно один корень <InlineMath math={`x = \\log_3(4^a + 4)`} />.</p>
+      </div>
+
+            <div className="space-y-4">
+        <p>
+          Тогда исходное уравнение имеет единственное решение для <InlineMath math={`x`} /> (то есть ровно один положительный корень <InlineMath math={`t > 0`} />) в двух случаях:
+        </p>
+
+        <div className="space-y-2">
+          <p>1) Второй корень является неположительным (не подходит по условию <InlineMath math={`t > 0`} />):</p>
+          <BlockMath math={`16 - 2^a \\leq 0 \\iff 16 \\leq 2^a \\iff a \\geq 4`} />
+        </div>
+
+        <div className="space-y-2">
+          <p>2) Корни совпадают (<InlineMath math={`t_1 = t_2 > 0`} cascade />):</p>
+          <BlockMath math={`4^a + 4 = 16 - 2^a`} />
+          <BlockMath math={`(2^a)^2 + 2^a - 12 = 0`} />
+          <p className="mt-1">По теореме Виета относительно <InlineMath math={`2^a`} />:</p>
+          <BlockMath math={`\\left[ \\begin{array}{l} 2^a = 3 \\implies a = \\log_2 3 \\\\[0.3em] 2^a = -4 \\quad (\\varnothing) \\end{array} \\right.`} />
+        </div>
+
+        <div>
+          <p>Объединяя результаты обоих случаев, получаем:</p>
+          <BlockMath math={`a \\in \\{\\log_2 3\\} \\cup [4; +\\infty)`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\{\\log_2 3\\} \\cup [4; +\\infty)`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 96,
+  title: 'Задача 96 (*Не из ЕГЭ)',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '(x^2 - x + a^2 + 1)^2 = 4a^2(5x^2 - x + 1)',
+  textAfter: <span>имеет ровно 3 решения.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>Идея для преобразования: <InlineMath math={`(a + b)^2 = 4ab \\iff (a - b)^2 = 0`} />.</p>
+        <p>Преобразуем уравнение, выделив выражение <InlineMath math={`(x^2 - x + 1)`} />:</p>
+        <BlockMath math={`((x^2 - x + 1) + a^2)^2 = 4a^2((x^2 - x + 1) + 4x^2)`} />
+        <BlockMath math={`(x^2 - x + 1)^2 + 2a^2(x^2 - x + 1) + a^4 = 4a^2(x^2 - x + 1) + 16a^2x^2`} />
+        <BlockMath math={`(x^2 - x + 1)^2 - 2a^2(x^2 - x + 1) + a^4 = 16a^2x^2`} />
+        <BlockMath math={`((x^2 - x + 1) - a^2)^2 = (4ax)^2`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>Раскрываем как совокупность двух квадратных уравнений:</p>
+        <BlockMath math={`\\left[ \\begin{array}{l} x^2 - (1 + 4a)x + (1 - a^2) = 0 \\quad (1) \\\\ x^2 - (1 - 4a)x + (1 - a^2) = 0 \\quad (2) \\end{array} \\right.`} />
+      </div>
+
+
+      <div className="space-y-2">
+        <p>Чтобы совокупность двух квадратных уравнений с одинаковым свободным членом <InlineMath math={`c = 1 - a^2`} /> имела ровно 3 решения, возможны два случая:</p>
+        <p>Так как свободный член <InlineMath math={`c = 1 - a^2`} /> одинаков у обоих уравнений, при <InlineMath math={`c = 0`} /> корень <InlineMath math={`x = 0`} /> становится общим для обоих уравнений:</p>
+        <BlockMath math={`c = 1 - a^2 = 0 \\iff a = \\pm 1`} />
+        <p>I случай (совпадение в 0): Дискриминанты двух уравнений больше нуля (<InlineMath math={`D_1 > 0`} /> и <InlineMath math={`D_2 > 0`} />):</p>
+        <BlockMath math={`D_1 = (1 + 4a)^2 - 4(1 - a^2) = 20a^2 + 8a - 3`} />
+        <BlockMath math={`D_2 = (1 - 4a)^2 - 4(1 - a^2) = 20a^2 - 8a - 3`} />
+        <p>При равенстве <InlineMath math={`D_1 = D_2`} /> получаем <InlineMath math={`8a = -8a \\iff a = 0`} />.</p>
+        <p>II случай (один <InlineMath math={`D = 0`} />, второй <InlineMath math={`D > 0`} />): Одна парабола касается оси <InlineMath math={`Ox`} /> (<InlineMath math={`D = 0`} />), а вторая пересекает её в двух точках (<InlineMath math={`D > 0`} />).</p>
+      </div>
+
+      <BlockMath math={`\\left[ \\begin{array}{l} \\begin{cases} D_1 = 0 \\\\ D_2 > 0 \\end{cases} \\\\[1em] \\begin{cases} D_1 > 0 \\\\ D_2 = 0 \\end{cases} \\end{array} \\right. \\iff \\left[ \\begin{array}{l} \\begin{cases} 20a^2 + 8a - 3 = 0 \\\\ 20a^2 - 8a - 3 > 0 \\end{cases} \\\\[1em] \\begin{cases} 20a^2 + 8a - 3 > 0 \\\\ 20a^2 - 8a - 3 = 0 \\end{cases} \\end{array} \\right.`} />
+
+      <div className="space-y-2">
+        <p>Найдём нули дискриминантов:</p>
+        <BlockMath math={`20a^2 + 8a - 3 = 0 \\implies a_{1,2} = \\dfrac{-8 \\pm \\sqrt{304}}{40} = \\dfrac{-2 \\pm \\sqrt{19}}{10}`} />
+        <BlockMath math={`20a^2 - 8a - 3 = 0 \\implies a_{3,4} = \\dfrac{8 \\pm \\sqrt{304}}{40} = \\dfrac{2 \\pm \\sqrt{19}}{10}`} />
+      </div>
+
+      {/* Высокоточный крупный центрированный SVG-график числовой прямой интервалов */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 460 120" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          <line x1="20" y1="80" x2="420" y2="80" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
+          <path d="M 420,80 L 412,76 M 420,80 L 412,84" stroke="#000000" strokeWidth="1.5" fill="none" className="dark:stroke-slate-400" />
+          <text x="432" y="84" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+
+          {/* Координатные точки */}
+          <circle cx="80" cy="80" r="3.5" fill="#000000" />
+          <circle cx="170" cy="80" r="3.5" fill="#ffffff" stroke="#000000" strokeWidth="1.5" className="dark:fill-slate-950 dark:stroke-slate-400" />
+          <circle cx="270" cy="80" r="3.5" fill="#ffffff" stroke="#000000" strokeWidth="1.5" className="dark:fill-slate-950 dark:stroke-slate-400" />
+          <circle cx="360" cy="80" r="3.5" fill="#000000" />
+
+          {/* Двухэтажные подписи к дробям */}
+          <text x="50" y="100" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px]">(-2-√19)/10</text>
+          <text x="145" y="100" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px]">(2-√19)/10</text>
+          <text x="245" y="100" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px]">(-2+√19)/10</text>
+          <text x="335" y="100" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-[10px]">(2+√19)/10</text>
+
+          {/* Направляющие прямые интервалов */}
+          <path d="M 20,50 L 80,50 L 80,80" fill="none" stroke="#000000" strokeWidth="1" />
+          <path d="M 80,65 L 170,65 L 170,80" fill="none" stroke="#000000" strokeWidth="1" />
+          <path d="M 270,80 L 270,65 L 360,65" fill="none" stroke="#000000" strokeWidth="1" />
+          <path d="M 360,80 L 360,50 L 420,50" fill="none" stroke="#000000" strokeWidth="1" />
+        </svg>
+      </div>
+
+            <div className="space-y-4">
+        <p className="font-bold">ПОЛНАЯ ПРОВЕРКА ВСЕХ КАНДИДАТОВ:</p>
+        
+        <div className="space-y-1">
+          <p>1. Проверка <InlineMath math={`a = 0`} />: Уравнения принимают вид <InlineMath math={`x^2 - x + 1 = 0, \\ D = -3 < 0`} /> — решений нет. (Не подходит)</p>
+          <p>2. Проверка <InlineMath math={`a = 1`} />: Уравнения принимают вид:</p>
+          <BlockMath math={`\\left[ \\begin{array}{l} x^2 - 5x = 0 \\implies x \\in \\{0; 5\\} \\\\ x^2 + 3x = 0 \\implies x \\in \\{-3; 0\\} \\end{array} \\right. \\implies x \\in \\{-3; 0; 5\\}`} />
+          <p>Ровно 3 решения! (Подходит)</p>
+        </div>
+
+        <div className="space-y-1">
+          <p>3. Проверка <InlineMath math={`a = -1`} />: Уравнения принимают вид:</p>
+          <BlockMath math={`\\left[ \\begin{array}{l} x^2 + 3x = 0 \\implies x \\in \\{-3; 0\\} \\\\ x^2 - 5x = 0 \\implies x \\in \\{0; 5\\} \\end{array} \\right. \\implies x \\in \\{-3; 0; 5\\}`} />
+          <p>Ровно 3 решения! (Подходит)</p>
+        </div>
+
+        <div>
+          <p>
+            4. Проверка <InlineMath math={`a = \\dfrac{2 + \\sqrt{19}}{10}`} /> (крайний правый корень): Для этого значения <InlineMath math={`D_2 = 20a^2 - 8a - 3 = 0`} />, то есть уравнение (2) имеет 1 корень. Проверим знак <InlineMath math={`D_1`} />:
+          </p>
+          <BlockMath math={`D_1 = 20a^2 + 8a - 3 = (20a^2 - 8a - 3) + 16a = 0 + 16 \\cdot \\dfrac{2 + \\sqrt{19}}{10} > 0`} />
+          <p className="mt-1">
+            Так как <InlineMath math={`D_1 > 0`} />, первое уравнение имеет 2 корня, а второе — 1 корень (не совпадающий с ними). Всего ровно 3 решения! (Подходит)
+          </p>
+        </div>
+
+        <div>
+          <p>
+            5. Проверка <InlineMath math={`a = \\dfrac{-2 - \\sqrt{19}}{10}`} /> (крайний левый корень): Аналогично, <InlineMath math={`D_1 = 0`} />, а <InlineMath math={`D_2 = 16(-a) > 0`} />. Ровно 3 решения! (Подходит)
+          </p>
+        </div>
+
+        <div>
+          <p>
+            6. Внутренние точки: <InlineMath math={`a_2 = \\dfrac{2 - \\sqrt{19}}{10}`} /> и <InlineMath math={`a_3 = \\dfrac{-2 + \\sqrt{19}}{10}`} />
+          </p>
+          <p>Не подходят, т.к. не выполняются условия системы:</p>
+          <p>При <InlineMath math={`a = \\dfrac{2 - \\sqrt{19}}{10}`} />: <InlineMath math={`D_1 < 0`} /></p>
+          <p>При <InlineMath math={`a = \\dfrac{-2 + \\sqrt{19}}{10}`} />: <InlineMath math={`D_2 < 0`} /></p>
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a = \\pm 1, \\ a = \\pm \\dfrac{2 + \\sqrt{19}}{10}`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 97,
+  title: 'Задача 97 (МИОО)',
+  textBefore: 'Условие. Найдите значения параметра a, при которых график функции',
+  mathA: 'f(x) = x^2 - |x^2 + 2x - 3| - a',
+  textAfter: <span>пересекает ось абсцисс более чем в двух точках.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div>
+        График функции <InlineMath math={`f(x)`} /> пересекает ось абсцисс более чем в двух точках тогда и только тогда, когда уравнение <InlineMath math={`x^2 - |x^2 + 2x - 3| - a = 0`} /> имеет более двух решений (то есть 3 или больше).
+        <p className="mt-2">1) Рассмотрим функцию <InlineMath math={`g(x) = x^2 - |x^2 + 2x - 3|`} />.</p>
+      </div>
+
+      <div>
+        Найдем нули подмодульного выражения:
+        <BlockMath math={`x^2 + 2x - 3 = 0 \\iff (x - 1)(x + 3) = 0 \\iff \\left[ \\begin{array}{l} x = 1 \\\\ x = -3 \\end{array} \\right.`} />
+      </div>
+      
+      <div className="space-y-1">
+        <p>Тогда модуль раскрывается:</p>
+        <p>— со знаком + при <InlineMath math={`x \\in (-\\infty; -3] \\cup [1; +\\infty)`} /></p>
+        <p>— со знаком − при <InlineMath math={`x \\in (-3; 1)`} /></p>
+        <p>2) Раскроем модуль на промежутках:</p>
+        <p>• При <InlineMath math={`x \\in (-\\infty; -3] \\cup [1; +\\infty)`} />:</p>
+        <BlockMath math={`g(x) = x^2 - (x^2 + 2x - 3) = -2x + 3`} />
+        <p>• При <InlineMath math={`x \\in (-3; 1)`} />:</p>
+        <BlockMath math={`g(x) = x^2 - (-(x^2 + 2x - 3)) = 2x^2 + 2x - 3`} />
+      </div>
+
+      <div>
+        Вершина параболы <InlineMath math={`y = 2x^2 + 2x - 3`} />:
+        <BlockMath math={`x_0 = -\\dfrac{2}{4} = -\\dfrac{1}{2} = -0,5`} />
+        <BlockMath math={`y_0 = 2\\left(-\\dfrac{1}{2}\\right)^2 + 2\\left(-\\dfrac{1}{2}\\right) - 3 = \\dfrac{1}{2} - 1 - 3 = -3,5`} />
+      </div>
+
+      <div className="space-y-1">
+        <p>3) Построим график функции <InlineMath math={`g(x)`} />:</p>
+      </div>
+
+      {/* Высокоточный крупный центрированный SVG-график Задачи 97 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 340 380" className="w-full max-w-[340px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Масштабная сетка: 1 ед по x = 20px, 1 ед по y = 14px */}
+          {/* Начало координат (0,0) зафиксировано строго на x=160, y=240 */}
+          {/* Ось y теперь начинается от -6 (y = 240 + 6*14 = 324) и заканчивается на 12 (y = 240 - 12*14 = 72) */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8].map(i => (
+              <line key={`x-${i}`} x1={160 + i*20} y1="20" x2={160 + i*20} y2="360" />
+            ))}
+            {[-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(i => (
+              <line key={`y-${i}`} x1="10" y1={240 - i*14} x2="330" y2={240 - i*14} />
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="10" y1="240" x2="330" y2="240" /> {/* Ось Ox */}
+            <line x1="160" y1="360" x2="160" y2="20" />  {/* Ось Oy (продлена вверх до 20) */}
+          </g>
+          <path d="M 330,240 L 322,236 M 330,240 L 322,244" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 160,20 L 156,28 M 160,20 L 164,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="340" y="244" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="146" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+
+          {/* Математически выверенный синий график функции g(x) */}
+          {/* Левый луч: y = -2x + 3 при x <= -3. Точка излома (-3; 9) -> x = 160 - 3*20 = 100, y = 240 - 9*14 = 114 */}
+          <path d="M 57,52 L 100,114" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Парабола: y = 2x^2 + 2x - 3 при -3 < x < 1 */}
+          {/* Левый излом (-3; 9) -> (100, 114) */}
+          {/* Вершина параболы (-0.5; -3.5) -> x = 160 - 0.5*20 = 150, y = 240 + 3.5*14 = 289 */}
+          {/* Правый излом (1; 1) -> x = 160 + 1*20 = 180, y = 240 - 1*14 = 226 */}
+          <path d="M 100,114 C 113.3,230 136.7,289 150,289 C 160,289 173.3,250 180,226" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Правый луч: y = -2x + 3 при x >= 1. Стартует из излома (1; 1) -> (180, 226) */}
+          <path d="M 180,226 L 220,282" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+
+          {/* Маркерные точки и подписи */}
+          {/* Точка x = -3 */}
+          <circle cx="100" cy="240" r="3" fill="#2563eb" />
+          <text x="92" y="256" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">-3</text>
+
+          <circle cx="180" cy="227" r="3" fill="#2563eb" />
+
+          <circle cx="100" cy="114" r="3" fill="#2563eb" />
+
+          {/* Метка по оси Oy для 1 */}
+          <circle cx="160" cy="226" r="2.5" fill="#000000" />
+          <text x="166" y="222" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">1</text>
+
+          {/* Точка излома (1; 1) */}
+          <circle cx="180" cy="240" r="2.5" fill="#000000" />
+          <text x="176" y="256" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">1</text>
+          
+          {/* Абсцисса вершины параболы -0,5 */}
+          <circle cx="150" cy="240" r="2.5" fill="#000000" />
+          <text x="130" y="232" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">-0,5</text>
+
+          {/* Ордината вершины параболы -3,5 */}
+          <circle cx="160" cy="289" r="3" fill="#000000" />
+          <line x1="150" y1="289" x2="160" y2="289" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
+          <text x="168" y="293" fill="#000000" className="dark:fill-slate-300 font-sans text-sm">-3,5</text>
+
+          {/* Текст надписи уравнения */}
+          <text x="85" y="50" fill="#2563eb" className="font-serif italic font-semibold text-xs">y = -2x + 3</text>
+        </svg>
+      </div>
+
+
+
+      <div className="space-y-4">
+        <div>
+          <p>
+            4) Чтобы <InlineMath math={`f(x) = g(x) - a`} /> пересекала ось абсцисс более чем в 2-х точках, прямая <InlineMath math={`y = a`} /> должна пересекать график <InlineMath math={`g(x)`} /> более чем в двух точках. По графику видно, что прямая <InlineMath math={`y = a`} /> имеет 3 точки пересечения с <InlineMath math={`g(x)`} />, когда она проходит строго между вершиной параболы <InlineMath math={`y = -3,5`} /> и точкой излома <InlineMath math={`(1; 1)`} />:
+          </p>
+          <BlockMath math={`-3,5 < a < 1 \\iff -\\dfrac{7}{2} < a < 1`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left(-\\dfrac{7}{2}; 1\\right)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 98,
+  title: 'Задача 98',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '7^{|x|} \\cdot \\dfrac{5a}{a - 3} = 49^{|x|} + \\dfrac{6a + 7}{a - 3}',
+  textAfter: <span>имеет ровно 2 решения.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-1">
+        <p>Ограничение на параметр:</p>
+        <BlockMath math={`a \\neq 3`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>
+          1) При <InlineMath math={`x = 0`} /> уравнение имеет не более 1-го решения, поэтому <InlineMath math={`x \\neq 0`} />. Заметим, что если <InlineMath math={`x_0`} /> является решением уравнения, то и <InlineMath math={`-x_0`} /> также является решением (чётность функции относительно <InlineMath math={`x`} />).
+        </p>
+        <p>Сделаем замену переменной:</p>
+        <BlockMath math={`7^{|x|} = t`} />
+        <p>Так как <InlineMath math={`x \\neq 0`} />, а <InlineMath math={`|x| > 0`} />, то для получения ровно двух решений по <InlineMath math={`x`} /> (<InlineMath math={`x = \\pm x_0`} />) необходимо, чтобы уравнение относительно <InlineMath math={`t`} /> имело ровно 1 корень, удовлетворяющий условию:</p>
+        <BlockMath math={`t > 1.`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>Перепишем уравнение относительно <InlineMath math={`t`} />:</p>
+        <BlockMath math={`t^2 - \\dfrac{5a}{a - 3}t + \\dfrac{6a + 7}{a - 3} = 0`} />
+        <p>Рассмотрим несколько возможных случаев:</p>
+        <p><b>I. Корень <InlineMath math={`t > 1`} /> единственный за счет расположения параболы <InlineMath math={`f(t) = t^2 - \\dfrac{5a}{a - 3}t + \\dfrac{6a + 7}{a - 3}`} />:</b></p>
+      </div>
+
+      {/* Высокоточный крупный центрированный SVG-график случая f(1) < 0 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 240 120" className="w-full max-w-[240px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Схематичная надпись */}
+          <text x="450" y="10" fill="#94a3b8" stroke="none" className="font-sans font-medium text-[9px] tracking-wide select-none">Схематичный рисунок</text>
+          
+          {/* Горизонтальная ось Ot */}
+          <line x1="20" y1="70" x2="210" y2="70" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <path d="M 210,70 L 204,66 M 210,70 L 204,74" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="218" y="74" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic">t</text>
+
+          {/* ПАРАБОЛА ОПУЩЕНА НИЖЕ (координата вершины по y увеличена со 130 до 145) */}
+          <path d="M 60,30 Q 105,150 170,30" fill="none" stroke="#2563eb" strokeWidth="2" />
+
+          {/* Точка 1 на оси абсцисс */}
+          <circle cx="95" cy="70" r="2.5" fill="#000000" />
+          <text x="92" y="60" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans">1</text>
+
+          {/* Обозначение условия f(1) < 0 (смещено ниже вслед за прогибом параболы) */}
+          <circle cx="95" cy="85" r="3" fill="#2563eb" />
+          <text x="40" y="92" fill="#2563eb" stroke="none" className="font-serif italic font-semibold text-xs">f(1) &lt; 0</text>
+        </svg>
+      </div>
+
+
+      <div className="space-y-2">
+        <p>Условие <InlineMath math={`f(1) < 0`} /> гарантирует, что один корень находится левее 1, а второй — правее 1:</p>
+        <BlockMath math={`f(1) = 1 - \\dfrac{5a}{a - 3} + \\dfrac{6a + 7}{a - 3} = \\dfrac{2a + 4}{a - 3} = \\dfrac{a + 2}{a - 3} < 0`} />
+      </div>
+
+      {/* Высокоточный график числовой оси интервалов для первого случая */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 320 60" className="w-full max-w-[320px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Главная ось параметра а */}
+          <line x1="20" y1="35" x2="280" y2="35" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
+          <path d="M 280,35 L 272,31 M 280,35 L 272,35" stroke="#000000" strokeWidth="1.5" fill="none" className="dark:stroke-slate-400" />
+          <text x="292" y="39" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+
+          {/* Выколотые точки */}
+          <circle cx="90" cy="35" r="3.5" fill="#ffffff" stroke="#000000" strokeWidth="1.5" className="dark:fill-slate-950 dark:stroke-slate-400" />
+          <circle cx="210" cy="35" r="3.5" fill="#ffffff" stroke="#000000" strokeWidth="1.5" className="dark:fill-slate-950 dark:stroke-slate-400" />
+
+          {/* Подписи к точкам */}
+          <text x="84" y="55" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-sm">-2</text>
+          <text x="206" y="55" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-sm">3</text>
+
+          {/* Штриховка интервала (-2; 3) */}
+          <line x1="94" y1="35" x2="206" y2="35" stroke="#2563eb" strokeWidth="3" opacity="0.4" />
+          {Array.from({ length: 16 }).map((_, i) => (
+            <line key={`sh-${i}`} x1={96 + i * 7} y1="35" x2={101 + i * 7} y2="25" stroke="#2563eb" strokeWidth="0.8" />
+          ))}
+        </svg>
+      </div>
+
+            <div className="space-y-4">
+        <div>
+          <p>Из неравенства получаем промежуток:</p>
+          <BlockMath math={`a \\in (-2; 3)`} />
+        </div>
+
+        <div className="space-y-2">
+          <p><b>II. Случай нулевого дискриминанта (<InlineMath math={`D = 0`} />):</b> Единственный корень уравнения на <InlineMath math={`t`} /> может быть кратным (<InlineMath math={`t_1 = t_2 > 1`} cascade />):</p>
+          <BlockMath math={`D = \\dfrac{25a^2}{(a - 3)^2} - 4 \\cdot \\dfrac{6a + 7}{a - 3} = 0`} />
+          <BlockMath math={`\\dfrac{25a^2 - 4(6a + 7)(a - 3)}{(a - 3)^2} = 0`} />
+          <BlockMath math={`25a^2 - 4(6a^2 - 11a - 21) = 0`} />
+          <BlockMath math={`25a^2 - 24a^2 + 44a + 84 = 0 \\iff a^2 + 44a + 84 = 0`} />
+        </div>
+
+        <div>
+          <p>Положим <InlineMath math={`\\dfrac{D}{4} = 484 - 84 = 400`} />:</p>
+          <BlockMath math={`\\left[ \\begin{array}{l} a = -22 + 20 = -2 \\quad (\\text{не подходит, т. к. } t = 1) \\\\[0.3em] a = -22 - 20 = -42 \\end{array} \\right.`} />
+        </div>
+
+        <div className="space-y-2">
+          <p><b>III. Проверим <InlineMath math={`a = -42`} />:</b></p>
+          <BlockMath math={`t^2 - \\dfrac{-210}{-45}t + \\dfrac{-245}{-45} = 0 \\iff t^2 - \\dfrac{14}{3}t + \\dfrac{49}{9} = 0`} />
+          <BlockMath math={`\\left(t - \\dfrac{7}{3}\\right)^2 = 0 \\implies t = \\dfrac{7}{3}`} />
+          <p className="mt-1">Так как <InlineMath math={`t = \\dfrac{7}{3} > 1`} />, условие выполняется! Значение <InlineMath math={`a = -42`} /> подходит.</p>
+        </div>
+
+        <div>
+          <p>Объединяя найденные значения, получаем итоговый ответ:</p>
+          <BlockMath math={`a \\in \\{-42\\} \\cup (-2; 3)`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\{-42\\} \\cup (-2; 3)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 99,
+  title: 'Задача 99',
+  textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
+  mathA: '9^{-|x - a|} \\log_{\\sqrt{5}}(x^2 + 2x + 3) + 3^{-x^2 - 2x}\\log_{\\frac{1}{5}}(2|x - a| + 2) = 0',
+  textAfter: <span>имеет ровно 3 решения.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>Домножим обе части уравнения на <InlineMath math={`3^{x^2 + 2x} \\cdot 9^{|x - a|}`} />:</p>
+        <BlockMath math={`3^{x^2 + 2x} \\log_{\\sqrt{5}}(x^2 + 2x + 3) + 9^{|x - a|} \\log_{\\frac{1}{5}}(2|x - a| + 2) = 0`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>Преобразуем основания логарифмов:</p>
+        <BlockMath math={`3 \\cdot 3^{x^2 + 2x} \\log_5((x^2 + 2x + 1) + 2) - 3^{2|x - a|} \\log_5(2|x - a| + 2) = 0`} />
+        <BlockMath math={`3^{(x + 1)^2} \\log_5((x + 1)^2 + 2) = 3^{2|x - a|} \\log_5(2|x - a| + 2)`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>
+          Пусть <InlineMath math={`f(t) = 3^t \\cdot \\log_5(t + 2)`} />, где <InlineMath math={`t \\geq 0`} />, а <InlineMath math={`g(k) = 3^k \\cdot \\log_5(k + 2)`} />, где <InlineMath math={`k \\geq 0`} />.
+          Функции <InlineMath math={`f(t)`} /> и <InlineMath math={`g(k)`} /> — строго монотонно возрастающие функции как произведение двух положительных возрастающих функций при <InlineMath math={`t, k \\geq 0`} />.
+          Следовательно, каждое своё значение они принимают в единственной точке:
+        </p>
+        <BlockMath math={`f(t) = g(k) \\iff t = k`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>Тогда получаем уравнение:</p>
+        <BlockMath math={`(x + 1)^2 = 2|x - a| \\quad \\text{имеет ровно 3 решения.}`} />
+        <p>Пересечение графиков будем искать графически в системе <InlineMath math={`xOy`} />:</p>
+      </div>
+
+      {/* Высокоточный крупный центрированный SVG-график Задачи 99 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 320 280" className="w-full max-w-[320px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Легкая сетка (Шаг: 1 ед = 40px. Центр (0,0) зафиксирован на x=180, y=200) */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[-3, -2, -1, 1, 2, 3].map(i => (
+              <line key={`x-${i}`} x1={180 + i*40} y1="10" x2={180 + i*40} y2="260" />
+            ))}
+            {[-1, 1, 2, 3, 4, 5].map(i => (
+              <line key={`y-${i}`} x1="10" y1={200 - i*40} x2="310" y2={200 - i*40} />
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="10" y1="200" x2="310" y2="200" /> {/* Ось Ox */}
+            <line x1="180" y1="10" x2="180" y2="260" />  {/* Ось Oy */}
+          </g>
+          <path d="M 310,200 L 302,196 M 310,200 L 302,204" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 180,10 L 176,18 M 180,10 L 184,18" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="320" y="204" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="166" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <text x="186" y="214" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-sm">0</text>
+
+          {/* СЕМЕЙСТВО ГАЛОЧЕК (УГОЛКОВ) — ОБРЕЗАНЫ С ПРАВОЙ СТОРОНЫ ДЛЯ СХОДСТВА С ОРИГИНАЛОМ */}
+          {/* Положение 2 (оранжевое): вершина в (120, 200). Правая ветвь заканчивается на уровне параболы */}
+          <path d="M 40,60 L 120,200 L 210,20" fill="none" stroke="#ea580c" strokeWidth="1.5" />
+          <text x="50" y="100" fill="#ea580c" className="font-sans font-semibold text-xs">2</text>
+
+          {/* Положение 3 (красное): вершина в (140, 200). Правая ветвь заканчивается на уровне параболы */}
+          <path d="M 60,40 L 140,200 L 220,40" fill="none" stroke="#dc2626" strokeWidth="1.5" />
+          <text x="105" y="125" fill="#dc2626" className="font-sans font-semibold text-xs">3</text>
+
+          {/* Положение 1 (темно-розовое): вершина в (160, 200). Правая ветвь заканчивается на уровне параболы */}
+          <path d="M 80,40 L 160,200 L 230,70" fill="none" stroke="#be185d" strokeWidth="1.5" />
+          <text x="210" y="125" fill="#be185d" className="font-sans font-semibold text-xs">1</text>
+
+          {/* Неподвижная синяя парабола y = (x+1)^2 — ОБРЕЗАНА С ПРАВОЙ СТОРОНЫ (заканчивается симметрично левой, не улетая вверх) */}
+          <path d="M 50,30 Q 140,358 220,48" fill="none" stroke="#0000ff" strokeWidth="2.5" />
+
+          {/* Черные маркерные точки делений */}
+          <circle cx="220" cy="200" r="3" fill="#000000" /> {/* x = 1 */}
+          <text x="216" y="215" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">1</text>
+
+          <circle cx="140" cy="200" r="4.5" fill="#0000ff" /> {/* Жирная синяя вершина параболы x = -1 */}
+          <text x="126" y="215" fill="#000000" className="dark:fill-slate-300 font-sans text-xs font-semibold">-1</text>
+        </svg>
+      </div>
+
+
+      <div className="space-y-4">
+        <div className="space-y-1">
+          <p>3 решения будет тогда, когда:</p>
+          <p>1) Правая ветвь галочки касается параболы, а другая пересекает её.</p>
+          <p>2) Левая ветвь галочки касается параболы, а другая пересекает её.</p>
+          <p>3) Когда вершина галочки находится в точке <InlineMath math={`(-1; 0) \\implies a = -1`} />.</p>
+        </div>
+
+        <div>
+          <p>Найдем случаи касания (случаи 1 и 2):</p>
+          <p>Когда правая ветвь раскрывается с плюсом:</p>
+          <BlockMath math={`(x + 1)^2 = 2(x - a) \\iff x^2 + 2x + 1 = 2x - 2a \\iff x^2 + 1 + 2a = 0`} />
+        </div>
+
+        <div>
+          <p>Касание происходит при <InlineMath math={`D = 0`} />:</p>
+          <BlockMath math={`1 + 2a = 0 \\iff a = -\\dfrac{1}{2} = -0,5`} />
+        </div>
+
+        <div>
+          <p>Из соображений симметрии относительно линии <InlineMath math={`x = -1`} />, левая ветвь дает еще одно решение:</p>
+          <BlockMath math={`a = -1,5`} />
+        </div>
+
+        <div>
+          <p>Объединяя все 3 подходящих значения:</p>
+          <BlockMath math={`a \\in \\{-1,5; -1; -0,5\\}`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\{-1,5; -1; -0,5\\}`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 100,
+  title: 'Задача 100 (Не из ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '5x + |2x - |x + a|| = 10|x + 1|',
+  textAfter: <span>имеет хотя бы один корень.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div>
+        Перенесём все слагаемые в одну сторону и рассмотрим функцию:
+        <BlockMath math={`f(x) = 10|x + 1| - |2x - |x + a|| - 5x = 0`} />
+      </div>
+      
+      <div className="space-y-2">
+        <p>
+          Возрастание и убывание функции зависит от доминирующего модуля. Так как коэффициент перед доминирующим модулем (10) по модулю больше, чем сумма всех других коэффициентов по модулю (<InlineMath math={`|10| > |-1| + |-5| = 6`} cascade />), функция <InlineMath math={`f(x)`} /> непрерывна, а её поведение определяется слагаемым <InlineMath math={`10|x + 1|`} />:
+        </p>
+        <ul className="list-bullet pl-5 space-y-1">
+          <li>функция <InlineMath math={`f(x)`} /> убывает при <InlineMath math={`x \\in (-\\infty; -1)`} /></li>
+          <li>функция <InlineMath math={`f(x)`} /> возрастает при <InlineMath math={`x \\in [-1; +\\infty)`} /></li>
+        </ul>
+        <p className="pt-1">
+          Минимальное значение функция <InlineMath math={`f(x)`} /> достигает в точке излома <InlineMath math={`x = -1`} />.
+        </p>
+      </div>
+
+      {/* Высокоточный крупный центрированный SVG-график Задачи 100 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 340 220" className="w-full max-w-[320px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Схематичная надпись в правом верхнем углу */}
+          <text x="500" y="15" fill="#94a3b8" stroke="none" className="font-sans font-medium text-[10px] tracking-wide select-none">Схематичный рисунок</text>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="180" x2="310" y2="180" />  {/* Ось Ox */}
+            <line x1="140" y1="20" x2="140" y2="200" />  {/* Ось Oy */}
+          </g>
+          <path d="M 310,180 L 302,176 M 310,180 L 302,184" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 140,20 L 136,28 M 140,20 L 144,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="320" y="184" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="126" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+
+          {/* Линия излома пунктиром к оси абсцисс */}
+          <line x1="100" y1="150" x2="100" y2="180" stroke="#000000" strokeWidth="1" strokeDasharray="3 3" className="dark:stroke-slate-400" />
+          <text x="94" y="196" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-sm">-1</text>
+
+          {/* График функции f(x) с изломом ("впадина") */}
+          <path d="M 40,40 L 70,105 L 100,150 L 140,120 L 180,90 L 230,40" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Точка минимума на графике */}
+          <circle cx="100" cy="150" r="3.5" fill="#2563eb" />
+        </svg>
+      </div>
+
+            <div className="space-y-4">
+        <div>
+          <p>Найдём <InlineMath math={`f(x)_{\\text{min}} = f(-1)`} />:</p>
+          <BlockMath math={`f(-1) = 10|-1 + 1| - |-2 - |-1 + a|| - 5(-1)`} />
+          <BlockMath math={`f(-1) = 0 - |-(2 + |a - 1|)| + 5 = 5 - |2 + |a - 1||`} />
+        </div>
+
+        <div>
+          <p>Чтобы исходное уравнение <InlineMath math={`f(x) = 0`} /> имело хотя бы один корень, необходимо и достаточно, чтобы минимальное значение функции было не положительным (<InlineMath math={`f(-1) \\leq 0`} cascade />):</p>
+          <BlockMath math={`5 - |2 + |a - 1|| \\leq 0 \\iff |2 + |a - 1|| \\geq 5`} />
+        </div>
+
+        <div>
+          <p>Так как <InlineMath math={`2 + |a - 1| > 0`} />, раскрываем внешний модуль:</p>
+          <BlockMath math={`2 + |a - 1| \\geq 5 \\iff |a - 1| \\geq 3`} />
+        </div>
+
+        <div>
+          <p>Раскрываем совокупностью:</p>
+          <BlockMath math={`\\left[ \\begin{array}{l} a - 1 \\geq 3 \\\\[0.3em] a - 1 \\leq -3 \\end{array} \\right. \\iff \\left[ \\begin{array}{l} a \\geq 4 \\\\[0.3em] a \\leq -2 \\end{array} \\right. \\iff a \\in (-\\infty; -2] \\cup [4; +\\infty)`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-\\infty; -2] \\cup [4; +\\infty)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 101,
+  title: 'Задача 101 (Не из ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '4x - |3x - |x - a|| = 9|x - 1|',
+  textAfter: <span>имеет хотя бы один корень.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div>
+        Перенесем все слагаемые в одну сторону и рассмотрим функцию:
+        <BlockMath math={`f(x) = 9|x - 1| + |3x - |x - a|| - 4x = 0`} />
+      </div>
+      
+      <div className="space-y-2">
+        <p>
+          Возрастание и убывание функции зависит от доминирующего модуля. Так как коэффициент перед доминирующим модулем (9) по модулю больше, чем сумма всех других коэффициентов по модулю (<InlineMath math={`|9| > |1| + |-4| = 5`} cascade />), функция <InlineMath math={`f(x)`} /> непрерывная, а её поведение определяется слагаемым <InlineMath math={`9|x - 1|`} />: — <InlineMath math={`f(x)`} /> убывает при <InlineMath math={`x \\in (-\\infty; 1)`} /> — <InlineMath math={`f(x)`} /> возрастает при <InlineMath math={`x \\in (1; +\\infty)`} />
+        </p>
+        <p>Минимальное значение функция <InlineMath math={`f(x)`} /> достигает в точке излома <InlineMath math={`x = 1`} />.</p>
+      </div>
+
+      {/* Высокоточный крупный центрированный SVG-график Задачи 101 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 340 220" className="w-full max-w-[320px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+
+          <text x="500" y="15" fill="#94a3b8" stroke="none" className="font-sans font-medium text-[10px] tracking-wide select-none">Схематичный рисунок</text>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="20" y1="180" x2="310" y2="180" /> {/* Ось Ox */}
+            <line x1="100" y1="20" x2="100" y2="200" />  {/* Ось Oy */}
+          </g>
+          <path d="M 310,180 L 302,176 M 310,180 L 302,184" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 100,20 L 96,28 M 100,20 L 104,28" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="320" y="184" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="86" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+
+          {/* Линия излома пунктиром к оси абсцисс */}
+          <line x1="140" y1="140" x2="140" y2="180" stroke="#000000" strokeWidth="1" strokeDasharray="3 3" className="dark:stroke-slate-400" />
+          <text x="136" y="196" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-sm">1</text>
+
+          {/* График функции f(x) с изломом ("впадина") */}
+          <path d="M 50,45 L 90,100 L 140,140 L 180,105 L 220,75 L 260,35" fill="none" stroke="#0000ff" strokeWidth="2.5" />
+          
+          {/* Точка минимума на графике */}
+          <circle cx="140" cy="140" r="3" fill="#2563eb" />
+        </svg>
+      </div>
+
+            <div className="space-y-4">
+        <div>
+          <p>Найдём <InlineMath math={`f(x)_{\\text{min}} = f(1)`} />:</p>
+          <BlockMath math={`f(1) = 9|1 - 1| + |3 - |1 - a|| - 4(1)`} />
+          <BlockMath math={`f(1) = 0 + |3 - |a - 1|| - 4 = |3 - |a - 1|| - 4`} />
+        </div>
+
+        <div>
+          <p>
+            Чтобы исходное уравнение <InlineMath math={`f(x) = 0`} /> имело хотя бы один корень, необходимо и достаточно, чтобы минимальное значение функции было не положительным (<InlineMath math={`f(1) \\leq 0`} cascade />):
+          </p>
+          <BlockMath math={`|3 - |a - 1|| - 4 \\leq 0 \\iff |3 - |a - 1|| \\leq 4`} />
+        </div>
+
+        <div>
+          <p>Раскрываем двойным неравенством:</p>
+          <BlockMath math={`-4 \\leq 3 - |a - 1| \\leq 4`} />
+        </div>
+
+        <div className="space-y-3 pl-4 border-l-2 border-slate-200 dark:border-slate-800">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200">Левая часть:</p>
+            <BlockMath math={`3 - |a - 1| \\geq -4 \\iff |a - 1| \\leq 7 \\iff -7 \\leq a - 1 \\leq 7 \\iff -6 \\leq a \\leq 8`} />
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200">Правая часть:</p>
+            <p className="mt-1">
+              Неравенство <InlineMath math={`3 - |a - 1| \\leq 4 \\iff |a - 1| \\geq -1`} /> выполняется всегда.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <p>Таким образом:</p>
+          <BlockMath math={`a \\in [-6; 8]`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in [-6; 8]`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 102,
+  title: 'Задача 102',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: 'x^2 - 2a \\sin(\\cos x) + a^2 = 0',
+  textAfter: <span>имеет ровно один корень.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>Заметим, что функция <InlineMath math={`f(x) = x^2 - 2a \\sin(\\cos x) + a^2`} /> является чётной, так как:</p>
+        <BlockMath math={`f(-x) = (-x)^2 - 2a \\sin(\\cos(-x)) + a^2 = x^2 - 2a \\sin(\\cos x) + a^2 = f(x)`} />
+        <p>Это означает, что если <InlineMath math={`x_0`} /> является корнем уравнения, то и <InlineMath math={`-x_0`} /> также является его корнем. Чтобы решение было единственным, непарный корень может быть только <InlineMath math={`x = 0`} />.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p>1) Необходимое условие: Подставим <InlineMath math={`x = 0`} /> в исходное уравнение:</p>
+        <BlockMath math={`0^2 - 2a \\sin(\\cos 0) + a^2 = 0`} />
+        <BlockMath math={`a^2 - 2a \\sin(1) = 0`} />
+        <BlockMath math={`a(a - 2\\sin 1) = 0 \\iff \\left[ \\begin{array}{l} a = 0 \\\\ a = 2\\sin 1 \\end{array} \\right.`} />
+      </div>
+
+            <div className="space-y-4">
+        <p>2) Достаточность (проверка найденных a):</p>
+        
+        <div className="space-y-1">
+          <p>• При <InlineMath math={`a = 0`} />: Уравнение принимает вид <InlineMath math={`x^2 = 0 \\iff x = 0`} />. Решение единственное! Значение <InlineMath math={`a = 0`} /> подходит.</p>
+        </div>
+
+        <div className="space-y-3">
+          <p>• При <InlineMath math={`a = 2\\sin 1`} />: Уравнение принимает вид:</p>
+          <BlockMath math={`x^2 - 4\\sin 1 \\cdot \\sin(\\cos x) + 4\\sin^2 1 = 0`} />
+          <BlockMath math={`(x^2 + 4\\sin^2 1 - 4\\sin 1 \\cdot \\sin(\\cos x)) = 0`} />
+          
+          <div className="space-y-1">
+            <p>Оценим слагаемые: Так как <InlineMath math={`\\cos x \\leq 1`} />, то:</p>
+            <BlockMath math={`\\sin(\\cos x) \\leq \\sin 1`} />
+          </div>
+
+          <div className="space-y-1">
+            <p>Тогда:</p>
+            <BlockMath math={`x^2 - 4\\sin 1 \\cdot \\sin(\\cos x) + 4\\sin^2 1 \\geq x^2 - 4\\sin 1 \\cdot \\sin 1 + 4\\sin^2 1 = x^2`} />
+            <BlockMath math={`0 = x^2 - 4\\sin 1 \\cdot \\sin(\\cos x) + 4\\sin^2 1 \\geq x^2 \\geq 0`} />
+          </div>
+
+          <p>Равенство достигается только при <InlineMath math={`x = 0`} /> (так как <InlineMath math={`x^2 = 0`} /> и <InlineMath math={`\\sin(\\cos x) = \\sin 1`} />). Решение единственное! Значение <InlineMath math={`a = 2\\sin 1`} /> подходит.</p>
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a = 0, \\ a = 2\\sin 1`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 103,
+  title: 'Задача 103',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '|x - a^2 + a + 2| + |x - a^2 + 3a - 1| = 2a - 3',
+  textAfter: <span>имеет хотя бы один корень, но ни один из корней не принадлежит промежутку (4; 19).</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>1) Воспользуемся геометрическим смыслом модуля <InlineMath math={`|u - v|`} /> как расстояния между точками <InlineMath math={`u`} /> и <InlineMath math={`v`} /> на числовой прямой. Обозначим:</p>
+        <BlockMath math={`u = a^2 - a - 2, \\quad v = a^2 - 3a + 1`} />
+        <p>Уравнение принимает вид:</p>
+        <BlockMath math={`|x - u| + |x - v| = 2a - 3`} />
+        <p>По неравенству треугольника сумма расстояний от точки <InlineMath math={`x`} /> до точек <InlineMath math={`u`} /> и <InlineMath math={`v`} /> удовлетворяет неравенству:</p>
+        <BlockMath math={`|x - u| + |x - v| \\geq |u - v|`} />
+        <p>Причём равенство <InlineMath math={`|x - u| + |x - v| = |u - v|`} /> достигается тогда и только тогда, когда точка <InlineMath math={`x`} /> принадлежит отрезку с концами в точках <InlineMath math={`u`} /> и <InlineMath math={`v`} />. Найдём расстояние между <InlineMath math={`u`} /> и <InlineMath math={`v`} />:</p>
+        <BlockMath math={`|u - v| = |(a^2 - a - 2) - (a^2 - 3a + 1)| = |2a - 3|`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>2) Уравнение <InlineMath math={`|x - u| + |x - v| = 2a - 3`} /> имеет хотя бы одно решение тогда и только тогда, когда:</p>
+        <BlockMath math={`2a - 3 = |2a - 3| \\iff 2a - 3 \\geq 0 \\iff a \\geq 1,5`} />
+        <p>В этом случае множеством решений уравнения является отрезок <InlineMath math={`[\\min(u,v); \\max(u,v)]`} />.</p>
+        <p>Сравним значения <InlineMath math={`u`} /> и <InlineMath math={`v`} /> при <InlineMath math={`a \\geq 1,5`} />:</p>
+        <BlockMath math={`u - v = 2a - 3 \\geq 0 \\implies u \\geq v`} />
+        <p>Следовательно, при <InlineMath math={`a \\geq 1,5`} /> множеством корней уравнения является отрезок:</p>
+        <BlockMath math={`x \\in [a^2 - 3a + 1; a^2 - a - 2]`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>3) Условие «ни один из корней не принадлежит промежутку <InlineMath math={`(4; 19)`} />» означает, что весь отрезок решений <InlineMath math={`[a^2 - 3a + 1; a^2 - a - 2]`} /> расположен полностью либо левее 4, либо правее 19.</p>
+        <p>Это задаётся совокупностью условий:</p>
+      </div>
+
+            <BlockMath math={`\\left[ \\begin{array}{l} a^2 - a - 2 \\leq 4 \\quad (\\text{весь отрезок } \\leq 4) \\\\[0.3em] a^2 - 3a + 1 \\geq 19 \\quad (\\text{весь отрезок } \\geq 19) \\end{array} \\right.`} />
+
+      <div className="space-y-4">
+        <p>Решим каждое неравенство с учётом условия <InlineMath math={`a \\geq 1,5`} />:</p>
+        
+        <div className="space-y-2">
+          <p>• <b>Первое неравенство:</b></p>
+          <BlockMath math={`a^2 - a - 6 \\leq 0 \\iff (a - 3)(a + 2) \\leq 0 \\iff a \\in [-2; 3]`} />
+          <p>С учётом <InlineMath math={`a \\geq 1,5`} />:</p>
+          <BlockMath math={`a \\in [1,5; 3]`} />
+        </div>
+
+        <div className="space-y-2">
+          <p>• <b>Второе неравенство:</b></p>
+          <BlockMath math={`a^2 - 3a - 18 \\geq 0 \\iff (a - 6)(a + 3) \\geq 0 \\iff a \\in (-\\infty; -3] \\cup [6; +\\infty)`} />
+          <p>С учётом <InlineMath math={`a \\geq 1,5`} />:</p>
+          <BlockMath math={`a \\in [6; +\\infty)`} />
+        </div>
+
+        <div>
+          <p>Объединяя найденные промежутки, получаем итоговый ответ:</p>
+          <BlockMath math={`a \\in [1,5; 3] \\cup [6; +\\infty)`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in [1,5; 3] \\cup [6; +\\infty)`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 104,
+  title: 'Задача 104 (ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '|\\log_5 x^2 - a| - |\\log_5 x + 2a| = (\\log_5 x)^2',
+  textAfter: <span>имеет ровно четыре различных корня.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>
+          1. ОДЗ: <InlineMath math={`x > 0`} />. Сделаем замену <InlineMath math={`t = \\log_5 x`} />, где <InlineMath math={`t \\in \\mathbb{R}`} />. 
+          Так как каждому значению <InlineMath math={`t`} /> соответствует ровно один положительный <InlineMath math={`x`} />, задача сводится к поиску значений <InlineMath math={`a`} />, при которых уравнение
+        </p>
+        <BlockMath math={`|2t - a| - |t + 2a| = t^2`} />
+        <p>имеет ровно 4 корня по <InlineMath math={`t`} />.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p>
+          2. Построим график полученного уравнения на плоскости <InlineMath math={`tOa`} />. Линиями смены знаков подмодульных выражений служат прямые <InlineMath math={`a = 2t`} /> и <InlineMath math={`a = -0,5t`} />. 
+          Они делят плоскость на 4 области, в каждой из которых модули раскрываются однозначно:
+        </p>
+        <ul className="list-bullet pl-5 space-y-2">
+          <li>
+            <b>Область I (выше обеих прямых):</b> под модулями <InlineMath math={`(-; +) \\implies -(2t - a) - (t + 2a) = t^2 \\implies a = -t^2 - 3t`} />.
+          </li>
+          <li>
+            <b>Область II (ниже обеих прямых):</b> под модулями <InlineMath math={`(+; -) \\implies (2t - a) + (t + 2a) = t^2 \\implies a = t^2 - 3t`} />.
+          </li>
+          <li>
+            <b>Область III (между прямыми, справа):</b> под модулями <InlineMath math={`(+; +) \\implies (2t - a) - (t + 2a) = t^2 \\implies a = \\dfrac{t - t^2}{3}`} />.
+          </li>
+          <li>
+            <b>Область IV (между прямыми, слева):</b> под модулями <InlineMath math={`(-; -) \\implies -(2t - a) + (t + 2a) = t^2 \\implies a = \\dfrac{t^2 + t}{3}`} />.
+          </li>
+        </ul>
+      </div>
+
+            {/* Высокоточный крупный центрированный SVG-график Задачи 104 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 380 380" className="w-full max-w-[360px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Масштабная сетка: 1 ед по t = 40px, 1 ед по a = 50px */}
+          {/* Начало координат (0,0) зафиксировано строго на x=180, y=190 */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[-4, -3, -2, -1, 1, 2, 3, 4].map(i => (
+              <line key={`t-${i}`} x1={180 + i*40} y1="10" x2={180 + i*40} y2="370" />
+            ))}
+            {[-3, -2, -1, 1, 2, 3].map(i => (
+              <line key={`a-${i}`} x1="10" y1={190 - i*50} x2="370" y2={190 - i*50} />
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="10" y1="190" x2="370" y2="190" /> {/* Ось t */}
+            <line x1="180" y1="10" x2="180" y2="370" />  {/* Ось a */}
+          </g>
+          <path d="M 370,190 L 362,186 M 370,190 L 362,194" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 180,10 L 176,18 M 180,10 L 184,18" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="375" y="194" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">t</text>
+          <text x="166" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">a</text>
+          <text x="186" y="204" fill="#000000" stroke="none" className="dark:fill-slate-300 font-sans text-xs">0</text>
+
+          {/* Числовые метки на осях */}
+          <g fill="#000000" className="dark:fill-slate-400 text-[10px]">
+            <text x="60" y="202">-3</text>
+            <text x="100" y="202">-2</text>
+            <text x="140" y="202">-1</text>
+            <text x="218" y="202">1</text>
+            <text x="258" y="202">2</text>
+            <text x="298" y="202">3</text>
+            <text x="168" y="244">-1</text>
+            <text x="168" y="294">-2</text>
+            <text x="170" y="144">1</text>
+            <text x="170" y="94">2</text>
+          </g>
+
+          {/* Критические уровни сканирования параметра a (пунктирные линии) */}
+          {/* a = 2.25 -> y = 190 - 2.25*50 = 77.5 */}
+          <line x1="10" y1="77.5" x2="370" y2="77.5" stroke="#be185d" strokeWidth="1" strokeDasharray="3 2" />
+          <text x="280" y="73" fill="#be185d" className="text-[9px]">a = 2.25</text>
+
+          {/* a = 1/12 ≈ 0.083 -> y = 190 - 0.083*50 = 185.8 */}
+          <line x1="10" y1="185.8" x2="370" y2="185.8" stroke="#dc2626" strokeWidth="1" strokeDasharray="3 2" />
+          <text x="320" y="182" fill="#dc2626" className="text-[9px]">{"a = 1/12"}</text>
+
+          {/* a = -1/12 ≈ -0.083 -> y = 190 + 0.083*50 = 194.2 */}
+          <line x1="10" y1="194.2" x2="370" y2="194.2" stroke="#dc2626" strokeWidth="1" strokeDasharray="3 2" />
+          <text x="320" y="205" fill="#dc2626" className="text-[9px]">{"a = -1/12"}</text>
+
+          {/* a = -2.25 -> y = 190 + 2.25*50 = 302.5 */}
+          <line x1="10" y1="302.5" x2="370" y2="302.5" stroke="#be185d" strokeWidth="1" strokeDasharray="3 2" />
+          <text x="280" y="299" fill="#be185d" className="text-[9px]">a = -2.25</text>
+
+          {/* СЛОЖНЫЙ ГРАФИК ФУНКЦИИ (МАТЕМАТИЧЕСКИ ТОЧНЫЕ КУСОЧНЫЕ ПАРАБОЛЫ ПО ОБЛАСТЯМ ОГРАНИЧЕНИЯ) */}
+          {/* Каждая дуга рассчитана строго по точкам пересечения с линиями смены знаков модулей (при t = -2.5 и t = 2.5) */}
+          
+          {/* Область I (Выше обеих прямых): a = -t² - 3t при t ∈ [-2.5; 0]. Пик касается уровня 2.25 в точке (-1.5; 2.25) */}
+          <path d="M 80,127.5 Q 130,2.5 180,190" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Область IV (Между прямыми, слева): a = (t² + t)/3 при t ∈ [-2.5; 0]. Проходит через нижний маркер (-0.5; -1/12) */}
+          <path d="M 80,127.5 Q 130,210.83 180,190" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Область III (Между прямыми, справа): a = (t - t²)/3 при t ∈ [0; 2.5]. Проходит через верхний маркер (0.5; 1/12) */}
+          <path d="M 180,190 Q 230,169.17 280,252.5" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+          
+          {/* Область II (Ниже обеих прямых): a = t² - 3t при t ∈ [0; 2.5]. Дно касается уровня -2.25 в точке (1.5; -2.25) */}
+          <path d="M 180,190 Q 230,377.5 280,252.5" fill="none" stroke="#2563eb" strokeWidth="2.5" />
+
+                    {/* СЕРАЯ ПУНКТИРНАЯ ЛИНИЯ ГРАНИЦЫ МОДУЛЯ: a = -0.5t */}
+          {/* Проходит через точки (-3; 1.5) -> (60, 115), (0;0) -> (180, 190) и (3; -1.5) -> (300, 265) */}
+          <line x1="60" y1="115" x2="300" y2="265" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 3" className="dark:stroke-slate-500" />
+          <text x="305" y="268" fill="#94a3b8" className="text-[9px] font-sans italic">a = -0.5t</text>
+
+          
+          {/* Опорные экстремальные точки на графике */}
+          <circle cx="120" cy="77.5" r="3" fill="#be185d" />   {/* Максимум слева */}
+          <circle cx="240" cy="302.5" r="3" fill="#be185d" />  {/* Минимум справа */}
+          <circle cx="200" cy="185.8" r="2.5" fill="#dc2626" />{/* Пик правой микро-параболы */}
+          <circle cx="160" cy="194.2" r="2.5" fill="#dc2626" />{/* Дно левой микро-параболы */}
+          <circle cx="180" cy="190" r="3.5" fill="#2563eb" />  {/* Центр (0,0) */}
+        </svg>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <p>3. Количество решений исходного уравнения при фиксированном <InlineMath math={`a`} /> равно числу точек пересечения графика с горизонтальной прямой <InlineMath math={`a = \\text{const}`} />.</p>
+          <p className="mt-1">
+            Вершина параболы <InlineMath math={`a = \\dfrac{t - t^2}{3}`} /> находится в точке <InlineMath math={`t_{\\text{в}} = \\dfrac{1}{2}`} />, где <InlineMath math={`a_{\\text{в}} = \\dfrac{1}{12}`} />.
+            В силу симметрии, вершина нижней параболы находится в точке <InlineMath math={`a = -\\dfrac{1}{12}`} />.
+          </p>
+          <p className="mt-2">Визуально двигая горизонтальную прямую снизу вверх:</p>
+        </div>
+
+        <ul className="list-bullet pl-5 space-y-1">
+          <li>
+            При <InlineMath math={`a < -\\dfrac{1}{12}`} /> или <InlineMath math={`a > \\dfrac{1}{12}`} /> — нет точек пересечения.
+          </li>
+          <li>
+            При <InlineMath math={`a = \\pm 2.25`} /> — 1 решение.
+          </li>
+          <li>
+            При <InlineMath math={`a \\in \\left(-2.25; -\\dfrac{1}{12}\\right)`} /> или <InlineMath math={`a \\in \\left(\\dfrac{1}{12}; 2.25\\right)`} /> — 2 решения.
+          </li>
+          <li>
+            При <InlineMath math={`a = \\pm \\dfrac{1}{12}`} /> — 3 точки пересечения (прямая касается одной из вершин).
+          </li>
+          <li>
+            При <InlineMath math={`a = 0`} /> — 3 точки пересечения (графики пересекают начало координат).
+          </li>
+          <li>
+            При <InlineMath math={`a \\in \\left(-\\dfrac{1}{12}; 0\\right) \\cup \\left(0; \\dfrac{1}{12}\\right)`} /> — <b>ровно 4 точки пересечения</b>.
+          </li>
+        </ul>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left(-\\dfrac{1}{12}; 0\\right) \\cup \\left(0; \\dfrac{1}{12}\\right)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 105,
+  title: 'Задача 105 (ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} (ay - ax + 2)(y - x + 3a) = 0 \\\\ |xy| = a \\end{cases}',
+  textAfter: <span>имеет ровно шесть различных решений.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-1">
+        <p>1) При <InlineMath math={`a < 0`} /> equation <InlineMath math={`|xy| = a`} /> не имеет решений.</p>
+        <p>2) При <InlineMath math={`a = 0`} /> система принимает вид:</p>
+        <BlockMath math={`\\begin{cases} 2(y - x) = 0 \\\\ |xy| = 0 \\end{cases} \\iff \\begin{cases} y = x \\\\ \\left[ \\begin{array}{l} x = 0 \\\\ y = 0 \\end{array} \\right. \\end{cases} \\implies (0;0) \\quad (1 \\text{ решение}).`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>3) При <InlineMath math={`a > 0`} />: Второе уравнение <InlineMath math={`|xy| = a`} /> задаёт четыре ветви двух гипербол:</p>
+        <BlockMath math={`xy = a \\iff y = \\dfrac{a}{x} \\quad (\\text{в I и III четвертях})`} />
+        <BlockMath math={`xy = -a \\iff y = -\\dfrac{a}{x} \\quad (\\text{во II и IV четвертях})`} />
+        <p>Первое уравнение совокупностью задаёт две параллельные прямые с угловым коэффициентом <InlineMath math={`k = 1`} />:</p>
+        <BlockMath math={`\\left[ \\begin{array}{l} ay - ax + 2 = 0 \\\\ y - x + 3a = 0 \\end{array} \\right. \\iff \\left[ \\begin{array}{l} y = x - \\dfrac{2}{a} \\quad (L_1) \\\\[0.5em] y = x - 3a \\quad (L_2) \\end{array} \\right.`} />
+      </div>
+
+      {/* Высокоточный крупный центрированный SVG-график Задачи 105 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 320 280" className="w-full max-w-[320px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Тонкая сетка автора */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[-4, -3, -2, -1, 1, 2, 3, 4].map(i => (
+              <line key={`x-${i}`} x1={160 + i*32} y1="10" x2={160 + i*32} y2="250" />
+            ))}
+            {[-3, -2, -1, 1, 2, 3].map(i => (
+              <line key={`y-${i}`} x1="10" y1={130 - i*32} x2="310" y2={130 - i*32} />
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="10" y1="130" x2="310" y2="130" /> {/* Ось Ox */}
+            <line x1="160" y1="10" x2="160" y2="250" />  {/* Ось Oy */}
+          </g>
+          <path d="M 310,130 L 302,126 M 310,130 L 302,134" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 160,10 L 156,18 M 160,10 L 164,18" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="320" y="134" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="146" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+          <circle cx="160" cy="130" r="2" fill="#000000" />
+
+          {/* Четыре ветви гипербол (синие линии) */}
+          {/* xy = a (I и III четверти) */}
+          <path d="M 175,40 Q 195,115 290,125" fill="none" stroke="#2563eb" strokeWidth="2" />
+          <path d="M 145,220 Q 125,145 30,135" fill="none" stroke="#2563eb" strokeWidth="2" />
+          {/* xy = -a (II и IV четверти) */}
+          <path d="M 145,40 Q 125,115 30,125" fill="none" stroke="#2563eb" strokeWidth="2" />
+          <path d="M 175,220 Q 195,145 290,135" fill="none" stroke="#2563eb" strokeWidth="2" />
+
+          {/* Две параллельные секущие прямые (красная L1 и оранжевая L2) */}
+          {/* L1: y = x - 2/a */}
+          <line x1="80" y1="230" x2="280" y2="30" stroke="#dc2626" strokeWidth="1.8" />
+          {/* L2: y = x - 3a */}
+          <line x1="125" y1="245" x2="305" y2="65" stroke="#ea580c" strokeWidth="1.8" />
+
+          {/* Подписи к графикам */}
+          <text x="240" y="70" fill="#2563eb" className="font-serif italic text-[11px]">xy = a</text>
+          <text x="240" y="155" fill="#2563eb" className="font-serif italic text-[11px]">xy = -a</text>
+          <text x="260" y="45" fill="#dc2626" className="font-serif italic font-semibold text-xs">L₁</text>
+          <text x="285" y="80" fill="#ea580c" className="font-serif italic font-semibold text-xs">L₂</text>
+        </svg>
+      </div>
+
+      <div className="space-y-2">
+        <p>4) Анализ количества точек пересечения:</p>
+        <p>Любая прямая вида <InlineMath math={`y = x + b`} /> всегда пересекает гиперболу <InlineMath math={`xy = a`} /> (в I и III четвертях) ровно в двух точках.</p>
+        <p>Таким образом:</p>
+        <p>— Прямая <InlineMath math={`L_1`} /> всегда дает 2 решения с ветвями <InlineMath math={`xy = a`} />.</p>
+        <p>— Прямая <InlineMath math={`L_2`} /> всегда дает 2 решения с ветвями <InlineMath math={`xy = a`} />.</p>
+        <p>Итого <InlineMath math={`L_1`} /> и <InlineMath math={`L_2`} /> суммарно дают 4 решения на гиперболе <InlineMath math={`xy = a`} />. (Если <InlineMath math={`L_1 \\neq L_2`} />)</p>
+        <p>Чтобы всего было ровно 6 решений, прямые <InlineMath math={`L_1`} /> и <InlineMath math={`L_2`} /> должны суммарно дать ровно 2 решения при пересечении с гиперболой <InlineMath math={`xy = -a`} />.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p>5) Пересечение прямой <InlineMath math={`y = x + b`} /> с гиперболой <InlineMath math={`xy = -a`} />:</p>
+        <BlockMath math={`x(x + b) = -a \\iff x^2 + bx + a = 0`} />
+        <p>Дискриминант <InlineMath math={`D = b^2 - 4a`} />. Исследуем дискриминанты для обеих прямых:</p>
+        <p>• Для <InlineMath math={`L_1`} /> (<InlineMath math={`b_1 = -\\dfrac{2}{a}`} />):</p>
+        <BlockMath math={`D_1 = \\left(-\\dfrac{2}{a}\\right)^2 - 4a = \\dfrac{4}{a^2} - 4a = \\dfrac{4(1 - a^3)}{a^2}`} />
+      </div>
+
+            <div className="space-y-4">
+        <div className="space-y-1">
+          <BlockMath math={`\\begin{array}{l} D_1 > 0 \\iff a < 1 \\quad (2 \\text{ решения}); \\\\ D_1 = 0 \\iff a = 1 \\quad (1 \\text{ решение}); \\\\ D_1 < 0 \\iff a > 1 \\quad (0 \\text{ решений}). \\end{array}`} />
+          <p>• Для <InlineMath math={`L_2`} /> (<InlineMath math={`b_2 = -3a`} />):</p>
+          <BlockMath math={`D_2 = (-3a)^2 - 4a = 9a^2 - 4a = a(9a - 4)`} />
+          <BlockMath math={`\\begin{array}{l} D_2 > 0 \\iff a > \\dfrac{4}{9} \\quad (2 \\text{ решения}); \\\\[0.5em] D_2 = 0 \\iff a = \\dfrac{4}{9} \\quad (1 \\text{ решение}); \\\\[0.5em] D_2 < 0 \\iff a < \\dfrac{4}{9} \\quad (0 \\text{ решений}). \\end{array}`} />
+        </div>
+
+        <div>
+          <p>6) Чтобы сумма решений на гиперболе <InlineMath math={`xy = -a`} /> была равна 2 (<InlineMath math={`N_1 + N_2 = 2`} cascade />), возможны случаи:</p>
+          <p className="mt-2"><b>I случай:</b> <InlineMath math={`N_1 = 0`} /> и <InlineMath math={`N_2 = 2`} />:</p>
+          <BlockMath math={`\\begin{cases} a > 1 \\\\[0.3em] a > \\dfrac{4}{9} \\end{cases} \\iff a > 1`} />
+        </div>
+
+        <div>
+          <p><b>II случай:</b> <InlineMath math={`N_1 = 2`} /> и <InlineMath math={`N_2 = 0`} />:</p>
+          <BlockMath math={`\\begin{cases} 0 < a < 1 \\\\[0.3em] 0 < a < \\dfrac{4}{9} \\end{cases} \\iff 0 < a < \\dfrac{4}{9}`} />
+        </div>
+
+        <div>
+          <p><b>III случай:</b> <InlineMath math={`N_1 = 1`} /> и <InlineMath math={`N_2 = 1`} />:</p>
+          <BlockMath math={`\\begin{cases} a = 1 \\\\[0.5em] a = \\dfrac{4}{9} \\end{cases} \\implies \\varnothing`} />
+        </div>
+
+        <div className="pt-2 border-l-2 border-slate-300 dark:border-slate-700 pl-3">
+          <p><b>Замечание:</b></p>
+          <p className="mt-1">
+            прямые <InlineMath math={`L_1`} /> и <InlineMath math={`L_2`} /> совпадают при <InlineMath math={`-\\dfrac{2}{a} = -3a \\iff a = \\sqrt{\\dfrac{2}{3}}`} />.
+          </p>
+          <p className="mt-1">
+            Но <InlineMath math={`a = \\sqrt{\\dfrac{2}{3}} \\in \\left(\\dfrac{4}{9}; 1\\right)`} />, поэтому данное значение не попадает в найденные промежутки.
+          </p>
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left(0; \\dfrac{4}{9}\\right) \\cup (1; +\\infty)`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 106,
+  title: 'Задача 106 (ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} x^2 + y^2 + 84 = a^2 + 18x \\\\ ||x - 8| - |x - 6|| = y \\end{cases}',
+  textAfter: <span>имеет не менее трёх различных решений.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>1. Преобразуем первое уравнение:</p>
+        <BlockMath math={`x^2 - 18x + y^2 + 84 = a^2 \\iff (x - 9)^2 + y^2 = a^2 - 3`} />
+        <p>
+          При <InlineMath math={`a^2 > 3`} /> уравнение задаёт окружность с центром <InlineMath math={`C(9;0)`} /> и радиусом <InlineMath math={`R = \\sqrt{a^2 - 3}`} />.
+        </p>
+      </div>
+
+      <div className="space-y-2">
+        <p>2. Преобразуем второе уравнение <InlineMath math={`y = ||x - 8| - |x - 6||`} />:</p>
+        <BlockMath math={`y = \\begin{cases} 2, & x \\leq 6 \\\\ -2x + 14, & 6 < x \\leq 7 \\\\ 2x - 14, & 7 < x < 8 \\\\ 2, & x \\geq 8 \\end{cases}`} />
+      </div>
+
+      {/* Высокоточный крупный центрированный SVG-график Задачи 106 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 360 220" className="w-full max-w-[340px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Координатная сетка автора (Шаг: 1 деление = 20px. Центр (0,0) на x=60, y=140) */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[-1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => (
+              <line key={`x-${i}`} x1={60 + i*20} y1="10" x2={60 + i*20} y2="190" />
+            ))}
+            {[-2, -1, 1, 2, 3, 4].map(i => (
+              <line key={`y-${i}`} x1="30" y1={140 - i*20} x2="340" y2={140 - i*20} />
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="30" y1="140" x2="340" y2="140" /> {/* Axis Ox */}
+            <line x1="60" y1="10" x2="60" y2="190" />   {/* Axis Oy */}
+          </g>
+          <path d="M 340,140 L 332,136 M 340,140 L 332,144" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 60,10 L 56,18 M 60,10 L 64,18" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="345" y="144" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="46" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+
+          {/* Числовые метки на осях */}
+          <text x="48" y="104" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">2</text>
+          <text x="176" y="154" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">6</text>
+          <text x="196" y="154" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">7</text>
+          <text x="216" y="154" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">8</text>
+          <text x="234" y="154" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">9</text>
+          <text x="244" y="150" fill="#000000" className="dark:fill-slate-300 font-serif italic text-[10px]">C(9;0)</text>
+
+          {/* Жирная ломаная функция y(x) (синяя линия) */}
+          <path d="M 30,100 L 180,100 L 200,140 L 220,100 L 330,100" fill="none" stroke="#0000ff" strokeWidth="2.5" />
+
+          {/* Центр семейства окружностей */}
+          <circle cx="240" cy="140" r="2.5" fill="#000000" />
+
+          {/* Критическая окружность 1: R = 2 (Малиновый пунктир) */}
+          <circle cx="240" cy="140" r="40" fill="none" stroke="#be185d" strokeWidth="1.2" strokeDasharray="4 2" />
+          
+          {/* Критическая окружность 2: R = √5 ≈ 2.23 -> 2.23 * 20 = 44.7px (Оранжевый пунктир) */}
+          <circle cx="240" cy="140" r="44.7" fill="none" stroke="#ea580c" strokeWidth="1.2" strokeDasharray="4 2" />
+
+          {/* Чёрные маркерные узлы ломаной */}
+          <circle cx="180" cy="100" r="2.5" fill="#000000" />
+          <circle cx="200" cy="140" r="2.5" fill="#000000" />
+          <circle cx="220" cy="100" r="2.5" fill="#000000" />
+        </svg>
+      </div>
+
+      <div className="space-y-4">
+        <div className="space-y-1">
+          <p>3. Анализ количества решений:</p>
+          <p>— При <InlineMath math={`R^2 < 4`} />: не более двух решений.</p>
+          <p>— При <InlineMath math={`R^2 = 4 \\ (R = 2)`} />: касание <InlineMath math={`y = 2`} /> в <InlineMath math={`(9;2)`} />, прохождение через <InlineMath math={`(7;0)`} /> и точка на <InlineMath math={`[7;8]`} /></p>
+          <BlockMath math={`\\implies 3 \\text{ решения}.`} />
+          <p>— При <InlineMath math={`4 < R^2 < 5`} />: по одному пересечению на луче <InlineMath math={`x > 8`} />, на отрезке <InlineMath math={`[7;8]`} /> и на отрезке <InlineMath math={`[6;7]`} /></p>
+          <BlockMath math={`\\implies 3 \\text{ решения}.`} />
+          <p>— При <InlineMath math={`R^2 = 5`} />: прохождение через <InlineMath math={`(8;2)`} />, по одному пересечению на <InlineMath math={`x > 8`} /> и на <InlineMath math={`[6;7]`} /></p>
+          <BlockMath math={`\\implies 3 \\text{ решения}.`} />
+          <p>— При <InlineMath math={`R^2 > 5`} />: окружность огибает вершину <InlineMath math={`(8;2)`} /> и имеет только</p>
+          <BlockMath math={`\\implies 2 \\text{ решения}.`} />
+        </div>
+
+        <div className="space-y-2">
+          <p>4. Условие наличия не менее 3 решений:</p>
+          <BlockMath math={`\\text{Число решений} \\geq 3 \\iff 4 \\leq R^2 \\leq 5`} />
+          <BlockMath math={`\\iff 4 \\leq a^2 - 3 \\leq 5 \\iff 7 \\leq a^2 \\leq 8`} />
+          <BlockMath math={`\\iff \\sqrt{7} \\leq |a| \\leq 2\\sqrt{2} \\iff a \\in [-2\\sqrt{2}; -\\sqrt{7}] \\cup [\\sqrt{7}; 2\\sqrt{2}]`} />
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in [-2\\sqrt{2}; -\\sqrt{7}] \\cup [\\sqrt{7}; 2\\sqrt{2}]`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 107,
+  title: 'Задача 107 (Не из ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} |x - a| + |y - a| + |a + 1 - x| + |a + 1 - y| = 2 \\\\ y + 2|x - 5| = 6 \\end{cases}',
+  textAfter: <span>имеет ровно одно решение.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>1. Преобразуем первое уравнение системы. Воспользуемся неравенством треугольника <InlineMath math={`|u| + |v| \\geq |u + v|`} />:</p>
+        <BlockMath math={`|x - a| + |a + 1 - x| \\geq |(x - a) + (a + 1 - x)| = 1`} />
+        <p>Равенство достигается <InlineMath math={`\\iff a \\leq x \\leq a + 1`} />.</p>
+        <p>Аналогично для <InlineMath math={`y`} />:</p>
+        <BlockMath math={`|y - a| + |a + 1 - y| \\geq |(y - a) + (a + 1 - y)| = 1`} />
+        <p>Равенство достигается <InlineMath math={`\\iff a \\leq y \\leq a + 1`} />.</p>
+        <p>Складывая неравенства, получаем:</p>
+        <BlockMath math={`(|x - a| + |a + 1 - x|) + (|y - a| + |a + 1 - y|) \\geq 2`} />
+        <p>Таким образом, первое уравнение задаёт закрашенный квадрат <InlineMath math={`S_a`} />:</p>
+        <BlockMath math={`S_a = \\{(x;y) \\mid a \\leq x \\leq a + 1, \\ a \\leq y \\leq a + 1\\}`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>2. Второе уравнение системы задаёт уголок с вершиной в точке <InlineMath math={`(5;6)`} />:</p>
+        <BlockMath math={`y = 6 - 2|x - 5| = \\begin{cases} 2x - 4, & x \\leq 5 \\\\ 16 - 2x, & x \\geq 5 \\end{cases}`} />
+      </div>
+
+            {/* Высокоточный крупный центрированный SVG-график Задачи 107 */}
+      <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 340 320" className="w-full max-w-[340px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          {/* Масштабная сетка (Шаг: 1 деление = 30px. Центр (0,0) зафиксирован на x=60, y=260) */}
+          <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
+              <line key={`x-${i}`} x1={60 + i*30} y1="10" x2={60 + i*30} y2="280" />
+            ))}
+            {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
+              <line key={`y-${i}`} x1="40" y1={260 - i*30} x2="320" y2={260 - i*30} />
+            ))}
+          </g>
+
+          {/* Оси координат */}
+          <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
+            <line x1="40" y1="260" x2="320" y2="260" /> {/* Ось Ox */}
+            <line x1="60" y1="10" x2="60" y2="280" />   {/* Ось Oy */}
+          </g>
+          <path d="M 320,260 L 312,256 M 320,260 L 312,264" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <path d="M 60,10 L 56,18 M 60,10 L 64,18" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
+          <text x="325" y="264" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">x</text>
+          <text x="46" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
+
+          {/* Диагональ y = x (черный мелкий пунктир) */}
+          <line x1="40" y1="280" x2="310" y2="10" stroke="#000000" strokeWidth="1.2" strokeDasharray="3 3" className="dark:stroke-slate-400" />
+          <text x="290" y="25" fill="#94a3b8" className="text-[10px] font-serif italic">y = x</text>
+
+          {/* Метки делений на осях */}
+          <text x="48" y="204" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">2</text>
+          <text x="48" y="84" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">6</text>
+          <text x="116" y="274" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">2</text>
+          <text x="146" y="274" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">3</text>
+          <text x="206" y="274" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">5</text>
+
+          {/* Синий уголок (домик) с вершиной в точке (5;6) -> (210, 80) */}
+          {/* Левая ветвь идет через (2;0) -> (120, 260), правая уходит вниз */}
+          <path d="M 110,280 L 210,80 L 265,190" fill="none" stroke="#0000ff" strokeWidth="2.2" />
+
+          {/* КВАДРАТ S_2 при a = 2 (красный, закрашенный полупрозрачно) */}
+          {/* Лежит на диагонали от x=2, y=2 до x=3, y=3 -> от (120,200) до (150,170) */}
+          <rect x="120" y="170" width="30" height="30" fill="#f87171" fillOpacity="0.3" stroke="#dc2626" strokeWidth="1.5" />
+          <text x="104" y="184" fill="#dc2626" className="font-sans font-semibold text-xs">S₂</text>
+          {/* Точка касания (3;2) */}
+          <circle cx="150" cy="200" r="3" fill="#dc2626" />
+          <text x="156" y="214" fill="#dc2626" className="font-sans text-xs font-medium">(3;2)</text>
+
+          {/* КВАДРАТ S_16/3 при a = 16/3 ≈ 5.33 (оранжевый, закрашенный полупрозрачно) */}
+          {/* Лежит на диагонали от x=5.33, y=5.33 до x=6.33, y=6.33 -> от (220,100) до (250,70) */}
+          <rect x="220" y="70" width="30" height="30" fill="#fb923c" fillOpacity="0.3" stroke="#ea580c" strokeWidth="1.5" />
+          <text x="254" y="94" fill="#ea580c" className="font-sans font-semibold text-xs">S₁₆/₃</text>
+          {/* Точка касания (16/3; 16/3) */}
+          <circle cx="220" cy="100" r="3" fill="#ea580c" />
+          <text x="180" y="94" fill="#ea580c" className="font-sans text-xs font-medium">(16/3; 16/3)</text>
+        </svg>
+      </div>
+
+      <div className="space-y-4">
+        <p className="italic text-slate-500 dark:text-slate-400">Обратите внимание что кубик всегда лежит на y = x</p>
+        <p>3. Анализ количества решений (пересечений уголка и квадрата <InlineMath math={`S_a`} />):</p>
+        
+        <p>
+          Поскольку угловые коэффициенты прямых равны <InlineMath math={`\\pm 2`} />, любое пересечение со стороной квадрата дает отрезок (бесконечно много решений), кроме случаев, когда график касается квадрата в его единственной вершине снаружи.
+        </p>
+
+        <div className="space-y-2">
+          <p>— При <InlineMath math={`x \\leq 5`} /> левая ветвь <InlineMath math={`y = 2x - 4`} /> касается нижней правой вершины квадрата <InlineMath math={`(a+1; a)`} />:</p>
+          <BlockMath math={`a = 2(a + 1) - 4 \\iff a = 2a - 2 \\iff a = 2`} />
+          <p>При <InlineMath math={`a = 2`} /> получаем единственное решение <InlineMath math={`(3; 2)`} />.</p>
+        </div>
+
+        <div className="space-y-2">
+          <p>— При <InlineMath math={`x \\geq 5`} /> правая ветвь <InlineMath math={`y = 16 - 2x`} /> касается нижней левой вершины квадрата <InlineMath math={`(a; a)`} />:</p>
+          <BlockMath math={`a = 16 - 2a \\iff 3a = 16 \\iff a = \\dfrac{16}{3}`} />
+          <p>При <InlineMath math={`a = \\dfrac{16}{3}`} /> получаем единственное решение <InlineMath math={`\\left(\\dfrac{16}{3}; \\dfrac{16}{3}\\right)`} />.</p>
+        </div>
+
+        <p>
+          Во всех остальных случаях пересечение либо отсутствует, либо представляет собой отрезок (бесконечно много решений).
+          <br />
+          Ответ: <InlineMath math={`a = 2; \\ a = \\dfrac{16}{3}`} />.
+        </p>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left\\{2; \\dfrac{16}{3}\\right\\}`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 108,
+  title: 'Задача 108 (Не из ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых система уравнений',
+  mathA: '\\begin{cases} 2^x + 2^{\\frac{4}{x}} = (a^2 - 4)^2 + y^2 + 8 \\\\ |y|z^4 + 2z^2 - a^2z + a + 4 = 0 \\end{cases}',
+  textAfter: <span>имеет ровно одно решение.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>1. Оценка первого уравнения:</p>
+        <p>Для <InlineMath math={`x > 0`} /> по неравенству Коши (неравенство о средних):</p>
+        <BlockMath math={`x + \\dfrac{4}{x} \\geq 2\\sqrt{x \\cdot \\dfrac{4}{x}} = 4`} />
+        <p>Теперь применим неравенство для левой части:</p>
+        <BlockMath math={`2^x + 2^{\\frac{4}{x}} \\geq 2\\sqrt{2^{x + \\frac{4}{x}}} \\geq 2\\sqrt{2^4} = 8`} />
+        <p>Равенство левой части 8 достигается только при <InlineMath math={`x = 2`} />.</p>
+        <p>Для правой части:</p>
+        <BlockMath math={`(a^2 - 4)^2 + y^2 + 8 \\geq 8`} />
+        <p>Равенство достигается только при <InlineMath math={`y = 0`} /> и <InlineMath math={`a^2 = 4 \\iff a = \\pm 2`} />.</p>
+        <p>Следовательно, первое уравнение имеет решения только при <InlineMath math={`x = 2, \\ y = 0`} /> и <InlineMath math={`a = \\pm 2`} />.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p>2. Анализ второго уравнения при <InlineMath math={`y = 0`} />:</p>
+        <p>Подставим <InlineMath math={`y = 0`} /> во второе уравнение:</p>
+        <BlockMath math={`2z^2 - a^2z + a + 4 = 0`} />
+      </div>
+
+            <div className="space-y-4">
+        <div className="space-y-2">
+          <p>— При <InlineMath math={`a = 2`} />:</p>
+          <BlockMath math={`2z^2 - 4z + 6 = 0 \\iff z^2 - 2z + 3 = 0 \\quad (D < 0 \\implies \\text{нет решений}).`} />
+        </div>
+
+        <div className="space-y-2">
+          <p>— При <InlineMath math={`a = -2`} />:</p>
+          <BlockMath math={`2z^2 - 4z + 2 = 0 \\iff (z - 1)^2 = 0 \\implies z = 1 \\quad (1 \\text{ решение}).`} />
+        </div>
+
+        <div>
+          <p>Таким образом, единственное решение системы <InlineMath math={`(2; 0; 1)`} /> достигается при <InlineMath math={`a = -2`} />.</p>
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a = -2`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 109,
+  title: 'Задача 109 (Не из ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых уравнение',
+  mathA: '2\\pi^2(x - 1)^2 + 4a\\cos(2\\pi x) - 9a^3 = 0',
+  textAfter: <span>имеет ровно одно решение.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>1. Заметим, что если <InlineMath math={`x_0`} /> является корнем уравнения, то <InlineMath math={`x = 2 - x_0`} /> также является его корнем, так как:</p>
+        <BlockMath math={`((2 - x_0) - 1)^2 = (1 - x_0)^2 = (x_0 - 1)^2`} />
+        <BlockMath math={`\\cos(2\\pi(2 - x_0)) = \\cos(4\\pi - 2\\pi x_0) = \\cos(2\\pi x_0)`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>2. Необходимое условие:</p>
+        <p>Для того чтобы решение было единственным, должно выполняться <InlineMath math={`x_0 = 2 - x_0 \\iff x_0 = 1`} />.</p>
+        <p>Подставим <InlineMath math={`x = 1`} /> в исходное уравнение:</p>
+        <BlockMath math={`2\\pi^2(1 - 1)^2 + 4a\\cos(2\\pi) - 9a^3 = 0 \\iff 4a - 9a^3 = 0`} />
+        <BlockMath math={`a(4 - 9a^2) = 0 \\implies a = 0 \\quad \\text{или} \\quad a = \\pm \\dfrac{2}{3}`} />
+      </div>
+
+      <div className="space-y-3">
+        <p>3. Проверка полученных значений <InlineMath math={`a`} />:</p>
+        
+        <div className="space-y-1">
+          <p>— Случай <InlineMath math={`a = 0`} />:</p>
+          <BlockMath math={`2\\pi^2(x - 1)^2 = 0 \\iff x = 1 \\quad (\\text{ровно 1 корень — подходит}).`} />
+        </div>
+
+        <div className="space-y-1">
+          <p>— Случай <InlineMath math={`a = -\\dfrac{2}{3}`} />:</p>
+          <BlockMath math={`2\\pi^2(x - 1)^2 - \\dfrac{8}{3}\\cos(2\\pi x) + \\dfrac{8}{3} = 0 \\iff 2\\pi^2(x - 1)^2 + \\dfrac{8}{3} = \\dfrac{8}{3}\\cos(2\\pi x)`} />
+          <p className="mt-2">Оценим обе части уравнения:</p>
+          <BlockMath math={`\\underbrace{2\\pi^2(x - 1)^2 + \\dfrac{8}{3}}_{\\geq \\frac{8}{3}} = \\underbrace{\\dfrac{8}{3}\\cos(2\\pi x)}_{\\leq \\frac{8}{3}}`} />
+          <p className="mt-1">Равенство достигается только когда обе части равны <InlineMath math={`\\dfrac{8}{3}`} />, что выполняется исключительно при <InlineMath math={`x = 1 \\implies`} /> ровно 1 корень — подходит.</p>
+        </div>
+
+        <div className="space-y-2">
+          <p>— Случай <InlineMath math={`a = \\dfrac{2}{3}`} />:</p>
+          <BlockMath math={`2\\pi^2(x - 1)^2 + \\dfrac{8}{3}\\cos(2\\pi x) - \\dfrac{8}{3} = 0 \\iff 2\\pi^2(x - 1)^2 = \\dfrac{8}{3}(1 - \\cos(2\\pi x))`} />
+          <p>Используя формулу <InlineMath math={`1 - \\cos(2\\alpha) = 2\\sin^2\\alpha`} />, получаем:</p>
+          <BlockMath math={`\\pi^2(x - 1)^2 = \\dfrac{8}{3}\\sin^2(\\pi x)`} />
+          <p>Так как <InlineMath math={`\\sin^2(\\pi x) = \\sin^2(\\pi x - \\pi) = \\sin^2(\\pi(x - 1))`} /> по формуле приведения, уравнение принимает вид:</p>
+          <BlockMath math={`\\pi^2(x - 1)^2 = \\dfrac{8}{3}\\sin^2(\\pi(x - 1))`} />
+          <p>Сделаем замену <InlineMath math={`t = \\pi(x - 1)`} />. Уравнение принимает вид:</p>
+          <BlockMath math={`t^2 = \\dfrac{8}{3}\\sin^2 t \\iff |t| = |\\sin t|\\sqrt{\\dfrac{8}{3}}`} />
+          <p>Корень <InlineMath math={`t = 0 \\ (x = 1)`} /> очевиден.</p>
+          <p>Покажем, что есть другие корни на промежутке <InlineMath math={`t \\in (0; \\pi)`} />, сравнив значения левой и правой частей в табличной точке <InlineMath math={`t = \\dfrac{\\pi}{6}`} />:</p>
+          
+          <ul className="list-bullet pl-5 space-y-1">
+            <li>Левая часть равенства: <InlineMath math={`L = |t| = \\dfrac{\\pi}{6}`} /></li>
+            <li>Правая часть равенства: <InlineMath math={`R = \\sqrt{\\dfrac{8}{3}}\\left|\\sin\\dfrac{\\pi}{6}\\right| = \\sqrt{\\dfrac{8}{3}} \\cdot \\dfrac{1}{2} = \\sqrt{\\dfrac{8}{3 \\cdot 4}} = \\sqrt{\\dfrac{2}{3}}`} /></li>
+          </ul>
+
+          <p className="pt-2">Сравним полученные числа <InlineMath math={`L`} /> и <InlineMath math={`R`} />, возведя их в квадрат:</p>
+          <BlockMath math={`L^2 = \\dfrac{\\pi^2}{36} < \\dfrac{10}{36} = \\dfrac{5}{18}, \\quad R^2 = \\dfrac{2}{3} = \\dfrac{12}{18}`} />
+          <p>Так как <InlineMath math={`L^2 < R^2`} />, то в точке <InlineMath math={`t = \\dfrac{\\pi}{6}`} /> правая часть графика лежит строго выше левой (<InlineMath math={`R > L`} cascade />).</p>
+          <p>
+            Однако в точке <InlineMath math={`t = \\pi`} /> правая часть зануляется (<InlineMath math={`R = 0`} cascade />), а левая часть равна <InlineMath math={`L = \\pi > 0`} />, то есть график правой части уходит строго ниже левой. В силу непрерывности обеих функций, на интервале <InlineMath math={`\\left(\\dfrac{\\pi}{6}; \\pi\\right)`} /> графики обязаны пересечься как минимум в одной точке <InlineMath math={`t_1 > 0`} />. В силу чётности выражений, найдётся и симметричный корень <InlineMath math={`t_2 = -t_1`} />.
+            <br />
+            Единственность корня нарушается <InlineMath math={`\\implies a = \\dfrac{2}{3}`} /> (не подходит).
+          </p>
+        </div>
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left\\{-\\dfrac{2}{3}; 0\\right\\}`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+
+
+{
+  id: 110,
+  title: 'Задача 110',
+  textBefore: 'Найдите все значения a, при каждом из которых неравенство',
+  mathA: '\\left| \\dfrac{x^2 + ax + 1}{x^2 + x + 1} \\right| < 3',
+  textAfter: <span>справедливо при всех x.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>
+          1. Так как <InlineMath math={`x^2 + x + 1 = \\left(x + \\dfrac{1}{2}\\right)^2 + \\dfrac{3}{4} > 0`} /> при всех <InlineMath math={`x \\in \\mathbb{R}`} />, исходное неравенство равносильно:
+        </p>
+        <BlockMath math={`|x^2 + ax + 1| < 3(x^2 + x + 1)`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>2. Раскрывая модуль двойным неравенством, получаем систему:</p>
+        <BlockMath math={`-3x^2 - 3x - 3 < x^2 + ax + 1 < 3x^2 + 3x + 3 \\iff \\begin{cases} 2x^2 + (3 - a)x + 2 > 0 \\\\ 4x^2 + (3 + a)x + 4 > 0 \\end{cases}`} />
+      </div>
+
+      <div className="space-y-3">
+        <p>3. Чтобы оба квадратных неравенства выполнялись при всех <InlineMath math={`x \\in \\mathbb{R}`} />, дискриминанты обоих трёхчленов должны быть строго отрицательны:</p>
+        
+        <div className="space-y-1">
+          <p>— Для первого:</p>
+          <BlockMath math={`D_1 = (3 - a)^2 - 4 \\cdot 2 \\cdot 2 < 0 \\iff (3 - a)^2 - 16 < 0 \\iff (-1 - a)(7 - a) < 0 \\iff -1 < a < 7`} />
+        </div>
+
+        <div className="space-y-1">
+          <p>— Для второго:</p>
+          <BlockMath math={`D_2 = (3 + a)^2 - 4 \\cdot 4 \\cdot 4 < 0 \\iff (3 + a)^2 - 64 < 0 \\iff (a - 5)(a + 11) < 0 \\iff -11 < a < 5`} />
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <p>4. Находим пересечение полученных интервалов:</p>
+        <BlockMath math={`\\begin{cases} -1 < a < 7 \\\\ -11 < a < 5 \\end{cases} \\iff a \\in (-1; 5)`} />
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in (-1; 5)`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 111,
+  title: 'Задача 111 (Не из ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых множество решений неравенства',
+  mathA: '\\dfrac{a - (a^2 - 2a) \\cos 2x + 2}{3 - \\cos 4x + a^2} < 1',
+  textAfter: <span>содержит отрезок <InlineMath math={`[-2\\pi; -\\dfrac{7\\pi}{6}]`} cascade />.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>
+          1. <b>Замена переменной:</b> При <InlineMath math={`x \\in \\left[-2\\pi; -\\dfrac{7\\pi}{6}\\right]`} /> угол <InlineMath math={`2x \\in \\left[-4\\pi; -\\dfrac{7\\pi}{3}\\right]`} />, поэтому <InlineMath math={`t = \\cos 2x`} /> принимает все значения из отрезка <InlineMath math={`[-1; 1]`} />.
+        </p>
+        <p>
+          Используя формулу двойного угла <InlineMath math={`\\cos 4x = 2t^2 - 1`} />, перепишем исходное неравенство относительно <InlineMath math={`t \\in [-1; 1]`} />:
+        </p>
+        <BlockMath math={`\\dfrac{a - (a^2 - 2a)t + 2}{a^2 + 4 - 2t^2} < 1`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>
+          2. <b>Преобразование неравенства:</b> Так как <InlineMath math={`a^2 + 4 - 2t^2 \\geq a^2 + 2 > 0`} /> при всех <InlineMath math={`t \\in [-1; 1]`} />, домножим на знаменатель:
+        </p>
+        <BlockMath math={`a - (a^2 - 2a)t + 2 < a^2 + 4 - 2t^2 \\iff 2t^2 - (a^2 - 2a)t - (a^2 - a + 2) < 0`} />
+      </div>
+
+      <div className="space-y-3">
+        <p>
+          3. <b>Исследование параболы на отрезке <InlineMath math={`[-1; 1]`} />:</b> Функция <InlineMath math={`f(t) = 2t^2 - (a^2 - 2a)t - (a^2 - a + 2)`} /> представляет собой параболу ветвями вверх.
+        </p>
+        <p>
+          Чтобы <InlineMath math={`f(t) < 0`} /> для всех <InlineMath math={`t \\in [-1; 1]`} />, необходимо и достаточно выполнения двух условий на концах отрезка:
+        </p>
+        <BlockMath math={`\\begin{cases} f(-1) < 0 \\\\ f(1) < 0 \\end{cases}`} />
+        
+        <div className="space-y-1">
+          <p>— Для <InlineMath math={`t = -1`} />:</p>
+          <BlockMath math={`f(-1) = 2 + (a^2 - 2a) - (a^2 - a + 2) = -a < 0 \\implies a > 0`} />
+        </div>
+
+        <div className="space-y-1">
+          <p>— Для <InlineMath math={`t = 1`} />:</p>
+          <BlockMath math={`f(1) = 2 - (a^2 - 2a) - (a^2 - a + 2) = -2a^2 + 3a < 0 \\iff a(2a - 3) > 0`} />
+          <BlockMath math={`\\iff a \\in (-\\infty; 0) \\cup \\left(\\dfrac{3}{2}; +\\infty\\right)`} />
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <p>4. <b>Нахождение пересечения:</b></p>
+        <BlockMath math={`\\begin{cases} a > 0 \\\\[0.5em] a \\in (-\\infty; 0) \\cup \\left(\\dfrac{3}{2}; +\\infty\\right) \\end{cases} \\iff a \\in \\left(\\dfrac{3}{2}; +\\infty\\right)`} />
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left(\\dfrac{3}{2}; +\\infty\\right)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 112,
+  title: 'Задача 112 (ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых наименьшее значение функции',
+  mathA: 'f(x) = 4x^2 + 4ax + a^2 + 2a + 2',
+  textAfter: <span>на множестве <InlineMath math={`|x| \\geq 1`} /> не меньше 6.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>1. <b>Выделение полного квадрата:</b></p>
+        <BlockMath math={`f(x) = (2x + a)^2 + 2a + 2`} />
+        <p>Вершина параболы <InlineMath math={`x_0 = -\\dfrac{a}{2}`} />.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p>2. <b>Случай 1:</b></p>
+        <p>
+          Вершина лежит в «выколотой» области <InlineMath math={`x_0 \\in (-1;1) \\iff |a| < 2`} />. Наименьшее значение достигается в ближайшей из точек <InlineMath math={`x = 1`} /> или <InlineMath math={`x = -1`} />. Требуем выполнение условия <InlineMath math={`f(x) \\geq 6`} /> в обеих точках:
+        </p>
+        <BlockMath math={`\\begin{cases} f(1) \\geq 6 \\\\ f(-1) \\geq 6 \\end{cases} \\iff \\begin{cases} a^2 + 6a + 6 \\geq 6 \\\\ a^2 - 2a + 6 \\geq 6 \\end{cases} \\iff \\begin{cases} a(a + 6) \\geq 0 \\\\ a(a - 2) \\geq 0 \\end{cases}`} />
+        <p className="pt-1">С учётом <InlineMath math={`|a| < 2`} /> подходят значения <InlineMath math={`a = 0`} />.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p>3. <b>Случай 2:</b></p>
+        <p>
+          Вершина принадлежит области <InlineMath math={`|x| \\geq 1 \\iff |a| \\geq 2`} />. Наименьшее значение достигается в самой вершине:
+        </p>
+        <BlockMath math={`f(x_0) = 2a + 2 \\geq 6 \\implies a \\geq 2`} />
+        <p className="pt-1">Отсюда: <InlineMath math={`a \\in [2; +\\infty)`} />.</p>
+      </div>
+
+      <div className="space-y-1">
+        <p>Объединяя результаты обоих случаев, получаем:</p>
+        <BlockMath math={`a \\in \\{0\\} \\cup [2; +\\infty)`} />
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\{0\\} \\cup [2; +\\infty)`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 113,
+  title: 'Задача 113 (ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых наименьшее значение функции',
+  mathA: 'f(x) = 2ax + |x^2 - 8x + 7|',
+  textAfter: <span>больше 1.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>1. <b>Преобразование функции:</b> Раскроем модуль, найдя корни подмодульного выражения <InlineMath math={`x^2 - 8x + 7 = (x - 1)(x - 7)`} />:</p>
+        <BlockMath math={`f(x) = \\begin{cases} x^2 + 2(a - 4)x + 7, & \\text{если } x \\leq 1 \\text{ или } x \\geq 7 \\\\ -x^2 + (2a + 8)x - 7, & \\text{если } 1 < x < 7 \\end{cases}`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>2. <b>Анализ поведения функции на промежутках:</b></p>
+        <p>— На интервале <InlineMath math={`(1; 7)`} /> график представляет собой параболу ветвями вниз. Наименьшее значение на этом интервале достигается на концах интервала: При <InlineMath math={`x = 1`} /> и <InlineMath math={`x = 7`} />.</p>
+        <p>— На лучах <InlineMath math={`(-\\infty; 1]`} /> и <InlineMath math={`[7; +\\infty)`} /> график представляет собой параболу ветвями вверх с вершиной <InlineMath math={`x_0 = 4 - a`} />.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p>3. <b>Разбор случаев расположения вершины <InlineMath math={`x_0 = 4 - a`} />:</b></p>
+        <p><b>Случай 1:</b> <InlineMath math={`x_0 \\in (1; 7) \\iff 1 < 4 - a < 7 \\iff -3 < a < 3`} />.</p>
+        <p>В таком случае минимум <InlineMath math={`f(x)`} /> находится либо в точке <InlineMath math={`x = 1`} />, либо в <InlineMath math={`x = 7`} />:</p>
+        <BlockMath math={`\\begin{cases} f(1) = 2a > 1 \\\\ f(7) = 14a > 1 \\end{cases} \\implies a > \\dfrac{1}{2}`} />
+        <p className="pt-1">Теперь с учётом <InlineMath math={`a > \\dfrac{1}{2}`} /> получаем <InlineMath math={`a \\in \\left(\\dfrac{1}{2}; 3\\right)`} />.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p><b>Случай 2:</b> <InlineMath math={`x_0 \\in (-\\infty; 1] \\cup [7; +\\infty) \\iff a \\in (-\\infty; -3] \\cup [3; +\\infty)`} />.</p>
+        <p>В этом случае минимальное значение функция <InlineMath math={`f(x)`} /> принимает в точке <InlineMath math={`f(x_0)`} />, т.е. необходимо, чтобы:</p>
+        <BlockMath math={`f(x_0) = f(4 - a) > 1`} />
+        <BlockMath math={`f(4 - a) = -a^2 + 8a - 9 > 1 \\iff a^2 - 8a + 10 < 0`} />
+        <p>С учётом ограничения <InlineMath math={`a \\in (-\\infty; -3] \\cup [3; +\\infty)`} /> получаем промежуток:</p>
+        <BlockMath math={`a \\in [3; 4 + \\sqrt{6})`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>5. <b>Итоговое объединение 1-го и 2-го случаев даёт:</b></p>
+        <BlockMath math={`a \\in \\left(\\dfrac{1}{2}; 3\\right) \\cup [3; 4 + \\sqrt{6}) = \\left(\\dfrac{1}{2}; 4 + \\sqrt{6}\\right)`} />
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left(\\dfrac{1}{2}; 4 + \\sqrt{6}\\right)`} />
+      </div>
+    </div>
+  )
+},
+
+
+
+{
+  id: 114,
+  title: 'Задача 114 (Не из ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых линии',
+  mathA: 'y = a|x - 2| + |a| - 2 \\quad \\text{и} \\quad y = \\dfrac{a}{2}',
+  textAfter: <span>ограничивают многоугольник, площадь которого не больше, чем 0,5.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p><b>1) <InlineMath math={`a > 0`} />.</b></p>
+        <p>Прямая лежит выше вершины уголка при условии:</p>
+        <BlockMath math={`\\dfrac{a}{2} > a - 2 \\iff 0 < a < 4.`} />
+      </div>
+
+      {/* Схематичный график для a > 0 */}
+      <div className="my-4 flex flex-col items-center bg-white dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 200 120" className="w-full max-w-[200px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          <g stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400">
+            <line x1="30" y1="100" x2="180" y2="100" /> {/* Ox */}
+            <line x1="50" y1="110" x2="50" y2="15" />  {/* Oy */}
+          </g>
+          <text x="185" y="104" className="dark:fill-slate-300 font-serif italic text-xs">x</text>
+          <text x="46" y="10" className="dark:fill-slate-300 font-serif italic text-xs">y</text>
+          
+          {/* Уголок и секущая линия */}
+          <path d="M 40,40 L 100,80 L 160,40" fill="none" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <line x1="35" y1="50" x2="165" y2="50" stroke="#000000" strokeWidth="1" strokeDasharray="3 2" className="dark:stroke-slate-400" />
+          
+          {/* Стрелка высоты h */}
+          <g stroke="#000000" strokeWidth="0.8" fill="none" className="dark:stroke-slate-400">
+            <line x1="75" y1="50" x2="75" y2="80" />
+            <path d="M 75,50 L 72,55 M 75,50 L 78,55" />
+            <path d="M 75,80 L 72,75 M 75,80 L 78,75" />
+          </g>
+          <text x="63" y="68" className="dark:fill-slate-300 text-xs font-serif italic">h</text>
+        </svg>
+      </div>
+
+      <div className="space-y-2">
+        <p>Высота и половина основания полученного треугольника:</p>
+        <BlockMath math={`h = \\dfrac{a}{2} - (a - 2) = \\dfrac{4 - a}{2}, \\quad \\dfrac{b}{2} = \\dfrac{h}{a}.`} />
+        <p>Где <InlineMath math={`b`} /> — основание треугольника, а параметр выступает в роли тангенса угла наклона прямых уголка.</p>
+        <p>Ограничение на площадь:</p>
+        <BlockMath math={`S = \\dfrac{h^2}{a} = \\dfrac{(4 - a)^2}{4a} \\leq \\dfrac{1}{2} \\iff a^2 - 10a + 16 \\leq 0 \\iff a \\in [2; 8].`} />
+        <p>С учётом <InlineMath math={`0 < a < 4`} /> получаем:</p>
+        <BlockMath math={`a \\in [2; 4).`} />
+      </div>
+
+      <div className="space-y-2 pt-2">
+        <p><b>2) <InlineMath math={`a < 0`} />.</b></p>
+        <p>Прямая лежит ниже вершины уголка при условии:</p>
+        <BlockMath math={`-a - 2 > \\dfrac{a}{2} \\iff a < -\\dfrac{4}{3}.`} />
+      </div>
+
+      {/* Схематичный график для a < 0 */}
+      <div className="my-4 flex flex-col items-center bg-white dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg viewBox="0 0 200 120" className="w-full max-w-[200px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
+          <g stroke="#000000" strokeWidth="1" className="dark:stroke-slate-400">
+            <line x1="30" y1="30" x2="180" y2="30" /> {/* Ox */}
+            <line x1="50" y1="110" x2="50" y2="15" />  {/* Oy */}
+          </g>
+          <text x="185" y="34" className="dark:fill-slate-300 font-serif italic text-xs">x</text>
+          <text x="46" y="10" className="dark:fill-slate-300 font-serif italic text-xs">y</text>
+          
+          {/* Уголок и секущая линия */}
+          <path d="M 40,90 L 100,50 L 160,90" fill="none" stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400" />
+          <line x1="35" y1="80" x2="165" y2="80" stroke="#000000" strokeWidth="1" strokeDasharray="3 2" className="dark:stroke-slate-400" />
+          
+          {/* Стрелка высоты h */}
+          <g stroke="#000000" strokeWidth="0.8" fill="none" className="dark:stroke-slate-400">
+            <line x1="75" y1="50" x2="75" y2="80" />
+            <path d="M 75,50 L 72,55 M 75,50 L 78,55" />
+            <path d="M 75,80 L 72,75 M 75,80 L 78,75" />
+          </g>
+          <text x="63" y="68" className="dark:fill-slate-300 text-xs font-serif italic">h</text>
+        </svg>
+      </div>
+
+      <div className="space-y-2">
+        <p>Высота и половина основания треугольника в этом случае:</p>
+        <BlockMath math={`h = -a - 2 - \\dfrac{a}{2} = -\\dfrac{3a + 4}{2}, \\quad \\dfrac{b}{2} = \\dfrac{h}{-a}.`} />
+        <p>Ограничение на площадь:</p>
+        <BlockMath math={`S = \\dfrac{h^2}{-a} = \\dfrac{(3a + 4)^2}{-4a} \\leq \\dfrac{1}{2} \\iff 9a^2 + 26a + 16 \\leq 0 \\iff a \\in \\left[-2; -\\dfrac{8}{9}\\right].`} />
+        <p>С учётом <InlineMath math={`a < -\\dfrac{4}{3}`} /> получаем:</p>
+        <BlockMath math={`a \\in \\left[-2; -\\dfrac{4}{3}\\right).`} />
+      </div>
+
+      <div className="space-y-2 pt-2">
+        <p><b>3) Итоговое объединение 1-го и 2-го случаев даёт:</b></p>
+        <BlockMath math={`a \\in \\left[-2; -\\dfrac{4}{3}\\right) \\cup [2; 4).`} />
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in \\left[-2; -\\dfrac{4}{3}\\right) \\cup [2; 4)`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 115,
+  title: 'Задача 115',
+  textBefore: 'Найдите все значения a, при каждом из которых неравенство',
+  mathA: '5|x - 2| + 3|x + a| \\leq \\sqrt{4 - y^2} + 7',
+  textAfter: <span>имеет хотя бы одно решение.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>1. <b>Оценка правой части неравенства:</b></p>
+        <p>Так как <InlineMath math={`4 - y^2 \\leq 4`} /> при <InlineMath math={`y \\in [-2; 2]`} />, наибольшее значение правой части равно:</p>
+        <BlockMath math={`\\max\\left(\\sqrt{4 - y^2} + 7\\right) = \\sqrt{4} + 7 = 9 \\quad (\\text{при } y = 0)`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>2. <b>Исследование левой части неравенства:</b></p>
+        <p>
+          Рассмотрим функцию <InlineMath math={`f(x) = 5|x - 2| + 3|x + a|`} />. Это кусочно-линейная функция, график которой направлен ветвями вверх. Её наименьшее значение достигается в одной из точек излома <InlineMath math={`x = 2`} /> или <InlineMath math={`x = -a`} />:
+        </p>
+        <ul className="list-bullet pl-5 space-y-1">
+          <li>При <InlineMath math={`x = 2`} />: <InlineMath math={`f(2) = 3|a + 2|`} /></li>
+          <li>При <InlineMath math={`x = -a`} />: <InlineMath math={`f(-a) = 5|a + 2|`} /></li>
+        </ul>
+        <p className="pt-1">
+          Следовательно, наименьшее значение функции <InlineMath math={`f_{\\text{min}} = 3|a + 2|`} /> (достигается в точке <InlineMath math={`x = 2`} />, так как коэффициент <InlineMath math={`5 > 3`} />).
+        </p>
+      </div>
+
+      <div className="space-y-2">
+        <p>3. <b>Условие существования хотя бы одного решения:</b></p>
+        <p>Неравенство имеет хотя бы одно решение тогда и только тогда, когда наименьшее значение левой части не превосходит наибольшее значение правой части:</p>
+        <BlockMath math={`f_{\\text{min}} \\leq \\max\\left(\\sqrt{4 - y^2} + 7\\right)`} />
+        <BlockMath math={`3|a + 2| \\leq 9 \\iff |a + 2| \\leq 3 \\iff -3 \\leq a + 2 \\leq 3 \\iff -5 \\leq a \\leq 1`} />
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in [-5; 1]`} />
+      </div>
+    </div>
+  )
+},
+
+
+{
+  id: 116,
+  title: 'Задача 116 (Не из ЕГЭ)',
+  textBefore: 'Найдите все значения a, при каждом из которых неравенство',
+  mathA: '\\sqrt[5]{5|x + 4| + 2|x - a| - 2} \\leq \\sqrt[5]{2 + \\sqrt{36 - y^2}} + \\ln\\left(\\dfrac{5 + \\sqrt{36 - y^2}}{5|x + 4| + 2|x - a| + 1}\\right)',
+  textAfter: <span>имеет хотя бы одно решение.</span>,
+  mathB: '',
+  solutionBuilder: () => (
+    <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
+      
+      <div className="space-y-2">
+        <p>1. <b>Преобразование исходного неравенства:</b> Запишем логарифм отношения как разность логарифмов и перенесём слагаемые с переменной <InlineMath math={`x`} /> в левую часть:</p>
+        <BlockMath math={`\\sqrt[5]{5|x + 4| + 2|x - a| - 2} \\leq \\sqrt[5]{2 + \\sqrt{36 - y^2}} + \\ln\\left(5 + \\sqrt{36 - y^2}\\right) - \\ln\\left(5|x + 4| + 2|x - a| + 1\\right)`} />
+        <BlockMath math={`\\sqrt[5]{5|x + 4| + 2|x - a| - 2} + \\ln\\left(5|x + 4| + 2|x - a| + 1\\right) \\leq \\sqrt[5]{2 + \\sqrt{36 - y^2}} + \\ln\\left(5 + \\sqrt{36 - y^2}\\right)`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>2. <b>Введение функции и исследование на монотонность:</b> Пусть существует функция <InlineMath math={`f(t) = \\sqrt[5]{t - 2} + \\ln(t + 1)`} /> при <InlineMath math={`t > 0`} />.</p>
+        <p>Её производная:</p>
+        <BlockMath math={`f'(t) = \\dfrac{1}{5\\sqrt[5]{(t - 2)^4}} + \\dfrac{1}{t + 1}`} />
+        <p>Заметим, что <InlineMath math={`f'(t) > 0`} /> при всех допустимых <InlineMath math={`t`} />, следовательно, функция <InlineMath math={`f(t)`} /> — монотонно возрастает.</p>
+      </div>
+
+      <div className="space-y-2">
+        <p>3. <b>Переход к равносильному неравенству:</b> Тогда исходное неравенство равносильно выражению:</p>
+        <BlockMath math={`f\\left(5|x + 4| + 2|x - a|\\right) \\leq f\\left(\\sqrt{36 - y^2} + 4\\right)`} />
+        <p>Так как <InlineMath math={`f'(t) > 0`} />, следует, что <InlineMath math={`f(t)`} /> — монотонно возрастает <InlineMath math={`\\implies`} /></p>
+        <BlockMath math={`5|x + 4| + 2|x - a| \\leq \\sqrt{36 - y^2} + 4`} />
+      </div>
+
+      <div className="space-y-2">
+        <p>4. <b>Оценка правой части и наименьшего значения:</b> Заметим, что <InlineMath math={`y \\in [-6; 6]`} />. Оценим правую часть:</p>
+        <BlockMath math={`4 \\leq \\sqrt{36 - y^2} + 4 \\leq 10`} />
+        <p>То есть, для существования решений необходимо выполнение неравенства:</p>
+        <BlockMath math={`5|x + 4| + 2|x - a| \\leq 10`} />
+        <p>Пусть <InlineMath math={`h(x) = 5|x + 4| + 2|x - a|`} />. Наименьшее значение функция <InlineMath math={`h(x)`} /> принимает в точке главного излома <InlineMath math={`x = -4`} /> (так как коэффициент перед первым модулем больше):</p>
+        <BlockMath math={`h(-4) = 2|4 + a| \\leq 10`} />
+        <BlockMath math={`|4 + a| \\leq 5 \\iff -5 \\leq a + 4 \\leq 5 \\iff -9 \\leq a \\leq 1`} />
+      </div>
+
+      <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
+        <span>Ответ:</span>
+        <InlineMath math={`a \\in [-9; 1]`} />
+      </div>
+    </div>
+  )
+},
+
 
 
 
