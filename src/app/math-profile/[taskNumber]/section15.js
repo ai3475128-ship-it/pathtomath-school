@@ -4,7 +4,7 @@ import { InlineMath, BlockMath } from 'react-katex';
 export const section15Tasks = [
        {
     id: 1,
-    title: 'Задача 1 (Рационально-показательное неравенство)',
+    title: 'Задача 1',
     mathA: '\\frac{x^3 + x^2 - x - 1}{4^{x^2} - 8 \\cdot 2^{x^2} + 16} \\ge 0',
     mathB: '',
     solutionBuilder: () => (
@@ -49,7 +49,7 @@ export const section15Tasks = [
   },
       {
     id: 2,
-    title: 'Задача 2 (Показательно-рациональное неравенство)',
+    title: 'Задача 2',
     mathA: '\\frac{3^{3x} - 15 \\cdot 9^x + 7 \\cdot 3^{x+2} - 81}{x - 1} \\le 0',
     mathB: '',
     solutionBuilder: () => (
@@ -136,7 +136,7 @@ export const section15Tasks = [
 
     {
     id: 3,
-    title: 'Задача 3 (Логарифмическое inequality со знаком модуля)',
+    title: 'Задача 3',
     mathA: '\\frac{\\log_3(9x) \\cdot \\log_4(64x)}{5x^2 - |x|} \\le 0',
     mathB: '',
     solutionBuilder: () => (
@@ -237,7 +237,7 @@ export const section15Tasks = [
   },
   {
     id: 4,
-    title: 'Задача 4 (Дробно-показательное неравенство)',
+    title: 'Задача 4',
     mathA: '\\frac{2}{3^x + 27} \\ge \\frac{1}{3^x - 27}',
     mathB: '',
     solutionBuilder: () => (
@@ -323,7 +323,7 @@ export const section15Tasks = [
   },
   {
     id: 5,
-    title: 'Задача 5 (Логарифмическое неравенство с преобразованием основания)',
+    title: 'Задача 5',
     mathA: 'x^2 \\log_{512}(x + 7) \\le \\log_2(x^2 + 14x + 49)',
     mathB: '',
     solutionBuilder: () => (
@@ -409,7 +409,7 @@ export const section15Tasks = [
   },
   {
     id: 6,
-    title: 'Задача 6 (Квадратное логарифмическое неравенство с заменой)',
+    title: 'Задача 6',
     mathA: '\\log_2^2(25 - x^2) - 7\\log_2(25 - x^2) + 12 \\ge 0',
     mathB: '',
     solutionBuilder: () => (
@@ -521,7 +521,7 @@ export const section15Tasks = [
   },
   {
     id: 7,
-    title: 'Задача 7 (Дробно-логарифмическое неравенство с переменным аргументом)',
+    title: 'Задача 7',
     // 👍 ОПЕЧАТКА ИСПРАВЛЕНА: \frac восстановлен полностью
     mathA: '\\frac{\\log_2(2 - x) - \\log_2(x + 1)}{\\log_2^2 x^2 + \\log_2 x^4 + 1} \\ge 0',
     mathB: '',
@@ -579,7 +579,7 @@ export const section15Tasks = [
   },
   {
     id: 8,
-    title: 'Задача 8 (Логарифмическое неравенство с суммой логарифмов)',
+    title: 'Задача 8',
     mathA: '\\log_5((3 - x)(x^2 + 2)) \\ge \\log_5(x^2 - 7x + 12) + \\log_5(5 - x)',
     mathB: '',
     solutionBuilder: () => (
@@ -628,7 +628,7 @@ export const section15Tasks = [
   },
   {
     id: 9,
-    title: 'Задача 9 (Дробно-логарифмическое неравенство с заменой)',
+    title: 'Задача 9',
     mathA: '\\frac{2\\log_3(9x) - 13}{\\log_3^2 x - \\log_3 x^4} \\le 1',
     mathB: '',
     solutionBuilder: () => (
@@ -748,7 +748,7 @@ export const section15Tasks = [
   },
   {
     id: 10,
-    title: 'Задача 10 (Логарифмическое неравенство со свойствами аргументов)',
+    title: 'Задача 10',
     mathA: '\\frac{4}{\\log_2 x} - \\log_2\\left(\\frac{4}{x}\\right) \\le \\frac{38}{\\log_2 x^2}',
     mathB: '',
     solutionBuilder: () => (
@@ -788,7 +788,7 @@ export const section15Tasks = [
   },
   {
     id: 11,
-    title: 'Задача 11 (Логарифмическое неравенство с суммой логарифмов аргументов-дробей)',
+    title: 'Задача 11',
     mathA: '\\log_5(3x + 1) + \\log_5\\left(\\frac{1}{72x^2} + 1\\right) \\ge \\log_5\\left(\\frac{1}{24x} + 1\\right)',
     mathB: '',
     solutionBuilder: () => (
@@ -858,7 +858,7 @@ export const section15Tasks = [
   },
   {
     id: 12,
-    title: 'Задача 12 (Логарифмическое неравенство с дробным аргументом)',
+    title: 'Задача 12',
     mathA: '\\log_5\\left(\\frac{2}{x} + 2\\right) - \\log_5(x + 3) \\le \\log_5\\left(\\frac{x + 6}{x^2}\\right)',
     mathB: '',
     solutionBuilder: () => (
@@ -940,7 +940,7 @@ export const section15Tasks = [
   },
   {
     id: 13,
-    title: 'Задача 13 (Дробно-логарифмическое неравенство с полным квадратом в знаменателе)',
+    title: 'Задача 13',
     mathA: '\\frac{\\log_2 x^2 - \\log_3 x^2}{\\log_6^2(2x^2 - 10x + 12{,}5) + 1} \\le 0',
     mathB: '',
     solutionBuilder: () => (
@@ -1005,7 +1005,7 @@ export const section15Tasks = [
   },
   {
     id: 14,
-    title: 'Задача 14 (Логарифмическое неравенство с преобразованием основания)',
+    title: 'Задача 14',
     mathA: '\\log_4((x - 5)(x^2 - 2x - 15)) + 1 \\ge 0{,}5\\log_2(x - 5)^2',
     mathB: '',
     solutionBuilder: () => (
@@ -1059,7 +1059,7 @@ export const section15Tasks = [
   },
   {
     id: 15,
-    title: 'Задача 15 (Дробно-логарифмическое неравенство с взаимно обратными элементами)',
+    title: 'Задача 15',
     mathA: '\\frac{\\log_3(81x)}{\\log_3 x - 4} + \\frac{\\log_3 x - 4}{\\log_3(81x)} \\ge \\frac{24 - \\log_3(x^8)}{\\log_3^2 x - 16}',
     mathB: '',
     solutionBuilder: () => (
@@ -1163,7 +1163,7 @@ export const section15Tasks = [
   },
   {
     id: 16,
-    title: 'Задача 16 (Логарифмическое неравенство со сложной заменой)',
+    title: 'Задача 16',
     mathA: '1 + \\frac{5}{\\log_4 x - 3} + \\frac{6}{\\log_4^2 x - \\log_4(64x^6) + 12} \\ge 0',
     mathB: '',
     solutionBuilder: () => (
@@ -1264,7 +1264,7 @@ export const section15Tasks = [
   },
   {
     id: 17,
-    title: 'Задача 17 (Дробно-логарифмическое неравенство с взаимно обратными элементами)',
+    title: 'Задача 17',
     mathA: '\\frac{\\log_2(32x)}{\\log_2 x - 5} + \\frac{\\log_2 x - 5}{\\log_2(32x)} \\ge \\frac{\\log_2(x^{16}) + 18}{\\log_2^2 x - 25}',
     mathB: '',
     solutionBuilder: () => (
@@ -1367,7 +1367,7 @@ export const section15Tasks = [
   },
   {
     id: 18,
-    title: 'Задача 18 (Показательное неравенство с группировкой и двумя переменными)',
+    title: 'Задача 18',
     mathA: '12^x - 8^x - 2 \\cdot 6^{x+1} + 3 \\cdot 4^{x+1} + 32 \\cdot 3^x - 2^{x+5} \\le 0',
     mathB: '',
     solutionBuilder: () => (
@@ -1420,7 +1420,7 @@ export const section15Tasks = [
   },
   {
     id: 19,
-    title: 'Задача 19 (Дробно-показательное неравенство с заменой)',
+    title: 'Задача 19',
     mathA: '\\frac{2 \\cdot 8^{x-1}}{2 \\cdot 8^{x-1} - 1} \\ge \\frac{3}{8^x - 1} + \\frac{8}{64^x - 5 \\cdot 8^x + 4}',
     mathB: '',
     solutionBuilder: () => (
@@ -1523,7 +1523,7 @@ export const section15Tasks = [
   },
   {
     id: 20,
-    title: 'Задача 20 (Логарифмическое неравенство с дробно-рациональным аргументом)',
+    title: 'Задача 20',
     mathA: '7\\log_{12}(x^2 - 13x + 42) \\le 8 + \\log_{12}\\frac{(x - 7)^7}{x - 6}',
     mathB: '',
     solutionBuilder: () => (
@@ -1572,7 +1572,7 @@ export const section15Tasks = [
   },
   {
     id: 21,
-    title: 'Задача 21 (Дробно-показательное неравенство с квадратной заменой)',
+    title: 'Задача 21',
     mathA: '11^x - 6 - \\frac{24 \\cdot 11^x - 244}{121^x - 16 \\cdot 11^x + 60} \\le \\frac{1}{11^x - 10}',
     mathB: '',
     solutionBuilder: () => (
@@ -1692,7 +1692,7 @@ export const section15Tasks = [
   },
   {
     id: 22,
-    title: 'Задача 22 (Дробно-логарифмическое неравенство с линейным числителем)',
+    title: 'Задача 22',
     mathA: '\\frac{x^2 + 2x}{\\log_2(9 \\cdot 3^x)} \\le 0',
     mathB: '',
     solutionBuilder: () => (
@@ -1797,7 +1797,7 @@ export const section15Tasks = [
   },
   {
     id: 23,
-    title: 'Задача 23 (Показательное неравенство с логарифмом в показателе)',
+    title: 'Задача 23',
     mathA: '3^{\\log_3(4 + x^2)} + x^4 - 10 \\ge 0',
     mathB: '',
     solutionBuilder: () => (
@@ -1899,7 +1899,7 @@ export const section15Tasks = [
   },
   {
     id: 24,
-    title: 'Задача 24 (Дробно-логарифмическое неравенство с дробным основанием)',
+    title: 'Задача 24',
     mathA: '\\frac{\\log_3^2 x - \\log_3 x}{\\log_{0{,}2}(0{,}5 \\cdot 2^x)} \\ge 0',
     mathB: '',
     solutionBuilder: () => (
@@ -1999,7 +1999,7 @@ export const section15Tasks = [
   },
   {
     id: 25,
-    title: 'Задача 25 (Дробно-логарифмическое неравенство с полным квадратом в числителе)',
+    title: 'Задача 25',
     mathA: '\\frac{25x^2 - 160x + 256}{\\log_2(4^x - 32) - \\log_2 2^{x+2}} \\le 0',
     mathB: '',
     solutionBuilder: () => (
@@ -2107,7 +2107,7 @@ export const section15Tasks = [
   },
   {
     id: 26,
-    title: 'Задача 26 (Дробно-логарифмическое неравенство по основанию 3)',
+    title: 'Задача 26',
     mathA: '\\frac{9}{\\log_3 x} - \\log_3\\left(\\frac{9}{x}\\right) \\le \\frac{34}{\\log_3 x^2}',
     mathB: '',
     solutionBuilder: () => (
@@ -2214,7 +2214,7 @@ export const section15Tasks = [
   },
   {
     id: 27,
-    title: 'Задача 27 (Логарифмическое неравенство с взаимно обратными элементами, ЕГЭ 2026)',
+    title: 'Задача 27 (ЕГЭ 2026)',
     mathA: '(\\log_{36} x + 1) \\cdot \\left(\\frac{1}{\\log_{36} x} + 1\\right) \\le \\log_{36} x',
     mathB: '',
     solutionBuilder: () => (
@@ -2299,7 +2299,7 @@ export const section15Tasks = [
   },
   {
     id: 28,
-    title: 'Задача 28 (Логарифмическое неравенство с переменным основанием, ЕГЭ 2026)',
+    title: 'Задача 28 (ЕГЭ 2026)',
     mathA: '\\log_{x+1}(x^2 - 5x + 7) \\le \\log_{x+1} x',
     mathB: '',
     solutionBuilder: () => (
@@ -2415,7 +2415,7 @@ export const section15Tasks = [
   },
   {
     id: 29,
-    title: 'Задача 29 (Логарифмическое неравенство с преобразованием основания, ЕГЭ 2026)',
+    title: 'Задача 29 (ЕГЭ 2026)',
     mathA: '\\log_{49}(x + 4) + \\log_{(x^2 + 8x + 16)}\\sqrt{7} \\le -\\frac{3}{4}',
     mathB: '',
     solutionBuilder: () => (
@@ -2521,7 +2521,7 @@ export const section15Tasks = [
   },
   {
     id: 30,
-    title: 'Задача 30 (Рационально-показательное неравенство с группировкой, ЕГЭ 2025)',
+    title: 'Задача 30 (ЕГЭ 2025)',
     mathA: '\\frac{x^3 - x^2 - x + 1}{9^{x^2} - 18 \\cdot 3^{x^2} + 81} \\le 0',
     mathB: '',
     solutionBuilder: () => (
@@ -2635,7 +2635,7 @@ export const section15Tasks = [
   },
   {
     id: 31,
-    title: 'Задача 31 (Дробно-показательное неравенство, ЕГЭ 2025)',
+    title: 'Задача 31 (ЕГЭ 2025)',
     mathA: '\\frac{2}{2^x + 10} \\le \\frac{3}{2^{x+1} - 1}',
     mathB: '',
     solutionBuilder: () => (
@@ -2726,7 +2726,7 @@ export const section15Tasks = [
   },
   {
     id: 32,
-    title: 'Задача 32 (Показательно-рациональное неравенство с группировкой, ЕГЭ 2025)',
+    title: 'Задача 32 (ЕГЭ 2025)',
     mathA: '\\frac{3^{3x} - 29 \\cdot 3^{2x} + 55 \\cdot 3^x - 27}{x} \\ge 0',
     mathB: '',
     solutionBuilder: () => (
@@ -2837,7 +2837,7 @@ export const section15Tasks = [
   },
     {
     id: 33,
-    title: 'Задача 33. (ЕГЭ 2025)',
+    title: 'Задача 33 (ЕГЭ 2025)',
     mathA: '7\\log_{12}(x^2 - 13x + 42) \\leq 8 + \\log_{12}\\frac{(x-7)^7}{x-6}',
     mathB: '',
     solutionBuilder: () => (
@@ -2918,7 +2918,7 @@ export const section15Tasks = [
 
   {
     id: 34,
-    title: 'Задача 34 (Дробно-показательное неравенство с разложением, ЕГЭ 2025)',
+    title: 'Задача 34 (ЕГЭ 2025)',
     mathA: '\\frac{31 - 5 \\cdot 2^x}{4^x - 24 \\cdot 2^x + 128} \\ge 0{,}25',
     mathB: '',
     solutionBuilder: () => (
@@ -3016,7 +3016,7 @@ export const section15Tasks = [
   },
   {
     id: 35,
-    title: 'Задача 35 (Дробно-логарифмическое неравенство, ЕГЭ 2025)',
+    title: 'Задача 35 (ЕГЭ 2025)',
     mathA: '\\frac{2 \\log_8(x^2 - 3x)}{\\log_8 x^2} \\le 1',
     mathB: '',
     solutionBuilder: () => (
@@ -3132,7 +3132,7 @@ export const section15Tasks = [
   },
   {
     id: 36,
-    title: 'Задача 36 (Сложное дробно-показательное неравенство, ЕГЭ 2024)',
+    title: 'Задача 36 (ЕГЭ 2024)',
     mathA: '2^x - 6 - \\frac{9 \\cdot 2^x - 37}{4^x - 7 \\cdot 2^x + 12} \\le \\frac{1}{2^x - 4}',
     mathB: '',
     solutionBuilder: () => (
@@ -3254,7 +3254,7 @@ export const section15Tasks = [
   },
   {
     id: 37,
-    title: 'Задача 37 (Дробно-показательное неравенство, ЕГЭ 2024)',
+    title: 'Задача 37 (ЕГЭ 2024)',
     mathA: '\\frac{9^{x-1}}{9^{x-1} - 1} - \\frac{5}{9^x - 1} \\ge \\frac{36}{81^x - 10 \\cdot 9^x + 9}',
     mathB: '',
     solutionBuilder: () => (
@@ -3358,7 +3358,7 @@ export const section15Tasks = [
   },
   {
     id: 38,
-    title: 'Задача 38 (Логарифмическое неравенство с переменным основанием, ЕГЭ 2024)',
+    title: 'Задача 38 (ЕГЭ 2024)',
     mathA: '2\\log_{(x^2 - 6x + 10)^2}(5x^2 + 3) \\le \\log_{x^2 - 6x + 10}(4x^2 + 7x + 3)',
     mathB: '',
     solutionBuilder: () => (
@@ -3484,7 +3484,7 @@ export const section15Tasks = [
   },
   {
     id: 39,
-    title: 'Задача 39 (Логарифмическое неравенство с суммой аргументов, ЕГЭ 2024)',
+    title: 'Задача 39 (ЕГЭ 2024)',
     mathA: '\\log_3\\left(\\frac{1}{x} - 1\\right) + \\log_3\\left(\\frac{1}{x} + 1\\right) \\ge \\log_3(8x - 1)',
     mathB: '',
     solutionBuilder: () => (
@@ -3583,7 +3583,7 @@ export const section15Tasks = [
   },
   {
     id: 40,
-    title: 'Задача 40 (Показательное неравенство с разными основаниями, ЕГЭ 2024)',
+    title: 'Задача 40 (ЕГЭ 2024)',
     mathA: '2(50^x + 8^x) > 20^x + 3 \\cdot 125^x',
     mathB: '',
     solutionBuilder: () => (
@@ -3690,7 +3690,7 @@ export const section15Tasks = [
   },
   {
     id: 41,
-    title: 'Задача 41 (Показательное неравенство со знаменателем, ЕГЭ 2024)',
+    title: 'Задача 41 (ЕГЭ 2024)',
     mathA: '9^x - 3^x - 3^{1-x} + \\frac{1}{9^{x-1}} \\le 6',
     mathB: '',
     solutionBuilder: () => (
@@ -3790,7 +3790,7 @@ export const section15Tasks = [
   },
   {
     id: 42,
-    title: 'Задача 42 (Логарифмическое неравенство с преобразованием куба, ЕГЭ 2023)',
+    title: 'Задача 42 (ЕГЭ 2023)',
     mathA: '\\log_8(x^3 - 3x^2 + 3x - 1) \\ge \\log_2(x^2 - 1) - 5',
     mathB: '',
     solutionBuilder: () => (
@@ -3878,7 +3878,7 @@ export const section15Tasks = [
   },
   {
     id: 43,
-    title: 'Задача 43 (Логарифмическое неравенство с разложением на множители, ЕГЭ 2023)',
+    title: 'Задача 43 (ЕГЭ 2023)',
     mathA: '(\\log_{0{,}25}^2(x + 3) - \\log_4(x^2 + 6x + 9) + 1) \\cdot \\log_4(x + 2) \\le 0',
     mathB: '',
     solutionBuilder: () => (
@@ -3981,7 +3981,7 @@ export const section15Tasks = [
   },
   {
     id: 44,
-    title: 'Задача 44 (Логарифмическое неравенство с кубическим многочленом, ЕГЭ 2023)',
+    title: 'Задача 44 (ЕГЭ 2023)',
     mathA: '\\log_{25}((x - 4)(x^2 - 2x - 8)) + 1 \\ge 0{,}5\\log_5(x - 4)^2',
     mathB: '',
     solutionBuilder: () => (
@@ -4088,7 +4088,7 @@ export const section15Tasks = [
   },
   {
     id: 45,
-    title: 'Задача 45 (Дробно-логарифмическое неравенство с заменой, ЕГЭ 2023)',
+    title: 'Задача 45 (ЕГЭ 2023)',
     mathA: '\\frac{\\log_3 x}{\\log_3\\left(\\frac{x}{27}\\right)} \\ge \\frac{2}{\\log_3 x} + \\frac{5}{\\log_3^2 x - \\log_3(x^3)}',
     mathB: '',
     solutionBuilder: () => (
@@ -4199,7 +4199,7 @@ export const section15Tasks = [
   },
   {
     id: 46,
-    title: 'Задача 46 (Дробно-логарифмическое неравенство с заменой, ЕГЭ 2022)',
+    title: 'Задача 46 (ЕГЭ 2022)',
     mathA: '\\frac{\\log_2(32x) - 1}{\\log_2^2 x - \\log_2 x^5} \\ge -1',
     mathB: '',
     solutionBuilder: () => (
@@ -4306,7 +4306,7 @@ export const section15Tasks = [
   },
   {
     id: 47,
-    title: 'Задача 47 (Дробно-показательное неравенство, ЕГЭ 2022)',
+    title: 'Задача 47 (ЕГЭ 2022)',
     mathA: '\\frac{6}{5^x - 125} \\le \\frac{1}{5^x - 25}',
     mathB: '',
     solutionBuilder: () => (
@@ -4408,7 +4408,7 @@ export const section15Tasks = [
   },
   {
     id: 48,
-    title: 'Задача 48 (Логарифмическое неравенство с переменным модульным основанием, ЕГЭ 2022)',
+    title: 'Задача 48 (ЕГЭ 2022)',
     mathA: '\\log_{|x-5|}\\sqrt{x-3} \\le \\frac{1}{4}',
     mathB: '',
     solutionBuilder: () => (
@@ -4529,7 +4529,7 @@ export const section15Tasks = [
   },
   {
     id: 49,
-    title: 'Задача 49 (Показательное неравенство с двойной квадратной заменой, ЕГЭ 2021)',
+    title: 'Задача 49 (ЕГЭ 2021)',
     mathA: '(16^x - 2 \\cdot 4^x + 1)^2 - 23 \\cdot (16^x - 2 \\cdot 4^x + 1) + 112 \\ge 0',
     mathB: '',
     solutionBuilder: () => (
@@ -4582,7 +4582,7 @@ export const section15Tasks = [
   },
   {
     id: 50,
-    title: 'Задача 50 (Логарифмическое неравенство с преобразованием степеней, ЕГЭ 2020)',
+    title: 'Задача 50 (ЕГЭ 2020)',
     mathA: 'x^2 \\log_{243}(4 - x) \\le \\log_3(x^2 - 8x + 16)',
     mathB: '',
     solutionBuilder: () => (
@@ -4698,7 +4698,7 @@ export const section15Tasks = [
   },
   {
     id: 51,
-    title: 'Задача 51 (Дробно-показательное неравенство, ЕГЭ 2019)',
+    title: 'Задача 51 (ЕГЭ 2019)',
     mathA: '\\frac{9^x + 2 \\cdot 3^x - 117}{3^x - 27} \\le 1',
     mathB: '',
     solutionBuilder: () => (
@@ -4798,7 +4798,7 @@ export const section15Tasks = [
   },
   {
     id: 52,
-    title: 'Задача 52 (Сложное дробно-показательное неравенство с группировкой, ЕГЭ 2019)',
+    title: 'Задача 52 (ЕГЭ 2019)',
     mathA: '\\frac{4^{x^2 + x - 4} - 0{,}5 \\cdot 2^{x^2 - 2x - 1}}{0{,}2 \\cdot 5^x - 1} \\le 0',
     mathB: '',
     solutionBuilder: () => (
@@ -4914,7 +4914,7 @@ export const section15Tasks = [
   },
   {
     id: 53,
-    title: 'Задача 53 (Показательное неравенство с разными основаниями, ЕГЭ 2018)',
+    title: 'Задача 53 (ЕГЭ 2018)',
     mathA: '3^{x^2} \\cdot 5^{x-1} \\ge 3',
     mathB: '',
     solutionBuilder: () => (
@@ -5007,7 +5007,7 @@ export const section15Tasks = [
   },
   {
     id: 54,
-    title: 'Задача 54 (Логарифмическое неравенство со сложными аргументами, ЕГЭ 2018)',
+    title: 'Задача 54 (ЕГЭ 2018)',
     mathA: '2\\log_2(1 - 2x) - \\log_2\\left(\\frac{1}{x} - 2\\right) \\le \\log_2(4x^2 + 6x - 1)',
     mathB: '',
     solutionBuilder: () => (
@@ -5122,7 +5122,7 @@ export const section15Tasks = [
   },
   {
     id: 55,
-    title: 'Задача 55 (Логарифмическое неравенство со сложными аргументами, ЕГЭ 2018)',
+    title: 'Задача 55 (ЕГЭ 2018)',
     mathA: '2\\log_7(x\\sqrt{2}) - \\log_7\\left(\\frac{x}{1-x}\\right) \\le \\log_7\\left(8x^2 + \\frac{1}{x} - 5\\right)',
     mathB: '',
     solutionBuilder: () => (
@@ -5235,7 +5235,7 @@ export const section15Tasks = [
   },
   {
     id: 56,
-    title: 'Задача 56 (Сложное дробно-показательное неравенство, ЕГЭ 2018)',
+    title: 'Задача 56 (ЕГЭ 2018)',
     mathA: '\\frac{6^x - 4 \\cdot 3^x}{x \\cdot 2^x - 5 \\cdot 2^x - 4x + 20} \\le \\frac{1}{x - 5}',
     mathB: '',
     solutionBuilder: () => (
@@ -5338,7 +5338,7 @@ export const section15Tasks = [
   },
   {
     id: 57,
-    title: 'Задача 57 (Показательное неравенство со сложной степенью, ЕГЭ 2018)',
+    title: 'Задача 57 (ЕГЭ 2018)',
     mathA: '2^{x+1} + 0{,}5^{x-3} \\ge 17',
     mathB: '',
     solutionBuilder: () => (
@@ -5389,7 +5389,7 @@ export const section15Tasks = [
   },
   {
     id: 58,
-    title: 'Задача 58 (Квадратное логарифмическое неравенство с заменой, ЕГЭ 2017)',
+    title: 'Задача 58 (ЕГЭ 2017)',
     mathA: '\\log_2^2(25 - x^2) - 7\\log_2(25 - x^2) + 12 \\ge 0',
     mathB: '',
     solutionBuilder: () => (
@@ -5540,7 +5540,7 @@ export const section15Tasks = [
   },
   {
     id: 59,
-    title: 'Задача 59 (Показательное неравенство с двойной квадратной заменой, ЕГЭ 2017)',
+    title: 'Задача 59 (ЕГЭ 2017)',
     mathA: '(9^x - 2 \\cdot 3^x)^2 - 62 \\cdot (9^x - 2 \\cdot 3^x) - 63 \\ge 0',
     mathB: '',
     solutionBuilder: () => (
@@ -5642,7 +5642,7 @@ export const section15Tasks = [
   },
   {
     id: 60,
-    title: 'Задача 60 (Дробно-показательное неравенство, ЕГЭ 2016)',
+    title: 'Задача 60 (ЕГЭ 2016)',
     mathA: '\\frac{25^x - 5^{x+2} + 26}{5^x - 1} + \\frac{25^x - 7 \\cdot 5^x + 1}{5^x - 7} \\le 2 \\cdot 5^x - 24',
     mathB: '',
     solutionBuilder: () => (
@@ -5749,7 +5749,7 @@ export const section15Tasks = [
   },
   {
     id: 61,
-    title: 'Задача 61 (Логарифмическое неравенство с переменным основанием, ЕГЭ 2016)',
+    title: 'Задача 61 (ЕГЭ 2016)',
     mathA: '2 \\log_{(x^2 - 8x + 17)^2}(3x^2 + 5) \\le \\log_{x^2 - 8x + 17}(2x^2 + 7x + 5)',
     mathB: '',
     solutionBuilder: () => (
@@ -5866,7 +5866,7 @@ export const section15Tasks = [
   },
   {
     id: 62,
-    title: 'Задача 62 (Система показательных и логарифмических неравенств, ЕГЭ 2014)',
+    title: 'Задача 62 (ЕГЭ 2014)',
     mathA: '\\begin{cases} 36^{x-\\frac{1}{2}} - 7 \\cdot 6^{x-1} + 1 \\ge 0 \\\\ x \\cdot \\log_4(5 - 3x - x^2) \\ge 0 \\end{cases}',
     mathB: '',
     solutionBuilder: () => (
@@ -5977,7 +5977,7 @@ export const section15Tasks = [
   },
   {
     id: 63,
-    title: 'Задача 63 (Система логарифмических и дробно-показательных неравенств, ЕГЭ 2014)',
+    title: 'Задача 63 (ЕГЭ 2014)',
     mathA: '\\begin{cases} \\log_{11-x}(x+7) \\cdot \\log_{x+5}(9-x) \\le 0 \\\\ 64^{x^2-3x+20} - 0{,}125^{2x^2-6x-200} \\le 0 \\end{cases}',
     mathB: '',
     solutionBuilder: () => (
@@ -6074,7 +6074,7 @@ export const section15Tasks = [
   },
   {
     id: 64,
-    title: 'Задача 64 (Система логарифмических и дробно-рациональных неравенств, ЕГЭ 2014)',
+    title: 'Задача 64 (ЕГЭ 2014)',
     mathA: '\\begin{cases} \\log_3\\left(\\frac{x^2}{4} - \\frac{16}{x^2}\\right) \\le 1 \\\\ \\frac{2x^2 + x - 28}{(x - 6)^2 + (x - 5)^3 - 1} \\le 0 \\end{cases}',
     mathB: '',
     solutionBuilder: () => (
@@ -6170,7 +6170,7 @@ export const section15Tasks = [
   },
   {
     id: 65,
-    title: 'Задача 65 (Система логарифмических и дробно-рациональных неравенств, ЕГЭ 2013)',
+    title: 'Задача 65 (ЕГЭ 2013)',
     mathA: '\\begin{cases} \\log_{5-x}\\left(\\frac{x+4}{(x-5)^{10}}\\right) \\ge -10 \\\\ x^3 + 8x^2 + \\frac{50x^2+x-7}{x-7} \\le 1 \\end{cases}',
     mathB: '',
     solutionBuilder: () => (
@@ -6259,7 +6259,7 @@ export const section15Tasks = [
   },
   {
     id: 66,
-    title: 'Задача 66 (Неравенство со вложенными модулями, ЕГЭ 2014)',
+    title: 'Задача 66',
     mathA: '||2x - 1| - 2| > 3',
     mathB: '',
     solutionBuilder: () => (
@@ -6348,7 +6348,7 @@ export const section15Tasks = [
   },
   {
     id: 67,
-    title: 'Задача 67 (Рациональное неравенство с модулем)',
+    title: 'Задача 67',
     mathA: '\\frac{x^3 - 27}{|x - 3|} - x|x - 3| \\ge 0',
     mathB: '',
     solutionBuilder: () => (
@@ -6439,7 +6439,7 @@ export const section15Tasks = [
   },
   {
     id: 68,
-    title: 'Задача 68 (Логарифмическое неравенство с дробным аргументом)',
+    title: 'Задача 68',
     mathA: '2\\log_4(x^2 - 4) - \\log_{0{,}5}\\left(\\frac{x - 2}{x + 2}\\right) \\ge -3',
     mathB: '',
     solutionBuilder: () => (
@@ -6546,7 +6546,7 @@ export const section15Tasks = [
   },
   {
     id: 69,
-    title: 'Задача 69 (Иррационально-показательное неравенство)',
+    title: 'Задача 69',
     mathA: '\\frac{\\sqrt{4 - x}}{2^{x^2 - 5} - 17 \\cdot 2^{0{,}5x^2 - 4{,}5} + 1} \\le 0',
     mathB: '',
     solutionBuilder: () => (
@@ -6651,7 +6651,7 @@ export const section15Tasks = [
   },
   {
     id: 70,
-    title: 'Задача 70 (Дробно-логарифмическое неравенство с заменой)',
+    title: 'Задача 70',
     mathA: '\\frac{\\log_{0{,}5}^2(x^4) - x^2}{100 - x^2} \\le 1',
     mathB: '',
     solutionBuilder: () => (
@@ -6775,7 +6775,7 @@ export const section15Tasks = [
   },
     {
     id: 71,
-    title: 'Задача 71 (Иррациональное дробное неравенство)',
+    title: 'Задача 71',
     mathA: '\\frac{\\sqrt{x + 9} - 2}{\\sqrt{x - 9} + 2} > \\sqrt{x - 9} - 2',
     mathB: '',
     solutionBuilder: () => (
@@ -6862,7 +6862,7 @@ export const section15Tasks = [
   },
   {
     id: 72,
-    title: "Задача 72 (Однородное показательное неравенство со сложной степенью)",
+    title: "Задача 72",
     mathA: "16 \\cdot 5^{1 - \\frac{8}{x}} - 189 \\cdot 20^{-\\frac{4}{x}} + 25 \\cdot 2^{2 - \\frac{16}{x}} \\le 0",
     mathB: "",
     solutionBuilder: () => (
@@ -6990,7 +6990,7 @@ export const section15Tasks = [
   },
   {
     id: 73,
-    title: "Задача 73 (Показательно-логарифмическое неравенство с группировкой)",
+    title: "Задача 73",
     mathA: "(x^2 - 2x - 3) \\cdot \\log_2(x^2 - 4x + 4) + 2^{x+2} \\cdot \\log_2(3 - x) \\ge 4 \\cdot (x^2 - 2x - 3) + 2^x \\cdot \\log_2((x - 2)^2)",
     mathB: "",
     solutionBuilder: () => (
@@ -7082,7 +7082,7 @@ export const section15Tasks = [
   },
   {
     id: 74,
-    title: "Задача 74 (Логарифмическое неравенство с модулем в аргументе)",
+    title: "Задача 74",
     mathA: "\\log_5(x^2 - 4x + 3) + \\log_5\\left(\\frac{x - 1}{x - 3}\\right) \\le \\log_5(|x - 2| - 1) + 1",
     mathB: "",
     solutionBuilder: () => (
@@ -7185,7 +7185,7 @@ export const section15Tasks = [
   },
     {
     id: 75,
-    title: "Задача 75 (Система логарифмических и дробно-рациональных неравенств)",
+    title: "Задача 75",
     mathA: "\\begin{cases} \\frac{\\log_3(x + 1)}{\\log_3(x - 2)} \\le 0 \\\\ \\frac{x^2 - 4x - 5}{\\log_{0{,}5}(x - 1)} \\ge 0 \\end{cases}",
     mathB: "",
     solutionBuilder: () => (
@@ -7304,7 +7304,7 @@ export const section15Tasks = [
   },
     {
     id: 76,
-    title: "Задача 76 (Логарифмическое неравенство с суммой модулей)",
+    title: "Задача 76",
     mathA: "|\\log_4(x+1)^2 - 2| + |\\log_2(2x+3) - 1| \\le 3",
     mathB: "",
     solutionBuilder: () => (
@@ -7429,7 +7429,7 @@ export const section15Tasks = [
   },
   {
     id: 77,
-    title: "Задача 77 (Показательное неравенство с модулем в степени)",
+    title: "Задача 77",
     mathA: "\\frac{3^{|x-2|} - 9}{5^{\\sqrt{x}} - 5} \\ge 0",
     mathB: "",
     solutionBuilder: () => (
@@ -7524,7 +7524,7 @@ export const section15Tasks = [
   },
     {
     id: 78,
-    title: "Задача 78 (Логарифмическое неравенство с переменным основанием)",
+    title: "Задача 78",
     mathA: "\\frac{\\log_{3-x}(x+4)}{\\log_{x+4}(3-x)} \\le 1",
     mathB: "",
     solutionBuilder: () => (
@@ -7663,7 +7663,7 @@ export const section15Tasks = [
   },
     {
     id: 79,
-    title: "Задача 79 (Логарифмическое неравенство со сложной рационализации)",
+    title: "Задача 79",
     mathA: "\\frac{\\log_{|x-2|-1}(x^2 - 4x + 3)}{\\log_{x-3}(|x-2|-1)} \\le 0",
     mathB: "",
     solutionBuilder: () => (
@@ -7773,7 +7773,7 @@ export const section15Tasks = [
   },
   {
     id: 80,
-    title: "Задача 80 (Логарифмическое неравенство с модулем в основании)",
+    title: "Задача 80",
     mathA: "\\frac{\\log_{|x|-1}(2x - x^2)}{\\log_{|x|-1}(x^2 - 2x)} \\le 0",
     mathB: "",
     solutionBuilder: () => (
@@ -7835,7 +7835,7 @@ export const section15Tasks = [
   },
   {
     id: 81,
-    title: "Задача 81 (Логарифмическое неравенство со сложным модульным основанием)",
+    title: "Задача 81",
     mathA: "\\log_{2^{|2x-1|}}\\left(2 \\cdot (2^x)^2 - 4 \\cdot 2^x + 2\\right) \\le \\log_{2^{|2x-1|}}\\left(2^{|2x-1|}\\right)^{\\frac{x}{|2x-1|}}",
     mathB: "",
     solutionBuilder: () => (
@@ -7952,7 +7952,7 @@ export const section15Tasks = [
   },
   {
     id: 82,
-    title: "Задача 82 (Показательно-логарифмическое неравенство с переменным основанием)",
+    title: "Задача 82",
     mathA: "x^{\\log_{\\sqrt[3]{16}} x - 12} > 8^{4(\\log_4 x - 8)}",
     mathB: "",
     solutionBuilder: () => (
@@ -8093,7 +8093,7 @@ export const section15Tasks = [
   },
   {
     id: 83,
-    title: "Задача 83 (Показательно-логарифмическое неравенство с заменой)",
+    title: "Задача 83",
     mathA: "3^{\\log_2(x^2)} + 2 \\cdot |x|^{\\log_2 9} \\le 3 \\cdot \\left(\\frac{1}{3}\\right)^{\\log_{0{,}5}(2x+3)}",
     mathB: "",
     solutionBuilder: () => (
@@ -8203,7 +8203,7 @@ export const section15Tasks = [
   },
     {
     id: 84,
-    title: "Задача 84 (Показательное неравенство со сложными основаниями, Сборник Ященко)",
+    title: "Задача 84 (Сборник Ященко)",
     mathA: "2x \\ge \\log_2\\left(\\frac{35}{3} \\cdot 6^{x-1} - 2 \\cdot 9^{x - \\frac{1}{2}}\\right)",
     mathB: "",
     solutionBuilder: () => (
@@ -8346,7 +8346,7 @@ export const section15Tasks = [
   },
   {
     id: 85,
-    title: "Задача 85 (Дробно-логарифмическое неравенство с группировкой куба)",
+    title: "Задача 85",
     mathA: "\\frac{x^3 + x^2 - x - 1}{\\log_4^2\\left(\\frac{15}{4} - x\\right) - 2\\log_2^2\\left(x - \\frac{15}{4}\\right)^2 + 16} \\ge 0",
     mathB: "",
     solutionBuilder: () => (
@@ -8465,7 +8465,7 @@ export const section15Tasks = [
   },
   {
     id: 86,
-    title: "Задача 86 (Показательно-логарифмическое неравенство со сложной группировкой)",
+    title: "Задача 86",
     mathA: "7^x \\cdot \\log_4 x + 4^x \\cdot \\log_7 x \\le 7 \\cdot 4^{x-1} \\cdot \\log_4 x + 4 \\cdot 7^{x-1} \\cdot \\log_7 x",
     mathB: "",
     solutionBuilder: () => (
@@ -8554,7 +8554,7 @@ export const section15Tasks = [
   },
    {
     id: 87,
-    title: "Задача 87 (Дробно-логарифмическое неравенство)",
+    title: "Задача 87",
     mathA: "\\frac{\\log_5(5x - 27)}{\\log_5(x - 5)} \\ge 1",
     mathB: "",
     solutionBuilder: () => (
@@ -8694,7 +8694,7 @@ export const section15Tasks = [
   },
    {
     id: 88,
-    title: "Задача 88 (Логарифмическое неравенство с переменным основанием)",
+    title: "Задача 88",
     mathA: "\\log_{x^2}(x^2 + 1) > 0",
     mathB: "",
     solutionBuilder: () => (
@@ -8826,7 +8826,7 @@ export const section15Tasks = [
   },
   {
     id: 89,
-    title: "Задача 89 (Дробно-логарифмическое неравенство)",
+    title: "Задача 89",
     mathA: "\\frac{\\log_2(2x^2 - 17x + 35) - 1}{\\log_2(x + 6)} \\le 0",
     mathB: "",
     solutionBuilder: () => (
@@ -8960,7 +8960,7 @@ export const section15Tasks = [
   },
   {
     id: 90,
-    title: "Задача 90 (Дробно-показательное неравенство, Сборник Ященко)",
+    title: "Задача 90 (Сборник Ященко)",
     mathA: "\\frac{16^x - 4^{x+1} - 4^{x+2} + 64}{5x^2 - 6x + 1{,}8} \\le 0",
     mathB: "",
     solutionBuilder: () => (
@@ -9097,7 +9097,7 @@ export const section15Tasks = [
   },
   {
     id: 91,
-    title: "Задача 91 (Показательно-логарифмическое неравенство)",
+    title: "Задача 91",
     mathA: "(4^{x^2-x-6} - 1) \\cdot \\log_{0{,}25}(4^{x^2+2x+2} - 3) \\le 0",
     mathB: "",
     solutionBuilder: () => (
@@ -9202,7 +9202,7 @@ export const section15Tasks = [
   },
   {
     id: 92,
-    title: "Задача 92 (Логарифмическое неравенство с иррациональными корнями, Сборник Ященко)",
+    title: "Задача 92 (Сборник Ященко)",
     mathA: "(2x^2 + 9x + 10) \\left(\\frac{1}{3}\\log_{0{,}5}(x^2 - 5) + \\log_8(\\sqrt{5} - x)\\right) \\ge 0",
     mathB: "",
     solutionBuilder: () => (
@@ -9437,7 +9437,7 @@ export const section15Tasks = [
   },
   {
     id: 93,
-    title: "Задача 93 (Дробно-иррациональное неравенство с рационализацией)",
+    title: "Задача 93",
     mathA: "\\frac{\\sqrt{x+4}\\left(8 - 3^{2+x^2}\\right)}{4^{x-1} - 3} \\le 0",
     mathB: "",
     solutionBuilder: () => (
@@ -9580,7 +9580,7 @@ export const section15Tasks = [
   },
   {
     id: 94,
-    title: "Задача 94 (Показательно-логарифмическое неравенство)",
+    title: "Задача 94",
     mathA: "8^{\\lg(-1-x)} \\le (x^2-1)^{\\lg 2}",
     mathB: "",
     solutionBuilder: () => (
@@ -9687,7 +9687,7 @@ export const section15Tasks = [
   },
   {
     id: 95,
-    title: "Задача 95 (Логарифмическое неравенство с натуральным логарифмом)",
+    title: "Задача 95",
     mathA: "\\ln(7e^x) \\ge \\frac{1}{x}",
     mathB: "",
     solutionBuilder: () => (
@@ -9798,7 +9798,7 @@ export const section15Tasks = [
   },
   {
     id: 96,
-    title: "Задача 96 (Дробно-логарифмическое неравенство со сложной структурой)",
+    title: "Задача 96",
     mathA: "\\frac{\\lg^2 x^2 \\cdot \\left(\\log_{2x+7}^2(x + 7) + 3\\log_{2x+7}(x + 7) + \\log_{2x+7}(2x + 7)^2\\right)}{(5^x - 1) \\lg 2x} \\le 0",
     mathB: "",
     solutionBuilder: () => (
@@ -9884,7 +9884,7 @@ export const section15Tasks = [
   },
   {
     id: 97,
-    title: "Задача 97 (Логарифмическое неравенство с переменным основанием)",
+    title: "Задача 97",
     mathA: "\\log_{(x+7)}(x^2 + 4) < -\\frac{1}{\\log_x \\sqrt{x+7}} + \\log_{(x+7)}(x^2 - 1)",
     mathB: "",
     solutionBuilder: () => (
@@ -10162,7 +10162,7 @@ export const section15Tasks = [
   },
   {
     id: 99,
-    title: "Задача 99 (Логарифмическое неравенство, ДВИ 2026, Вариант 1)",
+    title: "Задача 99 (ДВИ 2026, Вариант 1)",
     mathA: "2 \\log_{x+1}(x^2 - 1) + \\log_{x-1}(x^2 + 2x + 1) \\le 7",
     mathB: "",
     solutionBuilder: () => (
@@ -10316,7 +10316,7 @@ export const section15Tasks = [
   },
   {
     id: 100,
-    title: "Задача 100 (Система логарифмических и показательных неравенств, ДВИ 2026, Вариант 2)",
+    title: "Задача 100 (ДВИ 2026, Вариант 2)",
     mathA: "\\begin{cases} \\log_{11-x}(x + 7) \\cdot \\log_{x+5}(9 - x) \\le 0 \\\\ 64^{x^2-3x+20} - 0{,}125^{2x^2-6x-200} \\le 0 \\end{cases}",
     mathB: "",
     solutionBuilder: () => (
@@ -10462,7 +10462,7 @@ export const section15Tasks = [
   },
   {
     id: 101,
-    title: "Задача 101 (Логарифмическое неравенство с квадратным корнем, ДВИ 2025, Вариант 1)",
+    title: "Задача 101 (ДВИ 2025, Вариант 1)",
     mathA: "1 + \\sqrt{\\log_9(3x^2 + 8x + 6)} > \\log_3(3x^2 + 8x + 6)",
     mathB: "",
     solutionBuilder: () => (
@@ -10636,7 +10636,7 @@ export const section15Tasks = [
   },
     {
     id: 102,
-    title: "Задача 102 (Логарифмическое неравенство с показательным аргументом, ДВИ 2025, Вариант 2)",
+    title: "Задача 102 (ДВИ 2025, Вариант 2)",
     mathA: "\\log_{1/2}\\left(\\frac{2}{9^x-1}\\right) \\le \\log_{1/2}\\left(\\frac{1}{3^x+31}\\right)",
     mathB: "",
     solutionBuilder: () => (
@@ -10766,7 +10766,7 @@ export const section15Tasks = [
   },
   {
     id: 103,
-    title: "Задача 103 (Иррациональное логарифмическое неравенство, ДВИ 2025, Вариант 3)",
+    title: "Задача 103 (ДВИ 2025, Вариант 3)",
     mathA: "\\sqrt{\\log_2^2(x^{\\sqrt{2}}) - 3\\log_4 x^6 + 13} > \\log_2\\left(\\frac{x}{2}\\right)",
     mathB: "",
     solutionBuilder: () => (
@@ -10923,7 +10923,7 @@ export const section15Tasks = [
   },
   {
     id: 104,
-    title: "Задача 104 (Логарифмическое неравенство с переменным основанием, ДВИ 2025, Вариант 4)",
+    title: "Задача 104 (ДВИ 2025, Вариант 4)",
     mathA: "(2 - 2x) \\cdot \\log_{2 \\cdot 3^x - 5} \\sqrt{3} \\le 1",
     mathB: "",
     solutionBuilder: () => (
@@ -11028,7 +11028,7 @@ export const section15Tasks = [
   },
   {
     id: 105,
-    title: "Задача 105 (Показательно-логарифмическое неравенство, ДВИ 2025, Вариант 5)",
+    title: "Задача 105 (ДВИ 2025, Вариант 5)",
     mathA: "(\\sqrt[3]{x})^{5+\\log_2 x} \\ge 2^{1+\\log_2 x}",
     mathB: "",
     solutionBuilder: () => (
@@ -11131,7 +11131,7 @@ export const section15Tasks = [
   },
   {
     id: 106,
-    title: "Задача 106 (Логарифмическое неравенство с переменным основанием, ДВИ 2025, Вариант 6)",
+    title: "Задача 106 (ДВИ 2025, Вариант 6)",
     mathA: "\\log_{3/2} x^{3/2} + \\log_{2/3} x^{2/3} \\le \\frac{5}{6} \\cdot x \\cdot \\log_6 x",
     mathB: "",
     solutionBuilder: () => (
@@ -11253,7 +11253,7 @@ export const section15Tasks = [
   },
   {
     id: 107,
-    title: "Задача 107 (Логарифмическое неравенство с переменным основанием, ДВИ 2024, Вариант 1)",
+    title: "Задача 107 (ДВИ 2024, Вариант 1)",
     mathA: "\\log_{x+3}(x^2 - 7x + 12) \\le 2",
     mathB: "",
     solutionBuilder: () => (
@@ -11368,7 +11368,7 @@ export const section15Tasks = [
   },
   {
     id: 108,
-    title: "Задача 108 (Показательно-логарифмическое неравенство с переменным основанием, ДВИ 2024, Вариант 2)",
+    title: "Задача 108 (ДВИ 2024, Вариант 2)",
     mathA: "8^{\\log_{x^2-1}(x-1)} + 8^{\\log_{x^2-1}(x+1)} \\le 6",
     mathB: "",
     solutionBuilder: () => (
@@ -11484,7 +11484,7 @@ export const section15Tasks = [
   },
   {
     id: 109,
-    title: "Задача 109 (Дробно-показательное неравенство с радикалами, ДВИ 2024, Вариант 3)",
+    title: "Задача 109 (ДВИ 2024, Вариант 3)",
     mathA: "\\frac{4^{x^2} - 16^{4x-8}}{\\sqrt{x^2 + 4x} + \\sqrt{12 + 4x - x^2}} > 0",
     mathB: "",
     solutionBuilder: () => (
@@ -11588,7 +11588,7 @@ export const section15Tasks = [
   },
   {
     id: 110,
-    title: "Задача 110 (Логарифмическое неравенство со сменой основания, ДВИ 2024, Вариант 4)",
+    title: "Задача 110 (ДВИ 2024, Вариант 4)",
     mathA: "\\log_9\\left(x + \\frac{1}{3}\\right) - \\log_3\\left(x - \\frac{1}{3}\\right) \\ge 1",
     mathB: "",
     solutionBuilder: () => (
@@ -11691,7 +11691,7 @@ export const section15Tasks = [
   },
   {
     id: 111,
-    title: "Задача 111 (Логарифмическое неравенство с дробным аргументом, ДВИ 2024, Вариант 5)",
+    title: "Задача 111 (ДВИ 2024, Вариант 5)",
     mathA: "\\log_x \\frac{2x}{3-x} \\le 2",
     mathB: "",
     solutionBuilder: () => (
@@ -11780,7 +11780,7 @@ export const section15Tasks = [
   },
   {
     id: 112,
-    title: "Задача 112 (Логарифмическое неравенство со сдвоенными основаниями, ДВИ 2024, Вариант 6)",
+    title: "Задача 112 (ДВИ 2024, Вариант 6)",
     mathA: "\\log_{x-1}(2x-5) + \\log_{4x^2-20x+25}(x^2-2x+1) - \\log_{2x-5}(4x^2-20x+25) \\le 0",
     mathB: "",
     solutionBuilder: () => (
@@ -11885,7 +11885,7 @@ export const section15Tasks = [
   },
   {
     id: 113,
-    title: "Задача 113 (Показательно-логарифмическое неравенство, ДВИ 2023, Вариант 1)",
+    title: "Задача 113 (ДВИ 2023, Вариант 1)",
     mathA: "x^{\\log_3 \\sqrt{x}} > 9",
     mathB: "",
     solutionBuilder: () => (
@@ -11991,7 +11991,7 @@ export const section15Tasks = [
   },
   {
     id: 114,
-    title: "Задача 114 (Логарифмическое неравенство с переменным основанием, ДВИ 2023, Вариант 3)",
+    title: "Задача 114 (ДВИ 2023, Вариант 3)",
     mathA: "\\log_{\\sqrt{3-x}}(3+x) \\le 2",
     mathB: "",
     solutionBuilder: () => (
@@ -12080,7 +12080,7 @@ export const section15Tasks = [
   },
   {
     id: 115,
-    title: "Задача 115 (Показательно-логарифмическое неравенство, ДВИ 2023, Вариант 4)",
+    title: "Задача 115 (ДВИ 2023, Вариант 4)",
     mathA: "(\\sqrt{x})^{3+\\log_3 x} \\ge 3^{1+\\log_3 x}",
     mathB: "",
     solutionBuilder: () => (
@@ -12187,7 +12187,7 @@ export const section15Tasks = [
   },
   {
     id: 116,
-    title: "Задача 116 (Показательно-степенное неравенство, ДВИ 2023, Вариант 5)",
+    title: "Задача 116 (ДВИ 2023, Вариант 5)",
     mathA: "(3x^2 - 3x + 1)^{x^2 - 3x} \\le 1",
     mathB: "",
     solutionBuilder: () => (
@@ -12280,7 +12280,7 @@ export const section15Tasks = [
   },
   {
     id: 117,
-    title: "Задача 117 (Логарифмическое неравенство с двойным логарифмом, ДВИ 2023, Вариант 6)",
+    title: "Задача 117 (ДВИ 2023, Вариант 6)",
     mathA: "\\log_x \\log_3(2^x - 1) \\ge 0",
     mathB: "",
     solutionBuilder: () => (
@@ -12353,7 +12353,7 @@ export const section15Tasks = [
   },
   {
     id: 118,
-    title: "Задача 118 (Логарифмическое уравнение с модулем, ДВИ 2023, Вариант 8)",
+    title: "Задача 118 (ДВИ 2023, Вариант 8)",
     mathA: "|\\log_3^2 x - \\log_{2x}^2 2| = \\log_3^2 x + \\log_{2x}^2 2 - 2",
     mathB: "",
         solutionBuilder: () => (
@@ -12443,9 +12443,10 @@ export const section15Tasks = [
       </div>
     )
   },
+
   {
     id: 119,
-    title: "Задача 119 (Тригонометрическое логарифмическое неравенство, ДВИ 2023, Вариант 5)",
+    title: "Задача 119",
     mathA: "\\log_{2\\sin x + \\cos^2 x - 1} \\left(\\sin x - \\frac{3}{2}\\right)^4 > 0",
     mathB: "",
     solutionBuilder: () => (
@@ -12542,7 +12543,7 @@ export const section15Tasks = [
   },
   {
     id: 120,
-    title: "Задача 120 (Иррациональное алгебраическое неравенство высших степеней, ДВИ 2023, Вариант 5)",
+    title: "Задача 120",
     mathA: "\\frac{1}{(x - \\sqrt{2})^2} + 3x^2 - 2\\sqrt{2}x + 2 + 2\\left(-2x(\\sqrt{2}+1) + (\\sqrt{2}+1)^2\\right) \\le 2",
     mathB: "",
     solutionBuilder: () => (
@@ -12624,7 +12625,7 @@ export const section15Tasks = [
   },
   {
     id: 121,
-    title: "Задача 121 (Тригонометрическое логарифмическое неравенство высших степеней, ДВИ 2023, Вариант 6)",
+    title: "Задача 121",
     mathA: "4\\log_2^4(\\sin^3 x) + 8\\log_2(\\sin x) > 1",
     mathB: "",
     solutionBuilder: () => (
@@ -12738,7 +12739,7 @@ export const section15Tasks = [
   },
   {
     id: 122,
-    title: "Задача 122 (Логарифмическое неравенство с квадратным корнем, ДВИ 2023, Вариант 8)",
+    title: "Задача 122",
     mathA: "\\sqrt{\\frac{5 \\cdot (\\log_2(x + 2) - 1)}{\\log_2(x + 2) + 1}} \\le \\log_2 \\frac{x}{2} + 1",
     mathB: "",
     solutionBuilder: () => (

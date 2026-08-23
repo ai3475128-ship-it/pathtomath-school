@@ -4,7 +4,7 @@ import { InlineMath, BlockMath } from 'react-katex';
 export const section13Tasks = [
   {
         id: 1,
-        title: 'Задача 1 (Показательное уравнение)',
+        title: 'Задача 1',
         mathA: '8^x - 3 \\cdot 2^{x+2} + 2^{5-x} = 0',
         mathB: '\\left[ \\log_4 5; \\, \\sqrt{3} \\right]',
         solutionBuilder: () => (
@@ -53,7 +53,7 @@ export const section13Tasks = [
       },
       {
         id: 2,
-        title: 'Задача 2 (Тригонометрическое уравнение)',
+        title: 'Задача 2',
         mathA: '16^{\\sin x} + 16^{\\sin(x+\\pi)} = \\frac{17}{4}',
         mathB: '\\left[ \\frac{3\\pi}{2}; \\, 3\\pi \\right]',
         solutionBuilder: () => (
@@ -96,7 +96,7 @@ export const section13Tasks = [
   
       {
         id: 3,
-        title: 'Задача 3 (Показательное уравнение с логарифмами)',
+        title: 'Задача 3',
         mathA: '8^x - 9 \\cdot 2^{x+1} + 2^{5-x} = 0',
         mathB: '\\left[ \\log_5 2; \\, \\log_5 20 \\right]',
         solutionBuilder: () => (
@@ -144,7 +144,7 @@ export const section13Tasks = [
       // 👇 СЮДА ВЫ МОЖЕТЕ ТАК ЖЕ ПРОСТО ПРИПИСАТЬ ЗАДАЧУ 4, ЗАДАЧУ 5 И Т.Д.
           {
         id: 4,
-        title: 'Задача 4 (Тригонометрическое уравнение с разложением)',
+        title: 'Задача 4',
         mathA: '\\sin 2x - 2\\sqrt{3}\\cos^2 x - 4\\sin x + 4\\sqrt{3}\\cos x = 0',
         mathB: '\\left[ \\pi; \\, \\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -176,7 +176,7 @@ export const section13Tasks = [
       },
           {
         id: 5,
-        title: 'Задача 5 (Тригонометрическое уравнение с отбором)',
+        title: 'Задача 5',
         mathA: '2\\sin^2 x - 5\\sin x + 2 = 0',
         mathB: '\\left[ -\\pi; \\, \\frac{\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -239,7 +239,7 @@ export const section13Tasks = [
       },
       {
         id: 6,
-        title: 'Задача 6 (Тригонометрическое уравнение с формулой двойного угла)',
+        title: 'Задача 6',
         mathA: '2\\cos 2x - 4\\cos x = 1',
         mathB: '\\left[ -3\\pi; \\, -\\frac{3\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -313,7 +313,7 @@ export const section13Tasks = [
       },
       {
         id: 7,
-        title: 'Задача 7 (Тригонометрическое уравнение с заменой через тождество)',
+        title: 'Задача 7',
         mathA: '2\\sin^2 x - 3\\cos x = 0',
         mathB: '\\left[ -4\\pi; \\, -\\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -387,7 +387,7 @@ export const section13Tasks = [
       },
       {
         id: 8,
-        title: 'Задача 8 (Тригонометрическое уравнение с группировкой)',
+        title: 'Задача 8',
         mathA: '\\sin 2x - 2\\cos x - \\sqrt{3}\\sin x + \\sqrt{3} = 0',
         mathB: '\\left[ -\\frac{\\pi}{2}; \\, \\pi \\right]',
         solutionBuilder: () => (
@@ -444,7 +444,7 @@ export const section13Tasks = [
       },
       {
         id: 9,
-        title: 'Задача 9 (Тригонометрическое уравнение с заменой)',
+        title: 'Задача 9',
         mathA: '2\\cos^2 x + 5\\sin x - 4 = 0',
         mathB: '\\left[ -\\frac{7\\pi}{2}; \\, -2\\pi \\right]',
         solutionBuilder: () => (
@@ -515,7 +515,7 @@ export const section13Tasks = [
       },
       {
         id: 10,
-        title: 'Задача 10 (Тригонометрическое уравнение с разложением по формуле синуса разности)',
+        title: 'Задача 10',
         mathA: '\\sin\\left(x - \\frac{\\pi}{4}\\right) = \\frac{\\sqrt{2}}{2}(\\sin x - \\cos x)',
         mathB: '\\left[ -2\\pi; \\, -\\frac{\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -543,7 +543,7 @@ export const section13Tasks = [
       },
       {
         id: 11,
-        title: 'Задача 11 (Смешанное тригонометрическое уравнение)',
+        title: 'Задача 11',
         mathA: '\\sqrt{2}\\cos^2 x - \\sin x = 0',
         mathB: '\\left[ -\\frac{5\\pi}{2}; \\, -\\pi \\right]',
         solutionBuilder: () => (
@@ -596,7 +596,7 @@ export const section13Tasks = [
       },
       {
         id: 12,
-        title: 'Задача 12 (Тригонометрическое уравнение с разложением на скобки)',
+        title: 'Задача 12',
         mathA: '2\\sin x \\cos x - \\sqrt{3}\\sin x - 2\\cos x + \\sqrt{3} = 0',
         mathB: '\\left[ \\pi; \\, \\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -634,7 +634,7 @@ export const section13Tasks = [
       },
       {
         id: 13,
-        title: 'Задача 13 (Тригонометрическое уравнение с отбором на отрицательном отрезке)',
+        title: 'Задача 13',
         mathA: '2\\cos^2 x + \\sqrt{3}\\sin x + 1 = 0',
         mathB: '\\left[ -3\\pi; \\, -\\frac{3\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -688,7 +688,7 @@ export const section13Tasks = [
       },
       {
         id: 14,
-        title: 'Задача 14 (Смешанное показательно-тригонометрическое уравнение)',
+        title: 'Задача 14',
         mathA: '4^{\\cos x} - 5 \\cdot 2^{\\cos x} + 4 = 0',
         mathB: '\\left[ -2\\pi; \\, -\\frac{\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -722,7 +722,7 @@ export const section13Tasks = [
       },
       {
         id: 15,
-        title: 'Задача 15 (Тригонометрическое уравнение с разложением по формуле тангенса)',
+        title: 'Задача 15',
         mathA: '\\sqrt{3}\\operatorname{tg}^2 x - 4\\operatorname{tg} x + \\sqrt{3} = 0',
         mathB: '\\left[ -\\pi; \\, \\frac{\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -762,7 +762,7 @@ export const section13Tasks = [
       },
       {
         id: 16,
-        title: 'Задача 16 (Тригонометрическое уравнение с разложением синуса двойного угла)',
+        title: 'Задача 16',
         mathA: '\\sin 2x - \\sqrt{3}\\cos x = 0',
         mathB: '\\left[ -3\\pi; \\, -\\frac{3\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -793,7 +793,7 @@ export const section13Tasks = [
       },
       {
         id: 17,
-        title: 'Задача 17 (Тригонометрическое уравнение с кубическим синусом)',
+        title: 'Задача 17',
         mathA: '4\\sin^3 x - 3\\sin x = 0',
         mathB: '\\left[ \\pi; \\, \\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -822,7 +822,7 @@ export const section13Tasks = [
       },
       {
         id: 18,
-        title: 'Задача 18 (Смешанное логарифмическое уравнение)',
+        title: 'Задача 18',
         mathA: '\\log_2(\\cos x) = 0',
         mathB: '\\left[ 2\\pi; \\, \\frac{7\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -850,7 +850,7 @@ export const section13Tasks = [
       },
       {
         id: 19,
-        title: 'Задача 19 (Тригонометрическое уравнение с котангенсом)',
+        title: 'Задача 19',
         mathA: '\\sqrt{3}\\operatorname{ctg} x - 3 = 0',
         mathB: '\\left[ -2\\pi; \\, -\\frac{\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -878,7 +878,7 @@ export const section13Tasks = [
       },
       {
         id: 20,
-        title: 'Задача 20 (Показательное уравнение)',
+        title: 'Задача 20',
         mathA: '16^{\\sin x} - 6 \\cdot 4^{\\sin x} + 8 = 0',
         mathB: '\\left[ -5\\pi; \\, -\\frac{7\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -931,7 +931,7 @@ export const section13Tasks = [
       },
       {
         id: 21,
-        title: 'Задача 21 (Логарифмическое уравнение с тригонометрией)',
+        title: 'Задача 21',
         mathA: '\\log_9\\left(3^{2x} + 5\\sqrt{2}\\sin x - 6\\cos^2 x - 2\\right) = x',
         mathB: '\\left[ -2\\pi; \\, -\\frac{\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -982,7 +982,7 @@ export const section13Tasks = [
       },
       {
         id: 22,
-        title: 'Задача 22 (Показательное уравнение степени 3)',
+        title: 'Задача 22',
         mathA: '27^x - 28 \\cdot 3^{x+1} + 3^{5-x} = 0',
         mathB: '\\left[ \\sqrt{3}; \\, \\log_2 5 \\right]',
         solutionBuilder: () => (
@@ -1025,7 +1025,7 @@ export const section13Tasks = [
       },
       {
         id: 23,
-        title: 'Задача 23 (Показательное уравнение с заменой по косинусу)',
+        title: 'Задача 23',
         mathA: '16^{\\cos x} + 16^{\\cos(\\pi-x)} = \\frac{17}{4}',
         mathB: '\\left[ \\pi; \\, \\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -1069,7 +1069,7 @@ export const section13Tasks = [
       },
       {
         id: 24,
-        title: 'Задача 24 (Показательное уравнение с синусом степеней девятки)',
+        title: 'Задача 24',
         mathA: '27 \\cdot 81^{\\sin x} - 12 \\cdot 9^{\\sin x} + 1 = 0',
         mathB: '\\left[ \\frac{3\\pi}{2}; \\, 3\\pi \\right]',
         solutionBuilder: () => (
@@ -1108,7 +1108,7 @@ export const section13Tasks = [
       },
           {
         id: 25,
-        title: 'Задача 25 (Логарифмическое уравнение четвертой степени)',
+        title: 'Задача 25',
         mathA: '\\log_5(5x^4 + 30) = 1 + \\log_{\\sqrt{5}}\\sqrt{5x^2 + 2}',
         mathB: '\\left[ -\\frac{5}{3}; \\, \\frac{38}{13} \\right]',
         solutionBuilder: () => (
@@ -1155,7 +1155,7 @@ export const section13Tasks = [
   
           {
         id: 26,
-        title: 'Задача 26 (Логарифмическое уравнение со вложенной функцией ОГР)',
+        title: 'Задача 26',
         mathA: 'x \\cdot \\log_9(15 - 7x) \\cdot \\log_{3-x} 9 = (\\sqrt{x})^2',
         mathB: '\\left[ -1; \\, 3 \\right]',
         solutionBuilder: () => (
@@ -1212,7 +1212,7 @@ export const section13Tasks = [
       },
       {
         id: 27,
-        title: 'Задача 27 (Логарифмическое уравнение со вложенной степенью десятки)',
+        title: 'Задача 27',
         mathA: '10^{\\lg(\\lg \\sqrt{x})} - \\lg x + \\lg x^3 - 3 = 0',
         mathB: '\\left[ 1; \\, 2 \\right]',
         solutionBuilder: () => (
@@ -1251,7 +1251,7 @@ export const section13Tasks = [
       },
       {
         id: 28,
-        title: 'Задача 28 (Дробно-логарифмическое уравнение с переходом к lg)',
+        title: 'Задача 28',
         mathA: '\\frac{\\log_2 5}{\\log_2 10} + \\lg(x + 10) = 1 + \\lg(21x - 20) - \\lg(2x - 1)',
         mathB: '\\left[ 0; \\, 1 \\right]',
         solutionBuilder: () => (
@@ -1294,7 +1294,7 @@ export const section13Tasks = [
       },
       {
         id: 29,
-        title: 'Задача 29 (Логарифмическое уравнение с одинаковыми аргументами)',
+        title: 'Задача 29',
         mathA: '\\log_{2x+3}(x - 2)^2 = \\log_{\\frac{x}{6} + \\frac{1}{2}}(x - 2)^2',
         mathB: '\\left[ -2; \\, -\\lg 11 \\right]',
         solutionBuilder: () => (
@@ -1339,7 +1339,7 @@ export const section13Tasks = [
       },
       {
         id: 30,
-        title: 'Задача 30 (Логарифмическое уравнение со свободным членом)',
+        title: 'Задача 30',
         mathA: '\\log_{\\frac{x^2-18x+91}{90}}\\left(5x - \\frac{3}{10}\\right) = 0',
         mathB: '\\left[ \\frac{e}{10}; \\, 1 \\right]',
         solutionBuilder: () => (
@@ -1375,7 +1375,7 @@ export const section13Tasks = [
       },
       {
         id: 31,
-        title: 'Задача 31 (Логарифмическое уравнение с натуральным логарифмом)',
+        title: 'Задача 31',
         mathA: '\\frac{x^2 - 4}{\\ln(x - 1)} = (x^2 - 6) \\cdot \\log_{x-1} e + 1',
         mathB: '\\left[ e^{\\pi} - 1; \\, \\pi^2 \\right]',
         solutionBuilder: () => (
@@ -1426,7 +1426,7 @@ export const section13Tasks = [
       },
       {
         id: 32,
-        title: 'Задача 32 (Логарифмическое уравнение со вложенным основанием)',
+        title: 'Задача 32',
         mathA: '\\log_{\\sqrt{x}} 2 + 8 \\log_{16} x^2 + 9 = 0',
         mathB: '\\left[ e^{-2}; \\, e^{-1} \\right]',
         solutionBuilder: () => (
@@ -1472,7 +1472,7 @@ export const section13Tasks = [
       },
       {
         id: 33,
-        title: 'Задача 33 (Уравнение с заменой логарифма)',
+        title: 'Задача 33',
         mathA: '3 + 2 \\log_{x-1} 3 = 2 \\log_3(x - 1)',
         mathB: '\\left[ \\frac{\\sqrt{3}}{4}; \\, \\frac{4}{\\sqrt{3}} \\right]',
         solutionBuilder: () => (
@@ -1531,7 +1531,7 @@ export const section13Tasks = [
       },
       {
         id: 34,
-        title: 'Задача 34 (Логарифмическое уравнение со степенью основания)',
+        title: 'Задача 34',
         mathA: '\\log_{0,5}^2 8x + 4 \\log_{16} \\frac{x^2}{32} = 4',
         mathB: '\\left[ \\frac{1}{512}; \\, \\frac{1}{32} \\right]',
         solutionBuilder: () => (
@@ -1576,7 +1576,7 @@ export const section13Tasks = [
       },
       {
         id: 35,
-        title: 'Задача 35 (Дробно-степенное уравнение со сложной подстановкой)',
+        title: 'Задача 35',
         mathA: '\\frac{(x + 3)^2}{5} + \\frac{20}{(x + 3)^2} = 8 \\left( \\frac{x + 3}{5} - \\frac{2}{x + 3} \\right) + 1',
         mathB: '\\left[ -6; \\, -4 \\right]',
         solutionBuilder: () => (
@@ -1627,7 +1627,7 @@ export const section13Tasks = [
       },
        {
         id: 36,
-        title: 'Задача 36 (Сложное логарифмическое уравнение с тригонометрией)',
+        title: 'Задача 36',
         mathA: '\\log_{\\sqrt{2}}\\left(\\left(\\log_{\\sin x + 1}\\left(2 - \\cos^2 x + 2\\sin x\\right)\\right)^{\\cos 4x}\\right) = 2',
         mathB: '\\left[ -2\\pi; \\, 0 \\right]',
         solutionBuilder: () => (
@@ -1700,7 +1700,7 @@ export const section13Tasks = [
       },
       {
         id: 37,
-        title: 'Задача 37 (Тригонометрическое уравнение с суммой косинусов)',
+        title: 'Задача 37',
         mathA: '\\cos(x^2 + x) + \\cos\\left(x + \\frac{2\\pi}{3}\\right) + \\cos\\left(x + \\frac{4\\pi}{3}\\right) = 0',
         mathB: '\\left[ 0; \\, 2 \\right]',
         solutionBuilder: () => (
@@ -1741,7 +1741,7 @@ export const section13Tasks = [
       },
       {
         id: 38,
-        title: 'Задача 38 (Показательное уравнение с разными основаниями)',
+        title: 'Задача 38',
         mathA: '5^x \\cdot 2^{\\frac{x+2}{x}} = 40',
         mathB: '\\text{Отбор отсутствует}',
         solutionBuilder: () => (
@@ -1783,7 +1783,7 @@ export const section13Tasks = [
       },
       {
         id: 39,
-        title: 'Задача 39 (Логарифмическое уравнение с заменой по синусу)',
+        title: 'Задача 39',
         mathA: '\\log_3(9^{\\sin x} + 9) = \\sin x - \\log_{\\frac{1}{3}}(28 - 2 \\cdot 3^{\\sin x})',
         mathB: '\\text{Отбор отсутствует}',
         solutionBuilder: () => (
@@ -1832,7 +1832,7 @@ export const section13Tasks = [
       },
       {
         id: 40,
-        title: 'Задача 40 (Иррациональное логарифмическое уравнение)',
+        title: 'Задача 40',
         mathA: '\\sqrt{13 + \\frac{4}{\\log_x 3}} = 2\\log_3(3\\sqrt{x})',
         mathB: '\\left[ 0; \\, 100\\sin 1 \\right]',
         solutionBuilder: () => (
@@ -1888,7 +1888,7 @@ export const section13Tasks = [
       },
       {
         id: 41,
-        title: 'Задача 41 (Многоуровневое модульное логарифмическое уравнение)',
+        title: 'Задача 41',
         mathA: '\\left| \\log_2\\left( \\log_{\\frac{1}{2}}\\left( \\log_{625}(x^2 + x - 1) \\right) \\right) \\right| = 1',
         mathB: '\\left[ -5; \\, 4 \\right]',
         solutionBuilder: () => (
@@ -1932,7 +1932,7 @@ export const section13Tasks = [
       },
           {
         id: 42,
-        title: 'Задача 42 (Логарифмическое уравнение)',
+        title: 'Задача 42',
         mathA: '\\log_3\\left(9^{\\sin x} + 9\\right) = \\sin x - \\log_{\\frac{1}{3}}\\left(28 - 2 \\cdot 3^{\\sin x}\\right)',
         mathB: '\\text{Отбор отсутствует}',
         solutionBuilder: () => (
@@ -1984,7 +1984,7 @@ export const section13Tasks = [
       },
       {
         id: 43,
-        title: 'Задача 43 (Иррациональное логарифмическое уравнение)',
+        title: 'Задача 43',
         mathA: '\\sqrt{13 + \\frac{4}{\\log_x 3}} = 2\\log_3\\left(3\\sqrt{x}\\right)',
         mathB: '\\left[ 0; \\, 100\\sin 1 \\right]',
         solutionBuilder: () => (
@@ -2040,7 +2040,7 @@ export const section13Tasks = [
       },
       {
         id: 44,
-        title: 'Задача 44 (Логарифмическое уравнение)',
+        title: 'Задача 44',
         mathA: '\\left| \\log_2\\left( \\log_{\\frac{1}{2}}\\left( \\log_{625}\\left(x^2 + x - 1\\right) \\right) \\right) \\right| = 1',
         mathB: '\\left[ -5; \\, 4 \\right]',
         solutionBuilder: () => (
@@ -2081,7 +2081,7 @@ export const section13Tasks = [
       },
           {
         id: 45,
-        title: 'Задача 45 (Модульное логарифмическое уравнение)',
+        title: 'Задача 45',
         mathA: '\\left| \\log_3\\left(13x^2 - 12\\right) \\right| = \\left| -\\frac{1}{2}\\log_{\\frac{1}{3}} x^4 \\right|',
         mathB: '\\left[ -\\frac{\\sqrt{13}}{13}; \\, 1 \\right]',
         solutionBuilder: () => (
@@ -2152,7 +2152,7 @@ export const section13Tasks = [
       },
       {
         id: 46,
-        title: 'Задача 46 (Тригонометрическое уравнение с переменным основанием логарифма)',
+        title: 'Задача 46',
         mathA: '\\log_{\\cos x} \\cos^2 x = \\log_{\\cos x - 0,5}\\left(\\cos^2 x - \\cos x + \\sin x \\cos x\\right)',
         mathB: '\\left[ -\\frac{3\\pi}{2}; \\, \\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -2197,7 +2197,7 @@ export const section13Tasks = [
       },
       {
         id: 47,
-        title: 'Задача 47 (Логарифмическое уравнение со вложенным квадратным корнем)',
+        title: 'Задача 47',
         mathA: '\\log_x(3x - 2) - 2 = \\sqrt{\\log_x^2(3x - 2) + 4\\log_x\\left(\\frac{x}{3x - 2}\\right)}',
         mathB: '\\left[ 0; \\, 0,75 \\right]',
         solutionBuilder: () => (
@@ -2234,7 +2234,7 @@ export const section13Tasks = [
       },
       {
         id: 48,
-        title: 'Задача 48 (Тригонометрическое однородное уравнение)',
+        title: 'Задача 48',
         mathA: '\\sin x + \\cos x = 0',
         mathB: '\\text{Отбор отсутствует}',
         solutionBuilder: () => (
@@ -2255,7 +2255,7 @@ export const section13Tasks = [
       },
          {
         id: 49,
-        title: 'Задача 49 (Тригонометрическое уравнение с делением на косинус)',
+        title: 'Задача 49',
         mathA: '\\sin \\frac{\\pi x}{2} - \\sqrt{3}\\cos \\frac{\\pi x}{2} = 0',
         mathB: '\\left( 2; \\, 2\\pi \\right)',
         solutionBuilder: () => (
@@ -2302,7 +2302,7 @@ export const section13Tasks = [
       },
       {
         id: 50,
-        title: 'Задача 50 (Тригонометрическое уравнение с арктангенсом)',
+        title: 'Задача 50',
         mathA: '10 \\sin x + 3 \\cos x = 0',
         mathB: '\\left[ -\\pi; \\, \\pi \\right)',
         solutionBuilder: () => (
@@ -2367,7 +2367,7 @@ export const section13Tasks = [
       },
           {
         id: 51,
-        title: 'Задача 51 (Тригонометрическое уравнение второго порядка)',
+        title: 'Задача 51',
         mathA: '4 \\cos^2 x + 6 \\sin^2 x = 5 \\sin 2x',
         mathB: '\\left[ 0; \\, \\frac{5\\pi}{4} \\right)',
         solutionBuilder: () => (
@@ -2480,7 +2480,7 @@ export const section13Tasks = [
       },
                 {
         id: 52,
-        title: 'Задача 52 (Смешанное однородное тригонометрическое уравнение)',
+        title: 'Задача 52',
         mathA: '3\\sin^2 x - \\sqrt{3}(\\sin x \\cos x - 1) = 3\\sin 2x - \\sqrt{3}\\cos 2x',
         mathB: '\\left[ -1; \\, 2 \\right]',
         solutionBuilder: () => (
@@ -2606,7 +2606,7 @@ export const section13Tasks = [
       },
             {
         id: 53,
-        title: 'Задача 53 (Однородное тригонометрическое уравнение первого порядка)',
+        title: 'Задача 53',
         mathA: '\\sin 2x + \\cos 2x = 0',
         mathB: '\\left[ \\frac{5\\pi}{2}; \\, 4\\pi \\right]',
         solutionBuilder: () => (
@@ -2684,7 +2684,7 @@ export const section13Tasks = [
       },
         {
         id: 54,
-        title: 'Задача 54 (Тригонометрическое уравнение с формулой приведения)',
+        title: 'Задача 54',
         mathA: '6\\cos^2 x + 5\\sin\\left(\\frac{\\pi}{2} + x\\right) - 4 = 0',
         mathB: '\\left[ -\\frac{7\\pi}{2}; \\, -2\\pi \\right]',
         solutionBuilder: () => (
@@ -2766,7 +2766,7 @@ export const section13Tasks = [
       },
       {
         id: 55,
-        title: 'Задача 55 (Тригонометрическое уравнение с ограничением знаменателя)',
+        title: 'Задача 55',
         mathA: '\\frac{2 - 3\\sin x - \\cos 2x}{\\sqrt{2x - \\pi}} = 0',
         mathB: '\\left[ 0; \\, \\frac{5\\pi}{4} \\right]',
         solutionBuilder: () => (
@@ -2862,7 +2862,7 @@ export const section13Tasks = [
       },
       {
         id: 56,
-        title: 'Задача 56 (Тригонометрическое уравнение высших степеней)',
+        title: 'Задача 56',
         mathA: '3(\\sin^3 x + 1)^2 + 2\\cos^3\\left(\\frac{13\\pi}{2} + x\\right) - 3 = 0',
         mathB: '(0; \\, \\pi]',
         solutionBuilder: () => (
@@ -2942,7 +2942,7 @@ export const section13Tasks = [
       },
       {
         id: 57,
-        title: 'Задача 57 (Тригонометрическое уравнение методом вспомогательного угла)',
+        title: 'Задача 57',
         mathA: '\\sin x - \\cos x = 1',
         mathB: '\\left[ \\frac{5\\pi}{2}; \\, 4\\pi \\right]',
         solutionBuilder: () => (
@@ -3012,7 +3012,7 @@ export const section13Tasks = [
       },
       {
         id: 58,
-        title: 'Задача 58 (Тригонометрическое уравнение на формулу косинуса разности)',
+        title: 'Задача 58',
         mathA: '\\sin 2x \\sin \\frac{2\\pi}{5} + \\cos 2\\left(\\frac{\\pi}{2} - x\\right) \\cos \\frac{3\\pi}{5} = 1',
         mathB: '\\left( 17\\pi; \\, \\frac{37\\pi}{2} \\right)',
         solutionBuilder: () => (
@@ -3093,7 +3093,7 @@ export const section13Tasks = [
       },
       {
         id: 59,
-        title: 'Задача 59 (Тригонометрическое уравнение с разложением на множители)',
+        title: 'Задача 59',
         mathA: '\\sin 2x = 1 + \\sqrt{2}\\cos x + \\cos 2x',
         mathB: '\\left[ \\frac{\\pi}{2}; \\, 2\\pi \\right]',
         solutionBuilder: () => (
@@ -3181,7 +3181,7 @@ export const section13Tasks = [
       },
       {
         id: 60,
-        title: 'Задача 60 (Тригонометрическое уравнение с группировкой слагаемых)',
+        title: 'Задача 60',
         mathA: '2\\sqrt{3}\\sin^2 x - \\sqrt{6}\\sin(2\\pi + x) - \\sin 2x = -\\sqrt{2}\\cos x',
         mathB: '\\left[ -\\frac{\\pi}{2}; \\, \\pi \\right]',
         solutionBuilder: () => (
@@ -3275,7 +3275,7 @@ export const section13Tasks = [
       },
       {
         id: 61,
-        title: 'Задача 61 (Тригонометрическое уравнение с разложением на множители)',
+        title: 'Задача 61',
         mathA: '\\sin\\left(\\frac{\\pi}{2} - x\\right) - \\sin 2x = 0',
         mathB: '\\left( 0; \\, \\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -3365,7 +3365,7 @@ export const section13Tasks = [
       },
       {
         id: 62,
-        title: 'Задача 62 (Тригонометрическое уравнение с табличными значениями коэффициентов)',
+        title: 'Задача 62',
         mathA: '2\\sin x \\cdot \\sin \\frac{\\pi}{2} \\cdot \\sin \\frac{\\pi}{3} + \\sin 2x = 0',
         mathB: '(-7\\pi; \\, -5\\pi)',
         solutionBuilder: () => (
@@ -3445,7 +3445,7 @@ export const section13Tasks = [
       },
           {
         id: 63,
-        title: 'Задача 63 (Тригонометрическое уравнение с отбором корней по ОГР знаменателя)',
+        title: 'Задача 63',
         mathA: '\\frac{2\\cos^2 x - 1 - \\sin 4x}{2\\sin 3x - \\sqrt{2}} = 0',
         mathB: '\\left[ \\frac{19\\pi}{4}; \\, \\frac{23\\pi}{4} \\right]',
         solutionBuilder: () => (
@@ -3539,7 +3539,7 @@ export const section13Tasks = [
       },
       {
         id: 64,
-        title: 'Задача 64 (Тригонометрическое уравнение с разложением методом группировки)',
+        title: 'Задача 64',
         mathA: '3\\sin x + 3\\sqrt{3}\\cos x = \\sqrt{3} + \\tg x',
         mathB: '\\left( -\\frac{\\pi}{2}; \\, \\pi \\right]',
         solutionBuilder: () => (
@@ -3625,7 +3625,7 @@ export const section13Tasks = [
       },
       {
         id: 65,
-        title: 'Задача 65 (Тригонометрическое уравнение с котангенсом)',
+        title: 'Задача 65',
         mathA: '\\ctg x + \\ctg 2x = 0',
         mathB: '\\left[ -\\frac{\\pi}{2}; \\, \\pi \\right]',
         solutionBuilder: () => (
@@ -3741,7 +3741,7 @@ export const section13Tasks = [
       },
       {
         id: 66,
-        title: 'Задача 66 (Тригонометрическое уравнение с тангенсом и косинусом)',
+        title: 'Задача 66',
         mathA: '(3\\tg^2 x + 5)\\cos x = -7',
         mathB: '\\left[ 2\\pi; \\, 3\\pi \\right]',
         solutionBuilder: () => (
@@ -3837,7 +3837,7 @@ export const section13Tasks = [
       },
       {
         id: 67,
-        title: 'Задача 67 (Логарифмическое тригонометрическое уравнение)',
+        title: 'Задача 67',
         mathA: '\\log_2 (2\\sqrt{3}\\sin x + 2\\cos x) + \\log_2 (6 - 2\\sqrt{3}\\sin x - 2\\cos x) = 3',
         mathB: '\\left[ \\pi; \\, \\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -3947,7 +3947,7 @@ export const section13Tasks = [
       },
       {
         id: 68,
-        title: 'Задача 68 (Тригонометрическое уравнение четвертой степени)',
+        title: 'Задача 68',
         mathA: '\\sin^4 x - \\cos^4 x = \\frac{1}{2}',
         mathB: '\\left( -\\frac{\\pi}{4}; \\, \\frac{11\\pi}{4} \\right)',
         solutionBuilder: () => (
@@ -4057,7 +4057,7 @@ export const section13Tasks = [
       },
       {
         id: 69,
-        title: 'Задача 69 (Тригонометрическое уравнение с разложением на множители)',
+        title: 'Задача 69',
         mathA: '\\sin^4 x - \\cos^4 x + \\cos 2x = \\sin x + \\cos x',
         mathB: '\\left( -\\frac{5\\pi}{2}; \\, 0 \\right)',
         solutionBuilder: () => (
@@ -4155,7 +4155,7 @@ export const section13Tasks = [
       },
       {
         id: 70,
-        title: 'Задача 70 (Тригонометрическое уравнение с методом введения вспомогательной переменной)',
+        title: 'Задача 70',
         mathA: '1 - \\cos\\left(2x - \\frac{7\\pi}{2}\\right) - 2\\cos x = 2\\sin x',
         mathB: '\\left[ -3\\pi; \\, 0 \\right]',
         solutionBuilder: () => (
@@ -4262,7 +4262,7 @@ export const section13Tasks = [
       },
       {
         id: 71,
-        title: 'Задача 71 (Тригонометрическое уравнение с произведением функций)',
+        title: 'Задача 71',
         mathA: '\\sin x \\cdot \\cos\\left(x + \\frac{\\pi}{4}\\right) \\cdot \\cos\\left(x - \\frac{\\pi}{4}\\right) = \\cos 2x',
         mathB: '\\left[ -\\frac{11\\pi}{2}; \\, -4\\pi \\right]',
         solutionBuilder: () => (
@@ -4366,7 +4366,7 @@ export const section13Tasks = [
       },
       {
         id: 72,
-        title: 'Задача 72 (Тригонометрическое уравнение с разложением на множители)',
+        title: 'Задача 72',
         mathA: '(2\\sin x - \\cos x)(1 + \\cos x) = \\sin^2 x',
         mathB: '\\left[ \\frac{17\\pi}{2}; \\, \\frac{19\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -4456,7 +4456,7 @@ export const section13Tasks = [
       },
       {
         id: 73,
-        title: 'Задача 73 (Тригонометрическое уравнение на формулу косисуса разности)',
+        title: 'Задача 73',
         mathA: '2\\cos\\left(x - \\frac{\\pi}{4}\\right) + \\sqrt{2}\\cdot\\cos(\\pi - x) = 1',
         mathB: '\\left[ \\frac{17\\pi}{2}; \\, 10\\pi \\right]',
         solutionBuilder: () => (
@@ -4537,7 +4537,7 @@ export const section13Tasks = [
       },
       {
         id: 74,
-        title: 'Задача 74 (Тригонометрическое уравнение на формулу косинуса суммы)',
+        title: 'Задача 74',
         mathA: '\\sin^2 x + \\cos^2\\left(x + \\frac{\\pi}{4}\\right) = \\frac{1}{2}',
         mathB: '\\left[ \\frac{13\\pi}{2}; \\, \\frac{15\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -4624,7 +4624,7 @@ export const section13Tasks = [
       },
       {
         id: 75,
-        title: 'Задача 75 (Логарифмическое тригонометрическое уравнение с разными основаниями степеней)',
+        title: 'Задача 75',
         mathA: '\\sin x = \\log_{12} (3^{\\sin x} \\cdot 4^{\\cos x})',
         mathB: '\\left[ 2\\pi; \\, \\frac{7\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -4721,7 +4721,7 @@ export const section13Tasks = [
       },
       {
         id: 76,
-        title: 'Задача 76 (Тригонометрическое уравнение с косинусом двойного угла и квадратом функции)',
+        title: 'Задача 76',
         mathA: '\\cos 2x + 0{,}75 = \\cos^2 x',
         mathB: '\\left[ -4\\pi; \\, -\\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -4818,7 +4818,7 @@ export const section13Tasks = [
       },
       {
         id: 77,
-        title: 'Задача 77 (Тригонометрическое уравнение с разложением с использованием формул приведения и сложным дискриминантом)',
+        title: 'Задача 77',
         mathA: '2 + 2\\cos(\\pi + 2x) - \\sqrt{8}\\sin x = \\sqrt{6} - \\sqrt{12}\\sin x',
         mathB: '\\left[ \\frac{\\pi}{2}; \\, 2\\pi \\right]',
         solutionBuilder: () => (
@@ -4930,7 +4930,7 @@ export const section13Tasks = [
       },
       {
         id: 78,
-        title: 'Задача 78 (Логарифмическое уравнение с заменой переменной)',
+        title: 'Задача 78',
         mathA: '6\\log_8^2 x - 5\\log_8 x + 1 = 0',
         mathB: '\\left[ 1; \\, 2{,}5 \\right]',
         solutionBuilder: () => (
@@ -4993,7 +4993,7 @@ export const section13Tasks = [
       },
       {
         id: 79,
-        title: 'Задача 79 (Тригонометрическое уравнение с использованием чётности косинуса)',
+        title: 'Задача 79',
         mathA: '2\\cos(-x) - 2\\sqrt{2}\\cos x - 4\\sin^2 x = \\sqrt{2} - 4',
         mathB: '\\left[ -2\\pi; \\, -\\frac{\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -5102,7 +5102,7 @@ export const section13Tasks = [
       },
       {
         id: 80,
-        title: 'Задача 80 (Логарифмическое уравнение по определению)',
+        title: 'Задача 80',
         mathA: '\\log_2(x^2 + 2x) = 3',
         mathB: '\\left[ \\log_3 0{,}1; \\, \\log_3 13 \\right]',
         solutionBuilder: () => (
@@ -5162,7 +5162,7 @@ export const section13Tasks = [
       },
       {
         id: 81,
-        title: 'Задача 81 (Тригонометрическое уравнение с использованием формул приведения и двойного угла)',
+        title: 'Задача 81',
         mathA: '\\sin 2x + \\sqrt{2}\\sin(x + \\pi) = 0',
         mathB: '\\left[ \\frac{7\\pi}{2}; \\, 5\\pi \\right]',
         solutionBuilder: () => (
@@ -5255,7 +5255,7 @@ export const section13Tasks = [
       },
       {
         id: 82,
-        title: 'Задача 82 (Тригонометрическое уравнение высших степеней с группировкой слагаемых)',
+        title: 'Задача 82',
         mathA: '2\\cos x + \\sin^2 x = 2\\cos^3 x',
         mathB: '\\left[ -\\frac{7\\pi}{2}; \\, -2\\pi \\right]',
         solutionBuilder: () => (
@@ -5345,7 +5345,7 @@ export const section13Tasks = [
       },
       {
         id: 83,
-        title: 'Задача 83 (Тригонометрическое уравнение с заменой через тригонометрическое тождество тангенса)',
+        title: 'Задача 83',
         mathA: '3\\tan^2 x - \\frac{5}{\\cos x} + 1 = 0',
         mathB: '\\left[ -\\frac{7\\pi}{2}; \\, -2\\pi \\right]',
         solutionBuilder: () => (
@@ -5432,7 +5432,7 @@ export const section13Tasks = [
       },
       {
         id: 84,
-        title: 'Задача 84 (Логарифмическое биквадратное уравнение)',
+        title: 'Задача 84',
         mathA: '\\log_2(4x^4 + 56) = 2 + \\log_{\\sqrt{2}}\\sqrt{7x^2 + 2}',
         mathB: '\\left[ -1{,}7; \\, 1{,}8 \\right]',
         solutionBuilder: () => (
@@ -5504,7 +5504,7 @@ export const section13Tasks = [
       },
       {
         id: 85,
-        title: 'Задача 85 (Тригонометрическое уравнение высших степеней с разложением на множители)',
+        title: 'Задача 85',
         mathA: '2\\cos^3 x = \\sqrt{3}\\sin^2 x + 2\\cos x',
         mathB: '\\left[ -3\\pi; \\, -\\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -5584,7 +5584,7 @@ export const section13Tasks = [
       },
       {
         id: 86,
-        title: 'Задача 86 (Тригонометрическое уравнение с разложением через формулу косинуса двойного угла)',
+        title: 'Задача 86',
         mathA: '\\cos x \\cdot \\cos 2x = \\sqrt{3}\\sin^2 x + \\cos x',
         mathB: '\\left[ \\pi; \\, \\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -5668,7 +5668,7 @@ export const section13Tasks = [
       },
       {
         id: 87,
-        title: 'Задача 87 (Логарифмическое тригонометрическое уравнение с формулой приведения)',
+        title: 'Задача 87',
         mathA: '\\log_3 \\left(\\sqrt{2}\\cos\\left(\\frac{\\pi}{2} - x\\right) + \\sin 2x + 81\\right) = 4',
         mathB: '\\left[ \\pi; \\, \\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -5756,7 +5756,7 @@ export const section13Tasks = [
       },
       {
         id: 88,
-        title: 'Задача 88 (Логарифмическое уравнение с группировкой слагаемых)',
+        title: 'Задача 88',
         mathA: '\\log_4 x \\cdot \\log_4 \\frac{x^2 - 1}{2} = \\log_4 \\frac{x(x^2 - 1)}{8}',
         mathB: '\\left[ \\log_3 4; \\, \\log_3 49 \\right]',
         solutionBuilder: () => (
@@ -5838,7 +5838,7 @@ export const section13Tasks = [
       },
       {
         id: 89,
-        title: 'Задача 89 (Показательно-логарифмическое тригонометрическое уравнение)',
+        title: 'Задача 89',
         mathA: '5^{2\\log_2^2(\\sin x)} = \\frac{5}{5^{\\log_2(\\sin x)}}',
         mathB: '\\left[ \\pi; \\, \\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -5933,7 +5933,7 @@ export const section13Tasks = [
       },
       {
         id: 90,
-        title: 'Задача 90 (Тригонометрическое уравнение с использованием чётности косинуса)',
+        title: 'Задача 90',
         mathA: '2\\sin^2 x - \\cos(-x) - 1 = 0',
         mathB: '\\left[ -\\pi; \\, \\frac{\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -6029,7 +6029,7 @@ export const section13Tasks = [
       },
       {
         id: 91,
-        title: 'Задача 91 (Показательно-тригонометрическое уравнение с заменой переменной)',
+        title: 'Задача 91',
         mathA: '81^{\\cos x} - 12 \\cdot 9^{\\cos x} + 27 = 0',
         mathB: '\\left[ -4\\pi; \\, -\\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -6115,7 +6115,7 @@ export const section13Tasks = [
       },
       {
         id: 92,
-        title: 'Задача 92 (Логарифмическое тригонометрическое уравнение с разложением по формуле двойного угла)',
+        title: 'Задача 92',
         mathA: '\\log_4(\\sin x + \\sin 2x + 16) = 2',
         mathB: '\\left[ -4\\pi; \\, -\\frac{5\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -6210,7 +6210,7 @@ export const section13Tasks = [
       },
       {
         id: 93,
-        title: 'Задача 93 (Показательное уравнение сведением к квадратному через деление на степень)',
+        title: 'Задача 93',
         mathA: '3 \\cdot 9^{x+1} - 5 \\cdot 6^{x+1} + 8 \\cdot 2^{2x} = 0',
         mathB: '\\left[ -\\frac{\\pi}{2}; \\, \\pi \\right]',
         solutionBuilder: () => (
@@ -6284,7 +6284,7 @@ export const section13Tasks = [
       },
       {
         id: 94,
-        title: 'Задача 94 (Логарифмическое уравнение по определению)',
+        title: 'Задача 94',
         mathA: '\\log_5(x^2 - 4x) = 1',
         mathB: '\\left[ \\log_3 0{,}1; \\, \\log_3 10 \\right]',
         solutionBuilder: () => (
@@ -6356,7 +6356,7 @@ export const section13Tasks = [
       },
       {
         id: 95,
-        title: 'Задача 95 (Тригонометрическое уравнение с заменой через тригонометрическое тождество косинуса)',
+        title: 'Задача 95',
         mathA: '\\frac{1}{\\cos^2 x} - \\frac{3}{\\cos x} + 2 = 0',
         mathB: '\\left[ -3\\pi; \\, -\\frac{3\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -6453,7 +6453,7 @@ export const section13Tasks = [
       },
       {
         id: 96,
-        title: 'Задача 96 (Тригонометрическое уравнение с отбором с учётом ограничений знаменателя)',
+        title: 'Задача 96',
         mathA: '\\frac{\\cos x}{1 + \\sin x} = 1 - \\sin x',
         mathB: '\\left[ 2\\pi; \\, \\frac{7\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -6542,7 +6542,7 @@ export const section13Tasks = [
       },
       {
         id: 97,
-        title: 'Задача 97 (Показательное уравнение сведением к квадратному через деление на степень)',
+        title: 'Задача 97',
         mathA: '3 \\cdot 9^{x-0{,}5} - 7 \\cdot 6^x + 3 \\cdot 4^{x+1} = 0',
         mathB: '\\left[ 2; \\, 3 \\right]',
         solutionBuilder: () => (
@@ -6620,7 +6620,7 @@ export const section13Tasks = [
       },
       {
         id: 98,
-        title: 'Задача 98 (Показательное тригонометрическое уравнение с приведением к однородному)',
+        title: 'Задача 98',
         mathA: '21^{-\\sin x} = 3^{-\\sin x} \\cdot 7^{\\cos x}',
         mathB: '\\left[ -\\frac{3\\pi}{2}; \\, 0 \\right]',
         solutionBuilder: () => (
@@ -6718,7 +6718,7 @@ export const section13Tasks = [
       },
       {
         id: 99,
-        title: 'Задача 99 (Показательно-степенное тригонометрическое уравнение)',
+        title: 'Задача 99',
         mathA: '\\left(1 - \\frac{2}{5}\\cos x\\right)^{6\\sin^2 x + 11\\cos x + 1} = 1',
         mathB: '\\left[ \\frac{\\pi}{2}; \\, 2\\pi \\right]',
         solutionBuilder: () => (
@@ -6829,7 +6829,7 @@ export const section13Tasks = [
       },
       {
         id: 100,
-        title: 'Задача 100 (Сложное тригонометрическое уравнение с разложением на множители)',
+        title: 'Задача 100',
         mathA: '\\cos^2 2x - \\left(\\sin x + 2\\cos^2\\left(x + \\frac{\\pi}{4}\\right)\\right)\\cos 2x + 2\\sin x \\cos^2\\left(x + \\frac{\\pi}{4}\\right) = 0',
         mathB: '\\left[ 2\\pi; \\, \\frac{7\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -6934,7 +6934,7 @@ export const section13Tasks = [
       },
       {
         id: 101,
-        title: 'Задача 101 (Кубическое тригонометрическое уравнение с разложением по схеме Горнера)',
+        title: 'Задача 101',
         mathA: '\\sin^3 x + (1 + \\pi)\\sin^2 x + (\\pi - 2)\\sin x - 2\\pi = 0',
         mathB: '\\left( \\frac{\\pi}{3}; \\, 4\\pi \\right]',
         solutionBuilder: () => (
@@ -7047,7 +7047,7 @@ export const section13Tasks = [
       },
       {
         id: 102,
-        title: 'Задача 102 (Тригонометрическое уравнение высших степеней с группировкой слагаемых)',
+        title: 'Задача 102',
         mathA: '2\\cos^3 x - \\cos^2 x + 2\\cos x - 1 = 0',
         mathB: '\\left[ 2\\pi; \\, \\frac{7\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -7127,7 +7127,7 @@ export const section13Tasks = [
       },
           {
         id: 103,
-        title: 'Задача 103 (Тригонометрическое уравнение с использованием формул приведения и двойного угла)',
+        title: 'Задача 103',
         mathA: '\\cos 2x + \\sqrt{3}\\sin\\left(\\frac{\\pi}{2} + x\\right) + 1 = 0',
         mathB: '\\left[ -3\\pi; \\, -\\frac{3\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -7209,7 +7209,7 @@ export const section13Tasks = [
       },
       {
         id: 104,
-        title: 'Задача 104 (Тригонометрическое уравнение с использованием чётности косинуса и сложным корнем дискриминанта)',
+        title: 'Задача 104',
         mathA: '2\\cos x - 2\\sqrt{3}\\cos(-x) - 4\\sin^2 x = \\sqrt{3} - 4',
         mathB: '\\left[ 2\\pi; \\, \\frac{7\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -7314,7 +7314,7 @@ export const section13Tasks = [
       },
       {
         id: 105,
-        title: 'Задача 105 (Тригонометрическое уравнение высших степеней с группировкой через основное тождество)',
+        title: 'Задача 105',
         mathA: '2\\cos x - \\sqrt{3}\\sin^2 x = 2\\cos^3 x',
         mathB: '\\left[ -\\frac{7\\pi}{2}; \\, -2\\pi \\right]',
         solutionBuilder: () => (
@@ -7394,7 +7394,7 @@ export const section13Tasks = [
       },
       {
         id: 106,
-        title: 'Задача 106 (Тригонометрическое уравнение с разложением на множители)',
+        title: 'Задача 106',
         mathA: '\\sin x \\cdot \\left(\\sin x \\cdot \\cos^{-1} x + \\frac{1}{3}\\right) = \\sqrt{3} \\cdot \\left(\\sin x + \\frac{1}{3}\\cos x\\right)',
         mathB: '\\left[ -2\\pi; \\, \\frac{3\\pi}{2} \\right]',
         solutionBuilder: () => (
@@ -7482,7 +7482,7 @@ export const section13Tasks = [
       },
       {
         id: 107,
-        title: 'Задача 107 (Тригонометрическое уравнение с решением через диофантовы уравнения)',
+        title: 'Задача 107',
         mathA: '\\cos 6x \\cdot \\sin \\frac{5x}{6} = 1',
         mathB: '\\left[ 7; \\, 50 \\right]',
         solutionBuilder: () => (
@@ -7584,7 +7584,7 @@ export const section13Tasks = [
       },
       {
         id: 108,
-        title: 'Задача 108 (Логарифмическо-тригонометрическое уравнение с заменой переменной)',
+        title: 'Задача 108',
         mathA: '\\sin x = \\cos^2 x + \\frac{1}{2}\\log_{\\sqrt{2}}\\left(\\frac{1}{\\sin(\\pi/6)}\\right)',
         mathB: '\\left[ -\\frac{\\pi}{2}; \\, \\pi \\right]',
         solutionBuilder: () => (
@@ -7650,7 +7650,7 @@ export const section13Tasks = [
       },
       {
         id: 109,
-        title: 'Задача 109 (Тригонометрическое уравнение с использованием формулы разности косинусов)',
+        title: 'Задача 109',
         mathA: '\\cos 9x - \\cos 7x = \\sqrt{2}\\sin x',
         mathB: '\\left[ -\\frac{3\\pi}{2}; \\, -\\pi \\right]',
         solutionBuilder: () => (
@@ -7720,7 +7720,7 @@ export const section13Tasks = [
       },
       {
         id: 110,
-        title: 'Задача 110 (Тригонометрическое уравнение с оценкой через неравенство Коши-Буняковского)',
+        title: 'Задача 110',
         mathA: '\\sqrt{3 - \\operatorname{tg}^2\\left(\\frac{3x}{2}\\right)} \\cdot \\sin x - \\cos x = 2',
         mathB: '\\left[ -17; \\, 2 \\right]',
         solutionBuilder: () => (
@@ -7826,7 +7826,7 @@ export const section13Tasks = [
       },
       {
         id: 111,
-        title: 'Задача 111 (Тригонометрическое уравнение с модулями и заменой переменной под корнем)',
+        title: 'Задача 111',
         mathA: '\\left|\\operatorname{ctg}^2 2x + 8\\sqrt{-\\operatorname{ctg} 2x} - 3\\right| = \\left|\\operatorname{ctg}^2 2x - 8\\sqrt{-\\operatorname{ctg} 2x} - 3\\right|',
         mathB: '\\left[ -\\frac{3\\pi}{4}; \\, \\pi \\right]',
         solutionBuilder: () => (
