@@ -9942,7 +9942,7 @@ export const section15Tasks = [
   },
     {
     id: 98,
-    title: "Задача 98 (Дробно-логарифмическое неравенство с тригонометрией)",
+    title: "Задача 98",
     mathA: "\\frac{\\log_{4-x}(x+5) \\cdot \\log_{x+1}(\\log_2 10 - x)}{\\sin x \\cdot \\log_x(2x)} \\le 0",
     mathB: "",
     solutionBuilder: () => (

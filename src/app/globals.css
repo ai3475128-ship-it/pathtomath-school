@@ -50,3 +50,41 @@ body {
 :is(html.dark) ::-webkit-scrollbar-thumb:hover {
   background: #634EE4 !important; /* Подсвечивается ярким фиолетовым только при наведении */
 }
+/* 🚀 ИСПРАВЛЕНО: Вертикальный ползунок с плотным темным фоном дорожки в темной теме — контент больше не просвечивает! */
+::-webkit-scrollbar {
+  width: 10px !important;
+  display: block !important;
+}
+
+/* Дорожка (фон) ползунка */
+::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.5) !important; /* Светлый фон для дня */
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #090514 !important; /* Глубокий темный фон дорожки для ночи */
+  border-left: 1px solid rgba(168, 85, 247, 0.1) !important; /* Тонкая неоновая граница слева */
+}
+
+/* Сам бегунок ползунка */
+::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.7) !important;
+  border-radius: 10px !important;
+  border: 2px solid transparent !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 165, 233, 1) !important;
+}
+
+/* Фиолетовый неон для тёмной темы */
+.dark ::-webkit-scrollbar-thumb {
+  background: #634EE4 !important; /* Фирменный фиолетовый неон */
+  border-radius: 10px !important;
+  border: 2px solid #090514 !important; /* Внутренний отступ, чтобы бегунок смотрелся изящно внутри дорожки */
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #7862f5 !important;
+  box-shadow: 0 0 15px rgba(99, 78, 228, 0.6) !important;
+}

@@ -136,7 +136,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
         return (
           <div key={task.id} className="bg-white/90 dark:bg-[#140e24]/75 backdrop-blur-md p-6 md:p-8 rounded-3xl border border-blue-100/40 dark:border-purple-500/10 shadow-sm">
             
-            {/* ШАПКА ЗАДАЧИ */}
+                        {/* 🚀 ИСПРАВЛЕНО: Кнопка переведена в фиолетовый неон для темной темы, а при ховере отбрасывает глубокое неоновое свечение, сохраняя логику Данилы! */}
             <div className="flex justify-between items-center border-b border-slate-100 dark:border-purple-950/30 pb-2.5 transition-colors duration-500">
               <h4 className="text-base font-black text-sky-600 dark:text-purple-300 tracking-tight transition-colors duration-500">
                 {task.title}
@@ -146,13 +146,14 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
                 onClick={() => handleToggleClick(task.id)}
                 className={`px-4 py-1.5 rounded-xl font-extrabold text-[11px] uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                   isSubTaskSolved
-                    ? 'bg-blue-50 text-blue-500 border border-blue-200 hover:bg-blue-100/50 dark:bg-purple-950/40 dark:text-purple-400 dark:border-purple-500/30'
-                    : 'bg-gradient-to-r from-sky-400 to-blue-500 text-white hover:scale-[1.02] hover:brightness-110'
+                    ? 'bg-blue-50 text-blue-500 border border-blue-200 hover:bg-blue-100/50 dark:bg-purple-950/20 dark:text-purple-300 dark:border-purple-500/40 dark:shadow-[0_0_15px_rgba(168,85,247,0.15)]'
+                    : 'bg-gradient-to-r from-sky-400 to-blue-500 text-white hover:scale-[1.02] hover:brightness-110 dark:from-[#634EE4] dark:to-[#523fd1] dark:shadow-[0_0_15px_rgba(99,78,228,0.4)] dark:hover:shadow-[0_0_25px_rgba(99,78,228,0.65)]'
                 }`}
               >
                 {isSubTaskSolved ? '✓ Решено' : 'Решить'}
               </button>
             </div>
+
 
             {/* ТЕКСТ УСЛОВИЯ */}
             <div className="space-y-3 text-sm md:text-base font-semibold text-slate-800 dark:text-slate-200 leading-relaxed transition-colors duration-500 mt-4">
@@ -189,19 +190,19 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
               </div>
             </div>
 
-            {/* КНОПКА СПОЙЛЕРА */}
             <div className="pt-4">
               <button
                 onClick={() => toggleSolution(task.id)}
-                className={`px-5 py-2.5 text-xs font-black uppercase tracking-wider rounded-xl transition-all duration-500 shadow-sm cursor-pointer ${
+                className={`px-5 py-2.5 text-xs font-black uppercase tracking-wider rounded-xl transition-all duration-300 shadow-sm cursor-pointer border ${
                   isSolutionOpen
-                    ? 'bg-sky-500 text-white shadow-sky-500/20'
-                    : 'bg-gradient-to-r from-blue-50 to-indigo-50/50 text-slate-600 hover:bg-slate-200 dark:from-purple-950/30 dark:text-purple-300'
+                    ? 'bg-sky-500 text-white border-transparent shadow-sky-500/20 dark:bg-[#634EE4] dark:shadow-[0_0_15px_rgba(99,78,228,0.4)]'
+                    : 'bg-sky-50/40 text-sky-600 border-sky-500/20 hover:bg-sky-500 hover:text-white hover:border-transparent hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] dark:bg-[#140e24]/60 dark:border-purple-500/30 dark:text-purple-300 dark:hover:bg-[#634EE4] dark:hover:text-white dark:hover:border-transparent dark:hover:shadow-[0_0_20px_rgba(99,78,228,0.5)]'
                 }`}
               >
                 {isSolutionOpen ? 'Скрыть разбор ▲' : 'Ответ и решение'}
               </button>
             </div>
+
 
             {/* СПОЙЛЕР С РЕШЕНИЕМ */}
             <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
