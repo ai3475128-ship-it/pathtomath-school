@@ -22,3 +22,12 @@ model User {
 }
 
 
+model Video {
+  id          String   @id @default(uuid())
+  title       String   // Название видеолекции
+  description String?  // Краткое описание или таймкоды
+  url         String   // Защищенная ссылка iframe (VK Видео / Kinescope)
+  isPremium   Boolean  @default(true) // true — только Мастер-Группе, false — открытое видео
+  sectionNum  Int      // Номер задания ЕГЭ, к которому привязано (1-19)
+  createdAt   DateTime @default(now())
+}

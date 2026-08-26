@@ -38,26 +38,27 @@ export default function ThemeToggle() {
   if (!isMounted) return <div className="w-18 h-10" />;
 
   return (
+    /* 🚀 ИСПРАВЛЕНО: Полная симметрия! justify-between убран, чтобы внутренние скрытые отступы не ломали геометрию краев */
     <div
       onClick={toggleTheme}
-      className={`w-18 h-10 rounded-xl p-1 flex items-center justify-between cursor-pointer relative border transition-all duration-300 select-none ${
+      className={`w-18 h-10 rounded-xl p-1 flex items-center cursor-pointer relative border transition-all duration-300 select-none ${
         isDark 
           ? 'bg-purple-950/40 border-purple-500/30' 
           : 'bg-slate-100 border-blue-100'
       }`}
       title={isDark ? 'Включить светлую тему' : 'Включить темную тему'}
     >
-      {/* 🏃‍♂️ БЕГАЮЩИЙ ПОЛЗУНОК С ИСПРАВЛЕННЫМИ ОКАНТОВКАМИ ДЛЯ ОБЕИХ ТЕМ */}
+      {/* 🏃‍♂️ ЖЕЛЕЗНЫЙ БЕГУНОК: Никаких сложных шагов перевода! Четкая фиксация left-1 (день) и right-1 (ночь) дает идеальные 4 пикселя отступа с обоих концов */}
       <div
-        className={`w-8 h-8 rounded-lg absolute top-1 left-1 transition-all duration-300 ease-in-out z-10 ${
+        className={`w-8 h-8 rounded-lg absolute transition-all duration-300 ease-in-out z-10 ${
           isDark 
-            ? 'translate-x-8 bg-purple-900/50 border border-white/40 shadow-[0_0_10px_rgba(168,85,247,0.15)]' 
-            : 'translate-x-0 bg-white shadow-md border border-blue-100/70'
+            ? 'left-[36px] bg-purple-900/50 border border-white/40 shadow-[0_0_10px_rgba(168,85,247,0.15)]' 
+            : 'left-1 bg-white shadow-md border border-blue-100/70'
         }`}
       />
 
-      {/* ☀️ ИКОНКА СОЛНЦА (ЧИСТО СЕРЕБРИСТАЯ) */}
-      <div className="z-20 w-8 h-8 flex items-center justify-center pl-0.5">
+      {/* ☀️ ИКОНКА СОЛНЦА: Абсолютно спозиционирована на левой половине тумблера */}
+      <div className="z-20 w-8 h-8 flex items-center justify-center absolute left-1 pointer-events-none">
         <svg
           xmlns="http://w3.org"
           fill="none"
@@ -74,8 +75,8 @@ export default function ThemeToggle() {
         </svg>
       </div>
 
-      {/* 🌙 ИКОНКА ЛУНЫ (ТОЖЕ ЧИСТО СЕРЕБРИСТАЯ) */}
-      <div className="z-20 w-8 h-8 flex items-center justify-center pr-0.5">
+      {/* 🌙 ИКОНКА ЛУНЫ: Абсолютно спозиционирована на правой половине тумблера */}
+      <div className="z-20 w-8 h-8 flex items-center justify-center absolute right-1 pointer-events-none">
         <svg
           xmlns="http://w3.org"
           fill="none"

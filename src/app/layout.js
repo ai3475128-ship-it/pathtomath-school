@@ -75,7 +75,7 @@ if (sessionCookie && (sessionCookie.includes('ai3475128') || JSON.stringify(sess
         
         {/* Шапка сайта с жесткой разметкой */}
         <header className="w-full sticky top-0 z-50 h-20 transition-all duration-300 bg-white border-b border-slate-200/60 dark:bg-[#03000a] dark:border-purple-950/40">
-          <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+          <div className="w-full max-w-[94%] mx-auto px-2 h-full flex items-center justify-between">
 {/* 🚀 РЕБРЕНДИНГ: Сова увеличена до h-26, текст до h-13. Отступ убран (-ml-2), сова прижата вплотную, попиксельная фиксация сохранена! */}
 <Link href="/" scroll={false} className="flex items-center group select-none py-1 h-full bg-transparent transition-all duration-300">
   
@@ -112,6 +112,7 @@ if (sessionCookie && (sessionCookie.includes('ai3475128') || JSON.stringify(sess
   </div>
 
 </Link>
+
 
             {/* ДИНАМИЧЕСКОЕ МЕНЮ С НЕОНОВОЙ ПОДСВЕТКОЙ: Передаем статус и живую роль из базы */}
             <MenuLinks hasUser={hasUser} userRole={userRole} />

@@ -10,10 +10,12 @@ export default function MenuLinks({ hasUser, userRole }) {
   // 🚀 ИСПРАВЛЕНО: Добавили роль TEACHER в условие, чтобы у преподавателя тоже горели вкладки
   const isPremiumOrAdminOrTeacher = userRole === 'PREMIUM_STUDENT' || userRole === 'ADMIN' || userRole === 'TEACHER';
 
+  // 🚀 ИСПРАВЛЕНО: Вкладка "Видеоуроки" добавлена в базовый массив. Она доступна всем (бесплатные увидят прогревающие замки 🔒)
   const navLinks = [
     { href: '/', label: 'Главная' },
     { href: '/teachers', label: 'Преподаватели' },
     { href: '/math-profile', label: 'Банк заданий' },
+    { href: '/videos', label: 'Видеоуроки' },
   ];
 
   if (hasUser && isPremiumOrAdminOrTeacher) {
@@ -26,7 +28,8 @@ export default function MenuLinks({ hasUser, userRole }) {
   return (
     <nav className="hidden md:flex items-center gap-8 h-full">
       {navLinks.map((link) => {
-        const isActive = pathname === link.href;
+        // Проверяем активность вкладки (работает и для подстраниц, если ссылка совпадает)
+        const isActive = pathname === link.href || pathname.startsWith(link.href + '/');
 
         return (
           <div key={link.href} className="relative flex flex-col items-center justify-center h-full">

@@ -77,3 +77,26 @@ export async function initProgressTable() {
 
   await db.close();
 }
+
+async function bootstrapVideoTable() {
+  try {
+    // Выполняем прямой чистый SQL-запрос, который создаст таблицу, если её физически не существует в dev.db
+    await prisma.$executeRawUnsafe(`
+      CREATE TABLE IF NOT EXISTS "Video" (
+        "id" TEXT NOT NULL PRIMARY KEY,
+        "title" TEXT NOT NULL,
+        "description" TEXT,
+        "url" TEXT NOT NULL,
+        "isPremium" BOOLEAN NOT NULL DEFAULT 1,
+        "sectionNum" INTEGER NOT NULL,
+        "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+    console.log("▲ [AZIMUT] Таблица защищенных видеоуроков успешно синхронизирована с базой данных!");
+  } catch (error) {
+    console.error("❌ Ошибка авто-создания таблицы видео:", error);
+  }
+}
+
+// Запускаем проверку при старте сервера
+bootstrapVideoTable();
