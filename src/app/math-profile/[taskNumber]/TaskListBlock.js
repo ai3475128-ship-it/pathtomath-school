@@ -3,8 +3,40 @@
 import React, { useState, useEffect } from 'react';
 import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 
+// 🚀 ПОДГОТОВИТЕЛЬНЫЕ ЗАДАЧИ ЕГЭ: Чистые явные импорты секций АЗИМУТ
+import { egeIntro14Tasks } from '../sections-ege-intro/ege-intro-14';
+import { egeIntro17Tasks } from '../sections-ege-intro/ege-intro-17';
+import { egeIntro18Tasks } from '../sections-ege-intro/ege-intro-18';
+import { egeIntro19Tasks } from '../sections-ege-intro/ege-intro-19';
+
+// 🏆 БАНК ОЛИМПИАДНЫХ ЗАДАЧ (14 разделов): Чистые явные импорты секций АЗИМУТ
+import { olympiadMain01Tasks } from '../sections-olympiad-main/olympiad-main-01';
+import { olympiadMain02Tasks } from '../sections-olympiad-main/olympiad-main-02';
+import { olympiadMain03Tasks } from '../sections-olympiad-main/olympiad-main-03';
+import { olympiadMain04Tasks } from '../sections-olympiad-main/olympiad-main-04';
+import { olympiadMain05Tasks } from '../sections-olympiad-main/olympiad-main-05';
+import { olympiadMain06Tasks } from '../sections-olympiad-main/olympiad-main-06';
+import { olympiadMain07Tasks } from '../sections-olympiad-main/olympiad-main-07';
+import { olympiadMain08Tasks } from '../sections-olympiad-main/olympiad-main-08';
+import { olympiadMain09Tasks } from '../sections-olympiad-main/olympiad-main-09';
+import { olympiadMain10Tasks } from '../sections-olympiad-main/olympiad-main-10';
+import { olympiadMain11Tasks } from '../sections-olympiad-main/olympiad-main-11';
+import { olympiadMain12Tasks } from '../sections-olympiad-main/olympiad-main-12';
+import { olympiadMain13Tasks } from '../sections-olympiad-main/olympiad-main-13';
+import { olympiadMain14Tasks } from '../sections-olympiad-main/olympiad-main-14';
+
+// 🧠 ПОДГОТОВИТЕЛЬНЫЕ ОЛИМПИАДНЫЕ ЗАДАЧИ (7 разделов): Чистые явные импорты секций АЗИМУТ
+import { olympiadIntro01Tasks } from '../sections-olympiad-intro/olympiad-intro-01';
+import { olympiadIntro02Tasks } from '../sections-olympiad-intro/olympiad-intro-02';
+import { olympiadIntro03Tasks } from '../sections-olympiad-intro/olympiad-intro-03';
+import { olympiadIntro04Tasks } from '../sections-olympiad-intro/olympiad-intro-04';
+import { olympiadIntro05Tasks } from '../sections-olympiad-intro/olympiad-intro-05';
+import { olympiadIntro06Tasks } from '../sections-olympiad-intro/olympiad-intro-06';
+import { olympiadIntro07Tasks } from '../sections-olympiad-intro/olympiad-intro-07';
+
+// 📐 СТАНДАРТНЫЙ БАНК ЗАДАЧ ЕГЭ ДАНИЛЫ: Оригинальные 19 импортов
 import { section1Tasks } from './sectoin1';
 import { section2Tasks } from './sectoin2';
 import { section3Tasks } from './sectoin3';
@@ -25,6 +57,24 @@ import { section17Tasks } from './sectoin17';
 import { section18Tasks } from './sectoin18';
 import { section19Tasks } from './sectoin19';
 
+const egeIntroMap = {
+  '14-intro': egeIntro14Tasks, '17-intro': egeIntro17Tasks, '18-intro': egeIntro18Tasks, '19-intro': egeIntro19Tasks
+};
+
+const olympiadMainMap = {
+  'olympiad-1-main': olympiadMain01Tasks, 'olympiad-2-main': olympiadMain02Tasks, 'olympiad-3-main': olympiadMain03Tasks,
+  'olympiad-4-main': olympiadMain04Tasks, 'olympiad-5-main': olympiadMain05Tasks, 'olympiad-6-main': olympiadMain06Tasks,
+  'olympiad-7-main': olympiadMain07Tasks, 'olympiad-8-main': olympiadMain08Tasks, 'olympiad-9-main': olympiadMain09Tasks,
+  'olympiad-10-main': olympiadMain10Tasks, 'olympiad-11-main': olympiadMain11Tasks, 'olympiad-12-main': olympiadMain12Tasks,
+  'olympiad-13-main': olympiadMain13Tasks, 'olympiad-14-main': olympiadMain14Tasks
+};
+
+const olympiadIntroMap = {
+  'olympiad-1-intro': olympiadIntro01Tasks, 'olympiad-2-intro': olympiadIntro02Tasks, 'olympiad-3-intro': olympiadIntro03Tasks,
+  'olympiad-4-intro': olympiadIntro04Tasks, 'olympiad-5-intro': olympiadIntro05Tasks, 'olympiad-6-intro': olympiadIntro06Tasks,
+  'olympiad-7-intro': olympiadIntro07Tasks
+};
+
 const tasksRawData = {
   1: section1Tasks, 2: section2Tasks, 3: section3Tasks, 4: section4Tasks, 5: section5Tasks,
   6: section6Tasks, 7: section7Tasks, 8: section8Tasks, 9: section9Tasks, 10: section10Tasks,
@@ -35,8 +85,11 @@ const tasksRawData = {
 function TaskSolutionCard({ solutionBuilder, isChangingTheme }) {
   return solutionBuilder();
 }
-
 export default React.memo(function TaskListBlock({ taskNumberInt }) {
+  const params = useParams();
+  const taskNumber = params?.taskNumber; // Берем ID страницы из URL для интро и олимпиад
+  const router = useRouter();
+
   const [solvedSubTasks, setSolvedSubTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isChangingTheme, setIsChangingTheme] = useState(false);
@@ -71,7 +124,6 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
   const handleToggleClick = async (taskId) => {
     const num = parseInt(taskNumberInt) || 0;
     const computedSubTaskId = num * 100 + parseInt(taskId);
-
     const isRemoving = solvedSubTasks.includes(computedSubTaskId);
 
     // Оптимистично переключаем состояние кнопки на фронтенде мгновенно
@@ -85,9 +137,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ subTaskId: computedSubTaskId }),
       });
-
       const result = await response.json();
-
       if (!response.ok || !result.success) {
         // Если ошибка — откатываем кнопку назад
         setSolvedSubTasks((prev) =>
@@ -114,32 +164,47 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
       </div>
     );
   }
+  // 🚀 ГЛОБАЛЬНЫЙ УМНЫЙ МАРШРУТИЗАТОР КОНТЕНТА АЗИМУТ
+  let currentTasks = [];
+  let isCustomModule = false;
 
-  const currentTasks = tasksRawData[taskNumberInt] || [];
+  if (taskNumber && taskNumber.includes('-intro') && !taskNumber.includes('olympiad')) {
+    currentTasks = egeIntroMap[taskNumber] || [];
+    isCustomModule = true;
+  } else if (taskNumber && taskNumber.includes('olympiad-') && taskNumber.includes('-main')) {
+    currentTasks = olympiadMainMap[taskNumber] || [];
+    isCustomModule = true;
+  } else if (taskNumber && taskNumber.includes('olympiad-') && taskNumber.includes('-intro')) {
+    currentTasks = olympiadIntroMap[taskNumber] || [];
+    isCustomModule = true;
+  } else {
+    const taskNumberIntClean = parseInt(taskNumber, 10);
+    currentTasks = tasksRawData[taskNumberIntClean] || [];
+  }
 
   if (currentTasks.length === 0) {
     return (
       <div className="bg-white/40 backdrop-blur-md p-8 rounded-2xl border border-blue-100/40 text-center text-sm font-medium text-slate-400 dark:text-purple-400">
-        Материалы для Задания №{taskNumberInt} находятся в процессе загрузки.
+        Материалы для Задания находятся в процессе загрузки.
       </div>
     );
   }
+
   return (
     <div className="space-y-6 relative">
       {currentTasks.map((task) => {
-        // Вычисляем сквозной ID подзадачи прямо во время прохода по циклу
-        const num = parseInt(taskNumberInt) || 0;
+        const num = parseInt(taskNumber, 10) || parseInt(taskNumberInt, 10) || 0;
         const computedSubTaskId = num * 100 + parseInt(task.id);
         const isSubTaskSolved = solvedSubTasks.includes(computedSubTaskId);
         const isSolutionOpen = isOpen[task.id];
 
         return (
-          <div key={task.id} className="bg-white/90 dark:bg-[#140e24]/75 backdrop-blur-md p-6 md:p-8 rounded-3xl border border-blue-100/40 dark:border-purple-500/10 shadow-sm">
+                    /* 🚀 ИСПРАВЛЕНО: Карточка в тёмной теме сделана чуть более плотной для сочного контраста с новым графитовым фоном */
+          <div key={task.id} className="bg-white dark:bg-[#17102b] backdrop-blur-md p-6 md:p-8 rounded-3xl border border-blue-100/40 dark:border-purple-500/20 shadow-sm transition-all duration-300">
             
-                        {/* 🚀 ИСПРАВЛЕНО: Кнопка переведена в фиолетовый неон для темной темы, а при ховере отбрасывает глубокое неоновое свечение, сохраняя логику Данилы! */}
             <div className="flex justify-between items-center border-b border-slate-100 dark:border-purple-950/30 pb-2.5 transition-colors duration-500">
               <h4 className="text-base font-black text-sky-600 dark:text-purple-300 tracking-tight transition-colors duration-500">
-                {task.title}
+                {task.title || `Задача ${task.id}`}
               </h4>
               <button
                 type="button"
@@ -154,42 +219,71 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
               </button>
             </div>
 
-
-            {/* ТЕКСТ УСЛОВИЯ */}
-            <div className="space-y-3 text-sm md:text-base font-semibold text-slate-800 dark:text-slate-200 leading-relaxed transition-colors duration-500 mt-4">
+            {/* 🚀 ИСПРАВЛЕНО: Текст изменен на font-normal (не жирный). Формулы mathA железно центрируются по центру через BlockMath! */}
+            <div className="space-y-3 text-sm md:text-base font-normal text-slate-800 dark:text-slate-200 leading-relaxed transition-colors duration-500 mt-4">
               {task.textBefore && (
                 <p className="text-base font-normal text-slate-800 dark:text-slate-200">
                   {task.textBefore}
                 </p>
               )}
               
-              <p>
-                {num === 13 && 'а) Решите уравнение:'}
-                {num === 14 && 'а) Докажите, что:'}
-                {num === 17 && 'а) Докажите, что:'}
-                {num === 15 && ' Решите неравенство:'}
-              </p>
+              {/* Автоматические подписи разделов */}
+              {!isCustomModule ? (
+                <p className="font-semibold">
+                  {num === 13 && 'а) Решите уравнение:'}
+                  {num === 14 && 'а) Докажите, что:'}
+                  {num === 17 && 'а) Докажите, что:'}
+                  {num === 15 && ' Решите неравенство:'}
+                </p>
+              ) : (
+                <p className="text-xs font-black text-slate-400 uppercase tracking-wider mb-1">Решите задачу:</p>
+              )}
 
-              <div className="transition-opacity duration-150">
-                <BlockMath math={task.mathA} />
+              <div className="transition-opacity duration-150 space-y-4">
+                {/* 1️⃣ ЗОНА ЧИСТОГО ТЕКСТА: Обычный аккуратный шрифт font-normal */}
+                {task.conditionText && (
+                  <p className="text-base font-normal text-slate-800 dark:text-slate-100 leading-relaxed">
+                    {task.conditionText}
+                  </p>
+                )}
+
+                {/* 2️⃣ ЗОНА МАТЕМАТИКИ: Любое уравнение, неравенство или пример ВСЕГДА встанут строго по центру экрана */}
+                {task.mathA && (
+                  <div className="py-2 flex justify-center w-full">
+                    {isCustomModule && !task.conditionText && !task.mathA.includes('\\') && !task.mathA.includes('^') ? (
+                      <p className="text-base font-normal text-slate-800 dark:text-slate-100 leading-relaxed text-left w-full">
+                        {task.mathA}
+                      </p>
+                    ) : (
+                      <BlockMath math={task.mathA} />
+                    )}
+                  </div>
+                )}
+                
                 {task.textAfter && (
                   <p className="mt-2 text-base font-normal text-slate-800 dark:text-slate-200">
                     {task.textAfter}
                   </p>
                 )}
-              </div>
 
-              <p className="mt-4 mb-2">
-                {num === 13 && 'б) Найдите корни этого уравнения, принадлежащие отркзку:'}
-                {num === 14 && 'б) Найдите:'}
-                {num === 17 && 'б) Найдите:'}
-              </p>
 
-              <div className="transition-opacity duration-150">
-                <BlockMath math={task.mathB} />
+                {/* 🎯 РОДНОЙ ВЫВОД ПУНКТА Б ДЛЯ БОЕВОГО ЕГЭ С ОРИГИНАЛЬНЫМ ТЕКСТОМ ДАНИЛЫ */}
+                {!isCustomModule && task.mathB && (
+                  <>
+                    <p className="mt-4 mb-2">
+                      {num === 13 && 'б) Найдите корни этого уравнения, принадлежащие отркзку:'}
+                      {num === 14 && 'б) Найдите:'}
+                      {num === 17 && 'б) Найдите:'}
+                    </p>
+                    <div className="transition-opacity duration-150">
+                      <BlockMath math={task.mathB} />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
+            {/* 🚀 РОДНАЯ КНОПКА СТАРЫХ ЗАДАЧ: Лазурные и фиолетовые цвета Данилы со световым ховером восстановлены пиксель в пиксель! */}
             <div className="pt-4">
               <button
                 onClick={() => toggleSolution(task.id)}
@@ -203,8 +297,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
               </button>
             </div>
 
-
-            {/* СПОЙЛЕР С РЕШЕНИЕМ */}
+            {/* 🔮 СПОЙЛЕР С РЕШЕНИЕМ */}
             <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
               isSolutionOpen ? 'max-h-[3000px] opacity-100 mt-4' : 'max-h-0 opacity-0 pointer-events-none'
             }`}>
