@@ -7,17 +7,21 @@ import { usePathname } from 'next/navigation';
 export default function MenuLinks({ hasUser, userRole }) {
   const pathname = usePathname();
 
-  // 🚀 ИСПРАВЛЕНО: Добавили роль TEACHER в условие, чтобы у преподавателя тоже горели вкладки
   const isPremiumOrAdminOrTeacher = userRole === 'PREMIUM_STUDENT' || userRole === 'ADMIN' || userRole === 'TEACHER';
 
-  // 🚀 ИСПРАВЛЕНО: Вкладка "Видеоуроки" добавлена в базовый массив. Она доступна всем (бесплатные увидят прогревающие замки 🔒)
+  // 🚀 ИСПРАВЛЕНО: Из базового массива убрана вкладка "Видеоуроки" — теперь гости её вообще не увидят
   const navLinks = [
     { href: '/', label: 'Главная' },
     { href: '/teachers', label: 'Преподаватели' },
     { href: '/math-profile', label: 'Банк заданий' },
-    { href: '/videos', label: 'Видеоуроки' },
   ];
 
+  // 🚀 ИСПРАВЛЕНО: Вкладка "Видеоуроки" подмешивается в меню ТОЛЬКО для зарегистрированных пользователей сайта
+  if (hasUser) {
+    navLinks.push({ href: '/videos', label: 'Видеоуроки' });
+  }
+
+  // Родная логика Данилы для Премиум, Админов и Учителей остаётся в идеале
   if (hasUser && isPremiumOrAdminOrTeacher) {
     navLinks.push(
       { href: '/homeworks', label: 'Домашние задания' },
@@ -28,7 +32,7 @@ export default function MenuLinks({ hasUser, userRole }) {
   return (
     <nav className="hidden md:flex items-center gap-8 h-full">
       {navLinks.map((link) => {
-        // Проверяем активность вкладки (работает и для подстраниц, если ссылка совпадает)
+        // Проверяем активность вкладки
         const isActive = pathname === link.href || pathname.startsWith(link.href + '/');
 
         return (

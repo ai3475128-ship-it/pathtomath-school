@@ -218,16 +218,9 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
                 {isSubTaskSolved ? '✓ Решено' : 'Решить'}
               </button>
             </div>
-
-            {/* 🚀 ИСПРАВЛЕНО: Текст изменен на font-normal (не жирный). Формулы mathA железно центрируются по центру через BlockMath! */}
             <div className="space-y-3 text-sm md:text-base font-normal text-slate-800 dark:text-slate-200 leading-relaxed transition-colors duration-500 mt-4">
-              {task.textBefore && (
-                <p className="text-base font-normal text-slate-800 dark:text-slate-200">
-                  {task.textBefore}
-                </p>
-              )}
               
-              {/* Автоматические подписи разделов */}
+              {/* 1️⃣ СНАЧАЛА ВЫВОДИМ АВТОМАТИЧЕСКИЕ ПОДПИСИ РАЗДЕЛОВ */}
               {!isCustomModule ? (
                 <p className="font-semibold">
                   {num === 13 && 'а) Решите уравнение:'}
@@ -239,15 +232,24 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
                 <p className="text-xs font-black text-slate-400 uppercase tracking-wider mb-1">Решите задачу:</p>
               )}
 
+              {/* 2️⃣ ТЕКСТ BEFORE (ЕСЛИ ОН ЕСТЬ У ДАНИЛЫ) */}
+              {task.textBefore && (
+                <p className="text-base font-normal text-slate-800 dark:text-slate-200">
+                  {task.textBefore}
+                </p>
+              )}
+
+              {/* 3️⃣ ЗАТЕМ ВЫВОДИМ САМИ УСЛОВИЯ (ТЕКСТ И МАТЕМАТИКУ) */}
               <div className="transition-opacity duration-150 space-y-4">
-                {/* 1️⃣ ЗОНА ЧИСТОГО ТЕКСТА: Обычный аккуратный шрифт font-normal */}
+                
+                {/* ЗОНА ЧИСТОГО ТЕКСТА */}
                 {task.conditionText && (
                   <p className="text-base font-normal text-slate-800 dark:text-slate-100 leading-relaxed">
                     {task.conditionText}
                   </p>
                 )}
 
-                {/* 2️⃣ ЗОНА МАТЕМАТИКИ: Любое уравнение, неравенство или пример ВСЕГДА встанут строго по центру экрана */}
+                {/* ЗОНА МАТЕМАТИКИ */}
                 {task.mathA && (
                   <div className="py-2 flex justify-center w-full">
                     {isCustomModule && !task.conditionText && !task.mathA.includes('\\') && !task.mathA.includes('^') ? (
@@ -259,6 +261,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
                     )}
                   </div>
                 )}
+
                 
                 {task.textAfter && (
                   <p className="mt-2 text-base font-normal text-slate-800 dark:text-slate-200">
