@@ -1667,7 +1667,7 @@ export const olympiadIntro02Tasks = [
   },
 
 
-    {
+  {
     id: 29,
     title: (
       <span>
@@ -1677,7 +1677,9 @@ export const olympiadIntro02Tasks = [
     textBefore: (
       <span>
         Решите в натуральных числах уравнение:
-        <BlockMath math={`n! - 4n^2 + 18 = m^2 + 4nm - 20m`} />
+        <span className="block text-center my-2">
+          <InlineMath math={`n! - 4n^2 + 18 = m^2 + 4nm - 20m`} />
+        </span>
       </span>
     ),
     mathA: '',
@@ -1705,7 +1707,7 @@ export const olympiadIntro02Tasks = [
             Исследуем последнюю цифру полученного выражения. При <InlineMath math={`n \\ge 5`} /> значение факториала <InlineMath math={`n!`} /> нацело делится на 10 и оканчивается на 0. Слагаемое <InlineMath math={`40n`} /> также всегда оканчивается на 0.
           </div>
           <div>
-            Следовательно, при всех <InlineMath math={`n \\ge 5`} /> правая часть уравнения <InlineMath math={`n! - 40n + 118`} /> гарантированно оканчивается на цифру <b>8</b>.
+            Следовательно, при всех <InlineMath math={`n \\ge 5`} /> правая часть уравнения <InlineMath math={`n! - 40n + 118`} /> гарантированно оканчивается на цифру <span className="font-bold text-slate-900 dark:text-white">8</span>.
           </div>
           <div>
             Поскольку ни один точный квадрат целого числа не может оканчиваться на цифры 2, 3, 7 или 8, исходное уравнение не имеет решений при всех <InlineMath math={`n \\ge 5`} />.
@@ -1738,6 +1740,7 @@ export const olympiadIntro02Tasks = [
       </div>
     )
   },
+
 
 
   {
