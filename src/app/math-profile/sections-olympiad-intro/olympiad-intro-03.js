@@ -2148,6 +2148,75 @@ export const olympiadIntro03Tasks = [
     )
   },
 
+    {
+    id: 30,
+    title: (
+      <span>
+        Задача 30 (Группировка слагаемых)
+      </span>
+    ),
+    textBefore: (
+      <span>
+        Про вещественные числа <InlineMath math={`a, \\ b`} /> и <InlineMath math={`c`} /> известно, что <InlineMath math={`abc + a + b + c = 10`} /> и <InlineMath math={`ab + bc + ac = 9`} />. Чему равно значение выражения <InlineMath math={`(a + 1)(b + 1)(c + 1)`} />?
+      </span>
+    ),
+    mathA: '',
+    textAfter: '',
+    mathB: '',
+    solutionBuilder: () => (
+      <span className="block space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
+        <span className="font-bold text-slate-800 dark:text-slate-100 block">Решение.</span>
+        
+        <span className="block">
+          Сложим почленно два уравнения, заданных по условию задачи:
+          <span className="flex justify-center my-3">
+            <InlineMath math={`(abc + a + b + c) + (ab + bc + ac) = 10 + 9`} />
+          </span>
+          <span className="flex justify-center my-3">
+            <InlineMath math={`abc + ab + bc + ac + a + b + c = 19`} />
+          </span>
+          Прибавим к обеим частям полученного равенства единицу:
+          <span className="flex justify-center my-3">
+            <InlineMath math={`abc + ab + bc + ac + a + b + c + 1 = 20`} />
+          </span>
+        </span>
+
+        <span className="block border-t border-slate-200/40 pt-2">
+          Выполним последовательную группировку слагаемых в левой части уравнения:
+          <span className="flex justify-center my-3">
+            <InlineMath math={`ab(c + 1) + b(c + 1) + a(c + 1) + 1(c + 1) = 20`} />
+          </span>
+          Вынесем общий многочлен <InlineMath math={`(c + 1)`} /> за скобки:
+          <span className="flex justify-center my-3">
+            <InlineMath math={`(c + 1)(ab + b + a + 1) = 20`} />
+          </span>
+          Разложим вторую скобку по аналогичному принципу:
+          <span className="flex justify-center my-3">
+            <InlineMath math={`(c + 1)\\bigl(b(a + 1) + 1(a + 1)\\bigr) = 20`} />
+          </span>
+          В результате получаем искомое выражение:
+          <span className="flex justify-center my-3">
+            <InlineMath math={`(a + 1)(b + 1)(c + 1) = 20`} />
+          </span>
+        </span>
+
+        <span className="block border-t border-slate-200/40 pt-2">
+          <span className="font-semibold text-amber-600 block">Ответ: 20.</span>
+        </span>
+
+        {/* Голубая карточка-заметка в самом конце разбора */}
+        <span className="block p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm mt-4">
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">💡 Олимпиадный маркер</span>
+          Полезно запомнить базовое тождество:
+          <span className="flex justify-center my-2 font-medium">
+            <InlineMath math={`(a + 1)(b + 1)(c + 1) = abc + (ab + bc + ca) + (a + b + c) + 1`} />
+          </span>
+          Если в условии задачи одновременно даны сумма чисел, их попарные произведения и общее произведение — это явный маркер на использование этой структуры через искусственное добавление или вычитание единицы.
+        </span>
+      </span>
+    )
+  },
+
 
   
 
