@@ -36,7 +36,7 @@ export const olympiadIntro02Tasks = [
           <p>
             Остаток 2 означает, что число <InlineMath math={`2^{50}`} /> будет иметь такую же последнюю цифру, как и число <InlineMath math={`2^2`} />. Следовательно, последней цифрой является 4.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: 4.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 4.</p>
         </div>
       </div>
     )
@@ -141,7 +141,7 @@ export const olympiadIntro02Tasks = [
               <InlineMath math={`\\begin{cases} 2b - 5a = 9 \\\\ 2b + 5a = 19 \\end{cases} \\implies 4b = 28 \\implies b = 7, \\ a = 1`} />. Тогда <InlineMath math={`12n + 1 = 1^2 = 1 \\implies n = 0 \\notin \\mathbb{N}`} />.
             </li>
           </ul>
-          <p className="font-semibold text-amber-600">Ответ: (а) n = 6; (b) n = 24.</p>
+          <p className="font-semibold text-emerald-600">Ответ: (а) n = 6; (b) n = 24.</p>
         </div>
       </div>
     )
@@ -181,7 +181,7 @@ export const olympiadIntro02Tasks = [
             Подставим полученные значения в исходное уравнение: <InlineMath math={`251 \\cdot 8 = 2008`} />. 
             Равенство выполняется, следовательно, число 251 является искомым.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: 251.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 251.</p>
         </div>
       </div>
     )
@@ -221,7 +221,7 @@ export const olympiadIntro02Tasks = [
           <BlockMath math={`k_1 = \\dfrac{424}{53} = 8 \\text{ (автобусов в лес)}`} />
           <BlockMath math={`k_2 = \\dfrac{477}{53} = 9 \\text{ (автобусов на озеро)}`} />
           <BlockMath math={`K_{\\text{всего}} = 8 + 9 = 17 \\text{ (автобусов)}`} />
-          <p className="font-semibold text-amber-600">Ответ: было выделено 17 автобусов, по 53 пассажира в каждом.</p>
+          <p className="font-semibold text-emerald-600">Ответ: было выделено 17 автобусов, по 53 пассажира в каждом.</p>
         </div>
       </div>
     )
@@ -268,7 +268,7 @@ export const olympiadIntro02Tasks = [
           <p>
             Пара решений <InlineMath math={`x = 15, \\ y = 5`} /> полностью удовлетворяет ограничениям системы. Второй возможный остаток <InlineMath math={`y = 16`} /> даёт отрицательный <InlineMath math={`x = -4`} />.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: 5 стаканов кофе.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 5 стаканов кофе.</p>
         </div>
       </div>
     )
@@ -311,7 +311,7 @@ export const olympiadIntro02Tasks = [
           <BlockMath math={`(-1)^{216} = 1, \\quad (-1)^{36} = 1, \\quad (-1)^6 = 1`} />
           <p>Подставим эти значения в выражение для остатка:</p>
           <BlockMath math={`R = P(-1) = 1 + 1 + 1 - 6 = 3 - 6 = -3`} />
-          <p className="font-semibold text-amber-600">Ответ: -3.</p>
+          <p className="font-semibold text-emerald-600">Ответ: -3.</p>
         </div>
       </div>
     )
@@ -355,7 +355,7 @@ export const olympiadIntro02Tasks = [
           <p>
             В результате всех делений получили то же самое трёхзначное число, которое было записано изначально.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: получили исходное трёхзначное число.</p>
+          <p className="font-semibold text-emerald-600">Ответ: получили исходное трёхзначное число.</p>
         </div>
       </div>
     )
@@ -480,7 +480,7 @@ export const olympiadIntro02Tasks = [
           <div className="pt-1">
             Для каждого из трёх значений существуют корректные пятизначные остатки <InlineMath math={`x`} /> , удовлетворяющие условию разрядности.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: 618228, 618237, 618246.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 618228, 618237, 618246.</div>
         </div>
       </div>
     )
@@ -520,7 +520,7 @@ export const olympiadIntro02Tasks = [
             По условию задачи <InlineMath math={`\\text{НОД}(m, n) = 1`} />. Подставим это значение для нахождения максимума:
           </div>
           <BlockMath math={`g \\mid (2017^2 - 1) \\cdot 1 \\implies g_{\\text{max}} = 2017^2 - 1`} />
-          <div className="font-semibold text-amber-600">Ответ: 2017² − 1.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 2017² − 1.</div>
         </div>
       </div>
     )
@@ -562,7 +562,7 @@ export const olympiadIntro02Tasks = [
           <BlockMath math={`28 \\cdot 1 + 30 \\cdot 4 + 31 \\cdot 7 = 28 + 120 + 217`} />
           <BlockMath math={`28 + 120 + 217 = 148 + 217 = 365`} />
           <div>Равенство выполняется тождественно, следовательно, искомые натуральные числа существуют.</div>
-          <div className="font-semibold text-amber-600">Ответ: да, найдутся (например, x = 1, y = 4, z = 7).</div>
+          <div className="font-semibold text-emerald-600">Ответ: да, найдутся (например, x = 1, y = 4, z = 7).</div>
         </div>
       </div>
     )
@@ -634,7 +634,7 @@ export const olympiadIntro02Tasks = [
           <div>
             В десятичной записи полученного полного квадрата <InlineMath math={`20187049`} /> на первых позициях действительно содержится непрерывная последовательность цифр «2018».
           </div>
-          <div className="font-semibold text-amber-600">Ответ: да, существует. <InlineMath math={`20187049`} /></div>
+          <div className="font-semibold text-emerald-600">Ответ: да, существует. <InlineMath math={`20187049`} /></div>
         </div>
       </div>
     )
@@ -705,7 +705,7 @@ export const olympiadIntro02Tasks = [
           <div>
             Наибольший общий делитель тринадцати чисел 119 и одного числа 476 равен в точности 119, так как <InlineMath math={`\\text{НОД}(119, 476) = 119`} />. Оценка и пример полностью согласованы.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: 119; пример чисел: тринадцать чисел 119 и одно число 476.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 119; пример чисел: тринадцать чисел 119 и одно число 476.</div>
         </div>
       </div>
     )
@@ -761,7 +761,7 @@ export const olympiadIntro02Tasks = [
           <div>Вычислим итоговое значение наименьшего общего кратного:</div>
           <BlockMath math={`\\text{НОК}(b, c) = 2^{\\max(v_2(b), v_2(c))} \\cdot 3^{\\max(v_3(b), v_3(c))} \\cdot 5^{\\max(v_5(b), v_5(c))}`} />
           <BlockMath math={`\\text{НОК}(b, c) = 2^2 \\cdot 3^3 \\cdot 5^1 = 4 \\cdot 27 \\cdot 5 = 540`} />
-          <div className="font-semibold text-amber-600">Ответ: 540.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 540.</div>
         </div>
       </div>
     )
@@ -824,7 +824,7 @@ export const olympiadIntro02Tasks = [
           <div>
             Следовательно, наше предположение неверно, и предпоследняя цифра обязана быть девяткой.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: да, обязательно.</div>
+          <div className="font-semibold text-emerald-600">Ответ: да, обязательно.</div>
         </div>
       </div>
     )
@@ -901,7 +901,7 @@ export const olympiadIntro02Tasks = [
           <div>
             Знак произведения всех чисел ряда всегда будет положительным.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: положительный (знак плюс).</div>
+          <div className="font-semibold text-emerald-600">Ответ: положительный (знак плюс).</div>
         </div>
       </div>
     )
@@ -961,7 +961,7 @@ export const olympiadIntro02Tasks = [
           <div>
             Следовательно, число <InlineMath math={`5N`} /> обязано оканчиваться на цифру 0, что напрямую доказывает, что исходное натуральное число <InlineMath math={`N`} /> является <b>чётным</b>. Что и требовалось доказать.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -1011,7 +1011,7 @@ export const olympiadIntro02Tasks = [
           <div>
             Если бы разность <InlineMath math={`n - 1`} /> делилась, например, на 7, то дробь сократилась бы гораздо раньше — уже на 6-м шаге, когда числитель стал бы равен 7. Если на 11 — то на 10-м шаге, если на 13 — то на 12-м шаге. 
           </div>
-          <div className="font-semibold text-amber-600">Ответ: нет, верить не стоит.</div>
+          <div className="font-semibold text-emerald-600">Ответ: нет, верить не стоит.</div>
         </div>
       </div>
     )
@@ -1082,7 +1082,7 @@ export const olympiadIntro02Tasks = [
           <div>
             Исключая число 08, так как двузначное число не может начинаться с нуля, получаем ровно два подходящих значения для <InlineMath math={`\\overline{xy}`} />.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: 80, 98.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 80, 98.</div>
         </div>
       </div>
     )
@@ -1208,7 +1208,7 @@ export const olympiadIntro02Tasks = [
           <div>
             Мы доказали, что при <InlineMath math={`q > 3`} /> левая часть неравенства строго больше правой. Следовательно, верхняя граница <InlineMath math={`p \\leq q^2 - q + 1`} /> несовместима с условием кратности <InlineMath math={`p^2 - p - 2q \\geq 2q^2`} />, что полностью исключает существование других решений.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: p = 7, q = 3.</div>
+          <div className="font-semibold text-emerald-600">Ответ: p = 7, q = 3.</div>
 
         </div>
 
@@ -1272,7 +1272,7 @@ export const olympiadIntro02Tasks = [
           <div>
             На основе этого Пров однозначно определил задуманные числа.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: 40 и 57.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 40 и 57.</div>
         </div>
       </div>
     )
@@ -1324,7 +1324,7 @@ export const olympiadIntro02Tasks = [
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
           <div>Просуммируем полученные результаты для нахождения общего количества множителей:</div>
           <BlockMath math={`992 + 496 + 248 + 124 + 62 + 31 + 15 + 7 + 3 + 1 = 1979`} />
-          <div className="font-semibold text-amber-600">Ответ: 1979 двоек.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 1979 двоек.</div>
         </div>
       </div>
     )
@@ -1352,12 +1352,12 @@ export const olympiadIntro02Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Постулат Бертрана</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Постулат Бертрана</span>
           <span>
             Между любым целым числом <InlineMath math={`x > 1`} /> и его удвоением <InlineMath math={`2x`} /> всегда гарантированно найдётся хотя бы одно простое число.
           </span>
           <span className="text-slate-500 dark:text-slate-400 text-[11px] md:text-xs mt-1.5 block">
-            💡 На олимпиадах помогает доказать, что в ряду чисел есть «одинокое» простое число в первой степени, которое мешает извлечь полный корень.
+            На олимпиадах помогает доказать, что в ряду чисел есть «одинокое» простое число в первой степени, которое мешает извлечь полный корень.
           </span>
         </div>
 
@@ -1395,7 +1395,7 @@ export const olympiadIntro02Tasks = [
           <div>
             По основной теореме арифметики, для того чтобы число являлось полным квадратом, все простые множители в его разложении обязаны иметь чётные степени. Наличие множителя <InlineMath math={`p^1`} /> полностью исключает эту возможность. Что и требовалось доказать.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -1423,7 +1423,7 @@ export const olympiadIntro02Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Уравнение Пелля</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Уравнение Пелля</span>
           <div>
             Диофантово уравнение вида <InlineMath math={`x^2 - d \\cdot y^2 = 1`} />, где <InlineMath math={`d`} /> — целое число (не полный квадрат).
           </div>
@@ -1431,7 +1431,7 @@ export const olympiadIntro02Tasks = [
             <b>Что оно даёт на олимпиадах:</b> Если найти хотя бы одно базовое натуральное решение <InlineMath math={`(x_1, y_1)`} />, то из него по цепочке можно автоматически получить <b>бесконечно много</b> новых решений.
           </div>
           <span className="text-slate-500 dark:text-slate-400 text-[11px] md:text-xs mt-1.5 block">
-            ⚙️ Каждая следующая пара чисел вычисляется простым линейным пересчётом на основе предыдущей. Например, для <InlineMath math={`z^2 - 2y^2 = 1`} /> новые решения создаются по правилу: <InlineMath math={`z_{\\text{новое}} = 3z + 4y`} /> и <InlineMath math={`y_{\\text{новое}} = 2z + 3y`} />.
+            Каждая следующая пара чисел вычисляется простым линейным пересчётом на основе предыдущей. Например, для <InlineMath math={`z^2 - 2y^2 = 1`} /> новые решения создаются по правилу: <InlineMath math={`z_{\\text{новое}} = 3z + 4y`} /> и <InlineMath math={`y_{\\text{новое}} = 2z + 3y`} />.
           </span>
         </div>
 
@@ -1476,7 +1476,7 @@ export const olympiadIntro02Tasks = [
           <div>
             Так как в каждой такой паре абсолютно все простые сомножители по построению входят минимум во второй степени, существование бесконечного числа таких пар полностью доказано.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -1535,7 +1535,7 @@ export const olympiadIntro02Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: последняя цифра — 8, остаток от деления на 11 — 3.</div>
+          <div className="font-semibold text-emerald-600">Ответ: последняя цифра — 8, остаток от деления на 11 — 3.</div>
         </div>
       </div>
     )
@@ -1592,7 +1592,7 @@ export const olympiadIntro02Tasks = [
           <div>
             Тогда в обеих группах будет одинаковое количество чисел (<InlineMath math={`2K`} /> элементов), а произведение чисел в каждой группе будет тождественно равно <InlineMath math={`N^K`} />. Условия задачи полностью выполнены.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: да, можно.</div>
+          <div className="font-semibold text-emerald-600">Ответ: да, можно.</div>
         </div>
       </div>
     )
@@ -1660,7 +1660,7 @@ export const olympiadIntro02Tasks = [
           <div>
             Что даёт ровно 16 различных способов представления суммы.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: 16 способов; все варианты задаются формулами x = 136 - 9k, y = 5 + 7k для целых k от 0 до 15.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 16 способов; все варианты задаются формулами x = 136 - 9k, y = 5 + 7k для целых k от 0 до 15.</div>
         </div>
       </div>
     )
@@ -1735,7 +1735,7 @@ export const olympiadIntro02Tasks = [
           <div>
             Оба корня являются натуральными числами, что даёт ровно две пары искомых решений.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: (3, 2), (3, 6).</div>
+          <div className="font-semibold text-emerald-600">Ответ: (3, 2), (3, 6).</div>
         </div>
       </div>
     )
@@ -1814,7 +1814,7 @@ export const olympiadIntro02Tasks = [
             Вычислим итоговый объём исходного большого куба:
           </div>
           <BlockMath math={`V = x^3 = 5^3 = 125`} />
-          <div className="font-semibold text-amber-600">Ответ: 125.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 125.</div>
         </div>
       </div>
     )
@@ -1857,7 +1857,7 @@ export const olympiadIntro02Tasks = [
           <div>
             Поскольку при любом натуральном <InlineMath math={`x \\geq 2`} /> левая часть уравнения всегда строго больше 1, равенство единице невозможно.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: нет, не имеет.</div>
+          <div className="font-semibold text-emerald-600">Ответ: нет, не имеет.</div>
         </div>
       </div>
     )
