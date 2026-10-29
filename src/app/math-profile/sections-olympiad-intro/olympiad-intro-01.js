@@ -68,7 +68,7 @@ export const olympiadIntro01Tasks = [
             При такой структуре любые две клетки одного цвета (например, цвета 1) находятся на расстоянии как минимум 2 по горизонтали или вертикали друг от друга. 
             Следовательно, между ними всегда есть хотя бы одна промежуточная клетка, и короли одного цвета физически не могут атаковать друг друга, независимо от их начального расположения. Раскраска всегда возможна.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: да, верно.</p>
+          <p className="font-semibold text-emerald-600">Ответ: да, верно.</p>
         </div>
       </div>
     )
@@ -178,7 +178,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Сумма цифр полученного числа равна <InlineMath math={`18`} />, что делится на 9. Число сохранило максимальную длину (10 знаков) и имеет наибольшие возможные старшие разряды.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: необходимо стереть две последние тройки.</p>
+          <p className="font-semibold text-emerald-600">Ответ: необходимо стереть две последние тройки.</p>
         </div>
       </div>
     )
@@ -255,7 +255,7 @@ export const olympiadIntro01Tasks = [
             Поскольку при допущении, что Четвёртый — лжец, все возможные логические расклады приводят к строгому противоречию,
             следовательно, Четвёртый островитянин является рыцарем. При этом ситуация полностью непротиворечива, если в группе ровно 2 рыцаря (Третий и Четвёртый) и 2 лжеца (Первый и Второй).
           </p>
-          <p className="font-semibold text-amber-600">Ответ: четвёртый островитянин — рыцарь.</p>
+          <p className="font-semibold text-emerald-600">Ответ: четвёртый островитянин — рыцарь.</p>
         </div>
       </div>
     )
@@ -311,7 +311,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Однако на нашей доске ровно 50 чёрных клеток. Число 50 — чётное. Полученное противоречие строго доказывает, что такое разрезание невозможно.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: нет, нельзя.</p>
+          <p className="font-semibold text-emerald-600">Ответ: нет, нельзя.</p>
         </div>
       </div>
     )
@@ -440,7 +440,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Поскольку инвариант не может измениться (<InlineMath math={`2 \\neq 0`} cascade />), получить набор из равных чисел невозможно.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: нет, нельзя.</p>
+          <p className="font-semibold text-emerald-600">Ответ: нет, нельзя.</p>
         </div>
       </div>
     )
@@ -500,7 +500,7 @@ export const olympiadIntro01Tasks = [
             Чтобы найти общее количество дорог, разделим полученную сумму концов на 2:
           </p>
           <BlockMath math={`N = \\dfrac{700}{2} = 350`} />
-          <p className="font-semibold text-amber-600">Ответ: 350 дорог.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 350 дорог.</p>
         </div>
       </div>
     )
@@ -596,7 +596,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Проверим общую сумму элементов: <InlineMath math={`4 + 1 + 7 \\cdot 2 = 5 + 14 = 19`} />. Условия задачи соблюдены, при этом ни в одной из аудиторий нет ровно 3 школьников.
           </p>
-          <p className="font-semibold text-amber-600">Ответ пункта b): нет.</p>
+          <p className="font-semibold text-emerald-600">Ответ пункта b): нет.</p>
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
@@ -612,7 +612,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Получено строгое целое противоречие с остатком в 9 учеников (<InlineMath math={`9 > 8`} />). Следовательно, в какой-то другой аудитории обязательно окажется не менее двух школьников.
           </p>
-          <p className="font-semibold text-amber-600">Ответ пункта c): да, верно.</p>
+          <p className="font-semibold text-emerald-600">Ответ пункта c): да, верно.</p>
         </div>
       </div>
     )
@@ -694,7 +694,7 @@ export const olympiadIntro01Tasks = [
           <p>
             При такой раскраске к любому внутреннему узлу примыкают ровно 2 чёрные и 2 белые клетки, а к любому граничному (не угловому) узлу — ровно 1 чёрная и 1 белая клетка. Таким образом, все 45 неугловых узлов окажутся отмеченными одновременно.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: 45.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 45.</p>
         </div>
       </div>
     )
@@ -759,7 +759,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Поскольку количество монет в стопках конечно, а после каждого цикла ходов они остаются равными, у Второго игрока всегда первым закончатся доступные ходы. Последний выигрышный ход гарантированно сделает Первый игрок.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: выигрывает первый игрок.</p>
+          <p className="font-semibold text-emerald-600">Ответ: выигрывает первый игрок.</p>
         </div>
       </div>
     )
@@ -825,7 +825,7 @@ export const olympiadIntro01Tasks = [
           <p>
             В каждой из этих 50 пар состоит ровно по одному рыцарю и по одному лжецу. Таким образом, в смешанных парах задействовано 50 рыцарей и 50 лжецов. Остальные 50 рыцарей и 50 лжецов распределены по однородным парам (Р, Р) и (Л, Л). Любое такое распределение даёт ровно 50 смешанных пар, это значение фиксировано.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: 50.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 50.</p>
         </div>
       </div>
     )
@@ -963,7 +963,7 @@ export const olympiadIntro01Tasks = [
         </div>
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-col gap-1 pt-2 border-t border-slate-200/40">
-          <p className="font-semibold text-amber-600">Ответ: 9.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 9.</p>
         </div>
       </div>
     )
@@ -1014,7 +1014,7 @@ export const olympiadIntro01Tasks = [
           <p className="pt-1">
             Любые другие перестановки невозможны, так как они заставили бы числа 1 или 100 находиться в середине ряда, что приведёт к отсутствию у них второго подходящего соседа. Всего существует ровно 2 допустимых способа.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: 2 способами.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 2 способами.</p>
         </div>
       </div>
     )
@@ -1171,7 +1171,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Поскольку для перехода от чередующегося порядка к однородному коням потребовалось бы «перепрыгнуть» друг через друга, такая перестановка математически невозможна.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: нет, нельзя.</p>
+          <p className="font-semibold text-emerald-600">Ответ: нет, нельзя.</p>
         </div>
       </div>
     )
@@ -1284,7 +1284,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Полученное число 16 является целым и полностью удовлетворяет всем условиям задачи. Всего в турнире участвовало 16 школьников.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: 16 школьников.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 16 школьников.</p>
         </div>
       </div>
     )
@@ -1320,7 +1320,7 @@ export const olympiadIntro01Tasks = [
             При извлечении 75 шариков цель может быть не достигнута. Любой следующий (76-й) шарик гарантированно будет красного, зелёного или синего цвета (остальные исчерпаны) и дополнит этот цвет до 15.
           </p>
           <BlockMath math={`N = 75 + 1 = 76`} />
-          <p className="font-semibold text-amber-600">Ответ: 76 шариков.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 76 шариков.</p>
         </div>
       </div>
     )
@@ -1329,7 +1329,7 @@ export const olympiadIntro01Tasks = [
 
     {
     id: 22,
-    title: 'Задача 22* (Оценка + пример)',
+    title: 'Задача 22 (Оценка + пример)',
     textBefore: 'Каким минимальным количеством гирь нужно обладать, чтобы взвесить на равноплечных весах любой груз от 1 до 10 г?',
     mathA: '',
     textAfter: '',
@@ -1405,7 +1405,7 @@ export const olympiadIntro01Tasks = [
 
         <div className="space-y-2">
           <p>Таким образом, наименьшее необходимое количество гирь равно 3.</p>
-          <p className="font-semibold text-amber-600">Ответ: 3 гири.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 3 гири.</p>
         </div>
       </div>
     )
@@ -1491,7 +1491,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Поскольку игровое поле конечно, а Карлсон благодаря симметрии всегда имеет возможность сделать ответный ход вслед за Малышом, у Малыша варианты закончатся раньше. Последний ход в игре неизбежно сделает Карлсон.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: выигрывает Карлсон.</p>
+          <p className="font-semibold text-emerald-600">Ответ: выигрывает Карлсон.</p>
         </div>
       </div>
     )
@@ -1537,7 +1537,7 @@ export const olympiadIntro01Tasks = [
           <p>
             По принципу Дирихле, по крайней мере у двух линий (горизонталей, вертикалей или диагоналей) суммы чисел гарантированно совпадут. Расставить числа требуемым образом невозможно.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: нет, нельзя.</p>
+          <p className="font-semibold text-emerald-600">Ответ: нет, нельзя.</p>
         </div>
       </div>
     )
@@ -1605,7 +1605,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Проверим выполнение условия задачи для набора из одних двоек: <InlineMath math={`2^2 = 2 + 2 \\iff 4 = 4`} /> (выполняется идеально).
           </p>
-          <p className="font-semibold text-amber-600">Ответ: все числа равны 2.</p>
+          <p className="font-semibold text-emerald-600">Ответ: все числа равны 2.</p>
         </div>
       </div>
     )
@@ -1765,7 +1765,7 @@ export const olympiadIntro01Tasks = [
             В результате редукции на четвёртом шаге возникла отрицательная степень вершины <InlineMath math={`(-1)`} />. 
             Поскольку в простом графе степени вершин обязаны быть неотрицательными, по теореме Гавела - Хакими исходный набор степеней не является графическим. Петя математически не сможет спаять такую схему.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: нет, не может.</p>
+          <p className="font-semibold text-emerald-600">Ответ: нет, не может.</p>
         </div>
       </div>
     )
@@ -1829,7 +1829,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Полученное противоречие полностью опровергает наше предположение. Следовательно, в турнире гарантированно найдутся две команды, по разу выигравшие друг у друга.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: да, верно.</p>
+          <p className="font-semibold text-emerald-600">Ответ: да, верно.</p>
         </div>
       </div>
     )
@@ -1897,7 +1897,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Оба числа <InlineMath math={`49999`} /> и <InlineMath math={`50000`} /> принадлежат данному ряду, стоят в нём строго друг за другом, а положительная разность между ними равна 1.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: 1.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 1.</p>
         </div>
       </div>
     )
@@ -1952,7 +1952,7 @@ export const olympiadIntro01Tasks = [
           <p className="pt-2">
             Применяя этот пошаговый алгоритм, Петя каждым своим ходом восстанавливает чётность всех разрядов, вынуждая Васю каждый раз ходить из сбалансированной позиции. Так как игра конечна, Вася рано или поздно окажется в ситуации, когда все группы равны нулю, и проиграет.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: да, может (первым ходом нужно стереть все семёрки).</p>
+          <p className="font-semibold text-emerald-600">Ответ: да, может (первым ходом нужно стереть все семёрки).</p>
         </div>
       </div>
     )
@@ -2060,7 +2060,7 @@ export const olympiadIntro01Tasks = [
           </p>
           <p>Вычислим итоговое количество ложных заявлений простым умножением:</p>
           <BlockMath math={`N = \\dfrac{200}{10} \\cdot 7 = 20 \\cdot 7 = 140`} />
-          <p className="font-semibold text-amber-600">Ответ: 140 ложных заявлений.</p>
+          <p className="font-semibold text-emerald-600">Ответ: 140 ложных заявлений.</p>
         </div>
       </div>
     )
@@ -2109,7 +2109,7 @@ export const olympiadIntro01Tasks = [
             Мы пришли к строгому математическому противоречию: общая сумма строк обязана быть равна 136, но она физически не может превысить 116 (<InlineMath math={`136 \\leq 116`} cascade /> — неверно). 
             Следовательно, расставить числа требуемым образом невозможно.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: нет, нельзя.</p>
+          <p className="font-semibold text-emerald-600">Ответ: нет, нельзя.</p>
         </div>
       </div>
     )
@@ -2171,7 +2171,7 @@ export const olympiadIntro01Tasks = [
           <p>
             Поскольку за весь год значение общего минимума выросло от 0 до 10, Андрей получил ровно 10 неожиданных оценок, независимо от порядка их появления в течение года.
           </p>
-          <p className="font-semibold text-amber-600">Ответ: да, можно; ровно 10 оценок.</p>
+          <p className="font-semibold text-emerald-600">Ответ: да, можно; ровно 10 оценок.</p>
         </div>
       </div>
     )
