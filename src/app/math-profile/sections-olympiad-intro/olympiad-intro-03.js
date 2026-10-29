@@ -27,13 +27,13 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Телескопический метод</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Телескопический метод</span>
           <div>
             Базовый олимпиадный приём для быстрого суммирования рядов дробей. Его суть заключается в представлении каждого слагаемого в виде разности двух соседних дробей по тождеству:
           </div>
           <BlockMath math={`\\dfrac{1}{n(n+1)} = \\dfrac{1}{n} - \\dfrac{1}{n+1}`} />
           <span className="text-slate-500 dark:text-slate-400 text-[11px] md:text-xs mt-1 block">
-            💡 При сложении таких разностей абсолютно все промежуточные слагаемые взаимно уничтожаются, оставляя в живых только самый первый и самый последний элементы ряда.
+            При сложении таких разностей абсолютно все промежуточные слагаемые взаимно уничтожаются, оставляя в живых только самый первый и самый последний элементы ряда.
           </span>
         </div>
 
@@ -64,7 +64,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">
+          <div className="font-semibold text-emerald-600">
             Ответ: 99/100 (или 0.99).
           </div>
         </div>
@@ -129,7 +129,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">
+          <div className="font-semibold text-emerald-600">
             Ответ: 9.
           </div>
         </div>
@@ -190,7 +190,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">
+          <div className="font-semibold text-emerald-600">
             Ответ: <InlineMath math={`\\dfrac{x^{2^{n+1}} - a^{2^{n+1}}}{x - a}`} /> при <InlineMath math={`x \\neq a`} />; и <InlineMath math={`2^{n+1} a^{2^{n+1} - 1}`} /> при <InlineMath math={`x = a`} />.
           </div>
         </div>
@@ -252,7 +252,7 @@ export const olympiadIntro03Tasks = [
             Следовательно, числитель полностью свернулся. Запишем итоговый вид дроби:
           </div>
           <BlockMath math={`P = \\dfrac{x^{2^{n+1}} + a^{2^n}x^{2^n} + a^{2^{n+1}}}{x^2 + ax + a^2}`} />
-          <div className="font-semibold text-amber-600">
+          <div className="font-semibold text-emerald-600">
             Ответ: <InlineMath math={`\\dfrac{x^{2^{n+1}} + a^{2^n}x^{2^n} + a^{2^{n+1}}}{x^2 + ax + a^2}`} />.
           </div>
         </div>
@@ -323,7 +323,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">
+          <div className="font-semibold text-emerald-600">
             Ответ: <InlineMath math={`\\dfrac{3 + \\sqrt{5}}{2}`} />.
           </div>
         </div>
@@ -385,7 +385,7 @@ export const olympiadIntro03Tasks = [
           <div>
             Поскольку при выполнении преобразований производилось деление на многочлен <InlineMath math={`S`} />, полученный результат верен при условиях, что выражения в знаменателях отличны от нуля.
           </div>
-          <div className="font-semibold text-amber-600">
+          <div className="font-semibold text-emerald-600">
             Ответ: <InlineMath math={`a^{m+1}`} /> при <InlineMath math={`a \\neq 0`} /> и <InlineMath math={`a + a^2 + \\dots + a^m \\neq 0`} />.
           </div>
         </div>
@@ -449,7 +449,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">
+          <div className="font-semibold text-emerald-600">
             Ответ: 4.
           </div>
         </div>
@@ -479,13 +479,13 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Неравенство Коши (о среднем арифметическом и среднем геометрическом)</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Неравенство Коши (о среднем арифметическом и среднем геометрическом)</span>
           <div>
             Для любых неотрицательных чисел <InlineMath math={`a`} /> и <InlineMath math={`b`} /> среднее арифметическое всегда не меньше их среднего геометрического:
           </div>
           <BlockMath math={`\\dfrac{a + b}{2} \\geq \\sqrt{ab}`} />
           <span className="text-slate-500 dark:text-slate-400 text-[11px] md:text-xs mt-1 block">
-            💡 Равенство достигается тогда и только тогда, когда сами числа равны между собой (<InlineMath math={`a = b`} />). На олимпиадах этот метод часто применяется для мгновенного нахождения экстремумов функций без использования производной.
+            Равенство достигается тогда и только тогда, когда сами числа равны между собой (<InlineMath math={`a = b`} />). На олимпиадах этот метод часто применяется для мгновенного нахождения экстремумов функций без использования производной.
           </span>
         </div>
 
@@ -523,7 +523,7 @@ export const olympiadIntro03Tasks = [
           <div>
             Геометрические условия полностью согласованы с алгебраической оценкой.
           </div>
-          <div className="font-semibold text-amber-600">
+          <div className="font-semibold text-emerald-600">
             Ответ: 1.
           </div>
         </div>
@@ -553,7 +553,7 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Метод удвоения медианы</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Метод удвоения медианы</span>
           <div>
             Дополнительное построение, при котором отрезок медианы продлевается за противоположную сторону на свою собственную длину.
           </div>
@@ -620,7 +620,7 @@ export const olympiadIntro03Tasks = [
           <div>Разделим обе части полученного неравенства на 2:</div>
           <BlockMath math={`AM < \\dfrac{AB + AC}{2}`} />
           <div>Требуемое соотношение длин элементов полностью доказано.</div>
-          <div className="font-semibold text-amber-600">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -647,13 +647,13 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Неравенство Бернулли</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Неравенство Бернулли</span>
           <div>
             Для любого вещественного числа <InlineMath math={`x > -1`} /> и натурального числа <InlineMath math={`n \\geq 1`} /> справедливо классическое степенное зажатие:
           </div>
           <BlockMath math={`(1 + x)^n \\geq 1 + nx`} />
           <div className="mt-1.5 pt-1.5 border-t border-sky-100/50 dark:border-sky-950/40">
-            💡 Если <InlineMath math={`n \\geq 2`} /> и <InlineMath math={`x \\neq 0`} />, то неравенство становится строго <b>строгим</b>: <InlineMath math={`(1 + x)^n > 1 + nx`} />. На олимпиадах этот метод позволяет эффективно оценивать степенные функции через линейные выражения.
+            Если <InlineMath math={`n \\geq 2`} /> и <InlineMath math={`x \\neq 0`} />, то неравенство становится строго <b>строгим</b>: <InlineMath math={`(1 + x)^n > 1 + nx`} />. На олимпиадах этот метод позволяет эффективно оценивать степенные функции через линейные выражения.
           </div>
         </div>
 
@@ -696,7 +696,7 @@ export const olympiadIntro03Tasks = [
           <div>
             Следовательно, <InlineMath math={`(1.05)^n + (0.95)^n > 2`} /> для всех натуральных <InlineMath math={`n \\geq 2`} />. Неравенство полностью доказано.
           </div>
-          <div className="font-semibold text-amber-600">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -729,7 +729,7 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Лемма Титу (неравенство Андрееску)</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Лемма Титу (неравенство Андрееску)</span>
           <div>
             Для любых вещественных чисел <InlineMath math={`x_1, \\ x_2, \\ x_3`} /> и положительных знаменателей <InlineMath math={`y_1, \\ y_2, \\ y_3 > 0`} /> справедливо алгебраическое неравенство:
           </div>
@@ -769,7 +769,7 @@ export const olympiadIntro03Tasks = [
           <div className="pt-1">
             Оценка и пример полностью согласованы, наименьшее возможное значение выражения равно 1.5.
           </div>
-          <div className="font-semibold text-amber-600 pt-1">Ответ: 1.5.</div>
+          <div className="font-semibold text-emerald-600 pt-1">Ответ: 1.5.</div>
         </div>
       </div>
     )
@@ -801,13 +801,13 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Неравенство Йенсена для вогнутых функций</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Неравенство Йенсена для вогнутых функций</span>
           <div>
             Если функция <InlineMath math={`f(x)`} /> является выпуклой вверх на некотором промежутке, то для любых точек этого промежутка выполняется неравенство:
           </div>
           <BlockMath math={`\\dfrac{f(x_1) + f(x_2) + f(x_3)}{3} \\leq f\\left(\\dfrac{x_1 + x_2 + x_3}{3}\\right)`} />
           <div className="mt-1.5 pt-1.5 border-t border-sky-100/50 dark:border-sky-950/40">
-            💡 Функция является вогнутой, если её вторая производная строго отрицательна (<InlineMath math={`f''(x) < 0`} />). Равенство достигается при <InlineMath math={`x_1 = x_2 = x_3`} />.
+            Функция является вогнутой, если её вторая производная строго отрицательна (<InlineMath math={`f''(x) < 0`} />). Равенство достигается при <InlineMath math={`x_1 = x_2 = x_3`} />.
           </div>
         </div>
 
@@ -844,7 +844,7 @@ export const olympiadIntro03Tasks = [
           <div>
             Неравенство полностью доказано.
           </div>
-          <div className="font-semibold text-amber-600 pt-1">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600 pt-1">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -872,7 +872,7 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Неравенство Коши — Буняковского — Шварца (КБШ)</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Неравенство Коши — Буняковского — Шварца (КБШ)</span>
           <div>
             Для любых вещественных чисел справедливо соотношение квадратов сумм векторов:
           </div>
@@ -905,7 +905,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: √14.</div>
+          <div className="font-semibold text-emerald-600">Ответ: √14.</div>
         </div>
       </div>
     )
@@ -936,13 +936,13 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Оценка тригонометрической линейной комбинации</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Оценка тригонометрической линейной комбинации</span>
           <div>
             Для любого вещественного выражения вида <InlineMath math={`a \\sin x + b \\cos x`} /> максимальное и минимальное значения жестко ограничены радикалом:
           </div>
           <BlockMath math={`-\\sqrt{a^2 + b^2} \\leq a \\sin x + b \\cos x \\leq \\sqrt{a^2 + b^2}`} />
           <div className="mt-1.5 pt-1.5 border-t border-sky-100/50 dark:border-sky-950/40">
-            💡 Этот факт доказывается введением вспомогательного угла <InlineMath math={`\\varphi`} />, сжимающего выражение в одну синусоиду <InlineMath math={`\\sqrt{a^2 + b^2} \\sin(x + \\varphi)`} />.
+            Этот факт доказывается введением вспомогательного угла <InlineMath math={`\\varphi`} />, сжимающего выражение в одну синусоиду <InlineMath math={`\\sqrt{a^2 + b^2} \\sin(x + \\varphi)`} />.
              <br />
                Или при помощи неравенства КБШ
           </div>
@@ -982,7 +982,7 @@ export const olympiadIntro03Tasks = [
           <div>
             Следовательно, неравенство <InlineMath math={`|3 \\sin x - 4 \\cos x| \\leq 5`} /> выполняется тождественно для любого угла <InlineMath math={`x`} />. Что и требовалось доказать.
           </div>
-          <div className="font-semibold text-amber-600 pt-1">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600 pt-1">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -1072,7 +1072,7 @@ export const olympiadIntro03Tasks = [
           <BlockMath math={`x - \\dfrac{\\pi}{6} = \\pi k \\iff x = \\dfrac{\\pi}{6} + \\pi k, \\ k \\in \\mathbb{Z}`} />
           <div className="pt-1">
           </div>
-          <div className="font-semibold text-amber-600 pt-1">Ответ: π/6 + πk, k ∈ ℤ.</div>
+          <div className="font-semibold text-emerald-600 pt-1">Ответ: π/6 + πk, k ∈ ℤ.</div>
         </div>
       </div>
     )
@@ -1103,7 +1103,7 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Универсальная тригонометрическая подстановка (УТП)</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Универсальная тригонометрическая подстановка</span>
           <div>
             Выражение тригонометрических функций через тангенс половинного угла <InlineMath math={`t = \\operatorname{tg}\\dfrac{x}{2}`} />:
           </div>
@@ -1144,7 +1144,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: 2 arctg((2 ± √7)/3) + 2πn, n ∈ ℤ.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 2 arctg((2 ± √7)/3) + 2πn, n ∈ ℤ.</div>
         </div>
       </div>
     )
@@ -1210,7 +1210,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: 1 - √2; 1 + √2.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 1 - √2; 1 + √2.</div>
         </div>
       </div>
     )
@@ -1242,7 +1242,7 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Разность квадратов</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Разность квадратов</span>
           <div>
             Классическая формула сокращённого умножения, позволяющая разложить выражение на линейные сомножители:
           </div>
@@ -1290,16 +1290,8 @@ export const olympiadIntro03Tasks = [
           <BlockMath math={`x + y - 2000 = 0 \\implies x + y = 2000`} />
         </div>
 
-        {/* Серый блок-совет */}
-        <div className="p-3.5 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 text-xs md:text-sm">
-          <span className="font-semibold text-slate-800 dark:text-slate-200 block mb-1">💡 Олимпиадный лайфхак</span>
-          <div>
-            Условие «числа различны» в олимпиадных задачах иногда указывает на то, что в процессе решения возникнет скобка <InlineMath math={`(x - y)`} />, на которую можно будет законно сократить уравнение, мгновенно избавившись от высших степеней.
-          </div>
-        </div>
-
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: 2000.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 2000.</div>
         </div>
       </div>
     )
@@ -1383,7 +1375,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -1411,12 +1403,12 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Метод встречных преобразований</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Метод встречных преобразований</span>
           <div>
             <b>Метод встречных преобразований</b> — это логический приём доказательства равенств или тождеств, при котором исходное математическое условие и доказываемое утверждение преобразуются <b>независимо друг от друга</b>. 
           </div>
           <div className="mt-1.5 pt-1.5 border-t border-sky-100/50 dark:border-sky-950/40">
-            💡 Вместо выполнения сложной искусственной группировки, оба выражения параллельными шагами сводятся к <b>одному и тому же промежуточному виду</b>. Как только эти «встречные» пути пересекаются в общей точке, утверждение считается строго доказанным.
+            Вместо выполнения сложной искусственной группировки, оба выражения параллельными шагами сводятся к <b>одному и тому же промежуточному виду</b>. Как только эти «встречные» пути пересекаются в общей точке, утверждение считается строго доказанным.
           </div>
         </div>
 
@@ -1473,7 +1465,7 @@ export const olympiadIntro03Tasks = [
           <div>
             Так как структуры полностью совпали, утверждение задачи успешно доказано методом встречных преобразований.
           </div>
-          <div className="font-semibold text-amber-600 pt-1">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600 pt-1">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -1552,7 +1544,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -1620,7 +1612,7 @@ export const olympiadIntro03Tasks = [
           <div>
             Следовательно, произведение <InlineMath math={`(a - 1)(b - 1)(c - 1) = 0`} />, что гарантирует равенство единице хотя бы одного из чисел. Утверждение доказано.
           </div>
-          <div className="font-semibold text-amber-600 pt-1">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600 pt-1">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -1648,7 +1640,7 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Определение составного числа</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Определение составного числа</span>
           <div>
             Натуральное число называется составным, если его можно разложить на произведение двух натуральных множителей, каждый из которых <b>строго больше 1</b>.
           </div>
@@ -1690,7 +1682,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: при всех целых m, кроме m = 1 и m = -1.</div>
+          <div className="font-semibold text-emerald-600">Ответ: при всех целых m, кроме m = 1 и m = -1.</div>
         </div>
       </div>
     )
@@ -1721,7 +1713,7 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Свёртывание через разность кубов</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Свёртывание через разность кубов</span>
           <div>
             Для каждого сомножителя вида <InlineMath math={`(1 + x + x^2)`} /> можно применить приём искусственного домножения и деления на разность <InlineMath math={`(x - 1)`} />, что позволяет свернуть его в разность кубов:
           </div>
@@ -1767,7 +1759,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: (3^(3^(n+1)) - 1) / 2.</div>
+          <div className="font-semibold text-emerald-600">Ответ: (3^(3^(n+1)) - 1) / 2.</div>
         </div>
       </div>
     )
@@ -1798,7 +1790,7 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Классическое неравенство о средних (Коши)</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Классическое неравенство о средних (Коши)</span>
           <div>
             Для любых положительных чисел справедливо строгое зажатие между их средним квадратическим, средним арифметическим и средним геометрическим:
           </div>
@@ -1866,7 +1858,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -1926,7 +1918,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -1957,7 +1949,7 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией (строго общая справка) */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Лемма Титу</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Лемма Титу</span>
           <div>
             Для любых вещественных чисел <InlineMath math={`a_1, \\ a_2, \\ \\dots, \\ a_n`} /> и положительных знаменателей <InlineMath math={`b_1, \\ b_2, \\ \\dots, \\ b_n > 0`} /> справедливо алгебраическое неравенство:
           </div>
@@ -1998,7 +1990,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: доказано.</div>
+          <div className="font-semibold text-emerald-600">Ответ: доказано.</div>
         </div>
       </div>
     )
@@ -2026,7 +2018,7 @@ export const olympiadIntro03Tasks = [
         
         {/* Голубая карточка с теорией (строго общая справка) */}
         <div className="p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">📘 Домножение на сопряжённое выражение</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Домножение на сопряжённое выражение</span>
           <div>
             <b>Сопряжёнными</b> называют иррациональные выражения, знаки между слагаемыми которых противоположны. Их перемножение позволяет избавиться от радикалов по формуле разности квадратов:
           </div>
@@ -2070,7 +2062,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: 128.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 128.</div>
         </div>
       </div>
     )
@@ -2142,7 +2134,7 @@ export const olympiadIntro03Tasks = [
         </div>
 
         <div className="space-y-2 border-t border-slate-200/40 pt-2">
-          <div className="font-semibold text-amber-600">Ответ: 4.</div>
+          <div className="font-semibold text-emerald-600">Ответ: 4.</div>
         </div>
       </div>
     )
@@ -2201,15 +2193,15 @@ export const olympiadIntro03Tasks = [
         </span>
 
         <span className="block border-t border-slate-200/40 pt-2">
-          <span className="font-semibold text-amber-600 block">Ответ: 20.</span>
+          <span className="font-semibold text-emerald-600 block">Ответ: 20.</span>
         </span>
 
         {/* Голубая карточка-заметка в самом конце разбора */}
         <span className="block p-4 rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/60 dark:bg-sky-950/20 text-slate-700 dark:text-slate-300 text-xs md:text-sm mt-4">
-          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">💡 Олимпиадный маркер</span>
+          <span className="font-bold text-sky-800 dark:text-sky-400 block mb-1">Олимпиадный маркер</span>
           Полезно запомнить базовое тождество:
           <span className="flex justify-center my-2 font-medium">
-            <InlineMath math={`(a + 1)(b + 1)(c + 1) = abc + (ab + bc + ca) + (a + b + c) + 1`} />
+            <InlineMath math={`(a + 1)(b + 1)(c + 1) = abc + ab + bc + ca + a + b + c + 1`} />
           </span>
           Если в условии задачи одновременно даны сумма чисел, их попарные произведения и общее произведение — это явный маркер на использование этой структуры через искусственное добавление или вычитание единицы.
         </span>
