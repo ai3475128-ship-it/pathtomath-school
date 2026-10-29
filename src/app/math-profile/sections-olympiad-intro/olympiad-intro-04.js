@@ -645,7 +645,7 @@ export const olympiadIntro04Tasks = [
     ),
     textBefore: (
       <span>
-        Сколько есть способов поставить 5 крестиков в прямоугольнике <InlineMath math={`4 \\times 5`} /> так, чтобы в каждой строке и в каждом столбце стоял хотя бы один крестик? А сколько в квадрате <InlineMath math={`4 \\times 4`} />?
+        Сколько есть способов поставить 5 крестиков в прямоугольнике <InlineMath math={`4 \\times 5`} /> так, чтобы в каждой строке и в каждом столбце стоял хотя бы один крестик?
       </span>
     ),
     mathA: '',
@@ -704,51 +704,7 @@ export const olympiadIntro04Tasks = [
         </span>
 
         <span className="block border-t border-slate-200/40 pt-2">
-          <b>2) Квадрат 4 × 4 (5 крестиков):</b>
-          <br />
-          Всего в таблице <InlineMath math={`4 \\cdot 4 = 16`} /> клеток. Чтобы в каждой из 4 строк и в каждом из 4 столбцов было по крестику, структура должна быть следующей: в одной строке и в одном столбце стоят по 2 крестика, а во всех остальных — строго по 1.
-          <br /><br />
-          • Выберем «особую» строку и «особый» столбец, на пересечении которых будет стоять крестик: <InlineMath math={`4 \\cdot 4 = 16`} /> способов.
-          <br />
-          • В этой строке нужно выбрать ещё 1 место из 3 оставшихся, а в этом столбце — ещё 1 место из 3 оставшихся: <InlineMath math={`3 \\cdot 3 = 9`} /> способов.
-          <br />
-          • Для оставшихся 2 крестиков в незанятых строках и столбцах остаётся ровно <InlineMath math={`2! = 2`} /> способа расстановки.
-
-          {/* Рисунок к квадрату 4х4 */}
-          <span className="flex justify-center py-4 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-100 dark:border-slate-800/60 my-3">
-            <svg width="130" height="120" viewBox="0 0 130 120" className="text-slate-800 dark:text-slate-200 font-medium">
-              {Array.from({ length: 4 }).map((_, r) =>
-                Array.from({ length: 4 }).map((_, c) => {
-                  // Пример расстановки для квадрата 4х4
-                  const hasCross = (r === 0 && c === 0) || (r === 0 && c === 1) || (r === 1 && c === 0) || (r === 2 && c === 2) || (r === 3 && c === 3);
-                  return (
-                    <g key={`${r}-${c}`}>
-                      <rect
-                        x={c * 24 + 19}
-                        y={r * 24 + 12}
-                        width="22"
-                        height="22"
-                        className="fill-white dark:fill-slate-900 stroke-slate-300 dark:stroke-slate-700"
-                        strokeWidth="1"
-                      />
-                      {hasCross && (
-                        <text x={c * 24 + 30} y={r * 24 + 29} textAnchor="middle" className="fill-rose-500 dark:fill-rose-400 font-bold text-sm stroke-none">✕</text>
-                      )}
-                    </g>
-                  );
-                })
-              )}
-            </svg>
-          </span>
-
-          Перемножим полученные независимые варианты выбора:
-          <span className="flex justify-center my-3">
-            <InlineMath math={`N_2 = 16 \\cdot 9 \\cdot 2 = 288.`} />
-          </span>
-        </span>
-
-        <span className="block border-t border-slate-200/40 pt-2">
-          <span className="font-semibold text-emerald-600 dark:text-emerald-400 block">Ответ: 4×5: C(20,5) - 4·C(15,5) + 6·C(10,5) - 4; 4×4: 288.</span>
+          <span className="font-semibold text-emerald-600 dark:text-emerald-400 block">Ответ:C(20,5) - 4·C(15,5) + 6·C(10,5) - 4</span>
         </span>
       </span>
     )
@@ -808,7 +764,7 @@ export const olympiadIntro04Tasks = [
     id: 14,
     title: (
       <span>
-        Задача 14 (Формула включений-исклечений для отрезка) <span className="text-sm font-normal text-slate-400 ml-1.5">(«Покори Воробьёвы горы!», 2020)</span>
+        Задача 14 <span className="text-sm font-normal text-slate-400 ml-1.5"></span>
       </span>
     ),
     textBefore: (
@@ -1122,7 +1078,7 @@ export const olympiadIntro04Tasks = [
     id: 18,
     title: (
       <span>
-        Задача 18 (Задача о сломанной палке)
+        Задача 18 (Геометрическая вероятность)
       </span>
     ),
     textBefore: (
@@ -1279,25 +1235,17 @@ export const olympiadIntro04Tasks = [
             <text x="-10" y="4" className="fill-current stroke-none">8</text>
             <text x="-10" y="43" className="fill-rose-500 stroke-none font-bold">4</text>
             
-            <text x="135" y="83" className="fill-current stroke-none font-bold">x</text>
+            <text x="135" y="88" className="fill-current stroke-none font-bold">x</text>
             <text x="-8" y="-5" className="fill-current stroke-none font-bold">y</text>
             
             {/* Уравнение секущей линии */}
             <path d="M 20,0 L 100,80" stroke="#3b82f6" strokeWidth="1.5" strokeDasharray="4 2" />
-            <text x="45" y="32" className="fill-blue-600 dark:fill-blue-400 stroke-none font-semibold text-[8px] rotate-[26deg] transform origin-left">x + y = 10</text>
+            <text x="20" y="-7" className="fill-blue-600 dark:fill-blue-400 stroke-none font-semibold text-[8px] rotate-[43deg] transform origin-left">x + y = 10</text>
           </svg>
         </span>
 
         <span className="block border-t border-slate-200/40 pt-2">
-          <b>Идея красивого решения через геометрический центр:</b>
-          <br />
-          Любой прямоугольник на плоскости центрально-симметричен относительно своей середины. Центром нашего прямоугольника исходов является точка <InlineMath math={`M(6; 4)`} /> (середина интервалов ожидания 12 и 8).
-          <br /><br />
-          Проверим, проходит ли линия границы благоприятных исходов <InlineMath math={`x + y = 10`} /> через этот геометрический центр. Подставим координаты точки <InlineMath math={`M`} /> в уравнение прямой:
-          <span className="flex justify-center my-2">
-            <InlineMath math={`6 + 4 = 10 \\implies 10 = 10.`} />
-          </span>
-          Тождество выполняется! Это означает, что прямая границы <InlineMath math={`x + y = 10`} /> проходит <b>строго через центр симметрии</b> нашего прямоугольника.
+        Заметим, что прямая границы <InlineMath math={`x + y = 10`} /> проходит <b>строго через центр симметрии</b> нашего прямоугольника.
           <br /><br />
           Поскольку любая прямая, проходящая через центр симметрии фигуры, рассекает эту фигуру на две абсолютно равные по площади части, область над прямой (неблагоприятные исходы) и область под прямой (благоприятные исходы) имеют одинаковую площадь.
           <br /><br />
@@ -1424,7 +1372,7 @@ export const olympiadIntro04Tasks = [
     id: 21,
     title: (
       <span>
-        Задача 21 <span className="text-sm font-normal text-slate-400 ml-1.5">(«Ломоносов», 2024)</span>
+        Задача 21 <span className="text-sm font-normal text-slate-400 ml-1.5">(«Ломоносов», 2024, 11класс)</span>
       </span>
     ),
     textBefore: (
@@ -1479,7 +1427,7 @@ export const olympiadIntro04Tasks = [
     id: 22,
     title: (
       <span>
-        Задача 22 (Формула включений-исключений) <span className="text-sm font-normal text-slate-400 ml-1.5">(ММО, 2006)</span>
+        Задача 22 (Формула включений-исключений) <span className="text-sm font-normal text-slate-400 ml-1.5"></span>
       </span>
     ),
     textBefore: (
@@ -1663,8 +1611,8 @@ export const olympiadIntro04Tasks = [
           <svg width="240" height="180" viewBox="-20 -15 150 115" className="text-slate-800 dark:text-slate-200 fill-none font-medium text-[9px]">
             <line x1="0" y1="80" x2="130" y2="80" stroke="currentColor" strokeWidth="1" />
             <line x1="0" y1="80" x2="0" y2="-10" stroke="currentColor" strokeWidth="1" />
-            <text x="126" y="83" className="fill-current stroke-none font-bold">x (ξ)</text>
-            <text x="-12" y="-4" className="fill-current stroke-none font-bold">y (η)</text>
+            <text x="115" y="75" className="fill-current stroke-none font-bold">x (ξ)</text>
+            <text x="-20" y="-4" className="fill-current stroke-none font-bold">y (η)</text>
             
             <rect x="0" y="0" width="120" height="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
             <text x="116" y="91" className="fill-current stroke-none">3</text>
