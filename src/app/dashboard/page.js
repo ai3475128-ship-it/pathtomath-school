@@ -1,8 +1,8 @@
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import path from 'path';
+import { getCurrentUser } from '@/lib/auth';
+import { getEgeProgress } from '@/lib/task-modules';
+import { saveDailyNote } from '../profile/actions';
+import { connectDB } from '@/lib/db';
 import { redirect } from 'next/navigation';
-import { cookies } from 'next/headers';
 import Link from 'next/link';
 
 // Импорты 19 разделов Банка задач АЗИМУТ для динамических счетчиков шкал
@@ -26,59 +26,23 @@ import { section17Tasks } from '../math-profile/[taskNumber]/sectoin17';
 import { section18Tasks } from '../math-profile/[taskNumber]/sectoin18';
 import { section19Tasks } from '../math-profile/[taskNumber]/sectoin19';
 
-async function connectDB() {
-  return open({
-    filename: path.join(process.cwd(), 'prisma', 'dev.db'),
-    driver: sqlite3.Database
-  });
-}
+
 
 // 🚀 ИСПРАВЛЕНО: Запрос заметок завернут в try/catch. Отсутствие таблицы в SQLite больше никогда не сломает вход!
 async function getDashboardData() {
-  const cookieStore = await cookies();
-  const sessionCookie = cookieStore.get('userSession')?.value;
-  if (!sessionCookie) return null;
-
+  const user = await getCurrentUser();
+  if (!user) return null;
   let db;
   try {
-    let userId = null;
-    try {
-      const sessionData = JSON.parse(Buffer.from(sessionCookie, 'base64').toString('utf8'));
-      userId = sessionData?.id || sessionData?.email;
-    } catch (e) {
-      userId = sessionCookie;
-    }
-
     db = await connectDB();
-    const user = await db.get('SELECT id, name, email, role FROM User WHERE id = ? OR email = ? OR password = ?', [userId, userId, sessionCookie]);
-    if (!user) return null;
-
     // Решенные задачи ученика
-    const solvedRecords = await db.all('SELECT taskNumber FROM Progress WHERE userId = ?', [user.id]);
-    const solvedTasks = solvedRecords.map(r => r.taskNumber);
-
-    // Безопасный сбор планов подготовки: если таблицы Note/DailyNote нет — плавно игнорируем, не ломая вход
-    let notesMap = {};
-    try {
-      const notes = await db.all('SELECT dateText, content FROM Note WHERE userId = ?', [user.id]);
-      notes.forEach(n => {
-        notesMap[n.dateText] = n.content;
-      });
-    } catch (e) {
-      try {
-        const altNotes = await db.all('SELECT dateText, content FROM DailyNote WHERE userId = ?', [user.id]);
-        altNotes.forEach(n => {
-          notesMap[n.dateText] = n.content;
-        });
-      } catch (err) {
-        console.log("Таблицы заметок календаря пока не созданы в БД Prisma, используем пустой стейт");
-      }
-    }
-
+    const solvedTasks = await getEgeProgress(db,user.id);
+    const notesMap = {};
+    for (const note of await db.all('SELECT dateText,content FROM Notes WHERE userId=?',[user.id])) notesMap[note.dateText] = note.content;
     return { user, solvedTasks, notesMap };
   } catch (err) {
     console.error(err);
-    return null;
+    throw err;
   } finally {
     if (db) await db.close();
   }
@@ -106,8 +70,7 @@ export default async function FreeStudentDashboardPage({ searchParams }) {
 
   // Распределяем решенные задачи ученика по 19 секциям
   const solvedStatsBySection = {};
-  solvedTasks.forEach(taskNum => {
-    const sectionNum = Math.floor(taskNum / 100);
+  solvedTasks.forEach(({ section: sectionNum }) => {
     if (sectionNum >= 1 && sectionNum <= 19) {
       solvedStatsBySection[sectionNum] = (solvedStatsBySection[sectionNum] || 0) + 1;
     }
@@ -220,7 +183,7 @@ export default async function FreeStudentDashboardPage({ searchParams }) {
             {/* Текстовая форма отправки заметок в таблицу Note */}
             <div className="pt-4 border-t border-slate-100 dark:border-purple-950/20 space-y-2">
               <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 block">Планы на дату: Сегодня</span>
-              <form action="/api/save-note" method="POST" className="space-y-3">
+              <form action={saveDailyNote} className="space-y-3">
                 <input type="hidden" name="dateText" value={selectedDate} />
                 <textarea
                   name="content"

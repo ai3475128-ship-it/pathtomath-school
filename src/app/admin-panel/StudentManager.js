@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import {useRouter} from 'next/navigation';
 
 export default function StudentManager({ initialStudents }) {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredStudents = initialStudents.filter((student) => {
@@ -15,10 +17,11 @@ export default function StudentManager({ initialStudents }) {
 
   const handleOpenProfile = (student) => {
     // 🚀 ЖЕЛЕЗОБЕТОННЫЙ ФИКС: Перебираем все возможные варианты полей, чтобы ссылка никогда не улетала пустой
-    const targetId = student.id || student.id || student.userId || student.email || student.email || student.name || 'unknown';
+    const targetId = student.id;
+    if (!targetId) return;
     
     // Экранируем спецсимволы и пробелы для безопасной передачи в адресную строку Next.js
-    window.location.href = `/supervisor/students/${encodeURIComponent(targetId)}`;
+    router.push(`/supervisor/students/${encodeURIComponent(targetId)}`);
   };
 
   return (
@@ -62,6 +65,9 @@ export default function StudentManager({ initialStudents }) {
             <div
               key={student.id || student.email || student.id}
               onClick={() => handleOpenProfile(student)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={event => {if (event.key === 'Enter') handleOpenProfile(student);}}
               className="group flex items-center justify-between p-4 bg-slate-50/50 dark:bg-purple-950/5 rounded-2xl border border-slate-100 dark:border-purple-500/10 cursor-pointer transition-all duration-300 transform hover:translate-x-1 hover:bg-sky-50/40 dark:hover:bg-sky-950/10 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-md hover:shadow-sky-400/10 dark:hover:shadow-sky-400/5 gap-4"
             >
               <div className="flex items-center gap-3">

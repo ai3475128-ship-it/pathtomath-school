@@ -1,157 +1,10 @@
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import path from 'path';
-import fs from 'fs/promises';
-import { redirect } from 'next/navigation';
-import { cookies } from 'next/headers';
-import { revalidatePath } from 'next/cache';
-
-async function connectDB() {
-  return open({
-    filename: path.join(process.cwd(), 'prisma', 'dev.db'),
-    driver: sqlite3.Database
-  });
-}
-
-function findAuthCookie(allCookies) {
-  return allCookies.find(c => 
-    c.name.toLowerCase().includes('session') || 
-    c.name.toLowerCase().includes('token') || 
-    c.name.toLowerCase().includes('auth')
-  );
-}
-
-// Выдать ДЗ на весь курс
-async function createBulkHomework(formData) {
-  'use server';
-  const title = formData.get('title');
-  const file = formData.get('pdfFile');
-  if (!title) return;
-
-  let fileUrl = '';
-  if (file && file.size > 0 && file.name) {
-    try {
-      const fileExtension = path.extname(file.name);
-      const safeFileName = `hw_task_${Math.random().toString(36).substring(2, 11)}${fileExtension}`;
-      const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-      await fs.mkdir(uploadDir, { recursive: true });
-      
-      const bytes = await file.arrayBuffer();
-      await fs.writeFile(path.join(uploadDir, safeFileName), Buffer.from(bytes));
-      fileUrl = `/uploads/${safeFileName}`;
-    } catch (e) { 
-      console.error(e); 
-    }
-  }
-
-  let db;
-  try {
-    db = await connectDB();
-    const premiumStudents = await db.all("SELECT id FROM User WHERE role = 'PREMIUM_STUDENT'");
-    const createdAt = new Date().toISOString();
-
-    for (const student of premiumStudents) {
-      const hwId = 'hw_' + Math.random().toString(36).substring(2, 11);
-      await db.run(
-        "INSERT INTO Homework (id, userId, title, description, status, mark, comment, createdAt, solutionUrl) VALUES (?, ?, ?, ?, ?, ?, ?, ?, '')",
-        [hwId, student.id, title.trim(), fileUrl, 'Не сдано', '—', '', createdAt]
-      );
-    }
-    revalidatePath('/homeworks');
-  } catch (err) { 
-    console.error(err); 
-  } finally { 
-    if (db) await db.close(); 
-  }
-}
-// Отозвать ДЗ у всей группы
-async function deleteBulkHomework(formData) {
-  'use server';
-  const titleToDelete = formData.get('title');
-  if (!titleToDelete) return;
-
-  let db;
-  try {
-    db = await connectDB();
-    await db.run("DELETE FROM Homework WHERE title = ?", [titleToDelete]);
-    revalidatePath('/homeworks');
-  } catch (err) { 
-    console.error(err); 
-  } finally { 
-    if (db) await db.close(); 
-  }
-}
-
-// Отправить решение учеником
-async function submitHomeworkSolution(formData) {
-  'use server';
-  const hwId = formData.get('hwId');
-  const file = formData.get('solutionFile');
-  if (!file || file.size === 0) return;
-
-  let solutionUrl = '';
-  try {
-    const fileExtension = path.extname(file.name);
-    const safeFileName = `hw_sol_${Math.random().toString(36).substring(2, 11)}${fileExtension}`;
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-    await fs.mkdir(uploadDir, { recursive: true });
-
-    const bytes = await file.arrayBuffer();
-    await fs.writeFile(path.join(uploadDir, safeFileName), Buffer.from(bytes));
-    solutionUrl = `/uploads/${safeFileName}`;
-
-    let db = await connectDB();
-    await db.run("UPDATE Homework SET solutionUrl = ?, status = 'На проверке' WHERE id = ?", [solutionUrl, hwId]);
-    await db.close();
-    revalidatePath('/homeworks');
-  } catch (e) { 
-    console.error(e); 
-  }
-}
-
-// Стереть файл решения учеником
-async function deleteStudentSolution(formData) {
-  'use server';
-  const hwId = formData.get('hwId');
-  let db;
-  try {
-    db = await connectDB();
-    await db.run("UPDATE Homework SET solutionUrl = '', status = 'Не сдано' WHERE id = ?", [hwId]);
-    revalidatePath('/homeworks');
-  } catch (err) { 
-    console.error(err); 
-  } finally { 
-    if (db) await db.close(); 
-  }
-}
-
-// Оценить работу куратором
-async function checkHomeworkMark(formData) {
-  'use server';
-  const hwId = formData.get('hwId');
-  const mark = formData.get('mark');
-  const comment = formData.get('comment');
-
-  let db;
-  try {
-    db = await connectDB();
-    await db.run("UPDATE Homework SET mark = ?, comment = ?, status = 'Проверено' WHERE id = ?", [mark.trim() || '—', comment.trim(), hwId]);
-    revalidatePath('/homeworks');
-  } catch (err) { 
-    console.error(err); 
-  } finally { 
-    if (db) await db.close(); 
-  }
-}
+import { connectDB } from '@/lib/db';
+import { requireCourseUser } from '@/lib/auth';
+import { createBulkHomework, deleteBulkHomework, submitHomeworkSolution, deleteStudentSolution, checkHomeworkMark } from '../course-actions';
 export default async function HomeworksPage() {
-  const cookieStore = await cookies();
-  const allCookies = cookieStore.getAll();
-  const authCookie = findAuthCookie(allCookies);
-
-  if (!authCookie) redirect('/login?error=auth');
+  const user = await requireCourseUser();
 
   let db;
-  let user = null;
   let homeworksList = [];
   let studentsList = [];
   let uniqueGroupTasks = [];
@@ -162,23 +15,12 @@ export default async function HomeworksPage() {
 
   try {
     db = await connectDB();
-    let searchKey = authCookie.value;
-    try {
-      const decoded = JSON.parse(Buffer.from(authCookie.value, 'base64').toString('utf8'));
-      searchKey = decoded?.id || decoded?.email || authCookie.value;
-    } catch (e) { 
-      searchKey = authCookie.value; 
-    }
-
-    user = await db.get('SELECT id, name, email, role FROM User WHERE id = ? OR email = ? OR password = ?', [searchKey, searchKey, authCookie.value]);
-    if (!user || user.role === 'STUDENT') redirect('/');
-
     if (user.role === 'ADMIN' || user.role === 'TEACHER') {
       const rawStudents = await db.all("SELECT id, name, email FROM User WHERE role = 'PREMIUM_STUDENT'");
       homeworksList = await db.all("SELECT * FROM Homework");
       
-      const rawTasks = await db.all("SELECT DISTINCT title FROM Homework ORDER BY createdAt DESC");
-      uniqueGroupTasks = rawTasks.map(t => t.title);
+      const rawTasks = await db.all("SELECT batchId,title,MAX(createdAt) AS latest FROM Homework GROUP BY batchId,title ORDER BY latest DESC");
+      uniqueGroupTasks = rawTasks;
 
       statTotalIssued = uniqueGroupTasks.length;
       statPendingCheck = homeworksList.filter(h => h.status === 'На проверке').length;
@@ -202,7 +44,8 @@ export default async function HomeworksPage() {
       statChecked = homeworksList.filter(h => h.status === 'Проверено').length;
     }
   } catch (e) { 
-    console.error(e); 
+    console.error(e);
+    throw e;
   } finally { 
     if (db) await db.close(); 
   }
@@ -396,8 +239,8 @@ return (
                   <p className="text-[11px] text-slate-400 font-medium py-2 text-center">Выданных тем нет.</p>
                 ) : (
                   <form action={deleteBulkHomework} className="space-y-3">
-                    <select name="title" required className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none text-slate-700 dark:text-slate-300">
-                      {uniqueGroupTasks.map((t) => <option key={t} value={t}>{t}</option>)}
+                    <select name="batchId" required className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none text-slate-700 dark:text-slate-300">
+                      {uniqueGroupTasks.map(({ batchId,title }) => <option key={batchId} value={batchId}>{title}</option>)}
                     </select>
                     <button type="submit" className="w-full bg-red-500 hover:bg-red-600 text-white text-xs font-black uppercase tracking-wider py-2.5 rounded-xl shadow-sm transition-colors cursor-pointer">Удалить тему</button>
                   </form>

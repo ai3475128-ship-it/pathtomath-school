@@ -1,57 +1,49 @@
-'use server';
-
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import path from 'path';
-import { revalidatePath } from 'next/cache';
-import { getCurrentUser } from '../login/actions';
-
-async function connectDB() {
-  return open({
-    filename: path.join(process.cwd(), 'prisma', 'dev.db'),
-    driver: sqlite3.Database
-  });
-}
-
-// 1. Существующая функция прогресса задач (сохраняем её структуру)
-export async function toggleTaskProgress() {
-  return null;
-}
-
-// 2. НАШ НОВЫЙ SERVER ACTION: Отправка и запись багрепорта в SQLite
+"use server";
+import { revalidatePath } from "next/cache";
+import { connectDB, createId } from "@/lib/db";
+import { getCurrentUser } from "@/lib/auth";
+import { text } from "@/lib/validation";
+import { getTaskModule, isTaskInModule } from "@/lib/task-modules";
+import { consumeRateLimit } from "@/lib/rate-limit";
 export async function sendErrorReport(formData) {
-  const sectionNumber = parseInt(formData.get('sectionNumber'), 10);
-  const taskId = parseInt(formData.get('taskId'), 10);
-  const description = formData.get('description');
-
-  if (!sectionNumber || !taskId || !description) {
-    return { success: false, error: 'Заполните описание ошибки' };
-  }
-
-  // Автоматически определяем, какой именно пользователь сообщает о баге
-  const user = await getCurrentUser();
-  const userId = user ? user.id : 'GUEST'; // Если гость — пишем GUEST
-
-  let db;
+  const slug = getTaskModule(formData.get("module")),
+    taskId = Number(formData.get("taskId"));
+  let description;
   try {
-    db = await connectDB();
-    
-    const reportId = 'report_' + Math.random().toString(36).substring(2, 11);
-    const createdAt = new Date().toISOString();
-
-    // Записываем тикет в базу данных SQLite
-    await db.run(
-      'INSERT INTO ErrorReports (id, userId, sectionNumber, taskId, description, status, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [reportId, userId, sectionNumber, taskId, description.trim(), 'OPEN', createdAt]
-    );
-
-    // Моментально обновляем кэш админки, чтобы руководитель сразу увидел уведомление
-    revalidatePath('/admin-panel');
-    return { success: true };
-  } catch (err) {
-    console.error('Ошибка сохранения багрепорта:', err);
-    return { success: false, error: 'Ошибка сервера. Попробуйте позже.' };
-  } finally {
-    if (db) await db.close();
+    description = text(formData.get("description"), 5000, 3);
+  } catch {
+    return { success: false, error: "Заполните описание (3–5000 символов)" };
   }
+  if (!slug || !isTaskInModule(slug, taskId))
+    return { success: false, error: "Проверьте раздел и номер задачи" };
+  const user = await getCurrentUser(),
+    db = await connectDB();
+  if (
+    !consumeRateLimit(
+      db,
+      "error-reports",
+      user?.id || "guest",
+      user ? 20 : 10,
+      3600000,
+    )
+  )
+    return {
+      success: false,
+      error: "Слишком много обращений. Повторите позже",
+    };
+  await db.run(
+    "INSERT INTO ErrorReports(id,userId,sectionNumber,taskId,description,status,createdAt,module) VALUES(?,?,?,?,?,?,?,?)",
+    [
+      createId(),
+      user?.id || "GUEST",
+      parseInt(slug, 10) || Number(slug.match(/\d+/)?.[0]),
+      taskId,
+      description,
+      "OPEN",
+      new Date().toISOString(),
+      slug,
+    ],
+  );
+  revalidatePath("/admin-panel");
+  return { success: true };
 }

@@ -7,8 +7,10 @@ export default async function VerifyEmailPage({ searchParams }) {
   const errorType = queryParams?.error;
 
   let errorMessage = '';
+  if (errorType === 'limited') errorMessage = 'Слишком много попыток. Повторите через 15 минут.';
+  if (errorType === 'unavailable') errorMessage = 'Регистрация временно недоступна. Обратитесь к преподавателю.';
   if (errorType === 'fields') errorMessage = 'Пожалуйста, введите код.';
-  if (errorType === 'wrong') errorMessage = 'Неверный код подтверждения. Проверьте почту.';
+  if (errorType === 'wrong') errorMessage = 'Код неверен, истёк или исчерпаны попытки. Запросите новый код через регистрацию.';
   if (errorType === 'server') errorMessage = 'Ошибка сервера. Попробуйте позже.';
 
   return (

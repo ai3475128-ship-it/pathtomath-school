@@ -1,76 +1,24 @@
+import Image from 'next/image';
+import { getCurrentUser } from '@/lib/auth';
 import Link from 'next/link';
-import { cookies } from 'next/headers';
 // 🚀 ИСПРАВЛЕНО: Так как папка login лежит по соседству с layout.js внутри app, используем префикс ./
 import { logoutUser } from './login/actions';
 import ThemeToggle from './ThemeToggle';
 import MenuLinks from './MenuLinks';
 import './globals.css';
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import path from 'path';
 
-async function connectDB() {
-  return open({
-    filename: path.join(process.cwd(), 'prisma', 'dev.db'),
-    driver: sqlite3.Database
-  });
-}
+
 
 export const metadata = {
   title: 'Онлайн-Школа Математики PATHTOMATH',
   description: 'Бесплатный банк заданий ЕГЭ по профильной математике',
 };
 export default async function RootLayout({ children }) {
-  const cookieStore = await cookies();
-  const sessionCookie = cookieStore.get('userSession')?.value;
-  const hasUser = !!sessionCookie;
-
-  // По умолчанию отправляем на стандартный профиль ученика
-  let cabinetUrl = '/profile';
-  let userRole = null;
-
-  if (sessionCookie) {
-    let db;
-    try {
-      let userId = null;
-      try {
-        const sessionData = JSON.parse(Buffer.from(sessionCookie, 'base64').toString('utf8'));
-        userId = sessionData?.id || sessionData?.email;
-      } catch (e) {
-        userId = sessionCookie;
-      }
-
-      db = await connectDB();
-      const user = await db.get('SELECT role FROM User WHERE id = ? OR email = ? OR password = ?', [userId, userId, sessionCookie]);
-
-      if (user && user.role) {
-        userRole = user.role; // Присваиваем живую роль для передачи в MenuLinks
-        
-        // 🚀 НАСТРОЙКА НАПРАВЛЕНИЙ: Распределяем личные кабинеты строго по правам доступа
-       // 🚀 ИСПРАВЛЕНО: Бронебойный хардкод ссылки личного кабинета под вашу почту руководителя, чтобы обойти сбои декодирования Данилы
-if (user && user.role === 'ADMIN') {
-  cabinetUrl = '/admin-panel';
-} else if (user && user.role === 'TEACHER') {
-  cabinetUrl = '/teacher-dashboard';
-} else {
-  cabinetUrl = '/profile';
-}
-
-// Прямая железобетонная страховка по вашей сессии
-if (sessionCookie && (sessionCookie.includes('ai3475128') || JSON.stringify(sessionCookie).includes('ai3475128'))) {
-  cabinetUrl = '/teacher-dashboard'; 
-}
-
-      }
-    } catch (err) {
-      console.error('Ошибка проверки роли в глобальном шаблоне:', err);
-      cabinetUrl = '/profile';
-    } finally {
-      if (db) await db.close();
-    }
-  }
+  const user = await getCurrentUser();
+  const hasUser = Boolean(user), userRole = user?.role ?? null;
+  const cabinetUrl = userRole === 'ADMIN' ? '/admin-panel' : userRole === 'TEACHER' ? '/teacher-dashboard' : '/profile';
   return (
-    <html lang="ru">
+    <html lang="ru" suppressHydrationWarning>
       <body className="antialiased min-h-screen flex flex-col font-sans selection:bg-blue-200/50">
         
         {/* Шапка сайта с жесткой разметкой */}
@@ -81,13 +29,13 @@ if (sessionCookie && (sessionCookie.includes('ai3475128') || JSON.stringify(sess
   
   {/* 🦉 МАКСИМАЛЬНЫЙ БЛОК СОВЫ: Размеры подняты до h-26 (w-26). Контуры застыли как влитые! */}
   <div className="w-26 h-26 flex items-center justify-center shrink-0 bg-transparent">
-    <img 
+    <Image width={1536} height={1024} unoptimized
       src="/icon-dark.png" 
       alt="Иконка АЗИМУТ" 
       className="h-26 w-auto object-contain bg-transparent transition-transform duration-500 group-hover:scale-[1.02] 
                  block dark:hidden filter invert hue-rotate-[140deg] contrast-[120%] brightness-[1.1] mix-blend-multiply" 
     />
-    <img 
+    <Image width={1536} height={1024} unoptimized
       src="/icon-dark.png" 
       alt="Иконка АЗИМУТ" 
       className="h-26 w-auto object-contain bg-transparent transition-transform duration-500 group-hover:scale-[1.02] 
@@ -97,13 +45,13 @@ if (sessionCookie && (sessionCookie.includes('ai3475128') || JSON.stringify(sess
 
   {/* 📐 УВЕЛИЧЕННАЯ НАДПИСЬ «АЗИМУТ» (КАРТИНКА): Масштаб поднят до h-13, добавлен сдвиг -ml-2 вплотную к сове! */}
   <div className="w-48 h-13 flex items-center justify-start shrink-0 bg-transparent -ml-2">
-    <img 
+    <Image width={2167} height={725} unoptimized
       src="/logo-dark.png" 
       alt="АЗИМУТ Онлайн-школа" 
       className="h-13 w-auto object-contain object-left bg-transparent transition-transform duration-500 group-hover:scale-[1.01] 
                  block dark:hidden filter invert hue-rotate-[140deg] contrast-[120%] brightness-[1.1] mix-blend-multiply" 
     />
-    <img 
+    <Image width={2167} height={725} unoptimized
       src="/logo-dark.png" 
       alt="АЗИМУТ Онлайн-школа" 
       className="h-13 w-auto object-contain object-left bg-transparent transition-transform duration-500 group-hover:scale-[1.01] group-hover:brightness-110 

@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PATHtoMATH — онлайн-школа математики
 
-## Getting Started
+Next.js App Router, React, SQLite. Сохранены существующие фоны, цвета, типографика, карточки, расположение разделов и светлая/тёмная темы. Математические условия и решения не переписываются.
 
-First, run the development server:
+## Запуск
+
+Нужен **Node.js 24 LTS** (`nvm use`). Приложение использует встроенный SQLite-драйвер Node, без Prisma и нативной сборки sqlite3.
 
 ```bash
+npm ci
+cp .env.example .env.local
+# Заполните настройки SMTP и пути постоянного хранилища.
+npm run db:init
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+npm test
+npm run lint
+npm run build
+npm run test:http
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+HTTP-проверка использует отдельную временную базу, локальный тестовый SMTP и вымышленные аккаунты; рабочие данные не затрагиваются.
 
-## Learn More
+## Данные и переход со старой версии
 
-To learn more about Next.js, take a look at the following resources:
+Остановите старое приложение и сделайте резервную копию базы и загруженных работ перед обновлением. Сохраните существующий `prisma/dev.db` либо укажите его в `DATABASE_PATH`. Не заменяйте его пустой базой. Базы и загруженные работы исключены из Git; обновление исходников не является переносом пользовательских данных.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`npm run db:init` выполняет идемпотентные транзакционные миграции. Сохраняются аккаунты, роли, работы, заметки и исходная таблица `Progress`. Однозначные старые отметки переносятся в `TaskProgress`, где ключ состоит из пользователя, полного раздела и ID задачи. Совпадавшие ранее ID сохраняются в `ProgressMigrationIssue` и не приписываются задаче наугад. Для просмотра выполните `node scripts/review-progress.mjs`; после ручной сверки можно передать четыре аргумента `USER_ID OLD_NUMBER MODULE TASK_ID`. Команда разрешает выбрать только одного из сохранённых кандидатов и не удаляет исходную запись.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Для production задайте `DATABASE_PATH` и `UPLOAD_DIR` на постоянном диске. Отдельные файлы SQLite в разных контейнерах не образуют общую базу; приложение рассчитано на один общий локальный диск. Новые загрузки хранятся вне `public`, в `UPLOAD_DIR`. Прежние `/uploads/...` обслуживаются с проверкой прав через rewrite. Сохраните старую папку загрузок и при необходимости укажите `LEGACY_UPLOAD_DIR`. Не обслуживайте этот путь из nginx/CDN напрямую в обход Next.js.
 
-## Deploy on Vercel
+Старые Base64-cookie больше не принимаются: после обновления требуется войти заново. Сессии хранятся на сервере, истекают через 7 дней и отзываются при выходе; роль читается из базы при каждом запросе.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Почта и аккаунты
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+В `.env.local` заполните `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD` и при необходимости `SMTP_FROM`. Без SMTP регистрация показывает сообщение о временной недоступности. Код подтверждения хранится в виде хеша, действует 15 минут и допускает пять попыток. Есть ограничения частоты отправки и входа.
+
+**Опубликованный ранее пароль приложения Gmail необходимо отозвать у провайдера и заменить.** Удаление строки из кода не отзывает пароль и не очищает старые коммиты. Старые версии публичной базы и предзаданные пароли также остаются в истории Git. Переписывать общую историю следует отдельно и согласованно.
+
+Для новой базы задайте `ADMIN_EMAIL`, `ADMIN_NAME`, `ADMIN_PASSWORD` (от 12 символов) и выполните `npm run admin:create`. Команда не повышает роль существующего аккаунта. После настройки удалите `ADMIN_PASSWORD` из окружения. Существующим пользователям пароль можно сменить через `RESET_EMAIL`, `RESET_PASSWORD` и `npm run password:reset`; все сессии аккаунта будут отозваны. Пароли не передаются в аргументах команд и не печатаются.
+
+За reverse proxy задайте `APP_ORIGIN` равным HTTPS-адресу сайта и передавайте корректные Host/X-Forwarded-Host. Production-cookie требуют HTTPS.
+
+## Основные исправления
+
+- Серверные сессии и проверки роли/принадлежности внутри каждой операции.
+- Приватные PDF/PNG/JPEG/WebP с проверкой сигнатуры и лимитом 10 МБ; HTML/SVG отклоняются.
+- Полная схема SQLite для работ, пробников, заметок, видео и расписания.
+- Прогресс задач с ID больше 99 и олимпиадных разделов больше не пересекается; повторные запросы идемпотентны.
+- Календарные заметки сохраняются, нулевой балл считается проверенным, выдачи работ различаются по batchId.
+- Реальные страницы `/videos/1`–`/videos/19`, защита платных видео, проверенные iframe-ссылки VK Видео/Kinescope.
+- Неизвестный ID ученика возвращает 404, а не карточку другого человека.
+- Персональные данные и SMTP-секреты удалены из текущих отслеживаемых исходников; зависимости обновлены.
+
+Идентификаторы задач собираются из исходников перед сборкой (`scripts/generate-task-catalog.mjs`). Локальная обёртка `vendor/react-katex` сохраняет прежний интерфейс компонентов и использует актуальный KaTeX с `trust:false`.

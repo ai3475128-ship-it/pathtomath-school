@@ -1,145 +1,10 @@
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import path from 'path';
-import fs from 'fs/promises';
-import { redirect } from 'next/navigation';
-import { cookies } from 'next/headers';
-import { revalidatePath } from 'next/cache';
-
-async function connectDB() {
-  return open({
-    filename: path.join(process.cwd(), 'prisma', 'dev.db'),
-    driver: sqlite3.Database
-  });
-}
-
-function findAuthCookie(allCookies) {
-  return allCookies.find(c => 
-    c.name.toLowerCase().includes('session') || 
-    c.name.toLowerCase().includes('token') || 
-    c.name.toLowerCase().includes('auth')
-  );
-}
-
-// Опубликовать новый пробник КИМ на весь курс
-async function createBulkTrial(formData) {
-  'use server';
-  const title = formData.get('title');
-  const file = formData.get('pdfFile');
-  if (!title) return;
-
-  let fileUrl = '';
-  if (file && file.size > 0 && file.name) {
-    try {
-      const fileExtension = path.extname(file.name);
-      const safeFileName = `trial_task_${Math.random().toString(36).substring(2, 11)}${fileExtension}`;
-      const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-      await fs.mkdir(uploadDir, { recursive: true });
-      
-      const bytes = await file.arrayBuffer();
-      await fs.writeFile(path.join(uploadDir, safeFileName), Buffer.from(bytes));
-      fileUrl = `/uploads/${safeFileName}`;
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  let db;
-  try {
-    db = await connectDB();
-    const premiumStudents = await db.all("SELECT id FROM User WHERE role = 'PREMIUM_STUDENT'");
-    const dateStr = new Date().toLocaleDateString('ru-RU');
-
-    for (const student of premiumStudents) {
-      const trialId = 'tr_' + Math.random().toString(36).substring(2, 11);
-      await db.run(
-        "INSERT INTO Trial (id, userId, title, score, date, maxScore) VALUES (?, ?, ?, ?, ?, ?)",
-        [trialId, student.id, title.trim(), 0, dateStr, 100]
-      );
-      
-      try {
-        await db.run("UPDATE Trial SET description = ?, solutionUrl = '', comment = '' WHERE id = ?", [fileUrl, trialId]);
-      } catch (e) {}
-    }
-    revalidatePath('/trials');
-  } catch (err) {
-    console.error(err);
-  } finally {
-    if (db) await db.close();
-  }
-}
-// Аннулировать выданный пробник у всей группы
-async function deleteBulkTrial(formData) {
-  'use server';
-  const titleToDelete = formData.get('title');
-  if (!titleToDelete) return;
-
-  let db;
-  try {
-    db = await connectDB();
-    await db.run("DELETE FROM Trial WHERE title = ?", [titleToDelete]);
-    revalidatePath('/trials');
-  } catch (err) {
-    console.error(err);
-  } finally {
-    if (db) await db.close();
-  }
-}
-
-// Отправка бланков решений учеником на проверку
-async function submitTrialSolution(formData) {
-  'use server';
-  const trialId = formData.get('trialId');
-  const file = formData.get('solutionFile');
-  if (!file || file.size === 0) return;
-
-  let solutionUrl = '';
-  try {
-    const fileExtension = path.extname(file.name);
-    const safeFileName = `trial_sol_${Math.random().toString(36).substring(2, 11)}${fileExtension}`;
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-    await fs.mkdir(uploadDir, { recursive: true });
-
-    const bytes = await file.arrayBuffer();
-    await fs.writeFile(path.join(uploadDir, safeFileName), Buffer.from(bytes));
-    solutionUrl = `/uploads/${safeFileName}`;
-
-    let db = await connectDB();
-    await db.run("UPDATE Trial SET solutionUrl = ? WHERE id = ?", [solutionUrl, trialId]);
-    await db.close();
-    revalidatePath('/trials');
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-// Выставление тестовых баллов экспертом
-async function checkTrialMark(formData) {
-  'use server';
-  const trialId = formData.get('trialId');
-  const score = parseInt(formData.get('score')) || 0;
-  const comment = formData.get('comment') || '';
-
-  let db;
-  try {
-    db = await connectDB();
-    await db.run("UPDATE Trial SET score = ?, comment = ? WHERE id = ?", [score, comment, trialId]);
-    revalidatePath('/trials');
-  } catch (err) {
-    console.error(err);
-  } finally {
-    if (db) await db.close();
-  }
-}
+import { connectDB } from '@/lib/db';
+import { requireCourseUser } from '@/lib/auth';
+import { createBulkTrial, deleteBulkTrial, submitTrialSolution, checkTrialMark } from '../course-actions';
 export default async function TrialsPage() {
-  const cookieStore = await cookies();
-  const allCookies = cookieStore.getAll();
-  const authCookie = findAuthCookie(allCookies);
-
-  if (!authCookie) redirect('/login?error=auth');
+  const user = await requireCourseUser();
 
   let db;
-  let user = null;
   let trialsList = [];
   let studentsList = [];
   let uniqueGroupTrials = [];
@@ -150,31 +15,20 @@ export default async function TrialsPage() {
 
   try {
     db = await connectDB();
-    let searchKey = authCookie.value;
-    try {
-      const decoded = JSON.parse(Buffer.from(authCookie.value, 'base64').toString('utf8'));
-      searchKey = decoded?.id || decoded?.email || authCookie.value;
-    } catch (e) {
-      searchKey = authCookie.value;
-    }
-
-    user = await db.get('SELECT id, name, email, role FROM User WHERE id = ? OR email = ? OR password = ?', [searchKey, searchKey, authCookie.value]);
-    if (!user || user.role === 'STUDENT') redirect('/');
-
     if (user.role === 'ADMIN' || user.role === 'TEACHER') {
       const rawStudents = await db.all("SELECT id, name, email FROM User WHERE role = 'PREMIUM_STUDENT'");
       trialsList = await db.all("SELECT * FROM Trial");
-      const rawTasks = await db.all("SELECT DISTINCT title FROM Trial ORDER BY date DESC");
-      uniqueGroupTrials = rawTasks.map(t => t.title);
+      const rawTasks = await db.all("SELECT batchId,title,MAX(date) AS latest FROM Trial GROUP BY batchId,title ORDER BY latest DESC");
+      uniqueGroupTrials = rawTasks;
 
       statTotalTrials = uniqueGroupTrials.length;
-      statUncheckedTrials = trialsList.filter(t => t.score === 0 && t.solutionUrl).length;
-      statCheckedTrials = trialsList.filter(t => t.score > 0).length;
+      statUncheckedTrials = trialsList.filter(t => t.status === 'На проверке').length;
+      statCheckedTrials = trialsList.filter(t => t.status === 'Проверено').length;
 
       // УМНАЯ СОРТИРОВКА: Студенты со сданными, но непроверенными КИМ автоматически поднимаются на самый верх списка
       studentsList = rawStudents.sort((a, b) => {
-        const aUnchecked = trialsList.filter(t => t.userId === a.id && t.score === 0 && t.solutionUrl).length;
-        const bUnchecked = trialsList.filter(t => t.userId === b.id && t.score === 0 && t.solutionUrl).length;
+        const aUnchecked = trialsList.filter(t => t.userId === a.id && t.status === 'На проверке').length;
+        const bUnchecked = trialsList.filter(t => t.userId === b.id && t.status === 'На проверке').length;
         
         if (bUnchecked !== aUnchecked) {
           return bUnchecked - aUnchecked;
@@ -184,11 +38,12 @@ export default async function TrialsPage() {
     } else {
       trialsList = await db.all("SELECT * FROM Trial WHERE userId = ? ORDER BY date DESC", [user.id]);
       statTotalTrials = trialsList.length;
-      statUncheckedTrials = trialsList.filter(t => t.score === 0 && t.solutionUrl).length;
-      statCheckedTrials = trialsList.filter(t => t.score > 0).length;
+      statUncheckedTrials = trialsList.filter(t => t.status === 'На проверке').length;
+      statCheckedTrials = trialsList.filter(t => t.status === 'Проверено').length;
     }
   } catch (e) {
     console.error(e);
+    throw e;
   } finally {
     if (db) await db.close();
   }
@@ -277,7 +132,7 @@ return (
                   <div className="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-purple-950/40 group-hover:border-white/20 transition-colors duration-300 space-y-3 bg-white/40 dark:bg-black/5">
                     <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-wider text-slate-400 group-hover:text-sky-100 transition-colors duration-300">
                       <span className="px-2 py-0.5 rounded-md bg-sky-50 text-sky-600 dark:bg-purple-950 dark:text-purple-400 group-hover:bg-white/20 group-hover:text-white font-black tracking-widest">
-                        {trial.score > 0 ? 'Проверено экспертом' : 'На проверке'}
+                        {trial.status === 'Проверено' ? 'Проверено экспертом' : 'На проверке'}
                       </span>
                       <span>{trial.date}</span>
                     </div>
@@ -316,13 +171,13 @@ return (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {studentsList.map((student) => {/* 🚀 ИСПРАВЛЕНО: Убраны белые рамки, добавлено круговое SVG-кольцо среднего балла справа на карточке */
 const studentTrials = trialsList.filter(t => t.userId === student.id);
-const uncheckedCount = studentTrials.filter(t => t.score === 0 && t.solutionUrl).length;
+const uncheckedCount = studentTrials.filter(t => t.status === 'На проверке').length;
 
 // Расчёт живого счетчика сданных бланков
 const submittedTrialsCount = studentTrials.filter(t => t.solutionUrl && t.solutionUrl.trim() !== '').length;
 
 // Высчитываем средний тестовый балл ученика по проверенным пробникам
-const checkedTrials = studentTrials.filter(t => t.score > 0);
+const checkedTrials = studentTrials.filter(t => t.status === 'Проверено');
 const avgScore = checkedTrials.length > 0 
   ? Math.round(checkedTrials.reduce((sum, t) => sum + t.score, 0) / checkedTrials.length) 
   : 0;
@@ -424,8 +279,8 @@ return (
                   <p className="text-[11px] text-slate-400 font-medium py-2 text-center">Выданных пробников нет.</p>
                 ) : (
                   <form action={deleteBulkTrial} className="space-y-3">
-                    <select name="title" required className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none text-slate-700 dark:text-slate-300">
-                      {uniqueGroupTrials.map((t) => <option key={t} value={t}>{t}</option>)}
+                    <select name="batchId" required className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none text-slate-700 dark:text-slate-300">
+                      {uniqueGroupTrials.map(({ batchId,title }) => <option key={batchId} value={batchId}>{title}</option>)}
                     </select>
                     <button type="submit" className="w-full bg-red-500 hover:bg-red-600 text-white text-xs font-black uppercase tracking-wider py-2.5 rounded-xl shadow-sm transition-colors cursor-pointer">Удалить пробник</button>
                   </form>

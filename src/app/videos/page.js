@@ -1,10 +1,12 @@
+import {requireUser} from '@/lib/auth';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
-export default function VideosPage() {
+export default async function VideosPage() {
+  await requireUser();
   const taskTitles = {
     1: 'Планиметрия', 2: 'Векторы', 3: 'Стереометрия', 4: 'Начало теории вероятностей',
     5: 'Вероятности сложных событий', 6: 'Простейшие уравнения', 7: 'Вычисления и преобразования',

@@ -7,7 +7,9 @@ export default async function RegisterPage({ searchParams }) {
   const errorType = queryParams?.error;
 
   let errorMessage = '';
-  if (errorType === 'fields') errorMessage = 'Пожалуйста, заполните все поля формы.';
+  if (errorType === 'limited') errorMessage = 'Слишком много попыток. Повторите через 15 минут.';
+  if (errorType === 'unavailable') errorMessage = 'Регистрация временно недоступна. Обратитесь к преподавателю.';
+  if (errorType === 'fields') errorMessage = 'Заполните все поля. Пароль — от 8 символов, не более 72 байт.';
   if (errorType === 'exists') errorMessage = 'Пользователь с таким Email уже существует.';
   if (errorType === 'server') errorMessage = 'Произошла ошибка при сохранении. Попробуйте еще раз.';
 

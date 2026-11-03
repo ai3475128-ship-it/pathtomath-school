@@ -399,7 +399,7 @@ export const olympiadIntro04Tasks = [
     ),
     textBefore: (
       <span>
-        Сколько существует 6-значных чисел, в которых есть цифра "5"?
+        Сколько существует 6-значных чисел, в которых есть цифра &quot;5&quot;?
       </span>
     ),
     mathA: '',
@@ -412,7 +412,7 @@ export const olympiadIntro04Tasks = [
         <span className="block">
           Всего существует <InlineMath math={`9 \\cdot 10^5 = 900\\,000`} /> шестизначных чисел (9 вариантов на первом месте, и по 10 вариантов на остальных пяти).
           <br /><br />
-          <b>1) Посчитаем числа, в которых вообще нет цифры "5":</b>
+          <b>1) Посчитаем числа, в которых вообще нет цифры &quot;5&quot;:</b>
           <br />
           • На первом месте может стоять любая цифра, кроме 0 и 5 (8 вариантов).
           <br />
@@ -423,7 +423,7 @@ export const olympiadIntro04Tasks = [
         </span>
 
         <span className="block border-t border-slate-200/40 pt-2">
-          <b>2) Найдём количество чисел, где есть хотя бы одна "5":</b>
+          <b>2) Найдём количество чисел, где есть хотя бы одна &quot;5&quot;:</b>
           <br />
           Для этого из общего числа шестизначных чисел вычтем те, в которых пятёрок нет совсем:
           <span className="flex justify-center my-3">
@@ -1037,8 +1037,8 @@ export const olympiadIntro04Tasks = [
             <polygon points="120,120 70,165 120,195" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-500" />
             <circle cx="70" cy="165" r="2.5" className="fill-slate-400 stroke-none" />
             <circle cx="120" cy="195" r="2.5" className="fill-slate-400 stroke-none" />
-            <text x="60" y="169" className="fill-slate-400 stroke-none">B'</text>
-            <text x="125" y="199" className="fill-slate-400 stroke-none">C'</text>
+            <text x="60" y="169" className="fill-slate-400 stroke-none">B&apos;</text>
+            <text x="125" y="199" className="fill-slate-400 stroke-none">C&apos;</text>
             
             {/* Дуга закрашенного внешнего сектора (угол 140 градусов) */}
             <path d="M 120,70 A 50,50 0 0,0 120,170" stroke="#3b82f6" strokeWidth="1.5" className="fill-blue-100/30 dark:fill-blue-950/20" />

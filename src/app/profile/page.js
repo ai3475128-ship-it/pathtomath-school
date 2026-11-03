@@ -1,9 +1,8 @@
+import { getCurrentUser } from '@/lib/auth';
+import { getEgeProgress } from '@/lib/task-modules';
+import { connectDB } from '@/lib/db';
 import Link from 'next/link';
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import path from 'path';
 import { redirect } from 'next/navigation';
-import { cookies } from 'next/headers';
 
 // ИМПОРТЫ СЕКЦИЙ БАНКА ЗАДАНИЙ: Для автоматического расчёта живых знаменателей платформы
 import { section1Tasks } from '../math-profile/[taskNumber]/sectoin1';
@@ -30,37 +29,17 @@ import { section19Tasks } from '../math-profile/[taskNumber]/sectoin19';
 import { initProgressTable } from './init-db';
 import { saveDailyNote } from './actions';
 
-async function connectDB() {
-  return open({
-    filename: path.join(process.cwd(), 'prisma', 'dev.db'),
-    driver: sqlite3.Database
-  });
-}
+
 
 async function getProfileData() {
   await initProgressTable();
-  const cookieStore = await cookies();
-  const sessionCookie = cookieStore.get('userSession');
-  if (!sessionCookie) return null;
-
-  let userId = null;
-  try {
-    const sessionData = JSON.parse(Buffer.from(sessionCookie.value, 'base64').toString('utf8'));
-    userId = sessionData?.id || sessionData?.email;
-  } catch (e) {
-    userId = sessionCookie.value;
-  }
-
-  if (!userId) return null;
+  const user = await getCurrentUser();
+  if (!user) return null;
 
   let db;
   try {
     db = await connectDB();
-    const user = await db.get('SELECT * FROM User WHERE id = ? OR email = ? OR password = ?', [userId, userId, sessionCookie.value]);
-    if (!user) return null;
-
-    const solvedRecords = await db.all('SELECT taskNumber FROM Progress WHERE userId = ?', [user.id]);
-    const solvedTasks = solvedRecords.map(r => r.taskNumber);
+    const solvedTasks = await getEgeProgress(db, user.id);
 
     const allNotes = await db.all('SELECT dateText, content FROM Notes WHERE userId = ?', [user.id]);
     const notesMap = {};
@@ -74,7 +53,7 @@ async function getProfileData() {
     return { user, solvedTasks, notesMap, homeworks, trials };
   } catch (error) {
     console.error(error);
-    return null;
+    throw error;
   } finally {
     if (db) await db.close();
   }
@@ -100,8 +79,7 @@ export default async function ProfilePage({ searchParams }) {
   const startOffset = firstDayIndex === 0 ? 6 : firstDayIndex - 1;
 
   const solvedStatsBySection = {};
-  solvedTasks.forEach(taskNumber => {
-    const sectionNum = Math.floor(taskNumber / 100);
+  solvedTasks.forEach(({ section: sectionNum }) => {
     if (sectionNum >= 1 && sectionNum <= 19) {
       solvedStatsBySection[sectionNum] = (solvedStatsBySection[sectionNum] || 0) + 1;
     }
@@ -118,9 +96,9 @@ export default async function ProfilePage({ searchParams }) {
   };
 
   const totalTasks = 19;
-  const solvedTasksList = Array.from(new Set(solvedTasks.map(num => Math.floor(num / 100)))).filter(num => num >= 1 && num <= 19);
+  const solvedTasksList = Array.from(new Set(solvedTasks.map(({ section }) => section))).filter(num => num >= 1 && num <= 19);
 
-  const validTrials = trials.filter(t => t.score > 0);
+  const validTrials = trials.filter(t => t.status === 'Проверено');
   const averageTrialScore = validTrials.length > 0
     ? Math.round(validTrials.reduce((sum, t) => sum + t.score, 0) / validTrials.length)
     : 0;
@@ -301,7 +279,6 @@ export default async function ProfilePage({ searchParams }) {
             <div className="mt-5 pt-4 border-t border-slate-100 dark:border-purple-950/20">
               <h4 className="text-xs font-black uppercase tracking-wider text-slate-400 mb-1">Планы на дату:</h4>
               <form action={saveDailyNote} className="space-y-4 mt-3">
-                <input type="hidden" name="userId" value={user.id} />
                 <input type="hidden" name="selectedDate" value={selectedDate} />
                 <textarea
                   name="noteContent"
