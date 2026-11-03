@@ -1,13 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { cookies } from 'next/headers';
+import { getCurrentUser } from '@/lib/auth';
 
 export default async function Home() {
   // 🔐 Железная проверка кук на сервере (работает синхронно с layout.js)
-  const cookieStore = await cookies();
+
   // ИСПРАВЛЕНО: Читаем актуальное имя куки сессии
-  const isAuthenticated = !!cookieStore.get('userSession')?.value;
+  const isAuthenticated = Boolean(await getCurrentUser());
 
   return (
     <main className="relative min-h-screen bg-transparent overflow-x-hidden">

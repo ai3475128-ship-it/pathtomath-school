@@ -1,97 +1,75 @@
-'use server';
-
-import { redirect } from 'next/navigation';
-import bcrypt from 'bcryptjs';
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import path from 'path';
-import nodemailer from 'nodemailer';
-// 🚀 ИСПРАВЛЕНО: Импортируем функцию инициализации базы данных
-import { initProgressTable } from '../profile/init-db';
-
-// Функция для быстрого подключения к файлу базы данных
-async function connectDB() {
-  return open({
-    filename: path.join(process.cwd(), 'prisma', 'dev.db'),
-    driver: sqlite3.Database
-  });
-}
-
+"use server";
+import { redirect } from "next/navigation";
+import bcrypt from "bcryptjs";
+import nodemailer from "nodemailer";
+import { connectDB } from "@/lib/db";
+import { text, emailAddress, passwordValue } from "@/lib/validation";
+import { verificationChallenge } from "@/lib/verification";
+import { consumeRateLimit } from "@/lib/rate-limit";
 export async function registerNewUser(formData) {
-  const name = formData.get('name');
-  const email = formData.get('email');
-  const password = formData.get('password');
-
-  if (!name || !email || !password) {
-    redirect('/register?error=fields');
-  }
-
-  let db;
-
+  let name, email, password;
   try {
-    // 🚀 ИСПРАВЛЕНО: Принудительно создаем таблицу PendingUsers в базе перед любыми запросами
-    await initProgressTable();
-
-    db = await connectDB();
-
-    // 1. Проверяем, нет ли уже активированного пользователя с таким Email
-    const existingUser = await db.get(
-      'SELECT * FROM User WHERE email = ?',
-      [email.toLowerCase().trim()]
-    );
-
-    if (existingUser) {
-      redirect('/register?error=exists');
-    }
-
-    // 2. Генерируем случайный 6-значный цифровой код подтверждения
-    const verificationCode = String(Math.floor(100000 + Math.random() * 900000));
-
-    // Безопасно шифруем пароль
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const pendingId = Math.random().toString(36).substring(2, 15);
-    const createdAt = new Date().toISOString();
-
-    // 3. Сохраняем данные во временную таблицу PendingUsers
-    await db.run('DELETE FROM PendingUsers WHERE email = ?', [email.toLowerCase().trim()]);
-    await db.run(
-      'INSERT INTO PendingUsers (id, email, name, password, code, createdAt) VALUES (?, ?, ?, ?, ?, ?)',
-      [pendingId, email.toLowerCase().trim(), name.trim(), hashedPassword, verificationCode, createdAt]
-    );
-
-        // 4. НАСТРОЙКА ОТПРАВКИ ПИСЬМА ЧЕРЕЗ GOOGLE SMTP
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com', // 🚀 Подключаемся напрямую к серверам Google
-      port: 465,
-      secure: true, // Использование SSL для порта 465
-      auth: {
-        user: 'mathcode111@gmail.com', // 👈 СЮДА впишите вашу новую почту Gmail
-        pass: 'pspwhjkkdbclecjf'   // 👈 СЮДА вставьте 16 букв пароля из блокнота (строго БЕЗ ПРОБЕЛОВ)
-      }
-    });
-
-    // Текст самого письма (Облегчённый формат, который Google доставит за 1 секунду)
-    const mailOptions = {
-      from: '"PATHtoMATH" <mathcode111@gmail.com>', // 👈 СЮДА также впишите вашу почту Gmail
-      to: email.toLowerCase().trim(), 
-      subject: 'Код активации профиля',
-      text: `Привет! Твой проверочный код для активации аккаунта на платформе PATHtoMATH: ${verificationCode}`
-    };
-
-    // Отправляем письмо
-    await transporter.sendMail(mailOptions);
-
-
-  } catch (err) {
-    if (err.digest?.startsWith('NEXT_REDIRECT')) {
-      throw err;
-    }
-    console.error('Ошибка при отправке кода подтверждения:', err);
-    redirect('/register?error=server');
-  } finally {
-    if (db) await db.close();
+    name = text(formData.get("name"), 150, 2);
+    email = emailAddress(formData.get("email"));
+    password = passwordValue(formData.get("password"));
+  } catch {
+    redirect("/register?error=fields");
   }
-
-  // Перенаправляем на страницу ввода кода
-  redirect(`/verify-email?email=${encodeURIComponent(email.toLowerCase().trim())}`);
+  const db = await connectDB();
+  if (
+    !consumeRateLimit(db, "register-email", email, 3, 15 * 60000) ||
+    !consumeRateLimit(db, "register-global", "all", 100, 15 * 60000)
+  )
+    redirect("/register?error=limited");
+  if (await db.get("SELECT id FROM User WHERE email=?", [email]))
+    redirect("/register?error=exists");
+  if (
+    !process.env.SMTP_HOST ||
+    !process.env.SMTP_USER ||
+    !process.env.SMTP_PASSWORD
+  )
+    redirect("/register?error=unavailable");
+  const challenge = verificationChallenge();
+  const hashed = await bcrypt.hash(password, 12);
+  await db.run(
+    `INSERT INTO PendingUsers(id,email,name,password,code,createdAt,attempts,expiresAt) VALUES(?,?,?,?,?,?,0,?) ON CONFLICT(email) DO UPDATE SET id=excluded.id,name=excluded.name,password=excluded.password,code=excluded.code,createdAt=excluded.createdAt,attempts=0,expiresAt=excluded.expiresAt`,
+    [
+      challenge.id,
+      email,
+      name,
+      hashed,
+      challenge.digest,
+      new Date().toISOString(),
+      challenge.expiresAt,
+    ],
+  );
+  const port = Number(process.env.SMTP_PORT || 465);
+  const transport = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port,
+    secure: port === 465,
+    auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASSWORD },
+    disableFileAccess: true,
+    disableUrlAccess: true,
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000,
+  });
+  let delivered = false;
+  try {
+    await transport.sendMail({
+      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      to: email,
+      subject: "Код активации профиля",
+      text: `Привет! Код активации PATHtoMATH: ${challenge.code}. Код действует 15 минут.`,
+    });
+    delivered = true;
+  } catch {
+    await db.run("DELETE FROM PendingUsers WHERE id=?", [challenge.id]);
+    console.error("Не удалось отправить письмо подтверждения");
+  } finally {
+    transport.close();
+  }
+  if (!delivered) redirect("/register?error=server");
+  redirect(`/verify-email?email=${encodeURIComponent(email)}`);
 }

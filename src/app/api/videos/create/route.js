@@ -1,41 +1,47 @@
-import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
-
+import { NextResponse } from "next/server";
+import { getCurrentUser, isManagement } from "@/lib/auth";
+import { connectDB, createId } from "@/lib/db";
+import { text } from "@/lib/validation";
+import { videoEmbedUrl } from "@/lib/videos";
+import { sameOrigin, limitedBody } from "@/lib/http";
 export async function POST(request) {
+  if (!sameOrigin(request))
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  const user = await getCurrentUser();
+  if (!user)
+    return NextResponse.json({ error: "Требуется вход" }, { status: 401 });
+  if (!isManagement(user))
+    return NextResponse.json({ error: "Недостаточно прав" }, { status: 403 });
+  let title, url, sectionNum, isPremium;
   try {
-    // 1. Извлекаем данные, которые преподаватель заполнил в форме админки
-    const formData = await request.formData();
-    const title = formData.get('title');
-    const url = formData.get('url');
-    const sectionNumRaw = formData.get('sectionNum');
-    const isPremiumRaw = formData.get('isPremium'); // чекбокс присылает 'on', если активен
-
-    // 2. Базовая валидация: проверяем, что обязательные поля заполнены
-    if (!title || !url || !sectionNumRaw) {
-      return NextResponse.json({ error: 'Пожалуйста, заполните все обязательные поля!' }, { status: 400 });
-    }
-
-    // 3. Преобразуем типы данных под строгий формат нашей базы данных SQLite
-    const sectionNum = parseInt(sectionNumRaw, 10);
-    const isPremium = isPremiumRaw === 'on'; // если галочка стоит — true, иначе false
-
-    // 4. Записываем новый видеоурок напрямую в таблицу Video нашей базы данных
-    await prisma.video.create({
-      data: {
-        title,
-        url,
-        sectionNum,
-        isPremium,
+    const bytes = await limitedBody(request);
+    const form = await new Request(request.url, {
+      method: "POST",
+      headers: request.headers,
+      body: bytes,
+    }).formData();
+    title = text(form.get("title"), 300);
+    url = videoEmbedUrl(form.get("url"));
+    sectionNum = Number(form.get("sectionNum"));
+    isPremium = form.get("isPremium") === "on" ? 1 : 0;
+    if (!Number.isSafeInteger(sectionNum) || sectionNum < 1 || sectionNum > 19)
+      throw Error("Invalid section");
+  } catch {
+    return NextResponse.json(
+      {
+        error:
+          "Проверьте название, раздел и ссылку встраивания VK Видео или Kinescope",
       },
-    });
-
-    // 5. После успешной публикации перенаправляем преподавателя обратно на страницу видеоуроков
-    return NextResponse.redirect(new URL('/videos', request.url), 303);
-
-  } catch (error) {
-    console.error('▲ [AZIMUT] Ошибка при сохранении видео в базу данных:', error);
-    return NextResponse.json({ error: 'Внутренняя ошибка сервера при публикации видео' }, { status: 500 });
+      { status: 400 },
+    );
   }
+  const db = await connectDB();
+  await db.run(
+    "INSERT INTO Video(id,title,url,sectionNum,isPremium,createdAt) VALUES(?,?,?,?,?,?)",
+    [createId(), title, url, sectionNum, isPremium, new Date().toISOString()],
+  );
+  return NextResponse.redirect(
+    new URL(`/videos/${sectionNum}`, request.url),
+    303,
+  );
 }

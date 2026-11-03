@@ -1,3 +1,5 @@
+import {getTaskModule} from '@/lib/task-modules';
+import {notFound} from 'next/navigation';
 import React from 'react';
 import Link from 'next/link';
 import TaskListBlock from './TaskListBlock';
@@ -7,6 +9,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function TaskPage({ params }) {
   const { taskNumber } = await params;
+  if (!getTaskModule(taskNumber)) notFound();
 
   // Словарь для лаконичных заголовков подготовительных задач ЕГЭ
   const introTitles = {
@@ -84,7 +87,7 @@ export default async function TaskPage({ params }) {
         <div className="flex gap-2 text-sm text-slate-400/80 mb-6 font-medium dark:text-slate-400/60 select-none">
           <Link href="/" className="hover:text-sky-400 transition">Главная</Link>
           <span>/</span>
-          <Link href="/math-profile/main-hub" className="hover:text-sky-400 transition">Банк заданий</Link>
+          <Link href="/math-profile" className="hover:text-sky-400 transition">Банк заданий</Link>
           <span>/</span>
           <span className="text-slate-700 font-semibold dark:text-white/90">
             {breadcrumbLabel}
@@ -100,8 +103,8 @@ export default async function TaskPage({ params }) {
 
         {/* Список задач и модалка репортов */}
         <div className="space-y-4 pt-2">
-          <TaskListBlock taskNumberInt={taskNumberIntForComponent} />
-          <ErrorReportModal sectionNumber={taskNumberIntForComponent} />
+          <TaskListBlock key={taskNumber} taskNumberInt={taskNumberIntForComponent} />
+          <ErrorReportModal key={taskNumber} sectionNumber={taskNumberIntForComponent} module={taskNumber} />
         </div>
 
       </div>

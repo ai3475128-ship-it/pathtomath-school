@@ -13,7 +13,7 @@ const teachersData = [
     hoverBgClass: 'group-hover:bg-[#007ae1]',
     hoverBorderClass: 'group-hover:border-[#007ae1]',
     achievements: [
-      <span>Студент ТОП-ВУЗа России <br /> НИУ ВШЭ <span className="opacity-80 text-[11px] font-normal tracking-normal">(Прикладная Математика)</span></span>,
+      <span key="education">Студент ТОП-ВУЗа России <br /> НИУ ВШЭ <span className="opacity-80 text-[11px] font-normal tracking-normal">(Прикладная Математика)</span></span>,
       '100 Баллов на ЕГЭ по профильной математике',
       'Призер и победитель олимпиад по математике',
       'Подготовка к ЕГЭ/ОГЭ, Высшей математике, Вступительным испытаниям',
@@ -29,7 +29,7 @@ const teachersData = [
     hoverBgClass: 'group-hover:bg-[#007ae1]',
     hoverBorderClass: 'group-hover:border-[#007ae1]',
     achievements: [
-      <span>Студент ТОП-ВУЗа России <br /> НИУ ВШЭ <span className="opacity-80 text-[11px] font-normal tracking-normal">(Прикладная Математика)</span></span>,
+      <span key="education">Студент ТОП-ВУЗа России <br /> НИУ ВШЭ <span className="opacity-80 text-[11px] font-normal tracking-normal">(Прикладная Математика)</span></span>,
       'Призер и победитель олимпиад по математике',
       'Организатор интенсивных курсов подготовки',
       'Подготовка к ЕГЭ/ОГЭ, Олимпиадной математике, Вступительным испытаниям',

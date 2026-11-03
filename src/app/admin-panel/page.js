@@ -1,31 +1,19 @@
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import path from 'path';
+import { requireAdmin } from '@/lib/auth';
+import { text,emailAddress,passwordValue } from '@/lib/validation';
+import { connectDB, createId } from '@/lib/db';
 import bcrypt from 'bcryptjs';
-import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { getCurrentUser } from '../login/actions';
 import StudentManager from './StudentManager';
 
-async function connectDB() {
-  return open({
-    filename: path.join(process.cwd(), 'prisma', 'dev.db'),
-    driver: sqlite3.Database
-  });
-}
 
-// Список Email-адресов двух руководителей онлайн-школы
-const ALLOWED_ADMINS = [
-  'ai3475128@gmail.com', 
-  'danilapokoyovets@gmail.com'
-];
 
 // SERVER ACTION 1: Создание аккаунта преподавателя руководителем
 async function createTeacher(formData) {
   'use server';
-  const name = formData.get('name');
-  const email = formData.get('email');
-  const password = formData.get('password');
+  await requireAdmin();
+  const name = text(formData.get('name'),150,2);
+  const email = emailAddress(formData.get('email'));
+  const password = passwordValue(formData.get('password'));
 
   if (!name || !email || !password) return;
 
@@ -35,8 +23,8 @@ async function createTeacher(formData) {
     const existing = await db.get('SELECT * FROM User WHERE email = ?', [email.toLowerCase().trim()]);
     if (existing) return;
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const userId = 'teacher_' + Math.random().toString(36).substring(2, 11);
+    const hashedPassword = await bcrypt.hash(password, 12);
+    const userId = createId();
     const createdAt = new Date().toISOString();
 
     await db.run(
@@ -47,6 +35,7 @@ async function createTeacher(formData) {
     revalidatePath('/admin-panel');
   } catch (err) {
     console.error(err);
+    throw err;
   } finally {
     if (db) await db.close();
   }
@@ -55,16 +44,19 @@ async function createTeacher(formData) {
 // SERVER ACTION 2: Понижение преподавателя обратно до ученика
 async function removeTeacher(formData) {
   'use server';
+  await requireAdmin();
   const id = formData.get('id');
   if (!id) return;
 
   let db;
   try {
     db = await connectDB();
-    await db.run("UPDATE User SET role = 'STUDENT' WHERE id = ?", [id]);
+    await db.run("UPDATE User SET role = 'STUDENT' WHERE id = ? AND role = 'TEACHER'", [id]);
+    await db.run('DELETE FROM Session WHERE userId=?',[id]);
     revalidatePath('/admin-panel');
   } catch (err) {
     console.error(err);
+    throw err;
   } finally {
     if (db) await db.close();
   }
@@ -72,6 +64,7 @@ async function removeTeacher(formData) {
 // SERVER ACTION 3: Серверное переключение галочки (спуск опечатки вниз списка)
 async function toggleReportStatus(formData) {
   'use server';
+  await requireAdmin();
   const reportId = formData.get('reportId');
   const currentStatus = formData.get('currentStatus');
   if (!reportId) return;
@@ -81,14 +74,12 @@ async function toggleReportStatus(formData) {
     db = await connectDB();
     const nextStatus = currentStatus === 'true' ? '' : 'ИСПРАВЛЕНО';
     
-    await db.run("UPDATE ErrorReport SET status = ? WHERE id = ?", [nextStatus, reportId]).catch(() => {});
-    await db.run("UPDATE ErrorReports SET status = ? WHERE id = ?", [nextStatus, reportId]).catch(() => {});
-    await db.run("UPDATE Issue SET status = ? WHERE id = ?", [nextStatus, reportId]).catch(() => {});
-    await db.run("UPDATE Bug SET status = ? WHERE id = ?", [nextStatus, reportId]).catch(() => {});
+    await db.run('UPDATE ErrorReports SET status=? WHERE id=?',[nextStatus,reportId]);
     
     revalidatePath('/admin-panel');
   } catch (err) {
     console.error(err);
+    throw err;
   } finally {
     if (db) await db.close();
   }
@@ -97,6 +88,7 @@ async function toggleReportStatus(formData) {
 // SERVER ACTION 4: Полное и безвозвратное удаление баг-репорта из SQLite
 async function deleteReportPermanently(formData) {
   'use server';
+  await requireAdmin();
   const reportId = formData.get('reportId');
   if (!reportId) return;
 
@@ -104,25 +96,19 @@ async function deleteReportPermanently(formData) {
   try {
     db = await connectDB();
     
-    await db.run("DELETE FROM ErrorReport WHERE id = ?", [reportId]).catch(() => {});
-    await db.run("DELETE FROM ErrorReports WHERE id = ?", [reportId]).catch(() => {});
-    await db.run("DELETE FROM Issue WHERE id = ?", [reportId]).catch(() => {});
-    await db.run("DELETE FROM Bug WHERE id = ?", [reportId]).catch(() => {});
+    await db.run('DELETE FROM ErrorReports WHERE id=?',[reportId]);
     
     revalidatePath('/admin-panel');
   } catch (err) {
     console.error(err);
+    throw err;
   } finally {
     if (db) await db.close();
   }
 }
 
 export default async function AdminPanelPage() {
-  const currentUser = await getCurrentUser();
-
-  if (!currentUser || currentUser.role !== 'ADMIN' || !ALLOWED_ADMINS.includes(currentUser.email.toLowerCase().trim())) {
-    redirect('/login?error=wrong');
-  }
+  const currentUser = await requireAdmin();
 
   let db;
   let teachers = [];
@@ -134,9 +120,7 @@ export default async function AdminPanelPage() {
     db = await connectDB();
     teachers = await db.all("SELECT id, name, email, createdAt FROM User WHERE role = 'TEACHER'");
     
-    errorReports = await db.all("SELECT * FROM ErrorReport ORDER BY createdAt DESC LIMIT 10").catch(async () => {
-      return await db.all("SELECT * FROM ErrorReports ORDER BY createdAt DESC LIMIT 10").catch(() => []);
-    });
+    errorReports = await db.all('SELECT * FROM ErrorReports ORDER BY createdAt DESC LIMIT 10');
 
     students = await db.all("SELECT id, name, email, role FROM User WHERE role IN ('STUDENT', 'PREMIUM_STUDENT') ORDER BY name ASC");
     const studentsRes = await db.get("SELECT COUNT(*) as count FROM User WHERE role IN ('STUDENT', 'PREMIUM_STUDENT')");

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 import { useRouter, useParams } from 'next/navigation';
@@ -89,6 +89,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
   const params = useParams();
   const taskNumber = params?.taskNumber; // Берем ID страницы из URL для интро и олимпиад
   const router = useRouter();
+  const pendingTasks = useRef(new Set());
 
   const [solvedSubTasks, setSolvedSubTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -102,28 +103,31 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
 
   // 1️⃣ ЗАГРУЗКА: Подтягиваем решенные задачи с нашего нового route.js
   useEffect(() => {
+    const controller = new AbortController();
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const num = parseInt(taskNumberInt) || 0;
-        const resProgress = await fetch(`/api/user-task-progress?taskNumber=${num}`, { cache: 'no-store' });
+        const resProgress = await fetch(`/api/user-task-progress?module=${encodeURIComponent(taskNumber)}`,{cache:'no-store',signal:controller.signal});
         const dataProgress = await resProgress.json();
         if (dataProgress && dataProgress.solvedSubTasks) {
           setSolvedSubTasks(dataProgress.solvedSubTasks);
         }
       } catch (e) {
-        console.error("Ошибка загрузки прогресса:", e);
+        if (e.name !== 'AbortError') console.error('Ошибка загрузки прогресса:',e);
       } finally {
-        setIsLoading(false);
+        if (!controller.signal.aborted) setIsLoading(false);
       }
     };
     fetchData();
-  }, [taskNumberInt]);
+    return () => controller.abort();
+  }, [taskNumber]);
 
   // 2️⃣ КЛИК «РЕШЕНО»: Математически точно вычисляем ID и отправляем на бэкенд
   const handleToggleClick = async (taskId) => {
-    const num = parseInt(taskNumberInt) || 0;
-    const computedSubTaskId = num * 100 + parseInt(taskId);
+    const computedSubTaskId = Number(taskId);
+    const pendingKey = `${taskNumber}:${taskId}`;
+    if (pendingTasks.current.has(pendingKey)) return;
+    pendingTasks.current.add(pendingKey);
     const isRemoving = solvedSubTasks.includes(computedSubTaskId);
 
     // Оптимистично переключаем состояние кнопки на фронтенде мгновенно
@@ -135,7 +139,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
       const response = await fetch('/api/user-task-progress', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subTaskId: computedSubTaskId }),
+        body: JSON.stringify({module:taskNumber,taskId:computedSubTaskId,solved:!isRemoving}),
       });
       const result = await response.json();
       if (!response.ok || !result.success) {
@@ -154,7 +158,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
         isRemoving ? [...prev, computedSubTaskId] : prev.filter((id) => id !== computedSubTaskId)
       );
       alert('Ошибка соединения с сервером.');
-    }
+    } finally { pendingTasks.current.delete(pendingKey); }
   };
 
   if (isLoading) {
@@ -194,7 +198,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
     <div className="space-y-6 relative">
       {currentTasks.map((task) => {
         const num = parseInt(taskNumber, 10) || parseInt(taskNumberInt, 10) || 0;
-        const computedSubTaskId = num * 100 + parseInt(task.id);
+        const computedSubTaskId = Number(task.id);
         const isSubTaskSolved = solvedSubTasks.includes(computedSubTaskId);
         const isSolutionOpen = isOpen[task.id];
 
@@ -274,7 +278,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
                 {!isCustomModule && task.mathB && (
                   <>
                     <p className="mt-4 mb-2">
-                      {num === 13 && 'б) Найдите корни этого уравнения, принадлежащие отркзку:'}
+                      {num === 13 && 'б) Найдите корни этого уравнения, принадлежащие отрезку:'}
                       {num === 14 && 'б) Найдите:'}
                       {num === 17 && 'б) Найдите:'}
                     </p>
@@ -302,7 +306,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
 
             {/* 🔮 СПОЙЛЕР С РЕШЕНИЕМ */}
             <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
-              isSolutionOpen ? 'max-h-[3000px] opacity-100 mt-4' : 'max-h-0 opacity-0 pointer-events-none'
+              isSolutionOpen ? 'max-h-none opacity-100 mt-4' : 'max-h-0 opacity-0 pointer-events-none'
             }`}>
               {isSolutionOpen && (
                 <TaskSolutionCard

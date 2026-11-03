@@ -9,6 +9,8 @@ export default async function LoginPage({ searchParams }) {
   // Определяем, какая вкладка активна (по умолчанию ученик)
   const activeTab = queryParams?.tab === 'teacher' ? 'teacher' : 'student';
   let errorMessage = '';
+  if (errorType === 'limited') errorMessage = 'Слишком много попыток. Повторите через 15 минут.';
+  if (errorType === 'unavailable') errorMessage = 'Регистрация временно недоступна. Обратитесь к преподавателю.';
   if (errorType === 'fields') errorMessage = 'Пожалуйста, заполните все поля.';
   if (errorType === 'wrong') errorMessage = 'Неверный Email или пароль. Попробуйте ещё раз.';
   if (errorType === 'server') errorMessage = 'Ошибка сервера. Попробуйте позже.';

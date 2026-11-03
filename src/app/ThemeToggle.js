@@ -9,7 +9,9 @@ export default function ThemeToggle() {
 
   // 1. При первой загрузке сайта проверяем, какую тему пользователь выбирал ранее
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
+    const frame = requestAnimationFrame(() => {
+    let savedTheme = 'light';
+    try { savedTheme = localStorage.getItem('theme') || 'light'; } catch {}
     if (savedTheme === 'dark') {
       setIsDark(true);
       document.documentElement.classList.add('dark');
@@ -17,7 +19,9 @@ export default function ThemeToggle() {
       setIsDark(false);
       document.documentElement.classList.remove('dark');
     }
-    setIsMounted(true); // Страница готова на клиенте
+    setIsMounted(true);
+    });
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   // 2. Функция ручного переключения по клику на плашку
@@ -27,10 +31,10 @@ export default function ThemeToggle() {
 
     if (nextDark) {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark'); // Запоминаем выбор
+      try {localStorage.setItem('theme','dark');} catch {} // Запоминаем выбор
     } else {
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light'); // Запоминаем выбор
+      try {localStorage.setItem('theme','light');} catch {} // Запоминаем выбор
     }
   };
 
@@ -41,6 +45,11 @@ export default function ThemeToggle() {
     /* 🚀 ИСПРАВЛЕНО: Полная симметрия! justify-between убран, чтобы внутренние скрытые отступы не ломали геометрию краев */
     <div
       onClick={toggleTheme}
+      role="button"
+      tabIndex={0}
+      aria-label="Переключить тему"
+      aria-pressed={isDark}
+      onKeyDown={event => {if (event.key === 'Enter' || event.key === ' ') {event.preventDefault();toggleTheme();}}}
       className={`w-18 h-10 rounded-xl p-1 flex items-center cursor-pointer relative border transition-all duration-300 select-none ${
         isDark 
           ? 'bg-purple-950/40 border-purple-500/30' 

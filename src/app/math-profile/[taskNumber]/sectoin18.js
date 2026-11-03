@@ -1501,7 +1501,7 @@ export const section18Tasks = [
       <p>Замена, пусть <InlineMath math={`t = f(x) = |x - a - 1| + |x - a + 1|, \\quad t \\geq 0`} /></p>
       <BlockMath math={`t^2 + at + a^2 - 16 = 0`} />
       
-      <p>Анализ замены: <InlineMath math={`t = |x - (a + 1)| + |x - (a - 1)|`} /> — график кусочно-линейной функции с "дном" на высоте <InlineMath math={`t = 2`} /></p>
+      <p>Анализ замены: <InlineMath math={`t = |x - (a + 1)| + |x - (a - 1)|`} /> — график кусочно-линейной функции с &quot;дном&quot; на высоте <InlineMath math={`t = 2`} /></p>
       <p>Изобразим <InlineMath math={`f(x)`} /> в осях <InlineMath math={`xOt`} />:</p>
       
       <BlockMath math={`\\begin{cases} t = 2a - 2x, & x \\leq a - 1, \\\\ t = 2, & a - 1 \\leq x \\leq a + 1, \\\\ t = 2x - 2a, & x \\geq a + 1. \\end{cases}`} />

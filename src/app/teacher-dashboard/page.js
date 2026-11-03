@@ -1,58 +1,40 @@
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import path from 'path';
-import { redirect } from 'next/navigation';
+import { requireManagement } from '@/lib/auth';
+import { text,calendarDate } from '@/lib/validation';
+import { createQuickHomework } from '../course-actions';
+import { connectDB,createId } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 
 // 🚀 ИСПРАВЛЕНО: Добавлен обязательный импорт компонента Link, чтобы кнопка «Назад» больше не ломала страницу!
 import Link from 'next/link';
 
 // 🚀 ИСПРАВЛЕНО: Для папки teacher-dashboard нужен подъем всего на одну директорию вверх (../), чтобы зайти в соседний login
-import { getCurrentUser } from '../login/actions';
 
 
 
-async function connectDB() {
-  return open({
-    filename: path.join(process.cwd(), 'prisma', 'dev.db'),
-    driver: sqlite3.Database
-  });
-}
 
-// Автоматическая подстраховка: создаем таблицу расписания, если Данила забыл миграцию
-async function initScheduleTable(db) {
-  await db.run(`
-    CREATE TABLE IF NOT EXISTS Schedule (
-      id TEXT PRIMARY KEY,
-      time TEXT NOT NULL,
-      title TEXT NOT NULL,
-      type TEXT NOT NULL,
-      dateText TEXT NOT NULL,
-      createdAt TEXT NOT NULL
-    )
-  `).catch(() => {});
-}
 
 // 🚀 SERVER ACTION 1: Добавление нового урока по нативному календарю выбора дат
 async function createScheduleEvent(formData) {
   'use server';
-  const title = formData.get('title');
+  await requireManagement();
+  const title = text(formData.get('title'),300);
   const time = formData.get('time');
   const type = formData.get('type');
-  const rawDate = formData.get('lessonDate'); // Получаем YYYY-MM-DD из инпута календаря
+  const rawDate = calendarDate(formData.get('lessonDate')); // Получаем YYYY-MM-DD из инпута календаря
 
   if (!title || !time || !type || !rawDate) return;
 
   let db;
   try {
     db = await connectDB();
-    await initScheduleTable(db);
+
     
-    const eventId = 'ev_' + Math.random().toString(36).substring(2, 11);
+    const eventId = createId();
     const createdAt = new Date().toISOString();
 
     // Форматируем дату из календаря в красивый вид (например, 25.11.2024)
-    const formattedDate = new Date(rawDate).toLocaleDateString('ru-RU');
+    const formattedDate = rawDate;
+    if (typeof time !== 'string' || !/^([01]\d|2[0-3]):[0-5]\d$/.test(time) || !['Вебинар','Созвон','Мастер-группа'].includes(type)) throw new Error('Некорректное время или тип занятия');
 
     await db.run(
       "INSERT INTO Schedule (id, time, title, type, dateText, createdAt) VALUES (?, ?, ?, ?, ?, ?)",
@@ -62,44 +44,14 @@ async function createScheduleEvent(formData) {
     revalidatePath('/teacher-dashboard');
   } catch (err) {
     console.error('Ошибка записи занятия в БД:', err);
+    throw err;
   } finally {
     if (db) await db.close();
   }
 }
 
-// 🚀 SERVER ACTION 2: Мастер-панель публикации будущих ДЗ на весь поток
-async function createQuickHomework(formData) {
-  'use server';
-  const title = formData.get('title');
-  if (!title) return;
-
-  let db;
-  try {
-    db = await connectDB();
-    const premiumStudents = await db.all("SELECT id FROM User WHERE role = 'PREMIUM_STUDENT'");
-    const createdAt = new Date().toISOString();
-
-    for (const student of premiumStudents) {
-      const hwId = 'hw_' + Math.random().toString(36).substring(2, 11);
-      await db.run(
-        "INSERT INTO Homework (id, userId, title, description, status, mark, comment, createdAt, solutionUrl) VALUES (?, ?, ?, ?, ?, ?, ?, ?, '')",
-        [hwId, student.id, title.trim(), '', 'Не сдано', '—', '', createdAt]
-      );
-    }
-    revalidatePath('/teacher-dashboard');
-  } catch (err) {
-    console.error(err);
-  } finally {
-    if (db) await db.close();
-  }
-}
 export default async function TeacherDashboardPage() {
-  const currentUser = await getCurrentUser();
-
-  // Жесткий барьер безопасности: пускаем только учителей и админов
-  if (!currentUser || (currentUser.role !== 'TEACHER' && currentUser.role !== 'ADMIN')) {
-    redirect('/login?error=restricted');
-  }
+  const currentUser = await requireManagement();
 
   let db;
   let rawStudents = [];
@@ -112,7 +64,7 @@ export default async function TeacherDashboardPage() {
 
   try {
     db = await connectDB();
-    await initScheduleTable(db);
+
 
     rawStudents = await db.all("SELECT id, name, email FROM User WHERE role = 'PREMIUM_STUDENT'");
     homeworksList = await db.all("SELECT * FROM Homework");
@@ -124,11 +76,12 @@ export default async function TeacherDashboardPage() {
     totalPremiumCount = rawStudents.length;
     uncheckedHwCount = homeworksList.filter(h => h.status === 'На проверке').length;
 
-    const uniqueHwTitles = new Set(homeworksList.map(h => h.title));
+    const uniqueHwTitles = new Set(homeworksList.map(h => h.batchId));
     totalIssuedHwCount = uniqueHwTitles.size;
 
   } catch (err) {
     console.error(err);
+    throw err;
   } finally {
     if (db) await db.close();
   }
@@ -138,7 +91,7 @@ export default async function TeacherDashboardPage() {
     const studentHWs = homeworksList.filter(h => h.userId === student.id);
     const studentTrials = trialsList.filter(t => t.userId === student.id);
 
-    const checkedTrials = studentTrials.filter(t => t.score > 0);
+    const checkedTrials = studentTrials.filter(t => t.status === 'Проверено');
     const avgTrialScore = checkedTrials.length > 0
       ? Math.round(checkedTrials.reduce((sum, t) => sum + t.score, 0) / checkedTrials.length)
       : 0;

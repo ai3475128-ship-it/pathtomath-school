@@ -1,9 +1,10 @@
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import path from 'path';
+import { connectDB } from '@/lib/db';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { cookies } from 'next/headers';
+import { requireManagement,requireAdmin } from '@/lib/auth';
+import { notFound } from 'next/navigation';
+import { getEgeProgress } from '@/lib/task-modules';
+import { checkHomeworkMark as saveHomeworkMark,checkTrialMark as saveTrialScore } from '../../../course-actions';
 import Link from 'next/link';
 
 // 🚀 СИНХРОНИЗИРОВАНО С PROFILE: Точные относительные импорты разделов один в один
@@ -27,104 +28,29 @@ import { section17Tasks } from '../../../math-profile/[taskNumber]/sectoin17';
 import { section18Tasks } from '../../../math-profile/[taskNumber]/sectoin18';
 import { section19Tasks } from '../../../math-profile/[taskNumber]/sectoin19';
 
-async function getCurrentUserFromCookie() {
-  const cookieStore = await cookies();
-  const sessionCookie = cookieStore.get('userSession')?.value;
-  if (!sessionCookie) return null;
-  
-  let db;
-  try {
-    let userId = null;
-    try {
-      const sessionData = JSON.parse(Buffer.from(sessionCookie, 'base64').toString('utf8'));
-      userId = sessionData?.id || sessionData?.email;
-    } catch (e) {
-      userId = sessionCookie;
-    }
-
-    db = await open({
-      filename: path.join(process.cwd(), 'prisma', 'dev.db'),
-      driver: sqlite3.Database
-    });
-    return await db.get('SELECT id, name, email, role FROM User WHERE id = ? OR email = ? OR password = ?', [userId, userId, sessionCookie]);
-  } catch (e) {
-    return null;
-  } finally {
-    if (db) await db.close();
-  }
-}
-
-async function connectDB() {
-  return open({
-    filename: path.join(process.cwd(), 'prisma', 'dev.db'),
-    driver: sqlite3.Database
-  });
-}
-
 // SERVER ACTION 1: Изменение тарифа подписки (Доступно только ADMIN)
 async function toggleStudentPremium(formData) {
   'use server';
+  await requireAdmin();
   const studentId = formData.get('studentId');
-  const currentStatus = formData.get('currentStatus') === 'true';
   let db;
   try {
     db = await connectDB();
-    const newRole = currentStatus ? 'STUDENT' : 'PREMIUM_STUDENT';
-    await db.run("UPDATE User SET role = ? WHERE id = ?", [newRole, studentId]);
+    await db.run("UPDATE User SET role=CASE WHEN role='PREMIUM_STUDENT' THEN 'STUDENT' ELSE 'PREMIUM_STUDENT' END WHERE id=? AND role IN ('STUDENT','PREMIUM_STUDENT')",[studentId]);
     revalidatePath(`/supervisor/students/${studentId}`);
   } catch (err) {
     console.error(err);
+    throw err;
   } finally {
     if (db) await db.close();
   }
 }
 
-// SERVER ACTION 2: Сохранение оценки домашней работы куратором
-async function saveHomeworkMark(formData) {
-  'use server';
-  const hwId = formData.get('hwId');
-  const studentId = formData.get('studentId');
-  const mark = formData.get('mark');
-  const comment = formData.get('comment') || '';
-  let db;
-  try {
-    db = await connectDB();
-    await db.run("UPDATE Homework SET mark = ?, comment = ?, status = 'Проверено' WHERE id = ?", [mark.trim() || '—', comment.trim(), hwId]);
-    revalidatePath(`/supervisor/students/${studentId}`);
-  } catch (err) {
-    console.error(err);
-  } finally {
-    if (db) await db.close();
-  }
-}
-
-// SERVER ACTION 3: Выставление баллов за пробный КИМ экспертом
-async function saveTrialScore(formData) {
-  'use server';
-  const trialId = formData.get('trialId');
-  const studentId = formData.get('studentId');
-  const score = parseInt(formData.get('score')) || 0;
-  let db;
-  try {
-    db = await connectDB();
-    await db.run("UPDATE Trial SET score = ?, status = 'Проверено' WHERE id = ?", [score, trialId]);
-    revalidatePath(`/supervisor/students/${studentId}`);
-  } catch (err) {
-    console.error(err);
-  } finally {
-    if (db) await db.close();
-  }
-}
 export default async function StudentProfilePage({ params }) {
   const resolvedParams = await params;
   const id = resolvedParams?.id;
 
-  const currentUser = await getCurrentUserFromCookie();
-
-  // Открываем барьер безопасности и для Руководителя, и для Преподавателя
-  if (!currentUser || (currentUser.role !== 'ADMIN' && currentUser.role !== 'TEACHER')) {
-    redirect('/login?error=wrong');
-  }
+  const currentUser = await requireManagement();
 
   let db;
   let rawStudent = null;
@@ -137,34 +63,12 @@ export default async function StudentProfilePage({ params }) {
     db = await connectDB();
     
     rawStudent = await db.get("SELECT id, name, email, role, createdAt FROM User WHERE id = ?", [id]);
-    if (!rawStudent && !isNaN(id)) {
-      rawStudent = await db.get("SELECT id, name, email, role, createdAt FROM User WHERE id = ?", [Number(id)]);
-    }
-    if (!rawStudent) {
-      rawStudent = await db.get("SELECT id, name, email, role, createdAt FROM User WHERE email = ?", [id]);
-    }
-
-    if (!rawStudent) {
-      rawStudent = await db.get("SELECT id, name, email, role, createdAt FROM User WHERE role = 'PREMIUM_STUDENT' LIMIT 1");
-    }
-    if (!rawStudent) {
-      rawStudent = await db.get("SELECT id, name, email, role, createdAt FROM User LIMIT 1");
-    }
-
-    if (!rawStudent) {
-      return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#03000a]">
-          <p className="text-sm font-bold text-slate-400">Студентов в базе данных пока нет.</p>
-        </div>
-      );
-    }
-
-    const progressRows = await db.all("SELECT taskNumber FROM Progress WHERE userId = ?", [rawStudent.id]);
+    if (!rawStudent || !['STUDENT','PREMIUM_STUDENT'].includes(rawStudent.role)) notFound();
+    const progressRows = await getEgeProgress(db,rawStudent.id);
     totalSolvedCount = progressRows.length;
 
     // Расчет решенных задач ученика по секциям (Строки 103-108 в profile/page.js)
-    progressRows.forEach(row => {
-      const sectionNum = Math.floor(row.taskNumber / 100);
+    progressRows.forEach(({ section: sectionNum }) => {
       if (sectionNum >= 1 && sectionNum <= 19) {
         solvedStatsBySection[sectionNum] = (solvedStatsBySection[sectionNum] || 0) + 1;
       }
@@ -174,7 +78,7 @@ export default async function StudentProfilePage({ params }) {
     currentTrials = await db.all("SELECT * FROM Trial WHERE userId = ? ORDER BY date DESC", [rawStudent.id]);
 
   } catch (e) {
-    console.error(e);
+    throw e;
   } finally {
     if (db) await db.close();
   }
@@ -346,7 +250,7 @@ export default async function StudentProfilePage({ params }) {
                     <div className="flex justify-between items-start gap-4">
                       <div>
                         <h4 className="text-sm font-black text-slate-800 dark:text-slate-200 tracking-tight">{t.title}</h4>
-                        <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-md mt-1 inline-block ${t.score > 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>{t.score > 0 ? `Проверено: ${t.score} б.` : 'Ожидает проверки'}</span>
+                        <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-md mt-1 inline-block ${t.status === 'Проверено' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>{t.status === 'Проверено' ? `Проверено: ${t.score} б.` : 'Ожидает проверки'}</span>
                       </div>
                       {t.solutionUrl && <a href={t.solutionUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-sky-500 font-black uppercase tracking-wider underline cursor-pointer shrink-0">📄 Бланки ответов</a>}
                     </div>
@@ -354,7 +258,7 @@ export default async function StudentProfilePage({ params }) {
                     <form action={saveTrialScore} className="flex gap-2 pt-2 border-t border-slate-200/40">
                       <input type="hidden" name="trialId" value={t.id} />
                       <input type="hidden" name="studentId" value={rawStudent.id} />
-                      <input type="number" name="score" defaultValue={t.score || ''} placeholder="Балл" required className="bg-white dark:bg-[#0c0714] border dark:border-purple-500/10 rounded-xl px-2 py-2 text-xs w-16 text-center font-black text-sky-600 focus:outline-none" />
+                      <input type="number" name="score" defaultValue={t.score ?? ''} placeholder="Балл" required className="bg-white dark:bg-[#0c0714] border dark:border-purple-500/10 rounded-xl px-2 py-2 text-xs w-16 text-center font-black text-sky-600 focus:outline-none" />
                       <button type="submit" className="bg-sky-500 dark:bg-[#634EE4] hover:brightness-105 text-white text-[10px] font-black uppercase tracking-wider px-3 py-2 rounded-xl transition-all cursor-pointer">ОК</button>
                     </form>
                   </div>
