@@ -91,22 +91,10 @@
   line-height: 1.4;
 }
 
-.swatch,
-.dot {
+.swatch {
   flex: 0 0 auto;
   width: 0.875rem;
   height: 0.15rem;
   border-radius: 0.2rem;
   background: var(--diagram-ink);
-}
-
-.dot {
-  width: 0.38rem;
-  height: 0.38rem;
-  border-radius: 50%;
-}
-
-:global(.dark) .swatch,
-:global(.dark) .dot {
-  filter: brightness(1.35);
 }

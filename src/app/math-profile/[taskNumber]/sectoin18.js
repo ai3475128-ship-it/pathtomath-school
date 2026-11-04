@@ -318,10 +318,10 @@ export const section18Tasks = [
           xRange={[-6.3, 6.3]} yRange={[-0.25, 2.65]} axes={['x', 'y']}
           curves={[
             { math: 'y=\\sqrt{4-x^2}', points: sampleCurve((t) => [2*Math.cos(t), 2*Math.sin(t)], 0, Math.PI, 144), color: '#2563eb' },
-            { math: '1:\\ a=-4', points: [[-6, 0], [-4, 2], [-2, 0]], color: '#b91c1c' },
-            { math: '2:\\ a=2-2\\sqrt{2}', points: [[-2*Math.SQRT2, 0], [2-2*Math.SQRT2, 2], [4-2*Math.SQRT2, 0]], color: '#a16207' },
-            { math: '3:\\ a=2\\sqrt{2}-2', points: [[2*Math.SQRT2-4, 0], [2*Math.SQRT2-2, 2], [2*Math.SQRT2, 0]], color: '#047857' },
-            { math: '4:\\ a=4', points: [[2, 0], [4, 2], [6, 0]], color: '#7c3aed' },
+            { math: 'y=2-|x+4|', points: [[-6, 0], [-4, 2], [-2, 0]], color: '#b91c1c' },
+            { math: 'y=2-|x-2+2\\sqrt{2}|', points: [[-2*Math.SQRT2, 0], [2-2*Math.SQRT2, 2], [4-2*Math.SQRT2, 0]], color: '#a16207' },
+            { math: 'y=2-|x+2-2\\sqrt{2}|', points: [[2*Math.SQRT2-4, 0], [2*Math.SQRT2-2, 2], [2*Math.SQRT2, 0]], color: '#047857' },
+            { math: 'y=2-|x-4|', points: [[2, 0], [4, 2], [6, 0]], color: '#7c3aed' },
           ]}
           points={[{ x: -2, y: 0 }, { x: 2, y: 0 }, { x: -Math.SQRT2, y: Math.SQRT2, color: '#a16207' }, { x: Math.SQRT2, y: Math.SQRT2, color: '#047857' }]}
           xTicks={[-4, -2, 0, 2, 4]} yTicks={[1, 2]}
@@ -474,9 +474,9 @@ export const section18Tasks = [
           xRange={[-0.36, 0.33]} yRange={[-0.14, 1.62]} axes={['x', 'y']}
           curves={[
             { math: 'f(x)=\\sqrt{1-4x}', points: sampleCurve((t) => [(1-t*t)/4, t], 0, Math.sqrt(2.44), 144), color: '#2563eb' },
-            { math: 'a=\\frac34', points: [[-0.36, -0.33], [0, 0.75], [0.33, -0.24]], color: '#a16207' },
-            { math: 'a=1', points: [[-0.36, -0.08], [0, 1], [0.33, 0.01]], color: '#047857', dashed: true },
-            { math: 'a=\\frac{13}{12}', points: [[-0.36, 13/12-1.08], [0, 13/12], [0.33, 13/12-0.99]], color: '#dc2626' },
+            { math: 'y=\\frac34-3|x|', points: [[-0.36, -0.33], [0, 0.75], [0.33, -0.24]], color: '#a16207' },
+            { math: 'y=1-3|x|', points: [[-0.36, -0.08], [0, 1], [0.33, 0.01]], color: '#047857', dashed: true },
+            { math: 'y=\\frac{13}{12}-3|x|', points: [[-0.36, 13/12-1.08], [0, 13/12], [0.33, 13/12-0.99]], color: '#dc2626' },
           ]}
           points={[{ x: 0.25, y: 0 }, { x: 0, y: 1 }, { x: 5/36, y: 2/3, math: '\\left(\\frac{5}{36};\\frac23\\right)', color: '#dc2626' }]}
           xTicks={[0, { value: 0.25, math: '\\frac14' }]} yTicks={[1]}
@@ -729,9 +729,9 @@ export const section18Tasks = [
           xRange={[-3.3, 5.3]} yRange={[-8.8, 25]} axes={['x', 'y']}
           curves={[
             { math: 'y=x|x|', points: sampleCurve((x) => [x, x*Math.abs(x)], -3.3, 5.3, 172), color: '#2563eb' },
-            { math: 'a=-5', points: [[-3.3, 2.3], [5.3, -6.3]], color: '#a16207' },
-            { math: 'a=-4', points: [[-3.3, 0], [5.3, 0]], color: '#047857', dashed: true },
-            { math: 'a=0', points: [[-3.3, -9.2], [5.3, 25.2]], color: '#7c3aed' },
+            { math: 'y=-x-1', points: [[-3.3, 2.3], [5.3, -6.3]], color: '#a16207' },
+            { math: 'y=0', points: [[-3.3, 0], [5.3, 0]], color: '#047857', dashed: true },
+            { math: 'y=4x+4', points: [[-3.3, -9.2], [5.3, 25.2]], color: '#7c3aed' },
           ]}
           points={[{ x: -1, y: 0, math: '(-1;0)' }, { x: -2, y: -4, math: '(-2;-4)', color: '#7c3aed' }, { x: 2+2*Math.SQRT2, y: 12+8*Math.SQRT2, color: '#7c3aed' }]}
           xTicks={[-2, 0, 2, 4]} yTicks={[-4, 8, 16, 24]}
@@ -1235,9 +1235,9 @@ export const section18Tasks = [
         xRange={[-2.45, 2.45]} yRange={[-1.3, 5.5]} axes={['x', 'y']}
         curves={[
           { math: 'y=x^2', points: sampleCurve((x) => [x, x*x], -2.4, 2.4, 192), color: '#2563eb' },
-          { math: '\\mathrm{I}:\\ a=1', points: [[-2.45, 3.9], [0, -1], [2.45, 3.9]], color: '#7c3aed', dashed: true },
-          { math: '\\mathrm{II}:\\ a=0', points: [[-2.45, 4.9], [0, 0], [2.45, 4.9]], color: '#047857', dashed: true },
-          { math: 'a=\\frac12', points: [[-2.45, 4.4], [0, -0.5], [2.45, 4.4]], color: '#dc2626' },
+          { math: 'y=2|x|-1', points: [[-2.45, 3.9], [0, -1], [2.45, 3.9]], color: '#7c3aed', dashed: true },
+          { math: 'y=2|x|', points: [[-2.45, 4.9], [0, 0], [2.45, 4.9]], color: '#047857', dashed: true },
+          { math: 'y=2|x|-\\frac12', points: [[-2.45, 4.4], [0, -0.5], [2.45, 4.4]], color: '#dc2626' },
         ]}
         points={[{ x: -1, y: 1, color: '#7c3aed' }, { x: 1, y: 1, color: '#7c3aed' }, { x: 0, y: 0, color: '#047857' }]}
         xTicks={[-2, -1, 0, 1, 2]} yTicks={[-1, 1, 4]}
@@ -1306,7 +1306,7 @@ export const section18Tasks = [
 
           {/* Красная пунктирная граница ОДЗ y = 5 (200 - 5*25 = 75) */}
           <line x1="100" y1="75" x2="440" y2="75" stroke="#ef4444" strokeWidth="1.2" strokeDasharray="4 4" />
-          <text x="445" y="79" fill="#ef4444" className="font-serif font-bold text-xs">y = 5</text>
+          <text data-kind="curve" x="445" y="79" fill="#ef4444" className="font-serif font-bold text-xs">y = 5</text>
 
           {/* Сканирующие серые пунктирные прямые y = -x + a (наклон строго -1) */}
           {/* Все линии строго НЕ выходят выше ОДЗ (y >= 75) и снабжены чёткими аккуратными подписями */}
@@ -1683,10 +1683,10 @@ export const section18Tasks = [
         curves={[
           { math: 'y=x^2-2x', points: sampleCurve((x) => [x, x*x-2*x], -1.55, 3.55, 204), color: '#2563eb' },
           { math: 'y=-x^2+2x', points: sampleCurve((x) => [x, -x*x+2*x], -1.55, 3.55, 204), color: '#047857' },
-          { math: 'a=-\\frac14', points: [[-1.55, 1.3], [3.55, -3.8]], color: '#dc2626' },
-          { math: 'a=0', points: [[-1.55, 1.55], [3.55, -3.55]], color: '#a16207', dashed: true },
-          { math: 'a=2', points: [[-1.55, 3.55], [3.55, -1.55]], color: '#7c3aed', dashed: true },
-          { math: 'a=\\frac94', points: [[-1.55, 3.8], [3.55, -1.3]], color: '#be185d' },
+          { math: 'y=-x-\\frac14', points: [[-1.55, 1.3], [3.55, -3.8]], color: '#dc2626' },
+          { math: 'y=-x', points: [[-1.55, 1.55], [3.55, -3.55]], color: '#a16207', dashed: true },
+          { math: 'y=-x+2', points: [[-1.55, 3.55], [3.55, -1.55]], color: '#7c3aed', dashed: true },
+          { math: 'y=-x+\\frac94', points: [[-1.55, 3.8], [3.55, -1.3]], color: '#be185d' },
         ]}
         points={[
           { x: 0, y: 0 }, { x: 2, y: 0 }, { x: 1, y: -1, color: '#2563eb' }, { x: 1, y: 1, color: '#047857' },
@@ -1768,9 +1768,9 @@ export const section18Tasks = [
           xRange={[-10.15, 10.15]} yRange={[-0.65, 10.1]} axes={['x', 'y']}
           curves={[
             { math: 'y=\\sqrt{x+9}', points: sampleCurve((t) => [t*t-9, t], 0, Math.sqrt(19.15), 180), color: '#2563eb' },
-            { math: 'a=3', points: [[-3, 0], [0, 3], [3, 0]], color: '#047857' },
-            { math: 'a=9', points: [[-9, 0], [0, 9], [9, 0]], color: '#a16207', dashed: true },
-            { math: 'a=\\frac{37}{4}', points: [[-9.25, 0], [0, 9.25], [9.25, 0]], color: '#dc2626' },
+            { math: 'y=3-|x|', points: [[-3, 0], [0, 3], [3, 0]], color: '#047857' },
+            { math: 'y=9-|x|', points: [[-9, 0], [0, 9], [9, 0]], color: '#a16207', dashed: true },
+            { math: 'y=\\frac{37}{4}-|x|', points: [[-9.25, 0], [0, 9.25], [9.25, 0]], color: '#dc2626' },
           ]}
           points={[{ x: -9, y: 0, math: 'A(-9;0)' }, { x: 0, y: 3, math: '(0;3)' }, { x: -8.75, y: 0.5, color: '#dc2626' }]}
           xTicks={[-9, -3, 0, 3, 9]} yTicks={[3, 6, 9]}
@@ -1846,10 +1846,10 @@ export const section18Tasks = [
         curves={[
           { math: 'y=\\frac{x^2}{2}-x', points: sampleCurve((x) => [x, x*x/2-x], -4.45, 0, 178).concat([null], sampleCurve((x) => [x, x*x/2-x], 2, 6.45, 178)), color: '#2563eb' },
           { math: 'y=-\\frac{x^2}{2}+x', points: sampleCurve((x) => [x, -x*x/2+x], -4.45, 0, 178).concat([null], sampleCurve((x) => [x, -x*x/2+x], 2, 6.45, 178)), color: '#047857' },
-          { math: 'a=-\\frac92', points: [[-4.45, -13.4], [6.45, 8.4]], color: '#dc2626' },
-          { math: 'a=-4', points: [[-4.45, -12.9], [6.45, 8.9]], color: '#a16207', dashed: true },
-          { math: 'a=0', points: [[-4.45, -8.9], [6.45, 12.9]], color: '#7c3aed', dashed: true },
-          { math: 'a=\\frac12', points: [[-4.45, -8.4], [6.45, 13.4]], color: '#be185d' },
+          { math: 'y=2x-\\frac92', points: [[-4.45, -13.4], [6.45, 8.4]], color: '#dc2626' },
+          { math: 'y=2x-4', points: [[-4.45, -12.9], [6.45, 8.9]], color: '#a16207', dashed: true },
+          { math: 'y=2x', points: [[-4.45, -8.9], [6.45, 12.9]], color: '#7c3aed', dashed: true },
+          { math: 'y=2x+\\frac12', points: [[-4.45, -8.4], [6.45, 13.4]], color: '#be185d' },
         ]}
         points={[
           { x: 0, y: 0, math: '(0;0)' }, { x: 2, y: 0, math: '(2;0)' },
@@ -1968,8 +1968,8 @@ export const section18Tasks = [
           <path d="M 180,260 Q 290.0925,39.8149 400.1851,390" fill="none" stroke="#2563eb" strokeWidth="2.5" />
 
           {/* Вспомогательные надписи к синим графикам */}
-          <text x="225" y="340" fill="#2563eb" className="font-serif italic text-xs">x = 1</text>
-          <text x="315" y="220" fill="#2563eb" className="font-serif italic text-xs">a = -x² + 2x</text>
+          <text data-kind="curve" x="225" y="340" fill="#2563eb" className="font-serif italic text-xs">x = 1</text>
+          <text data-kind="curve" x="315" y="220" fill="#2563eb" className="font-serif italic text-xs">a = -x² + 2x</text>
 
           {/* Горизонтальные параллельные сканирующие прямые (красный пунктир) */}
           <g stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 4">
@@ -2133,7 +2133,7 @@ export const section18Tasks = [
           {/* ПРАВАЯ ЧАСТЬ ПАРАБОЛЫ (y >= 0): ИДЕАЛЬНАЯ НЕПРЕРЫВНАЯ СИНЯЯ ЛИНИЯ */}
           {/* Выходит из (0;4) -> (160, 90) и пересекает горизонтальную ось в y = sqrt(5)-1 и продолжается ниже */}
           <path d="M 160,90 Q 192.915,155.8301 225.8301,330" fill="none" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="215" y="140" fill="#2563eb" className="font-serif text-xs">g(y) = -y² - 2y + 4</text>
+          <text data-kind="curve" x="215" y="140" fill="#2563eb" className="font-serif text-xs">g(y) = -y² - 2y + 4</text>
 
           {/* Ключевые маркерные метки на осях */}
           <text x="146" y="94" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">4</text>
@@ -2314,7 +2314,7 @@ export const section18Tasks = [
 
           {/* Синие график функции f(x) = 2sin(x) + cos(x) на отрезке [pi/4; 3pi/4] */}
           <path d="M 208.5398,89.0812 L 210.9942,87.5769 L 213.4486,86.1885 L 215.9029,84.9169 L 218.3573,83.7627 L 220.8117,82.7268 L 223.266,81.8097 L 225.7204,81.012 L 228.1748,80.3341 L 230.6291,79.7766 L 233.0835,79.3396 L 235.5379,79.0235 L 237.9922,78.8285 L 240.4466,78.7546 L 240.7149,78.7539 L 242.901,78.802 L 245.3554,78.9705 L 247.8097,79.2602 L 250.2641,79.6707 L 252.7185,80.202 L 255.1728,80.8536 L 257.6272,81.6251 L 260.0816,82.5162 L 262.5359,83.5262 L 264.9903,84.6545 L 267.4447,85.9005 L 269.899,87.2635 L 272.3534,88.7425 L 274.8078,90.3367 L 277.2622,92.0452 L 279.7165,93.8669 L 282.1709,95.8007 L 284.6253,97.8455 L 287.0796,100 L 289.534,102.2629 L 291.9884,104.6329 L 294.4427,107.1085 L 296.8971,109.6883 L 299.3515,112.3706 L 301.8058,115.154 L 304.2602,118.0366 L 306.7146,121.0168 L 309.169,124.0927 L 311.6233,127.2626 L 314.0777,130.5245 L 316.5321,133.8764 L 318.9864,137.3163 L 321.4408,140.8422 L 323.8952,144.4518 L 326.3495,148.1432 L 328.8039,151.914 L 331.2583,155.7619 L 333.7126,159.6846 L 336.167,163.6799 L 338.6214,167.7452 L 341.0758,171.8781 L 343.5301,176.0761 L 345.9845,180.3368 L 348.4389,184.6575 L 350.8932,189.0356 L 353.3476,193.4685 L 355.802,197.9535 L 358.2563,202.488 L 360.7107,207.0691 L 363.1651,211.6942 L 365.6194,216.3604" fill="none" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="285" y="115" fill="#2563eb" className="font-serif text-xs">y = 2·sin x + cos x</text>
+          <text data-kind="curve" x="285" y="115" fill="#2563eb" className="font-serif text-xs">y = 2·sin x + cos x</text>
 
           {/* Вертикальные вспомогательные пунктиры от точек графика к оси абсцисс */}
           <g stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3">
@@ -3022,12 +3022,12 @@ export const section18Tasks = [
           {/* C1(5, 4) -> (250 + 5*16 = 330, 260 - 4*16 = 196) */}
           <circle cx="330" cy="196" r="48" fill="none" stroke="#2563eb" strokeWidth="2" />
           <circle cx="330" cy="196" r="3" fill="#2563eb" />
-          <text x="324" y="185" fill="#2563eb" className="font-serif text-xs">C₁</text>
+          <text data-kind="curve" data-math={`(x-5)^2+(y-4)^2=9`} fill="#2563eb" />
 
           {/* C2(-5, 4) -> (250 - 5*16 = 170, 260 - 4*16 = 196) */}
           <circle cx="170" cy="196" r="48" fill="none" stroke="#2563eb" strokeWidth="2" />
           <circle cx="170" cy="196" r="3" fill="#2563eb" />
-          <text x="164" y="185" fill="#2563eb" className="font-serif text-xs">C₂</text>
+          <text data-kind="curve" data-math={`(x+5)^2+(y-4)^2=9`} fill="#2563eb" />
 
           {/* Point of interest: центр подвижной окружности A(-2, 0) -> (250 - 2*16 = 218, 260) */}
           <circle cx="218" cy="260" r="3.5" fill="#000000" />
@@ -3036,11 +3036,11 @@ export const section18Tasks = [
           {/* Подвижные красные окружности в моменты верных касаний */}
           {/* 1) Внешнее касание ближней окружности при a = 2 (r = 2*16 = 32px) */}
           <circle cx="218" cy="260" r="32" fill="none" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4 4" />
-          <text x="155" y="280" fill="#dc2626" stroke="none" className="font-serif italic text-[10px]">a = 2</text>
+          <text data-kind="curve" data-math={`(x+2)^2+y^2=4`} fill="#dc2626" />
 
           {/* 2) Внутреннее касание дальней окружности при a = sqrt(65)+3 ~= 11.06 (r = 11.06*16 = 177px) */}
           <circle cx="218" cy="260" r="176.9961" fill="none" stroke="#dc2626" strokeWidth="1.8" />
-          <text x="325" y="415" fill="#dc2626" stroke="none" className="font-serif italic text-[10px]">a = √65 + 3</text>
+          <text data-kind="curve" data-math={`(x+2)^2+y^2=(\\sqrt{65}+3)^2`} fill="#dc2626" />
         </svg>
       </ParameterDiagram>
 
@@ -3161,11 +3161,11 @@ export const section18Tasks = [
 
           {/* Неподвижный график: Граничная прямая y = x - 8 */}
           <line x1="160" y1="470" x2="450" y2="180" stroke="#000000" strokeWidth="2.5" />
-          <text x="425" y="195" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">y = x - 8</text>
+          <text data-kind="curve" x="425" y="195" fill="#2563eb" className="dark:fill-slate-300 font-sans text-xs">y = x - 8</text>
 
           {/* Более округлая левая ветвь гиперболы y = 1 - 8/x (x < 0) */}
           <path d="M 30,185.4545 L 32.2353,185.3052 L 34.4706,185.1528 L 36.7059,184.9972 L 38.9412,184.8384 L 41.1765,184.6761 L 43.4118,184.5103 L 45.6471,184.3408 L 47.8824,184.1676 L 50.1176,183.9906 L 52.3529,183.8095 L 54.5882,183.6243 L 56.8235,183.4348 L 59.0588,183.2409 L 61.2941,183.0424 L 63.5294,182.8391 L 65.7647,182.6309 L 68,182.4176 L 70.2353,182.199 L 72.4706,181.9748 L 74.7059,181.745 L 76.9412,181.5092 L 79.1765,181.2672 L 81.4118,181.0188 L 83.6471,180.7638 L 85.8824,180.5018 L 88.1176,180.2326 L 90.3529,179.9558 L 92.5882,179.6712 L 94.8235,179.3783 L 97.0588,179.0769 L 99.2941,178.7666 L 101.5294,178.4469 L 103.7647,178.1175 L 106,177.7778 L 108.2353,177.4274 L 110.4706,177.0658 L 112.7059,176.6924 L 114.9412,176.3066 L 117.1765,175.9079 L 119.4118,175.4955 L 121.6471,175.0687 L 123.8824,174.6269 L 126.1176,174.169 L 128.3529,173.6944 L 130.5882,173.202 L 132.8235,172.6908 L 135.0588,172.1597 L 137.2941,171.6075 L 139.5294,171.033 L 141.7647,170.4348 L 144,169.8113 L 146.2353,169.161 L 148.4706,168.482 L 150.7059,167.7725 L 152.9412,167.0303 L 155.1765,166.2531 L 157.4118,165.4384 L 159.6471,164.5833 L 161.8824,163.6849 L 164.1176,162.7397 L 166.3529,161.744 L 168.5882,160.6936 L 170.8235,159.584 L 173.0588,158.4098 L 175.2941,157.1654 L 177.5294,155.8442 L 179.7647,154.4389 L 182,152.9412 L 184.2353,151.3417 L 186.4706,149.6296 L 188.7059,147.7927 L 190.9412,145.8167 L 193.1765,143.6853 L 195.4118,141.3793 L 197.6471,138.8764 L 199.8824,136.1502 L 202.1176,133.1695 L 204.3529,129.8969 L 206.5882,126.2873 L 208.8235,122.2857 L 210,120 L 211.0588,117.8248 L 213.2941,112.8205 L 215.5294,107.1672 L 217.7647,100.7299 L 220,93.3333 L 222.2353,84.7458 L 224.4706,74.6544 L 226.7059,62.6263 L 228.9412,48.0447 L 231.1765,30" fill="none" stroke="#000000" strokeWidth="2.5" />
-          <text x="50" y="245" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">y = 1 - 8/x</text>
+          <text data-kind="curve" x="50" y="245" fill="#2563eb" className="dark:fill-slate-300 font-sans text-xs">y = 1 - 8/x</text>
 
           {/* Дуга AB правой ветви гиперболы (от A(1;-7) до B(8;0)) */}
           <path d="M 270,360 L 272,345.4545 L 274,333.3333 L 276,323.0769 L 278,314.2857 L 280,306.6667 L 282,300 L 284,294.1176 L 286,288.8889 L 288,284.2105 L 290,280 L 292,276.1905 L 294,272.7273 L 296,269.5652 L 298,266.6667 L 300,264 L 302,261.5385 L 304,259.2593 L 306,257.1429 L 308,255.1724 L 310,253.3333 L 312,251.6129 L 314,250 L 316,248.4848 L 318,247.0588 L 320,245.7143 L 322,244.4444 L 324,243.2432 L 326,242.1053 L 328,241.0256 L 330,240 L 332,239.0244 L 334,238.0952 L 336,237.2093 L 338,236.3636 L 340,235.5556 L 342,234.7826 L 344,234.0426 L 346,233.3333 L 348,232.6531 L 350,232 L 352,231.3725 L 354,230.7692 L 356,230.1887 L 358,229.6296 L 360,229.0909 L 362,228.5714 L 364,228.0702 L 366,227.5862 L 368,227.1186 L 370,226.6667 L 372,226.2295 L 374,225.8065 L 376,225.3968 L 378,225 L 380,224.6154 L 382,224.2424 L 384,223.8806 L 386,223.5294 L 388,223.1884 L 390,222.8571 L 392,222.5352 L 394,222.2222 L 396,221.9178 L 398,221.6216 L 400,221.3333 L 402,221.0526 L 404,220.7792 L 406,220.5128 L 408,220.2532 L 410,220" fill="none" stroke="#000000" strokeWidth="2.5" />
@@ -3292,19 +3292,19 @@ export const section18Tasks = [
 
           {/* Разделяющая прямая a = 3x, проходящая СТРОГО через точки (0;0) и (1;3) */}
           <line x1="186.7" y1="410" x2="316.7" y2="20" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
-          <text x="321.7" y="32" fill="#94a3b8" stroke="none" className="font-sans text-xs">a = 3x</text>
+          <text data-kind="curve" x="321.7" y="32" fill="#94a3b8" stroke="none" className="font-sans text-xs">a = 3x</text>
 
           {/* Синяя дуга окружности w2 (выше прямой a = 3x) */}
           <path d="M 220,310 A 98.4,98.4 0 1,1 264,178" fill="none" stroke="#2563eb" strokeWidth="2.5" />
           <circle cx="176" cy="222" r="3" fill="#2563eb" />
           <text x="110" y="215" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">C₂(-2; 4)</text>
-          <text x="80" y="235" fill="#2563eb" stroke="none" className="font-sans text-[10px] font-normal">(x+2)²+(a-4)² = 20</text>
+          <text data-kind="curve" x="80" y="235" fill="#2563eb" stroke="none" className="font-sans text-[10px] font-normal">(x+2)²+(a-4)² = 20</text>
 
           {/* Красная дуга окружности w1 (ниже прямой a = 3x) */}
           <path d="M 264,178 A 98.4,98.4 0 1,1 220,310" fill="none" stroke="#dc2626" strokeWidth="2.5" />
           <circle cx="308" cy="266" r="3" fill="#dc2626" />
           <text x="316" y="275" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">C₁(4; 2)</text>
-          <text x="310" y="160" fill="#dc2626" stroke="none" className="font-sans text-[10px] font-normal">(x-4)²+(a-2)² = 20</text>
+          <text data-kind="curve" x="310" y="160" fill="#dc2626" stroke="none" className="font-sans text-[10px] font-normal">(x-4)²+(a-2)² = 20</text>
 
           {/* Горизонтальные сканирующие прямые параметрических уровней (серый тонкий пунктир) */}
           <g stroke="#64748b" strokeWidth="1" strokeDasharray="3 3">
@@ -3413,19 +3413,19 @@ export const section18Tasks = [
 
           {/* Ограничительная прямая a = x */}
           <line x1="40" y1="280" x2="350" y2="-30" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
-          <text x="290" y="-1" fill="#94a3b8" stroke="none" className="font-sans text-xs">a = x</text>
+          <text data-kind="curve" x="290" y="-1" fill="#94a3b8" stroke="none" className="font-sans text-xs">a = x</text>
 
           {/* Красная дуга окружности w1. Центр C1(4, -3) */}
           <path d="M 222,98 A 110,110 0 1,1 200,120" fill="none" stroke="#dc2626" strokeWidth="2.5" />
           <circle cx="288" cy="186" r="3" fill="#dc2626" />
           <text x="296" y="196" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">C₁(4; -3)</text>
-          <text x="320" y="275" fill="#dc2626" stroke="none" className="font-sans text-[10px] font-normal">(x-4)²+(a+3)² = 25</text>
+          <text data-kind="curve" x="320" y="275" fill="#dc2626" stroke="none" className="font-sans text-[10px] font-normal">(x-4)²+(a+3)² = 25</text>
 
           {/* Синяя дуга окружности w2. Центр C2(3, -2) */}
           <path d="M 200,120 A 79.3,79.3 0 1,0 222,98" fill="none" stroke="#2563eb" strokeWidth="2.5" />
           <circle cx="266" cy="164" r="3" fill="#2563eb" />
           <text x="216" y="172" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">C₂(3; -2)</text>
-          <text x="220" y="225" fill="#2563eb" stroke="none" className="font-sans text-[10px] font-normal">(x-3)²+(a+2)² = 13</text>
+          <text data-kind="curve" x="220" y="225" fill="#2563eb" stroke="none" className="font-sans text-[10px] font-normal">(x-3)²+(a+2)² = 13</text>
 
           {/* Горизонтальные сканирующие прямые параметрических уровней (серый тонкий пунктир) */}
           <g stroke="#64748b" strokeWidth="1" strokeDasharray="3 3">
@@ -3632,22 +3632,22 @@ export const section18Tasks = [
 
           {/* Траектория вершин y = x/2 (зеленый пунктир) */}
           <line x1="100" y1="280" x2="480" y2="90" stroke="#16a34a" strokeWidth="1.5" strokeDasharray="4 4" />
-          <text x="490" y="94" fill="#16a34a" stroke="none" className="font-sans text-xs font-normal">y = x/2</text>
+          <text data-kind="curve" x="490" y="94" fill="#16a34a" stroke="none" className="font-sans text-xs font-normal">y = x/2</text>
 
           {/* f(x) = sqrt(x) (синяя кривая) */}
           <path d="M 100,280 Q 100,221.5192 480,163.0385" fill="none" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="482" y="169" fill="#2563eb" stroke="none" className="font-serif italic text-sm">f(x)</text>
+          <text data-kind="curve" x="482" y="169" fill="#2563eb" stroke="none" className="font-serif italic text-sm">f(x)</text>
 
           {/* Подвижные красные графики g(x) */}
           {/* 1) a = 2: вершина строго в (4;2)->(244,208), падает в (0;0)->(100,280) */}
           <path d="M 244,208 Q 244,244 100,280" fill="none" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4 3" />
-          <text x="252" y="222" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">g(x)</text>
+          <text data-kind="curve" data-math={`y=2-\\sqrt{4-x}`} fill="#dc2626" />
           <text x="195" y="270" fill="#2563eb" stroke="none" className="font-sans text-[10px] font-normal">a = 2</text>
 
           {/* 2) a = 4: вершина строго зафиксирована в точке (8;4)->(388,136). */}
           {/* График сделан более округлым, круче сбегая из вершины строго по касательной траектории к синей линии f(x) */}
           <path d="M 388,136 Q 388,186.9117 100,237.8234" fill="none" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4 3" />
-          <text x="396" y="150" fill="#dc2626" stroke="none" className="font-sans text-[11px] font-normal">g(x)</text>
+          <text data-kind="curve" data-math={`y=4-\\sqrt{8-x}`} fill="#dc2626" />
           <text x="290" y="250" fill="#dc2626" stroke="none" className="font-sans text-[10px] font-normal">a = 4</text>
 
           {/* Ключевые маркерные точки */}
@@ -3775,18 +3775,18 @@ export const section18Tasks = [
           {/* Сдвинутая серая пунктирная парабола a = x^2 + 3x */}
           {/* Проходит СТРОГО через (-3;0) -> (156,148) и (0;0) -> (252,148). Вершина в x = -1.5 -> 204, y = -2.25 -> 229 */}
           <path d="M 130.6788,40 Q 204,418 277.3212,40" fill="none" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
-          <text x="280" y="44" fill="#94a3b8" stroke="none" className="font-sans text-xs">a = x² + 3x</text>
+          <text data-kind="curve" x="280" y="44" fill="#94a3b8" stroke="none" className="font-sans text-xs">a = x² + 3x</text>
 
 
           {/* Сплошные синие рабочие линии корней под ОДЗ */}
           <line x1="252" y1="148" x2="252" y2="500" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="258" y="455" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">x = 0</text>
+          <text data-kind="curve" x="258" y="455" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">x = 0</text>
 
           <line x1="156" y1="148" x2="156" y2="500" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="122" y="425" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">x = -3</text>
+          <text data-kind="curve" x="122" y="425" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">x = -3</text>
 
           <line x1="147.7037" y1="500" x2="280.4444" y2="52" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="284" y="65" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">a = 3x</text>
+          <text data-kind="curve" x="284" y="65" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">a = 3x</text>
 
           {/* Красные горизонтальные пунктирные линии уровней пересечений */}
           <g stroke="#dc2626" strokeWidth="1.1" strokeDasharray="4 3">
@@ -3893,7 +3893,7 @@ export const section18Tasks = [
           </g>
           <path d="M 65,148 L 155,180 L 245,52 L 335,20" fill="none" stroke="#2563eb" strokeWidth="2.5" />
           <line x1="45" y1="164" x2="345" y2="164" stroke="#dc2626" strokeWidth="1.3" strokeDasharray="4 4" />
-          <text x="350" y="168" fill="#dc2626">y = −2</text>
+          <text data-kind="curve" x="350" y="168" fill="#dc2626">y = −2</text>
           <text x="360" y="136" fill="#0f172a" className="dark:fill-slate-300">x</text>
           <text x="210" y="19" fill="#0f172a" className="dark:fill-slate-300">y</text>
           <text x="206" y="147" fill="#0f172a" className="dark:fill-slate-300">0</text>
@@ -3928,7 +3928,7 @@ export const section18Tasks = [
           </g>
           <path d="M 65,20 L 155,52 L 245,180 L 335,148" fill="none" stroke="#2563eb" strokeWidth="2.5" />
           <line x1="45" y1="164" x2="345" y2="164" stroke="#dc2626" strokeWidth="1.3" strokeDasharray="4 4" />
-          <text x="350" y="168" fill="#dc2626">y = −2</text>
+          <text data-kind="curve" x="350" y="168" fill="#dc2626">y = −2</text>
           <text x="360" y="136" fill="#0f172a" className="dark:fill-slate-300">x</text>
           <text x="210" y="19" fill="#0f172a" className="dark:fill-slate-300">y</text>
           <text x="206" y="147" fill="#0f172a" className="dark:fill-slate-300">0</text>
@@ -4081,16 +4081,16 @@ export const section18Tasks = [
 
           {/* Четыре синих луча корней в правой полуплоскости x > 0 */}
           <line x1="120" y1="120" x2="220" y2="20" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="225" y="24" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₂</text>
+          <text data-kind="curve" x="225" y="24" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₂</text>
 
           <line x1="120" y1="144" x2="380" y2="404" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="385" y="412" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₃</text>
+          <text data-kind="curve" x="385" y="412" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₃</text>
 
           <line x1="120" y1="360" x2="380" y2="100" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="385" y="106" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₁</text>
+          <text data-kind="curve" x="385" y="106" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₁</text>
 
           <line x1="120" y1="336" x2="304" y2="520" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="308" y="525" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₄</text>
+          <text data-kind="curve" x="308" y="525" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₄</text>
 
           {/* Выколотые граничные точки на оси Oa (x = 0) */}
           <circle cx="120" cy="120" r="3" fill="white" stroke="#2563eb" strokeWidth="1.5" />
@@ -4271,13 +4271,13 @@ export const section18Tasks = [
           {/* Сплошные синие рабочие линии корней */}
           <line x1="58" y1="98" x2="30" y2="70" stroke="#2563eb" strokeWidth="2.5" />
           <line x1="220" y1="260" x2="300" y2="340" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="285" y="352" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₁</text>
+          <text data-kind="curve" x="285" y="352" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₁</text>
 
           <line x1="20" y1="360" x2="420" y2="160" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="398" y="151" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₂</text>
+          <text data-kind="curve" x="398" y="151" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₂</text>
 
           <line x1="274" y1="20" x2="274" y2="420" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="268" y="16" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₃</text>
+          <text data-kind="curve" x="268" y="16" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-normal">l₃</text>
 
           <g stroke="#dc2626" strokeWidth="1" strokeDasharray="3 3">
             <line x1="30" y1="98" x2="410" y2="98" />
@@ -4419,15 +4419,15 @@ export const section18Tasks = [
           {/* Синие ветви графиков функций */}
           {/* 1) Левая ветвь (x < -3): плавно поднимается от оси Ox к точке A(-3; 1/6) */}
           <path d="M 20,194.4951 L 22.6429,194.3581 L 25.2857,194.2158 L 27.9286,194.068 L 30.5714,193.9142 L 33.2143,193.7543 L 35.8571,193.5878 L 38.5,193.4144 L 41.1429,193.2336 L 43.7857,193.0451 L 46.4286,192.8484 L 49.0714,192.6429 L 51.7143,192.4282 L 54.3571,192.2036 L 57,191.9686 L 59.6429,191.7225 L 62.2857,191.4644 L 64.9286,191.1937 L 67.5714,190.9094 L 70.2143,190.6106 L 72.8571,190.2963 L 75.5,189.9652 L 78.1429,189.6163 L 80.7857,189.248 L 83.4286,188.8589 L 86.0714,188.4474 L 88.7143,188.0116 L 91.3571,187.5494 L 94,187.0586 L 96.6429,186.5367 L 99.2857,185.9809 L 101.9286,185.388 L 104.5714,184.7545 L 107.2143,184.0764 L 109.8571,183.3492 L 112.5,182.5677 L 115.1429,181.7262 L 117.7857,180.8179 L 120.4286,179.8352 L 123.0714,178.7692 L 125.7143,177.6095 L 128.3571,176.3441 L 131,174.9588 L 133.6429,173.4369 L 136.2857,171.7583 L 138.9286,169.8992 L 141.5714,167.8305 L 144.2143,165.5166 L 146.8571,162.9136 L 149.5,159.9667 L 152.1429,156.6064 L 154.7857,152.7434 L 157.4286,148.2611 L 160.0714,143.0039 L 162.7143,136.7603 L 165.3571,129.2344 L 168,120" fill="none" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="40" y="105" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 1/((x-3)(x+2))</text>
+          <text data-kind="curve" x="40" y="105" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 1/((x-3)(x+2))</text>
 
           {/* 2) Центральное корыто (-3 <= x < 3): выходит из A, падает к M(-0.5; 4/49), круто улетает вверх к x = 3 */}
           <path d="M 168,120 L 169.6787,124.348 L 171.3574,128.1426 L 173.0361,131.4791 L 174.7148,134.432 L 176.3935,137.0603 L 178.0723,139.4112 L 179.751,141.5232 L 181.4297,143.4278 L 183.1084,145.1509 L 184.7871,146.7144 L 186.4658,148.1364 L 188.1445,149.4325 L 189.8232,150.6156 L 191.5019,151.6972 L 193.1806,152.6868 L 194.8593,153.5928 L 196.538,154.4225 L 198.2168,155.1821 L 199.8955,155.8771 L 201.5742,156.5124 L 203.2529,157.0922 L 204.9316,157.6201 L 206.6103,158.0994 L 208.289,158.533 L 209.9677,158.9234 L 211.6464,159.2727 L 213.3251,159.5828 L 215.0038,159.8554 L 216.6826,160.0919 L 218.3613,160.2935 L 220.04,160.4613 L 221.7187,160.596 L 223.3974,160.6983 L 225.0761,160.7688 L 226.7548,160.8077 L 228,160.8163 L 228.4335,160.8153 L 230.1122,160.7915 L 231.7909,160.7364 L 233.4696,160.6495 L 235.1484,160.5305 L 236.8271,160.3788 L 238.5058,160.1937 L 240.1845,159.9742 L 241.8632,159.7192 L 243.5419,159.4274 L 245.2206,159.0973 L 246.8993,158.727 L 248.578,158.3146 L 250.2567,157.8578 L 251.9354,157.3537 L 253.6141,156.7994 L 255.2929,156.1915 L 256.9716,155.5259 L 258.6503,154.7981 L 260.329,154.0031 L 262.0077,153.1348 L 263.6864,152.1866 L 265.3651,151.1506 L 267.0438,150.0179 L 268.7225,148.778 L 270.4012,147.4186 L 272.0799,145.9256 L 273.7587,144.2822 L 275.4374,142.4683 L 277.1161,140.4601 L 278.7948,138.2291 L 280.4735,135.7402 L 282.1522,132.9508 L 283.8309,129.808 L 285.5096,126.2453 L 287.1883,122.1784 L 288.867,117.4983 L 290.5457,112.0619 L 292.2244,105.6775 L 293.9032,98.0822 L 295.5819,88.9055 L 297.2606,77.6081 L 298.9393,63.3734 L 300.618,44.9031 L 302.2967,20" fill="none" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="245" y="105" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 1/((3-x)(x+4))</text>
+          <text data-kind="curve" x="245" y="105" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 1/((3-x)(x+4))</text>
 
           {/* 3) Правая ветвь (x > 3): падает из бесконечности вдоль x = 3, плавно стремится к оси Ox */}
           <path d="M 320.693,20 L 323.4612,65.5802 L 326.2293,93.3747 L 328.9975,112.0749 L 331.7657,125.5034 L 334.5338,135.6043 L 337.302,143.4707 L 340.0701,149.7648 L 342.8383,154.9107 L 345.6064,159.1928 L 348.3746,162.8089 L 351.1427,165.9009 L 353.9109,168.5731 L 356.679,170.9039 L 359.4472,172.9534 L 362.2153,174.7686 L 364.9835,176.3863 L 367.7516,177.8364 L 370.5198,179.1429 L 373.2879,180.3253 L 376.0561,181.4001 L 378.8242,182.3808 L 381.5924,183.2787 L 384.3605,184.1036 L 387.1287,184.8636 L 389.8968,185.5659 L 392.665,186.2164 L 395.4332,186.8204 L 398.2013,187.3825 L 400.9695,187.9068 L 403.7376,188.3967 L 406.5058,188.8553 L 409.2739,189.2855 L 412.0421,189.6895 L 414.8102,190.0697 L 417.5784,190.4279 L 420.3465,190.7659 L 423.1147,191.0852 L 425.8828,191.3873 L 428.651,191.6735 L 431.4191,191.9448 L 434.1873,192.2024 L 436.9554,192.4472 L 439.7236,192.6801 L 442.4917,192.9018 L 445.2599,193.1131 L 448.028,193.3147 L 450.7962,193.5071 L 453.5643,193.691 L 456.3325,193.8669 L 459.1007,194.0351 L 461.8688,194.1963 L 464.637,194.3508 L 467.4051,194.4989 L 470.1733,194.641 L 472.9414,194.7775 L 475.7096,194.9087 L 478.4777,195.0348 L 481.2459,195.1561 L 484.014,195.2728 L 486.7822,195.3852 L 489.5503,195.4936 L 492.3185,195.598 L 495.0866,195.6988 L 497.8548,195.796 L 500.6229,195.8898 L 503.3911,195.9805 L 506.1592,196.0681 L 508.9274,196.1527 L 511.6955,196.2346 L 514.4637,196.3139 L 517.2318,196.3906 L 520,196.4648" fill="none" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="385" y="105" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 1/((x-3)(x+4))</text>
+          <text data-kind="curve" x="385" y="105" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 1/((x-3)(x+4))</text>
 
           {/* Маркерные узлы */}
           <circle cx="168" cy="120" r="3.5" fill="#000000" /> {/* Точка A */}
@@ -4547,11 +4547,11 @@ export const section18Tasks = [
           <g fill="none" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4">
             {/* l1: a = x + 4. Идет из (-4;0)->(108,250) через C(-1;3)->(192,166) и A(2;6)->(276,82) */}
             <path d="M 52,306 L 332,26" />
-            <text x="315" y="44" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">l₁</text>
+            <text data-kind="curve" x="315" y="44" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">l₁</text>
 
             {/* l2: a = -x - 4. Идет из (-4;0)->(108,250) через B(-1;-3)->(192,334) и D(2;-6)->(276,418) */}
             <path d="M 52,194 L 332,474" />
-            <text x="315" y="454" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">l₂</text>
+            <text data-kind="curve" x="315" y="454" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">l₂</text>
           </g>
 
 
@@ -4674,8 +4674,8 @@ export const section18Tasks = [
             <line x1="20" y1="120" x2="420" y2="120" /> {/* y = 4 */}
             <line x1="20" y1="280" x2="420" y2="280" /> {/* y = -4 */}
           </g>
-          <text x="360" y="114" fill="#94a3b8" stroke="none" className="font-sans text-[11px]">y = 4</text>
-          <text x="360" y="295" fill="#94a3b8" stroke="none" className="font-sans text-[11px]">y = -4</text>
+          <text data-kind="curve" x="360" y="114" fill="#94a3b8" stroke="none" className="font-sans text-[11px]">y = 4</text>
+          <text data-kind="curve" x="360" y="295" fill="#94a3b8" stroke="none" className="font-sans text-[11px]">y = -4</text>
 
           {/* Оси координат */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -4830,12 +4830,12 @@ export const section18Tasks = [
 
           {/* Сканирующий уровень y = -1 (красный пунктир) */}
           <line x1="40" y1="175" x2="420" y2="175" stroke="#dc2626" strokeWidth="1" strokeDasharray="3 3" />
-          <text x="424" y="179" fill="#dc2626" stroke="none" className="font-sans text-[11px]">y = -1</text>
+          <text data-kind="curve" x="424" y="179" fill="#dc2626" stroke="none" className="font-sans text-[11px]">y = -1</text>
 
           {/* Две ветви y = ctg a на видимом диапазоне ординат */}
           <path d={Array.from({ length: 121 }, (_, i) => { const a = Math.atan(0.4) + (Math.PI - 2 * Math.atan(0.4)) * i / 120; return `${i ? "L" : "M"} ${120 + 120 * a / Math.PI},${145 - 30 / Math.tan(a)}`; }).join(" ")} fill="none" stroke="#2563eb" strokeWidth="2.5" />
           <path d={Array.from({ length: 121 }, (_, i) => { const a = Math.atan(0.4) + (Math.PI - 2 * Math.atan(0.4)) * i / 120; return `${i ? "L" : "M"} ${240 + 120 * a / Math.PI},${145 - 30 / Math.tan(a)}`; }).join(" ")} fill="none" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="358" y="215" fill="#2563eb" stroke="none" className="font-sans text-[11px] italic">y = ctg a</text>
+          <text data-kind="curve" x="358" y="215" fill="#2563eb" stroke="none" className="font-sans text-[11px] italic">y = ctg a</text>
 
           {/* Красные маркерные заполненные точки пересечений */}
           <circle cx="210" cy="175" r="4" fill="#dc2626" />
@@ -4933,8 +4933,8 @@ export const section18Tasks = [
             <line x1="100" y1="220" x2="300" y2="20" />
             <line x1="100" y1="20" x2="300" y2="220" />
           </g>
-          <text x="306" y="24" fill="#2563eb" stroke="none" className="font-sans text-[10px]">y = x</text>
-          <text x="306" y="222" fill="#2563eb" stroke="none" className="font-sans text-[10px]">y = -x</text>
+          <text data-kind="curve" x="306" y="24" fill="#2563eb" stroke="none" className="font-sans text-[10px]">y = x</text>
+          <text data-kind="curve" x="306" y="222" fill="#2563eb" stroke="none" className="font-sans text-[10px]">y = -x</text>
 
           {/* Выколотое критическое положение окружности при a = 2 (серый пунктир, проходит через 0,0) */}
           <circle cx="250" cy="120" r="50" fill="none" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="3 3" />
@@ -5187,7 +5187,7 @@ export const section18Tasks = [
 
               {/* Волна синусоиды вспомого угла (сплошная синяя дуга) */}
               <path d={Array.from({ length: 121 }, (_, i) => { const x = -Math.PI / 4 + Math.PI * i / 120; return `${i ? "L" : "M"} ${160 + 224 * x / Math.PI},${160 - 28 * (Math.cos(x) + 2 * Math.sin(x))}`; }).join(" ")} fill="none" stroke="#2563eb" strokeWidth="2.5" />
-              <text x="279" y="153" fill="#2563eb" stroke="none" className="font-sans text-[11px] italic font-semibold">f(x)</text>
+              <text data-kind="curve" x="279" y="153" fill="#2563eb" stroke="none" className="font-sans text-[11px] italic font-semibold">f(x)</text>
 
               {/* Граничные маркерные точки */}
               <circle cx={160 + 224 * Math.atan(2) / Math.PI} cy={160 - 28 * Math.sqrt(5)} r="4" fill="#000000" />
@@ -5276,12 +5276,12 @@ export const section18Tasks = [
           {/* Запрещенные прямые (серый пунктир) */}
           {/* l1: a = x */}
           <line x1="40" y1="230" x2="340" y2="80" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
-          <text x="345" y="85" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">a = x</text>
+          <text data-kind="curve" x="345" y="85" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">a = x</text>
           {/* l2: a = 5x */}
           {/* Запрещенная прямая l2: a = 5x (серый пунктир) */}
           {/* Математически выверенная траектория: строго проходит через O(0;0)->(180,160) и точку B(-1;-5)->(152,230) */}
           <line x1="76" y1="420" x2="236" y2="20" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
-          <text x="241" y="25" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">a = 5x</text>
+          <text data-kind="curve" x="241" y="25" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">a = 5x</text>
 
 
           {/* Горизонтальные критические уровни сканирования (красный пунктир) */}
@@ -5436,7 +5436,7 @@ export const section18Tasks = [
             strokeWidth="1.2" 
             strokeDasharray="4 4" 
           />
-          <text x="254" y="50" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">a = x²</text>
+          <text data-kind="curve" x="254" y="50" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">a = x²</text>
 
 
 
@@ -5555,8 +5555,8 @@ export const section18Tasks = [
             <line x1="128" y1="20" x2="128" y2="360" /> {/* x = -1 */}
             <line x1="224" y1="20" x2="224" y2="360" /> {/* x = 2 */}
           </g>
-          <text x="100" y="16" fill="#64748b" stroke="none" className="font-sans text-[11px] font-semibold">x = -1</text>
-          <text x="210" y="16" fill="#64748b" stroke="none" className="font-sans text-[11px] font-semibold">x = 2</text>
+          <text data-kind="curve" x="100" y="16" fill="#64748b" stroke="none" className="font-sans text-[11px] font-semibold">x = -1</text>
+          <text data-kind="curve" x="210" y="16" fill="#64748b" stroke="none" className="font-sans text-[11px] font-semibold">x = 2</text>
 
           {/* Оси координат */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -5729,7 +5729,7 @@ export const section18Tasks = [
 
           {/* Фиксированная окружность γ (синяя сплошная) */}
           <circle cx="240" cy="140" r={24 * Math.sqrt(8)} fill="none" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="282" y="82" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-semibold">γ</text>
+          <text data-kind="curve" x="282" y="82" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-semibold">γ</text>
 
           {/* Точка C(-5;0) */}
           <circle cx="120" cy="140" r="3.5" fill="#000000" />
@@ -6180,10 +6180,10 @@ export const section18Tasks = [
 
           {/* Фиксированные прямые (синие толстые сплошные) — теперь проходят СТРОГО через начало координат (160, 200) */}
           <line x1="40" y1="320" x2="280" y2="80" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="285" y="84" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-semibold">y = x</text>
+          <text data-kind="curve" x="285" y="84" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-semibold">y = x</text>
           
           <line x1="40" y1="80" x2="280" y2="320" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="285" y="325" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-semibold">y = -x</text>
+          <text data-kind="curve" x="285" y="325" fill="#2563eb" stroke="none" className="font-sans text-[11px] font-semibold">y = -x</text>
 
 
           {/* Подвижная окружность ω_a в одной из разрешенных позиций (красная сплошная, R = 3 * 24 = 72px) */}
@@ -6484,8 +6484,8 @@ export const section18Tasks = [
             <line x1="256" y1="20" x2="256" y2="400" /> {/* x = 3 */}
             <line x1="288" y1="20" x2="288" y2="400" /> {/* x = 4 */}
           </g>
-          <text x="250" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">x = 3</text>
-          <text x="284" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">x = 4</text>
+          <text data-kind="curve" x="250" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">x = 3</text>
+          <text data-kind="curve" x="284" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">x = 4</text>
 
           {/* Оси координат */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -6521,17 +6521,17 @@ export const section18Tasks = [
           {/* 1) Ветвь гиперболы a = 2/x в I четверти: укорочена на 1 деление (32px) с обеих сторон */}
           {/* Вертикальный хвост начинается от a=5 (y=80), горизонтальный хвост заканчивается на x=5 (x=320) */}
           <path d={sampleCurve((x) => [160+32*x, 240-64/x], 0.3, 5).map(([x,y],i) => `${i ? "L" : "M"} ${x},${y}`).join(" ")} fill="none" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="325" y="236" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 2/x</text>
+          <text data-kind="curve" x="325" y="236" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 2/x</text>
 
           {/* Ветвь гиперболы a = 2/x в III четверти: центрально-симметрично подрезана на 1 деление со всех сторон */}
 
           {/* 2) Единая ветвь корня a = sqrt(x-1) */}
           <path d={sampleCurve((u) => [192+32*u*u, 240-32*u], 0, Math.sqrt(5.875)).map(([x,y],i) => `${i ? "L" : "M"} ${x},${y}`).join(" ")} fill="none" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="350" y="155" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = √(x−1)</text>
+          <text data-kind="curve" x="350" y="155" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = √(x−1)</text>
 
           {/* 3) Прямая a = 1.5x - 5.5 */}
           <line x1="170.6667" y1="400" x2="330" y2="161" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="315" y="196" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 1.5x - 5.5</text>
+          <text data-kind="curve" x="315" y="196" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 1.5x - 5.5</text>
 
           {/* Маркерные и выколотые пограничные точки */}
           <circle cx="192" cy="240" r="3.5" fill="#000000" /> {/* Вершина (1;0) */}
@@ -6621,7 +6621,7 @@ export const section18Tasks = [
 
           {/* Левая вертикальная граница полосы x = -1 (серый пунктир) */}
           <line x1="192" y1="20" x2="192" y2="440" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
-          <text x="160" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">x = -1</text>
+          <text data-kind="curve" x="160" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">x = -1</text>
 
           {/* Розовая заштрихованная область решения системы внутри полосы Ox */}
           <path d="M 192,136 L 220,108 L 220,304 Q 210.39192,308.80404 200.78384,312.78384 L 192,304 Z" fill="#fca5a5" fillOpacity="0.4" stroke="none" />
@@ -6658,15 +6658,15 @@ export const section18Tasks = [
           {/* Синие графики-ограничения */}
           {/* Прямая a = 4 + x */}
           <line x1="40" y1="288" x2="260" y2="68" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="235" y="105" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 4 + x</text>
+          <text data-kind="curve" x="235" y="105" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 4 + x</text>
 
           {/* Прямая a = -4 - x */}
           <line x1="40" y1="152" x2="260" y2="372" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="130" y="300" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = -4 - x</text>
+          <text data-kind="curve" x="130" y="300" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = -4 - x</text>
 
           {/* Синяя парабола a = (x^2 + 8x - 48)/16 */}
           <path d="M 24,316.25 Q 178.0,374.0 332,220.0" strokeDasharray="4 3" fill="none" stroke="#2563eb" strokeWidth="2.5" />
-          <text x="254" y="295" fill="#2563eb" stroke="none" className="font-sans text-[9px]">a = (x²+8x-48)/16</text>
+          <text data-kind="curve" x="254" y="295" fill="#2563eb" stroke="none" className="font-sans text-[9px]">a = (x²+8x-48)/16</text>
 
           {/* Ключевые точки пересечений на осях */}
           <circle cx="108" cy="220" r="3.5" fill="#000000" /> {/* (-4; 0) */}
@@ -7309,8 +7309,8 @@ export const section18Tasks = [
             <line x1="176" y1="20" x2="176" y2="400" /> {/* x = 4 */}
             <line x1="272" y1="20" x2="272" y2="400" /> {/* x = 8 */}
           </g>
-          <text x="170" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">x = 4</text>
-          <text x="266" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">x = 8</text>
+          <text data-kind="curve" x="170" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">x = 4</text>
+          <text data-kind="curve" x="266" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">x = 8</text>
 
           {/* Оси координат */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -7354,11 +7354,11 @@ export const section18Tasks = [
 
           {/* Прямая a = x - 7 */}
           <line x1="80" y1="388" x2="344" y2="124" stroke="#2563eb" strokeWidth="1.2" opacity="0.4" />
-          <text x="320" y="112" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = x - 7</text>
+          <text data-kind="curve" x="320" y="112" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = x - 7</text>
 
           {/* Прямая a = 2 - x */}
           <line x1="32" y1="124" x2="296" y2="388" stroke="#2563eb" strokeWidth="1.2" opacity="0.4" />
-          <text x="280" y="392" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 2 - x</text>
+          <text data-kind="curve" x="280" y="392" fill="#2563eb" stroke="none" className="font-sans text-[10px]">a = 2 - x</text>
 
 
           {/* Выделим жирным КРАСНЫМ цветом рабочие отрезки корней внутри полосы [4; 8] и круга ОДЗ */}
@@ -7503,21 +7503,13 @@ export const section18Tasks = [
           <circle cx="220" cy="228" r="3" fill="#000000" />  {/* Точка касания правой ветви (5;-2) */}
 
           {/* Подписи к линиям через foreignObject */}
-          <foreignObject x="176" y="22" width="50" height="30">
-            <div className="text-blue-600 font-sans font-semibold text-[10px]">x = 3</div>
-          </foreignObject>
+          <text data-kind="curve" data-math={`x=3`} fill="#2563eb" />
           <foreignObject x="180" y="160" width="50" height="30">
             <div className="text-slate-900 dark:text-slate-100 font-sans text-[10px]">(3;0)</div>
           </foreignObject>
-          <foreignObject x="224" y="32" width="50" height="30">
-            <div className="text-red-600 font-sans text-[9px]">a = 1</div>
-          </foreignObject>
-          <foreignObject x="264" y="96" width="50" height="30">
-            <div className="text-red-600 font-sans text-[9px]">a = -3</div>
-          </foreignObject>
-          <foreignObject x="314" y="126" width="50" height="30">
-            <div className="text-red-600 font-sans text-[9px]">a = -7</div>
-          </foreignObject>
+          <text data-kind="curve" data-math={`y=x+1`} fill="#dc2626" />
+          <text data-kind="curve" data-math={`y=x-3`} fill="#dc2626" />
+          <text data-kind="curve" data-math={`y=x-7`} fill="#dc2626" />
         </svg>
       </ParameterDiagram>
 
@@ -7635,18 +7627,12 @@ export const section18Tasks = [
           <circle cx="156" cy="116" r="3.5" fill="#000000" /> {/* (-1; 1) */}
 
           {/* Текстовые подписи к линиям через foreignObject */}
-          <foreignObject x="114" y="24" width="50" height="25">
-            <div className="text-blue-600 font-sans font-semibold text-[10px]">x = -3</div>
-          </foreignObject>
-          <foreignObject x="300" y="96" width="50" height="25">
-            <div className="text-blue-600 font-sans font-semibold text-[10px]">y = 1</div>
-          </foreignObject>
-          <foreignObject x="290" y="24" width="60" height="25">
-            <div className="text-blue-600 font-sans font-semibold text-[10px]">y = x + 2</div>
-          </foreignObject>
-          <text x="274" y="234" fill="#dc2626" className="font-sans text-[9px]">a = 0</text>
-          <text x="274" y="282" fill="#dc2626" className="font-sans text-[9px]">a = -2</text>
-          <text x="274" y="330" fill="#dc2626" className="font-sans text-[9px]">a = -4</text>
+          <text data-kind="curve" data-math={`x=-3`} fill="#2563eb" />
+          <text data-kind="curve" data-math={`y=1`} fill="#2563eb" />
+          <text data-kind="curve" data-math={`y=x+2`} fill="#2563eb" />
+          <text data-kind="curve" data-math={`y=-x`} fill="#dc2626" />
+          <text data-kind="curve" data-math={`y=-x-2`} fill="#dc2626" />
+          <text data-kind="curve" data-math={`y=-x-4`} fill="#dc2626" />
         </svg>
       </ParameterDiagram>
 
@@ -7746,7 +7732,7 @@ export const section18Tasks = [
 
           {/* Вертикальная выколотая серая граница ОДЗ x = -2 (пунктир) */}
           <line x1="112" y1="20" x2="112" y2="360" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
-          <text x="100" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">x = -2</text>
+          <text data-kind="curve" x="100" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[10px]">x = -2</text>
 
           {/* Оси координат */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -7783,16 +7769,16 @@ export const section18Tasks = [
             }).join(' ')} fill="none" stroke="#2563eb" strokeWidth="2.5" />
           ))}
           <line x1="40" y1="228" x2="248" y2="20" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" />
-          <text x="252" y="24" fill="#dc2626" className="font-sans text-[9px]">a = 3</text>
+          <text data-kind="curve" data-math={`y=x+3`} fill="#dc2626" />
           <line x1="40" y1="300" x2="320" y2="20" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" />
-          <text x="324" y="24" fill="#dc2626" className="font-sans text-[9px]">a = 0</text>
+          <text data-kind="curve" data-math={`y=x`} fill="#dc2626" />
           <line x1="64" y1="348" x2="336" y2="76" stroke="#dc2626" strokeWidth="1.2" strokeDasharray="4 3" />
-          <text x="340" y="80" fill="#dc2626" className="font-sans text-[9px]">a = -3</text>
+          <text data-kind="curve" data-math={`y=x-3`} fill="#dc2626" />
           <circle cx="256" cy="156" r="3.5" fill="#000000" />
           <circle cx="112" cy="156" r="3.5" fill="white" stroke="#2563eb" strokeWidth="1.5" className="fill-white dark:fill-slate-950" />
           <circle cx="112" cy="228" r="3.5" fill="white" stroke="#2563eb" strokeWidth="1.5" className="fill-white dark:fill-slate-950" />
-          <text x="307" y="149" fill="#2563eb" className="font-serif italic text-[10px]">y = 1</text>
-          <text x="313" y="177" fill="#2563eb" className="font-serif italic text-[10px]">y = 4/x</text>
+          <text data-kind="curve" x="307" y="149" fill="#2563eb" className="font-serif italic text-[10px]">y = 1</text>
+          <text data-kind="curve" x="313" y="177" fill="#2563eb" className="font-serif italic text-[10px]">y = 4/x</text>
         </svg>
       </ParameterDiagram>
 
@@ -8287,8 +8273,8 @@ export const section18Tasks = [
 
           {/* Левая граница ОДЗ x = -2 (СПЛОШНАЯ СИНЯЯ ЛИНИЯ) и Правая выколотая серая граница ОДЗ x = 6 (пунктир) */}
           <line x1="260" y1="20" x2="260" y2="360" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
-          <text x="80" y="16" fill="#2563eb" stroke="none" className="font-sans font-semibold text-[9px]">x = -2</text>
-          <text x="252" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[9px]">x = 6</text>
+          <text data-kind="curve" x="80" y="16" fill="#2563eb" stroke="none" className="font-sans font-semibold text-[9px]">x = -2</text>
+          <text data-kind="curve" x="252" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[9px]">x = 6</text>
 
           {/* Оси координат */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -8355,8 +8341,8 @@ export const section18Tasks = [
           <circle cx="100" cy="280" r="3.5" fill="#000000" /> {/* Точка излома (-2; -4) */}
 
           {/* Текстовые подписи к линиям параметров, развернутые вдоль убывающих прямых */}
-          <text x="170" y="152" fill="#2563eb" className="font-sans text-[9px]">y = 3</text>
-          <text x="270" y="115" fill="#2563eb" className="font-sans text-[9px]">y = x - 2</text>
+          <text data-kind="curve" x="170" y="152" fill="#2563eb" className="font-sans text-[9px]">y = 3</text>
+          <text data-kind="curve" x="270" y="115" fill="#2563eb" className="font-sans text-[9px]">y = x - 2</text>
         </svg>
       </ParameterDiagram>
 
@@ -8459,8 +8445,8 @@ export const section18Tasks = [
           {/* Вертикальные границы отрезка x=1 и x=6 (пунктир) */}
           <line x1="64" y1="20" x2="64" y2="340" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
           <line x1="184" y1="20" x2="184" y2="340" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 4" />
-          <text x="56" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[9px]">x = 1</text>
-          <text x="176" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[9px]">x = 6</text>
+          <text data-kind="curve" x="56" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[9px]">x = 1</text>
+          <text data-kind="curve" x="176" y="16" fill="#94a3b8" stroke="none" className="font-sans text-[9px]">x = 6</text>
 
           {/* Оси координат */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -8487,7 +8473,7 @@ export const section18Tasks = [
             const y = 3 * Math.pow(Math.max(0, (31 * x - 26) / 5), 1 / 5);
             return `${40 + 24 * x},${320 - 24 * y}`;
           }).join(' ')} fill="none" strokeWidth="2.5" stroke="#2563eb" />
-          <text x="192" y="194" fill="#2563eb" className="font-serif italic text-[10px]">f(x)</text>
+          <text data-kind="curve" x="192" y="194" fill="#2563eb" className="font-serif italic text-[10px]">f(x)</text>
 
           {/* Убывающий красный график g(x) при a = -7/5 (сплошной) */}
           <polyline points={Array.from({ length: 161 }, (_, i) => {
@@ -8495,7 +8481,7 @@ export const section18Tasks = [
             const y = -4 * Math.log(4 * x + 1) / Math.log(5) + 7;
             return `${40 + 24 * x},${320 - 24 * y}`;
           }).join(' ')} fill="none" strokeWidth="2" stroke="#dc2626" />
-          <text x="188" y="354" fill="#dc2626" className="font-serif italic text-[10px]">g(x), a = -7/5</text>
+          <text data-kind="curve" x="188" y="354" fill="#dc2626" className="font-serif italic text-[10px]">g(x), a = -7/5</text>
 
           {/* Убывающий красный график g(x) при a = -14/5 (пунктир) */}
           <polyline points={Array.from({ length: 161 }, (_, i) => {
@@ -8503,7 +8489,7 @@ export const section18Tasks = [
             const y = -4 * Math.log(4 * x + 1) / Math.log(5) + 14;
             return `${40 + 24 * x},${320 - 24 * y}`;
           }).join(' ')} fill="none" strokeWidth="1.5" stroke="#dc2626" strokeDasharray="4 3" />
-          <text x="148" y="150" fill="#dc2626" className="font-serif italic text-[10px]">g(x), a = -14/5</text>
+          <text data-kind="curve" x="148" y="150" fill="#dc2626" className="font-serif italic text-[10px]">g(x), a = -14/5</text>
 
           {/* ВСЕ ЧЕРНЫЕ МАРКЕРНЫЕ ТОЧКИ И ИХ ТЕКСТОВЫЕ ПОДПИСИ (1;3) И (6;6) ПОЛНОСТЬЮ УДАЛЕНЫ ПО ТЗ */}
         </svg>
@@ -8917,7 +8903,7 @@ export const section18Tasks = [
           <text x="217" y="229" fill="#000000" className="dark:fill-slate-300">t₀ = 3/2</text>
           <text x="81" y="101" fill="#000000" className="dark:fill-slate-300">g(−1) = 4</text>
           <text x="132" y="233" fill="#000000" className="dark:fill-slate-300">g(1) = −2</text>
-          <text x="276" y="90" fill="#2563eb">g(t) при a = 0</text>
+          <text data-kind="curve" x="276" y="90" fill="#2563eb">g(t) при a = 0</text>
         </svg>
       </ParameterDiagram>
 
@@ -9019,15 +9005,15 @@ export const section18Tasks = [
           {/* ПУЧОК КРИТИЧЕСКИХ ПРЯМЫХ ЧЕРЕЗ НЕПОДВИЖНУЮ ТОЧКУ P(4; 2) -> x=256, y=152 */}
           {/* Положение I (оранжевая прямая через B(1;0) -> x=184, y=200. Уклон k = 2/3) */}
           <line x1="50" y1="289.3" x2="340" y2="96" stroke="#ea580c" strokeWidth="1.5" />
-          <text x="110" y="260" fill="#ea580c" className="font-sans font-semibold text-[10px]">I</text>
+          <text data-kind="curve" data-math={`y=\\frac23(x-4)+2`} fill="#ea580c" />
 
           {/* Положение II (зелёная прямая через A(-3;0) -> x=88, y=200. Уклон k = 2/7) */}
           <line x1="20" y1="219.4" x2="360" y2="122.3" stroke="#16a34a" strokeWidth="1.5" />
-          <text x="110" y="180" fill="#16a34a" className="font-sans font-semibold text-[10px]">II</text>
+          <text data-kind="curve" data-math={`y=\\frac27(x-4)+2`} fill="#16a34a" />
 
           {/* Положение III (розовая прямая, горизонтальное касание y = 2 -> y=152. Уклон k = 0) */}
           <line x1="20" y1="152" x2="360" y2="152" stroke="#db2777" strokeWidth="1.5" />
-          <text x="110" y="144" fill="#db2777" className="font-sans font-semibold text-[10px]">III</text>
+          <text data-kind="curve" data-math={`y=2`} fill="#db2777" />
 
           {/* Ключевые точки и узлы */}
           <circle cx="136" cy="200" r="3.5" fill="#000000" /> {/* Центр C(-1;0) */}
@@ -9125,7 +9111,7 @@ export const section18Tasks = [
           <text x="146" y="15" fill="#000000" stroke="none" className="dark:fill-slate-300 font-serif italic text-base">y</text>
 
           {/* Схематичная надпись в верхнем левом углу графика */}
-          <text x="254" y="18" fill="#94a3b8" stroke="none" className="font-sans font-medium text-[10px] tracking-wide select-none">Пример: a = 5</text>
+          <text data-kind="curve" data-math={`f(t),\\ a=5`} fill="#2563eb" />
 
 
           {/* Заштрихованная область отрезка [-1; 1] */}
@@ -9229,7 +9215,7 @@ export const section18Tasks = [
       <ParameterDiagram>
         <svg viewBox="0 0 360 220" className="w-full max-w-[360px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Схематичная надпись перемещена строго в правый верхний угол */}
-          <text x="254" y="18" fill="#94a3b8" stroke="none" className="font-sans font-medium text-[10px] tracking-wide select-none">Пример: a = 3</text>
+          <text data-kind="curve" data-math={`f(x),\\ a=3`} fill="#2563eb" />
 
           {/* Оси координат */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -9408,13 +9394,13 @@ export const section18Tasks = [
 
           {/* Критический уровень у = 9 (Оранжевая линия) */}
           <line x1="25" y1="5" x2="345" y2="5" stroke="#ea580c" strokeWidth="1.5" strokeDasharray="4 3" />
-          <text x="350" y="9" fill="#ea580c" stroke="none" className="font-sans font-semibold text-[10px]">y = 9</text>
+          <text data-kind="curve" x="350" y="9" fill="#ea580c" stroke="none" className="font-sans font-semibold text-[10px]">y = 9</text>
           <circle cx={190 - 15 * (3 + Math.sqrt(12))} cy="5" r="3.5" fill="#ea580c" />
           <circle cx={190 + 15 * (3 + Math.sqrt(12))} cy="5" r="3.5" fill="#ea580c" />
 
           {/* Критический уровень у = -3 (Красная линия) */}
           <line x1="25" y1="185" x2="345" y2="185" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4 3" />
-          <text x="350" y="189" fill="#dc2626" stroke="none" className="font-sans font-semibold text-[10px]">y = -3</text>
+          <text data-kind="curve" x="350" y="189" fill="#dc2626" stroke="none" className="font-sans font-semibold text-[10px]">y = -3</text>
           <circle cx="145" cy="185" r="3.5" fill="#dc2626" />
           <circle cx="235" cy="185" r="3.5" fill="#dc2626" />
         </svg>
@@ -9580,7 +9566,7 @@ export const section18Tasks = [
             <svg viewBox="0 0 360 235" className="w-full max-w-[360px] h-auto font-sans text-xs select-none">
             <path d="M 20,120 H 335 M 328,116 L 335,120 L 328,124 M 210,215 V 20 M 206,27 L 210,20 L 214,27" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
             <text x="340" y="124" className="fill-slate-900 dark:fill-slate-300">t</text>
-            <text x="215" y="25" className="fill-slate-900 dark:fill-slate-300">f(t)</text>
+            <text data-kind="curve" data-math={`f(t)=-\\frac32 t^2-3t-\\frac12`} fill="#2563eb" />
             <text x="216" y="135" className="fill-slate-900 dark:fill-slate-300">0</text>
             <path d="M 26.0000,212.1000 Q 132.4000,-99.1200 238.8000,226.4640" fill="none" stroke="#2563eb" strokeWidth="2.5" />
             <line x1="130" y1="60" x2="130" y2="120" stroke="#94a3b8" strokeDasharray="3 3" />
@@ -9820,7 +9806,7 @@ export const section18Tasks = [
 
           {/* Горизонтальная сканирующая прямая параметра y = log_9^2(a) (Красная линия, уровень y=160) */}
           <line x1="20" y1="160" x2="350" y2="160" stroke="#dc2626" strokeWidth="2" />
-          <text x="267" y="151" fill="#dc2626" className="font-sans font-semibold text-[11px]">{"y = log₉² a"}</text>
+          <text data-kind="curve" x="267" y="151" fill="#dc2626" className="font-sans font-semibold text-[11px]">{"y = log₉² a"}</text>
 
           {/* Точки пересечения */}
           <circle cx="80" cy="160" r="3.5" fill="#dc2626" />
@@ -10222,7 +10208,7 @@ export const section18Tasks = [
           <text x="168" y="293" fill="#000000" className="dark:fill-slate-300 font-sans text-sm">-3,5</text>
 
           {/* Текст надписи уравнения */}
-          <text x="85" y="50" fill="#2563eb" className="font-serif italic font-semibold text-xs">y = -2x + 3</text>
+          <text data-kind="curve" x="85" y="50" fill="#2563eb" className="font-serif italic font-semibold text-xs">y = -2x + 3</text>
         </svg>
       </ParameterDiagram>
 
@@ -10287,57 +10273,58 @@ export const section18Tasks = [
   id: 99,
   title: 'Задача 99',
   textBefore: 'Найдите все значения параметра a, при каждом из которых уравнение',
-  mathA: '9^{-|x - a|} \\log_{\\sqrt{5}}(x^2 + 2x + 3) + 3^{-x^2 - 2x}\\log_{\\frac{1}{5}}(2|x - a| + 2) = 0',
+  mathA: '9^{-|x - a|} \\log_{\\sqrt[3]{5}}(x^2 + 2x + 3) + 3^{-x^2 - 2x}\\log_{\\frac{1}{5}}(2|x - a| + 2) = 0',
   textAfter: <span>имеет ровно 3 решения.</span>,
   mathB: '',
   solutionBuilder: () => (
     <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
       <p className="font-bold text-slate-800 dark:text-slate-100">Решение.</p>
-      <div className="space-y-3">
-        <p>Оба аргумента логарифмов не меньше <InlineMath math={`2`} />, поэтому уравнение определено при всех <InlineMath math={`x,a\\in\\mathbb R`} />. Используем <InlineMath math={`\\log_{\\sqrt5} z=2\\log_5 z`} /> и <InlineMath math={`\\log_{1/5} z=-\\log_5 z`} />. Домножим на <InlineMath math={`3^{x^2+2x}9^{|x-a|}`} /> и положим <InlineMath math={`u=x+1`} />, <InlineMath math={`b=a+1`} />:</p>
-        <BlockMath math={`H(2|u-b|)=\\dfrac23 H(u^2),\\qquad H(t)=3^t\\ln(t+2),\\quad t\\geq0.`} />
-        <p>Функция <InlineMath math={`H`} /> строго возрастает от <InlineMath math={`H(0)`} /> до <InlineMath math={`+\\infty`} />. Обозначим <InlineMath math={`r=\\sqrt{H^{-1}(\\tfrac32 H(0))}`} />. Тогда <InlineMath math={`0<r<1`} />, поскольку <InlineMath math={`H(1)>\\tfrac32 H(0)`} />. Решения возможны только при <InlineMath math={`|u|\\geq r`} />, и на этой области уравнение равносильно</p>
-        <BlockMath math={`b=u\\pm\\tfrac12 v(|u|),\\qquad v(u)=H^{-1}(\\tfrac23 H(u^2)),\\quad u\\geq r.`} />
-        <p>На луче <InlineMath math={`u\\geq r`} /> верхняя ветвь <InlineMath math={`u+v(u)/2`} /> строго возрастает от <InlineMath math={`r`} /> до <InlineMath math={`+\\infty`} />. Покажем, что нижняя ветвь <InlineMath math={`q(u)=u-v(u)/2`} /> сначала возрастает от <InlineMath math={`r`} /> до максимума <InlineMath math={`M>r`} />, а затем убывает до <InlineMath math={`-\\infty`} />.</p>
-        <p>Положим <InlineMath math={`L(t)=\\ln H(t)`} />, <InlineMath math={`\\delta=\\ln(3/2)`} /> и <InlineMath math={`w(t)=L^{-1}(L(t)-\\delta)`} /> для <InlineMath math={`t\\geq r^2`} />. Тогда <InlineMath math={`v(u)=w(u^2)`} />, <InlineMath math={`0\\leq w(t)<t`} /> и</p>
-        <BlockMath math={`L'(t)=\\ln3+\\dfrac{1}{(t+2)\\ln(t+2)}>\\ln3,\\qquad 0<w'(t)=\\dfrac{L'(t)}{L'(w(t))}<1,`} />
-        <p>где последнее неравенство следует из убывания <InlineMath math={`L'`} />. Кроме того, функция <InlineMath math={`E(t)=L''(t)/L'(t)^2`} /> строго возрастает: для <InlineMath math={`s=t+2`} /> и <InlineMath math={`\\ell=\\ln s`} /> получаем</p>
-        <BlockMath math={`L'''(t)L'(t)-2L''(t)^2=\\dfrac{\\ln3\\,s(2\\ell^2+3\\ell+2)-1}{s^4\\ell^3}>0.`} />
-        <p>Поэтому <InlineMath math={`w''(t)=\\dfrac{L'(t)^2}{L'(w(t))}[E(t)-E(w(t))]>0`} />. Отсюда <InlineMath math={`q''(u)=-w'(u^2)-2u^2 w''(u^2)<0`} />, а правая производная <InlineMath math={`q'(r)=1-rw'(r^2)>0`} />. Из <InlineMath math={`L(t)-L(w(t))=\\delta`} /> и <InlineMath math={`L'>\\ln3`} /> получаем <InlineMath math={`w(t)>t-\\delta/\\ln3`} />, поэтому <InlineMath math={`q(u)\\to-\\infty`} />. Таким образом, максимум <InlineMath math={`M`} /> существует, единственен и больше <InlineMath math={`r`} />.</p>
-        <p>Симметрия <InlineMath math={`(u,b)\\mapsto(-u,-b)`} /> позволяет считать <InlineMath math={`b\\geq0`} />. На отрицательном луче число решений равно числу решений на положительном луче для уровня <InlineMath math={`-b`} />. Этот уровень ниже <InlineMath math={`r`} />: он пересекает только убывающую часть <InlineMath math={`q`} />, ровно один раз.</p>
-        <BlockMath math={`\\begin{array}{c|ccccc} b&[0;r)&r&(r;M)&M&(M;+\\infty)\\\\\\hline u\\geq r&1&2&3&2&1\\\\ \\text{все }u&2&3&4&3&2\\end{array}`} />
-        <p>При <InlineMath math={`b=r`} /> обе ветви имеют общую точку <InlineMath math={`u=r`} />, которую считаем один раз. При <InlineMath math={`b=M`} /> нижняя ветвь даёт только точку максимума.</p>
-        {(() => {
-          const r = 0.4839162158224754, M = 0.6424601812708556;
-          const L = t => t * Math.log(3) + Math.log(Math.log(t + 2));
-          const v = u => {
-            let left = 0, right = u*u;
-            const target = L(right) - Math.log(1.5);
-            for (let i = 0; i < 48; i++) {
-              const mid = (left + right)/2;
-              if (L(mid) < target) left = mid;
-              else right = mid;
-            }
-            return (left + right)/2;
-          };
-          return <CoordinateDiagram xRange={[-2.5, 2.5]} yRange={[-1.35, 1.35]} axes={['u','b']}
-            curves={[
-              {math: 'b=u+v(|u|)/2', points: sampleCurve(u => [u, u+v(u)/2], r, 2.5), color: '#2563eb'},
-              {points: sampleCurve(u => [u, u+v(u)/2], -2.5, -r), color: '#2563eb'},
-              {math: 'b=u-v(|u|)/2', points: sampleCurve(u => [u, u-v(u)/2], -2.5, -r), color: '#7c3aed'},
-              {points: sampleCurve(u => [u, u-v(u)/2], r, 2.5), color: '#7c3aed'},
-              {math: 'b=r', points: [[-2.5,r],[2.5,r]], color: '#dc2626', dashed: true},
-              {math: 'b=M', points: [[-2.5,M],[2.5,M]], color: '#b45309', dashed: true},
-            ]}
-            points={[{x:r,y:r,color:'#dc2626'},{x:1.042851897870251,y:M,color:'#b45309'}]}
-            xTicks={[-2,-1,1,2]} yTicks={[-1,1]} />;
-        })()}
-        <p>Численно <InlineMath math={`r\\approx0{,}483916`} />, <InlineMath math={`M\\approx0{,}642460`} />. Ровно три корня соответствуют <InlineMath math={`b=\\pm r`} /> и <InlineMath math={`b=\\pm M`} />.</p>
-      </div>
-
+      <p>Аргументы обоих логарифмов не меньше двух. Используем формулы перехода к основанию <InlineMath math={`5`} />:</p>
+      <BlockMath math={`\\log_{\\sqrt[3]{5}} z=3\\log_5 z,\\qquad \\log_{1/5}z=-\\log_5 z.`} />
+      <p>Домножим исходное уравнение на положительное число <InlineMath math={`3^{x^2+2x}9^{|x-a|}`} />. Поскольку <InlineMath math={`3\\cdot 3^{x^2+2x}=3^{(x+1)^2}`} />, получаем</p>
+      <BlockMath math={`3^{(x+1)^2}\\log_5\\bigl((x+1)^2+2\\bigr)=3^{2|x-a|}\\log_5(2|x-a|+2).`} />
+      <p>Функция <InlineMath math={`F(t)=3^t\\log_5(t+2)`} /> строго возрастает при <InlineMath math={`t\\geq 0`} /> как произведение двух положительных строго возрастающих функций. Поэтому равенство её значений равносильно равенству аргументов:</p>
+      <BlockMath math={`(x+1)^2=2|x-a|\\quad\\Longleftrightarrow\\quad a=x\\pm\\frac{(x+1)^2}{2}.`} />
+      <p>В плоскости <InlineMath math={`xOa`} /> это две параболы:</p>
+      <ul className="list-disc space-y-1 pl-5">
+        <li>У параболы <InlineMath math={`a=x+\\dfrac{(x+1)^2}{2}`} /> минимум в точке <InlineMath math={`\\left(-2;-\\dfrac32\\right)`} />.</li>
+        <li>У параболы <InlineMath math={`a=x-\\dfrac{(x+1)^2}{2}`} /> максимум в точке <InlineMath math={`\\left(0;-\\dfrac12\\right)`} />.</li>
+        <li>Обе параболы имеют ровно одну общую точку <InlineMath math={`(-1;-1)`} />.</li>
+      </ul>
+      <CoordinateDiagram
+        xRange={[-4.5, 2.5]}
+        yRange={[-3, 1]}
+        xTicks={[-4, -3, -2, -1, 0, 1, 2]}
+        yTicks={[
+          -2,
+          { value: -1.5, math: `-\\frac32` },
+          -1,
+          { value: -0.5, math: `-\\frac12` },
+          0,
+          1,
+        ]}
+        curves={[
+          { math: `a=x+\\frac{(x+1)^2}{2}`, color: '#2563eb', points: sampleCurve(x => [x, x + (x + 1) ** 2 / 2], -4.5, 2.5, 140) },
+          { math: `a=x-\\frac{(x+1)^2}{2}`, color: '#7c3aed', points: sampleCurve(x => [x, x - (x + 1) ** 2 / 2], -4.5, 2.5, 140) },
+          ...[-1.5, -1, -0.5].map(a => ({
+            color: '#94a3b8', dashed: true, points: [[-4.5, a], [2.5, a]],
+          })),
+        ]}
+        points={[
+          { x: -2, y: -1.5, color: '#2563eb' },
+          { x: 0, y: -0.5, color: '#7c3aed' },
+          { x: -1, y: -1 },
+        ]}
+      />
+      <p>Подсчитаем пересечения с горизонтальной прямой при фиксированном <InlineMath math={`a`} />.</p>
+      <ul className="list-disc space-y-1 pl-5">
+        <li>При <InlineMath math={`a<-\\frac32`} /> или <InlineMath math={`a>-\\frac12`} /> пересекается только одна парабола. Она даёт два корня.</li>
+        <li>На уровнях <InlineMath math={`a=-\\frac32`} /> и <InlineMath math={`a=-\\frac12`} /> одна парабола даёт один корень, а другая — два.</li>
+        <li>При <InlineMath math={`-\\frac32<a<-\\frac12`} /> каждая парабола даёт два корня. Ровно три различных корня получаются только при <InlineMath math={`a=-1`} />, когда общую точку нужно посчитать один раз.</li>
+      </ul>
       <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
         <span>Ответ:</span>
-        <InlineMath math={`a\\in\\{-1-M;\\,-1-r;\\,-1+r;\\,-1+M\\}`} />
+        <InlineMath math={`a\\in\\left\\{-\\frac32;-1;-\\frac12\\right\\}`} />
       </div>
     </div>
   )
@@ -10785,7 +10772,7 @@ export const section18Tasks = [
 
           {/* Диагональ y = x (черный мелкий пунктир) */}
           <line x1="40" y1="280" x2="310" y2="10" stroke="#000000" strokeWidth="1.2" strokeDasharray="3 3" className="dark:stroke-slate-400" />
-          <text x="290" y="25" fill="#94a3b8" className="text-[10px] font-serif italic">y = x</text>
+          <text data-kind="curve" x="290" y="25" fill="#94a3b8" className="text-[10px] font-serif italic">y = x</text>
 
           {/* Метки делений на осях */}
           <text x="48" y="204" fill="#000000" className="dark:fill-slate-300 font-sans text-xs">2</text>
@@ -11185,7 +11172,7 @@ export const section18Tasks = [
         curves={[
           {math:'y=2|x-2|',points:[[0,4],[2,0],[4,4]],color:'#2563eb'},
           {math:'y=1',points:[[0,1],[4,1]],color:'#dc2626'},
-          {math:'h=1',points:[[2,0],[2,1]],color:'#7c3aed',dashed:true},
+          {points:[[2,0],[2,1]],color:'#7c3aed',dashed:true},
         ]}
         points={[{x:1.5,y:1},{x:2.5,y:1},{x:2,y:0}]}
         xTicks={[1,2,3,4]} yTicks={[-4,-2,-1,1,2,4]} />
@@ -11211,7 +11198,7 @@ export const section18Tasks = [
         curves={[
           {math:'y=-2|x-2|',points:[[0,-4],[2,0],[4,-4]],color:'#2563eb'},
           {math:'y=-1',points:[[0,-1],[4,-1]],color:'#dc2626'},
-          {math:'h=1',points:[[2,0],[2,-1]],color:'#7c3aed',dashed:true},
+          {points:[[2,0],[2,-1]],color:'#7c3aed',dashed:true},
         ]}
         points={[{x:1.5,y:-1},{x:2.5,y:-1},{x:2,y:0}]}
         xTicks={[1,2,3,4]} yTicks={[-4,-2,-1,1,2,4]} />
