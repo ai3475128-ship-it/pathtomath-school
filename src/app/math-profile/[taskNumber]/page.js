@@ -103,8 +103,8 @@ export default async function TaskPage({ params }) {
 
         {/* Список задач и модалка репортов */}
         <div className="space-y-4 pt-2">
-          <TaskListBlock key={taskNumber} taskNumberInt={taskNumberIntForComponent} />
-          <ErrorReportModal key={taskNumber} sectionNumber={taskNumberIntForComponent} module={taskNumber} />
+          <TaskListBlock key={`tasks-${taskNumber}`} taskNumberInt={taskNumberIntForComponent} />
+          <ErrorReportModal key={`report-${taskNumber}`} sectionNumber={taskNumberIntForComponent} module={taskNumber} />
         </div>
 
       </div>

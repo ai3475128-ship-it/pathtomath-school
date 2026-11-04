@@ -78,7 +78,6 @@ function readLabel(node) {
     x: Number(props.x) + (node.type === 'foreignObject' ? (Number(props.width) || 0) / 2 : 0),
     y: Number(props.y),
     color,
-    point: props['data-point'] === 'true',
   };
 }
 
@@ -178,7 +177,7 @@ function positionLabels(labels, lines, [x, y, width, height]) {
     }
     if (bounds && Number.isFinite(bounds.x + bounds.y) && !occupies(bounds)) {
       chartLabels.push({ ...label, ...bounds, kind });
-    } else {
+    } else if (kind === 'curve') {
       legend.push(label);
     }
   }
@@ -240,12 +239,12 @@ export function ParameterDiagram({ children, gridStep = 24, gridOrigin }) {
       </svg>
       {legend.length > 0 && (
         <figcaption className={styles.caption}>
-          <ul className={styles.labels} aria-label="Обозначения на графике">
+          <ul className={styles.labels} aria-label="Функции на графике">
             {legend.map((label, index) => (
               <li key={index} className={styles.label}>
                 {label.color && (
                   <span
-                    className={label.point ? styles.dot : styles.swatch}
+                    className={styles.swatch}
                     style={{ '--diagram-ink': label.color }}
                     aria-hidden="true"
                   />
@@ -323,7 +322,7 @@ export function CoordinateDiagram({ xRange, yRange, axes = ['x', 'a'], curves, p
           return (
             <g key={index}>
               <path d={path(coordinates)} stroke={ink} fill="none" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" strokeDasharray={dashed ? '6 5' : undefined} />
-              {math && <text data-math={math} fill={ink} />}
+              {math && <text data-kind="curve" data-math={math} fill={ink} />}
             </g>
           );
         })}
@@ -332,7 +331,6 @@ export function CoordinateDiagram({ xRange, yRange, axes = ['x', 'a'], curves, p
           return (
             <g key={index}>
               <circle cx={x(point.x)} cy={y(point.y)} r="3.9" stroke={ink} strokeWidth="1.6" fill={point.open ? 'var(--diagram-paper)' : ink} />
-              {point.math && <text data-math={point.math} data-point="true" fill={ink} />}
             </g>
           );
         })}
