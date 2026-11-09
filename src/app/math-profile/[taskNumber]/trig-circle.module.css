@@ -1,0 +1,136 @@
+.figure {
+  --trig-arc: #2563eb;
+  --trig-root: #047857;
+  --trig-root-label: #fff;
+  margin-block: 0.75rem;
+}
+
+:global(.dark) .figure {
+  --trig-arc: #60a5fa;
+  --trig-root: #34d399;
+  --trig-root-label: #10251f;
+}
+
+.caption {
+  padding: 0.25rem 0.4rem 0.65rem;
+  text-align: center;
+}
+
+.turns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.turn {
+  display: flex;
+  flex: 1 1 16rem;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding: 0.55rem;
+  border: 1px solid var(--diagram-grid);
+  border-radius: 0.65rem;
+  background: var(--diagram-paper);
+}
+
+.interval {
+  margin: 0;
+  color: var(--diagram-axis);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  max-width: 17rem;
+  height: auto;
+  margin-block: 0.3rem;
+}
+
+.axisLabel {
+  color: var(--diagram-axis);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.unit {
+  fill: none;
+  stroke: var(--diagram-frame);
+  stroke-width: 1.5;
+}
+
+.arc {
+  fill: none;
+  stroke: var(--trig-arc);
+  stroke-width: 4;
+}
+
+.endpoint,
+.open {
+  stroke: var(--trig-arc);
+  stroke-width: 2;
+}
+
+.endpoint {
+  fill: var(--trig-arc);
+}
+
+.open {
+  fill: var(--diagram-paper);
+}
+
+.root,
+.badge {
+  fill: var(--trig-root);
+  background: var(--trig-root);
+}
+
+.root {
+  stroke: var(--diagram-paper);
+  stroke-width: 1.4;
+}
+
+.index {
+  fill: var(--trig-root-label);
+  font: 700 11px system-ui, sans-serif;
+}
+
+.roots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.roots li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.4rem;
+  border: 1px solid var(--diagram-grid);
+  border-radius: 0.35rem;
+}
+
+.badge {
+  display: inline-grid;
+  width: 1.05rem;
+  height: 1.05rem;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--trig-root-label);
+  font: 700 0.65rem system-ui, sans-serif;
+}
+
+.empty,
+.order {
+  margin: 0;
+  text-align: center;
+}
+
+.order {
+  margin-bottom: 0.3rem;
+}

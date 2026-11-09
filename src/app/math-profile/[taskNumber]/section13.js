@@ -1,5 +1,6 @@
 import React from 'react';
 import { InlineMath, BlockMath } from 'react-katex';
+import TrigCircle from './TrigCircle';
 
 export const section13Tasks = [
   {
@@ -84,6 +85,8 @@ export const section13Tasks = [
             <p>На отрезке при помощи тригонометрической окружности лежат точки:</p>
             <BlockMath math={`x = \\frac{11\\pi}{6}; \\quad x = \\frac{13\\pi}{6}; \\quad x = \\frac{17\\pi}{6}`} />
             
+            <TrigCircle interval={[9,18]} roots={[11,13,17]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\pm\\frac{\\pi}{6} + \\pi k, \\, k \\in \\mathbb{Z};`} />
@@ -158,13 +161,15 @@ export const section13Tasks = [
             <p>Разбиваем на два случая:</p>
             <div className="pl-4 border-l-2 border-slate-200 dark:border-purple-950/40 space-y-2">
               <p>1) <InlineMath math="2\cos x - 4 = 0 \implies \cos x = 2" /> — решений нет, так как <InlineMath math="|\cos x| \le 1" />.</p>
-              <p>2) <InlineMath math="\sin x - \sqrt{3}\cos x = 0" /> — разделим на <InlineMath math="\cos x \neq 0" />:</p>
+              <p>2) <InlineMath math="\sin x - \sqrt{3}\cos x = 0" /> — при <InlineMath math="\cos x = 0" /> имеем <InlineMath math="\sin x=\pm1" />, поэтому эта ветвь не даёт корней при нулевом косинусе. Делим на <InlineMath math="\cos x" />:</p>
               <BlockMath math="\operatorname{tg} x = \sqrt{3} \implies x = \frac{\pi}{3} + \pi k, \quad k \in \mathbb{Z}" />
             </div>
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>С помощью единичной тригонометрической окружности отберём корни на отрезке:</p>
             <BlockMath math="x_1 = \frac{\pi}{3} + \pi = \frac{4\pi}{3}, \quad x_2 = \frac{\pi}{3} + 2\pi = \frac{7\pi}{3}" />
             
+            <TrigCircle interval={[6,15]} roots={[8,14]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2">
               <span>Ответ: а)</span>
               <InlineMath math="\frac{\pi}{3} + \pi k, \quad k \in \mathbb{Z}" />
@@ -227,6 +232,8 @@ export const section13Tasks = [
             <BlockMath math={`-\\frac{7\\pi}{6} \\le 2\\pi k \\le \\frac{\\pi}{3}`} />
             <BlockMath math={`-\\frac{7}{12} \\le k \\le \\frac{1}{6} \\implies k = 0 \\implies x = \\frac{\\pi}{6}`} />
             
+            <TrigCircle interval={[-6,3]} roots={[1]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{6} + 2\\pi k,`} />
@@ -292,21 +299,19 @@ export const section13Tasks = [
             </div>
             
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
-            <p>Отберём корни, принадлежащие заданному отрезку, с помощью двойного неравенства.</p>
-            
-            <p className="font-medium text-xs text-slate-400">Для первой серии корней:</p>
-            <BlockMath math={`-3\\pi \\le \\frac{2\\pi}{3} + 2\\pi k \\le -\\frac{3\\pi}{2} \\implies -3 \\le \\frac{2}{3} + 2k \\le -\\frac{3}{2}`} />
-            <BlockMath math={`-\\frac{11}{3} \\le 2k \\le -\\frac{13}{6} \\implies -\\frac{11}{6} \\le k \\le -\\frac{13}{12} \\implies k = -1 \\implies x = -\\frac{4\\pi}{3}`} />
-            
-            <p className="font-medium text-xs text-slate-400">Для второй серии корней:</p>
-            <BlockMath math={`-3\\pi \\le -\\frac{2\\pi}{3} + 2\\pi k \\le -\\frac{3\\pi}{2} \\implies -3 \\le -\\frac{2}{3} + 2k \\le -\\frac{3}{2}`} />
-            <BlockMath math={`-\\frac{7}{3} \\le 2k \\le -\\frac{5}{6} \\implies -\\frac{7}{6} \\le k \\le -\\frac{5}{12} \\implies k = -1 \\implies x = -\\frac{8\\pi}{3}`} />
-            
+            <p>Подставим обе серии в неравенство <InlineMath math="-3\pi \le x \le -\frac{3\pi}{2}" />.</p>
+            <BlockMath math="x=\frac{2\pi}{3}+2\pi k \implies -\frac{11}{6}\le k\le -\frac{13}{12}" />
+            <p>В этом промежутке целых чисел нет.</p>
+            <BlockMath math="x=-\frac{2\pi}{3}+2\pi k \implies -\frac{7}{6}\le k\le -\frac{5}{12} \implies k=-1" />
+            <p>Получаем единственный корень <InlineMath math="x=-\frac{8\pi}{3}" />.</p>
+
+            <TrigCircle interval={[-18,-9]} roots={[-16]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\pm\\frac{2\\pi}{3} + 2\\pi k, \\, k \\in \\mathbb{Z}`} />
               <span className="ml-2">б)</span>
-              <InlineMath math={`-\\frac{8\\pi}{3}; \\, -\\frac{4\\pi}{3}`} />
+              <InlineMath math="-\frac{8\pi}{3}" />
             </div>
           </div>
         )
@@ -366,21 +371,18 @@ export const section13Tasks = [
             </div>
             
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
-            <p>Отберём корни на отрезке с помощью двойного неравенства.</p>
-            
-            <p className="font-medium text-xs text-slate-400">Для первой серии корней:</p>
-            <BlockMath math={`-4\\pi \\le \\frac{\\pi}{3} + 2\\pi k \\le -\\frac{5\\pi}{2} \\implies -4 \\le \\frac{1}{3} + 2k \\le -\\frac{5}{2}`} />
-            <BlockMath math={`-\\frac{13}{3} \\le 2k \\le -\\frac{17}{6} \\implies -\\frac{13}{6} \\le k \\le -\\frac{17}{12} \\implies k = -2 \\implies x = -\\frac{11\\pi}{3}`} />
-            
-            <p className="font-medium text-xs text-slate-400">Для второй серии корней:</p>
-            <BlockMath math={`-4\\pi \\le -\\frac{\\pi}{3} + 2\\pi k \\le -\\frac{5\\pi}{2} \\implies -4 \\le -\\frac{1}{3} + 2k \\le -\\frac{5}{2}`} />
-            <BlockMath math={`-\\frac{11}{3} \\le 2k \\le -\\frac{13}{6} \\implies -\\frac{11}{6} \\le k \\le -\\frac{13}{12} \\implies k = -1 \\implies x = -\\frac{7\\pi}{3}`} />
-            
+            <p>Подставим обе серии в неравенство <InlineMath math="-4\pi \le x \le -\frac{5\pi}{2}" />.</p>
+            <BlockMath math="x=\frac{\pi}{3}+2\pi k \implies -\frac{13}{6}\le k\le -\frac{17}{12} \implies k=-2" />
+            <BlockMath math="x=-\frac{\pi}{3}+2\pi k \implies -\frac{11}{6}\le k\le -\frac{13}{12}" />
+            <p>Вторая серия не даёт целых значений <InlineMath math="k" />. Подходит только <InlineMath math="x=-\frac{11\pi}{3}" />.</p>
+
+            <TrigCircle interval={[-24,-15]} roots={[-22]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\pm\\frac{\\pi}{3} + 2\\pi k, \\, k \\in \\mathbb{Z}`} />
               <span className="ml-2">б)</span>
-              <InlineMath math={`-\\frac{11\\pi}{3}; \\, -\\frac{7\\pi}{3}`} />
+              <InlineMath math="-\frac{11\pi}{3}" />
             </div>
           </div>
         )
@@ -433,9 +435,11 @@ export const section13Tasks = [
             <p className="font-medium text-xs text-slate-400">Для отрицательной серии косинуса:</p>
             <BlockMath math={`-\\frac{\\pi}{2} \\le -\\frac{\\pi}{6} + 2\\pi k \\le \\pi \\implies -\\frac{1}{2} \\le -\\frac{1}{6} + 2k \\le 1 \\implies -\\frac{1}{3} \\le 2k \\le \\frac{7}{6} \\implies k = 0 \\implies x = -\\frac{\\pi}{6}`} />
             
+            <TrigCircle interval={[-3,6]} roots={[-1,1,3]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
-              <InlineMath math={`\\pm\\frac{\\sqrt{3}}{2} \\text{ для } \\cos x \\text{ даёт } \\pm\\frac{\\pi}{6} + 2\\pi k, \\, \\frac{\\pi}{2} + 2\\pi n, \\, k, n \\in \\mathbb{Z}`} />
+              <InlineMath math={`\\pm\\frac{\\pi}{6} + 2\\pi k, \\, \\frac{\\pi}{2} + 2\\pi n, \\, k, n \\in \\mathbb{Z}`} />
               <span className="ml-2">б)</span>
               <InlineMath math={`-\\frac{\\pi}{6}; \\, \\frac{\\pi}{6}; \\, \\frac{\\pi}{2}`} />
             </div>
@@ -494,21 +498,19 @@ export const section13Tasks = [
             </div>
             
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
-            <p>Отберём корни, принадлежащие заданному отрезку, с помощью двойного неравенства.</p>
-            
-            <p className="font-medium text-xs text-slate-400">Для первой серии корней:</p>
-            <BlockMath math={`-\\frac{7\\pi}{2} \\le \\frac{\\pi}{6} + 2\\pi k \\le -2\\pi \\implies -\\frac{7}{2} \\le \\frac{1}{6} + 2k \\le -2`} />
-            <BlockMath math={`-\\frac{11}{3} \\le 2k \\le -\\frac{13}{6} \\implies -\\frac{11}{6} \\le k \\le -\\frac{13}{12} \\implies k = -1 \\implies x = -\\frac{11\\pi}{6}`} />
-            
-            <p className="font-medium text-xs text-slate-400">Для второй серии корней:</p>
-            <BlockMath math={`-\\frac{7\\pi}{2} \\le \\frac{5\\pi}{6} + 2\\pi k \\le -2\\pi \\implies -\\frac{7}{2} \\le \\frac{5}{6} + 2k \\le -2`} />
-            <BlockMath math={`-\\frac{13}{3} \\le 2k \\le -\\frac{17}{6} \\implies -\\frac{13}{6} \\le k \\le -\\frac{17}{12} \\implies k = -1 \\implies x = -\\frac{7\\pi}{6}`} />
-            
+            <p>Подставим обе серии в неравенство <InlineMath math="-\frac{7\pi}{2} \le x \le -2\pi" />.</p>
+            <BlockMath math="x=\frac{\pi}{6}+2\pi k \implies -\frac{11}{6}\le k\le -\frac{13}{12}" />
+            <p>Первая серия не даёт целых значений <InlineMath math="k" />.</p>
+            <BlockMath math="x=\frac{5\pi}{6}+2\pi k \implies -\frac{13}{6}\le k\le -\frac{17}{12} \implies k=-2" />
+            <p>Подходит только <InlineMath math="x=-\frac{19\pi}{6}" />.</p>
+
+            <TrigCircle interval={[-21,-12]} roots={[-19]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{6} + 2\\pi k, \\, \\frac{5\\pi}{6} + 2\\pi k, \\, k \\in \\mathbb{Z}`} />
               <span className="ml-2">б)</span>
-              <InlineMath math={`-\\frac{11\\pi}{6}; \\, -\\frac{7\\pi}{6}`} />
+              <InlineMath math="-\frac{19\pi}{6}" />
             </div>
           </div>
         )
@@ -532,6 +534,8 @@ export const section13Tasks = [
             
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Так как решением уравнения являются все действительные числа, то на заданном отрезке решением будут все числа, принадлежащие этому отрезку.</p>
+            <TrigCircle interval={[-4,-1]} denominator={2} allAngles />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`x \\in \\mathbb{R}`} />
@@ -585,6 +589,8 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>При помощи тригонометрической окружности находим корни на заданном отрезке:</p>
             <BlockMath math={`x = -\\frac{7\\pi}{4}; \\, -\\frac{5\\pi}{4}`} />
+            <TrigCircle interval={[-10,-4]} roots={[-7,-5]} denominator={4} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{4} + 2\\pi k, \\, \\frac{3\\pi}{4} + 2\\pi k, \\, k \\in \\mathbb{Z}`} />
@@ -622,12 +628,14 @@ export const section13Tasks = [
             </div>
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>При помощи тригонометрической окружности отберём корни, принадлежащие отрезку:</p>
-            <BlockMath math={`x = \\frac{13\\pi}{6}; \\, \\frac{5\\pi}{2}`} />
+            <BlockMath math={`x = \\frac{11\\pi}{6}; \\, \\frac{13\\pi}{6}; \\, \\frac{5\\pi}{2}`} />
+            <TrigCircle interval={[6,15]} roots={[11,13,15]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\pm\\frac{\\pi}{6} + 2\\pi k, \\, \\frac{\\pi}{2} + 2\\pi n, \\, k, n \\in \\mathbb{Z}`} />
               <span className="ml-2">б)</span>
-              <InlineMath math={`\\frac{13\\pi}{6}; \\, \\frac{5\\pi}{2}`} />
+              <InlineMath math={`\\frac{11\\pi}{6}; \\, \\frac{13\\pi}{6}; \\, \\frac{5\\pi}{2}`} />
             </div>
           </div>
         )
@@ -677,6 +685,8 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>При помощи тригонометрической окружности отберём корни, принадлежащие отрезку:</p>
             <BlockMath math={`x = -\\frac{7\\pi}{3}; \\, -\\frac{8\\pi}{3}`} />
+            <TrigCircle interval={[-18,-9]} roots={[-16,-14]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`-\\frac{\\pi}{3} + 2\\pi k, \\, -\\frac{2\\pi}{3} + 2\\pi k, \\, k \\in \\mathbb{Z}`} />
@@ -711,6 +721,8 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отбираем точки, попадающие на заданный отрезок, с помощью окружности:</p>
             <BlockMath math={`x = -\\frac{3\\pi}{2}; \\, -\\frac{\\pi}{2}`} />
+            <TrigCircle interval={[-4,-1]} roots={[-3,-1]} denominator={2} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{2} + \\pi k, \\, k \\in \\mathbb{Z}`} />
@@ -751,6 +763,8 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>При помощи числовой прямой или двойных неравенств находим корни:</p>
             <BlockMath math={`x = -\\frac{2\\pi}{3}; \\, -\\frac{5\\pi}{6}; \\, \\frac{\\pi}{6}; \\, \\frac{\\pi}{3}`} />
+            <TrigCircle interval={[-6,3]} roots={[-5,-4,1,2]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{3} + \\pi k, \\, \\frac{\\pi}{6} + \\pi m, \\, k, m \\in \\mathbb{Z}`} />
@@ -781,12 +795,14 @@ export const section13Tasks = [
             </div>
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>При помощи тригонометрической окружности находим корни на заданном отрезке:</p>
-            <BlockMath math={`x = -\\frac{5\\pi}{2}; \\, -\\frac{3\\pi}{2}; \\, -\\frac{7\\pi}{3}`} />
+            <BlockMath math={`x = -\\frac{5\\pi}{2}; \\, -\\frac{5\\pi}{3}; \\, -\\frac{3\\pi}{2}`} />
+            <TrigCircle interval={[-18,-9]} roots={[-15,-10,-9]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{2} + \\pi k, \\, \\frac{\\pi}{3} + 2\\pi n, \\, \\frac{2\\pi}{3} + 2\\pi n, \\, k, n \\in \\mathbb{Z}`} />
               <span className="ml-2">б)</span>
-              <InlineMath math={`-\\frac{5\\pi}{2}; \\, -\\frac{3\\pi}{2}; \\, -\\frac{7\\pi}{3}`} />
+              <InlineMath math={`-\\frac{5\\pi}{2}; \\, -\\frac{5\\pi}{3}; \\, -\\frac{3\\pi}{2}`} />
             </div>
           </div>
         )
@@ -811,6 +827,8 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>С помощью окружности отберём корни на отрезке:</p>
             <BlockMath math={`x = \\pi; \\, \\frac{4\\pi}{3}; \\, \\frac{5\\pi}{3}; \\, 2\\pi; \\, \\frac{7\\pi}{3}`} />
+            <TrigCircle interval={[6,15]} roots={[6,8,10,12,14]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\pi k, \\, \\pm\\frac{\\pi}{3} + \\pi n, \\, k, n \\in \\mathbb{Z}`} />
@@ -839,6 +857,8 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Сравниваем корни с границами промежутка:</p>
             <BlockMath math={`x = 2\\pi`} />
+            <TrigCircle interval={[4,7]} roots={[4]} denominator={2} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`2\\pi k, \\, k \\in \\mathbb{Z}`} />
@@ -867,6 +887,8 @@ export const section13Tasks = [
             <p>Отберём точки, попадающие на заданный отрезок, с помощью двойного неравенства:</p>
             <BlockMath math={`-2\\pi \\le \\frac{\\pi}{6} + \\pi k \\le -\\frac{\\pi}{2} \\implies -2 \\le \\frac{1}{6} + k \\le -\\frac{1}{2}`} />
             <BlockMath math={`-\\frac{13}{6} \\le k \\le -\\frac{7}{6} \\implies k = -2 \\implies x = -\\frac{11\\pi}{6}, \\quad k = -1 \\implies x = -\\frac{5\\pi}{6}`} />
+            <TrigCircle interval={[-12,-3]} roots={[-11,-5]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{6} + \\pi k, \\, k \\in \\mathbb{Z}`} />
@@ -918,6 +940,8 @@ export const section13Tasks = [
             <p>На заданном промежутке лежат точки:</p>
             <BlockMath math={`x = -\\frac{23\\pi}{6}; \\quad x = -\\frac{7\\pi}{2}`} />
             
+            <TrigCircle interval={[-30,-21]} roots={[-23,-21]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{2} + 2\\pi k;`} />
@@ -970,6 +994,8 @@ export const section13Tasks = [
             <p>При помощи единичной тригонометрической окружности находим точки на заданном отрезке:</p>
             <BlockMath math={`x = -\\frac{7\\pi}{4}; \\quad x = -\\frac{5\\pi}{4}`} />
             
+            <TrigCircle interval={[-8,-2]} roots={[-7,-5]} denominator={4} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{4} + 2\\pi k;`} />
@@ -1058,6 +1084,8 @@ export const section13Tasks = [
             <p>На заданном промежутке лежат точки:</p>
             <BlockMath math={`x = \\frac{4\\pi}{3}; \\quad x = \\frac{5\\pi}{3}; \\quad x = \\frac{7\\pi}{3}`} />
             
+            <TrigCircle interval={[6,15]} roots={[8,10,14]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\pm\\frac{\\pi}{3} + 2\\pi k; \\quad \\pm\\frac{2\\pi}{3} + 2\\pi k, \\, k \\in \\mathbb{Z}`} />
@@ -1097,6 +1125,8 @@ export const section13Tasks = [
             <p>При помощи единичной тригонометрической окружности отберём корни на заданном отрезке:</p>
             <BlockMath math={`x = \\frac{3\\pi}{2}; \\quad x = \\frac{11\\pi}{6}`} />
             
+            <TrigCircle interval={[9,18]} roots={[9,11]} denominator={6} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`-\\frac{\\pi}{6} + 2\\pi k; \\, \\frac{7\\pi}{6} + 2\\pi k; \\, -\\frac{\\pi}{2} + 2\\pi k, \\, k \\in \\mathbb{Z}`} />
@@ -1377,7 +1407,7 @@ export const section13Tasks = [
         id: 31,
         title: 'Задача 31',
         mathA: '\\frac{x^2 - 4}{\\ln(x - 1)} = (x^2 - 6) \\cdot \\log_{x-1} e + 1',
-        mathB: '\\left[ e^{\\pi} - 1; \\, \\pi^2 \\right]',
+        mathB: '\\left[ e\\pi - 1; \\, \\pi^2 \\right]',
         solutionBuilder: () => (
           <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
             <p className="font-bold text-slate-800 dark:text-slate-100">а) Решение уравнения:</p>
@@ -1402,19 +1432,11 @@ export const section13Tasks = [
             </div>
   
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
-            <div className="flex flex-wrap items-center gap-1">
-              <span>Сравним полученный корень</span>
-              <InlineMath math={`x = e^2 + 1`} />
-              <span>с границами отрезка при помощи числовых оценок:</span>
-            </div>
-            <div className="pl-4 space-y-1 text-sm">
-              <p>1) С левой границей: <InlineMath math={`e^2 + 1 > e^{\\pi} - 1 \\iff e^2 + 2 > e^{\\pi} \\iff e + \\frac{2}{e} > \\pi`} /> (верно, так как 3.454 &gt; 3.1416).</p>
-              <p>2) С правой границей: <InlineMath math={`e^2 + 1 < \\pi^2 \\iff \\pi^2 - e^2 > 1`} /> (верно, так как 2.481 &gt; 1).</p>
-            </div>
-            <div className="flex flex-wrap items-center gap-1 text-xs text-slate-400">
-              <span>Следовательно, точка входит в заданный промежуток.</span>
-            </div>
-  
+            <p>Воспользуемся оценками <InlineMath math="2{,}7 < e < 2{,}8" /> и <InlineMath math="3 < \pi < \frac{22}{7}" />.</p>
+            <BlockMath math="e\pi-1 < 2{,}8\cdot\frac{22}{7}-1 = 7{,}8 < 2{,}7^2+1 < e^2+1" />
+            <BlockMath math="e^2+1 < 2{,}8^2+1 = 8{,}84 < 9 < \pi^2" />
+            <p>Значит, <InlineMath math="e^2+1" /> принадлежит отрезку.</p>
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`x = e^2 + 1`} />
@@ -1547,29 +1569,22 @@ export const section13Tasks = [
               <InlineMath math={`u = \\log_2 x`} />:
             </div>
             <BlockMath math={`(3 + u)^2 + 2u - 5 = 4`} />
-            <BlockMath math={`u^2 + 8u + 9 + 2u - 5 = 4`} />
-            <BlockMath math={`u^2 + 10u = 0 \\implies u(u + 10) = 0`} />
-            <p>Корни: <InlineMath math={`u_1 = 0, \\, u_2 = -10`} />.</p>
+            <BlockMath math={`u^2 + 6u + 9 + 2u - 5 = 4`} />
+            <BlockMath math={`u^2 + 8u = 0 \\implies u(u + 8) = 0`} />
+            <p>Корни: <InlineMath math={`u_1 = 0, \\, u_2 = -8`} />.</p>
             <p>Обратная замена:</p>
             <BlockMath math={`\\log_2 x = 0 \\implies x = 1`} />
-            <BlockMath math={`\\log_2 x = -10 \\implies x = \\frac{1}{1024}`} />
+            <BlockMath math={`\\log_2 x = -8 \\implies x = \\frac{1}{256}`} />
             <p>Оба корня удовлетворяют ОГР.</p>
             
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
-            <p>Отберём корни уравнения, принадлежащие отрезку при помощи неравенств.</p>
-            <p><InlineMath math={`x_1 = 1`} />: явно больше правой границы <InlineMath math={`\\frac{1}{32}`} /> — не подходит.</p>
-            <div className="flex flex-wrap items-center gap-1">
-              <span>Проверим</span>
-              <InlineMath math={`x_2 = \\frac{1}{1024}`} />:
-              <span>сравним с границами:</span>
-              <InlineMath math={`\\frac{1}{1024} < \\frac{1}{512}`} />
-              <span>, так как 1024 &gt; 512. Корень не принадлежит отрезку.</span>
-            </div>
-            
+            <BlockMath math="\frac{1}{512} < \frac{1}{256} < \frac{1}{32} < 1" />
+            <p>На отрезок попадает только <InlineMath math="x=\frac{1}{256}" />.</p>
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
-              <InlineMath math={`x = 1; \\, x = \\frac{1}{1024}`} />
-              <span className="ml-2">б) корней нет</span>
+              <InlineMath math={`x = 1; \\, x = \\frac{1}{256}`} />
+              <span className="ml-2">б)</span> <InlineMath math="\frac{1}{256}" />
             </div>
           </div>
         )
@@ -1689,6 +1704,8 @@ export const section13Tasks = [
             <p>Отрезок соответствует полному обороту окружности. Из серии в этот отрезок попадает только точка при n = -1:</p>
             <BlockMath math={`x = \\frac{\\pi}{2} - 2\\pi = -\\frac{3\\pi}{2}`} />
             
+            <TrigCircle interval={[-4,0]} roots={[-3]} denominator={2} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{2} + 2\\pi n, \\quad n \\in \\mathbb{Z}`} />
@@ -1743,7 +1760,7 @@ export const section13Tasks = [
         id: 38,
         title: 'Задача 38',
         mathA: '5^x \\cdot 2^{\\frac{x+2}{x}} = 40',
-        mathB: '\\text{Отбор отсутствует}',
+        mathB: '',
         solutionBuilder: () => (
           <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
             <p className="font-bold text-slate-800 dark:text-slate-100">Решение уравнения:</p>
@@ -1785,7 +1802,7 @@ export const section13Tasks = [
         id: 39,
         title: 'Задача 39',
         mathA: '\\log_3(9^{\\sin x} + 9) = \\sin x - \\log_{\\frac{1}{3}}(28 - 2 \\cdot 3^{\\sin x})',
-        mathB: '\\text{Отбор отсутствует}',
+        mathB: '',
         solutionBuilder: () => (
           <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
             <p className="font-bold text-slate-800 dark:text-slate-100">Решение уравнения:</p>
@@ -1934,7 +1951,7 @@ export const section13Tasks = [
         id: 42,
         title: 'Задача 42',
         mathA: '\\log_3\\left(9^{\\sin x} + 9\\right) = \\sin x - \\log_{\\frac{1}{3}}\\left(28 - 2 \\cdot 3^{\\sin x}\\right)',
-        mathB: '\\text{Отбор отсутствует}',
+        mathB: '',
         solutionBuilder: () => (
           <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
             <p className="font-bold text-slate-800 dark:text-slate-100">Решение уравнения:</p>
@@ -2186,6 +2203,8 @@ export const section13Tasks = [
             <p>• m = 2 или m = -1 — выходят за рамки границ, не подходят.</p>
             <p>Следовательно, на отрезке лежат точки <InlineMath math={`\\frac{\\pi}{12}; \\, \\frac{25\\pi}{12}.`} /></p>
             
+            <TrigCircle interval={[-18,30]} roots={[1,25]} denominator={12} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{12} + 2\\pi m, \\, m \\in \\mathbb{Z}`} />
@@ -2236,7 +2255,7 @@ export const section13Tasks = [
         id: 48,
         title: 'Задача 48',
         mathA: '\\sin x + \\cos x = 0',
-        mathB: '\\text{Отбор отсутствует}',
+        mathB: '',
         solutionBuilder: () => (
           <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
             <p className="font-bold text-slate-800 dark:text-slate-100">а) Решение уравнения:</p>
@@ -2271,31 +2290,16 @@ export const section13Tasks = [
             <BlockMath math={`\\tan \\frac{\\pi x}{2} = \\sqrt{3} \\implies \\frac{\\pi x}{2} = \\frac{\\pi}{3} + \\pi k \\implies x = \\frac{2}{3} + 2k, \\quad k \\in \\mathbb{Z}`} />
   
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
-            <p>Отберём корни уравнения, принадлежащие промежутку, с помощью неравенств.</p>
-            
-            <div className="space-y-2 text-sm pl-4 border-l-2 border-slate-200 dark:border-purple-950/40">
-              <div className="flex flex-wrap items-center gap-1">
-                <span>• при</span>
-                <InlineMath math={`k = 0`} />:
-                <InlineMath math={`x = \\frac{2}{3} \\approx 0,667`} />,
-                <span>меньше левой границы 2 — не подходит.</span>
-              </div>
-              
-              <div className="flex flex-wrap items-center gap-1">
-                <span>• при</span>
-                <InlineMath math={`k = 1`} />:
-                <InlineMath math={`x = \\frac{2}{3} + 2 = \\frac{8}{3} \\approx 2,667`} />;
-                <span>так как</span>
-                <InlineMath math={`2 < \\frac{8}{3} < 2\\pi \\approx 6,283`} />
-                <span>— подходит.</span>
-              </div>
-            </div>
-  
+            <p>Подставим общее решение в двойное неравенство.</p>
+            <BlockMath math="2 < \frac{2}{3} + 2k < 2\pi \iff \frac{2}{3} < k < \pi - \frac{1}{3}" />
+            <p>Так как <InlineMath math="2 < \pi-\frac{1}{3} < 3" />, подходят <InlineMath math="k=1" /> и <InlineMath math="k=2" />.</p>
+            <BlockMath math="x_1=\frac{8}{3},\qquad x_2=\frac{14}{3}" />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{2}{3} + 2k, \\quad k \\in \\mathbb{Z}`} />
               <span className="ml-2">б)</span>
-              <InlineMath math={`\\frac{8}{3}`} />
+              <InlineMath math="\frac{8}{3}; \, \frac{14}{3}" />
             </div>
           </div>
         )
@@ -2625,59 +2629,18 @@ export const section13Tasks = [
             <BlockMath math={`\\tan 2x = -1 \\implies 2x = -\\frac{\\pi}{4} + \\pi k \\implies x = -\\frac{\\pi}{8} + \\frac{\\pi k}{2}, \\quad k \\in \\mathbb{Z}`} />
   
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
-            <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
-            
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ТОЧНЫЙ SVG ЧЕРТЁЖ ОДИН В ОДИН С РЕФЕРЕНСОМ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* 🔥 ВЫДЕЛЕННАЯ ДУГА ПО КОНТУРУ ОКРУЖНОСТИ (От 5pi/2 до 4pi против часовой стрелки) */}
-                <path d="M 130 40 A 90 90 0 1 0 220 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Вертикальный пунктир к выколотой точке и корню */}
-                <line x1="193.64" y1="66.36" x2="193.64" y2="193.64" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Выколотая точка (пустой круг на окружности) */}
-                <circle cx="193.64" cy="66.36" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Граничные точки промежутка (Закрашенные сферы) */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Точки отобранных корней на синей дуге */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="193.64" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи граничных и промежуточных точек */}
-                <text x="142" y="36" fill="#328ce6" className="text-[13px] text-sky-500 font-black">5π/2</text>
-                <text x="24" y="122" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">3π</text>
-                <text x="228" y="125" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">4π</text>
-                <text x="202" y="210" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">15π/4</text>
-              </svg>
-            </div>
-  
-            <div className="flex flex-wrap items-center gap-1">
-              <span>Следовательно, на отрезке</span>
-              <InlineMath math={`\\left[ \\frac{5\\pi}{2}; \\, 4\\pi \\right]`} />
-              <span>лежат точки</span>
-              <InlineMath math={`3\\pi; \\, \\frac{15\\pi}{4}; \\, 4\\pi`} />.
-            </div>
-  
+            <p>Подставим общее решение в границы отрезка.</p>
+            <BlockMath math="\frac{5}{2} \le -\frac{1}{8}+\frac{k}{2}\le 4 \iff \frac{21}{4}\le k\le\frac{33}{4}" />
+            <p>Подходят <InlineMath math="k=6,\,7,\,8" />.</p>
+            <BlockMath math="x_1=\frac{23\pi}{8},\qquad x_2=\frac{27\pi}{8},\qquad x_3=\frac{31\pi}{8}" />
+
+            <TrigCircle interval={[20,32]} roots={[23,27,31]} denominator={8} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`-\\frac{\\pi}{8} + \\frac{\\pi k}{2}, \\quad k \\in \\mathbb{Z}`} />
               <span className="ml-2">б)</span>
-              <InlineMath math={`3\\pi; \\, \\frac{15\\pi}{4}; \\, 4\\pi`} />
+              <InlineMath math="\frac{23\pi}{8}; \, \frac{27\pi}{8}; \, \frac{31\pi}{8}" />
             </div>
           </div>
         )
@@ -2711,42 +2674,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 МАТЕМАТИЧЕСКИ ЭТАЛОННЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От 12 часов против часовой стрелки до 3 часов — ровно 270 градусов) */}
-                <path d="M 130 40 A 90 90 0 1 0 220 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Вертикальный пунктир косинуса x = 1/2 */}
-                <line x1="175" y1="52.06" x2="175" y2="207.94" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Выколотая точка в I четверти (-11pi/3 не вошла в промежуток) */}
-                <circle cx="175" cy="52.06" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Граничные точки промежутка (Закрашенные сферы) */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Точка единственного отобранного корня на синей дуге в IV четверти */}
-                <circle cx="175" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи граничных и промежуточных точек */}
-                <text x="110" y="32" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-7π/2</text>
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-2π</text>
-                <text x="185" y="222" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">-7π/3</text>
-              </svg>
-            </div>
+            <TrigCircle interval={[-21,-12]} roots={[-14]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим, что на отрезке</span>
@@ -2802,47 +2730,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а) с учётом ОГР.</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ИДЕАЛЬНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ПО НАШЕМУ СТАНДАРТУ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* 🔥 ИСПРАВЛЕНО: ДУГА ЛЕЖИТ ИДЕАЛЬНО ПОВЕРХ ОКРУЖНОСТИ (Параметры 1 0 для больших углов против часовой стрелки) */}
-                <path d="M 220 130 A 90 90 0 1 0 66.36 193.64" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Горизонтальный пунктир синуса y = 1/2 */}
-                <line x1="40" y1="85" x2="220" y2="85" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Выколотая точка x = pi/2 (сверху) */}
-                <circle cx="130" cy="40" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Выколотая точка x = pi/6 в I четверти (не проходит ОГР) */}
-                <circle cx="207.94" cy="85" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Граничные точки промежутка (Закрашенные сферы) */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="66.36" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Точка единственного отобранного корня на синей дуге во II четверти */}
-                <circle cx="52.06" cy="85" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи граничных и промежуточных точек */}
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">0</text>
-                <text x="120" y="32" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">Mπ/2</text>
-                <text x="36" y="206" fill="#328ce6" className="text-[13px] text-sky-500 font-black">5π/4</text>
-                <text x="24" y="80" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">5π/6</text>
-                <text x="216" y="80" fill="currentColor" className="text-slate-400 dark:text-slate-500 text-xs font-semibold">π/6</text>
-              </svg>
-            </div>
+            <TrigCircle interval={[0,15]} roots={[10]} denominator={12} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Следовательно, с учётом строгого ограничения знаменателя <InlineMath math={`x > \\frac{\\pi}{2}`} />, на отрезке</span>
@@ -2895,34 +2783,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ТОЧНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ПО НАШЕМУ СТАНДАРТУ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От 0 до \pi против часовой стрелки — верхняя полуокружность) */}
-                <path d="M 220 130 A 90 90 0 0 0 40 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Выколотая точка 0 справа (так как промежуток открыт слева) */}
-                <circle cx="220" cy="130" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Точка закрашенного корня x = \pi слева (так как промежуток замкнут справа) */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи граничных и промежуточных точек */}
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">0</text>
-                <text x="24" y="125" fill="currentColor" className="text-slate-900 dark:text-slate-100 text-[13px] font-black">π</text>
-              </svg>
-            </div>
+            <TrigCircle interval={[0,1]} roots={[1]} openStart />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим, что на полуинтервале</span>
@@ -2960,37 +2821,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ТОЧНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ПО ЭТАЛОНУ ПЛАТФОРМЫ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО КОНТУРУ ОКРУЖНОСТИ (От 5pi/2 до 4pi против часовой стрелки) */}
-                {/* На окружности это дуга от верхней точки (12 часов) через левую и нижнюю до крайней правой (3 часа) */}
-                <path d="M 130 40 A 90 90 0 1 0 220 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Граничные точки промежутка (Закрашенные сферы, которые также являются корнями!) */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Точка второго отобранного корня x = 3\pi на синей дуге слева */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи граничных и промежуточных точек строго по нашему стандарту */}
-                <text x="142" y="36" fill="#328ce6" className="text-[13px] text-sky-500 font-black">5π/2</text>
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">4π</text>
-                <text x="24" y="125" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">3π</text>
-              </svg>
-            </div>
+            <TrigCircle interval={[5,8]} roots={[5,6]} denominator={2} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим, что на отрезке</span>
@@ -3036,45 +2867,7 @@ export const section13Tasks = [
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
                       {/* 🚀 ИСПРАВЛЕНО: Подписи сдвинуты с осей, а верхняя стрелка полностью восстановлена и сделана аккуратной! */}
-          <div className="my-6 flex justify-center w-full select-none">
-            <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-              {/* Сетка и оси координат (оси слегка удлинены для стрелочек) */}
-              <line x1="15" y1="130" x2="245" y2="130" stroke="currentColor" strokeWidth="1" className="text-slate-400 dark:text-slate-600" />
-              <line x1="130" y1="15" x2="130" y2="245" stroke="currentColor" strokeWidth="1" className="text-slate-400 dark:text-slate-600" />
-              
-              {/* Аккуратные тонкие стрелочки осей */}
-              <path d="M240 126 L246 130 L240 134" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-400 dark:text-slate-600" />
-              <path d="M126 20 L130 14 L134 20" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-400 dark:text-slate-600" />
-              
-              {/* Главная тонкая окружность */}
-              <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-purple-950/40" />
-              
-              {/* 🔵 Жирная синяя дуга окружности */}
-              <path d="M 40 130 A 90 90 0 1 0 130 40" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-              
-              {/* Выколотая точка 17π слева */}
-              <circle cx="40" cy="130" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#03000a' : '#ffffff'} stroke="#328ce6" strokeWidth="2.5" />
-              
-              {/* Выколотая точка 37π/2 сверху */}
-              <circle cx="130" cy="40" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#03000a' : '#ffffff'} stroke="#328ce6" strokeWidth="2.5" />
-              
-              {/* 🟢 Точка закрашенного корня 86π/5 в III четверти */}
-              <circle cx="57.19" cy="182.90" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-              
-              {/* 🟢 Точка закрашенного корня 91π/5 в I четверти */}
-              <circle cx="202.81" cy="77.10" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-              
-              {/* Пунктирные линии лучей к корням через центр */}
-              <line x1="130" y1="130" x2="57.19" y2="182.90" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-300 dark:text-purple-500/20" />
-              <line x1="130" y1="130" x2="202.81" y2="77.10" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-300 dark:text-purple-500/20" />
-              
-              {/* 📐 ИСПРАВЛЕНО: Координаты подписей изменены, чтобы они стояли идеально свободно от осей */}
-              <text x="6" y="122" fill="#328ce6" className="text-[13px] text-sky-500 font-black">17π</text>
-              <text x="142" y="28" fill="#328ce6" className="text-[13px] text-sky-500 font-black">37π/2</text>
-              <text x="8" y="204" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">86π/5</text>
-              <text x="214" y="74" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">91π/5</text>
-            </svg>
-          </div>
+          <TrigCircle interval={[170,185]} roots={[172,182]} denominator={10} openStart openEnd />
 
 
           <div className="flex flex-wrap items-center gap-1">
@@ -3126,48 +2919,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ТОЧНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ПО НАШЕМУ ЭТАЛОНУ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От pi/2 сверху против часовой стрелки до 2pi справа — ровно 270 градусов, II, III и IV четверти) */}
-                <path d="M 130 40 A 90 90 0 1 0 220 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Выколотая точка ложной серии 5\pi/12 в I четверти (БЕЗ ТЕКСТОВОЙ ПОДПИСИ) */}
-                <circle cx="216.94" cy="106.70" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                <line x1="130" y1="130" x2="216.94" y2="106.70" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Закрашенные точки корней, попавшие на синюю дугу */}
-                {/* \pi/2 (сверху) */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                {/* 3\pi/2 (снизу) */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                {/* 13\pi/12 (в III четверти, чуть ниже горизонтальной оси) */}
-                <circle cx="43.06" cy="153.30" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Конец отрезка 2\pi (справа) */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Пунктирный луч к корню 13\pi/12 из центра под углом 15 градусов ниже горизонтали */}
-                <line x1="130" y1="130" x2="43.06" y2="153.30" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Подписи только нужных граничных и истинных точек */}
-                <text x="142" y="36" fill="#328ce6" className="text-[13px] text-sky-500 font-black">π/2</text>
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">2π</text>
-                <text x="142" y="226" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">3π/2</text>
-                <text x="16" y="165" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">13π/12</text>
-              </svg>
-            </div>
+            <TrigCircle interval={[6,24]} roots={[6,13,18]} denominator={12} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -3216,52 +2968,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ТОЧНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ПО НАШЕМУ ЭТАЛОНУ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От -pi/2 снизу против часовой стрелки до \pi слева — ровно 270 градусов, IV, I и II четверти) */}
-                <path d="M 130 220 A 90 90 0 1 0 40 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Выколотая точка ложного корня серии \pi/6 в III четверти (ВНЕ СИНЕЙ ДУГИ, БЕЗ ПОДПИСИ) */}
-                <circle cx="52.06" cy="175" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                <line x1="130" y1="130" x2="52.06" y2="175" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Пунктирные направляющие лучи для истинных корней */}
-                <line x1="130" y1="130" x2="207.94" y2="85" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-400 dark:text-slate-600" />
-                <line x1="130" y1="130" x2="193.64" y2="66.36" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-400 dark:text-slate-600" />
-                <line x1="130" y1="130" x2="66.36" y2="66.36" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Закрашенные сферы истинных корней на синей дуге */}
-                {/* \pi/6 (30 градусов в I четверти) */}
-                <circle cx="207.94" cy="85" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                {/* \pi/4 (45 градусов в I четверти) */}
-                <circle cx="193.64" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                {/* 3\pi/4 (45 градусов во II четверти) */}
-                <circle cx="66.36" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Закрашенные концы интервалов */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Текстовые подписи только нужных граничных и истинных точек */}
-                <text x="110" y="236" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-π/2</text>
-                <text x="24" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">π</text>
-                <text x="216" y="90" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">π/6</text>
-                <text x="202" y="60" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">π/4</text>
-                <text x="44" y="60" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">3π/4</text>
-              </svg>
-            </div>
+            <TrigCircle interval={[-6,12]} roots={[2,3,9]} denominator={12} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -3302,56 +3009,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ТОЧНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ С ВНЕШНЕЙ ДУГОЙ-ХВОСТИКОМ ПО ВАШЕМУ РИСУНКУ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и axes координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Тонкая базовая окружность */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* 🔥 1. ВНУТРЕННИЙ ПОЛНЫЙ КРУГ ДУГИ (От 0 до 2pi по контуру) */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="#328ce6" strokeWidth="4.5" />
-                
-                {/* 🔥 2. ВНЕШНИЙ СИН canВЫЙ «ХВОСТИК» ДУГИ (Дополнительная четверть от 0 до 5pi/2 наружу) */}
-                <path d="M 235 130 A 105 105 0 0 0 130 25" fill="none" stroke="#328ce6" strokeWidth="3.5" strokeLinecap="round" />
-                
-                {/* Горизонтальный пунктир синуса y = 1/2 */}
-                <line x1="40" y1="85" x2="220" y2="85" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Выколотая точка начала 0 справа (на внутреннем контуре) */}
-                <circle cx="220" cy="130" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="#328ce6" strokeWidth="2" />
-                
-                {/* Закрашенные точки корней и границ */}
-                {/* 3\pi/2 (снизу) */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                {/* 5\pi/6 (во II четверти) */}
-                <circle cx="52.06" cy="85" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Слоёные корни первого витка (на внутреннем контуре r=90) */}
-                <circle cx="207.94" cy="85" r="4" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* \pi/6 */}
-                <circle cx="130" cy="40" r="4" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* \pi/2 */}
-                
-                {/* Слоёные корни второго витка (на внешнем хвостике) */}
-                <circle cx="220.93" cy="77.50" r="4" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 13\pi/6 */}
-                <circle cx="130" cy="25" r="4" fill="currentColor" className="text-slate-900 dark:text-slate-100" />       {/* 5\pi/2 */}
-                
-                {/* Подписи граничных и истинных точек */}
-                <text x="242" y="145" fill="#328ce6" className="text-[13px] text-sky-500 font-black">0</text>
-                <text x="142" y="44" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">π/2</text>
-                <text x="142" y="18" fill="#328ce6" className="text-[12px] text-sky-500 font-black">5π/2</text>
-                <text x="142" y="234" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">3π/2</text>
-                <text x="212" y="102" fill="currentColor" className="text-slate-400 dark:text-slate-500 text-xs font-medium">π/6</text>
-                <text x="228" y="72" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">13π/6</text>
-                <text x="12" y="85" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">5π/6</text>
-              </svg>
-            </div>
+            <TrigCircle interval={[0,15]} roots={[1,3,5,9,13,15]} denominator={6} openStart />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -3392,44 +3050,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ТОЧНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ПО ЭТАЛОНУ ПЛАТФОРМЫ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ВСЕМУ КОНТУРУ (Занимает полный круг, так как длина интервала ровно 2pi) */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="#328ce6" strokeWidth="4.5" />
-                
-                {/* Выколотая точка -7\pi и -5\pi слева (интервал открытый) */}
-                <circle cx="40" cy="130" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="#328ce6" strokeWidth="2" />
-                
-                {/* Вертикальная линия косинуса x = -sqrt(3)/2 */}
-                <line x1="52.06" y1="20" x2="52.06" y2="240" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Ложный корень во II четверти (ВНЕ СИНЕЙ ДУГИ, ТАК КАК ВЫКОЛОТ ИЗ-ЗА ГРАНИЦЫ ИНТЕРВАЛА - БЕЗ ПОДПИСИ) */}
-                <circle cx="52.06" cy="85" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                {/* -6\pi (чётное число \pi, строго справа) */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                {/* -41\pi/6 (в III четверти, под углом 30 градусов к горизонтали) */}
-                <circle cx="52.06" cy="175" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                {/* -31\pi/6 (в II четверти, под углом 30 градусов к горизонтали) */}
-                <circle cx="52.06" cy="85" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи нужных граничных и истинных точек */}
-                <text x="14" y="145" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-7π; -5π</text>
-                <text x="228" y="125" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">-6π</text>
-                <text x="16" y="194" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">-41π/6</text>
-                <text x="16" y="78" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">-31π/6</text>
-              </svg>
-            </div>
+            <TrigCircle interval={[-42,-30]} roots={[-41,-36,-31]} denominator={6} openStart openEnd />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим, что на интервале</span>
@@ -3481,49 +3102,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а) с обязательной проверкой ОГР.</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ С ОПУЩЕННОЙ ПОДПИСЬЮ ДРОБИ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (Нижняя левая половина от 19pi/4 до 23pi/4) */}
-                <path d="M 66.36 66.36 A 90 90 0 0 0 193.64 193.64" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Диагональные лучи из центра под 45 градусов */}
-                <line x1="66.36" y1="66.36" x2="193.64" y2="193.64" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-300 dark:text-slate-700" />
-                <line x1="66.36" y1="193.64" x2="193.64" y2="66.36" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* Пунктирный луч к корню 61\pi/12 из центра под углом 15 градусов */}
-                <line x1="130" y1="130" x2="43.07" y2="153.29" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* Закрашенные точки истинных корней и границ на дуге */}
-                <circle cx="66.36" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 19\pi/4 */}
-                <circle cx="66.36" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 21\pi/4 */}
-                <circle cx="193.64" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 23\pi/4 */}
-                <circle cx="43.07" cy="153.29" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 61\pi/12 */}
-                
-                {/* Подписи точек */}
-                <text x="24" y="58" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">19π/4</text>
-                <text x="202" y="212" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">23π/4</text>
-                <text x="22" y="212" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">21π/4</text>
-                
-                {/* 👍 ИСПРАВЛЕНО: Сместили всю группу с дробью вниз на 22 пикселя (translate y=136 вместо 114) */}
-                <g transform="translate(6, 136)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">61π</text>
-                  <line x1="0" y1="15" x2="28" y2="15" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="27" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">12</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[57,69]} roots={[61,63,69]} denominator={12} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Следовательно, на отрезке</span>
@@ -3584,7 +3163,7 @@ export const section13Tasks = [
   
             <div className="space-y-3 pl-4 border-l-2 border-slate-200 dark:border-purple-500/20 text-sm">
               <div className="flex flex-wrap items-center gap-1">
-                <span className="font-semibold text-sky-600 dark:text-purple-400">• Серия коней</span>
+                <span className="font-semibold text-sky-600 dark:text-purple-400">• Серия корней</span>
                 <InlineMath math={`x = \\alpha + 2\\pi k`} />:
                 <span>при</span>
                 <InlineMath math={`k = 0`} />
@@ -3668,66 +3247,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ТОЧНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ДЛЯ ШКОЛКОВО С КРАСИВЫМИ ДРОБЯМИ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От -pi/2 снизу против часовой стрелки до \pi слева — ровно 270 градусов, IV, I и II четверти) */}
-                <path d="M 130 220 A 90 90 0 1 0 40 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Вертикальные линии косинуса x = 1/2 и x = -1/2 */}
-                <line x1="175" y1="40" x2="175" y2="220" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-400 dark:text-slate-600" />
-                <line x1="85" y1="40" x2="85" y2="220" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Выколотая точка серии в III четверти (ВНЕ СИНЕЙ ДУГИ, БЕЗ ПОДПИСИ) */}
-                <circle cx="85" cy="207.94" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Закрашенные точки истинных корней на синей дуге под 60 градусов */}
-                <circle cx="175" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -\pi/3 */}
-                <circle cx="175" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* \pi/3 */}
-                <circle cx="85" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* 2\pi/3 */}
-                
-                {/* Закрашенные концы интервалов */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи концов промежутка */}
-                <text x="110" y="236" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-π/2</text>
-                <text x="24" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">π</text>
-                
-                {/* Идеально отцентрированные многоэтажные дроби для корней */}
-                {/* Дробь для -\pi/3 */}
-                <g transform="translate(178, 206)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-π</text>
-                  <line x1="2" y1="14" x2="26" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="26" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-  
-                {/* Дробь для \pi/3 */}
-                <g transform="translate(178, 22)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">π</text>
-                  <line x1="5" y1="14" x2="23" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="26" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-  
-                {/* Дробь для 2\pi/3 */}
-                <g transform="translate(54, 22)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">2π</text>
-                  <line x1="2" y1="14" x2="26" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="26" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-3,6]} roots={[-2,2,4]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -3782,48 +3302,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ТОЧНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ПО НАШЕМУ СТАНДАРТУ ПЛАТФОРМЫ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От 2pi справа против часовой до 3pi слева — ровно верхняя половина круга) */}
-                <path d="M 220 130 A 90 90 0 0 0 40 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Вертикальная линия косинуса x = -1/2 */}
-                <line x1="85" y1="40" x2="85" y2="220" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Выколотая точка ложной серии в III четверти (ВНЕ СИНЕЙ ДУГИ, БЕЗ ПОДПИСИ) */}
-                <circle cx="85" cy="207.94" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Закрашенная точка единственного истинного корня 8\pi/3 на синей дуге во II четверти (под 60 градусов) */}
-                <circle cx="85" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Закрашенные концы интервалов */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи концов промежутка */}
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">2π</text>
-                <text x="24" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">3π</text>
-                
-                {/* Идеально отцентрированная многоэтажная дробь для корня 8\pi/3 */}
-                <g transform="translate(54, 22)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">8π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="26" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[6,9]} roots={[8]} denominator={3} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим единственный корень:</span>
@@ -3884,54 +3363,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ТОЧНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ПО НАШЕМУ СТАНДАРТУ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="20" y1="130" x2="240" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="20" x2="130" y2="240" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M240 130 l-6 -3 M240 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 20 l-3 6 M130 20 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От \pi слева против часовой стрелки до 5\pi/2 сверху — ровно 270 градусов, III, IV и I четверти) */}
-                <path d="M 40 130 A 90 90 0 1 0 130 40" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Пунктирные лучи к отобранным корням */}
-                <line x1="130" y1="130" x2="220" y2="130" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-400 dark:text-slate-600" />
-                <line x1="130" y1="130" x2="175" y2="52.06" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Выколотые ложные точки серий (ВНЕ СИНЕЙ ДУГИ во II четверти, оставлены анонимными по вашему правилу) */}
-                <circle cx="85" cy="52.06" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                <line x1="130" y1="130" x2="85" y2="52.06" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Закрашенные черные точки истинных корней и концов на синей дуге */}
-                {/* Начало отрезка \pi (строго слева) */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                {/* Конец отрезка 5\pi/2 (строго сверху) */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                {/* Корень 2\pi (строго справа) */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                {/* Корень 7\pi/3 (в I четверти, под 60 градусов к горизонтали) */}
-                <circle cx="175" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи граничных и промежуточных точек */}
-                <text x="24" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">π</text>
-                <text x="142" y="36" fill="#328ce6" className="text-[13px] text-sky-500 font-black">5π/2</text>
-                <text x="228" y="125" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-semibold">2π</text>
-                
-                {/* Идеально отцентрированная многоэтажная дробь для корня 7\pi/3 */}
-                <g transform="translate(178, 22)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">7π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="26" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[6,15]} roots={[12,14]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -3967,83 +3399,7 @@ export const section13Tasks = [
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую промежутку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
             {/* 🌌 ИСПРАВЛЕНО: УДЛИНЕНЫ КООРДИНАТНЫЕ ОСИ И СДВИГНУТЫ СТРЕЛКИ НА КРАЯ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат (удлинены до 10 и 250) */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей на новых позициях */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Тонкая базовая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 1. ПОЛНЫЙ ВНУТРЕННИЙ ОБОРОТ ДУГИ (Радиус 90) */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="#328ce6" strokeWidth="4.5" />
-                
-                {/* 🔥 2. СТАБИЛЬНЫЙ ВНЕШНИЙ ХВОСТИК ДУГИ (Радиус 104) */}
-                <path 
-                  d="M 203.54 203.54 
-                     A 104 104 0 0 0 234 130 
-                     A 104 104 0 0 0 130 26 
-                     A 104 104 0 0 0 56.46 56.46" 
-                  fill="none" 
-                  stroke="#328ce6" 
-                  strokeWidth="4.5" 
-                  strokeLinecap="round" 
-                />
-                
-                {/* Выколотые точки границ интервала */}
-                <circle cx="193.64" cy="193.64" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="#328ce6" strokeWidth="2.5" />
-                <circle cx="56.46" cy="56.46" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="#328ce6" strokeWidth="2.5" />
-                
-                {/* Точки на внутреннем радиусе 90 */}
-                <circle cx="85.00" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 4π/3 */}
-                <circle cx="175.00" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 5π/3 */}
-                <circle cx="175.00" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* π/3 */}
-                <circle cx="85.00" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* 2π/3 */}
-                
-                {/* Точки на внешнем радиусе 104 */}
-                <circle cx="182.04" cy="39.96" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 7π/3 */}
-                <circle cx="77.96" cy="39.96" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 8π/3 */}
-                
-                {/* Подписи концов промежутка */}
-                <g transform="translate(200, 196)">
-                  <text x="14" y="10" fill="#328ce6" textAnchor="middle" className="text-[13px] text-sky-500 font-black">-π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="#328ce6" strokeWidth="1.2" />
-                  <text x="14" y="26" fill="#328ce6" textAnchor="middle" className="text-[13px] text-sky-500 font-black">4</text>
-                </g>
-  
-                <g transform="translate(14, 52)">
-                  <text x="14" y="10" fill="#328ce6" textAnchor="middle" className="text-[13px] text-sky-500 font-black">11π</text>
-                  <line x1="1" y1="14" x2="27" y2="14" stroke="#328ce6" strokeWidth="1.2" />
-                  <text x="14" y="26" fill="#328ce6" textAnchor="middle" className="text-[13px] text-sky-500 font-black">4</text>
-                </g>
-                
-                {/* Подписи нижних корней */}
-                <g transform="translate(162, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">5π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">3</text>
-                </g>
-  
-                <g transform="translate(68, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">4π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">3</text>
-                </g>
-  
-                {/* Наружные подписи для внешнего витка */}
-                <text x="194" y="28" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">7π/3</text>
-                <text x="66" y="28" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">8π/3</text>
-  
-                {/* Внутренние подписи для внутреннего витка */}
-                <text x="164" y="74" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">π/3</text>
-                <text x="96" y="74" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">2π/3</text>
-              </svg>
-            </div>
+            <TrigCircle interval={[-3,33]} roots={[4,8,16,20,28,32]} denominator={12} openStart openEnd />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -4087,61 +3443,7 @@ export const section13Tasks = [
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую промежутку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
             {/* 🌌 ИСПРАВЛЕНО: ВОЗВРАЩЕНА ПРАВИЛЬНАЯ ДИАГОНАЛЬ КОРНЕЙ ИЗ II В IV ЧЕТВЕРТЬ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Тонкая базовая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 1. ВНУТРЕННИЙ ПОЛНЫЙ ОБОРОТ ДУГИ (Радиус 90) */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="#328ce6" strokeWidth="4.5" />
-                
-                {/* 🔥 2. ВНЕШНИЙ ХВОСТИК ДУГИ (Строго в IV четверти) */}
-                <path d="M 130 234 A 104 104 0 0 0 234 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* 👍 ИСПРАВЛЕНО: Вернули верную пунктирную линию под 45 градусов (из II во IV четверть) */}
-                <line x1="66.36" y1="66.36" x2="193.64" y2="193.64" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* Выколотые точки границ интервала */}
-                <circle cx="130" cy="220" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="#328ce6" strokeWidth="2.5" />
-                <circle cx="234" cy="130" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="#328ce6" strokeWidth="2.5" />
-                
-                {/* Точки корней на окружностях */}
-                <circle cx="66.36" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="193.64" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="203.54" cy="203.54" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи границ интервала */}
-                <text x="92" y="244" fill="#328ce6" className="text-[12px] text-sky-500 font-black">-5π/2</text>
-                <text x="234" y="118" fill="#328ce6" className="text-[13px] text-sky-500 font-black">0</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей */}
-                <g transform="translate(206, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">-9π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">4</text>
-                </g>
-  
-                <g transform="translate(74, 76)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">-5π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">4</text>
-                </g>
-  
-                <g transform="translate(142, 166)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">-π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">4</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-10,0]} roots={[-9,-5,-1]} denominator={4} openStart openEnd />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -4192,63 +3494,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ: ПОДПИСЬ -3pi ОПУЩЕНА ЛЕВЕЕ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Тонкая базовая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 1. ВНУТРЕННИЙ ПОЛНЫЙ ОБОРОТ ДУГИ (Радиус 90) */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="#328ce6" strokeWidth="4.5" />
-                
-                {/* 🔥 2. ВНЕШНИЙ ХВОСТИК ДУГИ (Строго в IV четверти) */}
-                <path d="M 26 130 A 104 104 0 0 0 130 234 A 104 104 0 0 0 234 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Пунктирная диагональ под 45 градусов (из II во IV четверть) */}
-                <line x1="66.36" y1="66.36" x2="193.64" y2="193.64" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* Закрашенные точки границ промежутка */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="234" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Точки корней на окружностях */}
-                <circle cx="66.36" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="193.64" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                <circle cx="203.54" cy="203.54" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи границ интервала */}
-                {/* 👍 ИСПРАВЛЕНО: Сместили подпись -3π левее горизонтальной оси (x="6" вместо 14) */}
-                <text x="6" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-3π</text>
-                <text x="234" y="118" fill="#328ce6" className="text-[13px] text-sky-500 font-black">0</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей */}
-                <g transform="translate(206, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">-9π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">4</text>
-                </g>
-  
-                <g transform="translate(74, 76)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">-5π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">4</text>
-                </g>
-  
-                <g transform="translate(142, 166)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">-π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">4</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-12,0]} roots={[-9,-5,-1]} denominator={4} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -4293,66 +3539,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ТОЧНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ДЛЯ СТАТГРАДА 2026 */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От верхней точки -11pi/2 против часовой стрелки до правой точки -4pi — ровно 270 градусов) */}
-                <path d="M 130 40 A 90 90 0 1 0 220 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Пунктирные диагональные лучи под 45 градусов, на которых лежат все корни */}
-                <line x1="66.36" y1="66.36" x2="193.64" y2="193.64" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-300 dark:text-slate-700" />
-                <line x1="66.36" y1="193.64" x2="193.64" y2="66.36" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-300 dark:text-slate-700" />
-                
-                {/* Выколотая точка серии в I четверти (ВНЕ СИНЕЙ ДУГИ, ОСТАВЛЕНА АНОНИМНОЙ ПО НАШЕМУ ПРАВИЛУ) */}
-                <circle cx="193.64" cy="66.36" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Закрашенные точки границ отрезка (квадратные скобки) */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -11\pi/2 */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -4\pi */}
-                
-                {/* Закрашенные точки трёх истинных корней на синей дуге */}
-                <circle cx="66.36" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* -21\pi/4 */}
-                <circle cx="66.36" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -19\pi/4 */}
-                <circle cx="193.64" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -17\pi/4 */}
-                
-                {/* Подписи концов промежутка (смещены от осей, чтобы не накладываться) */}
-                <text x="110" y="32" fill="#328ce6" className="text-[12px] text-sky-500 font-black">-11π/2</text>
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-4π</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей */}
-                {/* Дробь для -21\pi/4 (во II четверти, смещена влево-вверх) */}
-                <g transform="translate(18, 44)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">-21π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">4</text>
-                </g>
-  
-                {/* Дробь для -19\pi/4 (в III четверти, смещена влево-вниз) */}
-                <g transform="translate(18, 202)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">-19π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">4</text>
-                </g>
-  
-                {/* Дробь для -17\pi/4 (в IV четверти, смещена вправо-вниз) */}
-                <g transform="translate(202, 202)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">-17π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">4</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-22,-16]} roots={[-21,-19,-17]} denominator={4} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -4395,52 +3582,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ИДЕАЛЬНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ПО ЗАДАННОМУ МАКЕТУ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (Левая половина круга) */}
-                <path d="M 130 220 A 90 90 0 0 1 130 40" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Горизонтальная линия синуса y = 1/2 */}
-                <line x1="40" y1="85" x2="220" y2="85" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-400 dark:text-slate-600" />
-                
-                {/* Выколотая точка ложной серии 1/2 в I четверти */}
-                <circle cx="207.94" cy="85" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 19\pi/2 */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 17\pi/2 */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 9\pi */}
-                <circle cx="52.06" cy="85" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 53\pi/6 */}
-                
-                {/* 👍 ИСПРАВЛЕНО: Смещено влево и вправо от оси ординат */}
-                <text x="112" y="32" fill="#328ce6" textAnchor="end" className="text-[13px] text-sky-500 font-black">17π/2</text>
-                <text x="148" y="232" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">19π/2</text>
-                
-                {/* Исправленная подпись 9π под ось абсцисс */}
-                <text x="16" y="148" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">9π</text>
-                
-                {/* Дробь 53π/6 */}
-                <g transform="translate(-2, 58)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">53π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">6</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[51,57]} roots={[53,54]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -4483,47 +3625,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 ГЕОМЕТРИЧЕСКИ ИДЕАЛЬНЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ НАЛОЖЕНИЙ И БЕЗ ПУНКТИРНЫХ ЛИНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От верхней точки против часовой стрелки до правой — ровно 270 градусов, II, III и IV четверти) */}
-                <path d="M 130 40 A 90 90 0 1 0 220 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* 👍 ВСЕ ПУНКТИРНЫЕ ЛИНИИ УСПЕШНО УБРАНЫ С ЧЕРТЕЖА */}
-                
-                {/* Выколотая ложная точка серии pi/4 в I четверти (ВНЕ СИНЕЙ ДУГИ, БЕЗ ТЕКСТОВОЙ ПОДПИСИ) */}
-                <circle cx="193.64" cy="66.36" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 17\pi/2 */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 10\pi */}
-                
-                {/* Закрашенная точка единственного истинного корня 35\pi/4 на синей дуге во II четверти */}
-                <circle cx="66.36" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи границ, аккуратно смещённые во избежание наложений */}
-                <text x="112" y="32" fill="#328ce6" textAnchor="end" className="text-[13px] text-sky-500 font-black">17π/2</text>
-                <text x="228" y="122" fill="#328ce6" className="text-[13px] text-sky-500 font-black">10π</text>
-                
-                {/* Многоэтажная аккуратная дробь для корня 35\pi/4, смещённая влево и вверх */}
-                <g transform="translate(24, 26)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">35π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">4</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[34,40]} roots={[35]} denominator={4} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим единственный корень:</span>
@@ -4569,46 +3671,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ ПУНКТИРНЫХ ЛИНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (Левая половина круга от нижней до верхней точки) */}
-                <path d="M 130 220 A 90 90 0 0 1 130 40" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 15\pi/2 внизу */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 13\pi/2 вверху */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* 7\pi */}
-                <circle cx="66.36" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 29\pi/4 */}
-                
-                {/* Подписи границ отрезка, смещённые влево и вправо во избежание наложений */}
-                <text x="112" y="32" fill="#328ce6" textAnchor="end" className="text-[13px] text-sky-500 font-black">13π/2</text>
-                <text x="148" y="232" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">15π/2</text>
-                
-                {/* Подпись для 7\pi под осью абсцисс */}
-                <text x="16" y="148" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">7π</text>
-                
-                {/* Многоэтажная аккуратная дробь для корня 29\pi/4 */}
-                <g transform="translate(18, 202)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">29π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">4</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[26,30]} roots={[28,29]} denominator={4} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -4658,49 +3721,7 @@ export const section13Tasks = [
         <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
         <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
 
-        {/* 🎨 ИСПРАВЛЕНО: Чертеж перерисован, оси аккуратные, стрелки возвращены, подписи выровнены через KaTeX */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-            {/* Сетка и оси координат */}
-            <line x1="15" y1="130" x2="245" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <line x1="130" y1="15" x2="130" y2="245" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            
-            {/* Тонкие аккуратные стрелочки осей */}
-            <path d="M242 126 L248 130 L242 134" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M126 22 L130 15 L134 22" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            
-            {/* Главная тонкая окружность */}
-            <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-purple-950/40" />
-            
-            {/* 🔵 Жирная синяя дуга от 2π до 7π/2 (на 270 градусов против часовой через верх) */}
-            <path d="M 220 130 A 90 90 0 1 0 130 220" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-            
-            {/* Закрашенные точки границ отрезка */}
-            <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            
-            {/* Истинные закрашенные корни на дуге */}
-            <circle cx="193.64" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <circle cx="66.36" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            
-            {/* Пунктирные радиусы-лучи */}
-            <line x1="130" y1="130" x2="193.64" y2="66.36" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-300 dark:text-purple-500/20" />
-            <line x1="130" y1="130" x2="66.36" y2="193.64" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-slate-300 dark:text-purple-500/20" />
-            
-            {/* Текстовые подписи концов отрезка со сдвигом от осей */}
-            <text x="226" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">2π</text>
-            <text x="138" y="234" fill="#328ce6" className="text-[13px] text-sky-500 font-black">7π/2</text>
-            
-            {/* Красивый и неубиваемый вывод дробей KaTeX внутри самого SVG-холста! */}
-            <foreignObject x="198" y="44" width="60" height="30">
-              <div className="text-slate-800 dark:text-slate-200 text-xs font-semibold"><InlineMath math={'\\frac{9\\pi}{4}'} /></div>
-            </foreignObject>
-            
-            <foreignObject x="22" y="180" width="60" height="30">
-              <div className="text-slate-800 dark:text-slate-200 text-xs font-semibold"><InlineMath math={'\\frac{13\\pi}{4}'} /></div>
-            </foreignObject>
-          </svg>
-        </div>
+        <TrigCircle interval={[8,14]} roots={[9,13]} denominator={4} />
 
         <div className="flex flex-wrap items-center gap-1">
           <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -4746,62 +3767,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ДЛЯ ТРЁХ КОРНЕЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От -4pi справа против часовой стрелки до -5pi/2 снизу — ровно 270 градусов, I, II и III четверти) */}
-                <path d="M 220 130 A 90 90 0 1 0 130 220" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Выколотая ложная точка серии в IV четверти (ВНЕ СИНЕЙ ДУГИ, БЕЗ ПОДПИСИ) */}
-                <circle cx="175" cy="207.94" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -4\pi */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -5\pi/2 */}
-                
-                {/* Закрашенные точки трёх истинных корней на синей дуге под 60 градусов */}
-                <circle cx="175" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -11\pi/3 */}
-                <circle cx="85" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* -10\pi/3 */}
-                <circle cx="85" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -8\pi/3 */}
-                
-                {/* Подписи концов промежутка */}
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-4π</text>
-                <text x="130" y="244" fill="#328ce6" textAnchor="middle" className="text-[13px] text-sky-500 font-black">-5π/2</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей */}
-                {/* Дробь для -11\pi/3 (в I четверти, вверху справа) */}
-                <g transform="translate(178, 20)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-11π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-  
-                {/* Дробь для -10\pi/3 (во II четверти, вверху слева) */}
-                <g transform="translate(54, 20)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-10π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-  
-                {/* Дробь для -8\pi/3 (в III четверти, внизу слева) */}
-                <g transform="translate(54, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-8π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-24,-15]} roots={[-22,-20,-16]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -4858,62 +3824,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ НАЛОЖЕНИЙ И БЕЗ ПУНКТИРНЫХ ДИАГОНАЛЕЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От верхней точки pi/2 против часовой стрелки до правой 2pi — ровно 270 градусов, II, III и IV четверти) */}
-                <path d="M 130 40 A 90 90 0 1 0 220 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Выколотая ложная точка серии pi/4 в I четверти (ВНЕ СИНЕЙ ДУГИ, БЕЗ ПОДПИСИ) */}
-                <circle cx="193.64" cy="66.36" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* \pi/2 */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 2\pi */}
-                
-                {/* Закрашенные точки трёх истинных корней на синей дуге */}
-                <circle cx="66.36" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 3\pi/4 */}
-                <circle cx="85" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 4\pi/3 */}
-                <circle cx="175" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 5\pi/3 */}
-                
-                {/* Подписи концов промежутка */}
-                <text x="110" y="32" fill="#328ce6" textAnchor="end" className="text-[13px] text-sky-500 font-black">π/2</text>
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">2π</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей */}
-                {/* Дробь для 3\pi/4 (во II четверти, вверху слева) */}
-                <g transform="translate(24, 44)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">4</text>
-                </g>
-  
-                {/* Дробь для 4\pi/3 (в III четверти, внизу слева) */}
-                <g transform="translate(54, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">4π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-  
-                {/* Дробь для 5\pi/3 (в IV четверти, внизу справа) */}
-                <g transform="translate(178, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">5π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[6,24]} roots={[9,16,20]} denominator={12} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -5029,63 +3940,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ НАЛОЖЕНИЙ И БЕЗ ПУНКТИРНЫХ ЛИНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От -2pi справа против часовой стрелки до -pi/2 снизу — ровно 270 градусов, I, II и III четверти) */}
-                <path d="M 220 130 A 90 90 0 1 0 130 220" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Выколотые ложные точки серий (ВНЕ СИНЕЙ ДУГИ в IV четверти, без подписей) */}
-                <circle cx="193.64" cy="193.64" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                <circle cx="175" cy="207.94" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* -2\pi */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -\pi/2 */}
-                
-                {/* Закрашенные точки трёх истинных корней на синей дуге */}
-                <circle cx="193.64" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -7\pi/4 */}
-                <circle cx="85" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />     {/* -4\pi/3 */}
-                <circle cx="85" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />    {/* -2\pi/3 */}
-                
-                {/* Подписи концов промежутка */}
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-2π</text>
-                <text x="130" y="244" fill="#328ce6" textAnchor="middle" className="text-[13px] text-sky-500 font-black">-π/2</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей */}
-                {/* Дробь для -7\pi/4 (в I четверти, вверху справа) */}
-                <g transform="translate(196, 36)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-7π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">4</text>
-                </g>
-  
-                {/* Дробь для -4\pi/3 (во II четверти, вверху слева) */}
-                <g transform="translate(54, 20)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-4π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-  
-                {/* Дробь для -2\pi/3 (в III четверти, внизу слева) */}
-                <g transform="translate(54, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-2π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-24,-6]} roots={[-21,-16,-8]} denominator={12} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -5189,56 +4044,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ ВЫКОЛОТОЙ ТОЧКИ И БЕЗ ПУНКТИРНЫХ ЛИНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (IV, I и II четверти) */}
-                <path d="M 130 220 A 90 90 0 1 0 40 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* 👍 ВЫКОЛОТАЯ ТОЧКА УБРАНА */}
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 7\pi/2 */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 5\pi */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="193.64" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 15\pi/4 */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />    {/* 4\pi */}
-                <circle cx="193.64" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 17\pi/4 */}
-                
-                {/* Подписи концов промежутка */}
-                <text x="130" y="244" fill="#328ce6" textAnchor="middle" className="text-[13px] text-sky-500 font-black">7π/2</text>
-                <text x="16" y="146" fill="#328ce6" className="text-[13px] text-sky-500 font-black">5π</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей и чисел */}
-                <text x="228" y="125" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-black">4π</text>
-                
-                {/* Дробь для 17\pi/4 (в I четверти, вверху справа) */}
-                <g transform="translate(196, 36)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">17π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">4</text>
-                </g>
-  
-                {/* Дробь для 15\pi/4 (в IV четверти, внизу справа) */}
-                <g transform="translate(196, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">15π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">4</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[14,20]} roots={[15,16,17,20]} denominator={4} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -5281,54 +4087,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ: -10pi/3 СДВИГНУТО БЛИЖЕ К ТОЧКЕ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (Левая половина и низ круга) */}
-                <path d="M 130 40 A 90 90 0 1 0 220 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -7\pi/2 */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -2\pi */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="85" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* -10\pi/3 */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />    {/* -3\pi */}
-                <circle cx="85" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -8\pi/3 */}
-                
-                {/* Граничные подписи */}
-                <text x="148" y="32" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">-7π/2</text>
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-2π</text>
-                
-                {/* Корень на оси */}
-                <text x="14" y="146" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-3π</text>
-                
-                {/* 👍 ИСПРАВЛЕНО: Дробь -10π/3 сдвинута правее, ближе к точке (translate x="42" вместо 18) */}
-                <g transform="translate(42, 32)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-10π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-  
-                {/* Дробь для -8\pi/3 */}
-                <g transform="translate(54, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-8π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-21,-12]} roots={[-20,-18,-16,-12]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -5378,44 +4137,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ ВЫКОЛОТОЙ ТОЧКИ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (II, III и IV четверти) */}
-                <path d="M 130 40 A 90 90 0 1 0 220 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* 👍 ВЫКОЛОТАЯ ТОЧКА ИЗ I ЧЕТВЕРТИ ПОЛНОСТЬЮ УБРАНА ПОВАШЕЙ ПРОСЬБЕ */}
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -7\pi/2 */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -2\pi */}
-                
-                {/* Закрашенная точка единственного истинного корня -7\pi/3 на синей дуге в IV четверти */}
-                <circle cx="175" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Граничные подписи */}
-                <text x="148" y="32" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">-7π/2</text>
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-2π</text>
-                
-                {/* Подпись корня в виде красивой многоэтажной дроби */}
-                <g transform="translate(178, 212)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-7π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-21,-12]} roots={[-14]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим единственный корень:</span>
@@ -5529,43 +4251,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ С КОРРЕКТНЫМИ ПОЗИЦИЯМИ ГРАНИЦ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (III четверть круга) */}
-                <path d="M 40 130 A 90 90 0 0 0 130 220" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* -3\pi */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -5\pi/2 */}
-                
-                {/* Закрашенная точка истинного корня -17\pi/6 на синей дуге в III четверти */}
-                <circle cx="52.06" cy="175" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* 👍 ИСПРАВЛЕНО: Смещено ещё левее от горизонтальной оси */}
-                <text x="4" y="146" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-3π</text>
-                {/* 👍 ИСПРАВЛЕНО: Смещено чуть левее, ближе к вертикальной оси */}
-                <text x="142" y="244" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">-5π/2</text>
-                
-                {/* Подпись корня в виде красивой многоэтажной дроби */}
-                <g transform="translate(6, 178)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-17π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">6</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-18,-15]} roots={[-18,-17]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -5612,46 +4298,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ПО НАШЕМУ СТАНДАРТУ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От левой точки \pi против часовой стрелки до верхней 5\pi/2 — ровно три четверти, III, IV и I четверти) */}
-                <path d="M 40 130 A 90 90 0 1 0 130 40" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* \pi */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* 5\pi/2 */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="52.06" cy="175" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 7\pi/6 */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* 2\pi */}
-                
-                {/* Подписи концов промежутка, аккуратно смещённые во избежание наложений */}
-                <text x="14" y="146" fill="#328ce6" className="text-[13px] text-sky-500 font-black">π</text>
-                <text x="148" y="32" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">5π/2</text>
-                
-                {/* Подпись корня на оси */}
-                <text x="228" y="125" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-black">2π</text>
-                
-                {/* Подпись корня в виде красивой многоэтажной дроби */}
-                <g transform="translate(6, 178)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">7π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">6</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[6,15]} roots={[6,7,12]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -5700,46 +4347,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ С ВЫВЕРЕННЫМИ ОТСТУПАМИ ПОДПИСЕЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (III, IV и I четверти) */}
-                <path d="M 40 130 A 90 90 0 1 0 130 40" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* \pi */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* 5\pi/2 */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="66.36" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 5\pi/4 */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* 2\pi */}
-                
-                {/* Подписи концов промежутка, отодвинутые от осей */}
-                <text x="14" y="146" fill="#328ce6" className="text-[13px] text-sky-500 font-black">π</text>
-                <text x="148" y="32" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">5π/2</text>
-                
-                {/* Подпись корня на оси */}
-                <text x="228" y="125" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-black">2π</text>
-                
-                {/* Подпись корня в виде красивой многоэтажной дроби */}
-                <g transform="translate(18, 202)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">5π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">4</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[4,10]} roots={[4,5,8]} denominator={4} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -5878,45 +4486,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ НАЛОЖЕНИЙ И БЕЗ ПУНКТИРНЫХ ЛИНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От левой точки pi против часовой стрелки до верхней 5pi/2 — ровно три четверти, III, IV и I четверти) */}
-                <path d="M 40 130 A 90 90 0 1 0 130 40" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Выколотая ложная точка серии во II четверти (ВНЕ СИНЕЙ ДУГИ, БЕЗ ПОДПИСИ) */}
-                <circle cx="52.06" cy="85" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* \pi */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* 5\pi/2 */}
-                
-                {/* Закрашенная точка единственного истинного корня 13\pi/6 на синей дуге в I четверти (под 30 градусов) */}
-                <circle cx="207.94" cy="85" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи концов промежутка, аккуратно смещённые во избежание наложений */}
-                <text x="14" y="146" fill="#328ce6" className="text-[13px] text-sky-500 font-black">π</text>
-                <text x="148" y="32" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">5π/2</text>
-                
-                {/* Подпись корня в виде красивой многоэтажной дроби, смещённая вправо и вверх */}
-                <g transform="translate(204, 52)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">13π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">6</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[6,15]} roots={[13]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим единственный корень:</span>
@@ -5968,51 +4538,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ НАЛОЖЕНИЙ И БЕЗ ПУНКТИРНЫХ ЛИНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От левой точки -pi против часовой стрелки до верхней pi/2 — ровно три четверти, III, IV и I четверти) */}
-                <path d="M 40 130 A 90 90 0 1 0 130 40" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* -\pi */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* \pi/2 */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="175" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* \pi/3 */}
-                <circle cx="175" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -\pi/3 */}
-                
-                {/* Подписи концов промежутка, аккуратно смещённые во избежание наложений */}
-                <text x="14" y="146" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-π</text>
-                <text x="148" y="32" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">π/2</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей */}
-                {/* Дробь для \pi/3 (в I четверти, вверху справа) */}
-                <g transform="translate(178, 20)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-  
-                {/* Дробь для -\pi/3 (в IV четверти, внизу справа) */}
-                <g transform="translate(178, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-6,3]} roots={[-6,-2,2]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -6059,44 +4585,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ НАЛОЖЕНИЙ, БЕЗ ПУНКТИРНЫХ ЛИНИЙ И БЕЗ ВЫКОЛОТЫХ ТОЧЕК */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От правой точки -4pi против часовой стрелки до нижней -5pi/2 — ровно три четверти, I, II и III четверти) */}
-                <path d="M 220 130 A 90 90 0 1 0 130 220" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* 👍 ВЫКОЛОТАЯ ТОЧКА ПОЛНОСТЬЮ УБРАНА */}
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -4\pi */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -5\pi/2 */}
-                
-                {/* Закрашенная точка истинного корня -11\pi/3 на синей дуге в I четверти (под 60 градусов) */}
-                <circle cx="175" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи концов промежутка, аккуратно смещённые во избежание наложений */}
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-4π</text>
-                <text x="142" y="244" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">-5π/2</text>
-                
-                {/* Подпись корня в виде красивой многоэтажной дроби, смещённая вправо и вверх */}
-                <g transform="translate(178, 20)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-11π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-24,-15]} roots={[-24,-22]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -6145,55 +4634,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ ВЫКОЛОТЫХ ТОЧЕК И БЕЗ ПУНКТИРНЫХ ЛИНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От правой точки -4pi против часовой стрелки до нижней -5pi/2 — ровно три четверти, I, II и III четверти) */}
-                <path d="M 220 130 A 90 90 0 1 0 130 220" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -4\pi */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -5\pi/2 */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />    {/* -3\pi */}
-                <circle cx="85" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* -10\pi/3 */}
-                <circle cx="85" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -8\pi/3 */}
-                
-                {/* Подписи концов промежутка, аккуратно смещённые во избежание наложений */}
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-4π</text>
-                <text x="142" y="244" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">-5π/2</text>
-                
-                {/* Подпись корня на оси */}
-                <text x="14" y="146" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-3π</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей */}
-                {/* Дробь для -10\pi/3 (во II четверти, вверху слева) */}
-                <g transform="translate(42, 32)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-10π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-  
-                {/* Дробь для -8\pi/3 (в III четверти, внизу слева) */}
-                <g transform="translate(54, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-8π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-24,-15]} roots={[-24,-20,-18,-16]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -6385,58 +4826,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ НАЛОЖЕНИЙ, БЕЗ ПУНКТИРНЫХ ЛИНИЙ И БЕЗ ВЫКОЛОТЫХ ТОЧЕК */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и axes координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От левой точки -3pi против часовой стрелки до верхней -3pi/2 — ровно три четверти, III, IV и I четверти) */}
-                <path d="M 40 130 A 90 90 0 1 0 130 40" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* 👍 ВЫКОЛОТАЯ ТОЧКА ПОЛНОСТЬЮ УБРАНА */}
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* -3\pi */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* -3\pi/2 */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="175" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -7\pi/3 */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />    {/* -2\pi */}
-                <circle cx="175" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* -5\pi/3 */}
-                
-                {/* Подписи концов промежутка */}
-                <text x="4" y="146" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-3π</text>
-                {/* 👍 ИСПРАВЛЕНО: Смещено влево от оси ординат (textAnchor="end" x="114" вместо x="130") */}
-                <text x="114" y="32" fill="#328ce6" textAnchor="end" className="text-[13px] text-sky-500 font-black">-3π/2</text>
-                
-                {/* Подпись корня на оси */}
-                <text x="228" y="125" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-xs font-black">-2π</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей */}
-                {/* Дробь для -5\pi/3 */}
-                <g transform="translate(182, 20)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-5π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-  
-                {/* Дробь для -7\pi/3 */}
-                <g transform="translate(182, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-7π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-18,-9]} roots={[-14,-12,-10]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -6492,38 +4882,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ ВЫКОЛОТЫХ ТОЧЕК И БЕЗ ПУНКТИРНЫХ ЛИНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От правой точки 2pi против часовой стрелки до нижней 7pi/2 — ровно три четверти, I, II и III четверти) */}
-                <path d="M 220 130 A 90 90 0 1 0 130 220" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 2\pi (Корень и граница совпадают) */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 7\pi/2 */}
-                
-                {/* Закрашенная точка истинного корня 5\pi/2 строго на оси вверху (на внутреннем контуре дуги) */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи концов промежутка, аккуратно смещённые во избежание наложений */}
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">2π</text>
-                <text x="148" y="244" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">7π/2</text>
-                
-                {/* Подпись корня на верхней оси, смещённая влево */}
-                <text x="114" y="32" fill="currentColor" textAnchor="end" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">5π/2</text>
-              </svg>
-            </div>
+            <TrigCircle interval={[4,7]} roots={[4,5]} denominator={2} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -6655,51 +5014,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ НАЛОЖЕНИЙ И БЕЗ ПУНКТИРНЫХ ЛИНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От верхней точки против часовой стрелки до правой — ровно три четверти, II, III и IV четверти) */}
-                <path d="M 130 40 A 90 90 0 1 0 220 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -3\pi/2 */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 0 */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="66.36" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -5\pi/4 */}
-                <circle cx="193.64" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -\pi/4 */}
-                
-                {/* Граничные подписи, смещённые от осей */}
-                <text x="114" y="32" fill="#328ce6" textAnchor="end" className="text-[13px] text-sky-500 font-black">-3π/2</text>
-                <text x="234" y="118" fill="#328ce6" className="text-[13px] text-sky-500 font-black">0</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей */}
-                {/* Дробь для -5\pi/4 (во II четверти, смещена влево) */}
-                <g transform="translate(18, 44)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-5π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">4</text>
-                </g>
-  
-                {/* Дробь для -\pi/4 (в IV четверти, смещена вправо-вниз) */}
-                <g transform="translate(204, 202)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">4</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-6,0]} roots={[-5,-1]} denominator={4} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -6764,55 +5079,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ НАЛОЖЕНИЙ И БЕЗ ПУНКТИРНЫХ ЛИНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От верхней точки pi/2 против часовой стрелки до правой 2pi — ровно три четверти, II, III и IV четверти) */}
-                <path d="M 130 40 A 90 90 0 1 0 220 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* \pi/2 (Корень и граница) */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 2\pi */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="85" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* 2\pi/3 */}
-                <circle cx="85" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 4\pi/3 */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* 3\pi/2 */}
-                
-                {/* Подписи концов промежутка, аккуратно смещённые во избежание наложений */}
-                <text x="148" y="32" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">π/2</text>
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">2π</text>
-                
-                {/* Подпись корня на нижней оси */}
-                <text x="148" y="244" fill="currentColor" textAnchor="start" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3π/2</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей */}
-                {/* Дробь для 2\pi/3 (во II четверти, вверху слева) */}
-                <g transform="translate(42, 32)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">2π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-  
-                {/* Дробь для 4\pi/3 (в III четверти, внизу слева) */}
-                <g transform="translate(54, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">4π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[3,12]} roots={[3,4,8,9]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -6872,52 +5139,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ПОД ВАШИ ТРЕБОВАНИЯ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От 2pi справа против часовой стрелки до 7pi/2 снизу — ровно три четверти) */}
-                <path d="M 220 130 A 90 90 0 1 0 130 220" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ и корней на осях и дуге */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 2π */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 5π/2 */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />    {/* 3π */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 7π/2 */}
-                
-                {/* Закрашенные точки радиальных корней на синей дуге */}
-                <circle cx="207.94" cy="85" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* 13π/6 */}
-                <circle cx="193.64" cy="66.36" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 9π/4 */}
-                <circle cx="52.06" cy="85" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />    {/* 17π/6 */}
-                <circle cx="66.36" cy="193.64" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 13π/4 */}
-                
-                {/* Базовые подписи осей */}
-                <text x="228" y="122" fill="#328ce6" className="text-[13px] text-sky-500 font-black">2π</text>
-                <text x="146" y="234" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">7π/2</text>
-                <text x="22" y="146" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3π</text>
-                <text x="114" y="32" fill="currentColor" textAnchor="end" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">5π/2</text>
-                
-                {/* Подписи в первой четверти */}
-                <text x="194" y="112" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">13π/6</text>
-                <text x="172" y="82" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">9π/4</text>
-                
-                {/* 👍 ИСПРАВЛЕНО: 17π/6 перенесена внутрь окружности, ниже и правее (под точку) */}
-                <text x="76" y="104" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">17π/6</text>
-                
-                {/* 👍 ИСПРАВЛЕНО: 13π/4 перенесена внутрь окружности, правее (под точку) */}
-                <text x="96" y="184" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-xs font-black">13π/4</text>
-              </svg>
-            </div>
+            <TrigCircle interval={[24,42]} roots={[24,26,27,34,36,39,42]} denominator={12} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -6926,7 +5148,7 @@ export const section13Tasks = [
   
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
-              <InlineMath math={`\\pi k, \\, \\frac{\\pi}{4} + \\pi k, \\, \\pm\\frac{2\\pi}{3} + 2\\pi k, \\, -\\frac{\\pi}{2} + 2\\pi k, \\, k \\in \\mathbb{Z}`} />
+              <InlineMath math={`\\pi k, \\, \\frac{\\pi}{4} + \\pi k, \\, \\frac{\\pi}{6} + 2\\pi k, \\, \\frac{5\\pi}{6} + 2\\pi k, \\, -\\frac{\\pi}{2} + 2\\pi k, \\, k \\in \\mathbb{Z}`} />
               <span className="ml-2">б)</span>
               <InlineMath math={`2\\pi; \\, \\frac{13\\pi}{6}; \\, \\frac{9\\pi}{4}; \\, \\frac{17\\pi}{6}; \\, 3\\pi; \\, \\frac{13\\pi}{4}; \\, \\frac{7\\pi}{2}`} />
             </div>
@@ -6981,54 +5203,7 @@ export const section13Tasks = [
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую промежутку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
             {/* 🌌 ТЕХНОЛОГИЯ ЗАДАЧИ 61: ЧЕСТНЫЙ КРУГ ТЕГОМ CIRCLE И ЖЁСТКО ПАРАЛЛЕЛЬНЫЙ PATH ДЛЯ ХВОСТИКА */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Тонкая базовая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 1. ВНУТРЕННИЙ ПОЛНЫЙ ОБОРОТ ДУГИ (Честный круг радиуса 90) */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="#328ce6" strokeWidth="4.5" />
-                
-                {/* 🔥 2. ИДЕАЛЬНО ПАРАЛЛЕЛЬНЫЙ ВНЕШНИЙ ХВОСТИК (Радиус 104, идёт от pi/3 через верх, лево, низ до 4pi строго справа) */}
-                <path 
-                  d="M 182.00 39.96 
-                     A 104 104 0 0 0 130 26 
-                     A 104 104 0 0 0 26 130 
-                     A 104 104 0 0 0 130 234 
-                     A 104 104 0 0 0 234 130" 
-                  fill="none" 
-                  stroke="#328ce6" 
-                  strokeWidth="4.5" 
-                  strokeLinecap="round" 
-                />
-                
-                {/* Выколотая точка старта pi/3 (на внутреннем круге радиуса 90) */}
-                <circle cx="175.00" cy="52.06" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="#328ce6" strokeWidth="2.5" />
-                
-                {/* Закрашенная точка финиша 4pi (на внешнем хвостике радиуса 104) */}
-                <circle cx="234" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Закрашенные сферы корней по своим виткам */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* \pi/2 на внутреннем */}
-                <circle cx="130" cy="26" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* 5\pi/2 на внешнем */}
-                
-                {/* Подписи промежутков */}
-                <text x="184" y="46" fill="#328ce6" className="text-[13px] text-sky-500 font-black">π/3</text>
-                <text x="242" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">4π</text>
-                
-                {/* Подписи корней аккуратно внутри окружности */}
-                <text x="118" y="58" fill="currentColor" textAnchor="end" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">π/2</text>
-                <text x="142" y="18" fill="currentColor" textAnchor="start" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">5π/2</text>
-              </svg>
-            </div>
+            <TrigCircle interval={[2,24]} roots={[3,15]} denominator={6} openStart />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -7073,42 +5248,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни уравнения, принадлежащие отрезу, при помощи единичной окружности.</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ НАЛОЖЕНИЙ И БЕЗ ПУНКТИРНЫХ ЛИНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От 2pi справа против часовой стрелки до 7pi/2 снизу — ровно три четверти, I, II и III четверти) */}
-                <path d="M 220 130 A 90 90 0 1 0 130 220" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 2\pi */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 7\pi/2 */}
-                
-                {/* Закрашенная точка единственного истинного корня 7\pi/3 на синей дуге в I четверти (под 60 градусов) */}
-                <circle cx="175" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-                
-                {/* Подписи концов промежутка, аккуратно смещённые во избежание наложений */}
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">2π</text>
-                <text x="148" y="244" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">7π/2</text>
-                
-                {/* Подпись корня в виде красивой многоэтажной дроби, смещённая вправо и вверх */}
-                <g transform="translate(178, 20)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">7π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[12,21]} roots={[14]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Следовательно, на отрезке</span>
@@ -7153,46 +5293,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ — ПОДПИСЬ -17pi/6 ВЫНЕСЕНА СНАРУЖИ СЛЕВА */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От левой точки -3pi против часовой стрелки до верхней -3pi/2 — ровно три четверти) */}
-                <path d="M 40 130 A 90 90 0 1 0 130 40" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* -3\pi */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* -3\pi/2 */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -5\pi/2 */}
-                <circle cx="52.06" cy="175" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -17\pi/6 */}
-                
-                {/* Подписи концов промежутка */}
-                <text x="4" y="146" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-3π</text>
-                <text x="114" y="32" fill="#328ce6" textAnchor="end" className="text-[13px] text-sky-500 font-black">-3π/2</text>
-                
-                {/* Подпись корня на нижней оси ординат */}
-                <text x="146" y="234" fill="currentColor" textAnchor="start" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-5π/2</text>
-                
-                {/* 👍 ИСПРАВЛЕНО: Дробь полностью вынесена наружу влево (translate x="14" y="168" вместо 42, 178) */}
-                <g transform="translate(14, 168)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-17π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">6</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-18,-9]} roots={[-17,-15,-9]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -7245,59 +5346,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ ДЛЯ ТРЁХ КОРНЕЙ БЕЗ НАЛОЖЕНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От 2pi справа против часовой стрелки до 7pi/2 снизу — ровно три четверти, I, II и III четверти) */}
-                <path d="M 220 130 A 90 90 0 1 0 130 220" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 2\pi */}
-                <circle cx="130" cy="220" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* 7\pi/2 */}
-                
-                {/* Закрашенные точки трёх истинных корней на синей дуге */}
-                <circle cx="207.94" cy="85" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />   {/* 13\pi/6 */}
-                <circle cx="85" cy="52.06" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />     {/* 8\pi/3 */}
-                <circle cx="85" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />    {/* 10\pi/3 */}
-                
-                {/* Подписи концов промежутка, аккуратно смещённые во избежание наложений */}
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">2π</text>
-                <text x="148" y="244" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">7π/2</text>
-                
-                {/* Подписи корней в виде красивых многоэтажных дробей, вынесенные наружу */}
-                {/* Дробь для 13\pi/6 (в I четверти, вверху справа) */}
-                <g transform="translate(204, 52)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">13π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">6</text>
-                </g>
-  
-                {/* Дробь для 8\pi/3 (во II четверти, вверху слева) */}
-                <g transform="translate(54, 20)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">8π</text>
-                  <line x1="4" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-  
-                {/* Дробь для 10\pi/3 (в III четверти, внизу слева) */}
-                <g transform="translate(54, 214)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">10π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">3</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[12,21]} roots={[13,16,20]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -7338,46 +5387,7 @@ export const section13Tasks = [
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
             <p>Отберём корни на тригонометрической окружности. Для этого отметим на ней дугу, соответствующую отрезку, концы этой дуги и лежащие на ней точки серий решений из пункта а).</p>
             
-            {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ ОКРУЖНОСТИ БЕЗ НАЛОЖЕНИЙ И БЕЗ ПУНКТИРНЫХ ЛИНИЙ */}
-            <div className="my-6 flex justify-center w-full select-none">
-              <svg width="260" height="260" viewBox="0 0 260 260" className="overflow-visible font-sans font-bold text-xs">
-                {/* Сетка и оси координат */}
-                <line x1="10" y1="130" x2="250" y2="130" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Стрелочки осей */}
-                <path d="M250 130 l-6 -3 M250 130 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                <path d="M130 10 l-3 6 M130 10 l 3 6" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-                
-                {/* Главная тонкая окружность радиуса 90 */}
-                <circle cx="130" cy="130" r="90" fill="none" stroke="currentColor" strokeWidth="1" className="text-slate-200 dark:text-slate-800" />
-                
-                {/* 🔥 ЖИРНАЯ СИНЯЯ ДУГА ПО ОКРУЖНОСТИ (От верхней точки -7pi/2 против часовой стрелки до правой -2pi — ровно три четверти, II, III и IV четверти) */}
-                <path d="M 130 40 A 90 90 0 1 0 220 130" fill="none" stroke="#328ce6" strokeWidth="4.5" strokeLinecap="round" />
-                
-                {/* Закрашенные точки границ отрезка */}
-                <circle cx="130" cy="40" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />  {/* -7\pi/2 */}
-                <circle cx="220" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -2\pi (Корень и граница) */}
-                
-                {/* Закрашенные точки истинных корней на синей дуге */}
-                <circle cx="40" cy="130" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />    {/* -3\pi */}
-                <circle cx="175" cy="207.94" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" /> {/* -13\pi/6 */}
-                
-                {/* Подписи концов промежутка, аккуратно смещённые во избежание наложений */}
-                <text x="148" y="32" fill="#328ce6" textAnchor="start" className="text-[13px] text-sky-500 font-black">-7π/2</text>
-                <text x="228" y="125" fill="#328ce6" className="text-[13px] text-sky-500 font-black">-2π</text>
-                
-                {/* Подпись корня на левой горизонтальной оси */}
-                <text x="14" y="146" fill="currentColor" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-3π</text>
-                
-                {/* Подпись корня в виде красивой многоэтажной дроби снаружи в IV четверти */}
-                <g transform="translate(178, 212)">
-                  <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">-13π</text>
-                  <line x1="0" y1="14" x2="28" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                  <text x="14" y="25" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[13px] font-black">6</text>
-                </g>
-              </svg>
-            </div>
+            <TrigCircle interval={[-21,-12]} roots={[-18,-13,-12]} denominator={6} />
   
             <div className="flex flex-wrap items-center gap-1">
               <span>Отмечая на тригонометрической окружности дугу промежутка и лежащие на ней точки серий решений, находим корни:</span>
@@ -7396,17 +5406,12 @@ export const section13Tasks = [
       {
         id: 106,
         title: 'Задача 106',
-        mathA: '\\sin x \\cdot \\left(\\sin x \\cdot \\cos^{-1} x + \\frac{1}{3}\\right) = \\sqrt{3} \\cdot \\left(\\sin x + \\frac{1}{3}\\cos x\\right)',
+        mathA: '\\sin x \\cdot \\left(\\frac{\\sin x}{\\cos x} + \\frac{1}{3}\\right) = \\sqrt{3} \\cdot \\left(\\sin x + \\frac{1}{3}\\cos x\\right)',
         mathB: '\\left[ -2\\pi; \\, \\frac{3\\pi}{2} \\right]',
         solutionBuilder: () => (
           <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
             <p className="font-bold text-slate-800 dark:text-slate-100">а) Решение уравнения:</p>
-            <div className="flex flex-wrap items-center gap-1">
-              <span>Здесь</span>
-              <InlineMath math={`\\cos^{-1} x = \\frac{1}{\\cos x}`} />.
-              <span>ОГР:</span>
-              <InlineMath math={`\\cos x \\neq 0`} />.
-            </div>
+            <p>ОДЗ <InlineMath math="\cos x \neq 0" />.</p>
             <p>Раскроем скобки в обеих частях уравнения:</p>
             {/* 👍 ОПЕЧАТКА ИСПРАВЛЕНА: \frac восстановлен полностью */}
             <BlockMath math={`\\frac{\\sin^2 x}{\\cos x} + \\frac{\\sin x}{3} = \\sqrt{3}\\sin x + \\frac{\\sqrt{3}}{3}\\cos x`} />
@@ -7523,7 +5528,8 @@ export const section13Tasks = [
             <p className="font-semibold text-sky-600 dark:text-purple-400 mt-2">
               Случай Б: <InlineMath math={`\\cos 6x = -1`} /> и <InlineMath math={`\\sin \\frac{5x}{6} = -1`} />
             </p>
-            <p>Аналогичное диофантово уравнение приводит к требованию, чтобы чётное число равнялось нечётному — в этом случае решений нет.</p>
+            <BlockMath math="x=\frac{(2n+1)\pi}{6}=\frac{(-3+12m)\pi}{5} \implies 5(2n+1)=6(-3+12m)" />
+            <p>Левая часть нечётная, правая чётная. Решений в этом случае нет.</p>
             
             <div className="flex flex-wrap items-center gap-1">
               <span>Итого общее решение:</span>
@@ -7535,45 +5541,10 @@ export const section13Tasks = [
             </div>
   
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
-            <p>Отберём корни уравнения, принадлежащие числовому отрезку <InlineMath math={`[7; \\, 50]`} />, при помощи строгих алгебраических неравенств.</p>
-            <p>Составим неравенство для серии корней: <InlineMath math={`7 \\le 3\\pi + 12\\pi t \\le 50`} /></p>
-  
-            <div className="space-y-3 pl-4 border-l-2 border-slate-200 dark:border-purple-500/20 text-sm">
-              <div className="flex flex-wrap items-center gap-1">
-                <span className="font-semibold text-sky-600 dark:text-purple-400">• Для t = 0:</span>
-                <InlineMath math={`x = 3\\pi`} />.
-                <span>Так как</span>
-                <InlineMath math={`3 \\cdot 3{,}14 = 9{,}42`} />,
-                <span>выполняется точное строгое неравенство</span>
-                <InlineMath math={`7 < 3\\pi < 50`} /> — <span>корень подходит.</span>
-              </div>
-  
-              <div className="flex flex-wrap items-center gap-1">
-                <span className="font-semibold text-sky-600 dark:text-purple-400">• Для t = 1:</span>
-                <InlineMath math={`x = 3\\pi + 12\\pi = 15\\pi`} />.
-                <span>Так как</span>
-                <InlineMath math={`15 \\cdot 3{,}14 = 47{,}1`} />,
-                <span>выполняется точное строгое неравенство</span>
-                <InlineMath math={`7 < 15\\pi < 50`} /> — <span>корень подходит.</span>
-              </div>
-  
-              <div className="flex flex-wrap items-center gap-1">
-                <span className="font-semibold text-sky-600 dark:text-purple-400">• Для t = 2:</span>
-                <InlineMath math={`x = 3\\pi + 24\\pi = 27\\pi`} />.
-                <span>Так как</span>
-                <InlineMath math={`27 \\cdot 3{,}14 = 84{,}78 > 50`} />,
-                <span>то</span>
-                <InlineMath math={`27\\pi > 50`} /> — <span>значение лежит правее отрезка, не подходит.</span>
-              </div>
-  
-              <div className="flex flex-wrap items-center gap-1">
-                <span className="font-semibold text-sky-600 dark:text-purple-400">• Для t = -1:</span>
-                <InlineMath math={`x = 3\\pi - 12\\pi = -9\\pi`} />.
-                <span>Так как это значение отрицательно, то</span>
-                <InlineMath math={`-9\\pi < 7`} /> — <span>значение лежит левее отрезка, не подходит.</span>
-              </div>
-            </div>
-  
+            <BlockMath math="7\le 3\pi+12\pi t\le 50" />
+            <p>При <InlineMath math="t\le -1" /> получаем <InlineMath math="x\le -9\pi<7" />. При <InlineMath math="t\ge 2" /> имеем <InlineMath math="x\ge 27\pi>50" />.</p>
+            <p>Из <InlineMath math="3<\pi<\frac{22}{7}" /> следует <InlineMath math="7<3\pi<15\pi<50" />. Подходят <InlineMath math="t=0" /> и <InlineMath math="t=1" />.</p>
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`3\\pi + 12\\pi t, \\, t \\in \\mathbb{Z}`} />
@@ -7640,6 +5611,8 @@ export const section13Tasks = [
               </div>
             </div>
   
+            <TrigCircle interval={[-1,2]} roots={[1]} denominator={2} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{2} + 2\\pi k, \\quad k \\in \\mathbb{Z}`} />
@@ -7673,7 +5646,7 @@ export const section13Tasks = [
             <BlockMath math={`x = -\\frac{\\pi}{32} + \\frac{\\pi n}{4} \\quad \\text{или} \\quad x = -\\frac{3\\pi}{32} + \\frac{\\pi n}{4}, \\quad n \\in \\mathbb{Z}`} />
   
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
-            <p>Отберём корни уравнения, принадлежащие отрезку <InlineMath math={`\\left[ -\\frac{3\\pi}{2}; \\, -\\pi \\right]`} />, при помощи неравенств (прямым перебором целых значений <InlineMath math={`font-mono n`} />).</p>
+            <p>Отберём корни уравнения, принадлежащие отрезку <InlineMath math={`\\left[ -\\frac{3\\pi}{2}; \\, -\\pi \\right]`} />, при помощи неравенств (прямым перебором целых значений <InlineMath math={`n`} />).</p>
   
             <div className="space-y-4 pl-4 border-l-2 border-slate-200 dark:border-purple-500/20 text-sm">
               <div className="space-y-1">
@@ -7710,6 +5683,8 @@ export const section13Tasks = [
               </div>
             </div>
   
+            <TrigCircle interval={[-48,-32]} roots={[-43,-41,-35,-33,-32]} denominator={32} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\pi n, \\, -\\frac{\\pi}{32} + \\frac{\\pi n}{4}, \\, -\\frac{3\\pi}{32} + \\frac{\\pi n}{4}, \\, n \\in \\mathbb{Z}`} />
@@ -7775,47 +5750,12 @@ export const section13Tasks = [
             <BlockMath math={`x = \\frac{2\\pi}{3} + 2\\pi k, \\quad k \\in \\mathbb{Z}`} />
   
             <p className="font-bold text-slate-800 dark:text-slate-100 pt-2 border-t border-slate-200/40">б) Отбор корней:</p>
-            <p>Отберём корни уравнения, принадлежащие отрезку <InlineMath math={`[-17; \\, 2]`} />, при помощи строгих аналитических неравенств.</p>
-            <p>Составим двойное неравенство для серии корней: <InlineMath math={`-17 \\le \\frac{2\\pi}{3} + 2\\pi k \\le 2`} /></p>
-  
-            <div className="space-y-3 pl-4 border-l-2 border-slate-200 dark:border-purple-500/20 text-sm">
-              <div className="flex flex-wrap items-center gap-1">
-                <span className="font-semibold text-sky-600 dark:text-purple-400">• При k = -3:</span>
-                <InlineMath math={`x = \\frac{2\\pi}{3} - 6\\pi = -\\frac{16\\pi}{3}`} />.
-                <span>Так как</span>
-                <InlineMath math={`-\\frac{16 \\cdot 3{,}14}{3} = -16{,}746 > -17`} />,
-                <span>выполняется точное строгое неравенство</span>
-                <InlineMath math={`-17 \\le -\\frac{16\\pi}{3} \\le 2`} /> — <span>корень подходит.</span>
-              </div>
-  
-              <div className="flex flex-wrap items-center gap-1">
-                <span className="font-semibold text-sky-600 dark:text-purple-400">• При k = -2:</span>
-                <InlineMath math={`x = \\frac{2\\pi}{3} - 4\\pi = -\\frac{10\\pi}{3}`} />.
-                <span>Так как</span>
-                <InlineMath math={`-\\frac{10 \\cdot 3{,}14}{3} = -10{,}46 > -17`} />,
-                <span>выполняется точное строгое неравенство</span>
-                <InlineMath math={`-17 \\le -\\frac{10\\pi}{3} \\le 2`} /> — <span>корень подходит.</span>
-              </div>
-  
-              <div className="flex flex-wrap items-center gap-1">
-                <span className="font-semibold text-sky-600 dark:text-purple-400">• При k = -1:</span>
-                <InlineMath math={`x = \\frac{2\\pi}{3} - 2\\pi = -\\frac{4\\pi}{3}`} />.
-                <span>Так как</span>
-                <InlineMath math={`-\\frac{4 \\cdot 3{,}14}{3} = -4{,}18 > -17`} />,
-                <span>выполняется точное строгое неравенство</span>
-                <InlineMath math={`-17 \\le -\\frac{4\\pi}{3} \\le 2`} /> — <span>корень подходит.</span>
-              </div>
-  
-              <div className="flex flex-wrap items-center gap-1">
-                <span className="font-semibold text-sky-600 dark:text-purple-400">• При k = 0:</span>
-                <InlineMath math={`x = \\frac{2\\pi}{3}`} />.
-                <span>Так как</span>
-                <InlineMath math={`\\frac{2 \\cdot 3{,}14}{3} = 2{,}09 > 2`} />,
-                <span>то</span>
-                <InlineMath math={`\\frac{2\\pi}{3} > 2`} /> — <span>значение лежит правее отрезка, не подходит.</span>
-              </div>
-            </div>
-  
+            <BlockMath math="-17\le \frac{2\pi}{3}+2\pi k\le 2" />
+            <p>При <InlineMath math="k\ge 0" /> имеем <InlineMath math="x\ge \frac{2\pi}{3}>2" />. При <InlineMath math="k\le -4" /> получаем <InlineMath math="x\le -\frac{22\pi}{3}<-17" />.</p>
+            <p>Так как <InlineMath math="\pi<\frac{22}{7}" />, получаем:</p>
+            <BlockMath math="-17< -\frac{352}{21}< -\frac{16\pi}{3}< -\frac{10\pi}{3}< -\frac{4\pi}{3}<2" />
+            <p>Подходят <InlineMath math="k=-3,-2,-1" />.</p>
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{2\\pi}{3} + 2\\pi k, \\, k \\in \\mathbb{Z}`} />
@@ -7886,7 +5826,7 @@ export const section13Tasks = [
   
               <div className="space-y-1">
                 <span className="font-semibold text-sky-600 dark:text-purple-400">• Для серии <InlineMath math={`x = -\\frac{\\pi}{12} + \\frac{\\pi n}{2}`} />:</span>
-                <p>Составим inequality: <InlineMath math={`-\\frac{3\\pi}{4} \\le -\\frac{\\pi}{12} + \\frac{\\pi n}{2} \\le \\pi \\implies -\\frac{9}{12} \\le -\\frac{1}{12} + \\frac{n}{2} \\le \\frac{12}{12}`} /></p>
+                <p>Составим неравенство: <InlineMath math={`-\\frac{3\\pi}{4} \\le -\\frac{\\pi}{12} + \\frac{\\pi n}{2} \\le \\pi \\implies -\\frac{9}{12} \\le -\\frac{1}{12} + \\frac{n}{2} \\le \\frac{12}{12}`} /></p>
                 <p>Прибавим <InlineMath math={`\\frac{1}{12}`} /> и умножим на 2: <InlineMath math={`-\\frac{8}{12} \\le \\frac{n}{2} \\le \\frac{13}{12} \\implies -\\frac{4}{3} \\le n \\le \\frac{13}{6}`} />.</p>
                 <div className="flex flex-wrap items-center gap-1">
                   <span>Целые значения</span>
@@ -7897,6 +5837,8 @@ export const section13Tasks = [
               </div>
             </div>
   
+            <TrigCircle interval={[-9,12]} roots={[-9,-7,-3,-1,3,5,9,11]} denominator={12} />
+
             <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
               <span>Ответ: а)</span>
               <InlineMath math={`\\frac{\\pi}{4} + \\frac{\\pi n}{2}, \\, -\\frac{\\pi}{12} + \\frac{\\pi n}{2}, \\, n \\in \\mathbb{Z}`} />
