@@ -427,7 +427,9 @@
     13
   ],
   "ege-random": [],
-  "ege-optimization": [],
+  "ege-optimization": [
+    1
+  ],
   "14-intro": [
     1
   ],

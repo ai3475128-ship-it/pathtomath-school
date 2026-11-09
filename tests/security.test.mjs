@@ -138,6 +138,16 @@ test("task progress isolates previously colliding IDs, modules and users; retrie
   await assert.rejects(setTaskProgress(db, "a", "16", 9999, true));
   assert.ok(legacyCandidates(1601).length > 1);
 });
+test("new optimization task keeps its own progress and is never assigned legacy progress", async (t) => {
+  const { db } = await fixture(t);
+  assert.ok(!legacyCandidates(1).some(({ module }) => module === "ege-optimization"));
+  await setTaskProgress(db, "a", "ege-optimization", 1, true);
+  assert.deepEqual(await getEgeProgress(db, "a"), [{ section: 17, taskId: 1 }]);
+  assert.deepEqual(await getEgeProgress(db, "b"), []);
+  await setTaskProgress(db, "a", "ege-optimization", 1, false);
+  assert.deepEqual(await getEgeProgress(db, "a"), []);
+  await assert.rejects(setTaskProgress(db, "a", "ege-optimization", 2, true));
+});
 test("legacy database migration is non-destructive and preserves ambiguous progress", async (t) => {
   const dir = await mkdtemp(path.join(os.tmpdir(), "legacy-test-")),
     file = path.join(dir, "dev.db"),

@@ -28,6 +28,7 @@ import { section16Tasks } from '../../../math-profile/[taskNumber]/sectoin16';
 import { section17Tasks } from '../../../math-profile/[taskNumber]/sectoin17';
 import { section18Tasks } from '../../../math-profile/[taskNumber]/sectoin18';
 import { section19Tasks } from '../../../math-profile/[taskNumber]/sectoin19';
+import { egeOptimizationTasks } from '../../../math-profile/[taskNumber]/ege-optimization';
 
 // SERVER ACTION 1: Изменение тарифа подписки (Доступно только ADMIN)
 async function toggleStudentPremium(formData) {
@@ -92,7 +93,7 @@ export default async function StudentProfilePage({ params }) {
     10: section10Tasks?.length || 0, 11: section11Tasks?.length || 0, 12: section12Tasks?.length || 0,
     13: section13Tasks?.length || 0, 14: section14Tasks?.length || 0, 15: section15Tasks?.length || 0,
     16: section16Tasks?.length || 0, 17: section17Tasks?.length || 0, 18: section18Tasks?.length || 0,
-    19: section19Tasks?.length || 0
+    19: section19Tasks?.length || 0, 'ege-optimization': egeOptimizationTasks.length
   };
   const totalStatsBySection = {};
   for (const [module, count] of Object.entries(oldTotalsBySection)) {

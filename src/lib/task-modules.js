@@ -10,10 +10,13 @@ export const isTaskInModule = (slug, id) =>
   );
 export function legacyCandidates(number) {
   const result = [];
-  for (const [slug, ids] of Object.entries(catalog))
+  for (const [slug, ids] of Object.entries(catalog)) {
+    // Новые разделы не существовали в старой схеме числовых ключей.
+    if (slug.startsWith("ege-")) continue;
     for (const id of ids)
       if ((parseInt(slug, 10) || 0) * 100 + id === number)
         result.push({ module: slug, taskId: id });
+  }
   return result;
 }
 export async function getEgeProgress(db, userId) {
