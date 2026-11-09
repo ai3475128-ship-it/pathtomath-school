@@ -56,6 +56,7 @@ import { section16Tasks } from './sectoin16';
 import { section17Tasks } from './sectoin17';
 import { section18Tasks } from './sectoin18';
 import { section19Tasks } from './sectoin19';
+import { egeOptimizationTasks } from './ege-optimization';
 
 const egeIntroMap = {
   '14-intro': egeIntro14Tasks, '17-intro': egeIntro17Tasks, '18-intro': egeIntro18Tasks, '19-intro': egeIntro19Tasks
@@ -79,7 +80,8 @@ const tasksRawData = {
   1: section1Tasks, 2: section2Tasks, 3: section3Tasks, 4: section4Tasks, 5: section5Tasks,
   6: section6Tasks, 7: section7Tasks, 8: section8Tasks, 9: section9Tasks, 10: section10Tasks,
   11: section11Tasks, 12: section12Tasks, 13: section13Tasks, 14: section14Tasks, 15: section15Tasks,
-  16: section16Tasks, 17: section17Tasks, 18: section18Tasks, 19: section19Tasks
+  16: section16Tasks, 17: section17Tasks, 18: section18Tasks, 19: section19Tasks,
+  'ege-optimization': egeOptimizationTasks
 };
 
 function TaskSolutionCard({ solutionBuilder, isChangingTheme }) {
@@ -182,8 +184,7 @@ export default React.memo(function TaskListBlock({ storageModule }) {
     currentTasks = olympiadIntroMap[taskNumber] || [];
     isCustomModule = true;
   } else {
-    const taskNumberIntClean = parseInt(storageModule, 10);
-    currentTasks = tasksRawData[taskNumberIntClean] || [];
+    currentTasks = tasksRawData[storageModule] || [];
   }
 
   if (currentTasks.length === 0) {

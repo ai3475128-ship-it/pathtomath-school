@@ -420,8 +420,20 @@ try {
     401,
   );
   check("progress isolation, idempotency and CSRF");
+  assert.equal((await progress(sessions.a, { module: "ege-optimization", taskId: 1, solved: true })).status, 200);
+  assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=ege-optimization", {cookie: sessions.a})).text).solvedSubTasks, [1]);
+  assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=ege-optimization", {cookie: sessions.b})).text).solvedSubTasks, []);
+  check("optimization task progress belongs to the correct student");
   const profile = await request("/profile", { cookie: sessions.a });
   assert.equal(profile.status, 200);
+  const optimizationLink = profile.text.match(/<a\b[^>]*href="\/math-profile\/17"[^>]*>([\s\S]*?)<\/a>/)?.[1];
+  assert.ok(optimizationLink, "Optimization section should be visible in the student profile");
+  const optimizationText = optimizationLink.replace(/<[^>]+>/g, "").replace(/\s+/g, " ");
+  assert.match(optimizationText, /Задание №17\s*1\/1/);
+  const updatedSupervisor = await request("/supervisor/students/a", {cookie: sessions.teacher});
+  const teacherText = updatedSupervisor.text.replace(/<[^>]+>/g, "").replace(/\s+/g, " ");
+  assert.match(teacherText, /№17\s*1\/1/);
+  check("optimization totals appear in student and teacher profiles");
   await invoke(
     "/profile",
     action(profile.text, "noteContent"),
