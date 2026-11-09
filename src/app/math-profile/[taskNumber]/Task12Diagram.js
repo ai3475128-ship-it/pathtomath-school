@@ -18,7 +18,7 @@ const labels = [
   { math: '-1', left: x(-1) - 23, top: originY - 41, width: 46 },
   { math: '1', left: x(1) - 23, top: originY - 41, width: 46 },
   { math: '0', left: originX + 7, top: originY + 7, width: 24 },
-  { math: '-5', left: originX - 46, top: levelY + 7, width: 42 },
+  { math: '-5', left: 4, top: levelY - 17, width: 45 },
 ];
 
 export default function Task12Diagram() {
@@ -61,7 +61,6 @@ export default function Task12Diagram() {
             ))}
           </g>
           <rect x={plot.left} y={plot.top} width={plot.width} height={plot.height} rx="6" className={styles.frame} />
-          <path className={styles.tickLeaders} d={`M ${originX - 5} ${levelY + 2} L ${originX - 12} ${levelY + 6}`} />
           {labels.map(({ math, left, top, width, height = 34 }) => (
             <foreignObject key={math} x={left} y={top} width={width} height={height}>
               <div xmlns="http://www.w3.org/1999/xhtml" className={styles.axisLabel}>
