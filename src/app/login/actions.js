@@ -35,14 +35,16 @@ export async function loginUser(formData) {
   if (!user || !valid) redirect("/login?error=wrong");
   if (formData.get("selectedTab") === "teacher" && !isManagement(user))
     redirect("/login?error=not_a_teacher&tab=teacher");
-  if (bcrypt.getRounds(user.password) < 12)
-    await db.run("UPDATE User SET password=? WHERE id=?", [
-      await bcrypt.hash(password, 12),
-      user.id,
-    ]);
+  const upgradedHash = bcrypt.getRounds(user.password) < 12
+    ? await bcrypt.hash(password, 12)
+    : null;
+  const token = await createSession(db, user.id, Date.now(), {
+    expectedHash: user.password,
+    upgradedHash,
+  });
+  if (!token) redirect("/login?error=wrong");
   const store = await cookies();
   await revokeSession(db, store.get(SESSION_COOKIE)?.value);
-  const token = await createSession(db, user.id);
   store.set(SESSION_COOKIE, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

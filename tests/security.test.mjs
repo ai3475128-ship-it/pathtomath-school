@@ -4,6 +4,7 @@ import { mkdtemp, rm, readdir } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
+import bcrypt from "bcryptjs";
 import { openDatabase } from "../src/lib/db.js";
 import {
   createSession,
@@ -17,6 +18,9 @@ import {
   verificationChallenge,
 } from "../src/lib/verification.js";
 import { consumeRateLimit } from "../src/lib/rate-limit.js";
+import {
+  completePasswordReset, issuePasswordReset, newPasswordResetToken, PASSWORD_RESET_LIFETIME,
+} from "../src/lib/password-reset.js";
 import {
   saveUpload,
   canReadFile,
@@ -69,6 +73,52 @@ test("sessions reject forged cookies, expire, revoke and read current roles", as
   assert.equal(await readSession(db, token, 1000 + 8 * 86400000), null);
   await revokeSession(db, token);
   assert.equal(await readSession(db, token, 1003), null);
+});
+test("password recovery is bound to its browser, expires and limits code guesses", async (t) => {
+  const { db } = await fixture(t);
+  const token = newPasswordResetToken();
+  const { email, code } = issuePasswordReset(db, "a@example.invalid", token, 1000);
+  assert.equal(email, "a@example.invalid");
+  assert.match(code, /^[0-9]{8}$/);
+  const stored = await db.get("SELECT tokenHash,codeDigest FROM PasswordReset");
+  assert.notEqual(stored.tokenHash, token);
+  assert.notEqual(stored.codeDigest, code);
+  const unknown = newPasswordResetToken();
+  assert.equal(issuePasswordReset(db, "missing@example.invalid", unknown, 1000), null);
+  const reset = (browser, pin, now = 1001) =>
+    completePasswordReset(db, browser, pin, "new-test-password", () => now);
+  assert.equal(await reset(unknown, code), false);
+  assert.equal(await reset(token, code, 1000 + PASSWORD_RESET_LIFETIME), false);
+  for (let attempt = 0; attempt < 5; attempt++)
+    assert.equal(await reset(token, "00000000"), false);
+  assert.equal(await reset(token, code), false);
+  assert.equal((await db.get("SELECT password FROM User WHERE id='a'")).password, "test-only");
+});
+test("only one concurrent password recovery succeeds and stale credentials cannot open a session", async (t) => {
+  const { db } = await fixture(t);
+  const a = await createSession(db, "a", 1000);
+  const b = await createSession(db, "b", 1000);
+  const token = newPasswordResetToken();
+  const { code } = issuePasswordReset(db, "a@example.invalid", token, 1000);
+  const secondToken = newPasswordResetToken();
+  const otherCode = issuePasswordReset(db, "a@example.invalid", secondToken, 1000).code;
+  assert.ok(consumeRateLimit(db, "login", "a@example.invalid", 1, 60000, 1000));
+  const password = "new-test-password";
+  const results = await Promise.all([
+    completePasswordReset(db, token, code, password, () => 1001),
+    completePasswordReset(db, secondToken, otherCode, password, () => 1001),
+  ]);
+  assert.deepEqual(results.sort(), [false, true]);
+  assert.equal(await completePasswordReset(db, token, code, password, () => 1002), false);
+  assert.equal(await readSession(db, a, 1002), null);
+  assert.equal((await readSession(db, b, 1002)).id, "b");
+  assert.equal(await createSession(db, "a", 1002, {
+    expectedHash: "test-only", upgradedHash: "stale-upgrade",
+  }), null);
+  assert.ok(consumeRateLimit(db, "login", "a@example.invalid", 1, 60000, 1002));
+  const user = await db.get("SELECT role,password FROM User WHERE id='a'");
+  assert.equal(user.role, "PREMIUM_STUDENT");
+  assert.ok(await bcrypt.compare(password, user.password));
 });
 test("task progress isolates previously colliding IDs, modules and users; retries are idempotent", async (t) => {
   const { db } = await fixture(t);

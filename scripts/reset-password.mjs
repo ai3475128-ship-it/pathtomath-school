@@ -1,6 +1,7 @@
 import { loadEnvFile } from "node:process";
 import bcrypt from "bcryptjs";
 import { emailAddress, passwordValue } from "../src/lib/validation.js";
+import { replaceAccountPassword } from "../src/lib/password-reset.js";
 try {
   loadEnvFile(".env.local");
 } catch (error) {
@@ -14,10 +15,8 @@ try {
   const user = await db.get("SELECT id FROM User WHERE email=?", [email]);
   if (!user) throw Error("Аккаунт не найден");
   const hash = await bcrypt.hash(password, 12);
-  db.transaction((raw) => {
-    raw.prepare("UPDATE User SET password=? WHERE id=?").run(hash, user.id);
-    raw.prepare("DELETE FROM Session WHERE userId=?").run(user.id);
-  });
+  if (!db.transaction((raw) => replaceAccountPassword(raw, user.id, hash)))
+    throw Error("Аккаунт не найден");
   console.log("Пароль обновлён, все сессии отозваны.");
 } finally {
   db.dispose();

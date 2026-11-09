@@ -5,6 +5,9 @@ import Image from 'next/image';
 export default async function LoginPage({ searchParams }) {
   const queryParams = await searchParams;
   const errorType = queryParams?.error;
+  const successMessage = queryParams?.success === 'password-reset'
+    ? 'Пароль изменён. Войдите с новым паролем.'
+    : queryParams?.success === 'verified' ? 'Почта подтверждена. Теперь можно войти.' : '';
   
   // Определяем, какая вкладка активна (по умолчанию ученик)
   const activeTab = queryParams?.tab === 'teacher' ? 'teacher' : 'student';
@@ -87,6 +90,11 @@ export default async function LoginPage({ searchParams }) {
             {errorMessage}
           </div>
         )}
+        {successMessage && (
+          <p role="status" className="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-center text-sm font-semibold text-emerald-800 dark:border-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-200">
+            {successMessage}
+          </p>
+        )}
 
         <form action={loginUser} className="space-y-4">
           {/* Скрытое поле, передающее выбранную вкладку на бэкенд для дополнительной валидации */}
@@ -113,6 +121,12 @@ export default async function LoginPage({ searchParams }) {
               className="w-full bg-white/50 border border-blue-100/60 rounded-xl px-4 py-3 text-slate-700 dark:bg-purple-950/40 dark:border-purple-500/30 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:border-blue-400 dark:focus:border-purple-500 transition text-sm font-medium backdrop-blur-sm"
             />
           </div>
+
+          <p className="text-right text-sm">
+            <Link href="/forgot-password" className="font-semibold text-sky-700 hover:underline dark:text-purple-300">
+              Забыли пароль?
+            </Link>
+          </p>
 
           <button 
             type="submit" 
