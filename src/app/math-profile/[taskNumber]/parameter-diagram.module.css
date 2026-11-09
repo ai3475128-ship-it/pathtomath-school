@@ -98,3 +98,34 @@
   border-radius: 0.2rem;
   background: var(--diagram-ink);
 }
+
+.task12Figure {
+  max-width: none;
+}
+
+.task12Viewport {
+  overflow-x: auto;
+}
+
+.task12Svg {
+  display: block;
+  width: 100%;
+  min-width: 32rem;
+  height: auto;
+}
+
+.task12Figure .axisLabel {
+  font-size: 22px;
+}
+
+.task12Figure .label {
+  font-size: 1rem;
+}
+
+.task12Guide {
+  fill: none;
+  stroke: var(--diagram-axis);
+  stroke-width: 1.3;
+  stroke-dasharray: 5 5;
+  opacity: 0.55;
+}

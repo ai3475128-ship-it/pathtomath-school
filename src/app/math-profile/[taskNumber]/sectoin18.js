@@ -1,6 +1,7 @@
 import React from 'react';
 import { InlineMath, BlockMath } from 'react-katex';
 import { CoordinateDiagram, ParameterDiagram, sampleCurve } from './ParameterDiagram';
+import Task12Diagram from './Task12Diagram';
 
 
 export const section18Tasks = [
@@ -831,16 +832,9 @@ export const section18Tasks = [
         <p>Раскроем модули для функции <InlineMath math={`f(x)`} /> в зависимости от критических точек <InlineMath math={`x = -a - 1`} /> и <InlineMath math={`x = -a + 1`} />:</p>
         <BlockMath math={`f(x) = \\begin{cases} 12x + 12a + 7, & x \\leq -a - 1, \\\\ -5, & -a - 1 \\leq x \\leq -a + 1, \\\\ 2x + 2a - 7, & x \\geq -a + 1. \\end{cases}`} />
         
-        <p>Функция <InlineMath math={`f(x)`} /> непрерывна и не убывает. Построим эскиз графика функции <InlineMath math={`f(x)`} /> в осях <InlineMath math={`xOt`} />:</p>
+        <p>Функция <InlineMath math={`f(x)`} /> непрерывна и не убывает. Построим эскиз графика функции <InlineMath math={`f(x)`} /> в осях <InlineMath math={`xOt`} /> при <InlineMath math={`a = 0`} />.</p>
 
-                {/* Высокоточный математический SVG График ломаной функции f(x) 1 в 1 */}
-        <CoordinateDiagram
-          xRange={[-1.5, 4.5]} yRange={[-10, 3]} axes={['x', 't']}
-          curves={[{ math: 't=f(x)\\ (a=0)', points: [[-1.5, -11], [-1, -5], [1, -5], [4.5, 2]], color: '#2563eb' }]}
-          points={[{ x: -1, y: -5 }, { x: 1, y: -5 }]}
-          xTicks={[-1, 0, 1, 4]} yTicks={[-5, 2]}
-        />
-
+        <Task12Diagram />
 
         <p>Анализ количества решений для обратной замены:</p>
         <ul className="list-disc pl-5 space-y-1">
