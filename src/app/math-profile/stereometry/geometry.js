@@ -95,6 +95,99 @@ export function sliceSolid(solid, points, shift) {
   return { vertices, normal };
 }
 
+const distance = (a, b) => Math.hypot(...subtract(a, b));
+const samePoint = (a, b) => distance(a, b) < epsilon;
+const lineName = ([a, b]) => `${a.name}${b.name}`;
+const subscript = i => String.fromCodePoint(0x2080 + i);
+
+function extendToFace(line, trace, solid) {
+  const [a, b] = line.points;
+  const direction = subtract(b.position, a.position);
+  const projection = dot(trace.normal, direction);
+  if (Math.abs(projection) < epsilon) return null;
+  const parameter = dot(trace.normal, subtract(trace.origin, a.position)) / projection;
+  const position = interpolate(a.position, b.position, parameter);
+  if (Math.hypot(...position) > 4) return null;
+
+  const from = parameter < 0 ? b.position : a.position;
+  const guides = [[from, position]];
+  const shared = line.indices?.filter(i => trace.indices.includes(i));
+  let target = `плоскостью грани ${trace.name}`;
+  if (shared?.length === 2) {
+    const [u, v] = shared.map(i => solid.vertices[i]);
+    guides.push([distance(u, position) > distance(v, position) ? u : v, position]);
+    target = `прямой ${shared.map(i => solid.labels[i]).join('')}`;
+  }
+  return { position, guides, target, source: lineName(line.points), cost: distance(from, position) };
+}
+
+export function buildSectionSteps(solid, positions, section) {
+  if (!section || section.vertices.length < 3 || positions.some(point => !point)) return [];
+
+  const given = positions.map((position, i) => ({ position, name: ['P', 'Q', 'R'][i] }));
+  const known = [...given];
+  let vertexNumber = 0;
+  const boundary = section.vertices.map(position => given.find(point => samePoint(point.position, position)) ??
+    { position, name: `T${subscript(++vertexNumber)}` });
+  const faces = solid.faces.map(face => ({ ...face, origin: solid.vertices[face.indices[0]],
+    name: face.indices.map(i => solid.labels[i]).join('') }));
+  const contains = (face, { position }) => Math.abs(dot(face.normal, subtract(position, face.origin))) < epsilon;
+  const coincidentFace = faces.find(face => boundary.every(point => contains(face, point)));
+  if (coincidentFace) {
+    return [{ face: coincidentFace.indices, segments: [], vertices: [], guides: [], auxiliary: [],
+      message: `Точки P, Q и R лежат в плоскости грани ${coincidentFace.name}. Сечение совпадает с этой гранью.` }];
+  }
+
+  const remaining = boundary.map((point, i) => {
+    const points = [point, boundary[(i + 1) % boundary.length]];
+    const face = faces.find(candidate => points.every(vertex => contains(candidate, vertex)));
+    return { ...face, points };
+  });
+  const sources = [[given[0], given[1]], [given[0], given[2]], [given[1], given[2]]].map(points => ({ points }));
+  const built = [];
+  const steps = [];
+
+  function plan(trace) {
+    const anchors = known.filter(point => contains(trace, point)).slice(0, 2);
+    if (anchors.length === 2) return { trace, anchors, hits: [], score: 0 };
+    const availableLines = [...built, ...sources];
+    const parallel = anchors.length && availableLines.find(({ points: [a, b] }) =>
+      Math.abs(dot(trace.normal, subtract(b.position, a.position))) < epsilon);
+    if (parallel) return { trace, anchors, parallel, hits: [], score: 1 };
+
+    const candidates = availableLines.map(line => extendToFace(line, trace, solid)).filter(Boolean)
+      .sort((first, second) => first.cost - second.cost);
+    const hits = [];
+    for (const hit of candidates) {
+      if (anchors.some(point => samePoint(point.position, hit.position))) continue;
+      const endpoint = trace.points.find(point => samePoint(point.position, hit.position));
+      const name = endpoint?.name ?? `X${subscript(hits.length + 1)}`;
+      const nearer = trace.points.reduce((a, b) => distance(a.position, hit.position) < distance(b.position, hit.position) ? a : b);
+      if (!endpoint) hit.guides.push([hit.position, nearer.position]);
+      anchors.push({ position: hit.position, name });
+      hits.push({ ...hit, name, auxiliary: !endpoint });
+      if (anchors.length === 2) return { trace, anchors, hits, score: 2 + hits.reduce((sum, item) => sum + item.cost, 0) };
+    }
+    return { trace, anchors: [], hits: [], score: Infinity };
+  }
+
+  while (remaining.length) {
+    const { trace, anchors, hits, parallel } = remaining.map(plan).sort((a, b) => a.score - b.score)[0];
+    remaining.splice(remaining.indexOf(trace), 1);
+    built.push(trace);
+    const vertices = trace.points.filter(point => !known.some(item => samePoint(item.position, point.position)));
+    known.push(...vertices);
+    const setup = hits.map(hit => `Продлеваем ${hit.source} до пересечения с ${hit.target} в точке ${hit.name}.`).join(' ');
+    let line = `Находим пересечение плоскости сечения с гранью ${trace.name}.`;
+    if (parallel) line = `${lineName(parallel.points)} параллельна плоскости грани ${trace.name}. На этой грани проводим через ${anchors[0].name} прямую параллельно ${lineName(parallel.points)}.`;
+    if (anchors.length === 2) line = `На грани ${trace.name} проводим прямую ${lineName(anchors)}.`;
+    steps.push({ face: trace.indices, segments: [trace.points], vertices,
+      guides: hits.flatMap(hit => hit.guides), auxiliary: hits.filter(hit => hit.auxiliary),
+      message: [setup, line, `В пределах грани получаем отрезок ${lineName(trace.points)}.`].filter(Boolean).join(' ') });
+  }
+  return steps;
+}
+
 export const viewWidth = 420;
 export const viewHeight = 370;
 
@@ -117,19 +210,25 @@ export function projectSolid(solid, { yaw, pitch }, zoom) {
   return { project, vertices, edges, faces };
 }
 
+export function projectToEdge({ a, b }, x, y) {
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const lengthSquared = dx * dx + dy * dy;
+  if (lengthSquared < 1) return null;
+  const t = Math.max(0, Math.min(1, ((x - a.x) * dx + (y - a.y) * dy) / lengthSquared));
+  return { percent: Math.round(100 * t), distance: Math.hypot(x - a.x - dx * t, y - a.y - dy * t) };
+}
+
 export function pickEdge(edges, x, y) {
   let picked = null;
   let bestDistance = 14;
-  for (const { id, visible, a, b } of edges) {
-    const dx = b.x - a.x;
-    const dy = b.y - a.y;
-    const lengthSquared = dx * dx + dy * dy;
-    if (lengthSquared < 1) continue;
-    const t = Math.max(0, Math.min(1, ((x - a.x) * dx + (y - a.y) * dy) / lengthSquared));
-    const distance = Math.hypot(x - a.x - dx * t, y - a.y - dy * t) + (visible ? 0 : 2);
+  for (const edge of edges) {
+    const projection = projectToEdge(edge, x, y);
+    if (!projection) continue;
+    const distance = projection.distance + (edge.visible ? 0 : 2);
     if (distance < bestDistance) {
       bestDistance = distance;
-      picked = { edge: id, percent: Math.round(100 * t) };
+      picked = { edge: edge.id, percent: projection.percent };
     }
   }
   return picked;

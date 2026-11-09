@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { pickEdge, pointOnEdge, projectSolid, sliceSolid, solids } from '../src/app/math-profile/stereometry/geometry.js';
+import { buildSectionSteps, pickEdge, pointOnEdge, projectSolid, projectToEdge, sliceSolid, solids } from '../src/app/math-profile/stereometry/geometry.js';
 
 const cube = solids.cube;
 const example = cube.example.map(edge => pointOnEdge(cube, { edge, percent: 50 }));
@@ -27,4 +27,23 @@ test('picking a projected edge maps back to the same three-dimensional point', (
   const point = { edge: '2-6', percent: 25 };
   const { x, y } = scene.project(pointOnEdge(cube, point));
   assert.deepEqual(pickEdge(scene.edges, x, y), point);
+});
+
+test('dragging projects onto the chosen edge and stops at its endpoints', () => {
+  const edge = { a: { x: 10, y: 10 }, b: { x: 10, y: 110 } };
+  assert.equal(projectToEdge(edge, 40, 85).percent, 75);
+  assert.equal(projectToEdge(edge, 40, 180).percent, 100);
+  assert.equal(projectToEdge(edge, 40, 0).percent, 0);
+  assert.equal(projectToEdge({ a: edge.a, b: edge.a }, 40, 0), null);
+});
+
+test('the cube construction extends PQ to a real auxiliary intersection and draws every side', () => {
+  const section = sliceSolid(cube, example, 0);
+  const steps = buildSectionSteps(cube, example, section);
+  const first = steps[0];
+  assert.deepEqual(first.auxiliary.map(point => point.position), [[3, -2, -1]]);
+  assert.deepEqual(first.guides, [[example[1], [3, -2, -1]], [[3, -2, -1], [1, 0, -1]]]);
+  const key = side => side.map(point => point.join(',')).sort().join('|');
+  assert.deepEqual(new Set(steps.flatMap(step => step.segments.map(side => key(side.map(point => point.position))))),
+    new Set(section.vertices.map((point, i) => key([point, section.vertices[(i + 1) % section.vertices.length]]))));
 });
