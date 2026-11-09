@@ -1,4 +1,5 @@
 import { spawn } from "node:child_process";
+import { EventEmitter, once } from "node:events";
 import { mkdtemp, rm, mkdir, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -49,7 +50,21 @@ await writeFile(
 await db.run(
   "UPDATE Homework SET description='/uploads/fixture.pdf' WHERE id='hw-a'",
 );
-const messages = [];
+const messages = [],
+  mailEvents = new EventEmitter();
+async function mailCode(index, digits) {
+  if (!messages[index])
+    await once(mailEvents, "message", { signal: AbortSignal.timeout(5000) });
+  const message = messages[index];
+  assert.ok(message);
+  let body = message.slice(message.indexOf("\r\n\r\n") + 4);
+  if (/Content-Transfer-Encoding: base64/i.test(message))
+    body = Buffer.from(body.replace(/\s/g, ""), "base64").toString();
+  else body = body.replace(/=\r\n/g, "");
+  const code = body.match(/\b[0-9]+\b/g)?.find(value => value.length === digits);
+  assert.ok(code);
+  return code;
+}
 const smtp = net.createServer((socket) => {
   socket.setEncoding("utf8");
   socket.on("error", () => {});
@@ -66,6 +81,7 @@ const smtp = net.createServer((socket) => {
       if (collecting) {
         if (line === ".") {
           messages.push(message);
+          mailEvents.emit("message");
           message = "";
           collecting = false;
           socket.write("250 Accepted\r\n");
@@ -493,12 +509,7 @@ try {
     });
   assert.ok(registered.status >= 300 && registered.status < 400);
   assert.equal(messages.length, 1);
-  let body = messages[0].slice(messages[0].indexOf("\r\n\r\n") + 4);
-  if (/Content-Transfer-Encoding: base64/i.test(messages[0]))
-    body = Buffer.from(body.replace(/\s/g, ""), "base64").toString();
-  else body = body.replace(/=\r\n/g, "");
-  const code = body.match(/(?<!\d)\d{6}(?!\d)/)?.[0];
-  assert.ok(code);
+  const code = await mailCode(0, 6);
   assert.notEqual(
     (
       await db.get(
@@ -516,11 +527,74 @@ try {
     { email: "registered@example.invalid", code },
   );
   const account = await db.get(
-    "SELECT role,password FROM User WHERE email='registered@example.invalid'",
+    "SELECT id,role,password FROM User WHERE email='registered@example.invalid'",
   );
   assert.equal(account.role, "STUDENT");
   assert.ok(await bcrypt.compare(password, account.password));
   check("registration and verification through local SMTP");
+  assert.ok(login.text.includes('href="/forgot-password"'));
+  const resetRequestPath = "/forgot-password",
+    resetStep = "/forgot-password?step=code",
+    resetRequestPage = await request(resetRequestPath),
+    resetRequestAction = action(resetRequestPage.text, "email"),
+    unknownReset = await invoke(resetRequestPath, resetRequestAction, {
+      email: "unknown@example.invalid",
+    }),
+    knownReset = await invoke(resetRequestPath, resetRequestAction, {
+      email: "REGISTERED@example.invalid",
+    });
+  assert.equal(knownReset.status, 303);
+  assert.equal(unknownReset.status, knownReset.status);
+  assert.equal(unknownReset.headers.location, resetStep);
+  assert.equal(knownReset.headers.location, resetStep);
+  const resetCode = await mailCode(1, 8);
+  assert.equal(messages.length, 2);
+  assert.match(messages[1], /To: registered@example\.invalid/i);
+  const browserCookie = (response) => {
+    const value = response.headers["set-cookie"]?.find((cookie) => cookie.startsWith("passwordReset="));
+    assert.match(value, /^passwordReset=[A-Za-z0-9_-]{43};/);
+    assert.match(value, /HttpOnly/i);
+    assert.match(value, /Path=\/forgot-password/i);
+    return value.split(";")[0];
+  };
+  const recoveryCookie = browserCookie(knownReset),
+    unknownCookie = browserCookie(unknownReset),
+    recoveryPage = await request(resetStep, { cookie: recoveryCookie }),
+    unknownRecoveryPage = await request(resetStep, { cookie: unknownCookie }),
+    recoveryAction = action(recoveryPage.text, "code"),
+    newPassword = "new-http-test-password",
+    fieldsForReset = { code: resetCode, password: newPassword, confirmPassword: newPassword },
+    oldSession = await createSession(db, account.id);
+  assert.equal(action(unknownRecoveryPage.text, "code"), recoveryAction);
+  assert.ok(!recoveryPage.text.includes(resetCode));
+  assert.equal(
+    (await invoke(resetStep, recoveryAction, fieldsForReset, unknownCookie)).headers.location,
+    resetStep + "&error=code",
+  );
+  assert.equal(
+    (await invoke(resetStep, recoveryAction, fieldsForReset)).headers.location,
+    resetRequestPath + "?error=expired",
+  );
+  assert.equal(
+    (await invoke(resetStep, recoveryAction, { ...fieldsForReset, confirmPassword: password }, recoveryCookie)).headers.location,
+    resetStep + "&error=confirmation",
+  );
+  const passwordChanged = await invoke(resetStep, recoveryAction, fieldsForReset, recoveryCookie);
+  assert.equal(passwordChanged.headers.location, "/login?success=password-reset");
+  assert.ok(passwordChanged.headers["set-cookie"].every((cookie) => !cookie.startsWith("userSession=")));
+  assert.equal((await request("/profile", { cookie: "userSession=" + oldSession })).headers.location, "/login");
+  assert.equal(
+    (await invoke(resetStep, recoveryAction, fieldsForReset, recoveryCookie)).headers.location,
+    resetStep + "&error=code",
+  );
+  const loginAction = action(login.text, "password");
+  assert.equal((await invoke("/login", loginAction, {
+    email: "registered@example.invalid", password, selectedTab: "student",
+  })).headers.location, "/login?error=wrong");
+  assert.equal((await invoke("/login", loginAction, {
+    email: "registered@example.invalid", password: newPassword, selectedTab: "student",
+  })).headers.location, "/profile");
+  check("password recovery through local SMTP, session revocation and new-password login");
   const dashboard = await request("/dashboard", { cookie: sessions.free });
   assert.equal(dashboard.status, 200);
   await invoke(

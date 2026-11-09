@@ -82,7 +82,7 @@ export default async function VerifyEmailPage({ searchParams }) {
                        bg-gradient-to-r from-sky-400 via-sky-500 to-blue-500 text-white border-white/40 shadow-lg shadow-sky-500/10 hover:shadow-xl hover:shadow-sky-500/20
                        dark:from-[#7C3AED] dark:via-[#634EE4] dark:to-[#4F46E5] dark:border-white/20 dark:shadow-[0_0_12px_rgba(99,78,228,0.25)] dark:hover:shadow-[0_0_15px_rgba(99,78,228,0.4)]"
           >
-            Подтвердить и войти
+            Подтвердить почту
           </button>
         </form>
 

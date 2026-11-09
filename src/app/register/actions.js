@@ -1,8 +1,8 @@
 "use server";
 import { redirect } from "next/navigation";
 import bcrypt from "bcryptjs";
-import nodemailer from "nodemailer";
 import { connectDB } from "@/lib/db";
+import { sendEmail, smtpConfigured } from "@/lib/email";
 import { text, emailAddress, passwordValue } from "@/lib/validation";
 import { verificationChallenge } from "@/lib/verification";
 import { consumeRateLimit } from "@/lib/rate-limit";
@@ -23,12 +23,7 @@ export async function registerNewUser(formData) {
     redirect("/register?error=limited");
   if (await db.get("SELECT id FROM User WHERE email=?", [email]))
     redirect("/register?error=exists");
-  if (
-    !process.env.SMTP_HOST ||
-    !process.env.SMTP_USER ||
-    !process.env.SMTP_PASSWORD
-  )
-    redirect("/register?error=unavailable");
+  if (!smtpConfigured()) redirect("/register?error=unavailable");
   const challenge = verificationChallenge();
   const hashed = await bcrypt.hash(password, 12);
   await db.run(
@@ -43,33 +38,16 @@ export async function registerNewUser(formData) {
       challenge.expiresAt,
     ],
   );
-  const port = Number(process.env.SMTP_PORT || 465);
-  const transport = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port,
-    secure: port === 465,
-    auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASSWORD },
-    disableFileAccess: true,
-    disableUrlAccess: true,
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 15000,
-  });
-  let delivered = false;
   try {
-    await transport.sendMail({
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+    await sendEmail({
       to: email,
       subject: "Код активации профиля",
       text: `Привет! Код активации PATHtoMATH: ${challenge.code}. Код действует 15 минут.`,
     });
-    delivered = true;
   } catch {
     await db.run("DELETE FROM PendingUsers WHERE id=?", [challenge.id]);
     console.error("Не удалось отправить письмо подтверждения");
-  } finally {
-    transport.close();
+    redirect("/register?error=server");
   }
-  if (!delivered) redirect("/register?error=server");
   redirect(`/verify-email?email=${encodeURIComponent(email)}`);
 }
