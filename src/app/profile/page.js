@@ -1,3 +1,4 @@
+import { displayNumberForModule } from '@/lib/ege-sections';
 import { getCurrentUser } from '@/lib/auth';
 import { getEgeProgress } from '@/lib/task-modules';
 import { connectDB } from '@/lib/db';
@@ -80,12 +81,12 @@ export default async function ProfilePage({ searchParams }) {
 
   const solvedStatsBySection = {};
   solvedTasks.forEach(({ section: sectionNum }) => {
-    if (sectionNum >= 1 && sectionNum <= 19) {
+    if (sectionNum >= 1 && sectionNum <= 20) {
       solvedStatsBySection[sectionNum] = (solvedStatsBySection[sectionNum] || 0) + 1;
     }
   });
 
-  const totalStatsBySection = {
+  const oldTotalsBySection = {
     1: section1Tasks?.length || 0,  2: section2Tasks?.length || 0,  3: section3Tasks?.length || 0,
     4: section4Tasks?.length || 0,  5: section5Tasks?.length || 0,  6: section6Tasks?.length || 0,
     7: section7Tasks?.length || 0,  8: section8Tasks?.length || 0,  9: section9Tasks?.length || 0,
@@ -94,9 +95,14 @@ export default async function ProfilePage({ searchParams }) {
     16: section16Tasks?.length || 0, 17: section17Tasks?.length || 0, 18: section18Tasks?.length || 0,
     19: section19Tasks?.length || 0
   };
+  const totalStatsBySection = {};
+  for (const [module, count] of Object.entries(oldTotalsBySection)) {
+    const number = displayNumberForModule(module);
+    if (number) totalStatsBySection[number] = (totalStatsBySection[number] || 0) + count;
+  }
 
-  const totalTasks = 19;
-  const solvedTasksList = Array.from(new Set(solvedTasks.map(({ section }) => section))).filter(num => num >= 1 && num <= 19);
+  const totalTasks = 20;
+  const solvedTasksList = Array.from(new Set(solvedTasks.map(({ section }) => section))).filter(num => num >= 1 && num <= 20);
 
   const validTrials = trials.filter(t => t.status === 'Проверено');
   const averageTrialScore = validTrials.length > 0

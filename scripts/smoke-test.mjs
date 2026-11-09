@@ -482,6 +482,32 @@ try {
   assert.equal(freeVideo.status, 200);
   assert.ok(!freeVideo.text.includes("https://kinescope.io/embed/abc123"));
   check("video publishing and premium access");
+  // Existing video section numbers belong to topics, not the new exam numbering.
+  for (const [id, number, title] of [
+    ["legacy-equations", 13, "Legacy equations lecture"],
+    ["legacy-finance", 16, "Legacy finance lecture"],
+    ["legacy-extrema", 12, "Legacy extrema lecture"],
+  ]) await db.run("INSERT INTO Video(id,title,url,sectionNum,isPremium,createdAt) VALUES(?,?,?,?,?,?)",
+    [id, title, "https://kinescope.io/embed/abc123", number, 0, new Date().toISOString()]);
+  for (const [number, title] of [[14,"Legacy equations lecture"],[13,"Legacy finance lecture"],[9,"Legacy extrema lecture"]]) {
+    const page = await request(`/videos/${number}`, { cookie: sessions.a });
+    assert.equal(page.status, 200);
+    assert.ok(page.text.includes(title));
+  }
+  for (const number of [6,17,20]) {
+    const newForm = new FormData();
+    newForm.set("title", `New lecture ${number}`);
+    newForm.set("url", "https://kinescope.io/embed/abc123");
+    newForm.set("sectionNum", String(number));
+    assert.equal((await formRequest("/api/videos/create", newForm, sessions.teacher)).status, 303);
+    assert.ok((await request(`/videos/${number}`, { cookie: sessions.a })).text.includes(`New lecture ${number}`));
+  }
+  for (const [route, title] of [["6","Случайные величины"],["13","Экономические задачи"],["14","Уравнения"],["17","Прикладные задачи на оптимизацию"],["20","Задачи на теорию чисел"],["15-intro","Стереометрия"],["18-intro","Планиметрия"],["19-intro","Параметры"],["20-intro","Теория чисел"]]) {
+    const page = await request(`/math-profile/${route}`, { cookie: sessions.a });
+    assert.equal(page.status, 200);
+    assert.ok(page.text.includes(title), `${route}: ${title}`);
+  }
+  check("new exam numbering preserves legacy videos and opens the correct topics");
   const unknown = await request("/supervisor/students/missing", {
     cookie: sessions.admin,
   });

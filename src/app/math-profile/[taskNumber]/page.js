@@ -1,3 +1,4 @@
+import { EGE_INTRO_SECTIONS, egeSection, taskModuleForRoute } from '@/lib/ege-sections';
 import {getTaskModule} from '@/lib/task-modules';
 import {notFound} from 'next/navigation';
 import React from 'react';
@@ -10,15 +11,8 @@ export const dynamic = 'force-dynamic';
 
 export default async function TaskPage({ params }) {
   const { taskNumber } = await params;
-  if (!getTaskModule(taskNumber)) notFound();
-
-  // Словарь для лаконичных заголовков подготовительных задач ЕГЭ
-  const introTitles = {
-    '14-intro': 'Подготовительные задания №14: Стереометрия',
-    '17-intro': 'Подготовительные задания №17: Планиметрия',
-    '18-intro': 'Подготовительные задания №18: Параметры',
-    '19-intro': 'Подготовительные задания №19: Теория чисел',
-  };
+  const storageModule = taskModuleForRoute(taskNumber);
+  if (!getTaskModule(storageModule)) notFound();
 
   // Словарь для олимпиадных разделов (используется и в заголовках, и в хлебных крошках)
   const olympiadTitles = {
@@ -28,21 +22,12 @@ export default async function TaskPage({ params }) {
     13: 'Планиметрия', 14: 'Стереометрия'
   };
 
-  // Словарь для стандартного Банка ЕГЭ Данилы
-  const egeTitles = {
-    1: 'Планиметрия', 2: 'Векторы', 3: 'Стереометрия', 4: 'Начало теории вероятностей',
-    5: 'Вероятности сложных событий', 6: 'Простейшие уравнения', 7: 'Вычисления и преобразования',
-    8: 'Производная и первообразная', 9: 'Задачи с прикладным содержанием', 10: 'Текстовые задачи',
-    11: 'Графики функций', 12: 'Наибольшее и наименьшее значение', 13: 'Уравнения',
-    14: 'Стереометрическая задача', 15: 'Неравенства', 16: 'Экономическая задача',
-    17: 'Планиметрическая задача', 18: 'Задача с параметром', 19: 'Числа и их свойства'
-  };
-
   // 1️⃣ ВЫЧИСЛЯЕМ ЗАГОВОР СТРАНИЦЫ (pageTitle)
   let pageTitle = `Задание №${taskNumber}`;
 
   if (taskNumber && taskNumber.includes('-intro') && !taskNumber.includes('olympiad')) {
-    pageTitle = introTitles[taskNumber] || `Подготовительные задания №${taskNumber}`;
+    const intro = EGE_INTRO_SECTIONS.find((item) => `${item.number}-intro` === taskNumber);
+    pageTitle = `Подготовительные задания №${intro.number}: ${intro.title}`;
   } else if (taskNumber && taskNumber.includes('olympiad-') && taskNumber.includes('-main')) {
     const num = parseInt(taskNumber.replace('olympiad-', ''), 10);
     pageTitle = `Олимпиады: ${olympiadTitles[num] || 'Задачи'}`;
@@ -51,7 +36,7 @@ export default async function TaskPage({ params }) {
     pageTitle = `Олимпиады (Подготовительные): ${olympiadTitles[num] || 'Задачи'}`;
   } else {
     const taskNumberInt = parseInt(taskNumber, 10);
-    pageTitle = `Задание №${taskNumber}: ${egeTitles[taskNumberInt] || 'Разбор темы'}`;
+    pageTitle = `Задание №${taskNumber}: ${egeSection(taskNumberInt)?.title || 'Разбор темы'}`;
   }
 
   // 2️⃣ ВЫЧИСЛЯЕМ ТЕКСТ ДЛЯ ХЛЕБНЫХ КРОШЕК (breadcrumbLabel)
@@ -102,11 +87,11 @@ export default async function TaskPage({ params }) {
           </h1>
         </div>
 
-        {(taskNumber === '14-intro' || taskNumber === '3') && <SectionExplorer key={taskNumber} />}
+        {(taskNumber === '15-intro' || taskNumber === '3') && <SectionExplorer key={taskNumber} />}
 
         {/* Список задач и модалка репортов */}
         <div className="space-y-4 pt-2">
-          <TaskListBlock key={`tasks-${taskNumber}`} taskNumberInt={taskNumberIntForComponent} />
+          <TaskListBlock key={`tasks-${taskNumber}`} storageModule={storageModule} />
           <ErrorReportModal key={`report-${taskNumber}`} sectionNumber={taskNumberIntForComponent} module={taskNumber} />
         </div>
 

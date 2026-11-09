@@ -85,7 +85,7 @@ const tasksRawData = {
 function TaskSolutionCard({ solutionBuilder, isChangingTheme }) {
   return solutionBuilder();
 }
-export default React.memo(function TaskListBlock({ taskNumberInt }) {
+export default React.memo(function TaskListBlock({ storageModule }) {
   const params = useParams();
   const taskNumber = params?.taskNumber; // Берем ID страницы из URL для интро и олимпиад
   const router = useRouter();
@@ -107,7 +107,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const resProgress = await fetch(`/api/user-task-progress?module=${encodeURIComponent(taskNumber)}`,{cache:'no-store',signal:controller.signal});
+        const resProgress = await fetch(`/api/user-task-progress?module=${encodeURIComponent(storageModule)}`,{cache:'no-store',signal:controller.signal});
         const dataProgress = await resProgress.json();
         if (dataProgress && dataProgress.solvedSubTasks) {
           setSolvedSubTasks(dataProgress.solvedSubTasks);
@@ -120,12 +120,12 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
     };
     fetchData();
     return () => controller.abort();
-  }, [taskNumber]);
+  }, [storageModule]);
 
   // 2️⃣ КЛИК «РЕШЕНО»: Математически точно вычисляем ID и отправляем на бэкенд
   const handleToggleClick = async (taskId) => {
     const computedSubTaskId = Number(taskId);
-    const pendingKey = `${taskNumber}:${taskId}`;
+    const pendingKey = `${storageModule}:${taskId}`;
     if (pendingTasks.current.has(pendingKey)) return;
     pendingTasks.current.add(pendingKey);
     const isRemoving = solvedSubTasks.includes(computedSubTaskId);
@@ -139,7 +139,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
       const response = await fetch('/api/user-task-progress', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({module:taskNumber,taskId:computedSubTaskId,solved:!isRemoving}),
+        body: JSON.stringify({module:storageModule,taskId:computedSubTaskId,solved:!isRemoving}),
       });
       const result = await response.json();
       if (!response.ok || !result.success) {
@@ -173,7 +173,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
   let isCustomModule = false;
 
   if (taskNumber && taskNumber.includes('-intro') && !taskNumber.includes('olympiad')) {
-    currentTasks = egeIntroMap[taskNumber] || [];
+    currentTasks = egeIntroMap[storageModule] || [];
     isCustomModule = true;
   } else if (taskNumber && taskNumber.includes('olympiad-') && taskNumber.includes('-main')) {
     currentTasks = olympiadMainMap[taskNumber] || [];
@@ -182,7 +182,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
     currentTasks = olympiadIntroMap[taskNumber] || [];
     isCustomModule = true;
   } else {
-    const taskNumberIntClean = parseInt(taskNumber, 10);
+    const taskNumberIntClean = parseInt(storageModule, 10);
     currentTasks = tasksRawData[taskNumberIntClean] || [];
   }
 
@@ -197,7 +197,7 @@ export default React.memo(function TaskListBlock({ taskNumberInt }) {
   return (
     <div className="space-y-6 relative">
       {currentTasks.map((task) => {
-        const num = parseInt(taskNumber, 10) || parseInt(taskNumberInt, 10) || 0;
+        const num = parseInt(storageModule, 10) || 0;
         const computedSubTaskId = Number(task.id);
         const isSubTaskSolved = solvedSubTasks.includes(computedSubTaskId);
         const isSolutionOpen = isOpen[task.id];

@@ -1,3 +1,4 @@
+import { EGE_SECTIONS } from '@/lib/ege-sections';
 import {requireUser} from '@/lib/auth';
 import React from 'react';
 import Link from 'next/link';
@@ -7,14 +8,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function VideosPage() {
   await requireUser();
-  const taskTitles = {
-    1: 'Планиметрия', 2: 'Векторы', 3: 'Стереометрия', 4: 'Начало теории вероятностей',
-    5: 'Вероятности сложных событий', 6: 'Простейшие уравнения', 7: 'Вычисления и преобразования',
-    8: 'Производная и первообразная', 9: 'Задачи с прикладным содержанием', 10: 'Текстовые задачи',
-    11: 'Графики функций', 12: 'Наибольшее и наименьшее значение', 13: 'Уравнения',
-    14: 'Стереометрическая задача', 15: 'Неравенства', 16: 'Экономическая задача',
-    17: 'Планиметрическая задача', 18: 'Задача с параметром', 19: 'Числа и их свойства'
-  };
+
 
   return (
     <div className="relative min-h-screen bg-white dark:bg-[#03000a] p-8 transition-colors duration-500 text-slate-600 dark:text-slate-400 pt-10 pb-20 w-full overflow-x-hidden flex flex-col items-center">
@@ -53,8 +47,7 @@ export default async function VideosPage() {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {[...Array(12)].map((_, i) => {
-              const taskNum = i + 1;
+            {EGE_SECTIONS.slice(0, 13).map(({ number: taskNum, title }) => {
               return (
                 <Link
                   key={taskNum}
@@ -66,7 +59,7 @@ export default async function VideosPage() {
                       {String(taskNum).padStart(2, '0')}
                     </span>
                     <h3 className="text-lg font-black tracking-tight leading-snug transition-colors duration-300 text-slate-800 group-hover:text-white dark:text-white dark:group-hover:text-white">
-                      {taskTitles[taskNum]}
+                      {title}
                     </h3>
                   </div>
                 </Link>
@@ -82,8 +75,7 @@ export default async function VideosPage() {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {[...Array(7)].map((_, i) => {
-              const taskNum = i + 13;
+            {EGE_SECTIONS.slice(13).map(({ number: taskNum, title }) => {
               return (
                 <Link
                   key={taskNum}
@@ -95,7 +87,7 @@ export default async function VideosPage() {
                       {String(taskNum).padStart(2, '0')}
                     </span>
                     <h3 className="text-lg font-black tracking-tight leading-snug transition-colors duration-300 text-slate-800 group-hover:text-white dark:text-white dark:group-hover:text-white">
-                      {taskTitles[taskNum]}
+                      {title}
                     </h3>
                   </div>
                 </Link>

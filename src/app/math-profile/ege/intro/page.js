@@ -1,17 +1,12 @@
 import React from 'react';
+import { EGE_INTRO_SECTIONS } from '@/lib/ege-sections';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
 export default function EgeIntroTasksPage() {
-  // Список четырех ключевых разделов подготовительных задач второй части
-  const introSections = [
-    { num: '14', title: 'Стереометрия', pathId: '14-intro' },
-    { num: '17', title: 'Планиметрия', pathId: '17-intro' },
-    { num: '18', title: 'Параметры', pathId: '18-intro' },
-    { num: '19', title: 'Теория чисел', pathId: '19-intro' },
-  ];
+
 
   return (
     <div className="relative min-h-screen bg-white dark:bg-[#03000a] p-8 transition-colors duration-500 text-slate-600 dark:text-slate-400 pt-[140px] pb-20 w-full overflow-x-hidden flex flex-col items-center">
@@ -55,10 +50,10 @@ export default function EgeIntroTasksPage() {
 
         {/* 📐 СЕТКА: Высокие широкие прямоугольники с ОГРОМНЫМИ цифрами строго по центру */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-          {introSections.map((sec) => (
+          {EGE_INTRO_SECTIONS.map((sec) => (
             <Link
-              key={sec.num}
-              href={`/math-profile/${sec.pathId}`}
+              key={sec.number}
+              href={`/math-profile/${sec.number}-intro`}
               scroll={false}
               className="group bg-white/80 backdrop-blur-md border border-blue-100/60 p-8 rounded-[28px] shadow-sm 
                          hover:shadow-2xl hover:bg-sky-500 hover:border-sky-500 
@@ -74,7 +69,7 @@ export default function EgeIntroTasksPage() {
                                  text-sky-500/80 group-hover:text-white/90 
                                  dark:text-purple-400/80 dark:group-hover:text-white/90"
                 >
-                  {sec.num}
+                  {sec.number}
                 </span>
               </div>
 

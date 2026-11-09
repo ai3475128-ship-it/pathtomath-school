@@ -17,6 +17,8 @@ for (let n = 1; n <= 19; n++)
     String(n),
     `src/app/math-profile/[taskNumber]/${[13, 14, 15].includes(n) ? "section" : "sectoin"}${n}.js`,
   );
+catalog["ege-random"] = [];
+catalog["ege-optimization"] = [];
 for (const n of [14, 17, 18, 19])
   add(
     `${n}-intro`,

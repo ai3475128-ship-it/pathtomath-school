@@ -1,3 +1,4 @@
+import { displayNumberForModule } from '@/lib/ege-sections';
 import { requireAdmin } from '@/lib/auth';
 import { text,emailAddress,passwordValue } from '@/lib/validation';
 import { connectDB, createId } from '@/lib/db';
@@ -180,7 +181,7 @@ export default async function AdminPanelPage() {
         type="text" 
         name="title" 
         required 
-        placeholder="Например: Ловушки в тригонометрии. Задание 13" 
+        placeholder="Например: Ловушки в тригонометрии. Задание 14"
         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-purple-950 bg-white dark:bg-[#03000a] text-sm focus:outline-none focus:border-sky-500 dark:focus:border-[#634EE4] transition"
       />
     </div>
@@ -205,7 +206,7 @@ export default async function AdminPanelPage() {
           type="number" 
           name="sectionNum" 
           min="1" 
-          max="390" 
+          max="20"
           required 
           placeholder="13" 
           className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-purple-950 bg-white dark:bg-[#03000a] text-sm focus:outline-none focus:border-sky-500 dark:focus:border-[#634EE4] transition"
@@ -306,7 +307,7 @@ export default async function AdminPanelPage() {
                     return aDone - bDone;
                   }).map((report) => {
                     const actualTaskNum = report.taskNumber || report.taskNum || report.taskId || report.problemId || '—';
-                    const sectionNum = report.sectionNumber || report.section || '—';
+                    const sectionNum = displayNumberForModule(report.module) || report.sectionNumber || report.section || '—';
                     const isChecked = report.status === 'ИСПРАВЛЕНО' || report.mark === 'done';
 
                     return (

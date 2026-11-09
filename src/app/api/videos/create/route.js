@@ -3,6 +3,7 @@ import { getCurrentUser, isManagement } from "@/lib/auth";
 import { connectDB, createId } from "@/lib/db";
 import { text } from "@/lib/validation";
 import { videoEmbedUrl } from "@/lib/videos";
+import { egeSection } from "@/lib/ege-sections";
 import { sameOrigin, limitedBody } from "@/lib/http";
 export async function POST(request) {
   if (!sameOrigin(request))
@@ -24,7 +25,7 @@ export async function POST(request) {
     url = videoEmbedUrl(form.get("url"));
     sectionNum = Number(form.get("sectionNum"));
     isPremium = form.get("isPremium") === "on" ? 1 : 0;
-    if (!Number.isSafeInteger(sectionNum) || sectionNum < 1 || sectionNum > 19)
+    if (!Number.isSafeInteger(sectionNum) || !egeSection(sectionNum))
       throw Error("Invalid section");
   } catch {
     return NextResponse.json(
@@ -38,7 +39,7 @@ export async function POST(request) {
   const db = await connectDB();
   await db.run(
     "INSERT INTO Video(id,title,url,sectionNum,isPremium,createdAt) VALUES(?,?,?,?,?,?)",
-    [createId(), title, url, sectionNum, isPremium, new Date().toISOString()],
+    [createId(), title, url, egeSection(sectionNum).videoSections[0], isPremium, new Date().toISOString()],
   );
   return NextResponse.redirect(
     new URL(`/videos/${sectionNum}`, request.url),
