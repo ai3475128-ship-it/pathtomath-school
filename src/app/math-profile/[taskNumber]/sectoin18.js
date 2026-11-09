@@ -44,8 +44,8 @@ export const section18Tasks = [
         <CoordinateDiagram
     xRange={[-2.6, 2.6]}
     yRange={[-2.8, 2.6]}
-    xTicks={[-2, -1, 0, 1, 2]}
-    yTicks={[-2, -1, 1, 2]}
+    xTicks={[-1, 1]}
+    yTicks={[-1, 1]}
     curves={[
       { math: 'x=1', color: '#0f766e', points: [[1, -2.8], [1, 2.6]] },
       { math: 'a=-x^2', color: '#9333ea', points: sampleCurve(x => [x, -x * x], -2.6, 2.6) },
@@ -122,10 +122,10 @@ export const section18Tasks = [
         </p>
 
         {/* Корректный SVG график без заливки черным */}
-        <CoordinateDiagram
+        <CoordinateDiagram equalScale
     xRange={[-2.5, 2.5]}
     yRange={[-2, 2]}
-    xTicks={[-2, -1, 0, 1, 2]}
+    xTicks={[-1, 1]}
     yTicks={[-1, 1, { value: -Math.SQRT2, math: String.raw`-\sqrt{2}` }, { value: Math.SQRT2, math: String.raw`\sqrt{2}` }]}
     curves={[
       { math: 'x=1', color: '#0f766e', points: [[1, -2], [1, 2]] },
@@ -207,8 +207,8 @@ export const section18Tasks = [
         <CoordinateDiagram
     xRange={[-2.8, 3.2]}
     yRange={[-4.8, 1.1]}
-    xTicks={[-2, -1, 0, 1, 2, 3]}
-    yTicks={[-4, -3, -2, -1, 1]}
+    xTicks={[-2, -1, 1]}
+    yTicks={[-4, -3, -1]}
     curves={[
       { math: 'x=-1', color: '#0f766e', points: [[-1, -4.8], [-1, 1.1]] },
       { math: 'a=-x^2', color: '#9333ea', points: sampleCurve(x => [x, -x * x], -2.8, 3.2) },
@@ -295,7 +295,7 @@ export const section18Tasks = [
         <p>(При <InlineMath math={`a = 0`} /> вершина и оба основания одновременно лежат на полуокружности.)</p>
 
         {/* График 1: общее положение "уголка" */}
-        <CoordinateDiagram
+        <CoordinateDiagram equalScale
           xRange={[-2.8, 3.2]} yRange={[-0.35, 2.5]} axes={['x', 'y']}
           curves={[
             { math: 'y=\\sqrt{4-x^2}', points: sampleCurve((t) => [2*Math.cos(t), 2*Math.sin(t)], 0, Math.PI, 144), color: '#2563eb' },
@@ -315,7 +315,7 @@ export const section18Tasks = [
         </p>
 
         {/* График 2: семейство уголков в критических положениях */}
-        <CoordinateDiagram
+        <CoordinateDiagram equalScale
           xRange={[-6.3, 6.3]} yRange={[-0.25, 2.65]} axes={['x', 'y']}
           curves={[
             { math: 'y=\\sqrt{4-x^2}', points: sampleCurve((t) => [2*Math.cos(t), 2*Math.sin(t)], 0, Math.PI, 144), color: '#2563eb' },
@@ -387,13 +387,13 @@ export const section18Tasks = [
         <p>Случай равенства достигается только при <InlineMath math={`x = 0, (y = 1)`} />. В остальных случаях уравнение не имеет пересечений с окружностью.(схематичный рисунок для понимания).</p>
 
         {/* Высокоточный математический SVG График с разнесенными надписями */}
-        <CoordinateDiagram
+        <CoordinateDiagram equalScale
           xRange={[-1.45, 1.45]} yRange={[-1.2, 2.5]} axes={['x', 'y']}
           curves={[
             { math: 'x^2+y^2=1', points: sampleCurve((t) => [Math.cos(t), Math.sin(t)], 0, 2*Math.PI, 144), color: '#2563eb' },
             { math: 'y(x),\\ a=-7', points: sampleCurve((x) => [x, 2**Math.abs(x) + 6*(Math.abs(x)-x*x)/5], -1.45, 1.45, 160), color: '#dc2626' },
           ]}
-          points={[{ x: 0, y: 1, math: '(0;1)' }]} xTicks={[-1, 0, 1]} yTicks={[-1, 1, 2]}
+          points={[{ x: 0, y: 1, math: '(0;1)' }]} xTicks={[-1, 1]} yTicks={[-1, 1]}
         />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
@@ -434,7 +434,7 @@ export const section18Tasks = [
           xRange={[-0.9, 0.4]} yRange={[-0.2, 2.3]} axes={['x', 'y']}
           curves={[{ math: 'f(x)=\\sqrt{1-4x}', points: sampleCurve((t) => [(1-t*t)/4, t], 0, Math.sqrt(4.6)), color: '#2563eb' }]}
           points={[{ x: 0, y: 1, math: '(0;1)' }, { x: 0.25, y: 0 }]}
-          xTicks={[0, { value: 0.25, math: '\\frac14' }]} yTicks={[1, 2]}
+          xTicks={[0, { value: 0.25, math: '\\frac14' }]} yTicks={[1]}
         />
 
 
@@ -534,7 +534,7 @@ export const section18Tasks = [
             { math: 'y=t^2+\\frac54', points: sampleCurve((t) => [t, t*t+1.25], 0, 2.25, 144), color: '#dc2626' },
           ]}
           points={[{ x: 0, y: 1 }, { x: 1, y: 2 }, { x: 2, y: 5 }, { x: 1.5, y: 3.5, math: '\\left(\\frac32;\\frac72\\right)', color: '#dc2626' }]}
-          xTicks={[0, { value: 1/3, math: '\\frac13' }, 1, 2]} yTicks={[1, 2, 5]}
+          xTicks={[{ value: 1/3, math: '\\frac13' }, { value: 1.5, math: '\\frac32' }]} yTicks={[1, { value: 3.5, math: '\\frac72' }]}
         />
 
 
@@ -668,7 +668,7 @@ export const section18Tasks = [
             { math: 't=a+2=3', points: [[-3.45, 3], [1.65, 3]], color: '#dc2626', dashed: true },
           ]}
           points={[{ x: -1, y: -1, math: '(-1;-1)' }]}
-          xTicks={[-3, -1, 0, 1]} yTicks={[-1, 1, 3]}
+          xTicks={[-1]} yTicks={[-1, 1, 3]}
         />
 
         {/* График 2: a < 0, ветви вниз, вершина между горизонталями */}
@@ -680,7 +680,7 @@ export const section18Tasks = [
             { math: 't=a+2=\\frac12', points: [[-0.65, 0.5], [1.95, 0.5]], color: '#dc2626', dashed: true },
           ]}
           points={[{ x: 2/3, y: 2/3, math: '\\left(\\frac23;\\frac23\\right)' }]}
-          xTicks={[0, 1]} yTicks={[{ value: 0.5, math: '\\frac12' }, { value: 2.25, math: '\\frac94' }]}
+          xTicks={[{ value: 2/3, math: '\\frac23' }]} yTicks={[{ value: 0.5, math: '\\frac12' }, { value: 2.25, math: '\\frac94' }]}
         />
 
         <p className="font-bold">Остальные a ≠ 0, -1, 2 (горизонтали различны).</p>
@@ -735,7 +735,7 @@ export const section18Tasks = [
             { math: 'y=4x+4', points: [[-3.3, -9.2], [5.3, 25.2]], color: '#7c3aed' },
           ]}
           points={[{ x: -1, y: 0, math: '(-1;0)' }, { x: -2, y: -4, math: '(-2;-4)', color: '#7c3aed' }, { x: 2+2*Math.SQRT2, y: 12+8*Math.SQRT2, color: '#7c3aed' }]}
-          xTicks={[-2, 0, 2, 4]} yTicks={[-4, 8, 16, 24]}
+          xTicks={[-2, -1]} yTicks={[-4]}
         />
 
 
@@ -965,7 +965,7 @@ export const section18Tasks = [
         xRange={[-3.4, 3.4]} yRange={[-0.65, 7.1]} axes={['x', 't']}
         curves={[{ math: 't=|x-1|+|x+1|\\ (a=0)', points: [[-3.4, 6.8], [-1, 2], [1, 2], [3.4, 6.8]], color: '#2563eb' }]}
         points={[{ x: -1, y: 2 }, { x: 1, y: 2 }]}
-        xTicks={[-1, 0, 1]} yTicks={[2, 4, 6]}
+        xTicks={[-1, 1]} yTicks={[2]}
       />
 
       <p>Значит при обратной замене:</p>
@@ -1001,7 +1001,7 @@ export const section18Tasks = [
         xRange={[-4.75, 4.75]} yRange={[-17.6, 6.9]} axes={['t', 'h']}
         curves={[{ math: 'h(t)=t^2-16\\ (a=0)', points: sampleCurve((t) => [t, t*t-16], -4.75, 4.75, 152), color: '#2563eb' }]}
         points={[{ x: -4, y: 0 }, { x: 4, y: 0 }, { x: 2, y: -12, math: 'h(2)<0' }]}
-        xTicks={[-4, 0, 2, 4]} yTicks={[-16, -12]}
+        xTicks={[2]} yTicks={[-16, -12]}
       />
 
       <p>Необходимое и достаточное условие: <InlineMath math={`h(2) < 0`} /></p>
@@ -1013,7 +1013,7 @@ export const section18Tasks = [
       <p>По методу интервалов:</p>
 
       {/* Третий рисунок: числовая прямая со сбалансированными по величине крупными знаками */}
-      <ParameterDiagram gridStep={30} gridOrigin={[270, 38]}>
+      <ParameterDiagram layout={{ horizontal: [38,"a"], xTicks: [[131.83346173608032,"-1-\\sqrt{13}"],[348.1665382639197,"-1+\\sqrt{13}"]] }}>
         <svg viewBox="0 0 480 65">
           <line x1="24" y1="38" x2="453" y2="38" stroke="#000000" strokeWidth="1.2" />
           <path d="M 453,38 L 445,34 M 453,38 L 445,42" fill="none" stroke="#000000" strokeWidth="1.2" />
@@ -1155,7 +1155,7 @@ export const section18Tasks = [
           { math: 'y=2|a-3|', points: [[-0.6, 7.2], [3, 0], [6.6, 7.2]], color: '#dc2626' },
         ]}
         points={[{ x: 1, y: 4 }, { x: 3, y: 0 }, { x: 5, y: 4 }]}
-        xTicks={[0, 1, 3, 5]} yTicks={[4, 9]}
+        xTicks={[1, 3, 5]} yTicks={[4]}
       />
 
 
@@ -1174,7 +1174,7 @@ export const section18Tasks = [
             { math: 'y=|x-2|+|x+2|', points: [[-2.65, 5.3], [-2, 4], [2, 4], [2.65, 5.3]], color: '#dc2626' },
           ]}
           points={[{ x: 0, y: 4, math: '(0;4)' }]}
-          xTicks={[-2, 0, 2]} yTicks={[4, 8, 12]}
+          xTicks={[-2, 2]} yTicks={[4]}
         />
         <span className="text-xs font-semibold text-slate-500 mt-2">(1 решение).</span>
       </div>
@@ -1234,7 +1234,7 @@ export const section18Tasks = [
           { math: 'y=2|x|-\\frac12', points: [[-2.45, 4.4], [0, -0.5], [2.45, 4.4]], color: '#dc2626' },
         ]}
         points={[{ x: -1, y: 1, color: '#7c3aed' }, { x: 1, y: 1, color: '#7c3aed' }, { x: 0, y: 0, color: '#047857' }]}
-        xTicks={[-2, -1, 0, 1, 2]} yTicks={[-1, 1, 4]}
+        xTicks={[-1, 1]} yTicks={[1]}
       />
 
 
@@ -1284,7 +1284,7 @@ export const section18Tasks = [
       <p>Изобразим графическую ситуацию в осях <InlineMath math={`xOy`} />:</p>
 
             {/* Высокоточный SVG-график (масштаб скорректирован до сбалансированных max-w-[430px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [200,"x"], vertical: [240,"y"], xTicks: [[140,"-4"],[240,"0"]], yTicks: [[150,"2"],[75,"5"]] }}>
         <svg viewBox="0 0 500 340" className="w-full max-w-[430px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Координатная сетка осей (Центр: x=240, y=200 соответствует (0,0)) */}
           {/* Масштаб: 1 ед = 25px */}
@@ -1420,7 +1420,7 @@ export const section18Tasks = [
       <p>Изобразим графическую ситуацию в координатной плоскости <InlineMath math={`xOa`} />. Количество решений исходного уравнения при каждом значении параметра <InlineMath math={`a`} /> определяется числом точек пересечения графика с горизонтальной сканирующей прямой.</p>
 
             {/* Полностью исправленный SVG-график Задачи 19 (max-w-[500px], полуокружность строго ПРАВАЯ по референсу) */}
-      <CoordinateDiagram
+      <CoordinateDiagram equalScale
         xRange={[-6.7, 1.2]} yRange={[-3.75, 4.65]} axes={['x', 'a']}
         curves={[
           { math: 'x=-6', points: [[-6, -3.75], [-6, 4.65]], color: '#64748b', dashed: true },
@@ -1512,7 +1512,7 @@ export const section18Tasks = [
       <p className="text-center font-semibold pt-2">Общая схема существования корней</p>
 
       {/* Выверенная по размерам схема интервалов существования корней */}
-      <ParameterDiagram gridStep={30} gridOrigin={[250, 132]}>
+      <ParameterDiagram layout={{ horizontal: [132,"a"], xTicks: [[70,"\\frac25"],[130,"\\frac35"],[250,"1"],[370,"\\frac75"],[430,"\\frac85"]] }}>
         <svg viewBox="0 0 500 152">
           <line x1="40" y1="132" x2="460" y2="132" stroke="#000000" strokeWidth="1.2" />
           <path d="M 460,132 L 452,128 M 460,132 L 452,136" fill="none" stroke="#000000" strokeWidth="1.2" />
@@ -1686,7 +1686,7 @@ export const section18Tasks = [
           { x: 0, y: 0 }, { x: 2, y: 0 }, { x: 1, y: -1, color: '#2563eb' }, { x: 1, y: 1, color: '#047857' },
           { x: 0.5, y: -0.75, color: '#dc2626' }, { x: 1.5, y: 0.75, color: '#be185d' },
         ]}
-        xTicks={[-1, 0, 1, 2, 3]} yTicks={[-3, -1, 1, 3]}
+        xTicks={[1, 2]} yTicks={[-1, 1]}
       />
 
 
@@ -1767,7 +1767,7 @@ export const section18Tasks = [
             { math: 'y=\\frac{37}{4}-|x|', points: [[-9.25, 0], [0, 9.25], [9.25, 0]], color: '#dc2626' },
           ]}
           points={[{ x: -9, y: 0, math: 'A(-9;0)' }, { x: 0, y: 3, math: '(0;3)' }, { x: -8.75, y: 0.5, color: '#dc2626' }]}
-          xTicks={[-9, -3, 0, 3, 9]} yTicks={[3, 6, 9]}
+          xTicks={[-9, -3, 3, 9]} yTicks={[3, 9]}
         />
         <CoordinateDiagram
           xRange={[-9.45, -7.7]} yRange={[-0.13, 1.48]} axes={['x', 'y']}
@@ -1850,7 +1850,7 @@ export const section18Tasks = [
           { x: -1, y: -1.5, math: '\\left(-1;-\\frac32\\right)', color: '#be185d' },
           { x: 3, y: 1.5, math: '\\left(3;\\frac32\\right)', color: '#dc2626' },
         ]}
-        xTicks={[-4, -1, 0, 2, 3, 6]} yTicks={[-6, -3, 3, 6, 9]}
+        xTicks={[-1, 2, 3]} yTicks={[{ value: -1.5, math: '-\\frac32' }, { value: 1.5, math: '\\frac32' }]}
       />
 
 
@@ -1938,7 +1938,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный SVG-график Задачи 25 в осях xOa (max-w-[460px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [260,"x"], vertical: [180,"a"], xTicks: [[180,"0"],[265,"1"],[350,"2"]], yTicks: [[175,"1"],[90,"2"]] }}>
         <svg viewBox="0 0 580 420" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Серая фоновая рамка-сетка */}
           <rect x="135" y="45" width="250" height="330" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" className="dark:stroke-slate-800" />
@@ -2104,7 +2104,7 @@ export const section18Tasks = [
       <p>Изобразим эскиз графика функции <InlineMath math={`g(y) = -y^2 - 2y + 4`} /> в координатах <InlineMath math={`yOa^2`} />:</p>
 
       {/* Высокоточный и наглядный SVG-график Задачи 27 (max-w-[360px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [250,"y"], vertical: [160,"a^2"], xTicks: [[120,"-1"],[160,"0"],[209.4427,"\\sqrt5-1"]], yTicks: [[50,"5"],[90,"4"]] }}>
         <svg viewBox="0 0 400 360" className="w-full max-w-[360px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Вертикальная сетка-рамка для наглядности */}
           <rect x="70" y="45" width="260" height="260" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" className="dark:stroke-slate-800" />
@@ -2195,7 +2195,7 @@ export const section18Tasks = [
       <p>Изобразим схему отбора на числовой прямой параметра <InlineMath math={`a`} />:</p>
 
       {/* Высокоточный и наглядный SVG-график Задачи 28 (max-w-[400px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [90,"a"], xTicks: [[130,"-3"],[250,"-1"]] }}>
         <svg viewBox="0 0 460 140" className="w-full max-w-[400px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Паттерн для штриховки областей "решений нет" */}
           <defs>
@@ -2290,7 +2290,7 @@ export const section18Tasks = [
       <p>Изобразим графическую схему поведения функции на заданном отрезке и сканирующие горизонтальные прямые уровня <InlineMath math={`y = a`} />:</p>
 
             {/* Высокоточный и понятный график функции g(x) со сканированием горизонтальных линий (max-w-[480px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [280,"x"], vertical: [130,"y"], xTicks: [[130,"0"],[208.54,"\\frac{\\pi}{4}"],[240.71,"x_0"],[365.62,"\\frac{3\\pi}{4}"]], yTicks: [[216.36,"\\frac{\\sqrt2}{2}"],[89.08,"\\frac{3\\sqrt2}{2}"],[78.75,"\\sqrt5"]] }}>
         <svg viewBox="0 0 500 360" className="w-full max-w-[480px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Серая фоновая рамка-сетка */}
           <rect x="90" y="50" width="320" height="260" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" className="dark:stroke-slate-800" />
@@ -2394,7 +2394,7 @@ export const section18Tasks = [
       <p>Изобразим графическую ситуацию на координатной плоскости <InlineMath math={`xOy`} />:</p>
 
       {/* Высокоточный и наглядный SVG-график Задачи 30 (max-w-[450px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [250,"x"], vertical: [250,"y"], xTicks: [[250,"0"]], yTicks: [[330,"-5"],[410,"-10"]] }}>
         <svg viewBox="0 0 500 500" className="w-full max-w-[450px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Координатная сетка */}
           <g stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" className="dark:stroke-slate-800">
@@ -2540,7 +2540,7 @@ export const section18Tasks = [
       <p>Изобразим многоярусную схему отбора на числовой прямой параметра <InlineMath math={`a`} />:</p>
 
       {/* Высокоточный и наглядный SVG-график Задачи 31 (max-w-[400px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [90,"a"], xTicks: [[140,"0"],[290,"\\frac{3\\pi}{4}"],[340,"\\pi"]] }}>
         <svg viewBox="0 0 460 160" className="w-full max-w-[400px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Паттерн для штриховки областей "ровно 1 решение" */}
           <defs>
@@ -2631,7 +2631,7 @@ export const section18Tasks = [
       <p>Изобразим графическую ситуацию на координатной плоскости <InlineMath math={`xOa`} />:</p>
 
       {/* Высокоточный SVG-график Задачи 32 с разрывом ОДЗ (max-w-[380px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [200,"x"], vertical: [260,"a"], xTicks: [[100,"-4"],[180,"-2"],[260,"0"]], yTicks: [[56,"8"],[308,"-6"],[416,"-12"],[420.5,"-\\frac{49}{4}"]] }}>
         <svg viewBox="0 0 400 520" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Серая полоса запрещенной зоны ОДЗ x in (-4, -2) */}
           {/* Масштаб: x=0 на 260, 1 ед_x = 40px -> x=-4 это 100, x=-2 это 180. y=0 на 200, 1 ед_y = 18px */}
@@ -2795,7 +2795,7 @@ export const section18Tasks = [
       <p>Изобразим многоярусную схему существования и отбора корней на числовой прямой параметра <InlineMath math={`a`} />:</p>
 
       {/* Высокоточный и чистый SVG-график Задачи 33 (max-w-[400px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [90,"a"], xTicks: [[140,"0"],[222.5,"3-\\sqrt6"],[290,"1"]] }}>
         <svg viewBox="0 0 460 160" className="w-full max-w-[400px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Паттерн для штриховки областей "ровно 1 решение" */}
           <defs>
@@ -2908,7 +2908,7 @@ export const section18Tasks = [
       <p>Изобразим решение системы на числовой прямой параметра <InlineMath math={`a`} />:</p>
 
       {/* Высокоточный и наглядный SVG-график Задачи 34 (max-w-[400px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [100,"a"], xTicks: [[100,"0"],[140,"1"],[220,"3"],[260,"4"]] }}>
         <svg viewBox="0 0 460 160" className="w-full max-w-[400px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Паттерн для штриховки пересечения множеств */}
           <defs>
@@ -2999,7 +2999,7 @@ export const section18Tasks = [
       <BlockMath math={`AC_1 = \\sqrt{(5 - (-2))^2 + (4 - 0)^2} = \\sqrt{7^2 + 4^2} = \\sqrt{65}.`} />
 
             {/* Высокоточный и наглядный SVG-график Задачи 35 (max-w-[460px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [260,"x"], vertical: [250,"y"], xTicks: [[218,"-2"],[250,"0"]], yTicks: [[196,"4"]] }}>
         <svg viewBox="0 0 500 480" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Координатные оси (Начало (0,0) зафиксировано на x=250, y=260. Масштаб: 1 ед = 16px) */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -3127,7 +3127,7 @@ export const section18Tasks = [
       </p>
 
             {/* Высокоточный и наглядный SVG-график Задачи 36 (max-w-[460px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [220,"x"], vertical: [250,"y"], xTicks: [[250,"0"],[270,"1"],[410,"8"]], yTicks: [[360,"-7"]] }}>
         <svg viewBox="0 0 500 500" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Фоновая координатная сетка */}
           <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
@@ -3261,7 +3261,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный SVG-график Задачи 37 в осях xOa (max-w-[460px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [310,"x"], vertical: [220,"a"], xTicks: [[176,"-2"],[220,"0"],[264,"2"],[308,"4"]], yTicks: [[123.6,"4+2\\sqrt5"],[167.6,"2+2\\sqrt5"],[178,"6"],[320.4,"4-2\\sqrt5"],[364.4,"2-2\\sqrt5"]] }}>
         <svg viewBox="0 0 540 440" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Координатная сетка */}
           <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
@@ -3382,7 +3382,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и наглядный SVG-график Задачи 38 (max-w-[460px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [120,"x"], vertical: [200,"a"], xTicks: [[200,"0"],[222,"1"]], yTicks: [[98,"1"],[243.2,"-2-\\sqrt{13}"],[296,"-8"]] }}>
         <svg viewBox="0 0 540 480" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Координатная сетка */}
           <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
@@ -3512,7 +3512,7 @@ export const section18Tasks = [
       <BlockMath math={`\\begin{cases} x_3 x_4 > 0 \\\\ x_3 + x_4 < 0 \\end{cases} \\iff \\begin{cases} a(a - 4) < 0 \\\\ a + 6 > 0 \\end{cases} \\iff \\begin{cases} 0 < a < 4 \\\\ a > -6 \\end{cases} \\implies a \\in (0; 4).`} />
 
             {/* Высокоточный и наглядный геометрический SVG-график отбора интервалов Задачи 39 (max-w-[445px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [90,"a"], xTicks: [[130,"0"],[170,"2-\\sqrt3"],[320,"4"]] }}>
         <svg viewBox="0 0 460 140" className="w-full max-w-[445px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Паттерн для штриховки области пересечения */}
           <defs>
@@ -3593,7 +3593,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и наглядный SVG-график Задачи 40 (max-w-[450px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [280,"x"], vertical: [100,"y"], xTicks: [[100,"0"],[244,"4"],[388,"8"]], yTicks: [[208,"2"],[136,"4"]] }}>
         <svg viewBox="0 0 500 360" className="w-full max-w-[450px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Координатная сетка (Масштаб: 1 ед = 36px. Начало (0,0) зафиксировано на x=100, y=280) */}
           <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
@@ -3739,7 +3739,7 @@ export const section18Tasks = [
       </ul>
 
       {/* Высокоточный SVG-график Задачи 41 с точной параболой ОДЗ */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [148,"x"], vertical: [252,"a"], xTicks: [[156,"-3"],[252,"0"]], yTicks: [[472,"-9"]] }}>
         <svg viewBox="0 0 460 520" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Статическая координатная сетка */}
           <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
@@ -3880,7 +3880,7 @@ export const section18Tasks = [
       <p>С учетом условия <InlineMath math={`a > \\frac{1}{2}`} /> получаем первый интервал: <InlineMath math={`a \\in (2; +\\infty)`} />.</p>
 
       {/* Высокоточный и наглядный SVG-график для Случая I (max-w-[420px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [132,"x"], vertical: [200,"y"], xTicks: [[155,"-1"],[200,"0"],[245,"1"]] }}>
         <svg viewBox="0 0 400 240" className="w-full max-w-[420px] h-auto font-sans text-xs" role="img" aria-label="График f(x) при a = 2.5 и уровень y = -2">
           <g stroke="#0f172a" strokeWidth="1.2" className="dark:stroke-slate-400">
             <path d="M 44,132 H 352 l -7,-4 m 7,4 l -7,4 M 200,205 V 15 l -4,7 m 4,-7 l 4,7" fill="none" />
@@ -3915,7 +3915,7 @@ export const section18Tasks = [
       <p>С учетом условия <InlineMath math={`a < \\frac{1}{2}`} /> получаем второй интервал: <InlineMath math={`a \\in (-\\infty; -1)`} />.</p>
 
       {/* Высокоточный и наглядный SVG-график для Случая III (max-w-[420px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [132,"x"], vertical: [200,"y"], xTicks: [[155,"-1"],[200,"0"],[245,"1"]] }}>
         <svg viewBox="0 0 400 240" className="w-full max-w-[420px] h-auto font-sans text-xs" role="img" aria-label="График f(x) при a = -1.5 и уровень y = -2">
           <g stroke="#0f172a" strokeWidth="1.2" className="dark:stroke-slate-400">
             <path d="M 44,132 H 352 l -7,-4 m 7,4 l -7,4 M 200,205 V 15 l -4,7 m 4,-7 l 4,7" fill="none" />
@@ -4033,7 +4033,7 @@ export const section18Tasks = [
 
 
             {/* Высокоточный и наглядный SVG-график Задачи 44 (max-w-[440px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [240,"x"], vertical: [120,"a"], xTicks: [[120,"0"]], yTicks: [[120,"5"],[144,"4"],[252,"-\\frac12"],[336,"-4"],[348,"-\\frac92"],[360,"-5"]] }}>
         <svg viewBox="0 0 420 540" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Координатная сетка (Начало (0,0) зафиксировано на x=120, y=240) */}
           <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
@@ -4210,7 +4210,7 @@ export const section18Tasks = [
       </ul>
 
       {/* Высокоточный и наглядный SVG-график Задачи 45 (max-w-[440px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [260,"x"], vertical: [220,"a"], xTicks: [[220,"0"],[274,"3"]], yTicks: [[98,"9"],[233,"\\frac32"],[314,"-3"]] }}>
         <svg viewBox="0 0 440 440" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Координатная сетка */}
           <g stroke="#e2e8f0" strokeWidth="0.8" className="dark:stroke-slate-800">
@@ -4366,7 +4366,7 @@ export const section18Tasks = [
             <p>Изобразим полученное множество решений в координатной плоскости <InlineMath math={`xOa`} />:</p>
 
       {/* Высокоточный и наглядный SVG-график Задачи 46 (max-w-[460px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [200,"x"], vertical: [240,"a"], xTicks: [[168,"-3"],[228,"-\\frac12"],[240,"0"],[312,"3"]], yTicks: [[120,"\\frac16"],[160.8163,"\\frac{4}{49}"]] }}>
         <svg viewBox="0 0 540 300" className="w-full max-w-[460px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Легкая сетка: Шаг 24px по Ox, Шаг 48px на 0,1 по Oa. Центр (0,0) на x=240, y=200 */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -4508,7 +4508,7 @@ export const section18Tasks = [
       </p>
 
             {/* Высокоточный и наглядный SVG-график Задачи 47 (max-w-[430px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [250,"x"], vertical: [220,"a"], xTicks: [[192,"-1"],[220,"0"],[276,"2"]], yTicks: [[82,"6"],[166,"3"],[334,"-3"],[418,"-6"]] }}>
         <svg viewBox="0 0 440 500" className="w-full max-w-[430px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Легкая сетка: Шаг 28px по Ox, Шаг 28px по Oa. Центр (0,0) на x=220, y=250 */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -4651,7 +4651,7 @@ export const section18Tasks = [
             <p>Проведем графический анализ числа пересечений при росте наклона прямых пучка <InlineMath math={`|a|`} /> от <InlineMath math={`0`} /> до <InlineMath math={`+\\infty`} />:</p>
 
       {/* Высокоточный и наглядный SVG-график Задачи 48 (max-w-[440px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [200,"x"], vertical: [140,"y"], xTicks: [[140,"0"],[260,"6"]], yTicks: [[120,"4"],[280,"-4"]] }}>
         <svg viewBox="0 0 440 380" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Сетка: Шаг 20px по Ox и по Oy. Центр (0,0) на x=140, y=200 */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -4785,7 +4785,7 @@ export const section18Tasks = [
       <BlockMath math="\operatorname{ctg} a = -1 \iff a = \frac{3\pi}{4} + \pi k, \ k \in \mathbb{Z}." />
 
       {/* Высокоточный и наглядный SVG-график Задачи 49 (max-w-[420px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [145,"a"], vertical: [120,"y"], xTicks: [[120,"0"],[210,"\\frac{3\\pi}{4}"],[240,"\\pi"],[330,"\\frac{7\\pi}{4}"],[360,"2\\pi"]], yTicks: [[175,"-1"]] }}>
         <svg viewBox="0 0 440 240" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Легкая статическая координатная сетка */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -4893,7 +4893,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и наглядный SVG-график Задачи 50 (max-w-[420px]) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [120,"x"], vertical: [200,"y"], xTicks: [[200,"0"],[225,"1"]] }}>
         <svg viewBox="0 0 440 240" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none">
           {/* Легкая координатная сетка (Шаг: 1 ед = 25px. Начало (0,0) на x=200, y=120) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -4992,7 +4992,7 @@ export const section18Tasks = [
 
         <CoordinateDiagram
           xRange={[-0.65, 4.6]} yRange={[-3, 5]} axes={['x', 'y']}
-          xTicks={[0, 1, 2, 3, 4]} yTicks={[-1, 0, 1, 3]}
+          xTicks={[1, 3]} yTicks={[-1, 3]}
           curves={[
             { math: 'y=|(x-1)(x-3)|', points: sampleCurve((x) => [x, Math.abs((x-1)*(x-3))], -0.45, 4.45, 196), color: '#2563eb' },
             { math: 'y=\\frac{x-3}{2}', points: [[-0.65, -1.825], [4.6, 0.8]], color: '#dc2626', dashed: true },
@@ -5077,7 +5077,7 @@ export const section18Tasks = [
       <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
         <CoordinateDiagram
           xRange={[-3.5, 6.2]} yRange={[-4.5, 7]} axes={['x', 'y']}
-          xTicks={[-2, 0, 2, 4, 6]} yTicks={[-4, -2, 0, 2, 4, 6]}
+          xTicks={[{ value: -1.75, math: '-\\frac74' }, 4]} yTicks={[{ value: 1.25, math: '\\frac54' }]}
           curves={[
             { math: 'y=2|x|-x-4', points: [[-3.5, 6.5], [0, -4], [6.2, 2.2]], color: '#475569' },
             { math: 'y=|(x+\\frac14)^2-1|', points: sampleCurve((x) => [x, Math.abs((x+0.25)**2-1)], -3.05, 2.55, 112), color: '#dc2626', dashed: true },
@@ -5138,7 +5138,7 @@ export const section18Tasks = [
       </p>
 
           {/* Высокоточный и наглядный SVG-график Задачи 53 (max-w-[420px]) */}
-          <ParameterDiagram>
+          <ParameterDiagram layout={{ horizontal: [160,"x"], vertical: [160,"y"], xTicks: [[104,"-\\frac{\\pi}{4}"],[160,"0"],[328,"\\frac{3\\pi}{4}"]], yTicks: [[97.39009663000589,"\\sqrt5"],[140.20101012677668,"\\frac{\\sqrt2}{2}"],[179.79898987322332,"-\\frac{\\sqrt2}{2}"]] }}>
             <svg viewBox="0 0 420 300" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
               {/* Легкая сетка (Центр (0,0) зафиксирован на x=160, y=160) */}
               <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -5238,7 +5238,7 @@ export const section18Tasks = [
       </ul>
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 54 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [160,"x"], vertical: [180,"a"], xTicks: [[152,"-1"],[180,"0"],[264,"3"]], yTicks: [[104,"4"],[118,"3"],[230,"-5"]] }}>
         <svg viewBox="0 0 420 440" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 ед = 28px. Центр (0,0) зафиксирован на x=180, y=160) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -5392,7 +5392,7 @@ export const section18Tasks = [
       </ul>
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 55 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [220,"x"], vertical: [180,"a"], xTicks: [[152,"-1"],[180,"0"],[236,"2"]], yTicks: [[108,"4"],[192,"1"]] }}>
         <svg viewBox="0 0 420 340" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 ед = 28px. Центр (0,0) зафиксирован на x=180, y=220) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -5532,7 +5532,7 @@ export const section18Tasks = [
       </ul>
 
             {/* Высокоточный и крупный центрированный SVG-график Задачи 56 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [180,"x"], vertical: [160,"a"], xTicks: [[128,"-1"],[160,"0"],[224,"2"]], yTicks: [[116,"2"],[134.745166,"\\sqrt2"],[148,"1"],[212,"-1"],[225.254834,"-\\sqrt2"]] }}>
         <svg viewBox="0 0 420 380" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 ед = 32px. Центр (0,0) зафиксирован на x=160, y=180) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -5695,7 +5695,7 @@ export const section18Tasks = [
       <p>На рисунке показаны граница ОДЗ, окружность <InlineMath math={`\\gamma`} /> и два крайних положения прямой: при <InlineMath math={`a=1`} /> и <InlineMath math={`a=9`} /> она касается <InlineMath math={`\\gamma`} />.</p>
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 57 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [140,"x"], vertical: [240,"y"], xTicks: [[120,"-5"],[240,"0"]] }}>
         <svg viewBox="0 0 440 340" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 ед = 24px. Центр (0,0) зафиксирован на x=240, y=140) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -5814,7 +5814,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 58 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [170,"x"], vertical: [170,"y"], xTicks: [[170,"0"]] }}>
         <svg viewBox="0 0 340 340" className="w-full max-w-[340px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 деление = 24px. Центр (0,0) зафиксирован на x=170, y=170) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -5916,9 +5916,9 @@ export const section18Tasks = [
       
       {/* Высокоточный и крупный центрированный SVG-график Задачи 59 (max-w-[340px]) */}
       <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
-        <CoordinateDiagram
+        <CoordinateDiagram equalScale
           xRange={[-1.45, 1.9]} yRange={[-1.45, 1.9]} axes={['t', 'y']}
-          xTicks={[-1, 0, 1]} yTicks={[-1, 0, 1]}
+          xTicks={[]} yTicks={[]}
           curves={[
             { math: 't^2+y^2=\\left(\\frac87\\right)^2', points: sampleCurve((u) => [8*Math.cos(u)/7, 8*Math.sin(u)/7], 0, 2*Math.PI), color: '#2563eb' },
             { math: 't+y=\\frac{11}{7}', points: [[-2/7, 13/7], [13/7, -2/7]], color: '#dc2626' },
@@ -5985,7 +5985,7 @@ export const section18Tasks = [
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 60 */}
       <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
-        <CoordinateDiagram
+        <CoordinateDiagram equalScale
           xRange={[-4.2, 4.2]} yRange={[-4.2, 4.2]} axes={['x', 'y']}
           xTicks={[-3, 0, 3]} yTicks={[-3, 0, 3]}
           curves={[
@@ -6039,7 +6039,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и наглядный график числовой прямой с «крышами» штриховки */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [70,"a"], xTicks: [[60,"-12"],[140,"0"],[190,"2"],[250,"4"],[310,"6"]] }}>
         <svg viewBox="0 0 440 120" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Главная ось параметра а */}
           <line x1="20" y1="70" x2="400" y2="70" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
@@ -6140,7 +6140,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 62 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [200,"x"], vertical: [160,"y"], xTicks: [[160,"0"]] }}>
         <svg viewBox="0 0 360 360" className="w-full max-w-[360px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 деление = 24px. Центр (0,0) зафиксирован на x=160, y=200) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -6242,7 +6242,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и наглядный график числовой прямой параметров с «крышами» штриховки */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [70,"a"], xTicks: [[60,"-\\frac{17}{4}"],[120,"-2"],[280,"2"],[340,"\\frac{17}{4}"]] }}>
         <svg viewBox="0 0 440 120" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Главная ось параметра а */}
           <line x1="20" y1="70" x2="400" y2="70" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
@@ -6350,7 +6350,7 @@ export const section18Tasks = [
       <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
         <CoordinateDiagram
           xRange={[-3.2, 3.2]} yRange={[-3.4, 3.4]} axes={['x', 'y']}
-          xTicks={[-2, -1, 0, 1, 2]} yTicks={[-3, -1, 0, 1, 3]}
+          xTicks={[{ value: -0.5, math: '-\\frac12' }, { value: 0.5, math: '\\frac12' }]} yTicks={[-1, 1]}
           curves={[
             { math: 'y=x+\\frac{1}{4x}', points: sampleCurve((x) => [x, x+0.25/x], 0.08, 3.1, 302), color: '#2563eb' },
             { points: sampleCurve((x) => [x, x+0.25/x], -3.1, -0.08, 302), color: '#2563eb' },
@@ -6404,7 +6404,7 @@ export const section18Tasks = [
       <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
         <CoordinateDiagram
           xRange={[-0.1, 2.1]} yRange={[-0.1, 2.9]} axes={['x', 'y']}
-          xTicks={[0, { value: 1/3, math: '\\frac13' }, 1, 2]} yTicks={[0, 1, 2]}
+          xTicks={[{ value: 1/3, math: '\\frac13' }, 1]} yTicks={[1]}
           curves={[
             { math: 'F_0(x)', points: sampleCurve((u) => [1+u*u, u+Math.sqrt(1+u*u)], 0, 1), color: '#2563eb' },
             { math: 'F_{1/3}(x)', points: sampleCurve((u) => [1/3+u*u, 2*u], 0, Math.sqrt(5/3)), color: '#16a34a' },
@@ -6461,7 +6461,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 66 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [240,"x"], vertical: [160,"a"], xTicks: [[160,"0"],[256,"3"],[288,"4"]], yTicks: [[184.57437415779594,"\\sqrt3"],[224,"\\frac12"]] }}>
         <svg viewBox="0 0 420 420" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 деление = 32px. Центр (0,0) зафиксирован на x=160, y=240) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -6601,7 +6601,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 67 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [220,"x"], vertical: [220,"a"], xTicks: [[220,"0"]], yTicks: [[312.78384,"8-8\\sqrt2"]] }}>
         <svg viewBox="0 0 380 460" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 деление = 28px. Центр (0,0) зафиксирован на x=220, y=220. Деление 5 удалено из массива) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -6775,7 +6775,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и наглядный график числовой прямой параметров с встроенным рендером KaTeX через foreignObject */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [75,"a"], xTicks: [[60,"-\\frac43"],[160,"-\\frac12"],[240,"-\\frac13"],[340,"\\frac23"]] }}>
         <svg viewBox="0 0 440 140" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Главная ось параметра а */}
           <line x1="20" y1="75" x2="400" y2="75" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
@@ -6909,7 +6909,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и наглядный график числовой прямой параметров с встроенным рендером KaTeX через foreignObject */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [85,"a"], xTicks: [[60,"\\frac14"],[120,"\\frac12"],[200,"3"],[320,"\\frac{11}{2}"],[360,"\\frac{23}{4}"]] }}>
         <svg viewBox="0 0 440 140" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Главная ось параметра а */}
           <line x1="20" y1="85" x2="400" y2="85" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
@@ -7050,7 +7050,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и наглядный график числовой прямой параметров с встроенным рендером KaTeX через foreignObject */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [75,"a"], xTicks: [[60,"-\\frac52"],[160,"-\\frac12"],[240,"-\\frac14"],[340,"2"]] }}>
         <svg viewBox="0 0 440 140" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Главная ось параметра а */}
           <line x1="20" y1="75" x2="400" y2="75" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
@@ -7176,7 +7176,7 @@ export const section18Tasks = [
       <p>Изобразим условия существования и отбора корней на числовой прямой параметра <InlineMath math={`a`} />:</p>
 
       {/* Высокоточный и наглядный график числовой прямой параметров с встроенным рендером KaTeX через foreignObject */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [75,"a"], xTicks: [[60,"-\\frac54"],[130,"-\\frac34"],[200,"0"],[270,"\\frac34"],[340,"\\frac54"]] }}>
         <svg viewBox="0 0 440 140" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Главная ось параметра а */}
           <line x1="20" y1="75" x2="400" y2="75" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
@@ -7286,7 +7286,7 @@ export const section18Tasks = [
       <BlockMath math={`x - a - 7 = 0 \\implies a = x - 7 \\quad \\text{или} \\quad x + a - 2 = 0 \\implies a = 2 - x.`} />
 
             {/* Высокоточный и крупный центрированный SVG-график Задачи 72 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [220,"x"], vertical: [80,"a"], xTicks: [[80,"0"],[176,"4"],[272,"8"]], yTicks: [[196,"1"],[268,"-2"],[280,"-\\frac52"],[332.83749,"\\frac{-3-\\sqrt{41}}{2}"]] }}>
         <svg viewBox="0 0 400 420" className="w-full max-w-[400px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 деление = 24px. Центр (0,0) зафиксирован на x=80, y=220) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -7448,7 +7448,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 73 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [180,"x"], vertical: [100,"y"], xTicks: [[100,"0"],[172,"3"]] }}>
         <svg viewBox="0 0 360 360" className="w-full max-w-[360px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 деление = 24px. Центр (0,0) зафиксирован на x=100, y=180) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -7569,7 +7569,7 @@ export const section18Tasks = [
       <BlockMath math={`y = a - x.`} />
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 74 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [140,"x"], vertical: [180,"y"], xTicks: [[108,"-3"],[180,"0"]], yTicks: [[116,"1"]] }}>
         <svg viewBox="0 0 380 380" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 деление = 24px. Центр (0,0) зафиксирован на x=180, y=140) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -7712,7 +7712,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 75 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [180,"x"], vertical: [160,"y"], xTicks: [[112,"-2"],[160,"0"]], yTicks: [[156,"1"]] }}>
         <svg viewBox="0 0 380 390" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 деление = 24px. Центр (0,0) зафиксирован на x=160, y=180) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -7875,7 +7875,7 @@ export const section18Tasks = [
       <p>Изобразим полученные условия отбора корней на числовой прямой параметра <InlineMath math={`a`} />:</p>
 
       {/* Высокоточный и наглядный график числовой прямой параметра а */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [50,"a"], xTicks: [[200,"-1"],[340,"0"]] }}>
         <svg viewBox="0 0 440 100" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Главная ось параметра а */}
           <line x1="20" y1="50" x2="400" y2="50" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
@@ -7960,7 +7960,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 77 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [200,"x"], vertical: [180,"y"], xTicks: [[180,"0"]] }}>
         <svg viewBox="0 0 380 380" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 деление = 24px. Центр (0,0) зафиксирован на x=180, y=200) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -8172,7 +8172,7 @@ export const section18Tasks = [
       <p>Изобразим полученные условия отбора корней на числовой прямой параметра <InlineMath math={`a`} />:</p>
 
       {/* Высокоточный и наглядный график числовой прямой параметра а */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [50,"a"], xTicks: [[200,"-9"],[340,"0"]] }}>
         <svg viewBox="0 0 440 100" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Главная ось параметра а */}
           <line x1="20" y1="50" x2="400" y2="50" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
@@ -8253,7 +8253,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный центрированный SVG-график Задачи 79 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [200,"x"], vertical: [140,"y"], xTicks: [[100,"-2"],[140,"0"],[260,"6"]], yTicks: [[140,"3"]] }}>
         <svg viewBox="0 0 380 380" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая координатная сетка (Шаг: 1 деление = 20px. Центр (0,0) зафиксирован на x=140, y=200) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -8424,7 +8424,7 @@ export const section18Tasks = [
       </p>
 
       {/* Высокоточный и крупный центрированный SVG-график Задачи 80 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [320,"x"], vertical: [40,"y"], xTicks: [[40,"0"],[64,"1"],[184,"6"]] }}>
         <svg viewBox="0 0 380 380" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 деление = 24px. Центр (0,0) зафиксирован на x=40, y=320) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -8632,7 +8632,7 @@ export const section18Tasks = [
       </div>
 
       {/* Высокоточный и крупный центрированный SVG-график кусочно-линейной функции t(x) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [180,"x"], vertical: [100,"t"], xTicks: [[100,"0"],[170,"1"],[240,"2"]] }}>
         <svg viewBox="0 0 360 220" className="w-full max-w-[360px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Оси координат */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -8742,7 +8742,7 @@ export const section18Tasks = [
       </div>
 
       {/* Высокоточный и крупный центрированный SVG-график функции "ступенька" */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [120,"x"], vertical: [240,"t"], xTicks: [[72,"-7"],[240,"0"],[312,"3"]], yTicks: [[60,"10"],[180,"-10"]] }}>
         <svg viewBox="0 0 380 240" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Оси координат */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -8871,7 +8871,7 @@ export const section18Tasks = [
       </div>
 
       {/* Высокоточный крупный центрированный SVG-график параболы g(t) */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [180,"t"], vertical: [130,"y"], xTicks: [[75,"-1"],[130,"0"],[185,"1"],[212.5,"\\frac32"]], yTicks: [[108,"4"],[216,"-2"]] }}>
         <svg viewBox="0 0 420 280" className="w-full max-w-[420px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Оси координат */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -8956,7 +8956,7 @@ export const section18Tasks = [
       </div>
 
             {/* Высокоточный крупный центрированный SVG-график Задачи 85 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [200,"x"], vertical: [160,"y"], xTicks: [[88,"-3"],[160,"0"],[184,"1"],[256,"4"]], yTicks: [[152,"2"]] }}>
         <svg viewBox="0 0 380 340" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 деление = 24px. Центр (0,0) зафиксирован на x=160, y=200) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -9090,7 +9090,7 @@ export const section18Tasks = [
       <p>Чтобы отрезок <InlineMath math={`t \\in [-1; 1]`} /> полностью удовлетворял неравенству <InlineMath math={`f(t) \\leq 0`} />, необходимо и достаточно, чтобы максимальное значение функции (достигаемое на левой границе) было неположительным:</p>
 
       {/* Высокоточный крупный центрированный SVG-график Задачи 86 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [140,"t"], vertical: [160,"y"], xTicks: [[120,"-1"],[160,"0"],[200,"1"]] }}>
         <svg viewBox="0 0 360 220" className="w-full max-w-[360px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Оси координат */}
           <g stroke="#000000" strokeWidth="1.2" className="dark:stroke-slate-400">
@@ -9206,7 +9206,7 @@ export const section18Tasks = [
       </div>
 
       {/* Высокоточный крупный центрированный SVG-график Задачи 87 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [180,"x"], vertical: [72,"y"], xTicks: [[72,"0"],[180,"3"]] }}>
         <svg viewBox="0 0 360 220" className="w-full max-w-[360px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Схематичная надпись перемещена строго в правый верхний угол */}
           <text data-kind="curve" data-math={`f(x),\\ a=3`} fill="#2563eb" />
@@ -9251,7 +9251,7 @@ export const section18Tasks = [
         </div>
 
         {/* Высокоточный наглядный график числовой оси интервалов параметра а */}
-        <ParameterDiagram>
+        <ParameterDiagram layout={{ horizontal: [50,"a"], xTicks: [[110,"-5"],[210,"-\\frac12"],[310,"4"]] }}>
           <svg viewBox="0 0 440 90" className="w-full max-w-[440px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
 
             {/* Главная ось параметра а */}
@@ -9352,7 +9352,7 @@ export const section18Tasks = [
       </div>
 
             {/* Высокоточный крупный центрированный SVG-график Задачи 88 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [140,"x"], vertical: [190,"y"], xTicks: [[145,"-3"],[190,"0"],[235,"3"]], yTicks: [[50,"6"]] }}>
         <svg viewBox="0 0 380 260" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
 
           {/* Легкая сетка (Шаг: 1 деление = 15px. Центр (0,0) на x=190, y=140) */}
@@ -9556,7 +9556,7 @@ export const section18Tasks = [
 
         <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
           <p>Пример при <InlineMath math={`a=-\\frac32`} />: оба корня отрицательны.</p>
-          <ParameterDiagram>
+          <ParameterDiagram layout={{ horizontal: [120,"t"], vertical: [210,"f(t)"], xTicks: [[130,"-1"],[210,"0"]], yTicks: [[150,"-\\frac12"]] }}>
             <svg viewBox="0 0 360 235" className="w-full max-w-[360px] h-auto font-sans text-xs select-none">
             <path d="M 20,120 H 335 M 328,116 L 335,120 L 328,124 M 210,215 V 20 M 206,27 L 210,20 L 214,27" stroke="#000000" strokeWidth="1.2" fill="none" className="dark:stroke-slate-400" />
             <text x="340" y="124" className="fill-slate-900 dark:fill-slate-300">t</text>
@@ -9642,7 +9642,7 @@ export const section18Tasks = [
       </div>
 
       {/* Высокоточный крупный центрированный SVG-график Задачи 91 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [260,"x"], vertical: [100,"y"], xTicks: [[100,"0"],[300,"10"]], yTicks: [[60,"10"]] }}>
         <svg viewBox="0 0 380 340" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Легкая сетка (Шаг: 1 деление = 20px. Центр (0,0) зафиксирован на x=100, y=260) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -9754,7 +9754,7 @@ export const section18Tasks = [
       </div>
 
             {/* Высокоточный крупный центрированный SVG-график Задачи 92 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [260,"x"], vertical: [60,"y"], xTicks: [[60,"0"],[120,"3"],[180,"6"]], yTicks: [[80,"9"]] }}>
         <svg viewBox="0 0 380 340" className="w-full max-w-[380px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Координатная сетка (Шаг: 1 деление = 20px. Центр (0,0) зафиксирован на x=60, y=260) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -10066,7 +10066,7 @@ export const section18Tasks = [
 
       <div className="my-6 flex flex-col items-center bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
         <p>Отбор среди нулей дискриминантов: подходят две крайние точки.</p>
-        <ParameterDiagram>
+        <ParameterDiagram layout={{ horizontal: [55,"a"], xTicks: [[80.10422324210518,"\\frac{-2-\\sqrt{19}}{10}"],[168.10422324210518,"\\frac{2-\\sqrt{19}}{10}"],[271.89577675789485,"\\frac{-2+\\sqrt{19}}{10}"],[359.89577675789485,"\\frac{2+\\sqrt{19}}{10}"]] }}>
           <svg viewBox="0 0 460 100" className="w-full max-w-[460px] h-auto font-sans text-xs select-none">
           <line x1="20" y1="55" x2="420" y2="55" stroke="#000000" strokeWidth="1.5" className="dark:stroke-slate-400" />
           <path d="M 412,51 L 420,55 L 412,59" stroke="#000000" strokeWidth="1.5" fill="none" className="dark:stroke-slate-400" />
@@ -10138,7 +10138,7 @@ export const section18Tasks = [
       </div>
 
       {/* Высокоточный крупный центрированный SVG-график Задачи 97 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [240,"x"], vertical: [160,"y"], xTicks: [[100,"-3"],[150,"-\\frac12"],[160,"0"],[180,"1"]], yTicks: [[226,"1"],[289,"-\\frac72"]] }}>
         <svg viewBox="0 0 340 380" className="w-full max-w-[340px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Масштабная сетка: 1 ед по x = 20px, 1 ед по y = 14px */}
           {/* Начало координат (0,0) зафиксировано строго на x=160, y=240 */}
@@ -10248,7 +10248,7 @@ export const section18Tasks = [
             {math: 'y=t^2-7/3', points: sampleCurve(t => [t, t*t-7/3], -2, 2)},
             {math: 't=1', points: [[1,-3],[1,2]], dashed: true, color: '#dc2626'},
           ]}
-          points={[{x: 1, y: -4/3, math: 'f(1)<0'}]} xTicks={[-1,1]} yTicks={[-2,-1,1]} />
+          points={[{x: 1, y: -4/3, math: 'f(1)<0'}]} xTicks={[1]} yTicks={[{ value: -4/3, math: '-\\frac43' }]} />
         <p>Если корень кратный, дискриминант равен нулю:</p>
         <BlockMath math={`D=\\dfrac{(a+2)(a+42)}{(a-3)^2}=0\\quad\\iff\\quad a=-2\\ \\text{или}\\ a=-42.`} />
         <p>При <InlineMath math={`a=-2`} /> получаем <InlineMath math={`(t-1)^2=0`} /> и ровно один корень <InlineMath math={`x=0`} />. При <InlineMath math={`a=-42`} /> получаем <InlineMath math={`\\left(t-\\dfrac73\\right)^2=0`} />, поэтому два корня <InlineMath math={`x=\\pm\\log_7\\dfrac73`} />.</p>
@@ -10288,7 +10288,7 @@ export const section18Tasks = [
       <CoordinateDiagram
         xRange={[-4.5, 2.5]}
         yRange={[-3, 1]}
-        xTicks={[-4, -3, -2, -1, 0, 1, 2]}
+        xTicks={[-2, -1]}
         yTicks={[
           -2,
           { value: -1.5, math: `-\\frac32` },
@@ -10347,7 +10347,7 @@ export const section18Tasks = [
         <p>Пример графика при <InlineMath math={`a=5`} />.</p>
         <CoordinateDiagram xRange={[-3, 2]} yRange={[-2, 18]} axes={['x','y']}
           curves={[{math: 'y=f(x)', points: sampleCurve(x => [x, 10*Math.abs(x+1)-Math.abs(2*x-Math.abs(x+5))-5*x], -3, 2, 200)}]}
-          points={[{x: -1, y: -1, math: 'f(-1)=-1'}]} xTicks={[-2,-1,1]} yTicks={[-1,5,10,15]} />
+          points={[{x: -1, y: -1, math: 'f(-1)=-1'}]} xTicks={[-1]} yTicks={[-1]} />
       </div>
 
       <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
@@ -10381,7 +10381,7 @@ export const section18Tasks = [
         <p>Пример графика при <InlineMath math={`a=1`} />.</p>
         <CoordinateDiagram xRange={[-1, 4]} yRange={[-2, 18]} axes={['x','y']}
           curves={[{math: 'y=f(x)', points: sampleCurve(x => [x, 9*Math.abs(x-1)+Math.abs(3*x-Math.abs(x-1))-4*x], -1, 4, 200)}]}
-          points={[{x: 1, y: -1, math: 'f(1)=-1'}]} xTicks={[-1,1,2,3]} yTicks={[-1,5,10,15]} />
+          points={[{x: 1, y: -1, math: 'f(1)=-1'}]} xTicks={[1]} yTicks={[-1]} />
       </div>
 
       <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
@@ -10549,7 +10549,7 @@ export const section18Tasks = [
             {math:'a=(t-t^2)/3',points:sampleCurve(t=>[t,(t-t*t)/3],0,2.5),color:'#7c3aed'},
             {math:'a=(t^2+t)/3',points:sampleCurve(t=>[t,(t*t+t)/3],-2.5,0),color:'#7c3aed'},
           ]} points={[{x:-1.5,y:2.25,color:'#2563eb'},{x:1.5,y:-2.25,color:'#2563eb'},{x:0.5,y:1/12,color:'#7c3aed'},{x:-0.5,y:-1/12,color:'#7c3aed'}]}
-          xTicks={[-2,-1,1,2]} yTicks={[-2,-1,1,2]} />
+          xTicks={[-1, 1]} yTicks={[]} />
         <p>Замена <InlineMath math={`(t,a)\\mapsto(-t,-a)`} /> сохраняет уравнение, поэтому достаточно разобрать <InlineMath math={`a\\geq0`} />. При <InlineMath math={`a=0`} /> уравнение имеет три решения: <InlineMath math={`t=-1,0,1`} />.</p>
         <p>При <InlineMath math={`a>0`} /> на луче <InlineMath math={`t>0`} /> возможны только точки кривой <InlineMath math={`a=(t-t^2)/3`} /> на <InlineMath math={`(0;1)`} />. Её максимум равен <InlineMath math={`1/12`} />, так что число точек равно двум при <InlineMath math={`0<a<1/12`} />, одной при <InlineMath math={`a=1/12`} /> и нулю при <InlineMath math={`a>1/12`} />.</p>
         <p>На луче <InlineMath math={`t<0`} /> основная дуга <InlineMath math={`a=-t^2-3t`} /> имеет максимум <InlineMath math={`9/4`} /> и значение <InlineMath math={`5/4`} /> при <InlineMath math={`t=-5/2`} />. Вторая дуга <InlineMath math={`a=(t^2+t)/3`} /> на <InlineMath math={`[-5/2;-1]`} /> убывает от <InlineMath math={`5/4`} /> до нуля. Для <InlineMath math={`0<a<5/4`} /> каждая дуга даёт по одной точке. При <InlineMath math={`a=5/4`} /> точка стыка общая, но у основной дуги есть ещё одна точка. При <InlineMath math={`5/4<a<9/4`} /> основная дуга даёт две точки. При <InlineMath math={`a=9/4`} /> остаётся одна точка, а при <InlineMath math={`a>9/4`} /> пересечений нет.</p>
@@ -10591,7 +10591,7 @@ export const section18Tasks = [
       </div>
 
       <p>На рисунке показаны шесть пересечений при <InlineMath math={`a=2`} />.</p>
-      <CoordinateDiagram xRange={[-3,7]} yRange={[-7,4]} axes={['x','y']}
+      <CoordinateDiagram equalScale xRange={[-3,7]} yRange={[-7,4]} axes={['x','y']}
         curves={[
           {math:'xy=2',points:sampleCurve(x=>[x,2/x],0.5,7,200),color:'#2563eb'},
           {points:sampleCurve(x=>[x,2/x],-3,-2/7,150),color:'#2563eb'},
@@ -10605,7 +10605,7 @@ export const section18Tasks = [
           ...[-1,1].map(sign=>{const x=3+sign*Math.sqrt(11);return {x,y:x-6};}),
           ...[-1,1].map(sign=>{const x=3+sign*Math.sqrt(7);return {x,y:x-6};}),
         ]}
-        xTicks={[-2,2,4,6]} yTicks={[-4,-2,2]} />
+        xTicks={[]} yTicks={[]} />
 
       <div className="space-y-2">
         <p>4) Анализ количества точек пересечения:</p>
@@ -10690,7 +10690,7 @@ export const section18Tasks = [
         <p>Функция <InlineMath math={`D`} /> убывает от <InlineMath math={`+\\infty`} /> до <InlineMath math={`16/5`} /> при <InlineMath math={`x\\leq37/5`} />, возрастает до <InlineMath math={`5`} /> на <InlineMath math={`[37/5;8]`} />, убывает до <InlineMath math={`4`} /> на <InlineMath math={`[8;9]`} /> и снова возрастает до <InlineMath math={`+\\infty`} /> при <InlineMath math={`x\\geq9`} />. Подсчитываем пересечения с уровнем <InlineMath math={`R^2`} />, считая общие концы промежутков по одному разу:</p>
         <BlockMath math={`\\begin{array}{c|ccccccc} R^2 & [0;16/5)&16/5&(16/5;4)&4&(4;5)&5&(5;+\\infty)\\\\\\hline\\text{Число решений}&0&1&2&3&4&3&2\\end{array}`} />
         <p>На рисунке — четыре пересечения при <InlineMath math={`R^2=9/2`} />.</p>
-        <CoordinateDiagram xRange={[5.5,11.5]} yRange={[-2.5,2.5]} axes={['x','y']}
+        <CoordinateDiagram equalScale xRange={[5.5,11.5]} yRange={[-2.5,2.5]} axes={['x','y']}
           curves={[
             {math:'y=||x-8|-|x-6||',points:[[5.5,2],[6,2],[7,0],[8,2],[11.5,2]],color:'#2563eb'},
             {math:'(x-9)^2+y^2=9/2',points:sampleCurve(t=>[9+Math.sqrt(4.5)*Math.cos(t),Math.sqrt(4.5)*Math.sin(t)],0,2*Math.PI,240),color:'#dc2626'},
@@ -10699,7 +10699,7 @@ export const section18Tasks = [
             ...[-1,1].map(sign=>{const x=37/5+sign*Math.sqrt(13/50);return {x,y:2*Math.abs(x-7)};}),
             ...[-1,1].map(sign=>({x:9+sign*Math.sqrt(1/2),y:2})),
           ]}
-          xTicks={[6,7,8,9,10,11]} yTicks={[-2,-1,1,2]} />
+          xTicks={[6, 7, 8, 9]} yTicks={[2]} />
         <p>Требуемое число решений получается при <InlineMath math={`4\\leq R^2\\leq5`} />, то есть при <InlineMath math={`7\\leq a^2\\leq8`} />.</p>
       </div>
 
@@ -10742,7 +10742,7 @@ export const section18Tasks = [
       </div>
 
             {/* Высокоточный крупный центрированный SVG-график Задачи 107 */}
-      <ParameterDiagram>
+      <ParameterDiagram layout={{ horizontal: [260,"x"], vertical: [60,"y"], xTicks: [[60,"0"],[120,"2"],[150,"3"],[210,"5"]], yTicks: [[200,"2"],[80,"6"]] }}>
         <svg viewBox="0 0 340 320" className="w-full max-w-[340px] h-auto overflow-visible font-sans text-xs select-none mx-auto">
           {/* Масштабная сетка (Шаг: 1 деление = 30px. Центр (0,0) зафиксирован на x=60, y=260) */}
           <g stroke="#f1f5f9" strokeWidth="0.8" className="dark:stroke-slate-900">
@@ -11169,7 +11169,7 @@ export const section18Tasks = [
           {points:[[2,0],[2,1]],color:'#7c3aed',dashed:true},
         ]}
         points={[{x:1.5,y:1},{x:2.5,y:1},{x:2,y:0}]}
-        xTicks={[1,2,3,4]} yTicks={[-4,-2,-1,1,2,4]} />
+        xTicks={[2]} yTicks={[1]} />
 
       <div className="space-y-2">
         <p>Высота и половина основания полученного треугольника:</p>
@@ -11195,7 +11195,7 @@ export const section18Tasks = [
           {points:[[2,0],[2,-1]],color:'#7c3aed',dashed:true},
         ]}
         points={[{x:1.5,y:-1},{x:2.5,y:-1},{x:2,y:0}]}
-        xTicks={[1,2,3,4]} yTicks={[-4,-2,-1,1,2,4]} />
+        xTicks={[2]} yTicks={[-1]} />
 
       <div className="space-y-2">
         <p>Высота и половина основания треугольника в этом случае:</p>
