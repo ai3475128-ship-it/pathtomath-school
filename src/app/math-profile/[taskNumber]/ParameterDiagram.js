@@ -105,15 +105,24 @@ function collectPlot(children, namespace, legend) {
 const plotWidth = 810;
 const gridSize = 45;
 
+function textWidth(math) {
+  return math
+    .replace(/\\sqrt/g, 'rr')
+    .replace(/\\pi/g, 'p')
+    .replace(/\\[a-z]+|[{}^_\s]/g, '')
+    .split('')
+    .reduce((width, symbol) => width + (symbol === '-' ? 21 : symbol === '+' ? 27 : 14), 0);
+}
+
 function labelSize(math) {
   const formula = math.replace(/\\dfrac/g, '\\frac');
-  const symbols = formula
-    .replace(/\\sqrt/g, 'xxx')
-    .replace(/\\pi/g, 'x')
-    .replace(/\\[a-z]+|[{}^_]/g, '');
+  const fraction = formula.match(/^(.*?)\\frac(?:\{(.*)\}|(\w))(?:\{(.*)\}|(\w))$/);
+  const width = fraction
+    ? textWidth(fraction[1]) + 0.8 * Math.max(textWidth(fraction[2] ?? fraction[3]), textWidth(fraction[4] ?? fraction[5]))
+    : textWidth(formula);
   return {
     math: formula,
-    width: Math.max(36, Math.min(220, symbols.length * 16 + 22)),
+    width: Math.max(20, Math.min(220, Math.ceil(width + 8))),
     height: /\\frac/.test(formula) ? 48 : 36,
   };
 }
@@ -136,7 +145,52 @@ function curveIntersects(box, segments) {
   });
 }
 
-function positionLabels(layout, translateX, translateY, height, segments) {
+function placeTick(tick, labels, segments, axisX, axisY, height) {
+  const { at, math, axis, offset } = tick;
+  const size = labelSize(math);
+  const x = axis === 'x' ? at : axisX;
+  const y = axis === 'y' ? at : axisY;
+  const origin = axis === 'x' && math === '0' && x === axisX;
+  const boxAt = ([dx, dy]) => ({
+    ...size,
+    x: x + dx - size.width / 2,
+    y: y + dy - size.height / 2,
+  });
+  if (offset) return boxAt(offset);
+
+  const clear = box =>
+    (axisX === null || box.x + box.width <= axisX - 4 || box.x >= axisX + 4) &&
+    (box.y + box.height <= axisY - 4 || box.y >= axisY + 4) &&
+    !labels.some(label => overlaps(box, label)) && !curveIntersects(box, segments);
+
+  const side = size.width / 2 + 10;
+  const rise = size.height / 2 + (axisX === null ? 16 : 10);
+  // Try positions closest to the division, then allow small offsets along the axis.
+  for (const gap of [0, 10, 22, 38, 60, 88, 122]) {
+    const shift = axis === 'x' ? side : rise;
+    const along = origin
+      ? [side, -side, side + gap, -side - gap, side + 2 * gap, -side - 2 * gap]
+      : [0, shift / 2, -shift / 2, shift, -shift, shift + gap, -shift - gap];
+    for (const adjustment of along) {
+      const offsets = axis === 'x'
+        ? [[adjustment, rise + gap], [adjustment, -rise - gap]]
+        : [[-side - gap, adjustment], [side + gap, adjustment]];
+      for (const candidate of offsets) {
+        const box = boxAt(candidate);
+        if (clear(box)) return box;
+      }
+    }
+  }
+
+  // Dense ticks can use an extra row below the plot while keeping their axis anchor.
+  const dx = axisX === null || Math.abs(x - axisX) > side
+    ? 0 : (x >= axisX ? side : -side);
+  let box = boxAt([dx, height - y + rise]);
+  while (!clear(box)) box = { ...box, y: box.y + size.height + 6 };
+  return box;
+}
+
+function positionLabels(layout, translateX, translateY, height, segments = []) {
   const { horizontal, vertical, xTicks = [], yTicks = [] } = layout;
   const axisY = translateY(horizontal[0]);
   const axisX = vertical ? translateX(vertical[0]) : null;
@@ -148,54 +202,55 @@ function positionLabels(layout, translateX, translateY, height, segments) {
     labels.push({ ...size, x: axisX - size.width / 2, y: -size.height - 5 });
   }
 
+  const corners = [[0, 0], [plotWidth, 0], [plotWidth, height], [0, height]];
+  const frame = corners.map((corner, index) => [corner, corners[(index + 1) % corners.length]]);
+  const obstacles = [...frame, ...segments];
   const marks = [];
-  const levels = yTicks.map(([value, math]) => ({ ...labelSize(math), at: translateY(value) }))
-    .sort((a, b) => a.at - b.at);
-  let nextTop = -Infinity;
-  for (const level of levels) {
-    level.y = Math.max(level.at - level.height / 2, nextTop);
-    nextTop = level.y + level.height + 4;
-  }
-  const needsLeaders = levels.some(level => level.y > level.at - level.height / 2);
-  for (const { at, ...level } of levels) {
-    labels.push({ ...level, x: -level.width - (needsLeaders ? 26 : 9), rightAligned: true });
-    marks.push(needsLeaders
-      ? `M 4 ${at} H -5 L -21 ${level.y + level.height / 2}`
-      : `M -5 ${at} h 9`);
-  }
-
-  const add = box => {
-    if (labels.some(label => overlaps(box, label))) return false;
+  const leaders = [];
+  // SVG ticks may include an offset from the division in normalized plot units.
+  const divisions = [
+    ...xTicks.map(([value, math, ...offset]) => ({ axis: 'x', at: translateX(value), math, offset: offset.length ? offset : null })),
+    ...yTicks.map(([value, math, ...offset]) => ({ axis: 'y', at: translateY(value), math, offset: offset.length ? offset : null })),
+  ];
+  for (const tick of divisions) {
+    const onXAxis = tick.axis === 'x';
+    const x = onXAxis ? tick.at : axisX;
+    const y = onXAxis ? axisY : tick.at;
+    const box = placeTick(tick, labels, obstacles, axisX, axisY, height);
     labels.push(box);
-    return true;
-  };
-  for (const [value, math] of xTicks) {
-    const at = translateX(value);
-    const size = labelSize(math);
-    const left = at - size.width / 2;
-    if (segments) {
-      const candidates = math === '0' && axisX === at
-        ? [{ ...size, x: at + 7, y: axisY + 7 }, { ...size, x: at + 7, y: axisY - size.height - 7 }]
-        : [{ ...size, x: left, y: axisY - size.height - 7 }, { ...size, x: left, y: axisY + 7 }];
-      const placed = candidates.some(box =>
-        box.x >= 0 && box.x + box.width <= plotWidth &&
-        box.y >= 0 && box.y + box.height <= height &&
-        (axisX === null || box.x + box.width < axisX - 4 || box.x > axisX + 4) &&
-        !curveIntersects(box, segments) && add(box),
-      );
-      if (placed) continue;
+    if (tick.math !== '0' || x !== axisX) {
+      marks.push(onXAxis ? `M ${x} ${y - 5} v 10` : `M ${x - 5} ${y} h 10`);
     }
-    let row = 0;
-    while (!add({ ...size, x: left, y: height + 8 + row * 54 })) row++;
-    marks.push(`M ${at} ${height - 4} v 9`);
+
+    const dx = box.x + box.width / 2 - x;
+    const dy = box.y + box.height / 2 - y;
+    const ratio = Math.min(1, (box.width / 2 + 2) / Math.abs(dx), (box.height / 2 + 2) / Math.abs(dy));
+    const length = Math.hypot(dx, dy);
+    const shifted = Math.abs(onXAxis ? dx : dy) > 1;
+    if (length * (1 - ratio) > (shifted ? 4 : 12)) {
+      const start = 3 / length;
+      leaders.push({
+        from: [x + dx * start, y + dy * start],
+        to: [x + dx * (1 - ratio), y + dy * (1 - ratio)],
+        label: box,
+      });
+    }
   }
-  return { labels, marks, axisX, axisY };
+  const leaderPaths = leaders.flatMap(({ from, to, label }) => {
+    const routes = [[from, to], [from, [to[0], from[1]], to], [from, [from[0], to[1]], to]];
+    const route = routes.find(points => {
+      const lines = points.slice(1).map((point, index) => [points[index], point]);
+      return labels.every(other => other === label || !curveIntersects(other, lines));
+    });
+    return route ? [`M ${route.map(point => point.join(' ')).join(' L ')}`] : [];
+  });
+  return { labels, marks, leaders: leaderPaths, axisX, axisY };
 }
 
 function DiagramLabel({ label }) {
   return (
     <foreignObject x={label.x} y={label.y} width={label.width} height={label.height}>
-      <div xmlns="http://www.w3.org/1999/xhtml" className={styles.axisLabel} style={label.rightAligned ? { justifyContent: 'flex-end' } : undefined}>
+      <div xmlns="http://www.w3.org/1999/xhtml" className={styles.axisLabel}>
         <InlineMath math={label.math} />
       </div>
     </foreignObject>
@@ -212,7 +267,7 @@ export function ParameterDiagram({ children, layout, segments }) {
   const translateX = value => (value - x) * scale;
   const translateY = value => (value - y) * scale;
   const plot = collectPlot(props.children, id, legend);
-  const { labels, marks, axisX, axisY } = positionLabels(layout, translateX, translateY, plotHeight, segments);
+  const { labels, marks, leaders, axisX, axisY } = positionLabels(layout, translateX, translateY, plotHeight, segments);
   const left = Math.max(12, ...labels.map(label => -label.x + 4));
   const top = Math.max(12, ...labels.map(label => -label.y + 4));
   const right = Math.max(12, ...labels.map(label => label.x + label.width - plotWidth + 4));
@@ -241,6 +296,7 @@ export function ParameterDiagram({ children, layout, segments }) {
             <g transform={`scale(${scale}) translate(${-x} ${-y})`}>{plot}</g>
           </g>
           <rect width={plotWidth} height={plotHeight} rx="6" className={styles.frame} />
+          {leaders.length > 0 && <path d={leaders.join(' ')} className={styles.tickLeaders} />}
           {marks.length > 0 && <path d={marks.join(' ')} fill="none" className={styles.railTicks} />}
           {labels.map((label, index) => <DiagramLabel key={index} label={label} />)}
         </svg>
@@ -273,8 +329,20 @@ export function sampleCurve(pointAt, from, to, steps = 120) {
 
 const curveColors = ['#2563eb', '#0f766e', '#9333ea', '#c2410c', '#dc2626', '#0891b2'];
 
+function scaleTicks(min, max) {
+  const unit = 10 ** Math.floor(Math.log10((max - min) / 4));
+  const step = [unit, 2 * unit, 5 * unit, 10 * unit].find(value => value >= (max - min) / 4);
+  const ticks = [];
+  for (let i = Math.ceil(min / step); i <= Math.floor(max / step); i++) {
+    if (i !== 0) ticks.push(Number((i * step).toPrecision(10)));
+  }
+  return ticks;
+}
+
 function tickLabels(ticks, convert) {
-  return ticks.map(tick => typeof tick === 'number' ? [convert(tick), String(tick)] : [convert(tick.value), tick.math]);
+  return ticks.map(tick => typeof tick === 'number'
+    ? [convert(tick), String(tick).replace('.', '{,}')]
+    : [convert(tick.value), tick.math]);
 }
 
 export function CoordinateDiagram({ xRange, yRange, axes = ['x', 'a'], curves, points = [], xTicks = [], yTicks = [], equalScale = false }) {
@@ -289,11 +357,13 @@ export function CoordinateDiagram({ xRange, yRange, axes = ['x', 'a'], curves, p
   const axisY = Math.max(0, Math.min(height, y(0)));
   const axisX = Math.max(0, Math.min(width, x(0)));
   const showZero = xMin <= 0 && xMax >= 0 && yMin <= 0 && yMax >= 0;
+  const horizontalTicks = xTicks.length ? xTicks : scaleTicks(xMin, xMax);
+  const verticalTicks = yTicks.length ? yTicks : scaleTicks(yMin, yMax);
   const layout = {
     horizontal: [axisY, axes[0]],
     vertical: [axisX, axes[1]],
-    xTicks: tickLabels(showZero && !xTicks.includes(0) ? [0, ...xTicks] : xTicks, x),
-    yTicks: tickLabels(showZero ? yTicks.filter(tick => tick !== 0) : yTicks, y),
+    xTicks: tickLabels(showZero && !horizontalTicks.includes(0) ? [0, ...horizontalTicks] : horizontalTicks, x),
+    yTicks: tickLabels(showZero ? verticalTicks.filter(tick => tick !== 0) : verticalTicks, y),
   };
   const segments = [];
   const paths = curves.map(({ points: coordinates }) => {
@@ -320,8 +390,6 @@ export function CoordinateDiagram({ xRange, yRange, axes = ['x', 'a'], curves, p
         <g className={styles.axes} fill="none" strokeWidth="1.7">
           <path d={`M 0,${axisY} H ${width - 2} M ${width - 12},${axisY - 5} L ${width - 2},${axisY} L ${width - 12},${axisY + 5}`} />
           <path d={`M ${axisX},${height} V 2 M ${axisX - 5},12 L ${axisX},2 L ${axisX + 5},12`} />
-          {layout.xTicks.map(([at], index) => <path key={index} d={`M ${at},${axisY - 5} v 10`} />)}
-          {layout.yTicks.map(([at], index) => <path key={index} d={`M ${axisX - 5},${at} h 10`} />)}
         </g>
         {curves.map(({ math, color, dashed }, index) => {
           const ink = color ?? curveColors[index % curveColors.length];
