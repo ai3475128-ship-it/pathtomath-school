@@ -11,6 +11,8 @@
   --edge: #3f638e;
   --cut: #007b75;
   --cut-fill: #2dd4bf55;
+  --guide: #9a5009;
+  --guide-fill: #f59e0b28;
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--border);
@@ -31,6 +33,8 @@
   --edge: #aabde0;
   --cut: #61e6d3;
   --cut-fill: #2dd4bf40;
+  --guide: #fbc67c;
+  --guide-fill: #f59e0b36;
 }
 
 .heading {
@@ -86,6 +90,7 @@
   width: 100%;
   height: auto;
   max-height: 28rem;
+  aspect-ratio: 420 / 370;
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -96,7 +101,7 @@
 .edge, .hiddenEdge { stroke: var(--edge); stroke-width: 1.65; }
 .hiddenEdge { stroke-dasharray: 5 5; stroke-opacity: 0.58; }
 .section { fill: var(--cut-fill); stroke: var(--cut); stroke-width: 2.6; stroke-linejoin: round; }
-.vertex, .marker text, .activeMarker text {
+.vertex, .marker text, .activeMarker text, .tracePoint text, .auxiliaryPoint text {
   text-anchor: middle;
   dominant-baseline: central;
   font: italic 700 18px Georgia, serif;
@@ -107,8 +112,33 @@
 }
 .vertex { fill: var(--ink); }
 .marker text, .activeMarker text { fill: var(--accent); font-size: 20px; }
-.marker circle, .activeMarker circle { fill: var(--accent); stroke: var(--paper); stroke-width: 1.5; }
-.activeMarker circle { stroke-width: 2.5; }
+.pointTarget { fill: transparent; cursor: grab; }
+.scene:active .pointTarget { cursor: grabbing; }
+.pointDot, .marker text, .activeMarker text { pointer-events: none; }
+.pointDot { fill: var(--accent); stroke: var(--paper); stroke-width: 1.5; }
+.activeMarker .pointDot { stroke-width: 2.5; }
+.constructionFace { fill: var(--guide-fill); stroke: var(--guide); stroke-width: 1.2; }
+.constructionLines { pointer-events: none; }
+.guide, .trace { fill: none; stroke-width: 2.4; stroke-linecap: round; }
+.guide { stroke: var(--guide); stroke-dasharray: 6 5; }
+.trace { stroke: var(--cut); }
+.tracePoint { fill: var(--cut); }
+.auxiliaryPoint { fill: var(--guide); }
+.tracePoint circle, .auxiliaryPoint circle { stroke: var(--paper); stroke-width: 1.5; }
+
+.stepPanel {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.7rem 0;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--panel);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+.stepPanel .hint { margin: 0; }
+.stepTitle { margin-bottom: 0.3rem; font-weight: 800; color: var(--accent); }
 
 .hint { color: var(--muted); font-size: 0.81rem; margin: 0.5rem 0; }
 .field, .cutControls, .points { display: grid; gap: 0.55rem; }
