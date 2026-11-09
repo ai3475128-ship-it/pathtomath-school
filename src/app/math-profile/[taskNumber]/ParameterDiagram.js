@@ -158,36 +158,36 @@ function placeTick(tick, labels, segments, axisX, axisY, height) {
   });
   if (offset) return boxAt(offset);
 
-  const clear = box =>
-    (axisX === null || box.x + box.width <= axisX - 4 || box.x >= axisX + 4) &&
-    (box.y + box.height <= axisY - 4 || box.y >= axisY + 4) &&
-    !labels.some(label => overlaps(box, label)) && !curveIntersects(box, segments);
-
+  const clear = box => {
+    // The zero glyph has extra vertical padding in the formula box.
+    const ink = origin ? { ...box, y: box.y + 6, height: box.height - 12 } : box;
+    return !labels.some(label => overlaps(box, label)) && !curveIntersects(ink, segments);
+  };
+  const horizontal = axis === 'x';
   const side = size.width / 2 + 10;
-  const rise = size.height / 2 + (axisX === null ? 16 : 10);
-  // Try positions closest to the division, then allow small offsets along the axis.
-  for (const gap of [0, 10, 22, 38, 60, 88, 122]) {
-    const shift = axis === 'x' ? side : rise;
-    const along = origin
-      ? [side, -side, side + gap, -side - gap, side + 2 * gap, -side - 2 * gap]
-      : [0, shift / 2, -shift / 2, shift, -shift, shift + gap, -shift - gap];
-    for (const adjustment of along) {
-      const offsets = axis === 'x'
-        ? [[adjustment, rise + gap], [adjustment, -rise - gap]]
-        : [[-side - gap, adjustment], [side + gap, adjustment]];
-      for (const candidate of offsets) {
-        const box = boxAt(candidate);
-        if (clear(box)) return box;
-      }
-    }
+  const rise = size.height / 2 + (origin ? 3 : axisX === null ? 16 : 10);
+
+  // Keep the center of each label aligned with its tick.
+  for (const gap of [0, 10, 22, 38, 60, 88]) {
+    const offsets = origin
+      ? [[side + gap, rise + gap], [-side - gap, rise + gap], [side + gap, -rise - gap], [-side - gap, -rise - gap]]
+      : horizontal
+        ? [[0, rise + gap], [0, -rise - gap]]
+        : [[-side - gap, 0], [side + gap, 0]];
+    const box = offsets.map(boxAt).find(clear);
+    if (box) return box;
   }
 
-  // Dense ticks can use an extra row below the plot while keeping their axis anchor.
-  const dx = axisX === null || Math.abs(x - axisX) > side
-    ? 0 : (x >= axisX ? side : -side);
-  let box = boxAt([dx, height - y + rise]);
-  while (!clear(box)) box = { ...box, y: box.y + size.height + 6 };
-  return box;
+  // Use the margin when there is no free space along the projection inside the plot.
+  const before = horizontal ? y + rise : x + side;
+  const after = horizontal ? height - y + rise : plotWidth - x + side;
+  const step = horizontal ? size.height + 8 : size.width + 8;
+  for (let gap = 0; ; gap += step) {
+    const offsets = [-(before + gap), after + gap].sort((a, b) => Math.abs(a) - Math.abs(b));
+    const boxes = offsets.map(delta => boxAt(horizontal ? [0, delta] : [delta, 0]));
+    const box = boxes.find(candidate => !labels.some(label => overlaps(candidate, label)));
+    if (box) return box;
+  }
 }
 
 function positionLabels(layout, translateX, translateY, height, segments = []) {
@@ -204,9 +204,11 @@ function positionLabels(layout, translateX, translateY, height, segments = []) {
 
   const corners = [[0, 0], [plotWidth, 0], [plotWidth, height], [0, height]];
   const frame = corners.map((corner, index) => [corner, corners[(index + 1) % corners.length]]);
-  const obstacles = [...frame, ...segments];
+  const axisLines = [[[0, axisY], [plotWidth, axisY]]];
+  if (vertical) axisLines.push([[axisX, 0], [axisX, height]]);
+  const guides = [...frame, ...axisLines];
+  const obstacles = [...guides, ...segments];
   const marks = [];
-  const leaders = [];
   // SVG ticks may include an offset from the division in normalized plot units.
   const divisions = [
     ...xTicks.map(([value, math, ...offset]) => ({ axis: 'x', at: translateX(value), math, offset: offset.length ? offset : null })),
@@ -221,30 +223,8 @@ function positionLabels(layout, translateX, translateY, height, segments = []) {
     if (tick.math !== '0' || x !== axisX) {
       marks.push(onXAxis ? `M ${x} ${y - 5} v 10` : `M ${x - 5} ${y} h 10`);
     }
-
-    const dx = box.x + box.width / 2 - x;
-    const dy = box.y + box.height / 2 - y;
-    const ratio = Math.min(1, (box.width / 2 + 2) / Math.abs(dx), (box.height / 2 + 2) / Math.abs(dy));
-    const length = Math.hypot(dx, dy);
-    const shifted = Math.abs(onXAxis ? dx : dy) > 1;
-    if (length * (1 - ratio) > (shifted ? 4 : 12)) {
-      const start = 3 / length;
-      leaders.push({
-        from: [x + dx * start, y + dy * start],
-        to: [x + dx * (1 - ratio), y + dy * (1 - ratio)],
-        label: box,
-      });
-    }
   }
-  const leaderPaths = leaders.flatMap(({ from, to, label }) => {
-    const routes = [[from, to], [from, [to[0], from[1]], to], [from, [from[0], to[1]], to]];
-    const route = routes.find(points => {
-      const lines = points.slice(1).map((point, index) => [points[index], point]);
-      return labels.every(other => other === label || !curveIntersects(other, lines));
-    });
-    return route ? [`M ${route.map(point => point.join(' ')).join(' L ')}`] : [];
-  });
-  return { labels, marks, leaders: leaderPaths, axisX, axisY };
+  return { labels, marks, axisX, axisY };
 }
 
 function DiagramLabel({ label }) {
@@ -267,7 +247,7 @@ export function ParameterDiagram({ children, layout, segments }) {
   const translateX = value => (value - x) * scale;
   const translateY = value => (value - y) * scale;
   const plot = collectPlot(props.children, id, legend);
-  const { labels, marks, leaders, axisX, axisY } = positionLabels(layout, translateX, translateY, plotHeight, segments);
+  const { labels, marks, axisX, axisY } = positionLabels(layout, translateX, translateY, plotHeight, segments);
   const left = Math.max(12, ...labels.map(label => -label.x + 4));
   const top = Math.max(12, ...labels.map(label => -label.y + 4));
   const right = Math.max(12, ...labels.map(label => label.x + label.width - plotWidth + 4));
@@ -296,7 +276,6 @@ export function ParameterDiagram({ children, layout, segments }) {
             <g transform={`scale(${scale}) translate(${-x} ${-y})`}>{plot}</g>
           </g>
           <rect width={plotWidth} height={plotHeight} rx="6" className={styles.frame} />
-          {leaders.length > 0 && <path d={leaders.join(' ')} className={styles.tickLeaders} />}
           {marks.length > 0 && <path d={marks.join(' ')} fill="none" className={styles.railTicks} />}
           {labels.map((label, index) => <DiagramLabel key={index} label={label} />)}
         </svg>

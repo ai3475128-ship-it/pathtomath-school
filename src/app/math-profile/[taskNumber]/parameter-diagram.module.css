@@ -115,13 +115,6 @@
   stroke-width: 1.3;
 }
 
-.tickLeaders {
-  fill: none;
-  stroke: var(--diagram-axis);
-  stroke-width: 1.15;
-  opacity: 0.6;
-}
-
 .task12Guide {
   fill: none;
   stroke: var(--diagram-axis);
