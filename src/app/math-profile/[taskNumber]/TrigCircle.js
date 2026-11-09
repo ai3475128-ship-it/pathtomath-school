@@ -5,7 +5,6 @@ import styles from './trig-circle.module.css';
 
 const radius = 86;
 const turnSpacing = 21;
-const axisLimit = radius + 12;
 
 function angleMath(value, denominator) {
   if (value === 0) return '0';
@@ -45,13 +44,15 @@ function labelSize(formulas) {
   return { width: Math.ceil(width + 8), height: height + 2 * (formulas.length - 1) };
 }
 
-function labelFits(box, placed, radii) {
+function labelFits(box, placed, radii, axisLimit) {
   const { left, top, width, height } = box;
   const right = left + width;
   const bottom = top + height;
   const onHorizontalAxis = top < 2 && bottom > -2 && left < axisLimit + 2 && right > -axisLimit - 2;
   const onVerticalAxis = left < 2 && right > -2 && top < axisLimit + 2 && bottom > -axisLimit - 2;
-  if (onHorizontalAxis || onVerticalAxis) return false;
+  const onHorizontalArrow = top < 5 && bottom > -5 && left < axisLimit + 2 && right > axisLimit - 7;
+  const onVerticalArrow = left < 5 && right > -5 && top < -axisLimit + 7 && bottom > -axisLimit - 2;
+  if (onHorizontalAxis || onVerticalAxis || onHorizontalArrow || onVerticalArrow) return false;
 
   const near = Math.hypot(Math.max(left, -right, 0), Math.max(top, -bottom, 0));
   const far = Math.hypot(Math.max(Math.abs(left), Math.abs(right)), Math.max(Math.abs(top), Math.abs(bottom)));
@@ -63,7 +64,7 @@ function labelFits(box, placed, radii) {
   );
 }
 
-function placeLabel(marker, placed, radii, neighbors) {
+function placeLabel(marker, placed, radii, neighbors, axisLimit) {
   const { width, height } = labelSize(marker.formulas);
   const nx = marker.x / marker.radius;
   const ny = marker.y / marker.radius;
@@ -82,7 +83,7 @@ function placeLabel(marker, placed, radii, neighbors) {
         const y = ny * distance + nx * shift;
         if (neighbors.some(other => x * (other.x - marker.x) + y * (other.y - marker.y) > 0)) continue;
         const box = { left: x - width / 2, top: y - height / 2, width, height };
-        if (labelFits(box, placed, radii)) return box;
+        if (labelFits(box, placed, radii, axisLimit)) return box;
       }
     }
   }
@@ -140,6 +141,7 @@ export default function TrigCircle({ interval: [start, end], roots = [], denomin
   }
 
   const radii = turns.map(turn => turn.distance);
+  const axisLimit = (radii.at(-1) ?? radius) + 18;
   const labels = [];
   const crowdedFirst = markers.map(marker => {
     const neighbors = markers.filter(other => other !== marker && other.radius === marker.radius);
@@ -147,7 +149,7 @@ export default function TrigCircle({ interval: [start, end], roots = [], denomin
     return { marker, neighbors, separation };
   }).sort((a, b) => (a.separation - b.separation) || (Number(b.marker.root) - Number(a.marker.root)));
   for (const { marker, neighbors } of crowdedFirst) {
-    labels.push({ ...marker, ...placeLabel(marker, labels, radii, neighbors) });
+    labels.push({ ...marker, ...placeLabel(marker, labels, radii, neighbors, axisLimit) });
   }
   const limit = Math.max(axisLimit + 12, ...radii.map(r => r + 10));
   const left = Math.min(-limit, ...labels.map(label => label.left - 6));
@@ -161,11 +163,6 @@ export default function TrigCircle({ interval: [start, end], roots = [], denomin
 
   return (
     <figure className={`${diagram.figure} ${styles.figure}`} data-trig-circle>
-      <figcaption className={styles.caption}>
-        Синяя дуга показывает промежуток.
-        {turns.length > 1 && ' Внешняя дуга продолжает его после первого оборота.'}
-        {(openStart || openEnd) && ' Пустой кружок обозначает открытую границу.'}
-      </figcaption>
       <div className={styles.turn}>
         <p className={styles.interval}><InlineMath math={interval} /></p>
         <svg viewBox={`${left} ${top} ${right - left} ${bottom - top}`} className={styles.svg}
@@ -178,7 +175,7 @@ export default function TrigCircle({ interval: [start, end], roots = [], denomin
           {turns.map(turn => <Arc key={turn.from} {...turn} />)}
           {labels.map(label => (
             <g key={`${label.radius}-${label.formulas[0]}`}>
-              <circle cx={label.x} cy={label.y} r={label.boundary ? 4.3 : 3.5}
+              <circle cx={label.x} cy={label.y} r={label.boundary ? 3.8 : 3}
                 className={label.open ? styles.open : styles.point} />
               <foreignObject x={label.left} y={label.top} width={label.width} height={label.height}>
                 <div xmlns="http://www.w3.org/1999/xhtml" className={label.root ? `${styles.angleLabel} ${styles.rootLabel}` : styles.angleLabel}>
@@ -188,9 +185,6 @@ export default function TrigCircle({ interval: [start, end], roots = [], denomin
             </g>
           ))}
         </svg>
-        {roots.length === 0 && (
-          <p className={styles.empty}>{allAngles ? 'Все углы выделенной дуги подходят.' : 'На этой дуге корней нет.'}</p>
-        )}
       </div>
     </figure>
   );

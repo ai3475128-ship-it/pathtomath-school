@@ -1,15 +1,11 @@
-.figure {
+.figure[data-trig-circle] {
   --trig-arc: #2563eb;
+  max-width: 20rem;
   margin-block: 0.75rem;
 }
 
 :global(.dark) .figure {
   --trig-arc: #60a5fa;
-}
-
-.caption {
-  padding: 0.25rem 0.4rem 0.65rem;
-  text-align: center;
 }
 
 .turn {
@@ -30,7 +26,7 @@
 .svg {
   display: block;
   width: 100%;
-  max-width: 23rem;
+  max-width: 18rem;
   height: auto;
   margin-block: 0.3rem;
 }
@@ -61,7 +57,7 @@
 .arc {
   fill: none;
   stroke: var(--trig-arc);
-  stroke-width: 4;
+  stroke-width: 2.5;
 }
 
 .point {
@@ -73,10 +69,5 @@
 .open {
   fill: var(--diagram-paper);
   stroke: var(--trig-arc);
-  stroke-width: 2;
-}
-
-.empty {
-  margin: 0;
-  text-align: center;
+  stroke-width: 1.5;
 }
