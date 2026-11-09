@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import TaskListBlock from './TaskListBlock';
 import ErrorReportModal from '../ErrorReportModal';
+import SectionExplorer from '../stereometry/SectionExplorer';
 
 export const dynamic = 'force-dynamic';
 
@@ -100,6 +101,8 @@ export default async function TaskPage({ params }) {
             {pageTitle}
           </h1>
         </div>
+
+        {(taskNumber === '14-intro' || taskNumber === '3') && <SectionExplorer key={taskNumber} />}
 
         {/* Список задач и модалка репортов */}
         <div className="space-y-4 pt-2">
