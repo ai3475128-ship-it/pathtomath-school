@@ -11,7 +11,7 @@ export default async function RegisterPage({ searchParams }) {
   if (errorType === 'unavailable') errorMessage = 'Регистрация временно недоступна. Обратитесь к преподавателю.';
   if (errorType === 'fields') errorMessage = 'Заполните все поля. Пароль — от 8 символов, не более 72 байт.';
   if (errorType === 'exists') errorMessage = 'Пользователь с таким Email уже существует.';
-  if (errorType === 'server') errorMessage = 'Произошла ошибка при сохранении. Попробуйте еще раз.';
+  if (errorType === 'server') errorMessage = 'Не удалось отправить письмо с кодом. Попробуйте позже или обратитесь к преподавателю.';
 
   return (
     <div className="min-h-[calc(100vh-5rem)] flex items-center justify-center p-6 relative overflow-hidden bg-white dark:bg-[#03000a]">

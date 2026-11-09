@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import bcrypt from "bcryptjs";
 import { connectDB } from "@/lib/db";
 import { sendEmail, smtpConfigured } from "@/lib/email";
+import { safeSmtpError } from "@/lib/smtp-options";
 import { text, emailAddress, passwordValue } from "@/lib/validation";
 import { verificationChallenge } from "@/lib/verification";
 import { consumeRateLimit } from "@/lib/rate-limit";
@@ -44,9 +45,9 @@ export async function registerNewUser(formData) {
       subject: "Код активации профиля",
       text: `Привет! Код активации PATHtoMATH: ${challenge.code}. Код действует 15 минут.`,
     });
-  } catch {
+  } catch (error) {
     await db.run("DELETE FROM PendingUsers WHERE id=?", [challenge.id]);
-    console.error("Не удалось отправить письмо подтверждения");
+    console.error("Не удалось отправить письмо подтверждения", safeSmtpError(error));
     redirect("/register?error=server");
   }
   redirect(`/verify-email?email=${encodeURIComponent(email)}`);
