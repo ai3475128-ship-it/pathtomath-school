@@ -1,4 +1,5 @@
 import catalog from "./task-catalog.json" with { type: "json" };
+import { displayNumberForModule } from "./ege-sections.js";
 export const getTaskModule = (slug) =>
   typeof slug === "string" && Object.hasOwn(catalog, slug) ? slug : null;
 export const isTaskInModule = (slug, id) =>
@@ -21,6 +22,6 @@ export async function getEgeProgress(db, userId) {
       userId,
     ])
   )
-    .filter((x) => /^\d+$/.test(x.module) && isTaskInModule(x.module, x.taskId))
-    .map((x) => ({ section: Number(x.module), taskId: x.taskId }));
+    .filter((x) => !x.module.endsWith("-intro") && displayNumberForModule(x.module) && isTaskInModule(x.module, x.taskId))
+    .map((x) => ({ section: displayNumberForModule(x.module), taskId: x.taskId }));
 }

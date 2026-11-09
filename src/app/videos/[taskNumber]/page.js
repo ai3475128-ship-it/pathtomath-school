@@ -3,15 +3,17 @@ import { notFound } from "next/navigation";
 import { requireUser, canAccessCourse } from "@/lib/auth";
 import { connectDB } from "@/lib/db";
 import { videoEmbedUrl } from "@/lib/videos";
+import { egeSection } from "@/lib/ege-sections";
 export default async function VideoSectionPage({ params }) {
   const user = await requireUser(),
     { taskNumber } = await params,
     section = Number(taskNumber);
-  if (!/^\d+$/.test(taskNumber) || section < 1 || section > 19) notFound();
+  const topic = egeSection(taskNumber);
+  if (!topic) notFound();
   const db = await connectDB(),
     videos = await db.all(
-      "SELECT * FROM Video WHERE sectionNum=? ORDER BY createdAt DESC",
-      [section],
+      `SELECT * FROM Video WHERE sectionNum IN (${topic.videoSections.map(() => "?").join(",")}) ORDER BY createdAt DESC`,
+      topic.videoSections,
     );
   return (
     <div className="min-h-screen bg-white dark:bg-[#03000a] p-8 text-slate-600 dark:text-slate-300 transition-colors duration-500">

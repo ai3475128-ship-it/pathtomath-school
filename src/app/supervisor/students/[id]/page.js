@@ -1,3 +1,4 @@
+import { displayNumberForModule } from '@/lib/ege-sections';
 import { connectDB } from '@/lib/db';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
@@ -69,7 +70,7 @@ export default async function StudentProfilePage({ params }) {
 
     // Расчет решенных задач ученика по секциям (Строки 103-108 в profile/page.js)
     progressRows.forEach(({ section: sectionNum }) => {
-      if (sectionNum >= 1 && sectionNum <= 19) {
+      if (sectionNum >= 1 && sectionNum <= 20) {
         solvedStatsBySection[sectionNum] = (solvedStatsBySection[sectionNum] || 0) + 1;
       }
     });
@@ -84,7 +85,7 @@ export default async function StudentProfilePage({ params }) {
   }
 
   // 🚀 КЛОНИРОВАНО ИЗ PROFILE: Точное название объекта и подсчет .length (Строки 110-118 в profile/page.js)
-  const totalStatsBySection = {
+  const oldTotalsBySection = {
     1: section1Tasks?.length || 0, 2: section2Tasks?.length || 0, 3: section3Tasks?.length || 0,
     4: section4Tasks?.length || 0, 5: section5Tasks?.length || 0, 6: section6Tasks?.length || 0,
     7: section7Tasks?.length || 0, 8: section8Tasks?.length || 0, 9: section9Tasks?.length || 0,
@@ -93,6 +94,11 @@ export default async function StudentProfilePage({ params }) {
     16: section16Tasks?.length || 0, 17: section17Tasks?.length || 0, 18: section18Tasks?.length || 0,
     19: section19Tasks?.length || 0
   };
+  const totalStatsBySection = {};
+  for (const [module, count] of Object.entries(oldTotalsBySection)) {
+    const number = displayNumberForModule(module);
+    if (number) totalStatsBySection[number] = (totalStatsBySection[number] || 0) + count;
+  }
 
   const isPremium = rawStudent.role === 'PREMIUM_STUDENT';
   const platformTotalTasks = Object.values(totalStatsBySection).reduce((a, b) => a + b, 0);
@@ -147,11 +153,11 @@ export default async function StudentProfilePage({ params }) {
         {/* Сетка шкал банка задач */}
         <div className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border border-blue-100/60 shadow-sm space-y-6">
           
-          {/* Первая часть ЕГЭ (Задания 1-12) */}
+          {/* Первая часть ЕГЭ (Задания 1-13) */}
           <div>
-            <h3 className="text-xs font-black uppercase tracking-wider text-sky-500 dark:text-purple-400 mb-3 border-b dark:border-purple-950/20 pb-1">Первая часть ЕГЭ (Задания 1-12)</h3>
+            <h3 className="text-xs font-black uppercase tracking-wider text-sky-500 dark:text-purple-400 mb-3 border-b dark:border-purple-950/20 pb-1">Первая часть ЕГЭ (Задания 1-13)</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-              {[...Array(12)].map((_, i) => {
+              {[...Array(13)].map((_, i) => {
                 const taskNum = i + 1;
                 
                 // 🚀 СИНХРОНИЗИРОВАНО С ЛК УЧЕНИКА: Строки 158-159 из profile/page.js
@@ -176,12 +182,12 @@ export default async function StudentProfilePage({ params }) {
             </div>
           </div>
 
-          {/* Вторая часть ЕГЭ (Задания 13-19) */}
+          {/* Вторая часть ЕГЭ (Задания 14-20) */}
           <div className="pt-4 border-t border-slate-100 dark:border-purple-950/20">
-            <h3 className="text-xs font-black uppercase tracking-wider text-sky-500 dark:text-purple-400 mb-3 border-b dark:border-purple-950/20 pb-1">Вторая часть ЕГЭ (Задания 13-19)</h3>
+            <h3 className="text-xs font-black uppercase tracking-wider text-sky-500 dark:text-purple-400 mb-3 border-b dark:border-purple-950/20 pb-1">Вторая часть ЕГЭ (Задания 14-20)</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {[...Array(7)].map((_, i) => {
-                const taskNum = i + 13;
+                const taskNum = i + 14;
                 
                 // 🚀 СИНХРОНИЗИРОВАНО С ЛК УЧЕНИКА: Строки 158-159 из profile/page.js
                 const sectionSolved = solvedStatsBySection[taskNum] || 0;

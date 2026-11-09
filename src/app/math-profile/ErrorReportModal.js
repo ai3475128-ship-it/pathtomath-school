@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { sendErrorReport } from './actions';
+import { taskModuleForRoute } from '@/lib/ege-sections';
 
 export default function ErrorReportModal({ sectionNumber,module }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,7 @@ export default function ErrorReportModal({ sectionNumber,module }) {
     setStatusMessage({ type: '', text: '' });
 
     const formData = new FormData();
-    formData.append('module',String(selectedSection));
+    formData.append('module', taskModuleForRoute(String(selectedSection)) || '');
     formData.append('taskId', taskId || 0);
     formData.append('description', description);
 
@@ -92,7 +93,7 @@ export default function ErrorReportModal({ sectionNumber,module }) {
                       <div className="fixed inset-0 z-10" onClick={() => setIsSelectOpen(false)} />
                       <div className="absolute left-0 right-0 mt-2 max-h-48 overflow-y-auto bg-white/95 backdrop-blur-md border border-blue-100 rounded-xl shadow-xl z-20 font-medium text-sm p-1.5 divide-y divide-blue-50/50 dark:bg-[#140e24]/95 dark:border-purple-500/30">
                         {module && module !== String(parseInt(module,10)) && <div onClick={() => {setSelectedSection(module);setIsSelectOpen(false);}} className="px-3 py-2.5 rounded-lg cursor-pointer text-sky-600">Текущий раздел</div>}
-                        {[...Array(19)].map((_, idx) => (
+                        {[...Array(20)].map((_, idx) => (
                           <div
                             key={idx + 1}
                             onClick={() => { setSelectedSection(String(idx + 1)); setIsSelectOpen(false); }}

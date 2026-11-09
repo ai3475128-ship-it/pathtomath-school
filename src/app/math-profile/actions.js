@@ -4,6 +4,7 @@ import { connectDB, createId } from "@/lib/db";
 import { getCurrentUser } from "@/lib/auth";
 import { text } from "@/lib/validation";
 import { getTaskModule, isTaskInModule } from "@/lib/task-modules";
+import { displayNumberForModule } from "@/lib/ege-sections";
 import { consumeRateLimit } from "@/lib/rate-limit";
 export async function sendErrorReport(formData) {
   const slug = getTaskModule(formData.get("module")),
@@ -36,7 +37,7 @@ export async function sendErrorReport(formData) {
     [
       createId(),
       user?.id || "GUEST",
-      parseInt(slug, 10) || Number(slug.match(/\d+/)?.[0]),
+      displayNumberForModule(slug) || Number(slug.match(/\d+/)?.[0]),
       taskId,
       description,
       "OPEN",

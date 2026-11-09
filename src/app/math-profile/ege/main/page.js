@@ -1,15 +1,9 @@
+import { EGE_SECTIONS } from '@/lib/ege-sections';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function MathProfilePage() {
-  const taskTitles = {
-    1: 'Планиметрия', 2: 'Векторы', 3: 'Стереометрия', 4: 'Начала теории вероятностей',
-    5: 'Вероятности сложных событий', 6: 'Простейшие уравнения', 7: 'Вычисления и преобразования',
-    8: 'Производная и первообразная', 9: 'Задачи с прикладным содержанием', 10: 'Текстовые задачи',
-    11: 'Графики функций', 12: 'Наибольшее и наименьшее значение', 13: 'Уравнения',
-    14: 'Стереометрическая задача', 15: 'Неравенства', 16: 'Экономическая задача',
-    17: 'Планиметрическая задача', 18: 'Задача с параметром', 19: 'Числа и их свойства'
-  };
+
 
   return (
     <div className="relative min-h-screen p-8 transition-colors duration-500 text-slate-600 dark:text-slate-400 overflow-x-hidden flex flex-col items-center">
@@ -64,8 +58,7 @@ export default function MathProfilePage() {
             <h2 className="text-2xl font-black text-slate-800 dark:text-slate-100 tracking-tight">Часть 1</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {[...Array(12)].map((_, i) => {
-              const taskNum = i + 1;
+            {EGE_SECTIONS.slice(0, 13).map(({ number: taskNum, title }) => {
               return (
                 <Link 
                   key={taskNum} 
@@ -87,7 +80,7 @@ export default function MathProfilePage() {
                                    text-slate-800 group-hover:text-white
                                    dark:text-white dark:group-hover:text-white"
                     >
-                      {taskTitles[taskNum]}
+                      {title}
                     </h3>
                   </div>
                 </Link>
@@ -102,8 +95,7 @@ export default function MathProfilePage() {
             <h2 className="text-2xl font-black text-slate-800 dark:text-slate-100 tracking-tight">Часть 2</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {[...Array(7)].map((_, i) => {
-              const taskNum = i + 13;
+            {EGE_SECTIONS.slice(13).map(({ number: taskNum, title }) => {
               return (
                 <Link 
                   key={taskNum} 
@@ -125,7 +117,7 @@ export default function MathProfilePage() {
                                    text-slate-800 group-hover:text-white
                                    dark:text-white dark:group-hover:text-white"
                     >
-                      {taskTitles[taskNum]}
+                      {title}
                     </h3>
                   </div>
                 </Link>
