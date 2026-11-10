@@ -75,14 +75,16 @@ function introCase(number, next) {
 test('three-perpendiculars diagram keeps the projected lines in the plane', () => {
   const section = introCase(15, 18);
   assert.match(section, /M20 78 97 50 178 88 101 116Z/);
-  const sloped = section.match(/M([\d.]+) ([\d.]+)V([\d.]+) M[\d.]+ [\d.]+ ([\d.]+) ([\d.]+)/);
-  assert.ok(sloped);
-  const [, ax, ay, hy, bx, by] = sloped.map(Number);
+  const vertical = section.match(/M([\d.]+) ([\d.]+)V([\d.]+)/);
+  const sloped = section.match(/M75\.3 25\.5 ([\d.]+) ([\d.]+)/);
+  assert.ok(vertical && sloped);
+  const [, ax, ay, hy] = vertical.map(Number);
+  const [, bx, by] = sloped.map(Number);
   const A = [ax, ay], H = [ax, hy], B = [bx, by];
   const projectedY = [81, 38], projectedX = [77, -28];
   close(cross(subtract(B, H), projectedY), 0, .001);
   assert.ok(A[1] < H[1]);
-  const floorLine = section.match(/M75\.3 81\.5 122\.28 103\.54 M([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)/);
+  const floorLine = section.match(/M([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)" delay=\{660\}/);
   assert.ok(floorLine);
   const [, x1, y1, x2, y2] = floorLine.map(Number);
   const L1 = [x1, y1], L2 = [x2, y2];
@@ -93,8 +95,9 @@ test('three-perpendiculars diagram keeps the projected lines in the plane', () =
 
 test('Menelaus secant intersects two sides and the extension with the correct ratio', () => {
   const section = introCase(18, 19);
-  assert.match(section, /M50 110 90 35 150 110Z M150 110h45/);
-  const secant = section.match(/M([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)" className=\{styles\.line\}/);
+  assert.match(section, /M50 110 90 35 150 110Z/);
+  assert.match(section, /M150 110h45/);
+  const secant = section.match(/M([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)" delay=\{700\}/);
   assert.ok(secant);
   const [, dx, dy, fx, fy] = secant.map(Number);
   const A = [50, 110], B = [90, 35], C = [150, 110], D = [dx, dy], F = [fx, fy];
@@ -120,10 +123,12 @@ test('vector sum reaches the opposite corner of the parallelogram', () => {
   const start = component.lastIndexOf('    case 2: return');
   const end = component.lastIndexOf('    case 3: return');
   const section = component.slice(start, end);
-  const sides = section.match(/M([\d.]+) ([\d.]+)H([\d.]+) M[\d.]+ [\d.]+ ([\d.]+) ([\d.]+)/);
+  const horizontal = section.match(/M([\d.]+) ([\d.]+)H([\d.]+)/);
+  const slanted = section.match(/M43 110 ([\d.]+) ([\d.]+)" delay=\{180\}/);
   const outer = section.match(/M([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)" className=\{styles\.dashed\}/);
-  assert.ok(sides && outer);
-  const [, ox, oy, ax, bx, by] = sides.map(Number);
+  assert.ok(horizontal && slanted && outer);
+  const [, ox, oy, ax] = horizontal.map(Number);
+  const [, bx, by] = slanted.map(Number);
   const [, fromX, fromY, sumX, sumY, toX, toY] = outer.map(Number);
   close(fromX, ax); close(fromY, oy);
   close(toX, bx); close(toY, by);
@@ -146,4 +151,20 @@ test('the Venn diagram displays the correct intersection', () => {
   assert.match(section, />4, 5<\/Text>/);
   assert.match(section, /A ∩ B = \{'\{3\}'\}/);
   assert.match(section, /clipPath="url\(#ege-intro-sets-overlap\)"/);
+});
+
+
+test('selected previews draw in stages once and respect reduced motion', () => {
+  const chosen = [introCase(15, 18), introCase(18, 19), component.slice(component.lastIndexOf('    case 2: return'), component.lastIndexOf('    case 3: return'))];
+  for (const section of chosen) {
+    assert.ok((section.match(/<SmoothLine\b/g) || []).length >= 2);
+    assert.ok((section.match(/<SmoothFade\b/g) || []).length >= 2);
+    const delays = [...section.matchAll(/delay=\{(\d+)\}/g)].map(match => Number(match[1]));
+    assert.ok(delays.some(delay => delay >= 1000));
+  }
+  assert.match(css, /\.card:hover \.smoothDraw \{ animation: draw 650ms ease-in-out var\(--delay, 0ms\) forwards; \}/);
+  assert.match(css, /\.card:hover \.smoothFade \{ animation: appear 400ms ease-in-out var\(--delay, 0ms\) forwards; \}/);
+  assert.match(css, /prefers-reduced-motion: reduce/);
+  assert.match(css, /\.card \.draw, \.card \.smoothDraw, \.card \.thermometer \{ animation: none !important; stroke-dashoffset: 0; \}/);
+  assert.match(css, /\.card \.reveal, \.card \.smoothFade \{ animation: none !important; opacity: 1; \}/);
 });
