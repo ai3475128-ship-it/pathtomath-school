@@ -10,7 +10,8 @@
 .text { fill: white; font-family: Georgia, 'Times New Roman', serif; }
 .dot, .bar { fill: white; }
 .cutout { fill: var(--card-color); stroke: white; stroke-width: 2; }
-.draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.draw, .smoothDraw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.smoothFade { opacity: 0; }
 .thermometer { stroke-dasharray: 60; stroke-dashoffset: 60; }
 .reveal { opacity: 0; }
 .early { opacity: 1; }
@@ -26,6 +27,8 @@
 .card:focus-visible .label { opacity: 0; }
 .card:focus-visible .preview { opacity: 1; }
 .card:focus-visible .draw, .card:focus-visible .thermometer { animation: draw 800ms ease-out 80ms forwards; }
+.card:focus-visible .smoothDraw { animation: draw 650ms ease-in-out var(--delay, 0ms) forwards; }
+.card:focus-visible .smoothFade { animation: appear 400ms ease-in-out var(--delay, 0ms) forwards; }
 .card:focus-visible .reveal { animation: appear 220ms ease 700ms forwards; }
 .card:focus-visible .early { animation: disappear 200ms ease 520ms forwards; }
 .card:focus-visible .bar { animation: grow 550ms ease-out 160ms forwards; }
@@ -45,6 +48,8 @@
   .card:hover .label { opacity: 0; }
   .card:hover .preview { opacity: 1; }
   .card:hover .draw, .card:hover .thermometer { animation: draw 800ms ease-out 80ms forwards; }
+  .card:hover .smoothDraw { animation: draw 650ms ease-in-out var(--delay, 0ms) forwards; }
+  .card:hover .smoothFade { animation: appear 400ms ease-in-out var(--delay, 0ms) forwards; }
   .card:hover .reveal { animation: appear 220ms ease 700ms forwards; }
   .card:hover .early { animation: disappear 200ms ease 520ms forwards; }
   .card:hover .bar { animation: grow 550ms ease-out 160ms forwards; }
@@ -89,8 +94,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .label, .preview { transition: none; }
-  .card .draw, .card .thermometer { animation: none !important; stroke-dashoffset: 0; }
-  .card .reveal { animation: none !important; opacity: 1; }
+  .card .draw, .card .smoothDraw, .card .thermometer { animation: none !important; stroke-dashoffset: 0; }
+  .card .reveal, .card .smoothFade { animation: none !important; opacity: 1; }
   .card .early { animation: none !important; opacity: 0; }
   .card .bar { animation: none !important; transform: scaleY(1); }
   .card .dice, .card .moveRight, .card .moveLeft, .card .parameterLine { animation: none !important; transform: none; }

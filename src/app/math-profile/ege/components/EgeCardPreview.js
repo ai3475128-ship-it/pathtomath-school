@@ -1,6 +1,8 @@
 import styles from './EgeCardPreview.module.css';
 
 const Line = ({ d, className = '' }) => <path d={d} pathLength="1" className={`${styles.line} ${styles.draw} ${className}`} />;
+const SmoothLine = ({ d, delay = 0 }) => <path d={d} pathLength="1" className={`${styles.line} ${styles.smoothDraw}`} style={{ '--delay': `${delay}ms` }} />;
+const SmoothFade = ({ delay = 0, children }) => <g className={styles.smoothFade} style={{ '--delay': `${delay}ms` }}>{children}</g>;
 const Text = ({ x = 100, y = 80, size = 20, children, className = '' }) => <text x={x} y={y} textAnchor="middle" fontSize={size} className={`${styles.text} ${className}`}>{children}</text>;
 const Dot = ({ cx, cy, className = '' }) => <circle cx={cx} cy={cy} r="4" className={`${styles.dot} ${className}`} />;
 const Axes = () => <><Line d="M28 120H180 M42 130V20" /><path d="M174 116l6 4-6 4 M38 26l4-6 4 6" className={styles.line} /></>;
@@ -9,24 +11,22 @@ function Illustration({ number, intro }) {
   if (intro) {
     switch (number) {
       case 15: return <>
-        <path d="M20 78 97 50 178 88 101 116Z" className={styles.dashed} />
-        <Line d="M75.3 25.5V81.5 M75.3 25.5 122.28 103.54" />
-        <g className={styles.reveal}>
-          <path d="M75.3 81.5 122.28 103.54 M83.78 117.54 160.78 89.54" className={styles.line} />
-          <path d="M75.3 74.5l7.24 3.4v7 M115.04 100.14l7.52-2.74 7.24 3.4" className={styles.line} />
-          <Text x={65} y={23} size={14}>A</Text><Text x={65} y={96} size={14}>H</Text>
-          <Text x={130} y={119} size={14}>B</Text><Text x={168} y={77} size={14}>ℓ</Text><Text x={49} y={84} size={13}>α</Text>
-          <Text y={143} size={11}>AH ⟂ α,  HB ⟂ ℓ  ⇒  AB ⟂ ℓ</Text>
-        </g>
+        <SmoothFade><path d="M20 78 97 50 178 88 101 116Z" className={styles.dashed} /><Text x={49} y={84} size={13}>α</Text></SmoothFade>
+        <SmoothLine d="M75.3 25.5V81.5" delay={120} />
+        <SmoothFade delay={480}><Text x={65} y={23} size={14}>A</Text><Text x={65} y={96} size={14}>H</Text><path d="M75.3 74.5l7.24 3.4v7" className={styles.line} /></SmoothFade>
+        <SmoothLine d="M75.3 81.5 122.28 103.54" delay={440} />
+        <SmoothLine d="M83.78 117.54 160.78 89.54" delay={660} />
+        <SmoothLine d="M75.3 25.5 122.28 103.54" delay={850} />
+        <SmoothFade delay={1150}><path d="M115.04 100.14l7.52-2.74 7.24 3.4" className={styles.line} /><Text x={130} y={119} size={14}>B</Text><Text x={168} y={77} size={14}>ℓ</Text></SmoothFade>
+        <SmoothFade delay={1350}><Text y={143} size={11}>AH ⟂ α,  HB ⟂ ℓ  ⇒  AB ⟂ ℓ</Text></SmoothFade>
       </>;
       case 18: return <>
-        <Line d="M50 110 90 35 150 110Z M150 110h45" />
-        <g className={styles.reveal}>
-          <path d="M74 65 190 110" className={styles.line} />
-          <Text x={44} y={124} size={13}>A</Text><Text x={90} y={27} size={13}>B</Text><Text x={149} y={124} size={13}>C</Text>
-          <Text x={66} y={63} size={13}>D</Text><Text x={135} y={82} size={13}>E</Text><Text x={190} y={124} size={13}>F</Text>
-          <Text y={145} size={11}>AD/DB · BE/EC · CF/FA = 1</Text>
-        </g>
+        <SmoothLine d="M50 110 90 35 150 110Z" />
+        <SmoothFade delay={400}><Text x={44} y={124} size={13}>A</Text><Text x={90} y={27} size={13}>B</Text><Text x={149} y={124} size={13}>C</Text></SmoothFade>
+        <SmoothLine d="M150 110h45" delay={480} />
+        <SmoothLine d="M74 65 190 110" delay={700} />
+        <SmoothFade delay={1100}><Text x={66} y={63} size={13}>D</Text><Text x={135} y={82} size={13}>E</Text><Text x={190} y={124} size={13}>F</Text></SmoothFade>
+        <SmoothFade delay={1350}><Text y={145} size={11}>AD/DB · BE/EC · CF/FA = 1</Text></SmoothFade>
       </>;
       case 19: return <>
         <Text y={25} size={14}>f(x; a) = 0,  x₁ ≠ x₂</Text>
@@ -54,14 +54,13 @@ function Illustration({ number, intro }) {
   switch (number) {
     case 1: return <><Line d="M30 118 L100 34 L170 118 Z" /><path d="M54 118 A24 24 0 0 0 46 99" className={`${styles.line} ${styles.reveal}`} /><Text x={60} y={105} size={19} className={styles.reveal}>α</Text></>;
     case 2: return <>
-      <Line d="M43 110H129 M43 110 70 41" />
-      <path d="M120 105l9 5-9 5 M63 49l7-8 2 11" className={styles.line} />
-      <Text x={88} y={130} size={15}>a</Text><Text x={42} y={70} size={15}>b</Text>
-      <g className={styles.reveal}>
-        <path d="M129 110 156 41 70 41" className={styles.dashed} />
-        <path d="M43 110 156 41 M144 43l12-2-6 11" className={styles.line} />
-        <Text x={111} y={24} size={14}>a + b</Text>
-      </g>
+      <SmoothLine d="M43 110H129" />
+      <SmoothLine d="M43 110 70 41" delay={180} />
+      <SmoothFade delay={500}><path d="M120 105l9 5-9 5" className={styles.line} /><Text x={88} y={130} size={15}>a</Text></SmoothFade>
+      <SmoothFade delay={680}><path d="M63 49l7-8 2 11" className={styles.line} /><Text x={42} y={70} size={15}>b</Text></SmoothFade>
+      <SmoothFade delay={700}><path d="M129 110 156 41 70 41" className={styles.dashed} /></SmoothFade>
+      <SmoothLine d="M43 110 156 41" delay={800} />
+      <SmoothFade delay={1300}><path d="M144 43l12-2-6 11" className={styles.line} /><Text x={111} y={24} size={14}>a + b</Text></SmoothFade>
     </>;
     case 3: return <>
       <g className={styles.reveal}><path d="M92 24v55 M36 105l56-26 64 26" className={styles.dashed} /></g>
