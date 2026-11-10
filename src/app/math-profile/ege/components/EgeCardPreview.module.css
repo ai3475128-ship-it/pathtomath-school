@@ -4,6 +4,8 @@
 .preview { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 150ms ease; }
 .diagram { width: min(78%, 180px); height: 120px; overflow: visible; }
 .line { fill: none; stroke: white; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.dashed { fill: none; stroke: white; stroke-width: 1.7; stroke-dasharray: 5 4; stroke-linecap: round; opacity: .65; }
+.hatch { fill: none; stroke: white; stroke-width: 1; opacity: .65; }
 .text { fill: white; font-family: Georgia, 'Times New Roman', serif; }
 .dot, .bar { fill: white; }
 .cutout { fill: var(--card-color); stroke: white; stroke-width: 2; }
@@ -13,6 +15,10 @@
 .early { opacity: 1; }
 .bar { transform-box: fill-box; transform-origin: center bottom; transform: scaleY(0); }
 .dice { transform-origin: 100px 61px; }
+.tangentCurve { transform-box: view-box; transform-origin: 0 0; transform: translate(70px, 60px) rotate(-45deg); }
+.maximumCurve { transform-box: view-box; transform-origin: 0 0; transform: translate(70px, 67.5px); }
+.trigRay { transform-box: view-box; transform-origin: 100px 75px; }
+.parameterLine { transform: translateY(30px); }
 
 .card:focus-visible { background: var(--card-color); border-color: var(--card-color); outline: 3px solid #075b9b; outline-offset: 3px; }
 :global(.dark) .card:focus-visible { outline-color: #c4b5fd; }
@@ -29,8 +35,10 @@
 .card:focus-visible .moveRight { animation: moveRight 800ms ease-out forwards; }
 .card:focus-visible .moveLeft { animation: moveLeft 800ms ease-out forwards; }
 .card:focus-visible .slideUp { animation: slideUp 800ms ease-out forwards; }
-.card:focus-visible .tangentMove { animation: tangentMove 800ms ease-out forwards; }
-.card:focus-visible .toMaximum { animation: toMaximum 800ms ease-out forwards; }
+.card:focus-visible .tangentCurve { animation: tangentCurve 800ms linear forwards; }
+.card:focus-visible .maximumCurve { animation: maximumCurve 800ms linear forwards; }
+.card:focus-visible .trigRay { animation: trigRay 800ms ease-out forwards; }
+.card:focus-visible .parameterLine { animation: parameterLine 800ms ease-out forwards; }
 
 @media (hover: hover) and (pointer: fine) {
   .card:hover .label { opacity: 0; }
@@ -46,8 +54,10 @@
   .card:hover .moveRight { animation: moveRight 800ms ease-out forwards; }
   .card:hover .moveLeft { animation: moveLeft 800ms ease-out forwards; }
   .card:hover .slideUp { animation: slideUp 800ms ease-out forwards; }
-  .card:hover .tangentMove { animation: tangentMove 800ms ease-out forwards; }
-  .card:hover .toMaximum { animation: toMaximum 800ms ease-out forwards; }
+  .card:hover .tangentCurve { animation: tangentCurve 800ms linear forwards; }
+  .card:hover .maximumCurve { animation: maximumCurve 800ms linear forwards; }
+  .card:hover .trigRay { animation: trigRay 800ms ease-out forwards; }
+  .card:hover .parameterLine { animation: parameterLine 800ms ease-out forwards; }
 }
 
 @keyframes draw { to { stroke-dashoffset: 0; } }
@@ -58,8 +68,23 @@
 @keyframes moveRight { from { transform: translateX(-10px); } to { transform: translateX(16px); } }
 @keyframes moveLeft { from { transform: translateX(10px); } to { transform: translateX(-16px); } }
 @keyframes slideUp { from { transform: translateY(22px); } to { transform: translateY(-32px); } }
-@keyframes tangentMove { from { transform: translate(-20px, 20px); } to { transform: translate(0, 0); } }
-@keyframes toMaximum { from { transform: translate(0, 0); } to { transform: translate(36px, -27px); } }
+/* Coordinates follow the quadratic curves; the tangent rotates with their slope. */
+@keyframes tangentCurve {
+  0% { transform: translate(70px, 60px) rotate(-45deg); }
+  25% { transform: translate(77.5px, 53.4375px) rotate(-36.8699deg); }
+  50% { transform: translate(85px, 48.75px) rotate(-26.5651deg); }
+  75% { transform: translate(92.5px, 45.9375px) rotate(-14.0362deg); }
+  100% { transform: translate(100px, 45px) rotate(0deg); }
+}
+@keyframes maximumCurve {
+  0% { transform: translate(70px, 67.5px); }
+  25% { transform: translate(77.5px, 59.84375px); }
+  50% { transform: translate(85px, 54.375px); }
+  75% { transform: translate(92.5px, 51.09375px); }
+  100% { transform: translate(100px, 50px); }
+}
+@keyframes trigRay { to { transform: rotate(-60deg); } }
+@keyframes parameterLine { to { transform: translateY(0); } }
 
 @media (prefers-reduced-motion: reduce) {
   .label, .preview { transition: none; }
@@ -67,7 +92,9 @@
   .card .reveal { animation: none !important; opacity: 1; }
   .card .early { animation: none !important; opacity: 0; }
   .card .bar { animation: none !important; transform: scaleY(1); }
-  .card .dice, .card .moveRight, .card .moveLeft, .card .tangentMove { animation: none !important; transform: none; }
+  .card .dice, .card .moveRight, .card .moveLeft, .card .parameterLine { animation: none !important; transform: none; }
   .card .slideUp { animation: none !important; transform: translateY(-32px); }
-  .card .toMaximum { animation: none !important; transform: translate(36px, -27px); }
+  .card .tangentCurve { animation: none !important; transform: translate(100px, 45px) rotate(0deg); }
+  .card .maximumCurve { animation: none !important; transform: translate(100px, 50px); }
+  .card .trigRay { animation: none !important; transform: rotate(-60deg); }
 }
