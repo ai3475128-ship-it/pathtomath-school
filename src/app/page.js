@@ -58,20 +58,7 @@ export default async function Home() {
 
         {/* 🚀 УМНЫЕ СЕРВЕРНЫЕ КНОПКИ — ПОЛНОСТЬЮ СИНХРОННЫ С ШАПКОЙ */}
         <div className="flex flex-wrap gap-4 mb-16 items-center">
-          {isAuthenticated ? (
-            <Link 
-
-href="/teachers"
-/* 🚀 ИСПРАВЛЕНО: Полностью возвращена красивая форма rounded-2xl и отступы, но цвета зафиксированы в строгом однотонном неоне */
-className="px-8 py-3.5 font-bold rounded-2xl shadow-md transition-all duration-300 uppercase tracking-wider text-xs whitespace-nowrap cursor-pointer
-           bg-sky-500 hover:bg-sky-600 text-white shadow-sky-500/20 hover:shadow-xl hover:shadow-sky-500/40
-           dark:bg-[#7C3AED] dark:hover:bg-[#6D28D9] dark:text-white dark:border dark:border-purple-500/20 dark:shadow-[0_0_15px_rgba(124,58,237,0.3)] dark:hover:shadow-[0_0_25px_rgba(124,58,237,0.6)]"
-
->
-  Преподаватели
-
-            </Link>
-          ) : (
+          {!isAuthenticated && (
             <Link 
               href="/register"
 className="px-8 py-3.5 font-bold rounded-2xl shadow-md transition-all duration-300 uppercase tracking-wider text-xs whitespace-nowrap
@@ -91,7 +78,9 @@ className="px-8 py-3.5 font-bold rounded-2xl shadow-md transition-all duration-3
   ЕГЭ
 </Link>
 
-<Link href="/olympiads" className="px-8 py-3.5 font-bold text-xs uppercase tracking-wider rounded-2xl border border-sky-400/40 bg-white text-sky-600 shadow-sm hover:border-sky-600 dark:border-purple-500/30 dark:bg-[#140e24]/40 dark:text-purple-400">
+<Link href="/olympiads" className="px-8 py-3.5 font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.01] cursor-pointer border
+             bg-white text-sky-500 border-sky-400/40 shadow-sm hover:border-sky-600 hover:text-sky-600 hover:shadow-[0_0_15px_rgba(14,165,233,0.2)]
+             dark:bg-[#140e24]/40 dark:text-purple-400 dark:border-purple-500/30 dark:hover:border-purple-400 dark:hover:text-purple-300 dark:hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]">
   Олимпиады
 </Link>
 
