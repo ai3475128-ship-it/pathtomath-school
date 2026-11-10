@@ -3,6 +3,7 @@
 .label { transition: opacity 150ms ease; }
 .preview { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 150ms ease; }
 .diagram { width: min(78%, 180px); height: 120px; overflow: visible; }
+.introPreview .diagram { width: min(90%, 240px); height: 180px; }
 .line { fill: none; stroke: white; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .dashed { fill: none; stroke: white; stroke-width: 1.7; stroke-dasharray: 5 4; stroke-linecap: round; opacity: .65; }
 .hatch { fill: none; stroke: white; stroke-width: 1; opacity: .65; }

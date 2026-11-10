@@ -9,22 +9,59 @@ function Illustration({ number, intro }) {
   if (intro) {
     switch (number) {
       case 15: return <>
-        <g className={styles.early}><path d="M76 36h29v29h29v29h-29v29H76V94H47V65h29z M76 65h29v29H76z" className={styles.line} /></g>
-        <g className={styles.reveal}><path d="M56 57 100 34l44 23v49l-44 25-44-25z M56 57l44 24 44-24 M100 81v50" className={styles.line} /></g>
+        <path d="M20 78 97 50 178 88 101 116Z" className={styles.dashed} />
+        <Line d="M75.3 25.5V81.5 M75.3 25.5 122.28 103.54" />
+        <g className={styles.reveal}>
+          <path d="M75.3 81.5 122.28 103.54 M83.78 117.54 160.78 89.54" className={styles.line} />
+          <path d="M75.3 74.5l7.24 3.4v7 M115.04 100.14l7.52-2.74 7.24 3.4" className={styles.line} />
+          <Text x={65} y={23} size={14}>A</Text><Text x={65} y={96} size={14}>H</Text>
+          <Text x={130} y={119} size={14}>B</Text><Text x={168} y={77} size={14}>ℓ</Text><Text x={49} y={84} size={13}>α</Text>
+          <Text y={143} size={11}>AH ⟂ α,  HB ⟂ ℓ  ⇒  AB ⟂ ℓ</Text>
+        </g>
       </>;
-      case 18: return <><Line d="M31 117 100 30 169 117Z" /><Text x={65} y={70} size={19} className={styles.reveal}>c</Text><Text x={138} y={70} size={19} className={styles.reveal}>a</Text><Text y={138} size={19} className={styles.reveal}>b</Text></>;
-      case 19: return <><Axes /><Line d="M48 112Q100 10 172 112" /><g className={styles.slideUp}><path d="M30 92H178" className={styles.line} /><Text x={172} y={86} size={16}>a</Text></g></>;
-      case 20: return <><Text y={68} size={26} className={styles.early}>12</Text><Text y={88} size={25} className={styles.reveal}>12 = 2² · 3</Text></>;
+      case 18: return <>
+        <Line d="M50 110 90 35 150 110Z M150 110h45" />
+        <g className={styles.reveal}>
+          <path d="M74 65 190 110" className={styles.line} />
+          <Text x={44} y={124} size={13}>A</Text><Text x={90} y={27} size={13}>B</Text><Text x={149} y={124} size={13}>C</Text>
+          <Text x={66} y={63} size={13}>D</Text><Text x={135} y={82} size={13}>E</Text><Text x={190} y={124} size={13}>F</Text>
+          <Text y={145} size={11}>AD/DB · BE/EC · CF/FA = 1</Text>
+        </g>
+      </>;
+      case 19: return <>
+        <Text y={25} size={14}>f(x; a) = 0,  x₁ ≠ x₂</Text>
+        <Line d="M59 42c-8 0-8 6-8 11v7c0 6-3 8-8 9 5 1 8 3 8 9v7c0 5 0 11 8 11" />
+        <g className={styles.reveal}>
+          <Text x={119} y={62} size={17}>x₁ ∈ [0; 1]</Text>
+          <Text x={119} y={92} size={17}>x₂ ∉ [0; 1]</Text>
+          <Text y={128} size={14}>или наоборот</Text>
+        </g>
+      </>;
+      case 20: return <>
+        <defs><clipPath id="ege-intro-sets-overlap"><circle cx="78" cy="72" r="40" /></clipPath></defs>
+        <circle cx="78" cy="72" r="40" pathLength="1" className={`${styles.line} ${styles.draw}`} />
+        <circle cx="122" cy="72" r="40" pathLength="1" className={`${styles.line} ${styles.draw}`} />
+        <g className={styles.reveal}>
+          <circle cx="122" cy="72" r="40" clipPath="url(#ege-intro-sets-overlap)" fill="white" opacity=".24" />
+          <Text x={60} y={26} size={16}>A</Text><Text x={140} y={26} size={16}>B</Text>
+          <Text x={65} y={78} size={13}>1, 2</Text><Text x={100} y={78} size={15}>3</Text><Text x={135} y={78} size={13}>4, 5</Text>
+          <Text y={137} size={16}>A ∩ B = {'{3}'}</Text>
+        </g>
+      </>;
       default: return null;
     }
   }
   switch (number) {
     case 1: return <><Line d="M30 118 L100 34 L170 118 Z" /><path d="M54 118 A24 24 0 0 0 46 99" className={`${styles.line} ${styles.reveal}`} /><Text x={60} y={105} size={19} className={styles.reveal}>α</Text></>;
     case 2: return <>
-      <Line d="M40 110H108 M40 110 69 54" />
-      <path d="M100 105l8 5-8 5 M64 62l5-8 5 8" className={styles.line} />
-      <g className={styles.reveal}><path d="M108 110 137 54 69 54" className={styles.dashed} /><path d="M40 110 137 54 M126 55l11-1-6 10" className={styles.line} /><Text x={104} y={76} size={15}>a + b</Text></g>
-      <Text x={75} y={132} size={15}>a</Text><Text x={43} y={76} size={15}>b</Text>
+      <Line d="M43 110H129 M43 110 70 41" />
+      <path d="M120 105l9 5-9 5 M63 49l7-8 2 11" className={styles.line} />
+      <Text x={88} y={130} size={15}>a</Text><Text x={42} y={70} size={15}>b</Text>
+      <g className={styles.reveal}>
+        <path d="M129 110 156 41 70 41" className={styles.dashed} />
+        <path d="M43 110 156 41 M144 43l12-2-6 11" className={styles.line} />
+        <Text x={111} y={24} size={14}>a + b</Text>
+      </g>
     </>;
     case 3: return <>
       <g className={styles.reveal}><path d="M92 24v55 M36 105l56-26 64 26" className={styles.dashed} /></g>
@@ -51,7 +88,7 @@ function Illustration({ number, intro }) {
       <path d="M40 75h120 M100 18v114 M155 71l5 4-5 4 M96 23l4-5 4 5" className={styles.line} />
       <circle cx="100" cy="75" r="45" pathLength="1" className={`${styles.line} ${styles.draw}`} />
       <g className={styles.trigRay}><path d="M100 75h45" className={styles.line} /><Dot cx={145} cy={75} /></g>
-      <g className={styles.reveal}><path d="M117 75a17 17 0 0 0-8.5-14.7" className={styles.line} /><Text x={124} y={65} size={14}>π/3</Text></g>
+      <g className={styles.reveal}><path d="M117 75a17 17 0 0 0-8.5-14.7" className={styles.line} /><Text x={159} y={36} size={13}>π/3</Text></g>
     </>;
     case 15: return <>
       <defs><clipPath id="ege-pyramid-section"><polygon points="56.8,69.4 100,52 143.2,69.4 100,86.2" /></clipPath></defs>
@@ -95,7 +132,7 @@ function Illustration({ number, intro }) {
 }
 
 export default function EgeCardPreview({ number, intro = false }) {
-  return <span aria-hidden="true" className={styles.preview}>
+  return <span aria-hidden="true" className={`${styles.preview} ${intro ? styles.introPreview : ''}`}>
     <svg viewBox="0 0 200 150" className={styles.diagram}>
       <Illustration number={number} intro={intro} />
     </svg>
