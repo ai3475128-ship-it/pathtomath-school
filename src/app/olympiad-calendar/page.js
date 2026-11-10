@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import CalendarClock from './CalendarClock';
-import { checkedOn, events, olympiads, orderOlympiadsByDates } from '@/lib/olympiad-calendar';
+import { SectionFrame } from '../components/SectionHub';
+import { events, olympiads, orderOlympiadsByDates } from '@/lib/olympiad-calendar';
 
 const title = 'Календарь олимпиад по математике 2026–2027 | АЗИМУТ';
 const description = 'Календарь перечневых олимпиад по математике 2026–2027: даты этапов, уровни и ссылки на сайты организаторов для регистрации.';
@@ -25,10 +26,9 @@ export default async function OlympiadCalendarPage({ searchParams }) {
   const cardClass = 'group block h-full rounded-[24px] border border-blue-100/60 bg-white/80 p-6 shadow-sm transition-all duration-300 hover:border-sky-500 hover:bg-sky-500 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-600 dark:border-purple-500/20 dark:bg-purple-950/10 dark:hover:border-[#634EE4] dark:hover:bg-[#634EE4] dark:focus-visible:outline-purple-400';
   const secondaryText = 'text-slate-600 group-hover:text-white dark:text-slate-300 dark:group-hover:text-white';
 
-  return <main className="min-h-screen bg-slate-50 px-4 py-12 text-slate-800 dark:bg-[#080412] dark:text-slate-100 sm:px-8">
-    <div className="mx-auto w-full max-w-[1800px] space-y-10">
+  return <SectionFrame title="Календарь олимпиад по математике" eyebrow="Математика · сезон 2026/27" wide>
+    <div className="space-y-8">
       <CalendarClock serverDate={today} />
-      <header><Link href="/" className="text-sm font-bold text-sky-700 hover:underline dark:text-purple-300"></Link><p className="mt-8 text-xs font-black uppercase tracking-widest text-sky-700 dark:text-purple-300">Математика · сезон 2026/27</p><h1 className="mt-3 max-w-4xl text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-5xl">Календарь олимпиад по математике</h1><p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-600 dark:text-slate-300"></p><p className="mt-4 text-sm font-semibold text-slate-600 dark:text-slate-300"> {checkedOn}</p></header>
       <form className="flex flex-wrap items-end gap-3 rounded-2xl border border-sky-100 bg-white p-5 dark:border-purple-500/20 dark:bg-[#140e24]" action="/olympiad-calendar" method="get">
         <label className="min-w-[200px] flex-1 text-sm font-bold">Поиск олимпиады<input name="q" defaultValue={query} placeholder="Например, Ломоносов" className="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-normal dark:border-purple-500/30 dark:bg-[#080412]" /></label>
         <label className="text-sm font-bold">Уровень<select name="level" defaultValue={level} className="mt-2 block rounded-xl border border-slate-300 bg-white px-4 py-3 font-normal dark:border-purple-500/30 dark:bg-[#080412]"><option value="">Все уровни</option><option value="I">I уровень</option><option value="II">II уровень</option><option value="III">III уровень</option></select></label>
@@ -60,5 +60,5 @@ export default async function OlympiadCalendarPage({ searchParams }) {
         {ordered.length === 0 && <p className="mt-4 text-slate-600 dark:text-slate-300">По вашему запросу ничего не найдено. Измените фильтры.</p>}
       </section>
     </div>
-  </main>;
+  </SectionFrame>;
 }
