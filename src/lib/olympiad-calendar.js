@@ -1,6 +1,6 @@
 // Обновляйте расписание вручную после сверки с организаторами.
 // Уровни указаны для профилей математики и криптографии в сезоне 2026/27.
-export const checkedOn = '10 ноября 2026 года';
+export const checkedOn = '';
 export const registryUrl = 'https://rsr-olymp.ru/';
 
 export const olympiads = [
