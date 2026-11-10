@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { olympiadLogos } from './olympiad-logos';
+import { userOlympiadLogos } from './user-olympiad-logos';
 import CustomCompetitionLogo from './CustomCompetitionLogo';
 import styles from './OlympiadPreview.module.css';
 
 export default function CompetitionCard({ olympiad }) {
-  const custom = ['lomonosov', 'siberia', 'omo'].includes(olympiad.id);
-  const logo = olympiadLogos[olympiad.id];
+  const custom = olympiad.id === 'omo';
+  const logo = userOlympiadLogos[olympiad.id] || olympiadLogos[olympiad.id];
   const hasLogo = custom || Boolean(logo);
 
   return <Link href={`/olympiads/tasks/${olympiad.id}`}
@@ -15,7 +16,10 @@ export default function CompetitionCard({ olympiad }) {
       <h2 className="mt-3 text-lg font-black leading-snug text-slate-800 group-hover:text-white dark:text-white">{olympiad.name}</h2>
     </div>
     {hasLogo && <span className={styles.logoPreview} aria-hidden="true">
-      {custom ? <CustomCompetitionLogo id={olympiad.id} /> : <svg className={styles.logoSurface} viewBox={logo.viewBox} focusable="false"><path d={logo.path} fillRule="evenodd" /></svg>}
+      {custom ? <CustomCompetitionLogo id={olympiad.id} /> : olympiad.id === 'lomonosov' ? <span className={`${styles.logoSurface} ${styles.captionedLogo}`}>
+        <svg viewBox={logo.viewBox} focusable="false"><path d={logo.path} fillRule="evenodd" /></svg>
+        <span className={styles.logoCaption}>ЛОМОНОСОВ</span>
+      </span> : <svg className={styles.logoSurface} viewBox={logo.viewBox} focusable="false"><path d={logo.path} fillRule="evenodd" /></svg>}
     </span>}
   </Link>;
 }
