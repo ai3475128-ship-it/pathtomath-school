@@ -32,6 +32,8 @@
 .logoSurface { display: flex; align-items: center; justify-content: center; width: min(100%, 195px); height: min(100%, 120px); padding: 9px; mix-blend-mode: screen; transform: translateY(8px) scale(.94); opacity: 0; }
 .logoSurface img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: grayscale(1) invert(1) contrast(5); }
 .logoSurface.lightOnDark img { filter: grayscale(1) contrast(5); }
+.logoSurface.transparentLogo { mix-blend-mode: normal; }
+.logoSurface.transparentLogo img { filter: brightness(0) invert(1); }
 :global(.dark) .card.hasLogo:focus-visible { background: #0ea5e9; border-color: #0ea5e9; }
 .card.hasLogo:focus-visible .competitionLabel { opacity: 0; }
 .card.hasLogo:focus-visible .logoPreview { opacity: 1; }
