@@ -11,6 +11,7 @@ import {
   readSession,
   revokeSession,
 } from "../src/lib/session.js";
+import { setStudentBlocked } from "../src/lib/student-access.js";
 import { setTaskProgress } from "../src/lib/progress.js";
 import { getEgeProgress, legacyCandidates } from "../src/lib/task-modules.js";
 import {
@@ -73,6 +74,24 @@ test("sessions reject forged cookies, expire, revoke and read current roles", as
   assert.equal(await readSession(db, token, 1000 + 8 * 86400000), null);
   await revokeSession(db, token);
   assert.equal(await readSession(db, token, 1003), null);
+});
+test("blocking a student revokes sessions, preserves data and is restricted to administrators", async (t) => {
+  const { db } = await fixture(t);
+  const admin = { id: 'admin', email: 'admin@example.invalid', role: 'ADMIN' };
+  const first = await createSession(db, 'a', 1000);
+  const second = await createSession(db, 'a', 1000);
+  assert.equal(setStudentBlocked(db, { ...admin, role: 'TEACHER' }, 'a', true), false);
+  assert.equal(setStudentBlocked(db, admin, 'admin', true), false);
+  assert.equal((await readSession(db, first, 1001)).id, 'a');
+  assert.equal(setStudentBlocked(db, admin, 'a', true), true);
+  assert.equal(await readSession(db, first, 1001), null);
+  assert.equal(await readSession(db, second, 1001), null);
+  assert.equal(await createSession(db, 'a', 1001), null);
+  assert.equal((await db.get("SELECT role FROM User WHERE id='a'")).role, 'PREMIUM_STUDENT');
+  assert.equal(setStudentBlocked(db, admin, 'a', false), true);
+  assert.equal(await readSession(db, first, 1002), null);
+  assert.ok(await createSession(db, 'a', 1002));
+  assert.equal((await db.get("SELECT COUNT(*) AS n FROM ActivityLog WHERE actionType LIKE '%_STUDENT:a'")).n, 2);
 });
 test("password recovery is bound to its browser, expires and limits code guesses", async (t) => {
   const { db } = await fixture(t);

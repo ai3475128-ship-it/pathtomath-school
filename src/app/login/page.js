@@ -15,6 +15,7 @@ export default async function LoginPage({ searchParams }) {
   if (errorType === 'limited') errorMessage = 'Слишком много попыток. Повторите через 15 минут.';
   if (errorType === 'unavailable') errorMessage = 'Регистрация временно недоступна. Обратитесь к преподавателю.';
   if (errorType === 'fields') errorMessage = 'Пожалуйста, заполните все поля.';
+  if (errorType === 'blocked') errorMessage = 'Доступ к аккаунту ограничен. Обратитесь к руководителю школы.';
   if (errorType === 'wrong') errorMessage = 'Неверный Email или пароль. Попробуйте ещё раз.';
   if (errorType === 'server') errorMessage = 'Ошибка сервера. Попробуйте позже.';
   // Добавляем этот текст:

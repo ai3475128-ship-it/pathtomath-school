@@ -1,4 +1,5 @@
 import Link from "next/link";
+import VideoEmbed from "../../components/VideoEmbed";
 import { notFound } from "next/navigation";
 import { requireUser, canAccessCourse } from "@/lib/auth";
 import { connectDB } from "@/lib/db";
@@ -56,15 +57,7 @@ export default async function VideoSectionPage({ params }) {
                   Урок доступен участникам платного курса.
                 </p>
               ) : url ? (
-                <iframe
-                  src={url}
-                  title={video.title}
-                  className="w-full aspect-video rounded-2xl border-0"
-                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                  sandbox="allow-scripts allow-same-origin allow-presentation"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                />
+                <VideoEmbed url={url} title={video.title} />
               ) : (
                 <p className="text-sm">
                   Ссылка на урок временно недоступна. Обратитесь к

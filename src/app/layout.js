@@ -4,6 +4,7 @@ import Link from 'next/link';
 // 🚀 ИСПРАВЛЕНО: Так как папка login лежит по соседству с layout.js внутри app, используем префикс ./
 import { logoutUser } from './login/actions';
 import ThemeToggle from './ThemeToggle';
+import CookiePreferences from './components/CookiePreferences';
 import MenuLinks from './MenuLinks';
 import './globals.css';
 
@@ -108,6 +109,7 @@ export default async function RootLayout({ children }) {
         <main className="flex-grow">
           {children}
         </main>
+        <CookiePreferences />
 
       </body>
     </html>

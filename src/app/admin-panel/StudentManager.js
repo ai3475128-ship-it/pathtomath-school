@@ -79,7 +79,8 @@ export default function StudentManager({ initialStudents }) {
                     {student.name || 'Без имени'}
                   </h4>
                   <p className="text-[10px] md:text-xs font-medium text-slate-400 dark:text-slate-500 truncate">
-                    {student.email || student.email}
+                    {student.email}
+                    {student.isBlocked ? ' · Доступ ограничен' : ''}
                   </p>
                 </div>
               </div>

@@ -42,6 +42,7 @@ function migrate(db) {
  CREATE INDEX IF NOT EXISTS Trial_user ON Trial(userId);
  `);
     column(db, "User", "role", "TEXT NOT NULL DEFAULT 'STUDENT'");
+    column(db, "User", "isBlocked", "INTEGER NOT NULL DEFAULT 0");
     column(db, "ErrorReports", "module", "TEXT NOT NULL DEFAULT ''");
     column(db, "PendingUsers", "attempts", "INTEGER NOT NULL DEFAULT 0");
     column(db, "PendingUsers", "expiresAt", "INTEGER NOT NULL DEFAULT 0");
