@@ -424,6 +424,12 @@ try {
   assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=ege-optimization", {cookie: sessions.a})).text).solvedSubTasks, [1]);
   assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=ege-optimization", {cookie: sessions.b})).text).solvedSubTasks, []);
   check("optimization task progress belongs to the correct student");
+  const optimizationPage = await request("/math-profile/17");
+  assert.equal(optimizationPage.status, 200);
+  assert.ok(optimizationPage.text.includes("Таблица производных и правила дифференцирования"));
+  const equationsPage = await request("/math-profile/14");
+  assert.ok(!equationsPage.text.includes("Таблица производных и правила дифференцирования"));
+  check("derivative reference is shown on the optimization task page");
   const profile = await request("/profile", { cookie: sessions.a });
   assert.equal(profile.status, 200);
   const optimizationLink = profile.text.match(/<a\b[^>]*href="\/math-profile\/17"[^>]*>([\s\S]*?)<\/a>/)?.[1];
