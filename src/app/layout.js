@@ -99,6 +99,11 @@ export default async function RootLayout({ children }) {
           </div>
         </header>
 
+        <nav aria-label="Разделы обучения" className="flex items-center justify-center gap-8 border-b border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-600 dark:border-purple-950/40 dark:bg-[#03000a] dark:text-purple-300 md:hidden">
+          <Link href="/math-profile" className="hover:text-sky-600">ЕГЭ</Link>
+          <Link href="/olympiads" className="hover:text-sky-600">Олимпиады</Link>
+        </nav>
+
         {/* Область контента страниц */}
         <main className="flex-grow">
           {children}

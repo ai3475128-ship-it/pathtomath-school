@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 // 🚀 ПОДГОТОВИТЕЛЬНЫЕ ЗАДАЧИ ЕГЭ: Чистые явные импорты секций АЗИМУТ
 import { egeIntro14Tasks } from '../sections-ege-intro/ege-intro-14';
@@ -87,9 +87,7 @@ const tasksRawData = {
 function TaskSolutionCard({ solutionBuilder, isChangingTheme }) {
   return solutionBuilder();
 }
-export default React.memo(function TaskListBlock({ storageModule }) {
-  const params = useParams();
-  const taskNumber = params?.taskNumber; // Берем ID страницы из URL для интро и олимпиад
+export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds }) {
   const router = useRouter();
   const pendingTasks = useRef(new Set());
 
@@ -174,18 +172,20 @@ export default React.memo(function TaskListBlock({ storageModule }) {
   let currentTasks = [];
   let isCustomModule = false;
 
-  if (taskNumber && taskNumber.includes('-intro') && !taskNumber.includes('olympiad')) {
+  if (storageModule.includes('-intro') && !storageModule.includes('olympiad')) {
     currentTasks = egeIntroMap[storageModule] || [];
     isCustomModule = true;
-  } else if (taskNumber && taskNumber.includes('olympiad-') && taskNumber.includes('-main')) {
-    currentTasks = olympiadMainMap[taskNumber] || [];
+  } else if (storageModule.startsWith('olympiad-') && storageModule.endsWith('-main')) {
+    currentTasks = olympiadMainMap[storageModule] || [];
     isCustomModule = true;
-  } else if (taskNumber && taskNumber.includes('olympiad-') && taskNumber.includes('-intro')) {
-    currentTasks = olympiadIntroMap[taskNumber] || [];
+  } else if (storageModule.startsWith('olympiad-') && storageModule.endsWith('-intro')) {
+    currentTasks = olympiadIntroMap[storageModule] || [];
     isCustomModule = true;
   } else {
     currentTasks = tasksRawData[storageModule] || [];
   }
+
+  if (onlyTaskIds) currentTasks = currentTasks.filter((task) => onlyTaskIds.includes(task.id));
 
   if (currentTasks.length === 0) {
     return (

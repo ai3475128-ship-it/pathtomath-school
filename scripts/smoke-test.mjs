@@ -9,6 +9,7 @@ import assert from "node:assert/strict";
 import bcrypt from "bcryptjs";
 import { openDatabase } from "../src/lib/db.js";
 import { createSession } from "../src/lib/session.js";
+import { olympiads } from "../src/lib/olympiad-calendar.js";
 const directory = await mkdtemp(path.join(os.tmpdir(), "school-http-")),
   filename = path.join(directory, "dev.db"),
   db = openDatabase(filename),
@@ -266,11 +267,43 @@ try {
   assert.match(verchenko.text, /dark:hover:bg-\[#634EE4\]/);
 
   const home = await request("/");
-  assert.match(home.text, /Олимпиадный календарь/);
+  assert.match(home.text, /href="\/olympiads"/);
+  assert.match(home.text, /href="\/math-profile"/);
+  const egeHub = await request('/math-profile');
+  assert.match(egeHub.text, /ЕГЭ Математика/);
+  assert.match(egeHub.text, /ЕГЭ Физика/);
+  const mathHub = await request('/math-profile/ege');
+  assert.match(mathHub.text, /href="\/math-profile\/ege\/intro"/);
+  assert.match(mathHub.text, /href="\/math-profile\/ege\/main"/);
+  const physicsHub = await request('/math-profile/physics');
+  assert.match(physicsHub.text, /href="\/math-profile\/physics\/intro"/);
+  assert.match(physicsHub.text, /href="\/math-profile\/physics\/main"/);
+  for (const path of ['/math-profile/physics/intro', '/math-profile/physics/main']) {
+    const physicsPage = await request(path);
+    assert.equal(physicsPage.status, 200, path);
+    assert.match(physicsPage.text, /пока не добавлены/);
+  }
+  const olympiadHub = await request('/olympiads');
+  for (const href of ['/olympiad-calendar', '/math-profile/olympiads/intro', '/math-profile/olympiads/main', '/olympiads/tasks']) {
+    assert.ok(olympiadHub.text.includes(`href="${href}"`), href);
+  }
+  const directory = await request('/olympiads/tasks');
+  assert.equal(directory.status, 200);
+  for (const olympiad of olympiads) {
+    assert.ok(directory.text.includes(`href="/olympiads/tasks/${olympiad.id}"`), olympiad.id);
+    const page = await request(`/olympiads/tasks/${olympiad.id}`);
+    assert.equal(page.status, 200, olympiad.id);
+  }
+  assert.equal((await request('/olympiads/tasks/unknown-olympiad')).status, 404);
+  assert.match((await request('/olympiads/tasks/verchenko')).text, /задачи этой олимпиады пока не добавлены/);
+  assert.match((await request('/olympiads/tasks/lomonosov')).text, /Теория чисел/);
+  check('ЕГЭ and olympiad sections link to all competition pages');
   for (const [path, user] of [["/dashboard", "free"], ["/profile", "a"], ["/teacher-dashboard", "teacher"], ["/admin-panel", "admin"]]) {
     const cabinet = await request(path, {cookie: sessions[user]});
     assert.equal(cabinet.status, 200, path);
     assert.match(cabinet.text, /Даты и регистрация на олимпиады по математике/, path);
+    assert.ok(cabinet.text.includes('href="/math-profile"'), path);
+    assert.ok(cabinet.text.includes('href="/olympiads"'), path);
   }
   check("public olympiad calendar, filters, search metadata and role cabinet links");
   const forged =

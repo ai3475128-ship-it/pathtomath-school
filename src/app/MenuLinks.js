@@ -13,8 +13,8 @@ export default function MenuLinks({ hasUser, userRole }) {
   const navLinks = [
     { href: '/', label: 'Главная' },
     { href: '/teachers', label: 'Преподаватели' },
-    { href: '/math-profile', label: 'Банк заданий' },
-    { href: '/olympiad-calendar', label: 'Олимпиады' },
+    { href: '/math-profile', label: 'ЕГЭ' },
+    { href: '/olympiads', label: 'Олимпиады' },
   ];
 
   // 🚀 ИСПРАВЛЕНО: Вкладка "Видеоуроки" подмешивается в меню ТОЛЬКО для зарегистрированных пользователей сайта
@@ -34,7 +34,8 @@ export default function MenuLinks({ hasUser, userRole }) {
     <nav className="hidden md:flex items-center gap-3 xl:gap-6 h-full">
       {navLinks.map((link) => {
         // Проверяем активность вкладки
-        const isActive = pathname === link.href || pathname.startsWith(link.href + '/');
+        const isOlympiad = pathname === '/olympiad-calendar' || pathname.startsWith('/olympiads') || pathname.startsWith('/math-profile/olympiads') || pathname.startsWith('/math-profile/olympiad-');
+        const isActive = link.href === '/olympiads' ? isOlympiad : link.href === '/math-profile' ? pathname.startsWith('/math-profile') && !isOlympiad : pathname === link.href || pathname.startsWith(link.href + '/');
 
         return (
           <div key={link.href} className="relative flex flex-col items-center justify-center h-full">
