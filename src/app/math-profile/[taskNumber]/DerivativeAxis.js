@@ -2,7 +2,7 @@ import React from 'react';
 import { InlineMath } from 'react-katex';
 
 // Схема знаков на допустимом промежутке; конечные границы отмечены кружками.
-export default function DerivativeAxis({ variable, left, point, right, leftSign = '+', rightSign = '−', leftClosed = false, rightClosed = false, rightInfinite = true }) {
+export default function DerivativeAxis({ point, right, leftSign = '+', rightSign = '−', leftClosed = false, rightClosed = false, rightInfinite = true }) {
   const leftDirection = leftSign === '+' ? 'возрастает' : 'убывает';
   const rightDirection = rightSign === '+' ? 'возрастает' : 'убывает';
   const extremum = leftSign === '+' ? 'максимум' : 'минимум';
@@ -21,9 +21,9 @@ export default function DerivativeAxis({ variable, left, point, right, leftSign 
           <circle cx="300" cy="15" r="5" fill="currentColor" />
         </svg>
         <div className="grid grid-cols-3 items-start text-sm font-semibold">
-          <span className="text-left"><InlineMath math={left} /></span>
+          <span />
           <span><InlineMath math={point} /></span>
-          <span className="text-right"><InlineMath math={right} /> <InlineMath math={variable} /></span>
+          <span className="text-right">{!rightInfinite && <InlineMath math={right} />}</span>
         </div>
         <div className="grid grid-cols-3 gap-1 mt-3 text-xs font-semibold text-slate-500 dark:text-slate-400">
           <span>{leftSign === '+' ? '↗' : '↘'} {leftDirection}</span>
