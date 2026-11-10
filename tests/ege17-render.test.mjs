@@ -12,10 +12,11 @@ const katex = require('katex');
 const sectionDir = path.resolve('src/app/math-profile/[taskNumber]');
 const originalLoader = require.extensions['.js'];
 const target = path.join(sectionDir, 'ege-optimization.js');
-let tasks;
+const referenceTarget = path.join(sectionDir, 'DerivativeReference.js');
+let tasks, DerivativeReference;
 try {
   require.extensions['.js'] = (mod, filename) => {
-    if (filename === target || filename === path.join(sectionDir, 'DerivativeAxis.js')) {
+    if (filename === target || filename === referenceTarget || filename === path.join(sectionDir, 'DerivativeAxis.js')) {
       const code = transformSync(fs.readFileSync(filename, 'utf8'), {
         filename,
         jsc: { parser: { syntax: 'ecmascript', jsx: true }, transform: { react: { runtime: 'classic' } } },
@@ -26,6 +27,7 @@ try {
     return originalLoader(mod, filename);
   };
   tasks = require(target).egeOptimizationTasks;
+  DerivativeReference = require(referenceTarget).default;
 } finally {
   require.extensions['.js'] = originalLoader;
 }
@@ -37,6 +39,7 @@ test('all PDF exercises render their conditions, solutions, formulas and derivat
     const html = renderToStaticMarkup(React.createElement(React.Fragment, null, task.textBefore, task.textAfter, task.solutionBuilder()));
     assert.ok(math.includes('katex'), `Задача ${task.id}: формула условия`);
     assert.ok(html.includes('Подробный разбор и ход решения'), `Задача ${task.id}: решение`);
+    assert.ok(html.includes('Как находим производную:'), `Задача ${task.id}: пошаговое дифференцирование`);
     assert.ok(html.includes('Ответ:'), `Задача ${task.id}: ответ`);
     assert.ok(html.includes('Схема производной:'), `Задача ${task.id}: ось`);
     assert.ok(!html.includes('katex-error'), `Задача ${task.id}: ошибка формулы`);
@@ -69,4 +72,12 @@ test('tasks 8 and 14 state positive constants and solve only that case', () => {
     assert.ok(!solution.includes('в условии знак константы явно не указан'));
     assert.ok(!solution.includes('является минимумом, а не максимумом'));
   }
+});
+
+ test('derivative reference renders function derivatives and differentiation rules without formula errors', () => {
+  const html = renderToStaticMarkup(React.createElement(DerivativeReference));
+  for (const text of ['Таблица производных', 'Производные основных функций', 'Правила дифференцирования', 'Произведение', 'Частное', 'Сложная функция'])
+    assert.ok(html.includes(text), text);
+  assert.ok(!html.includes('katex-error'));
+  assert.equal((html.match(/<table/g) || []).length, 2);
 });

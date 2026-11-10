@@ -20,6 +20,15 @@ function Formula({ children }) {
   return <div className="overflow-x-auto"><BlockMath math={children} /></div>;
 }
 
+function Derivation({ children }) {
+  return (
+    <div className="space-y-3 rounded-2xl bg-slate-50 dark:bg-purple-950/20 border border-slate-200/70 dark:border-purple-500/20 p-4">
+      <p className="font-bold text-slate-800 dark:text-slate-100">Как находим производную:</p>
+      {children}
+    </div>
+  );
+}
+
 export const egeOptimizationTasks = [
   {
     id: 1,
@@ -42,6 +51,13 @@ export const egeOptimizationTasks = [
           Подставим выражение для силы тока в формулу мощности. Сопротивление зарядной станции неотрицательно: <InlineMath math={'R \\geqslant 0'} />.
         </p>
         <div className="overflow-x-auto"><BlockMath math={'P(R) = I^2R = \\frac{\\varepsilon^2 R}{(r + R)^2} = \\frac{3600R}{(0{,}8 + R)^2}'} /></div>
+        <Derivation>
+          <p>Перепишем дробь как произведение. Применяем правило произведения и правило сложной функции: производная внутреннего выражения <InlineMath math={String.raw`0{,}8+R`} /> равна 1.</p>
+          <Formula>{String.raw`P(R)=3600R(0{,}8+R)^{-2},\qquad \left((0{,}8+R)^{-2}\right)'=-2(0{,}8+R)^{-3}`}</Formula>
+          <Formula>{String.raw`P'(R)=3600\left[(0{,}8+R)^{-2}-2R(0{,}8+R)^{-3}\right]`}</Formula>
+          <p>Выносим <InlineMath math={String.raw`(0{,}8+R)^{-3}`} /> и приводим подобные слагаемые:</p>
+          <Formula>{String.raw`P'(R)=3600(0{,}8+R)^{-3}\bigl((0{,}8+R)-2R\bigr)`}</Formula>
+        </Derivation>
         <p>Найдём производную мощности по сопротивлению:</p>
         <div className="overflow-x-auto"><BlockMath math={"P'(R) = \\frac{3600(0{,}8 - R)}{(0{,}8 + R)^3}"} /></div>
         <DerivativeAxis variable="R" left="0" point="0{,}8" right={String.raw`+\infty`} leftClosed />
@@ -68,6 +84,14 @@ export const egeOptimizationTasks = [
         conclusion={<>При <InlineMath math={String.raw`0<v<\sqrt{2RT/M}`} /> плотность возрастает, а при <InlineMath math={String.raw`v>\sqrt{2RT/M}`} /> убывает. Значит, найденная точка даёт максимум на <InlineMath math={String.raw`v\geqslant 0`} />.</>}
         answer={<InlineMath math={String.raw`125\sqrt{2R}\ \text{м/с}`} />}>
         <p>Скорость неотрицательна, а все постоянные в условии положительны. Обозначим положительный множитель перед <InlineMath math={String.raw`v^2e^{-Mv^2/(2RT)}`} /> через <InlineMath math="K" />.</p>
+        <Derivation>
+          <p>Постоянные <InlineMath math="K, M, R, T" /> при дифференцировании по <InlineMath math="v" /> не меняются. Обозначим показатель экспоненты через <InlineMath math="q" /> и найдём производные обоих множителей:</p>
+          <Formula>{String.raw`q(v)=-\frac{Mv^2}{2RT},\qquad q'(v)=-\frac{Mv}{RT},\qquad (v^2)'=2v`}</Formula>
+          <Formula>{String.raw`(e^{q(v)})'=e^{q(v)}q'(v)=-\frac{Mv}{RT}e^{q(v)}`}</Formula>
+          <p>По правилу произведения складываем производную первого множителя, умноженную на второй, и первый множитель, умноженный на производную второго:</p>
+          <Formula>{String.raw`f'(v)=K\left(2v e^q+v^2e^q\left(-\frac{Mv}{RT}\right)\right)`}</Formula>
+          <p>Выносим общий множитель <InlineMath math={String.raw`Kv e^q`} />.</p>
+        </Derivation>
         <Formula>{String.raw`f(v)=Kv^2e^{-Mv^2/(2RT)},\qquad f'(v)=Kv e^{-Mv^2/(2RT)}\left(2-\frac{Mv^2}{RT}\right)`}</Formula>
         <p>При <InlineMath math="v>0" /> знак производной определяется скобкой. Отсюда единственная внутренняя критическая точка:</p>
         <Formula>{String.raw`2-\frac{Mv^2}{RT}=0\quad\Rightarrow\quad v_*=\sqrt{\frac{2RT}{M}}=\sqrt{\frac{2R\cdot500}{0{,}032}}=125\sqrt{2R}`}</Formula>
@@ -87,6 +111,15 @@ export const egeOptimizationTasks = [
         conclusion={<>На <InlineMath math="(0;1000)" /> напряжение возрастает, а на <InlineMath math={String.raw`(1000;+\infty)`} /> убывает, поэтому при частоте 1000 достигается максимум.</>}
         answer={<InlineMath math={String.raw`1000\ \text{с}^{-1}`} />}>
         <p>Рассматриваем положительные частоты. Введём положительное выражение <InlineMath math={String.raw`D=R^2+(\omega L-1/(\omega C))^2`} /> и продифференцируем:</p>
+        <Derivation>
+          <p>Пусть <InlineMath math={String.raw`q(\omega)=\omega L-1/(\omega C)`} />. Сначала дифференцируем выражение в скобках, затем квадрат и весь знаменатель:</p>
+          <Formula>{String.raw`q'(\omega)=L+\frac{1}{C\omega^2},\qquad D'=2q q'`}</Formula>
+          <p>Запишем напряжение как произведение <InlineMath math={String.raw`UL\cdot\omega D^{-1/2}`} /> и применим правила произведения и сложной функции:</p>
+          <Formula>{String.raw`U_L'=UL\left(D^{-1/2}-\frac{\omega D'}{2D^{3/2}}\right)=\frac{UL(D-\omega D'/2)}{D^{3/2}}`}</Formula>
+          <p>Подставляем <InlineMath math={String.raw`D'=2q q'`} />. При раскрытии скобок удобно умножить числитель на положительное <InlineMath math={String.raw`C^2\omega^2`} />:</p>
+          <Formula>{String.raw`C^2\omega^2\left(D-\frac{\omega D'}2\right)=2-C(2L-R^2C)\omega^2`}</Formula>
+          <p>Делим результат на тот же множитель и получаем производную:</p>
+        </Derivation>
         <Formula>{String.raw`U_L'(\omega)=\frac{UL\,[2-C(2L-R^2C)\omega^2]}{C^2\omega^2D^{3/2}}`}</Formula>
         <p>Знаменатель и <InlineMath math="UL" /> положительны. Подставляя данные, получаем:</p>
         <Formula>{String.raw`2L-R^2C=0{,}08,\quad 2-0{,}000002\omega^2=0\quad\Rightarrow\quad\omega_*=1000`}</Formula>
@@ -106,6 +139,13 @@ export const egeOptimizationTasks = [
         conclusion={<>На <InlineMath math={String.raw`(0;\alpha_*)`} /> расстояние убывает, а на <InlineMath math={String.raw`(\alpha_*;\pi)`} /> возрастает. Следовательно, в точке <InlineMath math={String.raw`\alpha_*`} /> достигается минимум.</>}
         answer={<InlineMath math={String.raw`204\ \text{м}`} />}>
         <p>Для переправы на противоположный берег требуется <InlineMath math={String.raw`0<\alpha<\pi`} />. Производная по углу равна</p>
+        <Derivation>
+          <p>Постоянный множитель <InlineMath math={String.raw`h/v`} /> выносим за знак производной. Для числителя и знаменателя дроби имеем:</p>
+          <Formula>{String.raw`(u+v\cos\alpha)'=-v\sin\alpha,\qquad (\sin\alpha)'=\cos\alpha`}</Formula>
+          <p>Применяем правило частного, затем используем тождество <InlineMath math={String.raw`\sin^2\alpha+\cos^2\alpha=1`} />:</p>
+          <Formula>{String.raw`l'(\alpha)=\frac hv\cdot\frac{(-v\sin\alpha)\sin\alpha-(u+v\cos\alpha)\cos\alpha}{\sin^2\alpha}`}</Formula>
+          <Formula>{String.raw`(-v\sin^2\alpha-u\cos\alpha-v\cos^2\alpha)=-(v+u\cos\alpha)`}</Formula>
+        </Derivation>
         <Formula>{String.raw`l'(\alpha)=-\frac{h(u\cos\alpha+v)}{v\sin^2\alpha}`}</Formula>
         <p>Знаменатель положителен; производная равна нулю только при</p>
         <Formula>{String.raw`\cos\alpha_*=-\frac{v}{u}=-\frac{5}{13},\qquad \sin\alpha_*=\frac{12}{13}`}</Formula>
@@ -125,6 +165,12 @@ export const egeOptimizationTasks = [
         conclusion={<>Плотность возрастает на <InlineMath math={String.raw`(0;kT/2)`} /> и убывает на <InlineMath math={String.raw`(kT/2;+\infty)`} />. Поэтому при <InlineMath math={String.raw`\varepsilon=kT/2`} /> достигается максимум.</>}
         answer={<InlineMath math={String.raw`310{,}5\cdot10^{-23}\ \text{Дж}`} />}>
         <p>Энергия неотрицательна. Обозначим положительный постоянный множитель через <InlineMath math="K" />; для <InlineMath math={String.raw`\varepsilon>0`} /> получаем:</p>
+        <Derivation>
+          <p>Дифференцируем произведение корня и экспоненты. В показателе экспоненты <InlineMath math={String.raw`q(\varepsilon)=-\varepsilon/(kT)`} />, поэтому:</p>
+          <Formula>{String.raw`(\sqrt{\varepsilon})'=\frac1{2\sqrt{\varepsilon}},\qquad q'(\varepsilon)=-\frac1{kT},\qquad (e^q)'=-\frac{e^q}{kT}`}</Formula>
+          <p>Подставляем эти производные в правило произведения и выносим общий множитель:</p>
+          <Formula>{String.raw`f'(\varepsilon)=K\left(\frac{e^q}{2\sqrt{\varepsilon}}-\frac{\sqrt{\varepsilon}\,e^q}{kT}\right)`}</Formula>
+        </Derivation>
         <Formula>{String.raw`f(\varepsilon)=K\sqrt{\varepsilon}e^{-\varepsilon/(kT)},\qquad f'(\varepsilon)=\frac{Ke^{-\varepsilon/(kT)}}{2\sqrt{\varepsilon}}\left(1-\frac{2\varepsilon}{kT}\right)`}</Formula>
         <p>Все множители, кроме последней скобки, положительны. При нулевой производной</p>
         <Formula>{String.raw`\varepsilon_*=\frac{kT}{2}=\frac{1{,}38\cdot10^{-23}\cdot450}{2}=310{,}5\cdot10^{-23}\ \text{Дж}`}</Formula>
@@ -143,6 +189,12 @@ export const egeOptimizationTasks = [
         conclusion={<>Сила тока возрастает на <InlineMath math="(0;500)" /> и убывает на <InlineMath math={String.raw`(500;+\infty)`} />. При <InlineMath math={String.raw`\omega=500`} /> рад/с достигается максимум.</>}
         answer={<InlineMath math={String.raw`5\ \text{А}`} />}>
         <p>Пусть <InlineMath math={String.raw`D=R^2+(\omega L-1/(\omega C))^2`} />. При положительной частоте</p>
+        <Derivation>
+          <p>Положим <InlineMath math={String.raw`q=\omega L-1/(\omega C)`} />, тогда <InlineMath math={String.raw`D=R^2+q^2`} /> и <InlineMath math={String.raw`I=UD^{-1/2}`} />. Последовательно применяем правила степени и сложной функции:</p>
+          <Formula>{String.raw`q'=L+\frac1{\omega^2C},\qquad D'=2q q'`}</Formula>
+          <Formula>{String.raw`I'=U\left(-\frac12\right)D^{-3/2}D'=-Uq q'D^{-3/2}`}</Formula>
+          <p>Подставим обратно <InlineMath math="q" /> и <InlineMath math="q'" />:</p>
+        </Derivation>
         <Formula>{String.raw`I'(\omega)=-\frac{U\left(\omega L-\frac1{\omega C}\right)\left(L+\frac1{\omega^2C}\right)}{D^{3/2}}`}</Formula>
         <p>Все множители, кроме первой скобки в числителе и знака минус, положительны. Нулевая производная соответствует резонансу:</p>
         <Formula>{String.raw`\omega L=\frac1{\omega C}\quad\Rightarrow\quad\omega_*=\frac1{\sqrt{LC}}=500\ \text{рад/с}`}</Formula>
@@ -162,6 +214,12 @@ export const egeOptimizationTasks = [
         conclusion={<>Скорость убывает на <InlineMath math={String.raw`(0;\pi/4)`} /> и возрастает на <InlineMath math={String.raw`(\pi/4;\pi/2)`} />. Значит, минимум достигается при <InlineMath math={String.raw`\alpha=\pi/4=45^\circ`} />.</>}
         answer={<InlineMath math={String.raw`45^\circ`} />}>
         <p>Положим <InlineMath math="x=T/1000" />. Так как <InlineMath math={String.raw`-1\leqslant\cos(4\alpha)\leqslant1`} />, имеем <InlineMath math={String.raw`11/8\leqslant x\leqslant7/4`} />: условие <InlineMath math="T>1000" /> выполнено на всём заданном отрезке.</p>
+        <Derivation>
+          <p>Сначала найдём производную скорости по <InlineMath math="x" />. Для подкоренного выражения <InlineMath math={String.raw`g(x)=x^3-3x+4`} /> получаем <InlineMath math={String.raw`g'(x)=3x^2-3`} />; применяем производную корня:</p>
+          <Formula>{String.raw`\frac{dv}{dx}=v_0\frac{g'(x)}{2\sqrt{g(x)}}=\frac{3v_0(x^2-1)}{2\sqrt{x^3-3x+4}}`}</Formula>
+          <p>Теперь дифференцируем <InlineMath math={String.raw`x(\alpha)=1+3/(6-2\cos(4\alpha))`} />. Если <InlineMath math={String.raw`h(\alpha)=6-2\cos(4\alpha)`} />, то <InlineMath math={String.raw`h'(\alpha)=8\sin(4\alpha)`} />:</p>
+          <Formula>{String.raw`\frac{dx}{d\alpha}=-\frac{3h'(\alpha)}{h(\alpha)^2}=-\frac{24\sin(4\alpha)}{(6-2\cos(4\alpha))^2},\qquad \frac{dv}{d\alpha}=\frac{dv}{dx}\frac{dx}{d\alpha}`}</Formula>
+        </Derivation>
         <Formula>{String.raw`\frac{dv}{dx}=\frac{3v_0(x^2-1)}{2\sqrt{x^3-3x+4}}>0,\qquad \frac{dx}{d\alpha}=\frac{-24\sin(4\alpha)}{(6-2\cos(4\alpha))^2}`}</Formula>
         <p>По правилу производной сложной функции знак <InlineMath math={String.raw`dv/d\alpha`} /> совпадает со знаком <InlineMath math={String.raw`dx/d\alpha`} />: он отрицателен до <InlineMath math={String.raw`\pi/4`} /> и положителен после.</p>
         <p>В точке минимума <InlineMath math="x=11/8" />, поэтому минимальная скорость равна <InlineMath math={String.raw`v_{\min}=2\sqrt{1267/512}`} /> м/ч.</p>
@@ -179,6 +237,13 @@ export const egeOptimizationTasks = [
         conclusion={<>Эффективность возрастает на <InlineMath math="(0;4)" /> и убывает на <InlineMath math={String.raw`(4;+\infty)`} />. Следовательно, максимум достигается при <InlineMath math="t=4" /> мин.</>}
         answer={<InlineMath math={String.raw`4\ \text{мин}`} />}>
         <p>Время <InlineMath math={String.raw`t\geqslant0`} />. По условию <InlineMath math="E_0>0" />.</p>
+        <Derivation>
+          <p>Константу <InlineMath math="E_0" /> выносим за знак производной. Обозначим числитель <InlineMath math={String.raw`u=t^2`} />, знаменатель <InlineMath math={String.raw`v=t^4+256`} />; тогда <InlineMath math={String.raw`u'=2t`} /> и <InlineMath math={String.raw`v'=4t^3`} />.</p>
+          <p>По правилу частного:</p>
+          <Formula>{String.raw`E'(t)=E_0\frac{2t(t^4+256)-t^2\cdot4t^3}{(t^4+256)^2}`}</Formula>
+          <p>Раскрываем скобки и выносим <InlineMath math="2t" />:</p>
+          <Formula>{String.raw`2t^5+512t-4t^5=2t(256-t^4)`}</Formula>
+        </Derivation>
         <Formula>{String.raw`E'(t)=\frac{2E_0t(256-t^4)}{(t^4+256)^2}`}</Formula>
         <p>При <InlineMath math="t>0" /> знак производной определяется выражением <InlineMath math="256-t^4" />. Внутренняя критическая точка: <InlineMath math={String.raw`t^4=256\Rightarrow t=4`} />. На границе <InlineMath math="t=0" /> эффективность равна нулю.</p>
         <Formula>{String.raw`E_{\max}=E(4)=E_0\cdot\frac{16}{512}=\frac{E_0}{32}`}</Formula>
@@ -196,6 +261,14 @@ export const egeOptimizationTasks = [
         conclusion={<>При положительной амплитуде <InlineMath math="U_0" /> функция возрастает на <InlineMath math="(0;5)" /> и убывает на <InlineMath math={String.raw`(5;+\infty)`} />. Максимум достигается при частоте 5 МГц.</>}
         answer={<InlineMath math={String.raw`5\ \text{МГц}`} />}>
         <p>Рассматриваем <InlineMath math={String.raw`\omega\geqslant0`} /> и положительный масштаб амплитуды <InlineMath math="U_0>0" />. Положим <InlineMath math={String.raw`D=(25-\omega^2)^2+4\omega^2`} />. Производная при положительной частоте:</p>
+        <Derivation>
+          <p>Запишем амплитуду как <InlineMath math={String.raw`U_0\omega D^{-1/2}`} />. Сначала найдём производную <InlineMath math="D" />, применив правило сложной функции к квадрату:</p>
+          <Formula>{String.raw`D'=2(25-\omega^2)(-2\omega)+8\omega=-4\omega(25-\omega^2)+8\omega`}</Formula>
+          <p>Используем правило произведения для <InlineMath math={String.raw`\omega D^{-1/2}`} /> и производную степени для <InlineMath math={String.raw`D^{-1/2}`} />:</p>
+          <Formula>{String.raw`U'=U_0\left(D^{-1/2}-\frac{\omega D'}{2D^{3/2}}\right)=\frac{U_0(D-\omega D'/2)}{D^{3/2}}`}</Formula>
+          <p>После подстановки <InlineMath math="D'" /> числитель упрощается по формуле разности квадратов:</p>
+          <Formula>{String.raw`D-\frac{\omega D'}2=(25-\omega^2)(25+\omega^2)=625-\omega^4`}</Formula>
+        </Derivation>
         <Formula>{String.raw`U'(\omega)=\frac{U_0(625-\omega^4)}{D^{3/2}}`}</Formula>
         <p>Знаменатель положителен. Приравнивая числитель к нулю, получаем единственную положительную критическую точку <InlineMath math={String.raw`\omega^4=625\Rightarrow\omega_*=5`} />. Тогда</p>
         <Formula>{String.raw`U_{\max}=U(5)=\frac{5U_0}{\sqrt{4\cdot25}}=\frac{U_0}{2}`}</Formula>
@@ -213,6 +286,13 @@ export const egeOptimizationTasks = [
         conclusion={<>Градиент возрастает на <InlineMath math="(0;6)" /> и убывает на <InlineMath math={String.raw`(6;+\infty)`} />; наибольшее значение достигается при <InlineMath math="x=6" /> мм.</>}
         answer={<InlineMath math={String.raw`6\ \text{мм}`} />}>
         <p>Подставим <InlineMath math="R=12" /> и найдём производную:</p>
+        <Derivation>
+          <p>Представим функцию произведением <InlineMath math={String.raw`Cx(144+x^2)^{-5/2}`} />. Производная внутреннего выражения равна <InlineMath math="2x" />:</p>
+          <Formula>{String.raw`\left((144+x^2)^{-5/2}\right)'=-\frac52(144+x^2)^{-7/2}\cdot2x`}</Formula>
+          <p>По правилу произведения и с учётом постоянного множителя:</p>
+          <Formula>{String.raw`G'(x)=C\left[(144+x^2)^{-5/2}-5x^2(144+x^2)^{-7/2}\right]`}</Formula>
+          <p>Выносим общий множитель <InlineMath math={String.raw`(144+x^2)^{-7/2}`} /> и получаем <InlineMath math={String.raw`144+x^2-5x^2=144-4x^2`} />.</p>
+        </Derivation>
         <Formula>{String.raw`G(x)=\frac{Cx}{(144+x^2)^{5/2}},\qquad G'(x)=\frac{C(144-4x^2)}{(144+x^2)^{7/2}}`}</Formula>
         <p>При <InlineMath math="x>0" /> и <InlineMath math="C>0" /> знак определяется числителем. Уравнение <InlineMath math="144-4x^2=0" /> даёт единственную допустимую точку <InlineMath math="x=6" />.</p>
         <Formula>{String.raw`G_{\max}=G(6)=\frac{6C}{180^{5/2}}`}</Formula>
@@ -230,6 +310,12 @@ export const egeOptimizationTasks = [
         conclusion={<>Амплитуда возрастает на <InlineMath math="(0;4)" /> и убывает на <InlineMath math={String.raw`(4;+\infty)`} />. Поэтому при <InlineMath math={String.raw`\omega=4`} /> достигается максимум.</>}
         answer={<><InlineMath math={String.raw`4\ \text{рад/с}`} />; <InlineMath math={String.raw`400\ \text{мкм}`} /></>}>
         <p>Обозначим <InlineMath math={String.raw`D=(\omega^2-34)^2+36\omega^2=\omega^4-32\omega^2+1156`} />. При <InlineMath math={String.raw`\omega>0`} /> имеем:</p>
+        <Derivation>
+          <p>Сначала дифференцируем выражение под корнем, затем функцию <InlineMath math={String.raw`A=12000D^{-1/2}`} />:</p>
+          <Formula>{String.raw`D'=2(\omega^2-34)\cdot2\omega+72\omega=4\omega(\omega^2-16)`}</Formula>
+          <Formula>{String.raw`A'=12000\cdot\left(-\frac12\right)D^{-3/2}D'=-\frac{6000D'}{D^{3/2}}`}</Formula>
+          <p>Подставляем найденное выражение для <InlineMath math="D'" />:</p>
+        </Derivation>
         <Formula>{String.raw`A'(\omega)=-\frac{24000\omega(\omega^2-16)}{D^{3/2}}`}</Formula>
         <p>Знаменатель положителен; единственный положительный нуль производной — <InlineMath math={String.raw`\omega=4`} />. Подставляем его в исходную формулу:</p>
         <Formula>{String.raw`A_{\max}=A(4)=\frac{12000}{\sqrt{(16-34)^2+36\cdot16}}=\frac{12000}{30}=400\ \text{мкм}`}</Formula>
@@ -248,6 +334,11 @@ export const egeOptimizationTasks = [
         answer={<><InlineMath math={String.raw`60\ \text{рад/с}`} />; <InlineMath math={String.raw`288\ \text{Вт}`} /></>}>
         <p>Допустимый отрезок: <InlineMath math={String.raw`0\leqslant\omega\leqslant48/0{,}4=120`} />. Подставим ток и противо-ЭДС в выражение мощности:</p>
         <Formula>{String.raw`P(\omega)=\frac{0{,}4\omega(48-0{,}4\omega)}{2}=9{,}6\omega-0{,}08\omega^2`}</Formula>
+        <Derivation>
+          <p>Применяем правило разности, выносим постоянные коэффициенты и дифференцируем каждое слагаемое:</p>
+          <Formula>{String.raw`(9{,}6\omega)'=9{,}6,\qquad (0{,}08\omega^2)'=0{,}08\cdot2\omega=0{,}16\omega`}</Formula>
+          <p>Вычитаем полученные результаты и приравниваем производную к нулю:</p>
+        </Derivation>
         <Formula>{String.raw`P'(\omega)=9{,}6-0{,}16\omega=0\quad\Rightarrow\quad\omega_*=60`}</Formula>
         <p>Критическая точка лежит внутри отрезка; производная меняет знак с плюса на минус.</p>
         <Formula>{String.raw`P_{\max}=P(60)=9{,}6\cdot60-0{,}08\cdot60^2=288\ \text{Вт}`}</Formula>
@@ -265,6 +356,14 @@ export const egeOptimizationTasks = [
         conclusion={<>Амплитуда возрастает на <InlineMath math={String.raw`(0;\tau_*)`} /> и убывает на <InlineMath math={String.raw`(\tau_*;+\infty)`} />. В точке <InlineMath math={String.raw`\tau_*`} /> достигается максимум.</>}
         answer={<InlineMath math={String.raw`14{,}4\sqrt{\frac{2}{2-n}}\ \text{с}`} />}>
         <p>Период положителен; полагаем положительными масштаб амплитуды <InlineMath math={String.raw`k\theta_0`} /> и период <InlineMath math="T" />. Обозначим <InlineMath math={String.raw`D=(T^2-\tau^2)^2+n\tau^2T^2`} />. Так как <InlineMath math="n>0" />, <InlineMath math="D>0" /> при <InlineMath math={String.raw`\tau>0`} />.</p>
+        <Derivation>
+          <p>Сначала дифференцируем <InlineMath math={String.raw`D=(T^2-\tau^2)^2+n\tau^2T^2`} /> по <InlineMath math={String.raw`\tau`} />. В первом слагаемом используем правило сложной функции, во втором считаем <InlineMath math="n" /> и <InlineMath math="T" /> постоянными:</p>
+          <Formula>{String.raw`D'=2(T^2-\tau^2)(-2\tau)+2n\tau T^2=-4\tau(T^2-\tau^2)+2n\tau T^2`}</Formula>
+          <p>Теперь <InlineMath math={String.raw`A=k\theta_0\tau^2D^{-1/2}`} />. Применяем правило произведения и производную сложной степени:</p>
+          <Formula>{String.raw`A'=k\theta_0\left(2\tau D^{-1/2}-\frac{\tau^2D'}{2D^{3/2}}\right)=\frac{k\theta_0\tau(2D-\tau D'/2)}{D^{3/2}}`}</Formula>
+          <p>Подставляем <InlineMath math="D" /> и <InlineMath math="D'" />, раскрываем скобки и приводим подобные:</p>
+          <Formula>{String.raw`2D-\frac{\tau D'}2=T^2\bigl(2T^2-(2-n)\tau^2\bigr)`}</Formula>
+        </Derivation>
         <Formula>{String.raw`A'(\tau)=\frac{k\theta_0\tau T^2[2T^2-(2-n)\tau^2]}{D^{3/2}}`}</Formula>
         <p>Знак производной определяется скобкой. Единственная положительная критическая точка:</p>
         <Formula>{String.raw`\tau_*=T\sqrt{\frac2{2-n}}=14{,}4\sqrt{\frac2{2-n}}\ \text{с}`}</Formula>
@@ -283,6 +382,13 @@ export const egeOptimizationTasks = [
         conclusion={<>Сила возрастает на <InlineMath math="(0;1)" /> и убывает на <InlineMath math={String.raw`(1;+\infty)`} />. Максимум достигается при <InlineMath math="l=1" />.</>}
         answer={<InlineMath math="1" />}>
         <p>Расстояние <InlineMath math={String.raw`l\geqslant0`} />, а по условию <InlineMath math="c>0" />. При <InlineMath math="r=2" />:</p>
+        <Derivation>
+          <p>Запишем силу как <InlineMath math={String.raw`F(l)=cl(l^2+4)^{-5/2}`} />. Производная внутренней функции <InlineMath math={String.raw`l^2+4`} /> равна <InlineMath math="2l" />:</p>
+          <Formula>{String.raw`\left((l^2+4)^{-5/2}\right)'=-\frac52(l^2+4)^{-7/2}\cdot2l`}</Formula>
+          <p>Применяем правило произведения и выносим общий множитель:</p>
+          <Formula>{String.raw`F'(l)=c\left[(l^2+4)^{-5/2}-5l^2(l^2+4)^{-7/2}\right]`}</Formula>
+          <Formula>{String.raw`F'(l)=c(l^2+4)^{-7/2}\bigl(l^2+4-5l^2\bigr)`}</Formula>
+        </Derivation>
         <Formula>{String.raw`F(l)=\frac{cl}{(l^2+4)^{5/2}},\qquad F'(l)=\frac{4c(1-l^2)}{(l^2+4)^{7/2}}`}</Formula>
         <p>Знаменатель положителен; при <InlineMath math="c>0" /> единственная положительная критическая точка — <InlineMath math="l=1" />. Ей соответствует</p>
         <Formula>{String.raw`F_{\max}=F(1)=\frac{c}{5^{5/2}}`}</Formula>

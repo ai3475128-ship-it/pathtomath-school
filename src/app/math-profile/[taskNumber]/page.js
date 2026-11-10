@@ -6,6 +6,7 @@ import Link from 'next/link';
 import TaskListBlock from './TaskListBlock';
 import ErrorReportModal from '../ErrorReportModal';
 import SectionExplorer from '../stereometry/SectionExplorer';
+import DerivativeReference from './DerivativeReference';
 
 export const dynamic = 'force-dynamic';
 
@@ -88,6 +89,7 @@ export default async function TaskPage({ params }) {
         </div>
 
         {(taskNumber === '15-intro' || taskNumber === '3') && <SectionExplorer key={taskNumber} />}
+        {storageModule === 'ege-optimization' && <DerivativeReference />}
 
         {/* Список задач и модалка репортов */}
         <div className="space-y-4 pt-2">
