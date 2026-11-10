@@ -1,5 +1,5 @@
 // Обновляйте расписание вручную после сверки с организаторами.
-// Уровень указан только для профиля «математика» в сезоне 2026/27.
+// Уровни указаны для профилей математики и криптографии в сезоне 2026/27.
 export const checkedOn = '10 ноября 2026 года';
 export const registryUrl = 'https://rsr-olymp.ru/';
 
@@ -18,6 +18,7 @@ export const olympiads = [
   { id: 'kurchatov', name: 'Олимпиада «Курчатов»', level: 'II', url: 'https://olimpiadakurchatov.ru/' },
   { id: 'umsh', name: 'Олимпиада Юношеской математической школы', level: 'II', url: 'https://yumsh.ru/cms/yumsh-olymp/2026-27' },
   { id: 'rosatom', name: 'Росатом', level: 'II', registerUrl: 'https://org.mephi.ru/', url: 'https://olymp.mephi.ru/rosatom/about' },
+  { id: 'verchenko', name: 'Олимпиада имени И. Я. Верченко по математике и криптографии', level: 'II', url: 'https://v-olymp.ru/olymp/cryptography' },
   { id: 'turlom', name: 'Турнир имени М. В. Ломоносова', level: 'II', url: 'https://xn--k1acfgjg.xn--l1afu.xn--p1ai/' },
   { id: 'izumrud', name: 'Изумруд', level: 'III', registerUrl: 'https://dovuz.urfu.ru/olymps/izumrud/registration', url: 'https://dovuz.urfu.ru/olymps/izumrud/index' },
   { id: 'bibn', name: 'Будущие исследователи — будущее науки', level: 'III', url: 'https://bibn.unn.ru/' },
@@ -28,6 +29,8 @@ export const olympiads = [
 
 // Период означает окно проведения, а не несколько самостоятельных экзаменов.
 export const events = [
+  { id: 'verchenko-qual', olympiad: 'verchenko', start: '2026-11-01', end: '2026-11-23', dateText: '1–23 ноября 2026', stage: 'Отборочный этап', format: 'Дистанционно', detail: 'Задания доступны на сайте олимпиады; условия участия уточняйте у организатора.', source: 'https://v-olymp.ru/olymp/cryptography' },
+  { id: 'verchenko-final', olympiad: 'verchenko', start: '2026-11-29', end: '2026-11-29', dateText: '29 ноября 2026', stage: 'Заключительный этап', format: 'Очно', detail: 'Площадки проведения и условия допуска уточняйте у организатора.', source: 'https://v-olymp.ru/olymp/cryptography' },
   { id: 'izumrud-qual', olympiad: 'izumrud', start: '2026-09-01', end: '2027-01-19', dateText: '1 сентября 2026 — 19 января 2027', stage: 'Регистрация и отборочный этап', format: 'Формат уточняйте у организатора · 8–11 классы', detail: 'Подайте заявку и выполните задания отборочного этапа.', source: 'https://dovuz.urfu.ru/olymps/izumrud/index' },
   { id: 'belchonok-qual', olympiad: 'belchonok', start: '2026-10-01', end: '2027-01-12', dateText: '1 октября 2026 — 12 января 2027', stage: 'Регистрация и отборочный этап', format: 'Дистанционно · 2–11 классы', detail: 'Завершение 12 января в 17:00 по красноярскому времени; условия льгот уточняйте у организатора и в вузе.', source: 'https://dovuz.sfu.ru/press-center/news/novosti-belchonok/startoval-otborochnyy-etap-universitetskoy-olimpiady-shkolnikov-belchonok-2026-2027/' },
   { id: 'innopolis-qual2', olympiad: 'innopolis', start: '2026-11-28', end: '2026-11-29', dateText: '28–29 ноября 2026', stage: 'Второй отборочный тур · предварительно', format: 'Дистанционно · 7–11 классы', detail: '28 ноября — пробный тур, 29 ноября — отборочный. Расписание предварительное.', source: 'https://dovuz.innopolis.university/innopolis-open/math' },

@@ -2,10 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { olympiads, events, registryUrl } from '../src/lib/olympiad-calendar.js';
 
-test('all 20 listed mathematics olympiads have unique IDs, levels and organizer links', () => {
-  assert.equal(olympiads.length, 20);
+test('all listed olympiads have unique IDs, levels and organizer links', () => {
+  assert.equal(olympiads.length, 21);
   assert.equal(new Set(olympiads.map((o) => o.id)).size, olympiads.length);
-  assert.deepEqual(['I', 'II', 'III'].map((level) => olympiads.filter((o) => o.level === level).length), [8, 7, 5]);
+  assert.deepEqual(['I', 'II', 'III'].map((level) => olympiads.filter((o) => o.level === level).length), [8, 8, 5]);
   for (const olympiad of olympiads) {
     assert.equal(new URL(olympiad.url).protocol, 'https:');
     assert.notEqual(olympiad.url, registryUrl);

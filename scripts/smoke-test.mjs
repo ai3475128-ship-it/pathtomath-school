@@ -239,10 +239,19 @@ try {
   assert.match(olympiadCalendar.text, /Календарь олимпиад по математике/);
   assert.match(olympiadCalendar.text, /Ломоносов/);
   assert.match(olympiadCalendar.text, /<title>Календарь олимпиад/);
-  assert.match(olympiadCalendar.text, /https:\/\/pk.math.msu.ru/);
+  assert.match(olympiadCalendar.text, /href="https:\/\/olymp.msu.ru\/rus\/event\/request\/11014/);
   const filteredCalendar = await request(`/olympiad-calendar?q=${encodeURIComponent("Росатом")}&level=II`);
   assert.match(filteredCalendar.text, /Росатом/);
   assert.doesNotMatch(filteredCalendar.text, /Санкт-Петербургская олимпиада школьников/);
+  const verchenko = await request(`/olympiad-calendar?q=${encodeURIComponent("Верченко")}&level=II`);
+  assert.match(verchenko.text, /Верченко по математике и криптографии/);
+  assert.match(verchenko.text, /1–23 ноября 2026/);
+  assert.match(verchenko.text, /29 ноября 2026/);
+  assert.ok((verchenko.text.match(/<a href="https:\/\/v-olymp.ru\/olymp\/cryptography"/g) || []).length >= 3, "Each event and catalog card should link to the organizer");
+  assert.doesNotMatch(verchenko.text, /Источник даты ↗|Регистрация ↗|Сайт олимпиады ↗/);
+  assert.match(verchenko.text, /hover:bg-sky-500/);
+  assert.match(verchenko.text, /dark:hover:bg-\[#634EE4\]/);
+
   const home = await request("/");
   assert.match(home.text, /Олимпиадный календарь/);
   for (const [path, user] of [["/dashboard", "free"], ["/profile", "a"], ["/teacher-dashboard", "teacher"], ["/admin-panel", "admin"]]) {

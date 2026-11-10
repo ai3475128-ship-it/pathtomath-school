@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { checkedOn, events, olympiads, registryUrl } from '@/lib/olympiad-calendar';
+import { checkedOn, events, olympiads } from '@/lib/olympiad-calendar';
 
 const title = 'Календарь олимпиад по математике 2026–2027 | АЗИМУТ';
 const description = 'Календарь перечневых олимпиад по математике 2026–2027: даты этапов, уровни и ссылки на сайты организаторов для регистрации.';
@@ -24,13 +24,18 @@ export default async function OlympiadCalendarPage({ searchParams }) {
   const upcoming = visibleEvents.filter((event) => event.end >= today);
   const past = visibleEvents.filter((event) => event.end < today);
 
+  const cardClass = 'group block h-full rounded-2xl border border-blue-100/60 bg-white/80 p-5 shadow-sm transition-all duration-300 hover:border-sky-500 hover:bg-sky-500 hover:shadow-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-600 dark:border-purple-500/20 dark:bg-purple-950/10 dark:hover:border-[#634EE4] dark:hover:bg-[#634EE4] dark:focus-visible:outline-purple-400';
+  const secondaryText = 'text-slate-600 group-hover:text-white dark:text-slate-300 dark:group-hover:text-white';
+
   function EventCard({ event }) {
     const olympiad = olympiads.find((item) => item.id === event.olympiad);
-    return <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-purple-500/20 dark:bg-[#140e24]">
-      <div className="flex flex-wrap items-center justify-between gap-2"><span className="font-black text-sky-700 dark:text-purple-300">{event.dateText}</span><span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-bold text-sky-700 dark:bg-purple-950/50 dark:text-purple-300">{olympiad.level} уровень</span></div>
-      <h3 className="mt-3 text-xl font-extrabold text-slate-900 dark:text-white">{olympiad.name}</h3><p className="mt-1 font-semibold text-slate-700 dark:text-slate-200">{event.stage}</p>
-      <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{event.format}</p><p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{event.detail}</p>
-      <div className="mt-4 flex flex-wrap gap-4 text-sm font-bold"><a href={olympiad.registerUrl || olympiad.url} target="_blank" rel="noopener noreferrer" className="text-sky-700 underline underline-offset-4 dark:text-purple-300">{olympiad.registerUrl ? "Регистрация ↗" : "Сайт олимпиады ↗"}</a><a href={event.source} target="_blank" rel="noopener noreferrer" className="text-slate-600 underline underline-offset-4 dark:text-slate-300">Источник даты ↗</a></div>
+    return <article>
+      <a href={olympiad.registerUrl || olympiad.url} target="_blank" rel="noopener noreferrer" className={cardClass}>
+        <div className="flex flex-wrap items-center justify-between gap-2"><span className="font-black text-sky-700 group-hover:text-white dark:text-purple-300 dark:group-hover:text-white">{event.dateText}</span><span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-bold text-sky-700 group-hover:bg-white/20 group-hover:text-white dark:bg-purple-950/50 dark:text-purple-300 dark:group-hover:bg-white/20 dark:group-hover:text-white">{olympiad.level} уровень</span></div>
+        <h3 className="mt-3 text-xl font-extrabold text-slate-900 group-hover:text-white dark:text-white">{olympiad.name}</h3><p className="mt-1 font-semibold text-slate-700 group-hover:text-white dark:text-slate-200 dark:group-hover:text-white">{event.stage}</p>
+        <p className={`mt-2 text-sm ${secondaryText}`}>{event.format}</p><p className={`mt-2 text-sm leading-relaxed ${secondaryText}`}>{event.detail}</p>
+        <span aria-hidden="true" className="mt-4 block text-lg font-bold text-sky-700 group-hover:text-white dark:text-purple-300 dark:group-hover:text-white">↗</span><span className="sr-only">Откроется в новой вкладке</span>
+      </a>
     </article>;
   }
 
@@ -45,8 +50,15 @@ export default async function OlympiadCalendarPage({ searchParams }) {
       <section aria-labelledby="dates"><h2 id="dates" className="text-2xl font-black dark:text-white">Ближайшие даты</h2><p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Здесь только даты, которые мы внесли после проверки. Список этапов пока неполный.</p>{upcoming.length ? <div className="mt-5 grid gap-4 md:grid-cols-2">{upcoming.map((event) => <EventCard key={event.id} event={event} />)}</div> : <p className="mt-4 rounded-2xl bg-white p-5 text-slate-600 dark:bg-[#140e24] dark:text-slate-300">Подходящих предстоящих дат пока нет. Проверьте сайты олимпиад ниже.</p>}
         {past.length > 0 && <details className="mt-5 rounded-2xl border border-slate-200 p-5 dark:border-purple-500/20"><summary className="cursor-pointer font-bold">Прошедшие даты ({past.length})</summary><div className="mt-4 grid gap-4 md:grid-cols-2">{past.map((event) => <EventCard key={event.id} event={event} />)}</div></details>}
       </section>
-      <section aria-labelledby="list"><h2 id="list" className="text-2xl font-black dark:text-white">Перечневые олимпиады по математике</h2><p className="mt-2 max-w-4xl text-sm leading-relaxed text-slate-600 dark:text-slate-300">Уровни указаны для профиля «математика» на 2026/27 учебный год. Ссылки ведут на сайты олимпиад: регистрация может быть открыта не круглый год. Сверяйте данные с <a href={registryUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-sky-700 underline dark:text-purple-300">РСОШ ↗</a>.</p>
-        <div className="mt-5 grid gap-3 md:grid-cols-2">{matching.map((item) => <article key={item.id} className="flex flex-col justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-5 dark:border-purple-500/20 dark:bg-[#140e24]"><div><span className="text-xs font-black uppercase tracking-wide text-sky-700 dark:text-purple-300">{item.level} уровень</span><h3 className="mt-1 font-extrabold text-slate-900 dark:text-white">{item.name}</h3>{!events.some((event) => event.olympiad === item.id) && <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Даты пока не добавлены — уточняйте у организатора.</p>}</div><div className="flex flex-wrap gap-4"><a href={item.url} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-sky-700 underline underline-offset-4 dark:text-purple-300">Сайт олимпиады ↗</a>{item.registerUrl && <a href={item.registerUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-sky-700 underline underline-offset-4 dark:text-purple-300">Регистрация ↗</a>}</div></article>)}</div>
+      <section aria-labelledby="list"><h2 id="list" className="text-2xl font-black dark:text-white">Перечневые олимпиады по математике и криптографии</h2><p className="mt-2 max-w-4xl text-sm leading-relaxed text-slate-600 dark:text-slate-300">Уровни указаны на 2026/27 учебный год для соответствующего профиля. Нажмите на олимпиаду, чтобы перейти на сайт организатора. Регистрация может быть открыта не круглый год.</p>
+        <div className="mt-5 grid gap-3 md:grid-cols-2">{matching.map((item) => <article key={item.id}>
+          <a href={item.registerUrl || item.url} target="_blank" rel="noopener noreferrer" className={cardClass}>
+            <span className="text-xs font-black uppercase tracking-wide text-sky-700 group-hover:text-white dark:text-purple-300 dark:group-hover:text-white">{item.level} уровень</span>
+            <h3 className="mt-1 font-extrabold text-slate-900 group-hover:text-white dark:text-white">{item.name}</h3>
+            {!events.some((event) => event.olympiad === item.id) && <p className={`mt-2 text-sm ${secondaryText}`}>Даты пока не добавлены — уточняйте у организатора.</p>}
+            <span aria-hidden="true" className="mt-4 block text-lg font-bold text-sky-700 group-hover:text-white dark:text-purple-300 dark:group-hover:text-white">↗</span><span className="sr-only">Откроется в новой вкладке</span>
+          </a>
+        </article>)}</div>
         {matching.length === 0 && <p className="mt-4 text-slate-600 dark:text-slate-300">По вашему запросу ничего не найдено. Измените фильтры.</p>}
       </section>
     </div>
