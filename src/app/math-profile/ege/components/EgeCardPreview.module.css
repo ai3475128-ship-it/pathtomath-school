@@ -1,0 +1,73 @@
+.card { position: relative; overflow: hidden; --card-color: #328ce6; }
+:global(.dark) .card { --card-color: #634ee4; }
+.label { transition: opacity 150ms ease; }
+.preview { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 150ms ease; }
+.diagram { width: min(78%, 180px); height: 120px; overflow: visible; }
+.line { fill: none; stroke: white; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.text { fill: white; font-family: Georgia, 'Times New Roman', serif; }
+.dot, .bar { fill: white; }
+.cutout { fill: var(--card-color); stroke: white; stroke-width: 2; }
+.draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.thermometer { stroke-dasharray: 60; stroke-dashoffset: 60; }
+.reveal { opacity: 0; }
+.early { opacity: 1; }
+.bar { transform-box: fill-box; transform-origin: center bottom; transform: scaleY(0); }
+.dice { transform-origin: 100px 61px; }
+
+.card:focus-visible { background: var(--card-color); border-color: var(--card-color); outline: 3px solid #075b9b; outline-offset: 3px; }
+:global(.dark) .card:focus-visible { outline-color: #c4b5fd; }
+.card:focus-visible .label { opacity: 0; }
+.card:focus-visible .preview { opacity: 1; }
+.card:focus-visible .draw, .card:focus-visible .thermometer { animation: draw 800ms ease-out 80ms forwards; }
+.card:focus-visible .reveal { animation: appear 220ms ease 700ms forwards; }
+.card:focus-visible .early { animation: disappear 200ms ease 520ms forwards; }
+.card:focus-visible .bar { animation: grow 550ms ease-out 160ms forwards; }
+.card:focus-visible .bar.delay1 { animation-delay: 260ms; }
+.card:focus-visible .bar.delay2 { animation-delay: 360ms; }
+.card:focus-visible .bar.delay3 { animation-delay: 460ms; }
+.card:focus-visible .dice { animation: roll 650ms ease-out forwards; }
+.card:focus-visible .moveRight { animation: moveRight 800ms ease-out forwards; }
+.card:focus-visible .moveLeft { animation: moveLeft 800ms ease-out forwards; }
+.card:focus-visible .slideUp { animation: slideUp 800ms ease-out forwards; }
+.card:focus-visible .tangentMove { animation: tangentMove 800ms ease-out forwards; }
+.card:focus-visible .toMaximum { animation: toMaximum 800ms ease-out forwards; }
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .label { opacity: 0; }
+  .card:hover .preview { opacity: 1; }
+  .card:hover .draw, .card:hover .thermometer { animation: draw 800ms ease-out 80ms forwards; }
+  .card:hover .reveal { animation: appear 220ms ease 700ms forwards; }
+  .card:hover .early { animation: disappear 200ms ease 520ms forwards; }
+  .card:hover .bar { animation: grow 550ms ease-out 160ms forwards; }
+  .card:hover .bar.delay1 { animation-delay: 260ms; }
+  .card:hover .bar.delay2 { animation-delay: 360ms; }
+  .card:hover .bar.delay3 { animation-delay: 460ms; }
+  .card:hover .dice { animation: roll 650ms ease-out forwards; }
+  .card:hover .moveRight { animation: moveRight 800ms ease-out forwards; }
+  .card:hover .moveLeft { animation: moveLeft 800ms ease-out forwards; }
+  .card:hover .slideUp { animation: slideUp 800ms ease-out forwards; }
+  .card:hover .tangentMove { animation: tangentMove 800ms ease-out forwards; }
+  .card:hover .toMaximum { animation: toMaximum 800ms ease-out forwards; }
+}
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes appear { to { opacity: 1; } }
+@keyframes disappear { to { opacity: 0; } }
+@keyframes grow { to { transform: scaleY(1); } }
+@keyframes roll { from { transform: rotate(-35deg); } to { transform: rotate(0); } }
+@keyframes moveRight { from { transform: translateX(-10px); } to { transform: translateX(16px); } }
+@keyframes moveLeft { from { transform: translateX(10px); } to { transform: translateX(-16px); } }
+@keyframes slideUp { from { transform: translateY(22px); } to { transform: translateY(-32px); } }
+@keyframes tangentMove { from { transform: translate(-20px, 20px); } to { transform: translate(0, 0); } }
+@keyframes toMaximum { from { transform: translate(0, 0); } to { transform: translate(36px, -27px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .label, .preview { transition: none; }
+  .card .draw, .card .thermometer { animation: none !important; stroke-dashoffset: 0; }
+  .card .reveal { animation: none !important; opacity: 1; }
+  .card .early { animation: none !important; opacity: 0; }
+  .card .bar { animation: none !important; transform: scaleY(1); }
+  .card .dice, .card .moveRight, .card .moveLeft, .card .tangentMove { animation: none !important; transform: none; }
+  .card .slideUp { animation: none !important; transform: translateY(-32px); }
+  .card .toMaximum { animation: none !important; transform: translate(36px, -27px); }
+}

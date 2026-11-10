@@ -277,7 +277,19 @@ try {
   const egeBank = await request('/math-profile/ege/main');
   assert.equal(egeBank.status, 200);
   const bankMarkup = egeBank.text.split('<script id="_R_">')[0];
-  assert.equal((bankMarkup.match(/viewBox="0 0 200 150"/g) || []).length, 1);
+  assert.equal((bankMarkup.match(/viewBox="0 0 200 150"/g) || []).length, 20);
+  function checkCardPreview(markup, href) {
+    const card = [...markup.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)].map(match => match[0]).find(link => link.includes(`href="${href}"`));
+    assert.ok(card, `Missing card ${href}`);
+    assert.match(card, /aria-hidden="true"/);
+    assert.match(card, /viewBox="0 0 200 150"/);
+    assert.match(card, /<(?:path|circle|rect|text)\b/);
+    assert.match(card, /<h3\b/);
+  }
+  for (let number = 1; number <= 20; number++) checkCardPreview(bankMarkup, `/math-profile/${number}`);
+  const introMarkup = (await request('/math-profile/ege/intro')).text.split('<script id="_R_">')[0];
+  assert.equal((introMarkup.match(/viewBox="0 0 200 150"/g) || []).length, 4);
+  for (const number of [15, 18, 19, 20]) checkCardPreview(introMarkup, `/math-profile/${number}-intro`);
   assert.match(bankMarkup, /href="\/math-profile\/1"/);
   assert.match(bankMarkup, /Планиметрия/);
   const mathHub = await request('/math-profile/ege');
