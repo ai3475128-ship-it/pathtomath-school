@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { EGE_SECTIONS, EGE_INTRO_SECTIONS, egeSection, taskModuleForRoute, displayNumberForModule } from '../src/lib/ege-sections.js';
-import { getTaskModule, getEgeProgress } from '../src/lib/task-modules.js';
+import { getTaskModule, getEgeProgress, isTaskInModule, legacyCandidates } from '../src/lib/task-modules.js';
 
 test('new exam numbering preserves topic identifiers and separates the new topics', () => {
   assert.equal(EGE_SECTIONS.length, 20);
@@ -33,4 +33,10 @@ test('existing progress is displayed under its new topic number', async () => {
     {section: 14, taskId: 1}, {section: 16, taskId: 101},
     {section: 13, taskId: 1}, {section: 19, taskId: 1}, {section: 20, taskId: 1},
   ]);
+});
+
+ test('all 14 optimization problems have separate valid progress IDs', () => {
+  for (let id = 1; id <= 14; id++) assert.equal(isTaskInModule('ege-optimization', id), true);
+  assert.equal(isTaskInModule('ege-optimization', 15), false);
+  for (let id = 1; id <= 14; id++) assert.ok(!legacyCandidates(id).some(item => item.module === 'ege-optimization'));
 });
