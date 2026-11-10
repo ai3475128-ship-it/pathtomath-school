@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import OlympiadPreview from '@/app/components/olympiad-cards/OlympiadPreview';
+import previewStyles from '@/app/components/olympiad-cards/OlympiadPreview.module.css';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,6 +17,8 @@ export default function OlympiadsIntroPage() {
     { num: 6, title: 'Классическая Алгебра' },
     { num: 7, title: 'Функции' }
   ];
+
+  const topicKeys = ['logic', 'numbers', 'identity', 'combinatorics', 'words', 'algebra', 'functions'];
 
   return (
     <div className="relative min-h-screen bg-white dark:bg-[#03000a] p-8 transition-colors duration-500 text-slate-600 dark:text-slate-400 pt-16 pb-20 w-full overflow-x-hidden flex flex-col items-center">
@@ -58,12 +62,12 @@ export default function OlympiadsIntroPage() {
               key={sec.num}
               href={`/math-profile/olympiad-${sec.num}-intro`}
               scroll={false}
-              className="group bg-white/80 backdrop-blur-md border border-blue-100/60 p-6 rounded-[24px] shadow-sm 
+              className={`group bg-white/80 backdrop-blur-md border border-blue-100/60 p-6 rounded-[24px] shadow-sm 
                          hover:shadow-xl hover:bg-sky-500 hover:border-sky-500 
                          dark:bg-purple-950/10 dark:border-purple-500/20 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4] 
-                         transition-all duration-300 ease-in-out cursor-pointer min-h-[140px] flex flex-col justify-between"
+                         transition-all duration-300 ease-in-out cursor-pointer min-h-[140px] flex flex-col justify-between ${previewStyles.card}`}
             >
-              <div className="flex flex-col items-start w-full">
+              <div className={`flex flex-col items-start w-full ${previewStyles.label}`}>
                 {/* Последовательный красивый номер темы от 01 до 07 */}
                 <span className="text-3xl font-black tracking-tight mb-3 transition-colors duration-300 text-sky-500/80 group-hover:text-white/60 dark:text-purple-400/80 dark:group-hover:text-white/50">
                   {String(sec.num).padStart(2, '0')}
@@ -74,6 +78,7 @@ export default function OlympiadsIntroPage() {
       {sec.title}
     </h3>
               </div>
+              <OlympiadPreview topic={topicKeys[sec.num - 1]} />
             </Link>
           ))}
         </div>

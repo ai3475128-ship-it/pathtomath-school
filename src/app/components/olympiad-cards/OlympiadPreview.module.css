@@ -1,0 +1,46 @@
+.card { position: relative; overflow: hidden; }
+.label { transition: opacity 150ms ease; }
+.preview { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 150ms ease; }
+.diagram { width: min(85%, 190px); height: min(82%, 120px); overflow: visible; fill: none; stroke: white; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+.diagram text { fill: white; stroke: none; font: 17px Georgia, 'Times New Roman', serif; }
+.diagram .small { font-size: 12px; }
+.diagram circle:not(.draw) { fill: white; stroke: none; }
+.draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.hidden { stroke-dasharray: 4 4; opacity: .65; }
+.diagram text, .diagram circle:not(.draw), .hidden { opacity: 0; }
+.card:focus-visible { background: #328ce6; border-color: #328ce6; outline: 3px solid #075b9b; outline-offset: 3px; }
+:global(.dark) .card:focus-visible { background: #634ee4; border-color: #634ee4; outline-color: #c4b5fd; }
+.card:focus-visible .label { opacity: 0; }
+.card:focus-visible .preview { opacity: 1; }
+.card:focus-visible .draw { animation: draw 750ms ease-in-out forwards; }
+.card:focus-visible .diagram text, .card:focus-visible .diagram circle:not(.draw), .card:focus-visible .hidden { animation: appear 350ms ease 300ms forwards; }
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .label { opacity: 0; }
+  .card:hover .preview { opacity: 1; }
+  .card:hover .draw { animation: draw 750ms ease-in-out forwards; }
+  .card:hover .diagram text, .card:hover .diagram circle:not(.draw), .card:hover .hidden { animation: appear 350ms ease 300ms forwards; }
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes appear { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .label, .preview { transition: none; }
+  .card .draw { animation: none !important; stroke-dashoffset: 0; }
+  .card .diagram text, .card .diagram circle:not(.draw), .card .hidden { animation: none !important; opacity: 1; }
+}
+.competitionLabel { transition: opacity 150ms ease; }
+.logoPreview { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 14px; opacity: 0; pointer-events: none; transition: opacity 150ms ease; }
+.logoSurface { display: flex; align-items: center; justify-content: center; width: min(100%, 195px); height: min(100%, 120px); padding: 9px; background: white; border-radius: 14px; transform: translateY(8px) scale(.94); opacity: 0; }
+.logoSurface img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.card.hasLogo:focus-visible .competitionLabel { opacity: 0; }
+.card.hasLogo:focus-visible .logoPreview { opacity: 1; }
+.card.hasLogo:focus-visible .logoSurface { animation: logoReveal 600ms ease-out forwards; }
+@media (hover: hover) and (pointer: fine) {
+  .card.hasLogo:hover .competitionLabel { opacity: 0; }
+  .card.hasLogo:hover .logoPreview { opacity: 1; }
+  .card.hasLogo:hover .logoSurface { animation: logoReveal 600ms ease-out forwards; }
+}
+@keyframes logoReveal { to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .competitionLabel, .logoPreview { transition: none; }
+  .logoSurface { animation: none !important; opacity: 1; transform: none; }
+}
