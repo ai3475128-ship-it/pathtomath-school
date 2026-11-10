@@ -250,9 +250,17 @@ try {
   assert.equal((verchenko.text.match(/<a href="https:\/\/v-olymp.ru\/olymp\/cryptography"/g) || []).length, 1, "One card should contain both stages and link to the organizer");
   assert.doesNotMatch(olympiadCalendar.text, /Ближайшие даты|Прошедшие даты|Перечневые олимпиады по математике и криптографии/);
   assert.doesNotMatch(olympiadCalendar.text, /↗/);
-  assert.ok(olympiadCalendar.text.indexOf('Верченко') < olympiadCalendar.text.indexOf('Физтех'), 'Known dates should be before unknown dates');
+  const todayMoscow = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Moscow', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+  const verchenkoPosition = olympiadCalendar.text.indexOf('Верченко');
+  const fiztehPosition = olympiadCalendar.text.indexOf('Физтех');
+  assert.ok(todayMoscow <= '2026-11-29' ? verchenkoPosition < fiztehPosition : verchenkoPosition > fiztehPosition, 'Confirmed completed olympiads should appear after those without dates');
   assert.match(olympiadCalendar.text, /max-w-\[1800px\]/);
   assert.match(olympiadCalendar.text, /2xl:grid-cols-4/);
+  assert.match(olympiadCalendar.text, /auto-rows-fr/);
+  assert.match(verchenko.text, /<dt[^>]*>Регистрация<\/dt>/);
+  assert.match(verchenko.text, /<dt[^>]*>Отборочный этап<\/dt>/);
+  assert.match(verchenko.text, /<dt[^>]*>Заключительный этап<\/dt>/);
+  assert.doesNotMatch(verchenko.text, /Задания доступны на сайте олимпиады/);
   assert.doesNotMatch(verchenko.text, /Источник даты ↗|Регистрация ↗|Сайт олимпиады ↗/);
   assert.match(verchenko.text, /hover:bg-sky-500/);
   assert.match(verchenko.text, /dark:hover:bg-\[#634EE4\]/);
