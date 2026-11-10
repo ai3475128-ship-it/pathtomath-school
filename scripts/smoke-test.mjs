@@ -270,8 +270,10 @@ try {
   assert.match(home.text, /href="\/olympiads"/);
   assert.match(home.text, /href="\/math-profile"/);
   const egeHub = await request('/math-profile');
-  assert.match(egeHub.text, /ЕГЭ Математика/);
-  assert.match(egeHub.text, /ЕГЭ Физика/);
+  assert.match(egeHub.text, /href="\/math-profile\/ege"/);
+  assert.match(egeHub.text, /href="\/math-profile\/physics"/);
+  assert.match(egeHub.text, />Математика<\/h2>/);
+  assert.match(egeHub.text, />Физика<\/h2>/);
   const mathHub = await request('/math-profile/ege');
   assert.match(mathHub.text, /href="\/math-profile\/ege\/intro"/);
   assert.match(mathHub.text, /href="\/math-profile\/ege\/main"/);
