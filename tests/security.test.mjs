@@ -146,7 +146,9 @@ test("new optimization task keeps its own progress and is never assigned legacy 
   assert.deepEqual(await getEgeProgress(db, "b"), []);
   await setTaskProgress(db, "a", "ege-optimization", 1, false);
   assert.deepEqual(await getEgeProgress(db, "a"), []);
-  await assert.rejects(setTaskProgress(db, "a", "ege-optimization", 2, true));
+  await setTaskProgress(db, "a", "ege-optimization", 14, true);
+  assert.deepEqual(await getEgeProgress(db, "a"), [{ section: 17, taskId: 14 }]);
+  await assert.rejects(setTaskProgress(db, "a", "ege-optimization", 15, true));
 });
 test("legacy database migration is non-destructive and preserves ambiguous progress", async (t) => {
   const dir = await mkdtemp(path.join(os.tmpdir(), "legacy-test-")),

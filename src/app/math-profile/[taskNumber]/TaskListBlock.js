@@ -256,7 +256,7 @@ export default React.memo(function TaskListBlock({ storageModule }) {
 
                 {/* ЗОНА МАТЕМАТИКИ */}
                 {task.mathA && (
-                  <div className="py-2 flex justify-center w-full">
+                  <div className={`py-2 w-full ${storageModule === 'ege-optimization' ? 'overflow-x-auto' : 'flex justify-center'}`}>
                     {isCustomModule && !task.conditionText && !task.mathA.includes('\\') && !task.mathA.includes('^') ? (
                       <p className="text-base font-normal text-slate-800 dark:text-slate-100 leading-relaxed text-left w-full">
                         {task.mathA}

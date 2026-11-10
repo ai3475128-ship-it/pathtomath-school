@@ -429,10 +429,10 @@ try {
   const optimizationLink = profile.text.match(/<a\b[^>]*href="\/math-profile\/17"[^>]*>([\s\S]*?)<\/a>/)?.[1];
   assert.ok(optimizationLink, "Optimization section should be visible in the student profile");
   const optimizationText = optimizationLink.replace(/<[^>]+>/g, "").replace(/\s+/g, " ");
-  assert.match(optimizationText, /Задание №17\s*1\/1/);
+  assert.match(optimizationText, /Задание №17\s*1\/14/);
   const updatedSupervisor = await request("/supervisor/students/a", {cookie: sessions.teacher});
   const teacherText = updatedSupervisor.text.replace(/<[^>]+>/g, "").replace(/\s+/g, " ");
-  assert.match(teacherText, /№17\s*1\/1/);
+  assert.match(teacherText, /№17\s*1\/14/);
   check("optimization totals appear in student and teacher profiles");
   await invoke(
     "/profile",
