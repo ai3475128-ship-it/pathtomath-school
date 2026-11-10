@@ -1,3 +1,4 @@
+import OlympiadCalendarLink from '../components/OlympiadCalendarLink';
 import { displayNumberForModule } from '@/lib/ege-sections';
 import { requireAdmin } from '@/lib/auth';
 import { text,emailAddress,passwordValue } from '@/lib/validation';
@@ -134,6 +135,7 @@ export default async function AdminPanelPage() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#03000a] p-6 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-500">
       <div className="max-w-7xl mx-auto space-y-8">
+        <OlympiadCalendarLink />
         
         {/* Шапка приветствия */}
         <div className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border border-blue-100/60 shadow-xl flex flex-col lg:flex-row lg:items-center justify-between gap-6">

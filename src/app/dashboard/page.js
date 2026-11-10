@@ -1,3 +1,4 @@
+import OlympiadCalendarLink from '../components/OlympiadCalendarLink';
 import { getCurrentUser } from '@/lib/auth';
 import { getEgeProgress } from '@/lib/task-modules';
 import { saveDailyNote } from '../profile/actions';
@@ -97,6 +98,7 @@ export default async function FreeStudentDashboardPage({ searchParams }) {
         
         {/* ЛЕВАЯ КОЛОНКА (2/3): Профиль и Интерактивные шкалы прогресса Банка */}
         <div className="w-full lg:w-2/3 space-y-6">
+          <OlympiadCalendarLink />
           
           {/* Визитка бесплатного студента */}
           <div className="bg-white dark:bg-[#140e24]/75 p-6 rounded-3xl border border-blue-100/40 dark:border-purple-500/10 shadow-sm space-y-4 hover:scale-[1.005] transition-all duration-300">

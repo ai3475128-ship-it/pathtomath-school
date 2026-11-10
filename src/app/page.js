@@ -91,6 +91,10 @@ className="px-8 py-3.5 font-bold rounded-2xl shadow-md transition-all duration-3
   Банк заданий
 </Link>
 
+<Link href="/olympiad-calendar" className="px-8 py-3.5 font-bold text-xs uppercase tracking-wider rounded-2xl border border-sky-400/40 bg-white text-sky-600 shadow-sm hover:border-sky-600 dark:border-purple-500/30 dark:bg-[#140e24]/40 dark:text-purple-400">
+  Олимпиадный календарь
+</Link>
+
         </div>
 
                   {/* 🚀 ИСПРАВЛЕНО: Все четыре подзаголовка преимуществ переведены со старого фиолетового цвета на чистый неоново-голубой text-sky-500 */}

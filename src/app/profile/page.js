@@ -1,3 +1,4 @@
+import OlympiadCalendarLink from '../components/OlympiadCalendarLink';
 import { displayNumberForModule } from '@/lib/ege-sections';
 import { getCurrentUser } from '@/lib/auth';
 import { getEgeProgress } from '@/lib/task-modules';
@@ -120,6 +121,7 @@ export default async function ProfilePage({ searchParams }) {
         
         {/* ЛЕВАЯ КОЛОНКА (2/3) */}
         <div className="lg:col-span-2 space-y-6">
+          <OlympiadCalendarLink />
           
           {/* Профиль ученика */}
           <div className="bg-white dark:bg-[#140e24]/80 p-5 rounded-3xl border border-blue-100/60 shadow-sm flex items-center justify-between">
