@@ -1,10 +1,8 @@
-import { HubTiles, SectionFrame } from '../../components/SectionHub';
+import EgeFormatTiles from '../../components/EgeFormatTiles';
+import { SectionFrame } from '../../components/SectionHub';
 
 export default function PhysicsHubPage() {
-  return <SectionFrame title="ЕГЭ Физика" breadcrumb={{ href: '/math-profile', label: 'ЕГЭ' }} description="Выберите формат подготовки по физике.">
-    <HubTiles items={[
-      { href: '/math-profile/physics/intro', title: 'Подготовительные задачи', description: 'Базовые задачи для подготовки к ЕГЭ по физике.' },
-      { href: '/math-profile/physics/main', title: 'Банк заданий', description: 'Задания ЕГЭ по физике.' },
-    ]} />
+  return <SectionFrame title="ЕГЭ Физика" eyebrow="Направление: ЕГЭ" breadcrumb={{ href: '/math-profile', label: 'ЕГЭ' }}>
+    <EgeFormatTiles subject="physics" introHref="/math-profile/physics/intro" bankHref="/math-profile/physics/main" />
   </SectionFrame>;
 }
