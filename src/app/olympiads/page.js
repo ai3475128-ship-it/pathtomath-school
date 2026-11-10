@@ -19,7 +19,7 @@ function CalendarIcon() {
 function PreparationIcon() {
   return <svg viewBox="0 0 180 180" aria-hidden="true" className="h-36 w-36 sm:h-40 sm:w-40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M36 34 124 27v112l-88 8z M36 34c-5 1-7 4-7 8v101c0 4 3 6 7 5l88-7 M36 41l88-7 M53 120l52-5 M53 130l52-5" />
-    <path d="M72 60h24l-13 15 13 15H72" strokeWidth="2.5" />
+    <path d="M96 60H72l13 15-13 15h24" strokeWidth="2.5" />
     <g transform="rotate(19 140 110)"><rect x="135" y="80" width="10" height="53" rx="4" /><path d="M135 90h10 M135 125h10 M135 133l5 10 5-10" /></g>
   </svg>;
 }
@@ -28,21 +28,32 @@ function TopicsIcon() {
   return <svg viewBox="0 0 180 180" aria-hidden="true" className="h-36 w-36 sm:h-40 sm:w-40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="26" y="27" width="58" height="58" rx="9" /><rect x="96" y="27" width="58" height="58" rx="9" />
     <rect x="26" y="97" width="58" height="58" rx="9" /><rect x="96" y="97" width="58" height="58" rx="9" />
-    <path d="M45 43h22L54 56l13 13H45 M109 68l16-27 16 27z M39 123l9 10 13-22h9 M110 140v-15h7v15 M123 140v-25h7v25 M136 140v-34h7v34" />
+    <path d="M67 43H45l12 13-12 13h22 M109 68l16-27 16 27z M39 123l9 10 13-22h9 M110 140v-15h7v15 M123 140v-25h7v25 M136 140v-34h7v34" />
   </svg>;
+}
+
+function LaurelBranch() {
+  const leaves = [
+    [65.4, 144.5, -72], [62.9, 142.7, 48],
+    [54.2, 134.2, -65], [52.5, 131.8, 43],
+    [46.1, 121.0, -57], [44.9, 118.0, 38],
+    [40.9, 105.1, -47], [40.1, 102.1, 32],
+    [38.3, 88.1, -35], [38.1, 84.9, 26],
+    [38.6, 70.6, -25], [38.9, 67.4, 20],
+    [41.7, 53.3, -12], [48.6, 35.8, 23],
+  ];
+
+  return <g strokeWidth="1.8">
+    <path d="M80 151C34 140 25 62 57 23" />
+    {leaves.map(([x, y, angle]) => <path key={`${x}-${y}`} d="M0 0C-4-5-4-12 0-17 4-12 4-5 0 0Z" transform={`translate(${x} ${y}) rotate(${angle})`} />)}
+  </g>;
 }
 
 function OlympiadsIcon() {
   return <svg viewBox="0 0 180 180" aria-hidden="true" className="h-36 w-36 sm:h-40 sm:w-40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <g>
-      <path d="M82 151C51 145 34 122 34 87c0-23 9-42 25-57" />
-      <path d="M45 118c-14 0-20-8-22-17 11 0 19 4 22 17z M38 98c-13-3-17-12-16-21 10 3 17 9 16 21z M39 78c-11-6-13-16-10-24 9 5 14 13 10 24z M47 58c-8-9-7-18-2-25 7 7 9 15 2 25z M60 42c-5-10-1-18 6-22 4 9 2 16-6 22z M58 136c-13 2-21-3-25-11 11-2 20 1 25 11z" />
-    </g>
-    <g transform="translate(180 0) scale(-1 1)">
-      <path d="M82 151C51 145 34 122 34 87c0-23 9-42 25-57" />
-      <path d="M45 118c-14 0-20-8-22-17 11 0 19 4 22 17z M38 98c-13-3-17-12-16-21 10 3 17 9 16 21z M39 78c-11-6-13-16-10-24 9 5 14 13 10 24z M47 58c-8-9-7-18-2-25 7 7 9 15 2 25z M60 42c-5-10-1-18 6-22 4 9 2 16-6 22z M58 136c-13 2-21-3-25-11 11-2 20 1 25 11z" />
-    </g>
-    <path d="M70 61h41L87 90l24 29H70" strokeWidth="4" />
+    <LaurelBranch />
+    <g transform="translate(180 0) scale(-1 1)"><LaurelBranch /></g>
+    <path d="M66 59h48v7H79l22 24-22 24h35v7H66v-6L88 90 66 65z" fill="currentColor" stroke="none" />
   </svg>;
 }
 
