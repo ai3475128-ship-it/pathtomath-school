@@ -26,6 +26,9 @@ const logos = {
   belchonok: 'https://olimpiada.ru/files/m_activity/5159/%D0%B1%D0%B5%D0%BB%D1%8C%D1%87%D0%BE%D0%BD%D0%BE%D0%BA.jpg',
 };
 
+// У этих оригиналов светлый знак расположен на тёмной подложке.
+const lightOnDark = new Set(['moscow', 'shag']);
+
 export default function CompetitionCard({ olympiad }) {
   const [activated, setActivated] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -35,13 +38,13 @@ export default function CompetitionCard({ olympiad }) {
 
   return <Link href={`/olympiads/tasks/${olympiad.id}`}
     onMouseEnter={() => setActivated(true)} onFocus={() => setActivated(true)}
-    className={`group flex min-h-[150px] flex-col rounded-[24px] border border-blue-100/60 bg-white/80 p-6 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-sky-500 hover:bg-sky-500 hover:shadow-xl dark:border-purple-500/20 dark:bg-purple-950/10 dark:hover:border-[#634EE4] dark:hover:bg-[#634EE4] ${styles.card} ${previewAvailable && loaded ? styles.hasLogo : ''}`}>
+    className={`group flex min-h-[150px] flex-col rounded-[24px] border border-blue-100/60 bg-white/80 p-6 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-sky-500 hover:bg-sky-500 hover:shadow-xl dark:border-purple-500/20 dark:bg-purple-950/10 dark:hover:border-sky-500 dark:hover:bg-sky-500 ${styles.card} ${previewAvailable && loaded ? styles.hasLogo : ''}`}>
     <div className={styles.competitionLabel}>
       <span className="text-xs font-black uppercase tracking-wide text-sky-600 group-hover:text-white dark:text-purple-300 dark:group-hover:text-white">{olympiad.level} уровень</span>
       <h2 className="mt-3 text-lg font-black leading-snug text-slate-800 group-hover:text-white dark:text-white">{olympiad.name}</h2>
     </div>
     {previewAvailable && <span className={styles.logoPreview} aria-hidden="true">
-      {activated && <span className={styles.logoSurface}>
+      {activated && <span className={`${styles.logoSurface} ${lightOnDark.has(olympiad.id) ? styles.lightOnDark : ''}`}>
         {/* Изображение загружается только при наведении или фокусе; при ошибке остаётся название. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={logo} alt="" referrerPolicy="no-referrer" onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
