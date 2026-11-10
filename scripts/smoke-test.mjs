@@ -234,6 +234,23 @@ try {
   ])
     assert.equal((await request(url)).status, 200, url);
   check("public pages and task banks");
+  const olympiadCalendar = await request("/olympiad-calendar");
+  assert.equal(olympiadCalendar.status, 200);
+  assert.match(olympiadCalendar.text, /Календарь олимпиад по математике/);
+  assert.match(olympiadCalendar.text, /Ломоносов/);
+  assert.match(olympiadCalendar.text, /<title>Календарь олимпиад/);
+  assert.match(olympiadCalendar.text, /https:\/\/pk.math.msu.ru/);
+  const filteredCalendar = await request(`/olympiad-calendar?q=${encodeURIComponent("Росатом")}&level=II`);
+  assert.match(filteredCalendar.text, /Росатом/);
+  assert.doesNotMatch(filteredCalendar.text, /Санкт-Петербургская олимпиада школьников/);
+  const home = await request("/");
+  assert.match(home.text, /Олимпиадный календарь/);
+  for (const [path, user] of [["/dashboard", "free"], ["/profile", "a"], ["/teacher-dashboard", "teacher"], ["/admin-panel", "admin"]]) {
+    const cabinet = await request(path, {cookie: sessions[user]});
+    assert.equal(cabinet.status, 200, path);
+    assert.match(cabinet.text, /Даты и регистрация на олимпиады по математике/, path);
+  }
+  check("public olympiad calendar, filters, search metadata and role cabinet links");
   const forged =
       "userSession=" +
       Buffer.from(

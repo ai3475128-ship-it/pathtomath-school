@@ -14,6 +14,7 @@ export default function MenuLinks({ hasUser, userRole }) {
     { href: '/', label: 'Главная' },
     { href: '/teachers', label: 'Преподаватели' },
     { href: '/math-profile', label: 'Банк заданий' },
+    { href: '/olympiad-calendar', label: 'Олимпиады' },
   ];
 
   // 🚀 ИСПРАВЛЕНО: Вкладка "Видеоуроки" подмешивается в меню ТОЛЬКО для зарегистрированных пользователей сайта
@@ -30,7 +31,7 @@ export default function MenuLinks({ hasUser, userRole }) {
   }
 
   return (
-    <nav className="hidden md:flex items-center gap-8 h-full">
+    <nav className="hidden md:flex items-center gap-3 xl:gap-6 h-full">
       {navLinks.map((link) => {
         // Проверяем активность вкладки
         const isActive = pathname === link.href || pathname.startsWith(link.href + '/');
