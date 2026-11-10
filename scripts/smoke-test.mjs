@@ -274,6 +274,12 @@ try {
   assert.match(egeHub.text, /href="\/math-profile\/physics"/);
   assert.match(egeHub.text, />Математика<\/h2>/);
   assert.match(egeHub.text, />Физика<\/h2>/);
+  const egeBank = await request('/math-profile/ege/main');
+  assert.equal(egeBank.status, 200);
+  const bankMarkup = egeBank.text.split('<script id="_R_">')[0];
+  assert.equal((bankMarkup.match(/viewBox="0 0 200 150"/g) || []).length, 1);
+  assert.match(bankMarkup, /href="\/math-profile\/1"/);
+  assert.match(bankMarkup, /Планиметрия/);
   const mathHub = await request('/math-profile/ege');
   assert.match(mathHub.text, /href="\/math-profile\/ege\/intro"/);
   assert.match(mathHub.text, /href="\/math-profile\/ege\/main"/);
