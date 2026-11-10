@@ -173,16 +173,15 @@ export const egeOptimizationTasks = [
     title: 'Задача 8',
     textBefore: <>Эффективность пространственной сшивки ДНК-белковых комплексов при пробоподготовке для Hi-C секвенирования зависит от времени инкубации <InlineMath math="t" /> (в минутах). Зависимость интенсивности образования правильных сшивок описывается функцией:</>,
     mathA: String.raw`E(t)=E_0\cdot\frac{t^2}{t^4+256}`,
-    textAfter: <>где <InlineMath math="E_0" /> — эмпирическая константа протокола, зависящая от концентрации формальдегида. При каком времени инкубации <InlineMath math="t" /> эффективность сшивки хроматина достигает наибольшего значения?</>,
+    textAfter: <>где <InlineMath math="E_0>0" /> — положительная эмпирическая константа протокола, зависящая от концентрации формальдегида. При каком времени инкубации <InlineMath math="t" /> эффективность сшивки хроматина достигает наибольшего значения?</>,
     solutionBuilder: () => (
       <Solution axis={{variable:'t',left:'0',point:'4',right:String.raw`+\infty`,leftClosed:true}}
-        conclusion={<>При <InlineMath math="E_0>0" /> эффективность возрастает на <InlineMath math="(0;4)" /> и убывает на <InlineMath math={String.raw`(4;+\infty)`} />. Следовательно, максимум достигается при <InlineMath math="t=4" /> мин.</>}
+        conclusion={<>Эффективность возрастает на <InlineMath math="(0;4)" /> и убывает на <InlineMath math={String.raw`(4;+\infty)`} />. Следовательно, максимум достигается при <InlineMath math="t=4" /> мин.</>}
         answer={<InlineMath math={String.raw`4\ \text{мин}`} />}>
-        <p>Время <InlineMath math={String.raw`t\geqslant0`} />. Для физического смысла эффективности считаем <InlineMath math="E_0>0" />; знак этой константы в условии явно не указан.</p>
+        <p>Время <InlineMath math={String.raw`t\geqslant0`} />. По условию <InlineMath math="E_0>0" />.</p>
         <Formula>{String.raw`E'(t)=\frac{2E_0t(256-t^4)}{(t^4+256)^2}`}</Formula>
         <p>При <InlineMath math="t>0" /> знак производной определяется выражением <InlineMath math="256-t^4" />. Внутренняя критическая точка: <InlineMath math={String.raw`t^4=256\Rightarrow t=4`} />. На границе <InlineMath math="t=0" /> эффективность равна нулю.</p>
         <Formula>{String.raw`E_{\max}=E(4)=E_0\cdot\frac{16}{512}=\frac{E_0}{32}`}</Formula>
-        <p>Если <InlineMath math="E_0=0" />, функция постоянна; при <InlineMath math="E_0<0" /> точка <InlineMath math="t=4" /> является минимумом, а не максимумом.</p>
       </Solution>
     ),
   },
@@ -278,16 +277,15 @@ export const egeOptimizationTasks = [
     title: 'Задача 14',
     textBefore: <>На маленький магнит действует сила кругового электрического тока, при этом центр круга лежит на оси магнита, а плоскость круга перпендикулярна этой оси. Тогда сила действия тока задаётся формулой</>,
     mathA: String.raw`F=\frac{cl}{(l^2+r^2)^{2{,}5}}`,
-    textAfter: <>где <InlineMath math="c" /> — некоторая константа, <InlineMath math="l" /> — расстояние от магнита до центра круга, а <InlineMath math="r=2" /> — радиус круга. При каком значении <InlineMath math="l" /> сила <InlineMath math="F" /> принимает наибольшее значение?</>,
+    textAfter: <>где <InlineMath math="c>0" /> — положительная константа, <InlineMath math="l" /> — расстояние от магнита до центра круга, а <InlineMath math="r=2" /> — радиус круга. При каком значении <InlineMath math="l" /> сила <InlineMath math="F" /> принимает наибольшее значение?</>,
     solutionBuilder: () => (
       <Solution axis={{variable:'l',left:'0',point:'1',right:String.raw`+\infty`,leftClosed:true}}
-        conclusion={<>При <InlineMath math="c>0" /> сила возрастает на <InlineMath math="(0;1)" /> и убывает на <InlineMath math={String.raw`(1;+\infty)`} />. Максимум достигается при <InlineMath math="l=1" />.</>}
+        conclusion={<>Сила возрастает на <InlineMath math="(0;1)" /> и убывает на <InlineMath math={String.raw`(1;+\infty)`} />. Максимум достигается при <InlineMath math="l=1" />.</>}
         answer={<InlineMath math="1" />}>
-        <p>Расстояние <InlineMath math={String.raw`l\geqslant0`} />. В соответствии с физическим смыслом положим <InlineMath math="c>0" />; в условии знак константы явно не указан. При <InlineMath math="r=2" />:</p>
+        <p>Расстояние <InlineMath math={String.raw`l\geqslant0`} />, а по условию <InlineMath math="c>0" />. При <InlineMath math="r=2" />:</p>
         <Formula>{String.raw`F(l)=\frac{cl}{(l^2+4)^{5/2}},\qquad F'(l)=\frac{4c(1-l^2)}{(l^2+4)^{7/2}}`}</Formula>
         <p>Знаменатель положителен; при <InlineMath math="c>0" /> единственная положительная критическая точка — <InlineMath math="l=1" />. Ей соответствует</p>
         <Formula>{String.raw`F_{\max}=F(1)=\frac{c}{5^{5/2}}`}</Formula>
-        <p>Если <InlineMath math="c=0" />, сила постоянна; если <InlineMath math="c<0" />, точка <InlineMath math="l=1" /> — минимум, а не максимум.</p>
       </Solution>
     ),
   },

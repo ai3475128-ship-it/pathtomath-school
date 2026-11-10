@@ -44,3 +44,29 @@ test('all PDF exercises render their conditions, solutions, formulas and derivat
     assert.ok(html.includes(expected), `Задача ${task.id}: знаки производной`);
   }
 });
+
+test('axis labels omit zero, infinity and variable but retain finite right endpoints', () => {
+  for (const task of tasks) {
+    const html = renderToStaticMarkup(task.solutionBuilder());
+    const labels = html.match(/<div class="grid grid-cols-3 items-start text-sm font-semibold">([\s\S]*?)<\/div>/)?.[1];
+    assert.ok(labels, `Задача ${task.id}: подписи оси`);
+    assert.ok(labels.startsWith('<span></span>'), `Задача ${task.id}: слева нет нуля`);
+    if ([4, 7, 12].includes(task.id)) {
+      assert.ok(!labels.includes('<span class="text-right"></span>'), `Задача ${task.id}: конечная граница остаётся`);
+    } else {
+      assert.ok(labels.includes('<span class="text-right"></span>'), `Задача ${task.id}: справа нет бесконечности и переменной`);
+    }
+  }
+});
+
+test('tasks 8 and 14 state positive constants and solve only that case', () => {
+  for (const [id, expression] of [[8, 'E_0&gt;0'], [14, 'c&gt;0']]) {
+    const task = tasks[id - 1];
+    const condition = renderToStaticMarkup(task.textAfter);
+    const solution = renderToStaticMarkup(task.solutionBuilder());
+    assert.ok(condition.includes(expression), `Задача ${id}: положительная константа в условии`);
+    assert.ok(solution.includes('По условию') || solution.includes('по условию'));
+    assert.ok(!solution.includes('в условии знак константы явно не указан'));
+    assert.ok(!solution.includes('является минимумом, а не максимумом'));
+  }
+});
