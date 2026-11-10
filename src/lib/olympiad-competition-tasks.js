@@ -43,3 +43,7 @@ export const competitionArchives = {
   umsh: 'https://yumsh.ru/cms/yumsh-olymp/about',
   innopolis: 'https://dovuz.innopolis.university/innopolis-open/math',
 };
+
+// Задачи конкретных олимпиад будут добавляться отдельно для каждого класса.
+// Исходные тематические задачи и их прогресс остаются в прежних модулях.
+export const competitionTasksByGrade = {};

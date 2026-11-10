@@ -293,10 +293,16 @@ try {
     assert.ok(directory.text.includes(`href="/olympiads/tasks/${olympiad.id}"`), olympiad.id);
     const page = await request(`/olympiads/tasks/${olympiad.id}`);
     assert.equal(page.status, 200, olympiad.id);
+    assert.match(page.text.replaceAll('<!-- -->', ''), /Задачи для 8 класса пока не добавлены/);
+    for (const grade of ['8', '9', '10', '11']) assert.ok(page.text.includes(`?grade=${grade}`), `${olympiad.id}: ${grade} класс`);
   }
   assert.equal((await request('/olympiads/tasks/unknown-olympiad')).status, 404);
-  assert.match((await request('/olympiads/tasks/verchenko')).text, /задачи этой олимпиады пока не добавлены/);
-  assert.match((await request('/olympiads/tasks/lomonosov')).text, /Теория чисел/);
+  for (const grade of ['8', '9', '10', '11']) {
+    const page = await request(`/olympiads/tasks/hse?grade=${grade}`);
+    assert.match(page.text.replaceAll('<!-- -->', ''), new RegExp(`Задачи для ${grade} класса пока не добавлены`));
+    assert.doesNotMatch(page.text, /Алгоритм Евклида/);
+  }
+  assert.match((await request('/olympiads/tasks/hse?grade=12')).text.replaceAll('<!-- -->', ''), /Задачи для 8 класса пока не добавлены/);
   check('ЕГЭ and olympiad sections link to all competition pages');
   for (const [path, user] of [["/dashboard", "free"], ["/profile", "a"], ["/teacher-dashboard", "teacher"], ["/admin-panel", "admin"]]) {
     const cabinet = await request(path, {cookie: sessions[user]});

@@ -40,16 +40,13 @@ export default function MathProfilePage() {
       {/* 📋 ОСНОВНОЙ КОНТЕНТ (Вынесен на z-10 поверх картинок) */}
       <div className="max-w-6xl mx-auto relative z-10 w-full">
         
-        <div className="mb-12 text-center sm:text-left">
+        <div className="mb-10 text-center">
           <span className="text-xs font-black bg-blue-50 text-sky-600 border border-blue-100 px-3.5 py-1.5 rounded-full uppercase tracking-widest dark:bg-purple-950/40 dark:text-purple-300 dark:border-purple-500/30">
             База знаний Азимут
           </span>
           <h1 className="text-4xl md:text-5xl font-black tracking-tight mt-4 mb-4 text-sky-600 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-purple-400 dark:to-pink-400">
             Банк Заданий ЕГЭ
           </h1>
-          <p className="text-slate-400 dark:text-slate-300 max-w-2xl leading-relaxed text-sm sm:text-base font-semibold">
-            Курс содержит полную теоретическую и практическую базу.
-          </p>
         </div>
 
         {/* Часть 1 */}
