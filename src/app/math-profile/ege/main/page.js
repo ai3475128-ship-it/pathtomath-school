@@ -1,7 +1,8 @@
 import { EGE_SECTIONS } from '@/lib/ege-sections';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './PlanometryPreview.module.css';
+import EgeCardPreview from '../components/EgeCardPreview';
+import styles from '../components/EgeCardPreview.module.css';
 
 export default function MathProfilePage() {
 
@@ -62,9 +63,9 @@ export default function MathProfilePage() {
                   key={taskNum} 
                   href={`/math-profile/${taskNum}`} 
                   className={`group bg-white/80 backdrop-blur-md border border-blue-100/60 p-6 rounded-[24px] shadow-sm hover:shadow-xl hover:border-[#328ce6] hover:bg-[#328ce6] transform hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[150px]
-                             dark:bg-purple-950/10 dark:border-purple-500/20 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4] dark:hover:shadow-[0_0_20px_rgba(99,78,228,0.25)] ${taskNum === 1 ? styles.card : ''}`}
+                             dark:bg-purple-950/10 dark:border-purple-500/20 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4] dark:hover:shadow-[0_0_20px_rgba(99,78,228,0.25)] ${styles.card}`}
                 >
-                  <div className={`flex flex-col items-start w-full ${taskNum === 1 ? styles.label : ''}`}>
+                  <div className={`flex flex-col items-start w-full ${styles.label}`}>
                     {/* Крупное акцентное число задания */}
                     <span className="text-3xl font-black tracking-tight mb-3 transition-colors duration-300
                                    text-sky-500/80 group-hover:text-white/60
@@ -81,13 +82,7 @@ export default function MathProfilePage() {
                       {title}
                     </h3>
                   </div>
-                  {taskNum === 1 && <span aria-hidden="true" className={styles.preview}>
-                    <svg viewBox="0 0 200 150" className={styles.diagram}>
-                      <path d="M30 118 L100 34 L170 118 Z" className={styles.triangle} />
-                      <path d="M54 118 A24 24 0 0 0 46 99" className={styles.angle} />
-                      <text x="54" y="105" className={styles.alpha}>α</text>
-                    </svg>
-                  </span>}
+                  <EgeCardPreview number={taskNum} />
                 </Link>
               );
             })}
@@ -105,10 +100,10 @@ export default function MathProfilePage() {
                 <Link 
                   key={taskNum} 
                   href={`/math-profile/${taskNum}`} 
-                  className="group bg-white/80 backdrop-blur-md border border-blue-100/60 p-6 rounded-[24px] shadow-sm hover:shadow-xl hover:border-[#328ce6] hover:bg-[#328ce6] transform hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[150px] 
-                             dark:bg-purple-950/10 dark:border-purple-500/20 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4] dark:hover:shadow-[0_0_20px_rgba(99,78,228,0.25)]"
+                  className={`group bg-white/80 backdrop-blur-md border border-blue-100/60 p-6 rounded-[24px] shadow-sm hover:shadow-xl hover:border-[#328ce6] hover:bg-[#328ce6] transform hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[150px]
+                             dark:bg-purple-950/10 dark:border-purple-500/20 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4] dark:hover:shadow-[0_0_20px_rgba(99,78,228,0.25)] ${styles.card}`}
                 >
-                  <div className="flex flex-col items-start w-full">
+                  <div className={`flex flex-col items-start w-full ${styles.label}`}>
                     {/* Крупное акцентное число задания */}
                     <span className="text-3xl font-black tracking-tight mb-3 transition-colors duration-300
                                    text-sky-500/80 group-hover:text-white/60
@@ -125,6 +120,7 @@ export default function MathProfilePage() {
                       {title}
                     </h3>
                   </div>
+                  <EgeCardPreview number={taskNum} />
                 </Link>
               );
             })}

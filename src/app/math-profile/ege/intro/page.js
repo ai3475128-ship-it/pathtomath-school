@@ -2,6 +2,8 @@ import React from 'react';
 import { EGE_INTRO_SECTIONS } from '@/lib/ege-sections';
 import Image from 'next/image';
 import Link from 'next/link';
+import EgeCardPreview from '../components/EgeCardPreview';
+import styles from '../components/EgeCardPreview.module.css';
 
 export const dynamic = 'force-dynamic';
 
@@ -52,16 +54,16 @@ export default function EgeIntroTasksPage() {
               key={sec.number}
               href={`/math-profile/${sec.number}-intro`}
               scroll={false}
-              className="group bg-white/80 backdrop-blur-md border border-blue-100/60 p-8 rounded-[28px] shadow-sm 
-                         hover:shadow-2xl hover:bg-sky-500 hover:border-sky-500 
-                         dark:bg-purple-950/10 dark:border-purple-500/20 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4] 
-                         transition-all duration-300 ease-in-out cursor-pointer min-h-[380px] flex flex-col justify-between relative overflow-hidden"
+              className={`group bg-white/80 backdrop-blur-md border border-blue-100/60 p-8 rounded-[28px] shadow-sm
+                         hover:shadow-2xl hover:bg-sky-500 hover:border-sky-500
+                         dark:bg-purple-950/10 dark:border-purple-500/20 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4]
+                         transition-all duration-300 ease-in-out cursor-pointer min-h-[380px] flex flex-col justify-between ${styles.card}`}
             >
               {/* Контейнер-заглушка сверху для сохранения структуры flex justify-between */}
               <div className="w-full h-1" />
 
               {/* 🎯 ЦЕНТРАЛЬНЫЙ БЛОК: Огромные акцентные цифры строго посередине высоты прямоугольника */}
-              <div className="w-full flex items-center justify-center">
+              <div className={`w-full flex items-center justify-center ${styles.label}`}>
                 <span className="text-7xl sm:text-8xl font-black tracking-tighter select-none transition-colors duration-300 
                                  text-sky-500/80 group-hover:text-white/90 
                                  dark:text-purple-400/80 dark:group-hover:text-white/90"
@@ -71,11 +73,12 @@ export default function EgeIntroTasksPage() {
               </div>
 
               {/* Нижняя часть: Крупное название темы у нижнего края */}
-              <div className="w-full flex justify-center text-center pb-2">
+              <div className={`w-full flex justify-center text-center pb-2 ${styles.label}`}>
                 <h3 className="text-xl sm:text-2xl font-black tracking-tight leading-snug transition-colors duration-300 text-slate-800 group-hover:text-white dark:text-white">
                   {sec.title}
                 </h3>
               </div>
+              <EgeCardPreview number={sec.number} intro />
             </Link>
           ))}
         </div>
