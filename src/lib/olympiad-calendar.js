@@ -45,3 +45,26 @@ export const events = [
   { id: 'pvg-registration', olympiad: 'pvg', start: '2026-12-01', end: '2026-12-01', dateText: '1 декабря 2026', stage: 'Открытие регистрации', format: 'Дистанционно · 5–11 классы', detail: 'Начало отборочного этапа организатор предварительно назначил на 8 декабря.', source: 'https://pvg.mk.ru/' },
   { id: 'rosatom-final', olympiad: 'rosatom', start: '2027-02-06', end: '2027-02-07', dateText: '6–7 февраля 2027', stage: 'Заключительные туры', format: 'Очный этап · дата по предмету уточняется', detail: 'Общий период финалов по математике и физике.', source: 'https://olymp.mephi.ru/rosatom/about' },
 ];
+
+// Каждая олимпиада представлена одной карточкой; известные этапы сохраняются.
+export function orderOlympiadsByDates(items, scheduledEvents, today) {
+  return items.map((item) => {
+    const dates = scheduledEvents
+      .filter((event) => event.olympiad === item.id)
+      .sort((a, b) => {
+        const aPast = a.end < today;
+        const bPast = b.end < today;
+        if (aPast !== bPast) return aPast ? 1 : -1;
+        return aPast ? b.end.localeCompare(a.end) : a.start.localeCompare(b.start);
+      });
+    return { ...item, dates };
+  }).sort((a, b) => {
+    if (!a.dates.length || !b.dates.length) return Number(!a.dates.length) - Number(!b.dates.length);
+    const aPast = a.dates[0].end < today;
+    const bPast = b.dates[0].end < today;
+    if (aPast !== bPast) return aPast ? 1 : -1;
+    return aPast
+      ? b.dates[0].end.localeCompare(a.dates[0].end)
+      : a.dates[0].start.localeCompare(b.dates[0].start);
+  });
+}

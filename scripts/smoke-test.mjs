@@ -247,7 +247,12 @@ try {
   assert.match(verchenko.text, /Верченко по математике и криптографии/);
   assert.match(verchenko.text, /1–23 ноября 2026/);
   assert.match(verchenko.text, /29 ноября 2026/);
-  assert.ok((verchenko.text.match(/<a href="https:\/\/v-olymp.ru\/olymp\/cryptography"/g) || []).length >= 3, "Each event and catalog card should link to the organizer");
+  assert.equal((verchenko.text.match(/<a href="https:\/\/v-olymp.ru\/olymp\/cryptography"/g) || []).length, 1, "One card should contain both stages and link to the organizer");
+  assert.doesNotMatch(olympiadCalendar.text, /Ближайшие даты|Прошедшие даты|Перечневые олимпиады по математике и криптографии/);
+  assert.doesNotMatch(olympiadCalendar.text, /↗/);
+  assert.ok(olympiadCalendar.text.indexOf('Верченко') < olympiadCalendar.text.indexOf('Физтех'), 'Known dates should be before unknown dates');
+  assert.match(olympiadCalendar.text, /max-w-\[1800px\]/);
+  assert.match(olympiadCalendar.text, /2xl:grid-cols-4/);
   assert.doesNotMatch(verchenko.text, /Источник даты ↗|Регистрация ↗|Сайт олимпиады ↗/);
   assert.match(verchenko.text, /hover:bg-sky-500/);
   assert.match(verchenko.text, /dark:hover:bg-\[#634EE4\]/);

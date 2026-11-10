@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { olympiads, events, registryUrl } from '../src/lib/olympiad-calendar.js';
+import { olympiads, events, registryUrl, orderOlympiadsByDates } from '../src/lib/olympiad-calendar.js';
 
 test('all listed olympiads have unique IDs, levels and organizer links', () => {
   assert.equal(olympiads.length, 21);
@@ -34,4 +34,20 @@ test('sitemap only advertises the public origin when configured', async () => {
     if (previous === undefined) delete process.env.APP_ORIGIN;
     else process.env.APP_ORIGIN = previous;
   }
+});
+
+
+test('known dates come before missing dates and each olympiad retains its stages', () => {
+  const sample = [{ id: 'no-date' }, { id: 'past' }, { id: 'active' }, { id: 'later' }];
+  const dates = [
+    { id: 'past-stage', olympiad: 'past', start: '2026-01-01', end: '2026-01-02' },
+    { id: 'active-stage', olympiad: 'active', start: '2026-11-01', end: '2026-11-23' },
+    { id: 'later-stage', olympiad: 'later', start: '2026-12-01', end: '2026-12-02' },
+    { id: 'active-final', olympiad: 'active', start: '2026-11-29', end: '2026-11-29' },
+  ];
+  const result = orderOlympiadsByDates(sample, dates, '2026-11-10');
+  assert.deepEqual(result.map((item) => item.id), ['active', 'later', 'past', 'no-date']);
+  assert.deepEqual(result[0].dates.map((date) => date.id), ['active-stage', 'active-final']);
+  assert.equal(result[3].dates.length, 0);
+  assert.equal(new Set(result.map((item) => item.id)).size, sample.length);
 });
