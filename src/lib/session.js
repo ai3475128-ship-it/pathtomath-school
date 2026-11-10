@@ -5,10 +5,12 @@ const hash = (token) => createHash("sha256").update(token).digest("hex");
 export async function createSession(db, userId, now = Date.now(), credentials) {
   const token = randomBytes(32).toString("base64url");
   const created = db.transaction((raw) => {
+    // Check inside the transaction so a blocked account cannot race with login.
+    const user = raw.prepare("SELECT password, isBlocked FROM User WHERE id=?").get(userId);
+    if (!user || user.isBlocked) return false;
     if (credentials) {
       // Password comparison happened outside this transaction. Reject a login that raced with a reset.
-      const user = raw.prepare("SELECT password FROM User WHERE id=?").get(userId);
-      if (user?.password !== credentials.expectedHash) return false;
+      if (user.password !== credentials.expectedHash) return false;
       if (credentials.upgradedHash)
         raw.prepare("UPDATE User SET password=? WHERE id=?").run(credentials.upgradedHash, userId);
     }
@@ -24,7 +26,7 @@ export async function readSession(db, token, now = Date.now()) {
     return null;
   return (
     (await db.get(
-      "SELECT u.id,u.email,u.name,u.role,u.createdAt FROM Session s JOIN User u ON u.id=s.userId WHERE s.tokenHash=? AND s.expiresAt>?",
+      "SELECT u.id,u.email,u.name,u.role,u.createdAt FROM Session s JOIN User u ON u.id=s.userId WHERE s.tokenHash=? AND s.expiresAt>? AND u.isBlocked=0",
       [hash(token), now],
     )) ?? null
   );

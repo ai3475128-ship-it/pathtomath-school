@@ -33,6 +33,7 @@ export async function loginUser(formData) {
   const dummy = "$2b$12$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy";
   const valid = await bcrypt.compare(password, user?.password || dummy);
   if (!user || !valid) redirect("/login?error=wrong");
+  if (user.isBlocked) redirect("/login?error=blocked");
   if (formData.get("selectedTab") === "teacher" && !isManagement(user))
     redirect("/login?error=not_a_teacher&tab=teacher");
   const upgradedHash = bcrypt.getRounds(user.password) < 12

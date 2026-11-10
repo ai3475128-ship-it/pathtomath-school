@@ -456,6 +456,17 @@ try {
     "PREMIUM_STUDENT",
   );
   check("teacher cannot change subscription");
+  const blockForm = action(supervisor.text, "blocked");
+  await invoke("/supervisor/students/a", blockForm, { studentId: "b", blocked: "1" }, sessions.teacher);
+  assert.equal((await db.get("SELECT isBlocked FROM User WHERE id='b'")).isBlocked, 0);
+  await invoke("/supervisor/students/a", blockForm, { studentId: "b", blocked: "1" }, sessions.admin);
+  assert.equal((await db.get("SELECT isBlocked FROM User WHERE id='b'")).isBlocked, 1);
+  assert.equal((await request('/profile', { cookie: sessions.b })).status, 307);
+  await invoke("/supervisor/students/a", blockForm, { studentId: "b", blocked: "0" }, sessions.admin);
+  assert.equal((await db.get("SELECT isBlocked FROM User WHERE id='b'")).isBlocked, 0);
+  assert.equal((await request('/profile', { cookie: sessions.b })).status, 307);
+  sessions.b = "userSession=" + (await createSession(db, "b"));
+  check("only administrators can block and restore a student; revoked sessions stay invalid");
   for (const data of [
     { module: "15", taskId: 101, solved: true },
     { module: "16", taskId: 1, solved: true },
@@ -574,6 +585,8 @@ try {
   const video = await request("/videos/1", { cookie: sessions.a });
   assert.equal(video.status, 200);
   assert.ok(video.text.includes("https://kinescope.io/embed/abc123"));
+  assert.match(video.text, /Разрешить и показать видео/);
+  assert.doesNotMatch(video.text, /<iframe\b/);
   const freeVideo = await request("/videos/1", { cookie: sessions.free });
   assert.equal(freeVideo.status, 200);
   assert.ok(!freeVideo.text.includes("https://kinescope.io/embed/abc123"));

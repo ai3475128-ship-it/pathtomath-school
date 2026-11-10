@@ -124,7 +124,7 @@ export default async function AdminPanelPage() {
     
     errorReports = await db.all('SELECT * FROM ErrorReports ORDER BY createdAt DESC LIMIT 10');
 
-    students = await db.all("SELECT id, name, email, role FROM User WHERE role IN ('STUDENT', 'PREMIUM_STUDENT') ORDER BY name ASC");
+    students = await db.all("SELECT id, name, email, role, isBlocked FROM User WHERE role IN ('STUDENT', 'PREMIUM_STUDENT') ORDER BY name ASC");
     const studentsRes = await db.get("SELECT COUNT(*) as count FROM User WHERE role IN ('STUDENT', 'PREMIUM_STUDENT')");
     totalStudentsCount = studentsRes?.count || 0;
   } catch (e) {

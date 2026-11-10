@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { requireManagement,requireAdmin } from '@/lib/auth';
 import { notFound } from 'next/navigation';
+import { setStudentBlocked } from '@/lib/student-access';
 import { getEgeProgress } from '@/lib/task-modules';
 import { checkHomeworkMark as saveHomeworkMark,checkTrialMark as saveTrialScore } from '../../../course-actions';
 import Link from 'next/link';
@@ -48,6 +49,18 @@ async function toggleStudentPremium(formData) {
   }
 }
 
+async function changeStudentBlock(formData) {
+  'use server';
+  const admin = await requireAdmin();
+  const studentId = formData.get('studentId');
+  const blocked = formData.get('blocked');
+  if (typeof studentId !== 'string' || !['0', '1'].includes(blocked)) return;
+  const db = await connectDB();
+  setStudentBlocked(db, admin, studentId, blocked === '1');
+  revalidatePath(`/supervisor/students/${studentId}`);
+  revalidatePath('/admin-panel');
+}
+
 export default async function StudentProfilePage({ params }) {
   const resolvedParams = await params;
   const id = resolvedParams?.id;
@@ -64,7 +77,7 @@ export default async function StudentProfilePage({ params }) {
   try {
     db = await connectDB();
     
-    rawStudent = await db.get("SELECT id, name, email, role, createdAt FROM User WHERE id = ?", [id]);
+    rawStudent = await db.get("SELECT id, name, email, role, createdAt, isBlocked FROM User WHERE id = ?", [id]);
     if (!rawStudent || !['STUDENT','PREMIUM_STUDENT'].includes(rawStudent.role)) notFound();
     const progressRows = await getEgeProgress(db,rawStudent.id);
     totalSolvedCount = progressRows.length;
@@ -138,6 +151,20 @@ export default async function StudentProfilePage({ params }) {
             <p className="text-xs text-slate-400 font-medium mt-0.5">{rawStudent.email}</p>
           </div>
         </div>
+
+        {currentUser.role === 'ADMIN' && (
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-blue-100/60 bg-white/80 p-6 dark:border-purple-500/20 dark:bg-[#140e24]/80">
+            <div>
+              <h2 className="font-bold">Доступ к аккаунту: {rawStudent.isBlocked ? 'ограничен' : 'активен'}</h2>
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-300">При блокировке вход будет закрыт, а активные сеансы завершатся. Прогресс и тариф сохранятся.</p>
+            </div>
+            <form action={changeStudentBlock}>
+              <input type="hidden" name="studentId" value={rawStudent.id} />
+              <input type="hidden" name="blocked" value={rawStudent.isBlocked ? '0' : '1'} />
+              <button type="submit" className="rounded-xl border border-sky-300 px-4 py-2 text-sm font-bold text-sky-700 hover:bg-sky-50 dark:border-purple-500/30 dark:text-purple-300 dark:hover:bg-purple-950/40">{rawStudent.isBlocked ? 'Разблокировать' : 'Заблокировать'}</button>
+            </form>
+          </div>
+        )}
 
         {/* Сводный прогресс банка */}
         <div className="w-full sm:w-64 bg-white dark:bg-purple-950/10 p-4 rounded-2xl border dark:border-purple-500/5 shadow-sm">
