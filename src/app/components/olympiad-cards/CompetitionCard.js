@@ -28,6 +28,7 @@ const logos = {
 
 // У этих оригиналов светлый знак расположен на тёмной подложке.
 const lightOnDark = new Set(['moscow', 'shag']);
+const transparentLogos = new Set(['hse']);
 
 export default function CompetitionCard({ olympiad }) {
   const [activated, setActivated] = useState(false);
@@ -44,7 +45,7 @@ export default function CompetitionCard({ olympiad }) {
       <h2 className="mt-3 text-lg font-black leading-snug text-slate-800 group-hover:text-white dark:text-white">{olympiad.name}</h2>
     </div>
     {previewAvailable && <span className={styles.logoPreview} aria-hidden="true">
-      {activated && <span className={`${styles.logoSurface} ${lightOnDark.has(olympiad.id) ? styles.lightOnDark : ''}`}>
+      {activated && <span className={`${styles.logoSurface} ${lightOnDark.has(olympiad.id) ? styles.lightOnDark : ''} ${transparentLogos.has(olympiad.id) ? styles.transparentLogo : ''}`}>
         {/* Изображение загружается только при наведении или фокусе; при ошибке остаётся название. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={logo} alt="" referrerPolicy="no-referrer" onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
