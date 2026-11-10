@@ -61,3 +61,89 @@ test('the shaded pyramid cross-section meets all four side edges', () => {
   }
   assert.match(component, /clipPath="url\(#ege-pyramid-section\)"/);
 });
+
+const cross = ([x1, y1], [x2, y2]) => x1 * y2 - y1 * x2;
+const subtract = ([x1, y1], [x2, y2]) => [x1 - x2, y1 - y2];
+
+function introCase(number, next) {
+  const start = component.indexOf(`      case ${number}: return`);
+  const end = component.indexOf(next ? `      case ${next}: return` : '      default: return null;', start);
+  assert.ok(start >= 0 && end > start);
+  return component.slice(start, end);
+}
+
+test('three-perpendiculars diagram keeps the projected lines in the plane', () => {
+  const section = introCase(15, 18);
+  assert.match(section, /M20 78 97 50 178 88 101 116Z/);
+  const sloped = section.match(/M([\d.]+) ([\d.]+)V([\d.]+) M[\d.]+ [\d.]+ ([\d.]+) ([\d.]+)/);
+  assert.ok(sloped);
+  const [, ax, ay, hy, bx, by] = sloped.map(Number);
+  const A = [ax, ay], H = [ax, hy], B = [bx, by];
+  const projectedY = [81, 38], projectedX = [77, -28];
+  close(cross(subtract(B, H), projectedY), 0, .001);
+  assert.ok(A[1] < H[1]);
+  const floorLine = section.match(/M75\.3 81\.5 122\.28 103\.54 M([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)/);
+  assert.ok(floorLine);
+  const [, x1, y1, x2, y2] = floorLine.map(Number);
+  const L1 = [x1, y1], L2 = [x2, y2];
+  close(cross(subtract(L2, L1), projectedX), 0, .001);
+  close(cross(subtract(B, L1), subtract(L2, L1)), 0, .001);
+  assert.match(section, /HB ⟂ ℓ  ⇒  AB ⟂ ℓ/);
+});
+
+test('Menelaus secant intersects two sides and the extension with the correct ratio', () => {
+  const section = introCase(18, 19);
+  assert.match(section, /M50 110 90 35 150 110Z M150 110h45/);
+  const secant = section.match(/M([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)" className=\{styles\.line\}/);
+  assert.ok(secant);
+  const [, dx, dy, fx, fy] = secant.map(Number);
+  const A = [50, 110], B = [90, 35], C = [150, 110], D = [dx, dy], F = [fx, fy];
+  close(cross(subtract(D, A), subtract(B, A)), 0);
+  close(cross(subtract(F, A), subtract(C, A)), 0);
+  assert.ok(F[0] > C[0]);
+  const direction = subtract(F, D), side = subtract(C, B);
+  const t = cross(subtract(B, D), side) / cross(direction, side);
+  const E = [D[0] + t * direction[0], D[1] + t * direction[1]];
+  const len = (p, q) => Math.hypot(...subtract(p, q));
+  close(len(A, D) / len(D, B) * len(B, E) / len(E, C) * len(C, F) / len(F, A), 1);
+  assert.match(section, /AD\/DB · BE\/EC · CF\/FA = 1/);
+});
+
+test('trigonometric label is separated from circle, ray and axes', () => {
+  const section = component.slice(component.lastIndexOf('    case 14: return'), component.lastIndexOf('    case 15: return'));
+  assert.match(section, /<Text x=\{159\} y=\{36\} size=\{13\}>π\/3<\/Text>/);
+  // Its estimated left edge lies to the right of the circle's furthest point.
+  assert.ok(159 - 13 > 100 + 45);
+});
+
+test('vector sum reaches the opposite corner of the parallelogram', () => {
+  const start = component.lastIndexOf('    case 2: return');
+  const end = component.lastIndexOf('    case 3: return');
+  const section = component.slice(start, end);
+  const sides = section.match(/M([\d.]+) ([\d.]+)H([\d.]+) M[\d.]+ [\d.]+ ([\d.]+) ([\d.]+)/);
+  const outer = section.match(/M([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)" className=\{styles\.dashed\}/);
+  assert.ok(sides && outer);
+  const [, ox, oy, ax, bx, by] = sides.map(Number);
+  const [, fromX, fromY, sumX, sumY, toX, toY] = outer.map(Number);
+  close(fromX, ax); close(fromY, oy);
+  close(toX, bx); close(toY, by);
+  close(sumX, ax + bx - ox); close(sumY, oy + by - oy);
+  assert.match(section, /M43 110 156 41/);
+});
+
+test('good and bad roots are shown as opposite cases for distinct roots', () => {
+  const section = introCase(19, 20);
+  assert.match(section, /x₁ ≠ x₂/);
+  assert.match(section, /x₁ ∈ \[0; 1\]/);
+  assert.match(section, /x₂ ∉ \[0; 1\]/);
+  assert.match(section, /или наоборот/);
+});
+
+test('the Venn diagram displays the correct intersection', () => {
+  const section = introCase(20);
+  assert.match(section, />1, 2<\/Text>/);
+  assert.match(section, />3<\/Text>/);
+  assert.match(section, />4, 5<\/Text>/);
+  assert.match(section, /A ∩ B = \{'\{3\}'\}/);
+  assert.match(section, /clipPath="url\(#ege-intro-sets-overlap\)"/);
+});
