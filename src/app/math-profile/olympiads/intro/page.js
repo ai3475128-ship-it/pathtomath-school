@@ -36,9 +36,7 @@ export default function OlympiadsIntroPage() {
         <div className="flex gap-2 text-sm text-slate-400/80 mb-2 font-medium dark:text-slate-400/60 select-none">
           <Link href="/" className="hover:text-sky-400 transition">Главная</Link>
           <span>/</span>
-          <Link href="/math-profile/main-hub" className="hover:text-sky-400 transition">Bank заданий</Link>
-          <span>/</span>
-          <Link href="/math-profile/olympiads" className="hover:text-sky-400 transition">Олимпиады</Link>
+          <Link href="/olympiads" className="hover:text-sky-400 transition">Олимпиады</Link>
           <span>/</span>
           <span className="text-slate-700 font-semibold dark:text-white/90">Подготовительные задачи</span>
         </div>

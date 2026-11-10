@@ -28,9 +28,9 @@ export default function EgeIntroTasksPage() {
         <div className="flex gap-2 text-sm text-slate-400/80 mb-2 font-medium dark:text-slate-400/60 select-none">
           <Link href="/" className="hover:text-sky-400 transition">Главная</Link>
           <span>/</span>
-          <Link href="/math-profile/main-hub" className="hover:text-sky-400 transition">Банк заданий</Link>
+          <Link href="/math-profile" className="hover:text-sky-400 transition">ЕГЭ</Link>
           <span>/</span>
-          <Link href="/math-profile/ege" className="hover:text-sky-400 transition">ЕГЭ</Link>
+          <Link href="/math-profile/ege" className="hover:text-sky-400 transition">Математика</Link>
           <span>/</span>
           <span className="text-slate-700 font-semibold dark:text-white/90">Подготовительные задачи</span>
         </div>

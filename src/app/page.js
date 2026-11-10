@@ -88,11 +88,11 @@ className="px-8 py-3.5 font-bold rounded-2xl shadow-md transition-all duration-3
              bg-white text-sky-500 border-sky-400/40 shadow-sm hover:border-sky-600 hover:text-sky-600 hover:shadow-[0_0_15px_rgba(14,165,233,0.2)]
              dark:bg-[#140e24]/40 dark:text-purple-400 dark:border-purple-500/30 dark:hover:border-purple-400 dark:hover:text-purple-300 dark:hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
 >
-  Банк заданий
+  ЕГЭ
 </Link>
 
-<Link href="/olympiad-calendar" className="px-8 py-3.5 font-bold text-xs uppercase tracking-wider rounded-2xl border border-sky-400/40 bg-white text-sky-600 shadow-sm hover:border-sky-600 dark:border-purple-500/30 dark:bg-[#140e24]/40 dark:text-purple-400">
-  Олимпиадный календарь
+<Link href="/olympiads" className="px-8 py-3.5 font-bold text-xs uppercase tracking-wider rounded-2xl border border-sky-400/40 bg-white text-sky-600 shadow-sm hover:border-sky-600 dark:border-purple-500/30 dark:bg-[#140e24]/40 dark:text-purple-400">
+  Олимпиады
 </Link>
 
         </div>

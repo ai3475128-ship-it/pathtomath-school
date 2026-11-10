@@ -27,7 +27,7 @@ export default function EgeIntroPage() {
             Направление: ЕГЭ
           </span>
           <h1 className="text-4xl md:text-5xl font-black tracking-tight mt-5 mb-4 text-sky-600 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-white dark:to-purple-200">
-            Уровень Подготовки
+            ЕГЭ Математика
           </h1>
           <p className="text-slate-400 dark:text-slate-300 leading-relaxed text-sm sm:text-base font-semibold">
             Выберите необходимый формат обучения для перехода к учебным материалам.
