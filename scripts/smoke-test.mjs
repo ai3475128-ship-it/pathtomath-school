@@ -585,7 +585,7 @@ try {
   const video = await request("/videos/1", { cookie: sessions.a });
   assert.equal(video.status, 200);
   assert.ok(video.text.includes("https://kinescope.io/embed/abc123"));
-  assert.match(video.text, /Разрешить и показать видео/);
+  assert.match(video.text, /Принять и смотреть/);
   assert.doesNotMatch(video.text, /<iframe\b/);
   const freeVideo = await request("/videos/1", { cookie: sessions.free });
   assert.equal(freeVideo.status, 200);
