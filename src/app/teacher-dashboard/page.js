@@ -1,3 +1,4 @@
+import VideoPublishForm from '@/app/components/VideoPublishForm';
 import OlympiadCalendarLink from '../components/OlympiadCalendarLink';
 import { requireManagement } from '@/lib/auth';
 import { text,calendarDate } from '@/lib/validation';
@@ -191,79 +192,7 @@ export default async function TeacherDashboardPage() {
               </div>
             </div>
 
-            {/* 🚀 ВНЕДРЕНО: Премиальная форма загрузки видеоуроков для Преподавателя / Админа */}
-<div className="max-w-xl rounded-3xl p-6 bg-slate-50/50 dark:bg-[#140e24]/40 border border-slate-100 dark:border-purple-500/10 shadow-sm space-y-4">
-  <div className="border-b border-blue-100/30 pb-2 dark:border-purple-500/20">
-    <h3 className="text-lg font-black text-slate-800 dark:text-white tracking-tight">
-      Добавить новый видеоурок в АЗИМУТ
-    </h3>
-  </div>
-
-  <form action="/api/videos/create" method="POST" className="space-y-4">
-    {/* Название видео */}
-    <div className="flex flex-col gap-1">
-      <label className="text-xs font-bold uppercase text-slate-400">Название лекции</label>
-      <input 
-        type="text" 
-        name="title" 
-        required 
-        placeholder="Например: Ловушки в тригонометрии. Задание 13" 
-        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-purple-950 bg-white dark:bg-[#03000a] text-sm focus:outline-none focus:border-sky-500 dark:focus:border-[#634EE4] transition"
-      />
-    </div>
-
-    {/* Ссылка на плеер VK */}
-    <div className="flex flex-col gap-1">
-      <label className="text-xs font-bold uppercase text-slate-400">Ссылка iframe (VK Видео / Kinescope)</label>
-      <input 
-        type="text" 
-        name="url" 
-        required 
-        placeholder="https://vk.com..." 
-        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-purple-950 bg-white dark:bg-[#03000a] text-sm focus:outline-none focus:border-sky-500 dark:focus:border-[#634EE4] transition"
-      />
-    </div>
-
-    <div className="grid grid-cols-2 gap-4">
-      {/* Номер задания КИМ */}
-      <div className="flex flex-col gap-1">
-        <label className="text-xs font-bold uppercase text-slate-400">Номер задания КИМ</label>
-        <input 
-          type="number" 
-          name="sectionNum" 
-          min="1" 
-          max="390" 
-          required 
-          placeholder="13" 
-          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-purple-950 bg-white dark:bg-[#03000a] text-sm focus:outline-none focus:border-sky-500 dark:focus:border-[#634EE4] transition"
-        />
-      </div>
-
-      {/* Выбор тарифа (Чекбокс приватности) */}
-      <div className="flex flex-col justify-end pb-1.5">
-        <label className="relative flex items-center gap-2 cursor-pointer select-none">
-          <input 
-            type="checkbox" 
-            name="isPremium" 
-            defaultChecked 
-            className="w-4 h-4 rounded border-slate-300 dark:border-purple-950 text-[#634EE4] focus:ring-[#634EE4]"
-          />
-          <span className="text-xs font-extrabold uppercase tracking-wide text-slate-600 dark:text-purple-300">
-            Только Мастер-Группа
-          </span>
-        </label>
-      </div>
-    </div>
-
-    {/* Кнопка отправки формы */}
-    <button 
-      type="submit" 
-      className="w-full py-3 bg-sky-500 dark:bg-[#634EE4] hover:bg-sky-600 dark:hover:bg-[#523fd1] text-white text-xs font-black uppercase tracking-wider rounded-xl shadow-md transition-all hover:scale-[1.01]"
-    >
-      Опубликовать видеоматериал
-    </button>
-  </form>
-</div>
+            <VideoPublishForm />
 
 
             {/* Выкладка будущих ДЗ на поток */}

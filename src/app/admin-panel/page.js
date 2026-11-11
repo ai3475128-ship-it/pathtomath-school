@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { SUBJECTS } from '@/lib/learning-catalog';
+import VideoPublishForm from '@/app/components/VideoPublishForm';
 import OlympiadCalendarLink from '../components/OlympiadCalendarLink';
 import { displayNumberForModule } from '@/lib/ege-sections';
 import { requireAdmin } from '@/lib/auth';
@@ -16,6 +19,8 @@ async function createTeacher(formData) {
   const name = text(formData.get('name'),150,2);
   const email = emailAddress(formData.get('email'));
   const password = passwordValue(formData.get('password'));
+  const subject = formData.get('subject') || 'ege-math';
+  if (!SUBJECTS.some((item) => item.id === subject)) throw Error('Некорректное направление');
 
   if (!name || !email || !password) return;
 
@@ -29,11 +34,11 @@ async function createTeacher(formData) {
     const userId = createId();
     const createdAt = new Date().toISOString();
 
-    await db.run(
-      "INSERT INTO User (id, name, email, password, role, createdAt) VALUES (?, ?, ?, ?, 'TEACHER', ?)",
-      [userId, name.trim(), email.toLowerCase().trim(), hashedPassword, createdAt]
-    );
-
+    db.transaction((raw) => {
+      raw.prepare("INSERT INTO User (id, name, email, password, role, createdAt) VALUES (?, ?, ?, ?, 'TEACHER', ?)")
+        .run(userId, name.trim(), email.toLowerCase().trim(), hashedPassword, createdAt);
+      raw.prepare('INSERT INTO TeacherSubject(userId,subject) VALUES(?,?)').run(userId, subject);
+    });
     revalidatePath('/admin-panel');
   } catch (err) {
     console.error(err);
@@ -41,6 +46,22 @@ async function createTeacher(formData) {
   } finally {
     if (db) await db.close();
   }
+}
+
+async function updateSubjects(formData) {
+  'use server';
+  await requireAdmin();
+  const id = text(formData.get('id'), 100);
+  const subjects = [...new Set(formData.getAll('subjects').map(String))];
+  if (!subjects.length || subjects.some((id) => !SUBJECTS.some((subject) => subject.id === id))) throw Error('Выберите корректное направление');
+  const db = await connectDB();
+  db.transaction((raw) => {
+    const member = raw.prepare("SELECT id FROM User WHERE id=? AND role IN ('ADMIN','TEACHER')").get(id);
+    if (!member) throw Error('Преподаватель не найден');
+    raw.prepare('DELETE FROM TeacherSubject WHERE userId=?').run(id);
+    for (const subject of subjects) raw.prepare('INSERT INTO TeacherSubject(userId,subject) VALUES(?,?)').run(id, subject);
+  });
+  revalidatePath('/admin-panel');
 }
 
 // SERVER ACTION 2: Понижение преподавателя обратно до ученика
@@ -53,8 +74,13 @@ async function removeTeacher(formData) {
   let db;
   try {
     db = await connectDB();
-    await db.run("UPDATE User SET role = 'STUDENT' WHERE id = ? AND role = 'TEACHER'", [id]);
-    await db.run('DELETE FROM Session WHERE userId=?',[id]);
+    db.transaction((raw) => {
+      const result = raw.prepare("UPDATE User SET role='STUDENT' WHERE id=? AND role='TEACHER'").run(id);
+      if (result.changes) {
+        raw.prepare('DELETE FROM TeacherSubject WHERE userId=?').run(id);
+        raw.prepare('DELETE FROM Session WHERE userId=?').run(id);
+      }
+    });
     revalidatePath('/admin-panel');
   } catch (err) {
     console.error(err);
@@ -114,13 +140,15 @@ export default async function AdminPanelPage() {
 
   let db;
   let teachers = [];
+  let staffSubjects = [];
   let errorReports = [];
   let students = [];
   let totalStudentsCount = 0;
 
   try {
     db = await connectDB();
-    teachers = await db.all("SELECT id, name, email, createdAt FROM User WHERE role = 'TEACHER'");
+    teachers = await db.all("SELECT id, name, email, role, createdAt FROM User WHERE role IN ('TEACHER','ADMIN') ORDER BY role, name");
+    staffSubjects = await db.all('SELECT userId, subject FROM TeacherSubject');
     
     errorReports = await db.all('SELECT * FROM ErrorReports ORDER BY createdAt DESC LIMIT 10');
 
@@ -136,6 +164,7 @@ export default async function AdminPanelPage() {
     <div className="min-h-screen bg-slate-50 dark:bg-[#03000a] p-6 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-500">
       <div className="max-w-7xl mx-auto space-y-8">
         <OlympiadCalendarLink />
+        <Link href="/teacher-dashboard" className="inline-block rounded-xl bg-sky-600 px-5 py-3 font-bold text-white hover:bg-sky-700">Преподавательские инструменты</Link>
         
         {/* Шапка приветствия */}
         <div className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border border-blue-100/60 shadow-xl flex flex-col lg:flex-row lg:items-center justify-between gap-6">
@@ -167,79 +196,7 @@ export default async function AdminPanelPage() {
           </div>
         </div>
 
-        {/* 🚀 ВНЕДРЕНО: Премиальная форма загрузки видеоуроков для Преподавателя / Админа */}
-<div className="max-w-xl rounded-3xl p-6 bg-slate-50/50 dark:bg-[#140e24]/40 border border-slate-100 dark:border-purple-500/10 shadow-sm space-y-4">
-  <div className="border-b border-blue-100/30 pb-2 dark:border-purple-500/20">
-    <h3 className="text-lg font-black text-slate-800 dark:text-white tracking-tight">
-      Добавить новый видеоурок в АЗИМУТ
-    </h3>
-  </div>
-
-  <form action="/api/videos/create" method="POST" className="space-y-4">
-    {/* Название видео */}
-    <div className="flex flex-col gap-1">
-      <label className="text-xs font-bold uppercase text-slate-400">Название лекции</label>
-      <input 
-        type="text" 
-        name="title" 
-        required 
-        placeholder="Например: Ловушки в тригонометрии. Задание 14"
-        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-purple-950 bg-white dark:bg-[#03000a] text-sm focus:outline-none focus:border-sky-500 dark:focus:border-[#634EE4] transition"
-      />
-    </div>
-
-    {/* Ссылка на плеер VK */}
-    <div className="flex flex-col gap-1">
-      <label className="text-xs font-bold uppercase text-slate-400">Ссылка iframe (VK Видео / Kinescope)</label>
-      <input 
-        type="text" 
-        name="url" 
-        required 
-        placeholder="https://vk.com..." 
-        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-purple-950 bg-white dark:bg-[#03000a] text-sm focus:outline-none focus:border-sky-500 dark:focus:border-[#634EE4] transition"
-      />
-    </div>
-
-    <div className="grid grid-cols-2 gap-4">
-      {/* Номер задания КИМ */}
-      <div className="flex flex-col gap-1">
-        <label className="text-xs font-bold uppercase text-slate-400">Номер задания КИМ</label>
-        <input 
-          type="number" 
-          name="sectionNum" 
-          min="1" 
-          max="20"
-          required 
-          placeholder="13" 
-          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-purple-950 bg-white dark:bg-[#03000a] text-sm focus:outline-none focus:border-sky-500 dark:focus:border-[#634EE4] transition"
-        />
-      </div>
-
-      {/* Выбор тарифа (Чекбокс приватности) */}
-      <div className="flex flex-col justify-end pb-1.5">
-        <label className="relative flex items-center gap-2 cursor-pointer select-none">
-          <input 
-            type="checkbox" 
-            name="isPremium" 
-            defaultChecked 
-            className="w-4 h-4 rounded border-slate-300 dark:border-purple-950 text-[#634EE4] focus:ring-[#634EE4]"
-          />
-          <span className="text-xs font-extrabold uppercase tracking-wide text-slate-600 dark:text-purple-300">
-            Только Мастер-Группа
-          </span>
-        </label>
-      </div>
-    </div>
-
-    {/* Кнопка отправки формы */}
-    <button 
-      type="submit" 
-      className="w-full py-3 bg-sky-500 dark:bg-[#634EE4] hover:bg-sky-600 dark:hover:bg-[#523fd1] text-white text-xs font-black uppercase tracking-wider rounded-xl shadow-md transition-all hover:scale-[1.01]"
-    >
-      Опубликовать видеоматериал
-    </button>
-  </form>
-</div>
+        <VideoPublishForm />
 
 
         {/* Управление штатом преподавателей */}
@@ -251,6 +208,11 @@ export default async function AdminPanelPage() {
               <input type="text" name="name" required placeholder="ФИО преподавателя" className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-4 py-2 text-xs font-bold focus:outline-none focus:border-sky-500" />
               <input type="email" name="email" required placeholder="Email адрес" className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-4 py-2 text-xs font-bold focus:outline-none focus:border-sky-500" />
               <input type="password" name="password" required placeholder="Пароль для входа" className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-4 py-2 text-xs font-bold focus:outline-none focus:border-sky-500" />
+              <label className="block text-xs font-bold">Направление
+                <select name="subject" required defaultValue="ege-math" className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2 text-slate-800">
+                  {SUBJECTS.map((subject) => <option key={subject.id} value={subject.id}>{subject.title}</option>)}
+                </select>
+              </label>
               <button type="submit" className="w-full py-2 bg-sky-500 hover:bg-sky-600 dark:bg-[#634EE4] dark:hover:bg-[#523fd1] text-white text-xs font-black uppercase tracking-wider rounded-xl shadow-md transition-all cursor-pointer">Опубликовать</button>
             </form>
           </div>
@@ -261,22 +223,28 @@ export default async function AdminPanelPage() {
                 <tr className="text-slate-400 uppercase tracking-wider border-b dark:border-purple-950/40">
                   <th className="pb-2 font-black">Преподаватель</th>
                   <th className="pb-2 font-black">Email</th>
+                  <th className="pb-2 font-black">Направления</th>
                   <th className="pb-2 font-black text-right pr-4">Действие</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-purple-950/40 font-medium">
                 {teachers.length === 0 ? (
-                  <tr><td colSpan="3" className="py-4 text-center text-slate-400 font-bold">Список преподавателей пуст.</td></tr>
+                  <tr><td colSpan="4" className="py-4 text-center text-slate-400 font-bold">Список преподавателей пуст.</td></tr>
                 ) : (
                   teachers.map((teacher) => (
                     <tr key={teacher.id} className="text-slate-700 dark:text-slate-300">
                       <td className="py-3 font-bold">{teacher.name}</td>
                       <td className="py-3 text-slate-400">{teacher.email}</td>
+                      <td className="py-3"><form action={updateSubjects} className="space-y-1">
+                        <input type="hidden" name="id" value={teacher.id} />
+                        {SUBJECTS.map((subject) => <label key={subject.id} className="flex items-center gap-2"><input type="checkbox" name="subjects" value={subject.id} defaultChecked={staffSubjects.some((row) => row.userId === teacher.id && row.subject === subject.id)} />{subject.title}</label>)}
+                        <button type="submit" className="font-bold text-sky-600">Сохранить</button>
+                      </form></td>
                       <td className="py-3 text-right pr-2">
-                        <form action={removeTeacher}>
+                        {teacher.role === 'ADMIN' ? <span>Руководитель</span> : <form action={removeTeacher}>
                           <input type="hidden" name="id" value={teacher.id} />
                           <button type="submit" className="text-[10px] text-red-500 hover:text-red-600 font-black uppercase tracking-wider cursor-pointer transition-colors">Снять полномочия</button>
-                        </form>
+                        </form>}
                       </td>
                     </tr>
                   ))

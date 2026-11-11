@@ -18,16 +18,13 @@ try {
     throw Error(
       "Аккаунт уже существует: автоматическое повышение роли запрещено",
     );
-  await db.run(
-    "INSERT INTO User(id,email,name,password,role,createdAt) VALUES(?,?,?,?,'ADMIN',?)",
-    [
-      randomUUID(),
-      email,
-      process.env.ADMIN_NAME?.trim() || "Руководитель",
-      await bcrypt.hash(password, 12),
-      new Date().toISOString(),
-    ],
-  );
+  const userId = randomUUID();
+  const hash = await bcrypt.hash(password, 12);
+  db.transaction((raw) => {
+    raw.prepare("INSERT INTO User(id,email,name,password,role,createdAt) VALUES(?,?,?,?,'ADMIN',?)")
+      .run(userId, email, process.env.ADMIN_NAME?.trim() || "Руководитель", hash, new Date().toISOString());
+    raw.prepare("INSERT INTO TeacherSubject(userId,subject) VALUES(?,'ege-math')").run(userId);
+  });
   console.log("Администратор создан. Удалите ADMIN_PASSWORD из окружения.");
 } finally {
   db.dispose();

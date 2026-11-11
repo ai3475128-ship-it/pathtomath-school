@@ -136,12 +136,12 @@ test('vector sum reaches the opposite corner of the parallelogram', () => {
   assert.match(section, /M43 110 156 41/);
 });
 
-test('good and bad roots are shown as opposite cases for distinct roots', () => {
+test('the parameters preview states the Bolzano–Cauchy theorem', () => {
   const section = introCase(19, 20);
-  assert.match(section, /x₁ ≠ x₂/);
-  assert.match(section, /x₁ ∈ \[0; 1\]/);
-  assert.match(section, /x₂ ∉ \[0; 1\]/);
-  assert.match(section, /или наоборот/);
+  assert.match(section, /∀ a,b ∈ ℝ/);
+  assert.match(section, /∀ f ∈ C/);
+  assert.match(section, /f\(a\) · f\(b\) &lt; 0 ⇒/);
+  assert.match(section, /∃ c ∈ \(a; b\): f\(c\) = 0/);
 });
 
 test('the Venn diagram displays the correct intersection', () => {
