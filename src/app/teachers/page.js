@@ -8,10 +8,7 @@ const teachersData = [
     id: 1,
     name: 'Иванов Александр Денисович',
     role: 'СОЗДАТЕЛЬ Азимут преподаватель по математике',
-    image: '/teacher-aleksandr1.jpg', 
-    // Уникальные стили ховера для левой карточки (более тёмный синий)
-    hoverBgClass: 'group-hover:bg-[#007ae1]',
-    hoverBorderClass: 'group-hover:border-[#007ae1]',
+    image: '/teacher-aleksandr-adaptive.png',
     achievements: [
       <span key="education">Студент ТОП-ВУЗа России <br /> НИУ ВШЭ <span className="opacity-80 text-[11px] font-normal tracking-normal">(Прикладная Математика)</span></span>,
       '100 Баллов на ЕГЭ по профильной математике',
@@ -24,10 +21,7 @@ const teachersData = [
     id: 2,
     name: 'Покоёвец Данила Юрьевич',
     role: 'СОЗДАТЕЛЬ Азимут преподаватель по математике',
-    image: '/teacher-danila.jpg', 
-    // Уникальные стили ховера для правой карточки (более светлый и яркий синий)
-    hoverBgClass: 'group-hover:bg-[#007ae1]',
-    hoverBorderClass: 'group-hover:border-[#007ae1]',
+    image: '/teacher-danila-adaptive.png',
     achievements: [
       <span key="education">Студент ТОП-ВУЗа России <br /> НИУ ВШЭ <span className="opacity-80 text-[11px] font-normal tracking-normal">(Прикладная Математика)</span></span>,
       'Призер и победитель олимпиад по математике',
@@ -37,6 +31,25 @@ const teachersData = [
     ]
   }
 ];
+
+function TeacherBackdrop({ type }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 280 360" preserveAspectRatio="xMidYMid slice" className="pointer-events-none absolute inset-0 h-full w-full text-sky-600/25 transition-colors duration-300 group-hover:text-white/35 dark:text-purple-300/30 dark:group-hover:text-white/35" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      {type === 1 ? <>
+        <path d="M15 120h90 M28 135V40 M30 114c14 0 20-54 38-54s15 37 32 23" />
+        <text x="188" y="61" fill="currentColor" stroke="none" fontSize="46" fontFamily="serif">∫</text>
+        <text x="198" y="122" fill="currentColor" stroke="none" fontSize="25" fontFamily="serif">∇f</text>
+        <path d="M194 173c13-17 25-24 38-8s23 8 35-7 M194 184c13-17 25-24 38-8s23 8 35-7" />
+      </> : <>
+        <circle cx="222" cy="74" r="30" />
+        <path d="M222 44l-26 45h52z" />
+        <text x="21" y="69" fill="currentColor" stroke="none" fontSize="43" fontFamily="serif">Σ</text>
+        <text x="20" y="121" fill="currentColor" stroke="none" fontSize="25" fontFamily="serif">≡</text>
+        <path d="M17 177l28-37 28 37z M45 140v37 M17 190h56" />
+      </>}
+    </svg>
+  );
+}
 
 export default function TeachersPage() {
   return (
@@ -81,26 +94,25 @@ export default function TeachersPage() {
             <div 
               key={teacher.id} 
               className={`group flex flex-col sm:flex-row rounded-[24px] shadow-md transition-all duration-300 cursor-pointer w-full max-w-[620px] xl:w-[620px] shrink-0 backdrop-blur-sm overflow-hidden border
-                         bg-white/90 border-slate-200/80 hover:shadow-xl ${teacher.hoverBorderClass}
+                         bg-white border-slate-200/80 hover:bg-[#007ae1] hover:border-[#007ae1] hover:shadow-xl
                          dark:bg-[#140e24]/90 dark:border-[#2e1065]/60 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4]`}
             >
               
-              {/* 📸 ЛЕВАЯ ЧАСТЬ (ФОТО): Картинка больше НЕ темнеет при наведении */}
+              {/* Прозрачный портрет и математический фон наследуют цвет карточки. */}
               <div className="w-full sm:w-[280px] h-[280px] sm:h-auto shrink-0 relative overflow-hidden">
+                <TeacherBackdrop type={teacher.id} />
                 <Image
                   src={teacher.image}
                   alt={teacher.name}
                   fill
                   unoptimized
                   priority
-                  className="object-cover object-center block transition-all duration-300 group-hover:scale-[1.01]"
+                  className="object-cover object-center block transition-transform duration-300 group-hover:scale-[1.01] [filter:drop-shadow(0_2px_3px_rgba(15,23,42,0.16))]"
                 />
               </div>
 
               {/* 📝 ПРАВАЯ ЧАСТЬ (ТЕКСТ): Загорается индивидуальным цветом */}
-              <div className={`flex flex-col text-left justify-start py-6 flex-grow min-w-0 pr-6 pl-6 transition-all duration-300 rounded-r-[24px]
-                              ${teacher.hoverBgClass}`}
-              >
+              <div className="flex flex-col text-left justify-start py-6 flex-grow min-w-0 pr-6 pl-6 transition-colors duration-300">
                 
                 {/* Имя преподавателя */}
                 <h3 className="text-lg sm:text-xl font-extrabold leading-snug mb-1 transition-colors duration-300
@@ -113,7 +125,7 @@ export default function TeachersPage() {
                 {/* Роль / Должность */}
                 <h4 className="text-[10px] font-bold mb-4 tracking-wider uppercase transition-colors duration-300
                                text-[#634EE4] group-hover:text-white/90
-                               dark:text-[#a78bfa]"
+                               dark:text-[#a78bfa] dark:group-hover:text-white"
                 >
                   {teacher.role}
                 </h4>
@@ -127,7 +139,7 @@ export default function TeachersPage() {
                                  text-slate-700 group-hover:text-white
                                  dark:text-[#f1f5f9]"
                     >
-                      <span className="font-bold text-[#634EE4] group-hover:text-white dark:text-[#a78bfa] shrink-0">•</span>
+                      <span className="font-bold text-[#634EE4] group-hover:text-white dark:text-[#a78bfa] dark:group-hover:text-white shrink-0">•</span>
                       <span className="break-words">{item}</span>
                     </li>
                   ))}
