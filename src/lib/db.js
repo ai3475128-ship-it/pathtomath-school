@@ -5,7 +5,7 @@ import { randomUUID } from "node:crypto";
 import { legacyCandidates } from "./task-modules.js";
 const connections = (globalThis.__schoolDatabases ??= new Map());
 // Bump whenever a migration changes, so hot reload also upgrades cached connections.
-const SCHEMA_REVISION = 'cabinet-goals-v1';
+const SCHEMA_REVISION = 'trial-task-results-v1';
 function column(db, table, name, definition) {
   if (
     !db
@@ -32,6 +32,7 @@ function migrate(db, { insideTransaction = false } = {}) {
  CREATE TABLE IF NOT EXISTS PendingUsers(id TEXT PRIMARY KEY NOT NULL,email TEXT UNIQUE NOT NULL,name TEXT NOT NULL,password TEXT NOT NULL,code TEXT NOT NULL,createdAt TEXT NOT NULL,attempts INTEGER NOT NULL DEFAULT 0,expiresAt INTEGER NOT NULL DEFAULT 0);
  CREATE TABLE IF NOT EXISTS Homework(id TEXT PRIMARY KEY NOT NULL,userId TEXT NOT NULL,title TEXT NOT NULL,description TEXT DEFAULT '',status TEXT NOT NULL DEFAULT 'Не сдано',mark TEXT DEFAULT '—',comment TEXT DEFAULT '',createdAt TEXT NOT NULL,solutionUrl TEXT DEFAULT '',batchId TEXT NOT NULL DEFAULT '');
  CREATE TABLE IF NOT EXISTS Trial(id TEXT PRIMARY KEY NOT NULL,userId TEXT NOT NULL,title TEXT NOT NULL,description TEXT DEFAULT '',solutionUrl TEXT DEFAULT '',comment TEXT DEFAULT '',status TEXT DEFAULT 'Не сдано',score INTEGER DEFAULT 0,maxScore INTEGER DEFAULT 100,date TEXT NOT NULL,batchId TEXT NOT NULL DEFAULT '');
+ CREATE TABLE IF NOT EXISTS TrialTaskResult(trialId TEXT NOT NULL REFERENCES Trial(id) ON DELETE CASCADE,taskNumber INTEGER NOT NULL,solved INTEGER NOT NULL CHECK(solved IN (0,1)),PRIMARY KEY(trialId,taskNumber));
  CREATE TABLE IF NOT EXISTS Schedule(id TEXT PRIMARY KEY NOT NULL,time TEXT NOT NULL,title TEXT NOT NULL,type TEXT NOT NULL,dateText TEXT NOT NULL,createdAt TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS Video(id TEXT PRIMARY KEY NOT NULL,title TEXT NOT NULL,description TEXT,url TEXT NOT NULL,isPremium INTEGER NOT NULL DEFAULT 1,sectionNum INTEGER NOT NULL,createdAt TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS Session(tokenHash TEXT PRIMARY KEY NOT NULL,userId TEXT NOT NULL REFERENCES User(id) ON DELETE CASCADE,expiresAt INTEGER NOT NULL);

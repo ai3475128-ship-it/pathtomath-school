@@ -777,6 +777,8 @@ try {
   assert.match(olympSummary, /Решено задач: 2/);
   const multiAdmin = await request('/cabinet/access', { cookie: sessions.admin });
   assert.ok(multiAdmin.text.includes('Прогресс по курсам') && multiAdmin.text.includes('Сохранить доступ'));
+  const studentSummary = [...multiAdmin.text.matchAll(/<summary[^>]*>[\s\S]*?<\/summary>/g)].map((m) => m[0]).find((m) => m.includes('Test mathOnly'));
+  assert.ok(studentSummary && studentSummary.includes('Математика ЕГЭ') && studentSummary.includes('Физика ЕГЭ') && studentSummary.includes('Олимпиадная математика'));
   const mathVisibleToPhysics = await request('/cabinet/course-students?course=physics', { cookie: sessions.physicsTeacher });
   const oneStudent = mathVisibleToPhysics.text.match(/<details[^>]*>[\s\S]*?Test mathOnly[\s\S]*?<\/details>/)?.[0];
   assert.ok(oneStudent && oneStudent.includes('Физика ЕГЭ') && !oneStudent.includes('Математика ЕГЭ'));
@@ -792,6 +794,38 @@ try {
   assert.equal(publishedInline.status, 303);
   assert.match(publishedInline.headers.location, /\/cabinet\/materials\?course=physics&published=1/);
   check('inline staff management, course progress, grading and video publishing');
+  const adminLearner = await request('/cabinet/learner?student=mathOnly&course=ege-math', { cookie: sessions.admin });
+  assert.equal(adminLearner.status, 200);
+  assert.ok(adminLearner.text.includes('Подготовительные задачи') && adminLearner.text.includes('Банк заданий') && adminLearner.text.includes('Домашние задания'));
+  assert.equal((await request('/cabinet/learner?student=mathOnly&course=ege-math', { cookie: sessions.physicsTeacher })).status, 404);
+  assert.equal((await request('/cabinet/learner?student=physicsOnly&course=physics', { cookie: sessions.mathOnly })).status, 404);
+  await db.run("INSERT INTO Trial(id,userId,title,date,courseId,status,score,maxScore) VALUES('task-breakdown','physicsOnly','Физика пробник','2026-11-05','physics','На проверке',0,100)");
+  const trialReview = await request('/cabinet/review?course=physics', { cookie: sessions.physicsTeacher });
+  const trialGrade = action(trialReview.text, 'taskResultsPresent');
+  await invoke('/cabinet/review?course=physics', trialGrade, {trialId:'task-breakdown',score:'70',taskResultsPresent:'1',taskResult_5:'0',taskResult_6:'1'}, sessions.mathOnly);
+  assert.equal((await db.get("SELECT COUNT(*) AS n FROM TrialTaskResult WHERE trialId='task-breakdown'")).n, 0);
+  await invoke('/cabinet/review?course=physics', trialGrade, {trialId:'task-breakdown',score:'70',taskResultsPresent:'1',taskResult_27:'1'}, sessions.physicsTeacher);
+  assert.equal((await db.get("SELECT status FROM Trial WHERE id='task-breakdown'")).status, 'На проверке');
+  await invoke('/cabinet/review?course=physics', trialGrade, {trialId:'task-breakdown',score:'70',taskResultsPresent:'1',taskResult_5:'0',taskResult_6:'1'}, sessions.physicsTeacher);
+  assert.deepEqual((await db.all("SELECT taskNumber,solved FROM TrialTaskResult WHERE trialId='task-breakdown' ORDER BY taskNumber")).map((r)=>({...r})), [{taskNumber:5,solved:0},{taskNumber:6,solved:1}]);
+  const physicsProgress = await request('/cabinet/progress?course=physics', { cookie: sessions.physicsOnly });
+  assert.ok(physicsProgress.text.includes('Физика пробник') && physicsProgress.text.includes('На что обратить внимание') && physicsProgress.text.includes('Задания пробников'));
+  const detailsPhysics = await request('/cabinet/learner?student=physicsOnly&course=physics', { cookie: sessions.physicsTeacher });
+  assert.ok(detailsPhysics.text.includes('Уточнить результаты проверенных пробников'));
+  const editResults = action(detailsPhysics.text, 'taskResultsPresent');
+  await invoke('/cabinet/learner?student=physicsOnly&course=physics', editResults, {trialId:'task-breakdown',score:'70',taskResultsPresent:'1',taskResult_5:'1',taskResult_6:'1'}, sessions.physicsTeacher);
+  assert.equal((await db.get("SELECT solved FROM TrialTaskResult WHERE trialId='task-breakdown' AND taskNumber=5")).solved, 1);
+  await db.run("INSERT INTO Trial(id,userId,title,date,courseId,status,score,maxScore) VALUES('olymp-detail','a','Олимпиадный пробник','2026-11-06','olympiad-math','На проверке',0,100)");
+  const olympReview = await request('/cabinet/review?course=olympiad-math', { cookie: sessions.admin });
+  const olympGrade = action(olympReview.text, 'olympiadTaskNumber');
+  await invoke('/cabinet/review?course=olympiad-math', olympGrade, {trialId:'olymp-detail',score:'55',taskResultsPresent:'1',olympiadTaskNumber:['3','7'],olympiadTaskSolved:['0','1']}, sessions.admin);
+  assert.deepEqual((await db.all("SELECT taskNumber,solved FROM TrialTaskResult WHERE trialId='olymp-detail' ORDER BY taskNumber")).map((r)=>({...r})), [{taskNumber:3,solved:0},{taskNumber:7,solved:1}]);
+  const olympProgress = await request('/cabinet/progress?course=olympiad-math', { cookie: sessions.a });
+  assert.ok(olympProgress.text.includes('Олимпиадный пробник') && olympProgress.text.includes('их номера не сравниваются'));
+  const oldTrialSubmission = action((await request('/trials', {cookie:sessions.physicsOnly})).text, 'solutionFile');
+  await invoke('/trials', oldTrialSubmission, {trialId:'task-breakdown',solutionFile:new File(['%PDF-1.7\nfixture'],'retry.pdf')}, sessions.physicsOnly);
+  assert.equal((await db.get("SELECT COUNT(*) AS n FROM TrialTaskResult WHERE trialId='task-breakdown'")).n, 0);
+  check('detailed learner progress and per-task trial results obey access and reset on resubmission');
 
 
 
