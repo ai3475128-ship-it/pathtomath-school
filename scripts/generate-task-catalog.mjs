@@ -12,7 +12,12 @@ function add(slug, file) {
     throw Error(`Duplicate task IDs: ${slug}`);
   catalog[slug] = ids;
 }
-for (let n = 1; n <= 19; n++)
+const planimetry = JSON.parse(readFileSync(path.join(root, "src/lib/planimetry-tasks.json"), "utf8"));
+const planimetryIds = planimetry.map((task) => task.id);
+if (planimetryIds.some((id) => !Number.isSafeInteger(id) || id < 1) || new Set(planimetryIds).size !== planimetryIds.length)
+  throw Error("Invalid or duplicate task IDs: 1");
+catalog["1"] = planimetryIds;
+for (let n = 2; n <= 19; n++)
   add(
     String(n),
     `src/app/math-profile/[taskNumber]/${[13, 14, 15].includes(n) ? "section" : "sectoin"}${n}.js`,

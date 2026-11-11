@@ -57,6 +57,7 @@ import { section17Tasks } from './sectoin17';
 import { section18Tasks } from './sectoin18';
 import { section19Tasks } from './sectoin19';
 import { egeOptimizationTasks } from './ege-optimization';
+import PlanimetryDiagram from './PlanimetryDiagram';
 
 const egeIntroMap = {
   '14-intro': egeIntro14Tasks, '17-intro': egeIntro17Tasks, '18-intro': egeIntro18Tasks, '19-intro': egeIntro19Tasks
@@ -90,6 +91,9 @@ function TaskSolutionCard({ solutionBuilder, isChangingTheme }) {
 export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds }) {
   const router = useRouter();
   const pendingTasks = useRef(new Set());
+  const taskListTop = useRef(null);
+  const [paginationState, setPaginationState] = useState({ module: storageModule, page: 1 });
+  const taskPage = paginationState.module === storageModule ? paginationState.page : 1;
 
   const [solvedSubTasks, setSolvedSubTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -195,9 +199,18 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
     );
   }
 
+  const isPaginated = storageModule === '1' && !onlyTaskIds && currentTasks.length > 20;
+  const pageCount = Math.ceil(currentTasks.length / 20);
+  const visibleTasks = isPaginated ? currentTasks.slice((taskPage - 1) * 20, taskPage * 20) : currentTasks;
+  const pagination = isPaginated && <nav aria-label="Страницы задач" className="flex flex-wrap items-center gap-2">
+    <span className="mr-1 text-sm font-semibold text-slate-600 dark:text-slate-300">Страница {taskPage} из {pageCount}</span>
+    {Array.from({length: pageCount}, (_, i) => <button key={i} type="button" aria-label={`Страница ${i + 1}`} aria-current={taskPage === i + 1 ? 'page' : undefined} onClick={() => { setPaginationState({ module: storageModule, page: i + 1 }); taskListTop.current?.scrollIntoView({ block: 'start' }); }} className={`h-9 min-w-9 rounded-xl px-3 text-sm font-bold transition-colors ${taskPage === i + 1 ? 'bg-sky-600 text-white dark:bg-[#634EE4]' : 'border border-sky-200 bg-white text-sky-700 hover:bg-sky-50 dark:border-purple-500/30 dark:bg-[#17102b] dark:text-purple-300 dark:hover:bg-purple-950/40'}`}>{i + 1}</button>)}
+  </nav>;
+
   return (
-    <div className="space-y-6 relative">
-      {currentTasks.map((task) => {
+    <div ref={taskListTop} className="space-y-6 relative scroll-mt-[150px]">
+      {pagination}
+      {visibleTasks.map((task) => {
         const num = parseInt(storageModule, 10) || 0;
         const computedSubTaskId = Number(task.id);
         const isSubTaskSolved = solvedSubTasks.includes(computedSubTaskId);
@@ -254,6 +267,8 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
                   </p>
                 )}
 
+                {task.diagramType && <PlanimetryDiagram type={task.diagramType} values={task.diagramValues} taskNumber={task.id} />}
+
                 {/* ЗОНА МАТЕМАТИКИ */}
                 {task.mathA && (
                   <div className={`py-2 w-full ${storageModule === 'ege-optimization' ? 'overflow-x-auto' : 'flex justify-center'}`}>
@@ -294,6 +309,9 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
             {/* 🚀 РОДНАЯ КНОПКА СТАРЫХ ЗАДАЧ: Лазурные и фиолетовые цвета Данилы со световым ховером восстановлены пиксель в пиксель! */}
             <div className="pt-4">
               <button
+                type="button"
+                aria-expanded={Boolean(isSolutionOpen)}
+                aria-controls={`answer-${storageModule}-${task.id}`}
                 onClick={() => toggleSolution(task.id)}
                 className={`px-5 py-2.5 text-xs font-black uppercase tracking-wider rounded-xl transition-all duration-300 shadow-sm cursor-pointer border ${
                   isSolutionOpen
@@ -301,25 +319,26 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
                     : 'bg-sky-50/40 text-sky-600 border-sky-500/20 hover:bg-sky-500 hover:text-white hover:border-transparent hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] dark:bg-[#140e24]/60 dark:border-purple-500/30 dark:text-purple-300 dark:hover:bg-[#634EE4] dark:hover:text-white dark:hover:border-transparent dark:hover:shadow-[0_0_20px_rgba(99,78,228,0.5)]'
                 }`}
               >
-                {isSolutionOpen ? 'Скрыть разбор ▲' : 'Ответ и решение'}
+                {task.answer != null ? (isSolutionOpen ? 'Скрыть ответ' : 'Ответ') : (isSolutionOpen ? 'Скрыть разбор ▲' : 'Ответ и решение')}
               </button>
             </div>
 
             {/* 🔮 СПОЙЛЕР С РЕШЕНИЕМ */}
-            <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
+            <div id={`answer-${storageModule}-${task.id}`} className={`transition-all duration-500 ease-in-out overflow-hidden ${
               isSolutionOpen ? 'max-h-none opacity-100 mt-4' : 'max-h-0 opacity-0 pointer-events-none'
             }`}>
-              {isSolutionOpen && (
-                <TaskSolutionCard
-                  solutionBuilder={task.solutionBuilder}
-                  isChangingTheme={isChangingTheme}
-                />
-              )}
+              {isSolutionOpen && (task.answer != null ? (
+                <p className="font-semibold text-emerald-700 dark:text-emerald-300">Ответ: {task.answer}</p>
+              ) : (
+                <TaskSolutionCard solutionBuilder={task.solutionBuilder} isChangingTheme={isChangingTheme} />
+              ))}
             </div>
 
           </div>
         );
       })}
+
+      {pagination}
 
       {/* МОДАЛЬНОЕ ОКНО АВТОРИЗАЦИИ */}
       {showAuthModal && (

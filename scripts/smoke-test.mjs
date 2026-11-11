@@ -560,6 +560,16 @@ try {
   const teacherText = updatedSupervisor.text.replace(/<[^>]+>/g, "").replace(/\s+/g, " ");
   assert.match(teacherText, /№17\s*1\/14/);
   check("optimization totals appear in student and teacher profiles");
+  assert.equal((await request('/math-profile/1')).status, 200);
+  assert.equal((await progress(sessions.a, { module: '1', taskId: 200, solved: true })).status, 200);
+  assert.equal((await progress(sessions.a, { module: '1', taskId: 201, solved: true })).status, 400);
+  assert.deepEqual(JSON.parse((await request('/api/user-task-progress?module=1', { cookie: sessions.a })).text).solvedSubTasks, [200]);
+  assert.deepEqual(JSON.parse((await request('/api/user-task-progress?module=1', { cookie: sessions.b })).text).solvedSubTasks, []);
+  const planimetryProfile = await request('/profile', { cookie: sessions.a });
+  const planimetryLink = planimetryProfile.text.match(/<a\b[^>]*href="\/math-profile\/1"[^>]*>([\s\S]*?)<\/a>/)?.[1];
+  assert.ok(planimetryLink, 'Planimetry section should be visible in the student profile');
+  assert.match(planimetryLink.replace(/<[^>]+>/g, '').replace(/\s+/g, ' '), /Задание №1\s*1\/200/);
+  check('all planimetry tasks are available to progress tracking');
   await invoke(
     "/profile",
     action(profile.text, "noteContent"),
