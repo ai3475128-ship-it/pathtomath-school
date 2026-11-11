@@ -200,7 +200,7 @@ export default async function AdminPanelPage() {
 
 
         {/* Управление штатом преподавателей */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div id="staff" className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border border-blue-100/60 shadow-xl space-y-4">
             <h2 className="text-lg font-black text-sky-600 dark:text-purple-400 border-b dark:border-purple-950/40 pb-2 uppercase tracking-tight">Управление штатом</h2>
             <form action={createTeacher} className="space-y-3">
@@ -254,7 +254,7 @@ export default async function AdminPanelPage() {
           </div>
         </div>
         {/* Раздел сообщений об ошибках от учеников */}
-        <div className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border border-blue-100/60 shadow-xl space-y-4">
+        <div id="reports" className="bg-white/80 dark:bg-[#140e24]/80 backdrop-blur-md p-6 rounded-3xl border border-blue-100/60 shadow-xl space-y-4">
           <h2 className="text-xl font-black text-sky-600 dark:text-purple-400 border-b border-slate-100 dark:border-purple-950/40 pb-2 mb-4 uppercase tracking-tight">Раздел сообщений об ошибках от учеников</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
