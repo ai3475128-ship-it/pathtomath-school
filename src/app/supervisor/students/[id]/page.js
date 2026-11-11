@@ -2,9 +2,10 @@ import { displayNumberForModule } from '@/lib/ege-sections';
 import { connectDB } from '@/lib/db';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { requireManagement,requireAdmin } from '@/lib/auth';
+import { requireManagement,requireAdmin,canAccessCourse } from '@/lib/auth';
 import { notFound } from 'next/navigation';
-import { setStudentBlocked } from '@/lib/student-access';
+import { setStudentBlocked, setStudentCourses } from '@/lib/student-access';
+import { SUBJECTS } from '@/lib/learning-catalog';
 import { getEgeProgress } from '@/lib/task-modules';
 import { checkHomeworkMark as saveHomeworkMark,checkTrialMark as saveTrialScore } from '../../../course-actions';
 import Link from 'next/link';
@@ -31,22 +32,16 @@ import { section18Tasks } from '../../../math-profile/[taskNumber]/sectoin18';
 import { section19Tasks } from '../../../math-profile/[taskNumber]/sectoin19';
 import { egeOptimizationTasks } from '../../../math-profile/[taskNumber]/ege-optimization';
 
-// SERVER ACTION 1: Изменение тарифа подписки (Доступно только ADMIN)
-async function toggleStudentPremium(formData) {
+async function updateStudentCourses(formData) {
   'use server';
-  await requireAdmin();
-  const studentId = formData.get('studentId');
-  let db;
-  try {
-    db = await connectDB();
-    await db.run("UPDATE User SET role=CASE WHEN role='PREMIUM_STUDENT' THEN 'STUDENT' ELSE 'PREMIUM_STUDENT' END WHERE id=? AND role IN ('STUDENT','PREMIUM_STUDENT')",[studentId]);
-    revalidatePath(`/supervisor/students/${studentId}`);
-  } catch (err) {
-    console.error(err);
-    throw err;
-  } finally {
-    if (db) await db.close();
-  }
+  const admin = await requireAdmin();
+  const id = formData.get('studentId');
+  const courses = formData.getAll('courses').map(String);
+  const db = await connectDB();
+  if (!setStudentCourses(db, admin, id, courses)) throw Error('Не удалось изменить курсы');
+  revalidatePath(`/supervisor/students/${id}`);
+  revalidatePath('/admin-panel');
+  revalidatePath('/cabinet');
 }
 
 async function changeStudentBlock(formData) {
@@ -73,12 +68,15 @@ export default async function StudentProfilePage({ params }) {
   let totalSolvedCount = 0;
   let currentHomeworks = [];
   let currentTrials = [];
+  let studentCourses = [];
 
   try {
     db = await connectDB();
     
     rawStudent = await db.get("SELECT id, name, email, role, createdAt, isBlocked FROM User WHERE id = ?", [id]);
     if (!rawStudent || !['STUDENT','PREMIUM_STUDENT'].includes(rawStudent.role)) notFound();
+    studentCourses = (await db.all('SELECT courseId FROM StudentCourse WHERE userId=?', [rawStudent.id])).map((row) => row.courseId);
+    if (currentUser.role === 'TEACHER' && !studentCourses.some((course) => currentUser.subjects.includes(course))) notFound();
     const progressRows = await getEgeProgress(db,rawStudent.id);
     totalSolvedCount = progressRows.length;
 
@@ -89,8 +87,8 @@ export default async function StudentProfilePage({ params }) {
       }
     });
 
-    currentHomeworks = await db.all("SELECT * FROM Homework WHERE userId = ? ORDER BY createdAt DESC", [rawStudent.id]);
-    currentTrials = await db.all("SELECT * FROM Trial WHERE userId = ? ORDER BY date DESC", [rawStudent.id]);
+    currentHomeworks = (await db.all("SELECT * FROM Homework WHERE userId = ? ORDER BY createdAt DESC", [rawStudent.id])).filter((w) => w.courseId === 'legacy' || canAccessCourse(currentUser, w.courseId));
+    currentTrials = (await db.all("SELECT * FROM Trial WHERE userId = ? ORDER BY date DESC", [rawStudent.id])).filter((w) => w.courseId === 'legacy' || canAccessCourse(currentUser, w.courseId));
 
   } catch (e) {
     throw e;
@@ -114,7 +112,6 @@ export default async function StudentProfilePage({ params }) {
     if (number) totalStatsBySection[number] = (totalStatsBySection[number] || 0) + count;
   }
 
-  const isPremium = rawStudent.role === 'PREMIUM_STUDENT';
   const platformTotalTasks = Object.values(totalStatsBySection).reduce((a, b) => a + b, 0);
   const platformPercentage = platformTotalTasks > 0 ? Math.min(Math.round((totalSolvedCount / platformTotalTasks) * 100), 100) : 0;
   return (
@@ -127,18 +124,7 @@ export default async function StudentProfilePage({ params }) {
             ← Назад в личный кабинет
           </Link>
 
-          {/* Кнопка подписки скрыта от преподавателей и доступна только для ADMIN */}
-          {currentUser.role === 'ADMIN' && (
-            <form action={toggleStudentPremium}>
-              <input type="hidden" name="studentId" value={rawStudent.id} />
-              <input type="hidden" name="currentStatus" value={isPremium ? 'true' : 'false'} />
-              <button type="submit" className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-sm ${
-                isPremium ? 'bg-sky-500 text-white shadow-sky-500/10' : 'bg-slate-200 text-slate-600 dark:bg-purple-950/40 dark:text-purple-300'
-              }`}>
-                {isPremium ? '💎 Платный курс: Активен (Выключить)' : 'Перевести на Платный курс'}
-              </button>
-            </form>
-          )}
+
         </div>
 
         {/* Досье ученика */}
@@ -151,6 +137,15 @@ export default async function StudentProfilePage({ params }) {
             <p className="text-xs text-slate-400 font-medium mt-0.5">{rawStudent.email}</p>
           </div>
         </div>
+
+        <section className="rounded-3xl border border-blue-100/60 bg-white/80 p-6 dark:border-purple-500/20 dark:bg-[#140e24]/80">
+          <h2 className="text-lg font-bold">Курсы ученика</h2>
+          {currentUser.role === 'ADMIN' ? <form action={updateStudentCourses} className="mt-4 space-y-3">
+            <input type="hidden" name="studentId" value={rawStudent.id} />
+            {SUBJECTS.map((course) => <label key={course.id} className="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value={course.id} defaultChecked={studentCourses.includes(course.id)} />{course.title}</label>)}
+            <button type="submit" className="rounded-xl bg-sky-600 px-4 py-2 text-sm font-bold text-white hover:bg-sky-700">Сохранить курсы</button>
+          </form> : <p className="mt-2 text-sm">{SUBJECTS.filter((course) => studentCourses.includes(course.id)).map((course) => course.title).join(', ') || 'Курсы не назначены'}</p>}
+        </section>
 
         {currentUser.role === 'ADMIN' && (
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-blue-100/60 bg-white/80 p-6 dark:border-purple-500/20 dark:bg-[#140e24]/80">

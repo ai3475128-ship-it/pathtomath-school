@@ -1,8 +1,13 @@
+import { SUBJECTS } from '@/lib/learning-catalog';
+import CourseSelect from '@/app/components/CourseSelect';
 import { connectDB } from '@/lib/db';
-import { requireCourseUser } from '@/lib/auth';
+import { requireCourseUser, canAccessCourse } from '@/lib/auth';
 import { createBulkTrial, deleteBulkTrial, submitTrialSolution, checkTrialMark } from '../course-actions';
-export default async function TrialsPage() {
+export default async function TrialsPage({ searchParams }) {
   const user = await requireCourseUser();
+  const params = await searchParams;
+  const courseFilter = typeof params?.course === 'string' && SUBJECTS.some((course) => course.id === params.course) && canAccessCourse(user, params.course) ? params.course : null;
+  const visible = (work) => (work.courseId === 'legacy' || canAccessCourse(user, work.courseId)) && (!courseFilter || work.courseId === courseFilter || work.courseId === 'legacy');
 
   let db;
   let trialsList = [];
@@ -16,9 +21,17 @@ export default async function TrialsPage() {
   try {
     db = await connectDB();
     if (user.role === 'ADMIN' || user.role === 'TEACHER') {
-      const rawStudents = await db.all("SELECT id, name, email FROM User WHERE role = 'PREMIUM_STUDENT'");
-      trialsList = await db.all("SELECT * FROM Trial");
-      const rawTasks = await db.all("SELECT batchId,title,MAX(date) AS latest FROM Trial GROUP BY batchId,title ORDER BY latest DESC");
+      let rawStudents = user.role === 'ADMIN'
+        ? await db.all("SELECT id, name, email FROM User WHERE role='PREMIUM_STUDENT'")
+        : await db.all("SELECT DISTINCT u.id,u.name,u.email FROM User u JOIN StudentCourse c ON c.userId=u.id JOIN TeacherSubject ts ON ts.subject=c.courseId WHERE u.role='PREMIUM_STUDENT' AND ts.userId=?", [user.id]);
+      if (courseFilter) {
+        const enrolled = new Set((await db.all('SELECT userId FROM StudentCourse WHERE courseId=?', [courseFilter])).map((row) => row.userId));
+        rawStudents = rawStudents.filter((student) => enrolled.has(student.id));
+      }
+      const visibleStudents = new Set(rawStudents.map((student) => student.id));
+      trialsList = (await db.all("SELECT * FROM Trial")).filter((work) => visible(work) && (user.role === 'ADMIN' && !courseFilter || visibleStudents.has(work.userId)));
+      const visibleBatches = new Set(trialsList.map((work) => work.batchId));
+      const rawTasks = (await db.all("SELECT batchId,title,courseId,MAX(date) AS latest FROM Trial GROUP BY batchId,title,courseId ORDER BY latest DESC")).filter((work) => visible(work) && visibleBatches.has(work.batchId));
       uniqueGroupTrials = rawTasks;
 
       statTotalTrials = uniqueGroupTrials.length;
@@ -36,7 +49,7 @@ export default async function TrialsPage() {
         return a.name.localeCompare(b.name, 'ru-RU');
       });
     } else {
-      trialsList = await db.all("SELECT * FROM Trial WHERE userId = ? ORDER BY date DESC", [user.id]);
+      trialsList = (await db.all("SELECT * FROM Trial WHERE userId = ? ORDER BY date DESC", [user.id])).filter(visible);
       statTotalTrials = trialsList.length;
       statUncheckedTrials = trialsList.filter(t => t.status === 'На проверке').length;
       statCheckedTrials = trialsList.filter(t => t.status === 'Проверено').length;
@@ -260,6 +273,7 @@ return (
               <div className="bg-white dark:bg-[#140e24]/75 p-5 rounded-3xl border border-blue-100/40 shadow-sm space-y-4">
                 <h4 className="text-[11px] font-black uppercase tracking-wider text-slate-500">Загрузить новый пробник</h4>
                 <form action={createBulkTrial} className="space-y-3">
+                  <CourseSelect user={user} selected={courseFilter} />
                   <input type="text" name="title" required placeholder="Месяц и номер пробника" className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-4 py-2.5 text-xs font-bold focus:outline-none focus:border-sky-500" />
 {/* 🚀 ИСПРАВЛЕНО: Кнопка выбора файла больше не белая, она идеально сочетается со стилем панели дня и ночи */}
 <input 

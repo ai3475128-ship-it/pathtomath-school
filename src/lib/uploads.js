@@ -1,7 +1,7 @@
 import { mkdir, writeFile, readFile, unlink } from "node:fs/promises";
 import path from "node:path";
 import { connectDB, createId } from "./db.js";
-import { isManagement } from "./session.js";
+import { canAccessCourse } from "./session.js";
 import { consumeRateLimit } from "./rate-limit.js";
 export const MAX_UPLOAD_SIZE = 10 * 1024 * 1024;
 export function detectFileType(bytes) {
@@ -66,15 +66,13 @@ export async function saveUpload(file, user, { optional = false } = {}) {
 }
 export async function canReadFile(db, user, url, ownerId) {
   if (!user) return false;
-  if (isManagement(user) || ownerId === user.id) return true;
-  for (const table of ["Homework", "Trial"])
-    if (
-      await db.get(
-        `SELECT id FROM ${table} WHERE userId=? AND(description=? OR solutionUrl=?)`,
-        [user.id, url, url],
-      )
-    )
-      return true;
+  if (user.role === 'ADMIN' || (ownerId === user.id && user.role !== 'TEACHER')) return true;
+  for (const table of ["Homework", "Trial"]) {
+    const rows = user.role === 'TEACHER'
+      ? await db.all(`SELECT w.courseId FROM ${table} w WHERE (w.description=? OR w.solutionUrl=?) AND EXISTS (SELECT 1 FROM StudentCourse c JOIN TeacherSubject t ON t.subject=c.courseId WHERE c.userId=w.userId AND t.userId=?)`, [url, url, user.id])
+      : await db.all(`SELECT courseId FROM ${table} WHERE userId=? AND (description=? OR solutionUrl=?)`, [user.id, url, url]);
+    if (rows.some((work) => work.courseId === 'legacy' ? canAccessCourse(user) : canAccessCourse(user, work.courseId))) return true;
+  }
   return false;
 }
 export async function fileResponse(filename, mime) {

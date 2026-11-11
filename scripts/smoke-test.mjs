@@ -19,6 +19,9 @@ const directory = await mkdtemp(path.join(os.tmpdir(), "school-http-")),
 for (const [id, role] of Object.entries({
   admin: "ADMIN",
   teacher: "TEACHER",
+  physicsTeacher: "TEACHER",
+  mathOnly: "PREMIUM_STUDENT",
+  physicsOnly: "PREMIUM_STUDENT",
   a: "PREMIUM_STUDENT",
   b: "PREMIUM_STUDENT",
   free: "STUDENT",
@@ -36,6 +39,9 @@ for (const [id, role] of Object.entries({
   );
   sessions[id] = "userSession=" + (await createSession(db, id));
 }
+for (const id of ['a','b']) for (const course of ['ege-math','physics','olympiad-math']) await db.run('INSERT INTO StudentCourse(userId,courseId) VALUES(?,?)', [id, course]);
+await db.run("INSERT INTO StudentCourse(userId,courseId) VALUES('mathOnly','ege-math'),('physicsOnly','physics')");
+await db.run("INSERT INTO TeacherSubject(userId,subject) VALUES('teacher','ege-math'),('physicsTeacher','physics'),('admin','ege-math')");
 await db.run(
   "INSERT INTO Homework(id,userId,title,createdAt,batchId) VALUES('hw-a','a','HTTP test',?,'batch-a'),('hw-b','b','HTTP test',?,'batch-b')",
   [new Date().toISOString(), new Date().toISOString()],
@@ -201,7 +207,10 @@ function action(html, field) {
 async function invoke(url, id, fields, cookie) {
   const form = new FormData();
   form.set("$ACTION_ID_" + id, "");
-  for (const [k, v] of Object.entries(fields)) form.set(k, v);
+  for (const [k, v] of Object.entries(fields)) {
+    if (Array.isArray(v)) for (const entry of v) form.append(k, entry);
+    else form.set(k, v);
+  }
   return formRequest(url, form, cookie);
 }
 async function progress(cookie, data, origin = "http://127.0.0.1:3131") {
@@ -468,14 +477,15 @@ try {
   check("grade changes require teacher permission");
   await invoke(
     "/supervisor/students/a",
-    action(supervisor.text, "currentStatus"),
-    { studentId: "a", currentStatus: "true" },
+    action(supervisor.text, "courses"),
+    { studentId: "a", courses: "physics" },
     sessions.teacher,
   );
   assert.equal(
     (await db.get("SELECT role FROM User WHERE id='a'")).role,
     "PREMIUM_STUDENT",
   );
+  assert.equal((await db.get("SELECT COUNT(*) AS n FROM StudentCourse WHERE userId='a'")).n, 3);
   check("teacher cannot change subscription");
   const blockForm = action(supervisor.text, "blocked");
   await invoke("/supervisor/students/a", blockForm, { studentId: "b", blocked: "1" }, sessions.teacher);
@@ -616,9 +626,10 @@ try {
   assert.equal((await request('/teacher-dashboard', { cookie: sessions.admin })).status, 200);
   const assignmentsAction = action(admin.text, 'subjects');
   await invoke('/admin-panel', assignmentsAction, { id: 'teacher', subjects: 'physics' }, sessions.teacher);
-  assert.equal((await db.get("SELECT COUNT(*) AS n FROM TeacherSubject WHERE userId='teacher'")).n, 0);
+  assert.equal((await db.get("SELECT COUNT(*) AS n FROM TeacherSubject WHERE userId='teacher'")).n, 1);
   await invoke('/admin-panel', assignmentsAction, { id: 'teacher', subjects: 'physics' }, sessions.admin);
   assert.equal((await db.get("SELECT subject FROM TeacherSubject WHERE userId='teacher'")).subject, 'physics');
+  await db.run("INSERT INTO TeacherSubject(userId,subject) VALUES('teacher','ege-math')");
   for (const [destination, page, label] of [
     ['physics|1', '/videos/physics/1', 'Физика: тест'],
     ['olympiad-math|topic:numbers', '/videos/olympiads/topic/numbers', 'Теория чисел: тест'],
@@ -660,6 +671,60 @@ try {
     assert.ok(videoPage.text.includes(item.name), item.id);
   }
   check('animations cover physics and all video catalog sections');
+  const mathCabinet = await request('/cabinet?course=ege-math', { cookie: sessions.mathOnly });
+  const physicsCabinet = await request('/cabinet?course=physics', { cookie: sessions.physicsOnly });
+  const staffCabinet = await request('/cabinet?course=physics', { cookie: sessions.physicsTeacher });
+  assert.equal(mathCabinet.status, 200); assert.equal(physicsCabinet.status, 200); assert.equal(staffCabinet.status, 200);
+  assert.ok(mathCabinet.text.includes('Математика ЕГЭ'));
+  assert.ok(physicsCabinet.text.includes('Физика ЕГЭ'));
+  assert.ok(staffCabinet.text.includes('Ученики направления'));
+  assert.ok(!mathCabinet.text.includes('href="/cabinet?course=physics"'));
+  const foreignStudent = await request('/supervisor/students/mathOnly', { cookie: sessions.physicsTeacher });
+  assert.ok(foreignStudent.status === 404 || foreignStudent.text.includes('Страница не найдена'));
+  assert.ok(!(await request('/videos/physics/1', { cookie: sessions.mathOnly })).text.includes('https://kinescope.io/embed/abc123'));
+  assert.ok((await request('/videos/physics/1', { cookie: sessions.physicsOnly })).text.includes('https://kinescope.io/embed/abc123'));
+  const hwAdmin = await request('/homeworks', { cookie: sessions.admin });
+  await invoke('/homeworks', action(hwAdmin.text, 'pdfFile'), { title: 'Physics assignment scoped', courseId: 'physics' }, sessions.admin);
+  assert.ok(await db.get("SELECT id FROM Homework WHERE userId='physicsOnly' AND title='Physics assignment scoped'"));
+  assert.equal(await db.get("SELECT id FROM Homework WHERE userId='mathOnly' AND title='Physics assignment scoped'"), undefined);
+  const filteredPhysicsWork = await request('/homeworks?course=physics', { cookie: sessions.admin });
+  assert.ok(filteredPhysicsWork.text.includes('Test physicsOnly'));
+  assert.ok(!filteredPhysicsWork.text.includes('Test mathOnly'));
+  const physicsTeacherHwPage = await request('/homeworks', { cookie: sessions.physicsTeacher });
+  await invoke('/homeworks', action(hwAdmin.text, 'pdfFile'), { title: 'Math scoped assignment', courseId: 'ege-math' }, sessions.admin);
+  const mathsAssignment = await db.get("SELECT batchId FROM Homework WHERE userId='a' AND title='Math scoped assignment'");
+  assert.ok(mathsAssignment);
+  await invoke('/homeworks', action(physicsTeacherHwPage.text, 'batchId'), { batchId: mathsAssignment.batchId }, sessions.physicsTeacher);
+  assert.ok(await db.get('SELECT id FROM Homework WHERE batchId=?', [mathsAssignment.batchId]));
+  await db.run("INSERT INTO Homework(id,userId,title,createdAt,courseId) VALUES('unrelated-legacy','mathOnly','Legacy private',?,'legacy')", [new Date().toISOString()]);
+  await invoke('/supervisor/students/a', action(supervisor.text, 'mark'), { hwId: 'unrelated-legacy', studentId: 'mathOnly', mark: '4', comment: 'Forbidden' }, sessions.physicsTeacher);
+  assert.equal((await db.get("SELECT mark FROM Homework WHERE id='unrelated-legacy'")).mark, '—');
+  await db.run("INSERT INTO Homework(id,userId,title,createdAt,courseId) VALUES('revoked-course','mathOnly','Old physics',?,'physics')", [new Date().toISOString()]);
+  await invoke('/homeworks', submit, { hwId: 'revoked-course', solutionFile: new File(['%PDF-1.7\nfixture'], 'file.pdf') }, sessions.mathOnly);
+  assert.equal((await db.get("SELECT solutionUrl FROM Homework WHERE id='revoked-course'")).solutionUrl, '');
+  const teacherPage = await request('/homeworks', { cookie: sessions.teacher });
+  await invoke('/homeworks', action(teacherPage.text, 'pdfFile'), { title: 'Forbidden olympiad assignment', courseId: 'olympiad-math' }, sessions.teacher);
+  assert.equal(await db.get("SELECT id FROM Homework WHERE title='Forbidden olympiad assignment'"), undefined);
+  const foreignVideo = new FormData(); foreignVideo.set('title', 'Forbidden'); foreignVideo.set('url', 'https://kinescope.io/embed/abc123'); foreignVideo.set('destination', 'olympiad-math|topic:numbers');
+  assert.equal((await formRequest('/api/videos/create', foreignVideo, sessions.physicsTeacher)).status, 403);
+  const mathStudentAdmin = await request('/supervisor/students/mathOnly', { cookie: sessions.admin });
+  const setCoursesAction = action(mathStudentAdmin.text, 'courses');
+  await invoke('/supervisor/students/mathOnly', setCoursesAction, { studentId: 'mathOnly', courses: 'physics' }, sessions.admin);
+  assert.deepEqual((await db.all("SELECT courseId FROM StudentCourse WHERE userId='mathOnly'")).map((row) => row.courseId), ['physics']);
+  assert.ok((await request('/videos/physics/1', { cookie: sessions.mathOnly })).text.includes('https://kinescope.io/embed/abc123'));
+  assert.ok(!(await request('/videos/1', { cookie: sessions.mathOnly })).text.includes('https://kinescope.io/embed/abc123'));
+  await invoke('/supervisor/students/mathOnly', setCoursesAction, { studentId: 'mathOnly' }, sessions.admin);
+  assert.equal((await db.get("SELECT role FROM User WHERE id='mathOnly'")).role, 'STUDENT');
+  assert.ok(!(await request('/videos/physics/1', { cookie: sessions.mathOnly })).text.includes('https://kinescope.io/embed/abc123'));
+  await invoke('/supervisor/students/mathOnly', setCoursesAction, { studentId: 'mathOnly', courses: 'ege-math' }, sessions.admin);
+  const physicsTeacherPage = await request('/teacher-dashboard?course=physics', { cookie: sessions.physicsTeacher });
+  await invoke('/teacher-dashboard?course=physics', action(physicsTeacherPage.text, 'lessonDate'), { title: 'Physics-only lesson', time: '18:00', type: 'Вебинар', lessonDate: '2099-11-11', courseId: 'physics' }, sessions.physicsTeacher);
+  assert.ok((await request('/cabinet?course=physics', { cookie: sessions.physicsOnly })).text.includes('Physics-only lesson'));
+  assert.ok(!(await request('/cabinet?course=ege-math', { cookie: sessions.mathOnly })).text.includes('Physics-only lesson'));
+  await invoke('/teacher-dashboard?course=physics', action(physicsTeacherPage.text, 'lessonDate'), { title: 'Forbidden maths lesson', time: '18:00', type: 'Вебинар', lessonDate: '2099-11-11', courseId: 'ege-math' }, sessions.physicsTeacher);
+  assert.equal(await db.get("SELECT id FROM Schedule WHERE title='Forbidden maths lesson'"), undefined);
+  check('separate course cabinets, videos, assignments and schedules');
+
 
 
   // Existing video section numbers belong to topics, not the new exam numbering.
@@ -799,7 +864,7 @@ try {
   })).headers.location, "/login?error=wrong");
   assert.equal((await invoke("/login", loginAction, {
     email: "registered@example.invalid", password: newPassword, selectedTab: "student",
-  })).headers.location, "/profile");
+  })).headers.location, "/cabinet");
   check("password recovery through local SMTP, session revocation and new-password login");
   const dashboard = await request("/dashboard", { cookie: sessions.free });
   assert.equal(dashboard.status, 200);
@@ -865,7 +930,7 @@ try {
         "SELECT COUNT(*) AS count FROM Homework WHERE title='Repeated title'",
       )
     ).count,
-    2,
+    3,
   );
   check("bulk batches remain distinct with identical titles");
   const logoutForm = [

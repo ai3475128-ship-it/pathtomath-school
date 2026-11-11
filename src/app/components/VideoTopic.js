@@ -11,7 +11,7 @@ export default async function VideoTopic({ subject, topicKey, title, parent }) {
   return <SectionFrame title={title} breadcrumb={parent}>
     <div className="space-y-5">{videos.length === 0 && <p className="rounded-3xl border border-blue-100 bg-white/90 p-8 dark:border-purple-500/20 dark:bg-purple-950/20">Видеоуроки для этого раздела пока не добавлены.</p>}
       {videos.map((video) => {
-        const allowed = !video.isPremium || canAccessCourse(user);
+        const allowed = !video.isPremium || canAccessCourse(user, subject);
         let url = null;
         if (allowed) { try { url = videoEmbedUrl(video.url); } catch {} }
         return <section key={video.id} className="space-y-4 rounded-3xl border border-blue-100 bg-white/90 p-6 dark:border-purple-500/20 dark:bg-purple-950/20">

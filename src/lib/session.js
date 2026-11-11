@@ -24,12 +24,14 @@ export async function createSession(db, userId, now = Date.now(), credentials) {
 export async function readSession(db, token, now = Date.now()) {
   if (typeof token !== "string" || !/^[A-Za-z0-9_-]{43}$/.test(token))
     return null;
-  return (
-    (await db.get(
-      "SELECT u.id,u.email,u.name,u.role,u.createdAt FROM Session s JOIN User u ON u.id=s.userId WHERE s.tokenHash=? AND s.expiresAt>? AND u.isBlocked=0",
-      [hash(token), now],
-    )) ?? null
+  const user = await db.get(
+    "SELECT u.id,u.email,u.name,u.role,u.createdAt FROM Session s JOIN User u ON u.id=s.userId WHERE s.tokenHash=? AND s.expiresAt>? AND u.isBlocked=0",
+    [hash(token), now],
   );
+  if (!user) return null;
+  const courses = await db.all('SELECT courseId FROM StudentCourse WHERE userId=?', [user.id]);
+  const subjects = await db.all('SELECT subject FROM TeacherSubject WHERE userId=?', [user.id]);
+  return { ...user, courses: courses.map((row) => row.courseId), subjects: subjects.map((row) => row.subject) };
 }
 export async function revokeSession(db, token) {
   if (typeof token === "string")
@@ -37,5 +39,8 @@ export async function revokeSession(db, token) {
 }
 export const isManagement = (user) =>
   user?.role === "ADMIN" || user?.role === "TEACHER";
-export const canAccessCourse = (user) =>
-  isManagement(user) || user?.role === "PREMIUM_STUDENT";
+export const canAccessCourse = (user, courseId) => {
+  if (user?.role === 'ADMIN') return true;
+  if (user?.role === 'TEACHER') return !courseId || user.subjects?.includes(courseId);
+  return user?.role === 'PREMIUM_STUDENT' && (!courseId || user.courses?.includes(courseId));
+};

@@ -1,6 +1,8 @@
+import { SUBJECTS } from '@/lib/learning-catalog';
+import CourseSelect from '@/app/components/CourseSelect';
 import VideoPublishForm from '@/app/components/VideoPublishForm';
 import OlympiadCalendarLink from '../components/OlympiadCalendarLink';
-import { requireManagement } from '@/lib/auth';
+import { requireManagement, canAccessCourse } from '@/lib/auth';
 import { text,calendarDate } from '@/lib/validation';
 import { createQuickHomework } from '../course-actions';
 import { connectDB,createId } from '@/lib/db';
@@ -18,7 +20,9 @@ import Link from 'next/link';
 // 🚀 SERVER ACTION 1: Добавление нового урока по нативному календарю выбора дат
 async function createScheduleEvent(formData) {
   'use server';
-  await requireManagement();
+  const teacher = await requireManagement();
+  const courseId = formData.get('courseId') || 'ege-math';
+  if (!SUBJECTS.some((course) => course.id === courseId) || !canAccessCourse(teacher, courseId)) throw Error('Направление недоступно');
   const title = text(formData.get('title'),300);
   const time = formData.get('time');
   const type = formData.get('type');
@@ -39,8 +43,8 @@ async function createScheduleEvent(formData) {
     if (typeof time !== 'string' || !/^([01]\d|2[0-3]):[0-5]\d$/.test(time) || !['Вебинар','Созвон','Мастер-группа'].includes(type)) throw new Error('Некорректное время или тип занятия');
 
     await db.run(
-      "INSERT INTO Schedule (id, time, title, type, dateText, createdAt) VALUES (?, ?, ?, ?, ?, ?)",
-      [eventId, time.trim(), title.trim(), type, formattedDate, createdAt]
+      "INSERT INTO Schedule (id, time, title, type, dateText, createdAt, courseId) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [eventId, time.trim(), title.trim(), type, formattedDate, createdAt, courseId]
     );
 
     revalidatePath('/teacher-dashboard');
@@ -52,8 +56,10 @@ async function createScheduleEvent(formData) {
   }
 }
 
-export default async function TeacherDashboardPage() {
+export default async function TeacherDashboardPage({ searchParams }) {
   const currentUser = await requireManagement();
+  const params = await searchParams;
+  const selectedCourse = typeof params?.course === 'string' && SUBJECTS.some((course) => course.id === params.course) && canAccessCourse(currentUser, params.course) ? params.course : null;
 
   let db;
   let rawStudents = [];
@@ -68,12 +74,18 @@ export default async function TeacherDashboardPage() {
     db = await connectDB();
 
 
-    rawStudents = await db.all("SELECT id, name, email FROM User WHERE role = 'PREMIUM_STUDENT'");
-    homeworksList = await db.all("SELECT * FROM Homework");
-    trialsList = await db.all("SELECT * FROM Trial");
+    rawStudents = currentUser.role === 'ADMIN'
+      ? selectedCourse ? await db.all("SELECT u.id,u.name,u.email FROM User u JOIN StudentCourse c ON c.userId=u.id WHERE u.role='PREMIUM_STUDENT' AND c.courseId=?", [selectedCourse]) : await db.all("SELECT id,name,email FROM User WHERE role='PREMIUM_STUDENT'")
+      : await db.all("SELECT DISTINCT u.id,u.name,u.email FROM User u JOIN StudentCourse c ON c.userId=u.id JOIN TeacherSubject ts ON ts.subject=c.courseId WHERE u.role='PREMIUM_STUDENT' AND ts.userId=? AND (? IS NULL OR c.courseId=?)", [currentUser.id, selectedCourse, selectedCourse]);
+    const visible = (work) => (work.courseId === 'legacy' || canAccessCourse(currentUser, work.courseId)) && (!selectedCourse || work.courseId === selectedCourse || work.courseId === 'legacy');
+    const visibleStudents = new Set(rawStudents.map((student) => student.id));
+    const visibleStudentWork = (work) => visible(work) && (currentUser.role === 'ADMIN' && !selectedCourse || visibleStudents.has(work.userId));
+    homeworksList = (await db.all("SELECT * FROM Homework")).filter(visibleStudentWork);
+    trialsList = (await db.all("SELECT * FROM Trial")).filter(visibleStudentWork);
     
     // Живое расписание из базы данных (Никаких фейковых захардкоженных вебинаров)
-    scheduleEvents = await db.all("SELECT * FROM Schedule ORDER BY dateText ASC, time ASC LIMIT 6");
+    scheduleEvents = (await db.all("SELECT * FROM Schedule ORDER BY dateText ASC, time ASC")).filter((event) =>
+      (event.courseId === 'legacy' || canAccessCourse(currentUser, event.courseId)) && (!selectedCourse || event.courseId === selectedCourse || event.courseId === 'legacy')).slice(0, 6);
 
     totalPremiumCount = rawStudents.length;
     uncheckedHwCount = homeworksList.filter(h => h.status === 'На проверке').length;
@@ -179,6 +191,7 @@ export default async function TeacherDashboardPage() {
               <div className="pt-4 border-t border-slate-100 dark:border-purple-950/30">
                 <h4 className="text-[10px] font-black uppercase text-slate-400 tracking-wider mb-3">Запланировать новое занятие</h4>
                 <form action={createScheduleEvent} className="grid grid-cols-1 sm:grid-cols-4 gap-2">
+                  <CourseSelect user={currentUser} selected={selectedCourse} />
                   <input type="text" name="title" required placeholder="Тема урока (например: Производная)" className="sm:col-span-2 bg-white dark:bg-[#0c0714] border border-slate-200 dark:border-purple-500/10 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none focus:border-sky-500" />
                   <input type="text" name="time" required placeholder="Время (18:00)" className="bg-white dark:bg-[#0c0714] border border-slate-200 dark:border-purple-500/10 rounded-xl px-3 py-2 text-xs font-bold text-center focus:outline-none focus:border-sky-500" />
                   <select name="type" className="bg-white dark:bg-[#0c0714] border border-slate-200 dark:border-purple-500/10 rounded-xl px-2 py-2 text-xs font-bold text-slate-600 dark:text-purple-300 focus:outline-none">
@@ -192,7 +205,7 @@ export default async function TeacherDashboardPage() {
               </div>
             </div>
 
-            <VideoPublishForm />
+            <VideoPublishForm user={currentUser} />
 
 
             {/* Выкладка будущих ДЗ на поток */}
@@ -200,7 +213,8 @@ export default async function TeacherDashboardPage() {
               <h3 className="text-xs font-black uppercase tracking-wider text-sky-600 dark:text-purple-400 border-b dark:border-purple-950/40 pb-2">
                 Панель быстрой публикации домашних работ
               </h3>
-              <form action={createQuickHomework} className="flex gap-2">
+              <form action={createQuickHomework} className="space-y-3">
+                  <CourseSelect user={currentUser} selected={selectedCourse} />
                 <input type="text" name="title" required placeholder="Введите название новой темы будущего ДЗ..." className="flex-grow bg-white dark:bg-[#0c0714] border border-slate-200 dark:border-purple-500/10 rounded-xl px-4 py-2.5 text-xs font-bold focus:outline-none focus:border-sky-500" />
                 <button type="submit" className="bg-sky-500 dark:bg-[#634EE4] hover:brightness-105 text-white text-[10px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all cursor-pointer shadow-sm">Выдать тему на курс +</button>
               </form>

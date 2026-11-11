@@ -1,8 +1,13 @@
+import { SUBJECTS } from '@/lib/learning-catalog';
+import CourseSelect from '@/app/components/CourseSelect';
 import { connectDB } from '@/lib/db';
-import { requireCourseUser } from '@/lib/auth';
+import { requireCourseUser, canAccessCourse } from '@/lib/auth';
 import { createBulkHomework, deleteBulkHomework, submitHomeworkSolution, deleteStudentSolution, checkHomeworkMark } from '../course-actions';
-export default async function HomeworksPage() {
+export default async function HomeworksPage({ searchParams }) {
   const user = await requireCourseUser();
+  const params = await searchParams;
+  const courseFilter = typeof params?.course === 'string' && SUBJECTS.some((course) => course.id === params.course) && canAccessCourse(user, params.course) ? params.course : null;
+  const visible = (work) => (work.courseId === 'legacy' || canAccessCourse(user, work.courseId)) && (!courseFilter || work.courseId === courseFilter || work.courseId === 'legacy');
 
   let db;
   let homeworksList = [];
@@ -16,10 +21,18 @@ export default async function HomeworksPage() {
   try {
     db = await connectDB();
     if (user.role === 'ADMIN' || user.role === 'TEACHER') {
-      const rawStudents = await db.all("SELECT id, name, email FROM User WHERE role = 'PREMIUM_STUDENT'");
-      homeworksList = await db.all("SELECT * FROM Homework");
+      let rawStudents = user.role === 'ADMIN'
+        ? await db.all("SELECT id, name, email FROM User WHERE role='PREMIUM_STUDENT'")
+        : await db.all("SELECT DISTINCT u.id,u.name,u.email FROM User u JOIN StudentCourse c ON c.userId=u.id JOIN TeacherSubject ts ON ts.subject=c.courseId WHERE u.role='PREMIUM_STUDENT' AND ts.userId=?", [user.id]);
+      if (courseFilter) {
+        const enrolled = new Set((await db.all('SELECT userId FROM StudentCourse WHERE courseId=?', [courseFilter])).map((row) => row.userId));
+        rawStudents = rawStudents.filter((student) => enrolled.has(student.id));
+      }
+      const visibleStudents = new Set(rawStudents.map((student) => student.id));
+      homeworksList = (await db.all("SELECT * FROM Homework")).filter((work) => visible(work) && (user.role === 'ADMIN' && !courseFilter || visibleStudents.has(work.userId)));
+      const visibleBatches = new Set(homeworksList.map((work) => work.batchId));
       
-      const rawTasks = await db.all("SELECT batchId,title,MAX(createdAt) AS latest FROM Homework GROUP BY batchId,title ORDER BY latest DESC");
+      const rawTasks = (await db.all("SELECT batchId,title,courseId,MAX(createdAt) AS latest FROM Homework GROUP BY batchId,title,courseId ORDER BY latest DESC")).filter((work) => visible(work) && visibleBatches.has(work.batchId));
       uniqueGroupTasks = rawTasks;
 
       statTotalIssued = uniqueGroupTasks.length;
@@ -37,7 +50,7 @@ export default async function HomeworksPage() {
         return a.name.localeCompare(b.name, 'ru-RU');
       });
     } else {
-      homeworksList = await db.all("SELECT * FROM Homework WHERE userId = ? ORDER BY createdAt DESC", [user.id]);
+      homeworksList = (await db.all("SELECT * FROM Homework WHERE userId = ? ORDER BY createdAt DESC", [user.id])).filter(visible);
       
       statTotalIssued = homeworksList.length;
       statPendingCheck = homeworksList.filter(h => h.status === 'На проверке').length;
@@ -220,6 +233,7 @@ return (
               <div className="bg-white dark:bg-[#140e24]/75 p-5 rounded-3xl border border-blue-100/40 shadow-sm space-y-4">
                 <h4 className="text-[11px] font-black uppercase tracking-wider text-slate-500">Выдать тему на курс</h4>
                 <form action={createBulkHomework} className="space-y-3">
+                  <CourseSelect user={user} selected={courseFilter} />
                   <input type="text" name="title" required placeholder="Название темы ДЗ" className="w-full bg-slate-50 border border-slate-200 dark:bg-[#0c0714] dark:border-purple-500/10 rounded-xl px-4 py-2.5 text-xs font-bold focus:outline-none focus:border-sky-500 dark:focus:border-[#634EE4] transition-colors" />
 {/* 🚀 ИСПРАВЛЕНО: Кнопка выбора файла больше не белая, она идеально сочетается со стилем панели дня и ночи */}
 <input 

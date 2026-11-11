@@ -33,7 +33,11 @@ export async function requireOwnedWork(table, id, { management = false } = {}) {
   if (!["Homework", "Trial"].includes(table)) throw Error("Invalid work type");
   const db = await connectDB(),
     work = await db.get(`SELECT * FROM ${table} WHERE id=?`, [id]);
-  if (!work || (!isManagement(user) && work.userId !== user.id))
+  if (!work || (!isManagement(user) && work.userId !== user.id) ||
+      (work.courseId !== 'legacy' && !canAccessCourse(user, work.courseId)))
     throw Error("Работа недоступна");
+  if (user.role === 'TEACHER' && !(await db.get(
+    'SELECT 1 FROM StudentCourse c JOIN TeacherSubject t ON t.subject=c.courseId WHERE c.userId=? AND t.userId=? LIMIT 1', [work.userId, user.id],
+  ))) throw Error("Работа недоступна");
   return { user, db, work };
 }

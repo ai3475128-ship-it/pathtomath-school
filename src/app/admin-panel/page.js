@@ -196,7 +196,7 @@ export default async function AdminPanelPage() {
           </div>
         </div>
 
-        <VideoPublishForm />
+        <VideoPublishForm user={currentUser} />
 
 
         {/* Управление штатом преподавателей */}

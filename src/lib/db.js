@@ -5,7 +5,7 @@ import { randomUUID } from "node:crypto";
 import { legacyCandidates } from "./task-modules.js";
 const connections = (globalThis.__schoolDatabases ??= new Map());
 // Bump whenever a migration changes, so hot reload also upgrades cached connections.
-const SCHEMA_REVISION = 'teacher-subjects-v1';
+const SCHEMA_REVISION = 'student-courses-v3';
 function column(db, table, name, definition) {
   if (
     !db
@@ -22,6 +22,7 @@ function migrate(db, { insideTransaction = false } = {}) {
   try {
     db.exec(`
  CREATE TABLE IF NOT EXISTS User(id TEXT PRIMARY KEY NOT NULL,email TEXT UNIQUE NOT NULL,name TEXT,password TEXT NOT NULL,createdAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,role TEXT NOT NULL DEFAULT 'STUDENT');
+ CREATE TABLE IF NOT EXISTS StudentCourse(userId TEXT NOT NULL REFERENCES User(id) ON DELETE CASCADE,courseId TEXT NOT NULL,PRIMARY KEY(userId,courseId));
  CREATE TABLE IF NOT EXISTS TeacherSubject(userId TEXT NOT NULL REFERENCES User(id) ON DELETE CASCADE,subject TEXT NOT NULL,PRIMARY KEY(userId,subject));
  CREATE TABLE IF NOT EXISTS Notes(id TEXT PRIMARY KEY NOT NULL,userId TEXT NOT NULL,dateText TEXT NOT NULL,content TEXT NOT NULL,UNIQUE(userId,dateText));
  CREATE TABLE IF NOT EXISTS ErrorReports(id TEXT PRIMARY KEY NOT NULL,userId TEXT NOT NULL,sectionNumber INTEGER NOT NULL,taskId INTEGER NOT NULL,description TEXT NOT NULL,status TEXT DEFAULT 'OPEN',createdAt TEXT NOT NULL,module TEXT NOT NULL DEFAULT '');
@@ -52,6 +53,12 @@ function migrate(db, { insideTransaction = false } = {}) {
       db.exec("INSERT OR IGNORE INTO TeacherSubject(userId,subject) SELECT id,'ege-math' FROM User WHERE role IN ('ADMIN','TEACHER')");
       db.prepare("INSERT INTO AppMigration(id,appliedAt) VALUES(?,?)").run("teacher-subjects-v1", new Date().toISOString());
     }
+    // Premium previously granted every course: preserve those entitlements on upgrade.
+    if (!db.prepare("SELECT id FROM AppMigration WHERE id=?").get("student-courses-v1")) {
+      for (const course of ['ege-math', 'physics', 'olympiad-math'])
+        db.prepare("INSERT OR IGNORE INTO StudentCourse(userId,courseId) SELECT id,? FROM User WHERE role='PREMIUM_STUDENT'").run(course);
+      db.prepare("INSERT INTO AppMigration(id,appliedAt) VALUES(?,?)").run('student-courses-v1', new Date().toISOString());
+    }
     column(db, "User", "isBlocked", "INTEGER NOT NULL DEFAULT 0");
     column(db, "ErrorReports", "module", "TEXT NOT NULL DEFAULT ''");
     column(db, "PendingUsers", "attempts", "INTEGER NOT NULL DEFAULT 0");
@@ -69,7 +76,10 @@ function migrate(db, { insideTransaction = false } = {}) {
       solutionUrl: "TEXT DEFAULT ''",
     }))
       column(db, "Homework", key, value);
+    column(db, "Schedule", "courseId", "TEXT NOT NULL DEFAULT 'legacy'");
     for (const table of ["Homework", "Trial"]) {
+      // Old assignments were shared across the school and stay accessible to their owners.
+      column(db, table, "courseId", "TEXT NOT NULL DEFAULT 'legacy'");
       column(db, table, "batchId", "TEXT NOT NULL DEFAULT ''");
       for (const row of db
         .prepare(`SELECT DISTINCT title FROM ${table} WHERE batchId=''`)
