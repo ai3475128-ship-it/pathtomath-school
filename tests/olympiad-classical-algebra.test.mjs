@@ -34,11 +34,49 @@ test('all supplied tasks and complete solutions render without KaTeX errors', ()
     assert.doesNotMatch(html, /katex-error/, `solution ${task.id}`);
   }
   const last = renderToStaticMarkup(tasks.at(-1).solutionBuilder());
-  assert.match(last, /Способ 1/); assert.match(last, /Способ 2/); assert.match(last, /наименьшее общее кратное/);
+  assert.match(last, /1 способ решения/); assert.match(last, /2 способ решения/); assert.match(last, /наименьш/);
   assert.match(renderToStaticMarkup(tasks[0].solutionBuilder()), /равносильн/);
   assert.match(renderToStaticMarkup(tasks.at(-2).solutionBuilder()), /вектор/);
   assert.match(renderToStaticMarkup(tasks.find((task) => task.id === 19).solutionBuilder()), /n=2/);
   assert.match(renderToStaticMarkup(tasks.find((task) => task.id === 20).solutionBuilder()), /хотя бы одно/);
+});
+
+test('requested explanations and method headings are present in the corresponding tasks',()=>{
+  const htmlByTitle=(title)=>renderToStaticMarkup(tasks.find((task)=>task.title===`Задача ${title}`).solutionBuilder());
+  const first=htmlByTitle(1);
+  assert.doesNotMatch(first,/или/);assert.match(first,/\\begin\{array\}/);
+  assert.match(htmlByTitle(4),/делитель единицы/);
+  assert.doesNotMatch(htmlByTitle(5),/Положим|замен/);
+  assert.match(htmlByTitle(6),/симметрический/);assert.match(htmlByTitle(6),/постоянном коэффициенте/);
+  assert.doesNotMatch(htmlByTitle(9),/Положим|замен/);
+  for(const title of [10,20]){
+    const html=htmlByTitle(title);
+    assert.match(html,/1 способ решения/);assert.match(html,/2 способ решения/);
+    assert.equal((html.match(/font-bold text-black dark:text-white/g)||[]).length,2);
+  }
+  assert.match(htmlByTitle(11),/возвратное уравнение/);
+  assert.match(htmlByTitle(14),/первый кубический корень через/);
+  assert.match(htmlByTitle(15),/геометрической прогрессии/);
+  assert.match(htmlByTitle(18),/строго возрастает/);
+  assert.match(htmlByTitle(19),/сократятся/);
+  assert.match(htmlByTitle(20),/общей степени/);
+});
+
+test('reworked inequality boundaries and vector signs are correct',()=>{
+  const root=(150+2*Math.sqrt(501))/105;
+  const f=(x)=>Math.sqrt(x*x+2*x-3)+Math.sqrt(x*x+3*x-4)-5*(x-1);
+  assert.equal(f(1),0);assert.ok(Math.abs(f(root))<1e-10);assert.ok(f(root-0.001)>0);assert.ok(f(root+0.001)<0);
+  const nested=(x)=>x-Math.sqrt(2+Math.sqrt(2+x));
+  assert.equal(nested(2),0);assert.ok(nested(1.99)<0);assert.ok(nested(2.01)>0);
+  const x=-2/3,u=[-x,1],v=[x+2,2];
+  assert.ok(Math.abs(v[0]-2*u[0])<1e-12);assert.equal(v[1],2*u[1]);
+  for(const value of [0.1,0.5,1,2,10]){
+    const lhs=(1+value+value**2)*(1+value+value**2+value**3+value**4);
+    const rhs=(1+value+value**2+value**3)**2;
+    assert.ok(Math.abs((rhs-lhs)-value**3)<1e-7*Math.max(1,rhs));
+    const transformed=(value**4-1)**2-(value**3-1)*(value**5-1);
+    assert.ok(Math.abs(transformed-value**3*(value-1)**2)<1e-7*Math.max(1,Math.abs(transformed)));
+  }
 });
 
 test('key answers and boundary cases satisfy the original conditions', () => {

@@ -7,7 +7,7 @@ function Explanation({ steps, answer }) {
     <p className="font-bold text-slate-800 dark:text-slate-100">Решение</p>
     {steps.map((step, index) => step.math
       ? <div key={index} className="overflow-x-auto py-1"><BlockMath math={step.math} /></div>
-      : <p key={index}>{step.text.split(/\$(.*?)\$/g).map((part, i) => i % 2 ? <InlineMath key={i} math={part} /> : part)}</p>)}
+      : <p key={index} className={step.heading ? 'font-bold text-black dark:text-white' : undefined}>{step.text.split(/\$(.*?)\$/g).map((part, i) => i % 2 ? <InlineMath key={i} math={part} /> : part)}</p>)}
     <div className="flex flex-wrap items-baseline gap-2 overflow-x-auto border-t border-slate-100 pt-3 font-bold text-emerald-700 dark:border-purple-950/30 dark:text-emerald-400">
       <span>Ответ:</span> <InlineMath math={answer} />
     </div>
@@ -15,6 +15,7 @@ function Explanation({ steps, answer }) {
 }
 const p = (text) => ({ text });
 const m = (math) => ({ math });
+const heading = (text) => ({ text, heading: true });
 const solution = (steps, answer) => function buildSolution() {
   return <Explanation steps={steps} answer={answer} />;
 };
@@ -26,11 +27,11 @@ export const olympiadIntro06Tasks = [
     conditionText: 'Решите уравнение.',
     mathA: String.raw`\left|4x-|x-2|+3\right|=16`,
     solutionBuilder: solution([
-      p(String.raw`Воспользуемся равносильностью $|A|=16\Longleftrightarrow A=16$ или $A=-16$, а затем раскроем внутренний модуль на двух промежутках.`),
-      m(String.raw`\left|4x-|x-2|+3\right|=16\quad\Longleftrightarrow\quad 4x-|x-2|+3=16\ \text{или}\ 4x-|x-2|+3=-16.`),
-      m(String.raw`\Longleftrightarrow\quad\left[\begin{array}{l}\begin{cases}x\ge2,\\3x+5=16\ \text{или}\ 3x+5=-16;\end{cases}\\[8pt]\begin{cases}x<2,\\5x+1=16\ \text{или}\ 5x+1=-16.\end{cases}\end{array}\right.`),
-      p(String.raw`В первой системе корень $x=-7$ не удовлетворяет условию $x\ge2$, во второй корень $x=3$ не удовлетворяет условию $x<2$. Оставшиеся значения удовлетворяют условиям своих систем, поэтому все переходы обратимы.`),
-      m(String.raw`\Longleftrightarrow\quad x=\frac{11}{3}\ \text{или}\ x=-\frac{17}{5}.`),
+      p(String.raw`Раскроем внешний модуль через совокупность, затем разделим случаи по знаку выражения $x-2$. Все переходы равносильны.`),
+      m(String.raw`\left|4x-|x-2|+3\right|=16\quad\Longleftrightarrow\quad\left[\begin{array}{l}4x-|x-2|+3=16,\\4x-|x-2|+3=-16.\end{array}\right.`),
+      m(String.raw`\Longleftrightarrow\quad\left[\begin{array}{l}\begin{cases}x\ge2,\\3x+5=16;\end{cases}\\[5pt]\begin{cases}x\ge2,\\3x+5=-16;\end{cases}\\[5pt]\begin{cases}x<2,\\5x+1=16;\end{cases}\\[5pt]\begin{cases}x<2,\\5x+1=-16.\end{cases}\end{array}\right.`),
+      p(String.raw`Во второй системе корень $x=-7$ не удовлетворяет условию $x\ge2$, а в третьей корень $x=3$ не удовлетворяет условию $x<2$. Оставшиеся значения удовлетворяют условиям своих систем, поэтому все переходы обратимы.`),
+      m(String.raw`\Longleftrightarrow\quad\left[\begin{array}{l}x=\frac{11}{3},\\x=-\frac{17}{5}.\end{array}\right.`),
     ], String.raw`-\frac{17}{5};\ \frac{11}{3}`),
   },
   {
@@ -61,7 +62,7 @@ export const olympiadIntro06Tasks = [
     solutionBuilder: solution([
       p(String.raw`Для любого целочисленного многочлена разность $P(1)-P(n)$ делится на $1-n$: каждое слагаемое $1-n^k$ делится на $1-n$. Поэтому существует целое число $Q$, для которого`),
       m(String.raw`1=P(1)-P(n)=(1-n)Q.`),
-      p(String.raw`Число $n=1$ невозможно, так как одновременно $P(1)=1$ и $P(n)=0$. Следовательно, $n\ge2$, и положительное число $n-1$ делит $1$. Получаем $n-1=1$, то есть $n=2$.`),
+      p(String.raw`Из равенства $1=(1-n)Q$ следует, что целое число $1-n$ — делитель единицы. У $1$ только два целых делителя: $1$ и $-1$. Поскольку $n$ натуральное, $n=1$ невозможно из-за противоречия $P(1)=1$ и $P(n)=0$, а значит $n\ge2$ и $1-n<0$. Поэтому $1-n=-1$, откуда $n=2$.`),
       p(String.raw`Такое значение действительно возможно: например, $P(x)=2-x$ имеет целые коэффициенты и удовлетворяет обоим условиям.`),
     ], String.raw`n=2`),
   },
@@ -71,10 +72,11 @@ export const olympiadIntro06Tasks = [
     conditionText: 'Решите неравенство.',
     mathA: String.raw`\sqrt{x-2\sqrt{x-1}}+\sqrt{x+8-6\sqrt{x-1}}\le 20`,
     solutionBuilder: solution([
-      p(String.raw`Область определения внутреннего корня: $x\ge1$. Положим $t=\sqrt{x-1}\ge0$, тогда $x=t^2+1$. Оба подкоренных выражения являются квадратами:`),
-      m(String.raw`\sqrt{(t-1)^2}+\sqrt{(t-3)^2}=|t-1|+|t-3|\le20.`),
-      p(String.raw`При $0\le t\le1$ левая часть равна $4-2t$; при $1\le t\le3$ она равна $2$; при $t\ge3$ — $2t-4$. Первые два промежутка подходят целиком, а в третьем получаем $t\le12$.`),
-      m(String.raw`0\le t\le12\quad\Longleftrightarrow\quad1\le x\le145.`),
+      p(String.raw`Область определения внутреннего корня: $x\ge1$. Выделим полные квадраты: в первом подкоренном выражении представим $x$ как $(x-1)+1$, а во втором — $x+8$ как $(x-1)+9$.`),
+      m(String.raw`x-2\sqrt{x-1}=\bigl(\sqrt{x-1}-1\bigr)^2,\qquad x+8-6\sqrt{x-1}=\bigl(\sqrt{x-1}-3\bigr)^2.`),
+      m(String.raw`\bigl|\sqrt{x-1}-1\bigr|+\bigl|\sqrt{x-1}-3\bigr|\le20.`),
+      p(String.raw`При $1\le x\le2$ левая часть равна $4-2\sqrt{x-1}$, а при $2\le x\le10$ равна $2$: оба промежутка подходят. При $x\ge10$ получаем $2\sqrt{x-1}-4\le20$, откуда $\sqrt{x-1}\le12$ и $x\le145$.`),
+      m(String.raw`x\in[1;145].`),
     ], String.raw`x\in[1;145]`),
   },
   {
@@ -83,8 +85,10 @@ export const olympiadIntro06Tasks = [
     conditionText: 'Разложите на множители.',
     mathA: String.raw`(x+y+z)^3-x^3-y^3-z^3`,
     solutionBuilder: solution([
-      p(String.raw`Выражение обращается в ноль при $x=-y$, $x=-z$ и $y=-z$, поэтому оно делится на $x+y$, $x+z$ и $y+z$. Это однородный многочлен третьей степени, значит после выделения этих трёх множителей остаётся числовой коэффициент.`),
-      p(String.raw`При $x=y=z=1$ исходное выражение равно $24$, а произведение трёх множителей равно $8$. Коэффициент равен $3$.`),
+      p(String.raw`Обозначим исходный многочлен через $F(x,y,z)$. Он симметрический: при перестановке любых двух переменных его значение не меняется. При $x=-y$, $x=-z$ и $y=-z$ он обращается в ноль, поэтому содержит множители $x+y$, $x+z$ и $y+z$.`),
+      p(String.raw`Их произведение уже имеет третью степень — ту же, что и однородный многочлен $F$. Поэтому других множителей с переменными остаться не может: отличие состоит только в постоянном коэффициенте $C$. Сначала запишем`),
+      m(String.raw`F(x,y,z)=C(x+y)(x+z)(y+z).`),
+      p(String.raw`Теперь подставим $x=y=z=1$: слева получаем $24$, справа $8C$. Значит, $C=3$.`),
       m(String.raw`(x+y+z)^3-x^3-y^3-z^3=3(x+y)(x+z)(y+z).`),
     ], String.raw`3(x+y)(x+z)(y+z)`),
   },
@@ -120,13 +124,19 @@ export const olympiadIntro06Tasks = [
     conditionText: 'Решите неравенство.',
     mathA: String.raw`\sqrt{x^2+2x-3}+\sqrt{x^2+3x-4}\le5(x-1)`,
     solutionBuilder: solution([
-      p(String.raw`Левая часть неотрицательна, поэтому правая тоже должна быть неотрицательной: $x\ge1$. При $x=1$ получаем верное равенство. Далее положим $t=x-1>0$:`),
-      m(String.raw`\sqrt{t(t+4)}+\sqrt{t(t+5)}\le5t\quad\Longleftrightarrow\quad\sqrt{t+4}+\sqrt{t+5}\le5\sqrt t.`),
-      p(String.raw`Для $t>0$ разделим на $\sqrt t$: функция $\sqrt{1+4/t}+\sqrt{1+5/t}$ строго убывает. Поэтому достаточно найти единственную границу, где она равна $5$.`),
-      p(String.raw`При возведении равенства $\sqrt{t+4}+\sqrt{t+5}=5\sqrt t$ в квадрат получаем $2\sqrt{(t+4)(t+5)}=23t-9$, откуда обязательно $t\ge9/23$. После второго возведения в квадрат:`),
-      m(String.raw`4(t+4)(t+5)=(23t-9)^2\quad\Longleftrightarrow\quad525t^2-450t+1=0.`),
-      p(String.raw`Меньший корень $(45-2\sqrt{501})/105$ не удовлетворяет условию $t\ge9/23$, а больший ему удовлетворяет. На указанной области оба возведения в квадрат обратимы. По убыванию функции подходят все $t$ не меньше большего корня.`),
-      m(String.raw`x=1\quad\text{или}\quad x\ge 1+\frac{45+2\sqrt{501}}{105}.`),
+      p(String.raw`Разложим оба подкоренных выражения на множители:`),
+      m(String.raw`\sqrt{(x-1)(x+3)}+\sqrt{(x-1)(x+4)}\le5(x-1).`),
+      p(String.raw`При раскрытии корня из произведения знак каждого множителя имеет значение:`),
+      m(String.raw`\sqrt{ab}=\begin{cases}\sqrt a\,\sqrt b,&a\ge0,\ b\ge0,\\\sqrt{-a}\,\sqrt{-b},&a\le0,\ b\le0.\end{cases}`),
+      p(String.raw`Совместная область определения корней: $x\le-4$ или $x\ge1$. В первом случае множители под каждым корнем неположительны, но правая часть неравенства отрицательна, а левая неотрицательна. Следовательно, решений там нет. При $x=1$ получаем равенство $0=0$.`),
+      p(String.raw`Пусть $x>1$. Теперь все множители под корнями положительны, и используем $\sqrt{ab}=\sqrt a\sqrt b$ для неотрицательных $a,b$. Правую часть представим как $5(\sqrt{x-1})^2$:`),
+      m(String.raw`\sqrt{x-1}\bigl(\sqrt{x+3}+\sqrt{x+4}\bigr)\le5\bigl(\sqrt{x-1}\bigr)^2.`),
+      p(String.raw`Делим обе части на общий положительный множитель $\sqrt{x-1}$. Обе части полученного неравенства неотрицательны, поэтому возведение в квадрат равносильно:`),
+      m(String.raw`\sqrt{x+3}+\sqrt{x+4}\le5\sqrt{x-1}\quad\Longleftrightarrow\quad2\sqrt{(x+3)(x+4)}\le23x-32.`),
+      p(String.raw`Левая часть положительна, поэтому дополнительно необходимо $23x-32\ge0$. На этом ограничении второе возведение в квадрат также равносильно:`),
+      m(String.raw`\begin{cases}x\ge\frac{32}{23},\\4(x+3)(x+4)\le(23x-32)^2\end{cases}\quad\Longleftrightarrow\quad\begin{cases}x\ge\frac{32}{23},\\525x^2-1500x+976\ge0.\end{cases}`),
+      p(String.raw`Корни квадратного трёхчлена равны $(150-2\sqrt{501})/105$ и $(150+2\sqrt{501})/105$. Его коэффициент при $x^2$ положителен; с учётом ограничения $x\ge32/23$ остаётся только промежуток справа от большего корня. Добавляем ранее проверенное значение $x=1$.`),
+      m(String.raw`x\in\{1\}\cup\left[\frac{150+2\sqrt{501}}{105};+\infty\right).`),
     ], String.raw`\{1\}\cup\left[\frac{150+2\sqrt{501}}{105};+\infty\right)`),
   },
   {
@@ -135,6 +145,12 @@ export const olympiadIntro06Tasks = [
     conditionText: 'Разложите на множители.',
     mathA: String.raw`2x^2+5xy+2y^2`,
     solutionBuilder: solution([
+      heading('1 способ решения. Через дискриминант.'),
+      p(String.raw`Рассмотрим многочлен как квадратный относительно $x$, считая $y$ параметром. Дискриминант и корни уравнения $2x^2+5xy+2y^2=0$ равны`),
+      m(String.raw`D=(5y)^2-4\cdot2\cdot2y^2=9y^2,\qquad x_{1,2}=\frac{-5y\pm3|y|}{4}.`),
+      p(String.raw`Независимо от знака $y$ пара корней — $-2y$ и $-y/2$; при $y=0$ оба корня равны нулю. Учитывая старший коэффициент $2$, получаем`),
+      m(String.raw`2x^2+5xy+2y^2=2(x+2y)\left(x+\frac y2\right)=(x+2y)(2x+y).`),
+      heading('2 способ решения. Группировка.'),
       p(String.raw`Разобьём среднее слагаемое на $4xy+xy$ и сгруппируем:`),
       m(String.raw`2x^2+5xy+2y^2=2x(x+2y)+y(x+2y)=(2x+y)(x+2y).`),
       p(String.raw`Равенство верно при любых действительных $x$ и $y$, включая $y=0$.`),
@@ -146,6 +162,7 @@ export const olympiadIntro06Tasks = [
     conditionText: 'Решите уравнение.',
     mathA: String.raw`t^4+8t^3+6t^2-8t+1=0`,
     solutionBuilder: solution([
+      p(String.raw`Это обобщённое возвратное уравнение: для его многочлена $P(t)$ выполняется $P(t)=t^4P(-1/t)$ при $t\ne0$. Поэтому здесь удобно объединять $t$ и $-1/t$.`),
       p(String.raw`Число $t=0$ не является корнем. Разделим на $t^2$ и сгруппируем выражения так, чтобы появилась замена $u=t-1/t$:`),
       m(String.raw`t^2+\frac1{t^2}+8\left(t-\frac1t\right)+6=0\quad\Longleftrightarrow\quad u^2+8u+8=0.`),
       m(String.raw`u=-4\pm2\sqrt2,\qquad t^2-ut-1=0.`),
@@ -183,9 +200,11 @@ export const olympiadIntro06Tasks = [
     conditionText: 'Решите уравнение.',
     mathA: String.raw`\sqrt[3]{15x+1-x^2}+\sqrt[3]{x^2-15x+27}=4`,
     solutionBuilder: solution([
-      p(String.raw`Обозначим два кубических корня через $u$ и $v$. Тогда $u+v=4$, а сумма их кубов равна $28$. По формуле куба суммы:`),
-      m(String.raw`64=u^3+v^3+3uv(u+v)=28+12uv,\qquad uv=3.`),
-      p(String.raw`Следовательно, $u$ и $v$ — корни уравнения $z^2-4z+3=0$, то есть они равны $1$ и $3$ в некотором порядке. Первый подкоренной многочлен равен либо $1$, либо $27$.`),
+      p(String.raw`Обозначим первый кубический корень через $a$, а второй через $b$. Исходное уравнение даёт $a+b=4$, а сумма подкоренных выражений равна $28$, поэтому получаем систему`),
+      m(String.raw`a=\sqrt[3]{15x+1-x^2},\qquad b=\sqrt[3]{x^2-15x+27},\qquad \begin{cases}a+b=4,\\a^3+b^3=28.\end{cases}`),
+      p(String.raw`Возведём первое равенство системы в куб и воспользуемся вторым:`),
+      m(String.raw`64=(a+b)^3=a^3+b^3+3ab(a+b)=28+12ab,\qquad ab=3.`),
+      p(String.raw`Следовательно, $a$ и $b$ — корни уравнения $z^2-4z+3=0$, то есть $(a,b)=(1,3)$ или $(3,1)$. Первый подкоренной многочлен равен соответственно $1$ или $27$.`),
       m(String.raw`15x+1-x^2=1\ \Longrightarrow\ x=0,15;\qquad 15x+1-x^2=27\ \Longrightarrow\ x=2,13.`),
       p(String.raw`Во всех четырёх случаях второй куб равен соответственно $27$ или $1$, поэтому каждое найденное значение подходит.`),
     ], String.raw`x\in\{0;2;13;15\}`),
@@ -196,9 +215,12 @@ export const olympiadIntro06Tasks = [
     textBefore: <>Докажите неравенство при всех положительных <InlineMath math="x" />.</>,
     mathA: String.raw`(1+x+x^2)(1+x+x^2+x^3+x^4)\le(1+x+x^2+x^3)^2`,
     solutionBuilder: solution([
-      p(String.raw`Вычтем левую часть из правой и раскроем скобки:`),
-      m(String.raw`(1+x+x^2+x^3)^2-(1+x+x^2)(1+x+x^2+x^3+x^4)=x^3.`),
-      p(String.raw`При $x>0$ имеем $x^3>0$. Следовательно, правая часть исходного неравенства строго больше левой; утверждение доказано.`),
+      p(String.raw`При $x=1$ проверяем исходное неравенство непосредственно: $3\cdot5\le4^2$. Далее пусть $x>0$ и $x\ne1$; тогда $(x-1)^2>0$, поэтому умножение на него сохраняет знак неравенства и является равносильным переходом.`),
+      p(String.raw`Используем формулу суммы геометрической прогрессии: $1+x+\ldots+x^k=(x^{k+1}-1)/(x-1)$. После умножения на $(x-1)^2$ знаменатели сокращаются:`),
+      m(String.raw`(x^3-1)(x^5-1)\le(x^4-1)^2.`),
+      p(String.raw`Теперь раскроем скобки и найдём разность правой и левой частей:`),
+      m(String.raw`(x^4-1)^2-(x^3-1)(x^5-1)=x^5-2x^4+x^3=x^3(x-1)^2\ge0.`),
+      p(String.raw`При $x>0$, $x\ne1$ эта разность положительна; случай $x=1$ уже проверен. Следовательно, исходное неравенство верно для всех положительных $x$.`),
     ], String.raw`\text{неравенство верно при всех }x>0`),
   },
   {
@@ -231,9 +253,13 @@ export const olympiadIntro06Tasks = [
     conditionText: 'Решите неравенство.',
     mathA: String.raw`x\ge\sqrt{2+\sqrt{2+x}}`,
     solutionBuilder: solution([
-      p(String.raw`Правая часть неотрицательна, поэтому необходимо $x\ge0$. Сравним $x$ с числом $2$.`),
-      p(String.raw`Если $0\le x<2$, то $x^2<x+2$, значит $\sqrt{x+2}>x$. Поэтому $2+\sqrt{x+2}>x+2>x^2$, и исходное неравенство не выполняется.`),
-      p(String.raw`Если $x\ge2$, то $x^2\ge x+2$ и $\sqrt{x+2}\le x$. Отсюда $2+\sqrt{x+2}\le x+2\le x^2$, поэтому исходное неравенство выполняется. При $x=2$ достигается равенство.`),
+      p(String.raw`Правая часть неотрицательна, поэтому необходимо $x\ge0$. Введём $t=\sqrt{2+x}$; тогда $t\ge\sqrt2$, $x=t^2-2$, а исходное неравенство равносильно $t^2-2\ge\sqrt{2+t}$.`),
+      p(String.raw`Найдём границу, где выполняется равенство. Для неё имеем систему`),
+      m(String.raw`\begin{cases}t=\sqrt{2+x},\\x=\sqrt{2+t},\end{cases}\qquad x\ge0,\quad t\ge0.`),
+      p(String.raw`Возводим оба равенства в квадрат и вычитаем одно из другого:`),
+      m(String.raw`t^2-x=2,\quad x^2-t=2\quad\Longrightarrow\quad(t-x)(t+x+1)=0.`),
+      p(String.raw`Так как $t+x+1>0$, получаем $t=x$. Тогда $x^2-x-2=0$, и с учётом $x\ge0$ единственный кандидат — $x=t=2$. Подстановка подтверждает равенство.`),
+      p(String.raw`Чтобы определить сторону от границы, рассмотрим функцию $f(t)=t^2-2-\sqrt{t+2}$. На $t\ge\sqrt2$ она строго возрастает, поскольку $f'(t)=2t-1/(2\sqrt{t+2})>0$. Поэтому $f(t)\ge0$ равносильно $t\ge2$, а значит $x=t^2-2\ge2$.`),
     ], String.raw`x\in[2;+\infty)`),
   },
   {
@@ -242,10 +268,10 @@ export const olympiadIntro06Tasks = [
     conditionText: 'Решите уравнение.',
     mathA: String.raw`\sqrt{x^2+1}+\sqrt{x^2+4x+8}=\sqrt{13}`,
     solutionBuilder: solution([
-      p(String.raw`Представим подкоренные выражения как квадраты длин векторов: $\vec u=(x,1)$ и $\vec v=(-x-2,2)$. Тогда их сумма постоянна и не зависит от $x$:`),
-      m(String.raw`|\vec u|=\sqrt{x^2+1},\qquad |\vec v|=\sqrt{x^2+4x+8},\qquad \vec u+\vec v=(-2,3),\quad |\vec u+\vec v|=\sqrt{13}.`),
+      p(String.raw`Представим каждый корень как длину вектора. Заметим, что $x^2+4x+8=(x+2)^2+2^2$. Длина не меняется при смене знака координаты: $(-x)^2=x^2$. Поэтому выберем $\vec u=(-x,1)$ и $\vec v=(x+2,2)$: переменные части в их сумме сократятся, а длины останутся равными исходным корням.`),
+      m(String.raw`|\vec u|=\sqrt{x^2+1},\qquad |\vec v|=\sqrt{x^2+4x+8},\qquad \vec u+\vec v=(2,3),\quad |\vec u+\vec v|=\sqrt{13}.`),
       p(String.raw`Исходное уравнение имеет вид $|\vec u|+|\vec v|=|\vec u+\vec v|$. По неравенству треугольника равенство достигается тогда и только тогда, когда ненулевые векторы сонаправлены. Их вторые координаты равны $1$ и $2$, поэтому обязательно $\vec v=2\vec u$.`),
-      m(String.raw`-x-2=2x\quad\Longleftrightarrow\quad x=-\frac23.`),
+      m(String.raw`x+2=-2x\quad\Longleftrightarrow\quad x=-\frac23.`),
       p(String.raw`При этом значении действительно $\vec v=2\vec u$, поэтому равенство выполняется.`),
     ], String.raw`x=-\frac23`),
   },
@@ -255,11 +281,13 @@ export const olympiadIntro06Tasks = [
     textBefore: <>Для действительных чисел <InlineMath math="a" /> и <InlineMath math="b" /> выполнены равенства. Какие значения может принимать выражение <InlineMath math={String.raw`a^2+b^2`} />?</>,
     mathA: String.raw`\begin{cases}a^3-3ab^2=11,\\b^3-3a^2b=2.\end{cases}`,
     solutionBuilder: solution([
-      p(String.raw`Способ 1. Согласование степеней.`),
-      p(String.raw`Искомое выражение имеет степень $2$, а в уравнениях стоят выражения степени $3$. Чтобы получить одинаковую степень $6$, берём наименьшее общее кратное: $\operatorname{НОК}(2,3)=6$. Поэтому естественно возвести $a^2+b^2$ в третью степень, а обе части каждого уравнения — в квадрат, после чего сложить.`),
-      m(String.raw`(a^3-3ab^2)^2+(b^3-3a^2b)^2=(a^2+b^2)^3=11^2+2^2=125.`),
+      heading('1 способ решения. Согласование степеней.'),
+      p(String.raw`Хотим получить выражение только через $a^2+b^2$, но в исходных равенствах все одночлены имеют третью степень, а в искомой сумме — вторую. Будем приводить их к общей степени: наименьшая подходящая степень равна $\operatorname{НОК}(2,3)=6$. К ней можно прийти, возведя каждое кубическое выражение в квадрат, а сумму квадратов — в куб.`),
+      p(String.raw`Это подсказывает сложить квадраты левых частей двух равенств: при раскрытии скобок смешанные слагаемые складываются именно в коэффициенты куба суммы.`),
+      m(String.raw`(a^3-3ab^2)^2+(b^3-3a^2b)^2=a^6+3a^4b^2+3a^2b^4+b^6=(a^2+b^2)^3.`),
+      m(String.raw`(a^2+b^2)^3=11^2+2^2=125.`),
       p(String.raw`Таким образом, $a^2+b^2=5$. Чтобы подтвердить существование подходящей пары, подставим $a=-1$, $b=2$: оба исходных равенства выполняются.`),
-      p(String.raw`Способ 2. Сложение и вычитание уравнений, затем замена отношения.`),
+      heading('2 способ решения. Сложение и вычитание уравнений.'),
       p(String.raw`Сложим уравнения и вычтем второе из первого:`),
       m(String.raw`(a+b)(a^2-4ab+b^2)=13,\qquad (a-b)(a^2+4ab+b^2)=9.`),
       p(String.raw`Из второго исходного уравнения $b\ne0$. Кроме того, $a\ne b$, поскольку в противном случае разность была бы равна нулю, а не $9$. Введём $t=a/b$ и поделим первое из полученных равенств на второе:`),

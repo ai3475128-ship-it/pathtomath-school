@@ -492,7 +492,7 @@ export const olympiadIntro04Tasks = [
         <span className="font-bold text-slate-800 dark:text-slate-100 block">Решение.</span>
         
         <span className="block">
-          <b>Способ 1:</b>
+          <b className="font-bold text-black dark:text-white">1 способ решения:</b>
           <br />
           Каждый из 20 участников играет с 19 остальными. Перемножив варианты, получаем <InlineMath math={`20 \\cdot 19 = 380`} />. Поскольку в каждой игре участвуют двое и порядок их выбора не важен, мы посчитали каждую партию дважды (например, партия Бори против Ани и партия Ани против Бори — это одна и та же игра). Делим результат на 2:
           <span className="flex justify-center my-3">
@@ -501,7 +501,7 @@ export const olympiadIntro04Tasks = [
         </span>
 
         <span className="block border-t border-slate-200/40 pt-2">
-          <b>Способ 2 (Число сочетаний):</b>
+          <b className="font-bold text-black dark:text-white">2 способ решения (число сочетаний):</b>
           <br />
           Каждая сыгранная партия уникально определяется выбором пары игроков из 20 участников турнира. Так как порядок выбора внутри пары значения не имеет, общее количество игр равно числу сочетаний из 20 элементов по 2:
           <span className="flex justify-center my-3">
