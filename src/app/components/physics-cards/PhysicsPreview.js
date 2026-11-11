@@ -28,7 +28,8 @@ const illustrations = {
   23: { lines: ['M55 23v76h90V23 M55 49h90', 'M69 78l12-10m-5 0 5 0-1 5 M123 83l-11-8m1 5-1-5 5 0'], text: [['pV = νRT', 100, 116]] },
   24: { lines: ['M55 55h90v43H55z M61 55l5-23h68l5 23 M100 24v22m-6-6 6 6 6-6'], text: [['Q = cmΔT', 100, 115]] },
   25: { lines: ['M65 80h72m-8-6 8 6-8 6 M65 80V34m-6 7 6-7 6 7', 'M145 27a8 8 0 1 0 0 16 8 8 0 1 0 0-16 M141 31l8 8m0-8-8 8'], points: [[65,80]], text: [['v', 147, 83], ['F', 56, 31], ['B', 164, 39], ['q > 0', 48, 95], ['F = qvB', 100, 111]] },
-  26: { lines: ['M31 101h145L159 32z', 'M95 71l17-20 20 17-17 20z', 'M111 68v28m-6-7 6 7 6-7'], text: [['mg', 125, 98], ['F = ma', 65, 29]] },
+  // The block's lower edge lies on the slope; the surface is interrupted beneath it.
+  26: { lines: ['M32 100 91.12 74.85 M116.88 63.89 166 43v57H32', 'M91.12 74.85 116.88 63.89 107.10 40.89 81.34 51.85Z', 'M99.11 57.87v34m-6-7 6 7 6-7'], text: [['mg', 115, 90], ['F = ma', 60, 29]] },
 };
 
 export default function PhysicsPreview({ number }) {

@@ -4,6 +4,8 @@ import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { legacyCandidates } from "./task-modules.js";
 const connections = (globalThis.__schoolDatabases ??= new Map());
+// Bump whenever a migration changes, so hot reload also upgrades cached connections.
+const SCHEMA_REVISION = 'teacher-subjects-v1';
 function column(db, table, name, definition) {
   if (
     !db
@@ -13,8 +15,8 @@ function column(db, table, name, definition) {
   )
     db.exec(`ALTER TABLE "${table}" ADD COLUMN "${name}" ${definition}`);
 }
-function migrate(db) {
-  db.exec(
+function migrate(db, { insideTransaction = false } = {}) {
+  if (!insideTransaction) db.exec(
     "PRAGMA busy_timeout=5000; PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; BEGIN IMMEDIATE",
   );
   try {
@@ -117,9 +119,9 @@ function migrate(db) {
         new Date().toISOString(),
       );
     }
-    db.exec("COMMIT");
+    if (!insideTransaction) db.exec("COMMIT");
   } catch (error) {
-    db.exec("ROLLBACK");
+    if (!insideTransaction) db.exec("ROLLBACK");
     throw error;
   }
 }
@@ -128,11 +130,21 @@ export function openDatabase(
     path.join(process.cwd(), "prisma", "dev.db"),
 ) {
   filename = path.resolve(/* turbopackIgnore: true */ filename);
-  if (connections.has(filename)) return connections.get(filename);
+  const cached = connections.get(filename);
+  if (cached) {
+    // Development hot reload preserves this map even when migration code changes.
+    // Reuse the live connection without closing it underneath existing requests.
+    if (cached.schemaRevision !== SCHEMA_REVISION) {
+      cached.transaction((raw) => migrate(raw, { insideTransaction: true }));
+      cached.schemaRevision = SCHEMA_REVISION;
+    }
+    return cached;
+  }
   mkdirSync(path.dirname(filename), { recursive: true });
   const raw = new DatabaseSync(filename);
-  migrate(raw);
+  try { migrate(raw); } catch (error) { raw.close(); throw error; }
   const db = {
+    schemaRevision: SCHEMA_REVISION,
     get: async (sql, args = []) => {
       const row = raw.prepare(sql).get(...args);
       return row ? { ...row } : undefined;
