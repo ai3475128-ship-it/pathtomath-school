@@ -750,6 +750,49 @@ try {
   assert.equal((await db.get("SELECT content FROM Notes WHERE userId='mathOnly' AND dateText='2026-11-11'")).content, 'Личный учебный план');
   assert.ok(!(await request('/cabinet/plans?date=2026-11-11', { cookie: sessions.physicsOnly })).text.includes('Личный учебный план'));
   check('role-specific workspaces and private goals and plans');
+  const staffInline = await request('/cabinet/staff', { cookie: sessions.admin });
+  assert.ok(staffInline.text.includes('Добавить преподавателя'));
+  assert.ok(staffInline.text.includes('Сохранить направления'));
+  assert.ok(!staffInline.text.includes('href="/admin-panel#staff"'));
+  const staffAction = action(staffInline.text, 'subjects');
+  await invoke('/cabinet/staff', staffAction, { id: 'physicsTeacher', subjects: 'ege-math' }, sessions.physicsTeacher);
+  assert.equal((await db.get("SELECT subject FROM TeacherSubject WHERE userId='physicsTeacher'")).subject, 'physics');
+  await invoke('/cabinet/staff', staffAction, { id: 'physicsTeacher', subjects: ['physics', 'olympiad-math'] }, sessions.admin);
+  assert.equal((await db.get("SELECT COUNT(*) AS n FROM TeacherSubject WHERE userId='physicsTeacher'")).n, 2);
+  await invoke('/cabinet/staff', staffAction, { id: 'physicsTeacher', subjects: 'physics' }, sessions.admin);
+  const studentsInline = await request('/cabinet/access', { cookie: sessions.admin });
+  assert.ok(!studentsInline.text.includes('href="/supervisor/students/'));
+  const accessAction = action(studentsInline.text, 'courses');
+  await invoke('/cabinet/access', accessAction, { studentId: 'mathOnly', courses: ['ege-math','physics'] }, sessions.physicsTeacher);
+  assert.equal((await db.get("SELECT COUNT(*) AS n FROM StudentCourse WHERE userId='mathOnly'")).n, 1);
+  await invoke('/cabinet/access', accessAction, { studentId: 'mathOnly', courses: ['ege-math','physics','olympiad-math'] }, sessions.admin);
+  const multiProgress = await request('/cabinet/progress?course=ege-math', { cookie: sessions.mathOnly });
+  assert.ok(multiProgress.text.includes('Математика ЕГЭ') && multiProgress.text.includes('Физика ЕГЭ'));
+  assert.ok(multiProgress.text.includes('Статистика задач пока недоступна'));
+  await db.run("INSERT INTO TaskProgress(userId,module,taskId,completedAt) VALUES('mathOnly','ege-optimization',1,?),('mathOnly','olympiad-1-intro',1,?),('mathOnly','olympiad-1-intro',2,?)", [new Date().toISOString(), new Date().toISOString(), new Date().toISOString()]);
+  const allCoursesProgress = await request('/cabinet/progress?course=ege-math', { cookie: sessions.mathOnly });
+  const mathSummary = [...allCoursesProgress.text.matchAll(/<a[^>]+href="\/cabinet\/progress\?course=ege-math"[^>]*>[\s\S]*?<\/a>/g)].map((m) => m[0]).find((m) => m.includes('Решено задач'));
+  const olympSummary = [...allCoursesProgress.text.matchAll(/<a[^>]+href="\/cabinet\/progress\?course=olympiad-math"[^>]*>[\s\S]*?<\/a>/g)].map((m) => m[0]).find((m) => m.includes('Решено задач'));
+  assert.match(mathSummary, /Решено задач: 1/);
+  assert.match(olympSummary, /Решено задач: 2/);
+  const multiAdmin = await request('/cabinet/access', { cookie: sessions.admin });
+  assert.ok(multiAdmin.text.includes('Прогресс по курсам') && multiAdmin.text.includes('Сохранить доступ'));
+  const mathVisibleToPhysics = await request('/cabinet/course-students?course=physics', { cookie: sessions.physicsTeacher });
+  const oneStudent = mathVisibleToPhysics.text.match(/<details[^>]*>[\s\S]*?Test mathOnly[\s\S]*?<\/details>/)?.[0];
+  assert.ok(oneStudent && oneStudent.includes('Физика ЕГЭ') && !oneStudent.includes('Математика ЕГЭ'));
+  await invoke('/cabinet/access', accessAction, { studentId: 'mathOnly', courses: 'ege-math' }, sessions.admin);
+  await db.run("INSERT INTO Homework(id,userId,title,status,createdAt,courseId) VALUES('cabinet-grade','physicsOnly','Проверка в кабинете','На проверке',?,'physics')", [new Date().toISOString()]);
+  const reviewPage = await request('/cabinet/review?course=physics', { cookie: sessions.physicsTeacher });
+  assert.ok(reviewPage.text.includes('Проверка в кабинете') && !reviewPage.text.includes('href="/supervisor/students/'));
+  const gradeAction = action(reviewPage.text, 'mark');
+  await invoke('/cabinet/review?course=physics', gradeAction, { hwId: 'cabinet-grade', mark: '5', comment: 'Хорошо' }, sessions.physicsTeacher);
+  assert.equal((await db.get("SELECT mark FROM Homework WHERE id='cabinet-grade'")).mark, '5');
+  const publishInline = new FormData(); publishInline.set('title', 'Кабинет видео'); publishInline.set('url', 'https://kinescope.io/embed/abc123'); publishInline.set('destination', 'physics|1'); publishInline.set('returnTo', 'cabinet');
+  const publishedInline = await formRequest('/api/videos/create', publishInline, sessions.physicsTeacher);
+  assert.equal(publishedInline.status, 303);
+  assert.match(publishedInline.headers.location, /\/cabinet\/materials\?course=physics&published=1/);
+  check('inline staff management, course progress, grading and video publishing');
+
 
 
 

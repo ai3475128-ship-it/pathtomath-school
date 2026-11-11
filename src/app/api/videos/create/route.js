@@ -13,13 +13,14 @@ export async function POST(request) {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: 'Требуется вход' }, { status: 401 });
   if (!isManagement(user)) return NextResponse.json({ error: 'Недостаточно прав' }, { status: 403 });
-  let title, url, isPremium, subject, topicKey, sectionNum = 0, destination;
+  let title, url, isPremium, subject, topicKey, sectionNum = 0, destination, returnToCabinet = false;
   try {
     const bytes = await limitedBody(request);
     const form = await new Request(request.url, { method: 'POST', headers: request.headers, body: bytes }).formData();
     title = text(form.get('title'), 300);
     url = videoEmbedUrl(form.get('url'));
     isPremium = form.get('isPremium') === 'on' ? 1 : 0;
+    returnToCabinet = form.get('returnTo') === 'cabinet';
     const choice = form.get('destination');
     const parts = choice ? String(choice).split('|') : ['ege-math', String(form.get('sectionNum'))];
     if (parts.length !== 2) throw Error('Invalid destination');
@@ -49,5 +50,5 @@ export async function POST(request) {
   const db = await connectDB();
   await db.run('INSERT INTO Video(id,title,url,sectionNum,isPremium,subject,topicKey,createdAt) VALUES(?,?,?,?,?,?,?,?)',
     [createId(), title, url, sectionNum, isPremium, subject, topicKey, new Date().toISOString()]);
-  return NextResponse.redirect(new URL(destination, request.url), 303);
+  return NextResponse.redirect(new URL(returnToCabinet ? `/cabinet/materials?course=${encodeURIComponent(subject)}&published=1` : destination, request.url), 303);
 }

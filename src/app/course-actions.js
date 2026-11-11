@@ -46,6 +46,10 @@ async function publishWork(table, form) {
   });
   revalidatePath(table === "Homework" ? "/homeworks" : "/trials");
   revalidatePath("/teacher-dashboard");
+  revalidatePath("/cabinet/materials");
+  revalidatePath("/cabinet/history");
+  revalidatePath("/cabinet/review");
+  revalidatePath("/cabinet/analytics");
 }
 async function deleteBatch(table, form) {
   const user = await requireManagement();
@@ -55,6 +59,10 @@ async function deleteBatch(table, form) {
   await db.run(`DELETE FROM ${table} WHERE batchId=?`, [batch]);
   revalidatePath(table === "Homework" ? "/homeworks" : "/trials");
   revalidatePath("/teacher-dashboard");
+  revalidatePath("/cabinet/materials");
+  revalidatePath("/cabinet/history");
+  revalidatePath("/cabinet/review");
+  revalidatePath("/cabinet/analytics");
 }
 export async function createBulkHomework(form) {
   await publishWork("Homework", form);
@@ -81,6 +89,10 @@ export async function submitHomeworkSolution(form) {
   );
   revalidatePath("/homeworks");
   revalidatePath("/teacher-dashboard");
+  revalidatePath("/cabinet/materials");
+  revalidatePath("/cabinet/history");
+  revalidatePath("/cabinet/review");
+  revalidatePath("/cabinet/analytics");
 }
 export async function deleteStudentSolution(form) {
   const id = text(form.get("hwId"), 100),
@@ -90,6 +102,7 @@ export async function deleteStudentSolution(form) {
     [id],
   );
   revalidatePath("/homeworks");
+  revalidatePath("/cabinet/history");
 }
 export async function checkHomeworkMark(form) {
   const id = text(form.get("hwId"), 100),
@@ -103,6 +116,10 @@ export async function checkHomeworkMark(form) {
   revalidatePath("/homeworks");
   revalidatePath(`/supervisor/students/${work.userId}`);
   revalidatePath("/teacher-dashboard");
+  revalidatePath("/cabinet/materials");
+  revalidatePath("/cabinet/history");
+  revalidatePath("/cabinet/review");
+  revalidatePath("/cabinet/analytics");
 }
 export async function submitTrialSolution(form) {
   const id = text(form.get("trialId"), 100),
@@ -114,6 +131,10 @@ export async function submitTrialSolution(form) {
   );
   revalidatePath("/trials");
   revalidatePath("/teacher-dashboard");
+  revalidatePath("/cabinet/materials");
+  revalidatePath("/cabinet/history");
+  revalidatePath("/cabinet/review");
+  revalidatePath("/cabinet/analytics");
 }
 export async function checkTrialMark(form) {
   const id = text(form.get("trialId"), 100),
@@ -135,4 +156,8 @@ export async function checkTrialMark(form) {
   revalidatePath("/trials");
   revalidatePath(`/supervisor/students/${work.userId}`);
   revalidatePath("/teacher-dashboard");
+  revalidatePath("/cabinet/materials");
+  revalidatePath("/cabinet/history");
+  revalidatePath("/cabinet/review");
+  revalidatePath("/cabinet/analytics");
 }
