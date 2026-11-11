@@ -1,23 +1,25 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { connectDB, createId } from "@/lib/db";
-import { requireManagement, requireOwnedWork } from "@/lib/auth";
+import { canAccessCourse, requireManagement, requireOwnedWork } from "@/lib/auth";
 import { saveUpload } from "@/lib/uploads";
 import { text } from "@/lib/validation";
+import { SUBJECTS } from "@/lib/learning-catalog";
 async function publishWork(table, form) {
   const user = await requireManagement(),
     title = text(form.get("title"), 300),
-    url = await saveUpload(form.get("pdfFile"), user, { optional: true }),
-    db = await connectDB(),
-    batch = createId();
+    courseId = form.get("courseId") || 'ege-math';
+  if (!SUBJECTS.some((course) => course.id === courseId) || !canAccessCourse(user, courseId)) throw Error('Направление недоступно');
+  const url = await saveUpload(form.get("pdfFile"), user, { optional: true }),
+    db = await connectDB(), batch = createId();
   db.transaction((raw) => {
     for (const student of raw
-      .prepare("SELECT id FROM User WHERE role='PREMIUM_STUDENT'")
-      .all()) {
+      .prepare("SELECT u.id FROM User u JOIN StudentCourse sc ON sc.userId=u.id WHERE u.role='PREMIUM_STUDENT' AND u.isBlocked=0 AND sc.courseId=?")
+      .all(courseId)) {
       if (table === "Homework")
         raw
           .prepare(
-            "INSERT INTO Homework(id,userId,title,description,status,mark,comment,createdAt,solutionUrl,batchId) VALUES(?,?,?,?,'Не сдано','—','',?,'',?)",
+            "INSERT INTO Homework(id,userId,title,description,status,mark,comment,createdAt,solutionUrl,batchId,courseId) VALUES(?,?,?,?,'Не сдано','—','',?,'',?,?)",
           )
           .run(
             createId(),
@@ -25,12 +27,12 @@ async function publishWork(table, form) {
             title,
             url,
             new Date().toISOString(),
-            batch,
+            batch, courseId,
           );
       else
         raw
           .prepare(
-            "INSERT INTO Trial(id,userId,title,description,status,score,date,maxScore,batchId) VALUES(?,?,?,?,'Не сдано',0,?,100,?)",
+            "INSERT INTO Trial(id,userId,title,description,status,score,date,maxScore,batchId,courseId) VALUES(?,?,?,?,'Не сдано',0,?,100,?,?)",
           )
           .run(
             createId(),
@@ -38,7 +40,7 @@ async function publishWork(table, form) {
             title,
             url,
             new Date().toISOString().slice(0, 10),
-            batch,
+            batch, courseId,
           );
     }
   });
@@ -46,9 +48,10 @@ async function publishWork(table, form) {
   revalidatePath("/teacher-dashboard");
 }
 async function deleteBatch(table, form) {
-  await requireManagement();
-  const batch = text(form.get("batchId"), 100),
-    db = await connectDB();
+  const user = await requireManagement();
+  const batch = text(form.get("batchId"), 100), db = await connectDB();
+  const work = await db.get(`SELECT courseId FROM ${table} WHERE batchId=?`, [batch]);
+  if (!work || (work.courseId === 'legacy' && user.role !== 'ADMIN') || (work.courseId !== 'legacy' && !canAccessCourse(user, work.courseId))) throw Error('Работа недоступна');
   await db.run(`DELETE FROM ${table} WHERE batchId=?`, [batch]);
   revalidatePath(table === "Homework" ? "/homeworks" : "/trials");
   revalidatePath("/teacher-dashboard");

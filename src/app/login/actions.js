@@ -58,13 +58,7 @@ export async function loginUser(formData) {
     "INSERT INTO ActivityLog(id,userId,email,actionType,timestamp) VALUES(?,?,?,?,?)",
     [createId(), user.id, user.email, "LOGIN", new Date().toISOString()],
   );
-  redirect(
-    user.role === "ADMIN"
-      ? "/admin-panel"
-      : user.role === "TEACHER"
-        ? "/teacher-dashboard"
-        : "/profile",
-  );
+  redirect("/cabinet");
 }
 export async function logoutUser() {
   const store = await cookies();

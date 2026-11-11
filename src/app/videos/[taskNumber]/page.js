@@ -34,7 +34,7 @@ export default async function VideoSectionPage({ params }) {
           </p>
         )}
         {videos.map((video) => {
-          const allowed = !video.isPremium || canAccessCourse(user);
+          const allowed = !video.isPremium || canAccessCourse(user, "ege-math");
           let url = null;
           if (allowed) {
             try {

@@ -1,6 +1,6 @@
 import OlympiadCalendarLink from '../components/OlympiadCalendarLink';
 import { displayNumberForModule } from '@/lib/ege-sections';
-import { getCurrentUser } from '@/lib/auth';
+import { getCurrentUser, canAccessCourse } from '@/lib/auth';
 import { getEgeProgress } from '@/lib/task-modules';
 import { connectDB } from '@/lib/db';
 import Link from 'next/link';
@@ -50,8 +50,8 @@ async function getProfileData() {
       notesMap[note.dateText] = note.content;
     });
 
-    const homeworks = await db.all('SELECT * FROM Homework WHERE userId = ? ORDER BY createdAt DESC', [user.id]);
-    const trials = await db.all('SELECT * FROM Trial WHERE userId = ? ORDER BY date DESC', [user.id]);
+    const homeworks = (await db.all('SELECT * FROM Homework WHERE userId = ? ORDER BY createdAt DESC', [user.id])).filter((w) => w.courseId === 'legacy' || (w.courseId === 'ege-math' && canAccessCourse(user, 'ege-math')));
+    const trials = (await db.all('SELECT * FROM Trial WHERE userId = ? ORDER BY date DESC', [user.id])).filter((w) => w.courseId === 'legacy' || (w.courseId === 'ege-math' && canAccessCourse(user, 'ege-math')));
 
     return { user, solvedTasks, notesMap, homeworks, trials };
   } catch (error) {

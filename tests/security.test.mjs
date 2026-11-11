@@ -11,7 +11,7 @@ import {
   readSession,
   revokeSession,
 } from "../src/lib/session.js";
-import { setStudentBlocked } from "../src/lib/student-access.js";
+import { setStudentBlocked, setStudentCourses } from "../src/lib/student-access.js";
 import { setTaskProgress } from "../src/lib/progress.js";
 import { getEgeProgress, legacyCandidates } from "../src/lib/task-modules.js";
 import {
@@ -331,4 +331,47 @@ test("video embeds and mutation origins are constrained", () => {
     ),
     true,
   );
+});
+
+test('course assignments are administrator-only, validated and reflected in active sessions', async (t) => {
+  const { db } = await fixture(t);
+  const admin = { id: 'admin', email: 'admin@example.invalid', role: 'ADMIN' };
+  const teacher = { id: 'admin', email: 'admin@example.invalid', role: 'TEACHER' };
+  const token = await createSession(db, 'a', 1000);
+  assert.equal(setStudentCourses(db, teacher, 'a', ['physics']), false);
+  assert.equal(setStudentCourses(db, admin, 'a', ['unknown']), false);
+  assert.equal(setStudentCourses(db, admin, 'a', ['physics', 'olympiad-math']), true);
+  assert.deepEqual(new Set((await readSession(db, token, 1001)).courses), new Set(['physics', 'olympiad-math']));
+  assert.equal(setStudentCourses(db, admin, 'a', []), true);
+  const user = await readSession(db, token, 1002);
+  assert.equal(user.role, 'STUDENT');
+  assert.deepEqual(user.courses, []);
+  assert.equal(setStudentCourses(db, admin, 'admin', ['physics']), false);
+});
+
+test('existing premium students keep their previous access during course migration', async (t) => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'school-courses-migration-'));
+  const filename = path.join(directory, 'legacy.db');
+  const old = new DatabaseSync(filename);
+  old.exec("CREATE TABLE User(id TEXT PRIMARY KEY,email TEXT UNIQUE,name TEXT,password TEXT,createdAt TEXT,role TEXT); INSERT INTO User VALUES('a','a@test','A','x','2026','PREMIUM_STUDENT')");
+  old.close();
+  const db = openDatabase(filename);
+  t.after(async () => { db.dispose(); await rm(directory, { recursive: true, force: true }); });
+  assert.deepEqual(new Set((await db.all('SELECT courseId FROM StudentCourse WHERE userId=?', ['a'])).map((r) => r.courseId)), new Set(['ege-math', 'physics', 'olympiad-math']));
+});
+
+test('course-specific files are not exposed across student or teacher courses', async (t) => {
+  const { db } = await fixture(t);
+  const url = '/api/files/course-work';
+  await db.run("INSERT INTO User(id,email,name,password,role,createdAt) VALUES('t','t@test','T','x','TEACHER','2026')");
+  await db.run("INSERT INTO TeacherSubject(userId,subject) VALUES('t','physics')");
+  await db.run("INSERT INTO StudentCourse(userId,courseId) VALUES('a','physics')");
+  await db.run("INSERT INTO Homework(id,userId,title,description,createdAt,courseId) VALUES('physics-hw','a','Physics',?,?,'physics')", [url, new Date().toISOString()]);
+  const student = { id: 'a', role: 'PREMIUM_STUDENT', courses: ['ege-math'] };
+  const teacher = { id: 't', role: 'TEACHER', subjects: ['ege-math'] };
+  assert.equal(await canReadFile(db, student, url, 'owner'), false);
+  assert.equal(await canReadFile(db, teacher, url, 'owner'), false);
+  assert.equal(await canReadFile(db, { ...student, courses: ['physics'] }, url, 'owner'), true);
+  assert.equal(await canReadFile(db, { ...teacher, subjects: ['physics'] }, url, 'owner'), true);
+  assert.equal(await canReadFile(db, { id: 'admin', role: 'ADMIN' }, url, 'owner'), true);
 });

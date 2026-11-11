@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCurrentUser, isManagement } from '@/lib/auth';
+import { getCurrentUser, isManagement, canAccessCourse } from '@/lib/auth';
 import { connectDB, createId } from '@/lib/db';
 import { text } from '@/lib/validation';
 import { videoEmbedUrl } from '@/lib/videos';
@@ -45,6 +45,7 @@ export async function POST(request) {
   } catch {
     return NextResponse.json({ error: 'Проверьте название, раздел и ссылку встраивания VK Видео или Kinescope' }, { status: 400 });
   }
+  if (!canAccessCourse(user, subject)) return NextResponse.json({ error: 'Направление недоступно' }, { status: 403 });
   const db = await connectDB();
   await db.run('INSERT INTO Video(id,title,url,sectionNum,isPremium,subject,topicKey,createdAt) VALUES(?,?,?,?,?,?,?,?)',
     [createId(), title, url, sectionNum, isPremium, subject, topicKey, new Date().toISOString()]);

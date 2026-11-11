@@ -17,7 +17,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   const user = await getCurrentUser();
   const hasUser = Boolean(user), userRole = user?.role ?? null;
-  const cabinetUrl = userRole === 'ADMIN' ? '/admin-panel' : userRole === 'TEACHER' ? '/teacher-dashboard' : '/profile';
+  const cabinetUrl = '/cabinet';
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className="antialiased min-h-screen flex flex-col font-sans selection:bg-blue-200/50">
