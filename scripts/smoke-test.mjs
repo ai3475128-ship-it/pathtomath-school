@@ -574,9 +574,11 @@ try {
   assert.equal(classicalAlgebra.status, 200);
   assert.match(classicalAlgebra.text, /Классическая алгебра/);
   assert.equal((await progress(sessions.a, { module: 'olympiad-6-intro', taskId: 18, solved: true })).status, 200);
-  assert.equal((await progress(sessions.a, { module: 'olympiad-6-intro', taskId: 19, solved: true })).status, 400);
-  assert.deepEqual(JSON.parse((await request('/api/user-task-progress?module=olympiad-6-intro', { cookie: sessions.a })).text).solvedSubTasks, [18]);
+  assert.equal((await progress(sessions.a, { module: 'olympiad-6-intro', taskId: 19, solved: true })).status, 200);
+  assert.equal((await progress(sessions.a, { module: 'olympiad-6-intro', taskId: 21, solved: true })).status, 400);
+  assert.deepEqual(JSON.parse((await request('/api/user-task-progress?module=olympiad-6-intro', { cookie: sessions.a })).text).solvedSubTasks.sort((a,b)=>a-b), [18,19]);
   assert.equal((await progress(sessions.a, { module: 'olympiad-6-intro', taskId: 18, solved: false })).status, 200);
+  assert.equal((await progress(sessions.a, { module: 'olympiad-6-intro', taskId: 19, solved: false })).status, 200);
   check('classical algebra tasks appear in the right section and save progress');
   await invoke(
     "/profile",

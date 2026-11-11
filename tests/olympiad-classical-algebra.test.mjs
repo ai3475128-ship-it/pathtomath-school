@@ -20,17 +20,25 @@ try {
 } finally { require.extensions['.js'] = originalLoader; }
 
 test('all supplied tasks and complete solutions render without KaTeX errors', () => {
-  assert.deepEqual(tasks.map((task) => task.id), Array.from({length: 18}, (_, i) => i + 1));
+  assert.deepEqual(tasks.map((task) => task.id).sort((a,b) => a-b), Array.from({length: 20}, (_, i) => i + 1));
+  assert.deepEqual(tasks.map((task) => task.title), Array.from({length: 20}, (_, i) => `Задача ${i + 1}`));
+  assert.equal(tasks[0].id, 1);
+  assert.equal(tasks.at(-2).id, 3);
+  assert.equal(tasks.at(-1).id, 18);
   assert.deepEqual(catalog['olympiad-6-intro'], tasks.map((task) => task.id));
   for (const task of tasks) {
-    assert.doesNotThrow(() => katex.renderToString(task.mathA, {throwOnError: true}), `condition ${task.id}`);
+    if (task.mathA) assert.doesNotThrow(() => katex.renderToString(task.mathA, {throwOnError: true}), `condition ${task.id}`);
     const html = renderToStaticMarkup(React.createElement(React.Fragment, null, task.textBefore, task.solutionBuilder()));
     assert.match(html, /Решение/);
     assert.match(html, /Ответ:/);
     assert.doesNotMatch(html, /katex-error/, `solution ${task.id}`);
   }
-  const last = renderToStaticMarkup(tasks[17].solutionBuilder());
+  const last = renderToStaticMarkup(tasks.at(-1).solutionBuilder());
   assert.match(last, /Способ 1/); assert.match(last, /Способ 2/); assert.match(last, /наименьшее общее кратное/);
+  assert.match(renderToStaticMarkup(tasks[0].solutionBuilder()), /равносильн/);
+  assert.match(renderToStaticMarkup(tasks.at(-2).solutionBuilder()), /вектор/);
+  assert.match(renderToStaticMarkup(tasks.find((task) => task.id === 19).solutionBuilder()), /n=2/);
+  assert.match(renderToStaticMarkup(tasks.find((task) => task.id === 20).solutionBuilder()), /хотя бы одно/);
 });
 
 test('key answers and boundary cases satisfy the original conditions', () => {
