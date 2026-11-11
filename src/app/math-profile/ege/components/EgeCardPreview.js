@@ -29,13 +29,10 @@ function Illustration({ number, intro }) {
         <SmoothFade delay={1350}><Text y={145} size={11}>AD/DB · BE/EC · CF/FA = 1</Text></SmoothFade>
       </>;
       case 19: return <>
-        <Text y={25} size={14}>f(x; a) = 0,  x₁ ≠ x₂</Text>
-        <Line d="M59 42c-8 0-8 6-8 11v7c0 6-3 8-8 9 5 1 8 3 8 9v7c0 5 0 11 8 11" />
-        <g className={styles.reveal}>
-          <Text x={119} y={62} size={17}>x₁ ∈ [0; 1]</Text>
-          <Text x={119} y={92} size={17}>x₂ ∉ [0; 1]</Text>
-          <Text y={128} size={14}>или наоборот</Text>
-        </g>
+        <SmoothFade><Text y={30} size={14}>∀ a,b ∈ ℝ (a &lt; b)</Text></SmoothFade>
+        <SmoothFade delay={250}><Text y={57} size={15}>∀ f ∈ C([a; b]):</Text></SmoothFade>
+        <SmoothFade delay={500}><Text y={84} size={16}>f(a) · f(b) &lt; 0 ⇒</Text></SmoothFade>
+        <SmoothFade delay={750}><Text y={113} size={15}>∃ c ∈ (a; b): f(c) = 0</Text></SmoothFade>
       </>;
       case 20: return <>
         <defs><clipPath id="ege-intro-sets-overlap"><circle cx="78" cy="72" r="40" /></clipPath></defs>
