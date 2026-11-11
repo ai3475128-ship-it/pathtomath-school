@@ -26,9 +26,11 @@ export const olympiadIntro06Tasks = [
     conditionText: 'Решите уравнение.',
     mathA: String.raw`\left|4x-|x-2|+3\right|=16`,
     solutionBuilder: solution([
-      p(String.raw`При $x\ge 2$ имеем $|x-2|=x-2$, поэтому $|3x+5|=16$. Из двух полученных корней условию $x\ge 2$ удовлетворяет только $x=11/3$.`),
-      p(String.raw`При $x<2$ имеем $|x-2|=2-x$, поэтому $|5x+1|=16$. Из двух корней условию $x<2$ удовлетворяет только $x=-17/5$.`),
-      m(String.raw`x=\frac{11}{3}\quad\text{или}\quad x=-\frac{17}{5}.`),
+      p(String.raw`Воспользуемся равносильностью $|A|=16\Longleftrightarrow A=16$ или $A=-16$, а затем раскроем внутренний модуль на двух промежутках.`),
+      m(String.raw`\left|4x-|x-2|+3\right|=16\quad\Longleftrightarrow\quad 4x-|x-2|+3=16\ \text{или}\ 4x-|x-2|+3=-16.`),
+      m(String.raw`\Longleftrightarrow\quad\left[\begin{array}{l}\begin{cases}x\ge2,\\3x+5=16\ \text{или}\ 3x+5=-16;\end{cases}\\[8pt]\begin{cases}x<2,\\5x+1=16\ \text{или}\ 5x+1=-16.\end{cases}\end{array}\right.`),
+      p(String.raw`В первой системе корень $x=-7$ не удовлетворяет условию $x\ge2$, во второй корень $x=3$ не удовлетворяет условию $x<2$. Оставшиеся значения удовлетворяют условиям своих систем, поэтому все переходы обратимы.`),
+      m(String.raw`\Longleftrightarrow\quad x=\frac{11}{3}\ \text{или}\ x=-\frac{17}{5}.`),
     ], String.raw`-\frac{17}{5};\ \frac{11}{3}`),
   },
   {
@@ -42,19 +44,8 @@ export const olympiadIntro06Tasks = [
     ], String.raw`4046`),
   },
   {
-    id: 3,
-    title: 'Задача 3',
-    conditionText: 'Решите уравнение.',
-    mathA: String.raw`\sqrt{x^2+1}+\sqrt{x^2+4x+8}=\sqrt{13}`,
-    solutionBuilder: solution([
-      p(String.raw`Обозначим $M=(x,0)$, $A=(0,1)$ и $B=(-2,-2)$. Левая часть — сумма расстояний $AM+MB$, а расстояние $AB=\sqrt{(-2)^2+(-3)^2}=\sqrt{13}$.`),
-      p(String.raw`По неравенству треугольника $AM+MB\ge AB$; равенство достигается ровно тогда, когда точка $M$ лежит на отрезке $AB$. Прямая $AB$ пересекает ось абсцисс на трети пути от $A$ к $B$, поэтому $x=-2/3$.`),
-      p(String.raw`При $x=-2/3$ действительно получаем $AM=\sqrt{13}/3$, $MB=2\sqrt{13}/3$.`),
-    ], String.raw`x=-\frac23`),
-  },
-  {
     id: 4,
-    title: 'Задача 4',
+    title: 'Задача 3',
     conditionText: 'Разложите на множители.',
     mathA: String.raw`x^4+4y^4`,
     solutionBuilder: solution([
@@ -62,6 +53,17 @@ export const olympiadIntro06Tasks = [
       m(String.raw`x^4+4y^4=(x^2+2y^2)^2-(2xy)^2`),
       m(String.raw`=(x^2-2xy+2y^2)(x^2+2xy+2y^2).`),
     ], String.raw`(x^2-2xy+2y^2)(x^2+2xy+2y^2)`),
+  },
+  {
+    id: 19,
+    title: 'Задача 4',
+    textBefore: <>Все коэффициенты многочлена <InlineMath math="P(x)" /> — целые числа. Известно, что <InlineMath math="P(1)=1" /> и <InlineMath math="P(n)=0" /> при некотором натуральном <InlineMath math="n" />. Найдите <InlineMath math="n" />.</>,
+    solutionBuilder: solution([
+      p(String.raw`Для любого целочисленного многочлена разность $P(1)-P(n)$ делится на $1-n$: каждое слагаемое $1-n^k$ делится на $1-n$. Поэтому существует целое число $Q$, для которого`),
+      m(String.raw`1=P(1)-P(n)=(1-n)Q.`),
+      p(String.raw`Число $n=1$ невозможно, так как одновременно $P(1)=1$ и $P(n)=0$. Следовательно, $n\ge2$, и положительное число $n-1$ делит $1$. Получаем $n-1=1$, то есть $n=2$.`),
+      p(String.raw`Такое значение действительно возможно: например, $P(x)=2-x$ имеет целые коэффициенты и удовлетворяет обоим условиям.`),
+    ], String.raw`n=2`),
   },
   {
     id: 5,
@@ -152,8 +154,21 @@ export const olympiadIntro06Tasks = [
     ], String.raw`\sqrt2-2\pm\sqrt{7-4\sqrt2};\quad -2-\sqrt2\pm\sqrt{7+4\sqrt2}`),
   },
   {
-    id: 12,
+    id: 20,
     title: 'Задача 12',
+    textBefore: <>Пусть <InlineMath math="a,b,c" /> — действительные числа. Известно, что <InlineMath math="abc=1" />. Докажите: если выполнено равенство ниже, то одно из чисел равно единице.</>,
+    mathA: String.raw`a+b+c=\frac1a+\frac1b+\frac1c`,
+    solutionBuilder: solution([
+      p(String.raw`Из $abc=1$ следует, что ни одно из чисел не равно нулю и $1/a=bc$, $1/b=ac$, $1/c=ab$. Поэтому условие равносильно равенству`),
+      m(String.raw`a+b+c=ab+ac+bc.`),
+      p(String.raw`Раскроем скобки в произведении и используем оба условия:`),
+      m(String.raw`(a-1)(b-1)(c-1)=abc-(ab+ac+bc)+(a+b+c)-1=0.`),
+      p(String.raw`Произведение действительных чисел равно нулю только тогда, когда хотя бы один множитель равен нулю. Следовательно, хотя бы одно из чисел $a$, $b$, $c$ равно $1$.`),
+    ], String.raw`a=1\ \text{или}\ b=1\ \text{или}\ c=1`),
+  },
+  {
+    id: 12,
+    title: 'Задача 13',
     textBefore: <>Найдите значение выражения, если <InlineMath math={String.raw`x\ne y`} /> и сумма первых двух слагаемых равна третьему.</>,
     mathA: String.raw`\frac1{x^2+1}+\frac1{y^2+1}+\frac2{xy+1}`,
     solutionBuilder: solution([
@@ -164,7 +179,7 @@ export const olympiadIntro06Tasks = [
   },
   {
     id: 13,
-    title: 'Задача 13',
+    title: 'Задача 14',
     conditionText: 'Решите уравнение.',
     mathA: String.raw`\sqrt[3]{15x+1-x^2}+\sqrt[3]{x^2-15x+27}=4`,
     solutionBuilder: solution([
@@ -177,7 +192,7 @@ export const olympiadIntro06Tasks = [
   },
   {
     id: 14,
-    title: 'Задача 14',
+    title: 'Задача 15',
     textBefore: <>Докажите неравенство при всех положительных <InlineMath math="x" />.</>,
     mathA: String.raw`(1+x+x^2)(1+x+x^2+x^3+x^4)\le(1+x+x^2+x^3)^2`,
     solutionBuilder: solution([
@@ -188,7 +203,7 @@ export const olympiadIntro06Tasks = [
   },
   {
     id: 15,
-    title: 'Задача 15',
+    title: 'Задача 16',
     conditionText: 'Решите уравнение.',
     mathA: String.raw`\sqrt{x^2+2x+3}-\sqrt{x^2+1}=\sqrt{x^2-2x-3}-\sqrt{x^2-1}`,
     solutionBuilder: solution([
@@ -200,7 +215,7 @@ export const olympiadIntro06Tasks = [
   },
   {
     id: 16,
-    title: 'Задача 16',
+    title: 'Задача 17',
     conditionText: 'Вместо многоточий вставьте числа так, чтобы равенство стало тождеством.',
     mathA: String.raw`(x^2+\ldots\,x+2)(x+3)=(x+\ldots)(x^2+\ldots\,x+6)`,
     solutionBuilder: solution([
@@ -212,7 +227,7 @@ export const olympiadIntro06Tasks = [
   },
   {
     id: 17,
-    title: 'Задача 17',
+    title: 'Задача 18',
     conditionText: 'Решите неравенство.',
     mathA: String.raw`x\ge\sqrt{2+\sqrt{2+x}}`,
     solutionBuilder: solution([
@@ -222,8 +237,21 @@ export const olympiadIntro06Tasks = [
     ], String.raw`x\in[2;+\infty)`),
   },
   {
+    id: 3,
+    title: 'Задача 19',
+    conditionText: 'Решите уравнение.',
+    mathA: String.raw`\sqrt{x^2+1}+\sqrt{x^2+4x+8}=\sqrt{13}`,
+    solutionBuilder: solution([
+      p(String.raw`Представим подкоренные выражения как квадраты длин векторов: $\vec u=(x,1)$ и $\vec v=(-x-2,2)$. Тогда их сумма постоянна и не зависит от $x$:`),
+      m(String.raw`|\vec u|=\sqrt{x^2+1},\qquad |\vec v|=\sqrt{x^2+4x+8},\qquad \vec u+\vec v=(-2,3),\quad |\vec u+\vec v|=\sqrt{13}.`),
+      p(String.raw`Исходное уравнение имеет вид $|\vec u|+|\vec v|=|\vec u+\vec v|$. По неравенству треугольника равенство достигается тогда и только тогда, когда ненулевые векторы сонаправлены. Их вторые координаты равны $1$ и $2$, поэтому обязательно $\vec v=2\vec u$.`),
+      m(String.raw`-x-2=2x\quad\Longleftrightarrow\quad x=-\frac23.`),
+      p(String.raw`При этом значении действительно $\vec v=2\vec u$, поэтому равенство выполняется.`),
+    ], String.raw`x=-\frac23`),
+  },
+  {
     id: 18,
-    title: 'Задача 18',
+    title: 'Задача 20',
     textBefore: <>Для действительных чисел <InlineMath math="a" /> и <InlineMath math="b" /> выполнены равенства. Какие значения может принимать выражение <InlineMath math={String.raw`a^2+b^2`} />?</>,
     mathA: String.raw`\begin{cases}a^3-3ab^2=11,\\b^3-3a^2b=2.\end{cases}`,
     solutionBuilder: solution([
