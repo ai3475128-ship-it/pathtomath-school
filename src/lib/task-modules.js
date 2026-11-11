@@ -11,8 +11,8 @@ export const isTaskInModule = (slug, id) =>
 export function legacyCandidates(number) {
   const result = [];
   for (const [slug, ids] of Object.entries(catalog)) {
-    // Новые разделы не существовали в старой схеме числовых ключей.
-    if (slug.startsWith("ege-")) continue;
+    // Новые сборники и разделы не существовали в старой схеме числовых ключей.
+    if (slug === "1" || slug === "2" || slug.startsWith("ege-")) continue;
     for (const id of ids)
       if ((parseInt(slug, 10) || 0) * 100 + id === number)
         result.push({ module: slug, taskId: id });

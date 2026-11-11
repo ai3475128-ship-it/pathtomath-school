@@ -570,6 +570,13 @@ try {
   assert.ok(planimetryLink, 'Planimetry section should be visible in the student profile');
   assert.match(planimetryLink.replace(/<[^>]+>/g, '').replace(/\s+/g, ' '), /Задание №1\s*1\/200/);
   check('all planimetry tasks are available to progress tracking');
+  assert.equal((await request('/math-profile/2')).status, 200);
+  assert.equal((await progress(sessions.a, { module: '2', taskId: 100, solved: true })).status, 200);
+  assert.equal((await progress(sessions.a, { module: '2', taskId: 101, solved: true })).status, 400);
+  assert.deepEqual(JSON.parse((await request('/api/user-task-progress?module=2', { cookie: sessions.a })).text).solvedSubTasks, [100]);
+  assert.deepEqual(JSON.parse((await request('/api/user-task-progress?module=2', { cookie: sessions.b })).text).solvedSubTasks, []);
+  assert.equal((await progress(sessions.a, { module: '2', taskId: 100, solved: false })).status, 200);
+  check('all vector tasks are available to progress tracking');
   const classicalAlgebra = await request('/math-profile/olympiad-6-intro');
   assert.equal(classicalAlgebra.status, 200);
   assert.match(classicalAlgebra.text, /Классическая алгебра/);
