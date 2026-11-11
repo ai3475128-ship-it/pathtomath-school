@@ -2,19 +2,18 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { requireUser } from '@/lib/auth';
 import { connectDB } from '@/lib/db';
-import { SUBJECTS, OLYMPIAD_TOPICS } from '@/lib/learning-catalog';
-import { EGE_SECTIONS } from '@/lib/ege-sections';
-import { getEgeProgress } from '@/lib/task-modules';
+import { SUBJECTS } from '@/lib/learning-catalog';
 import CabinetShell, { getCourses } from '../CabinetShell';
 import { savePlan, addGoal, toggleGoal, deleteGoal, createScheduleEvent } from '../actions';
 import CourseSelect from '@/app/components/CourseSelect';
 import VideoPublishForm from '@/app/components/VideoPublishForm';
 import { createBulkHomework, createBulkTrial, submitHomeworkSolution, submitTrialSolution } from '@/app/course-actions';
 import { StaffManager, ReportsManager, StudentCards, GradeCard, ProgressOverview } from '../WorkspaceComponents';
+import ProgressDetails from '../ProgressDetails';
 
-const labels = {progress:'Мой прогресс', plans:'Календарь планов', goals:'Мои цели', history:'История работ', 'course-students':'Ученики курса', materials:'Публикация материалов', review:'Проверка работ', analytics:'Аналитика обучения', schedule:'Управление занятиями', students:'Ученики школы', staff:'Команда преподавателей', access:'Курсы и доступ', reports:'Обращения об ошибках', settings:'Настройки профиля'};
+const labels = {progress:'Мой прогресс', plans:'Календарь планов', goals:'Мои цели', history:'История работ', 'course-students':'Ученики курса', learner:'Прогресс ученика', materials:'Публикация материалов', review:'Проверка работ', analytics:'Аналитика обучения', schedule:'Управление занятиями', students:'Ученики школы', staff:'Команда преподавателей', access:'Курсы и доступ', reports:'Обращения об ошибках', settings:'Настройки профиля'};
 const studentSections = new Set(['progress','plans','goals','history']);
-const teacherSections = new Set(['course-students','materials','review','analytics','schedule']);
+const teacherSections = new Set(['course-students','learner','materials','review','analytics','schedule']);
 const adminSections = new Set(['students','staff','access','reports']);
 const panel = 'rounded-3xl border border-sky-100 bg-white p-6 shadow-sm dark:border-purple-500/20 dark:bg-[#140e24]';
 const input = 'w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 focus:outline-sky-500 dark:border-purple-500/20 dark:bg-[#0c0714] dark:text-white';
@@ -26,21 +25,24 @@ export default async function CabinetSectionPage({params, searchParams}) {
   const user = await requireUser(), {section} = await params, query = await searchParams;
   const staff = ['ADMIN','TEACHER'].includes(user.role), admin = user.role === 'ADMIN';
   if (!Object.hasOwn(labels, section) || (studentSections.has(section) && staff) || (teacherSections.has(section) && !staff) || (adminSections.has(section) && !admin)) notFound();
+  const db = await connectDB();
   const allStudents = admin && ['students','access'].includes(section);
-  const {choices, chosen} = allStudents ? {choices:SUBJECTS, chosen:SUBJECTS.find((c) => c.id === query?.course)} : getCourses(user, query?.course);
-  const course = chosen?.id, db = await connectDB();
-  let content;
-  if (section === 'progress') {
-    if (course === 'ege-math') {
-      const solved = await getEgeProgress(db, user.id);
-      content = <section className={`${panel} space-y-5`}><h2 className="text-lg font-bold">Решённые задачи по темам</h2><div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">{EGE_SECTIONS.map((s) => <Link key={s.number} href={`/math-profile/${s.number}`} className="rounded-xl bg-slate-50 p-4 hover:bg-sky-50 dark:bg-purple-950/20"><strong>№{s.number} · {s.title}</strong><p className="mt-2 text-sm text-slate-500">Решено: {solved.filter((p) => p.section === s.number).length}</p></Link>)}</div></section>;
-    } else {
-      const saved = course === 'olympiad-math' ? await db.all("SELECT module,COUNT(*) AS n FROM TaskProgress WHERE userId=? AND module LIKE 'olympiad-%' GROUP BY module", [user.id]) : [];
-      const prep = { logic: 1, numbers: 2, identity: 3, combinatorics: 4, words: 5, algebra: 6, functions: 7 };
-      content = <section className={`${panel} space-y-4`}><h2 className="text-lg font-bold">Решённые задачи</h2>{course === 'olympiad-math' ? <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">{OLYMPIAD_TOPICS.map((topic, i) => { const modules = [`olympiad-${i+1}-main`, ...(prep[topic.id] ? [`olympiad-${prep[topic.id]}-intro`] : [])]; return <div key={topic.id} className="rounded-xl bg-slate-50 p-4 dark:bg-purple-950/20"><strong>{topic.title}</strong><p className="mt-2 text-sm text-slate-500">Решено: {saved.filter((r) => modules.includes(r.module)).reduce((n, r) => n + r.n, 0)}</p></div>; })}</div> : <Empty>Статистика появится после решения задач с отметкой выполнения.</Empty>}</section>;
-    }
+  let {choices, chosen} = allStudents ? {choices:SUBJECTS, chosen:SUBJECTS.find((c) => c.id === query?.course)} : getCourses(user, query?.course);
+  let learner = null;
+  if (section === 'learner') {
+    const studentId = typeof query?.student === 'string' ? query.student : '';
+    learner = await db.get("SELECT id,name,email,role FROM User WHERE id=? AND role IN ('STUDENT','PREMIUM_STUDENT')", [studentId]);
+    if (!learner) notFound();
+    const assigned = (await db.all('SELECT courseId FROM StudentCourse WHERE userId=?', [studentId])).map((r) => r.courseId);
+    choices = SUBJECTS.filter((c) => (admin && learner.role === 'STUDENT') || (assigned.includes(c.id) && (admin || user.subjects.includes(c.id))));
+    if (!choices.length) notFound();
+    chosen = choices.find((c) => c.id === query?.course) || choices[0];
   }
-  if (section === 'progress') content = <><ProgressOverview db={db} user={user} choices={choices} />{content}</>;
+  const course = chosen?.id;
+  const learnerOrigin = admin && ['students','access'].includes(query?.from) ? query.from : 'course-students';
+  let content;
+  if (section === 'progress') content = <><ProgressOverview db={db} user={user} choices={choices}/>{course && <ProgressDetails db={db} studentId={user.id} course={course} includeWork={user.role==='PREMIUM_STUDENT'}/>}</>;
+  if (section === 'learner') content = <><section className={panel}><p className="text-sm text-slate-500">Ученик</p><h2 className="mt-1 text-xl font-bold">{learner.name || 'Без имени'}</h2><p className="mt-1 text-sm text-slate-500">{learner.email}</p><Link href={learnerOrigin === 'course-students' ? `/cabinet/course-students?course=${encodeURIComponent(course)}` : `/cabinet/${learnerOrigin}`} className="mt-3 inline-block text-sm font-semibold text-sky-700 hover:underline dark:text-purple-300">← К списку учеников</Link></section><ProgressDetails db={db} studentId={learner.id} course={course} includeWork canGrade/></>;
   if (section === 'plans') {
     const today = new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Moscow'}).format(new Date());
     let date = today;
@@ -64,7 +66,7 @@ export default async function CabinetSectionPage({params, searchParams}) {
   if (['students','access','course-students'].includes(section)) {
     let people = section==='course-students'||course ? course?await db.all("SELECT u.id,u.name,u.email,u.isBlocked FROM User u JOIN StudentCourse c ON c.userId=u.id WHERE c.courseId=? AND u.role='PREMIUM_STUDENT' ORDER BY u.name",[course]):[] : await db.all("SELECT id,name,email,isBlocked FROM User WHERE role IN ('STUDENT','PREMIUM_STUDENT') ORDER BY name");
     const q=typeof query?.q==='string'?query.q.trim().slice(0,100):''; if(q) people=people.filter((p)=>`${p.name||''} ${p.email}`.toLocaleLowerCase('ru').includes(q.toLocaleLowerCase('ru')));
-    content=<section className={`${panel} space-y-4`}><h2 className="font-bold">{section==='access'?'Назначение курсов':'Список учеников'} · {people.length}</h2><form className="flex gap-2">{course&&<input type="hidden" name="course" value={course}/>}<input className={input} name="q" defaultValue={q} placeholder="Имя или почта ученика" aria-label="Имя или почта ученика"/><button className={button}>Найти</button></form><p className="text-sm text-slate-500">Раскройте карточку, чтобы увидеть прогресс{admin?' и изменить доступ':''}.</p><StudentCards people={people} user={user} db={db}/></section>;
+    content=<section className={`${panel} space-y-4`}><h2 className="font-bold">{section==='access'?'Назначение курсов':'Список учеников'} · {people.length}</h2><form className="flex gap-2">{course&&<input type="hidden" name="course" value={course}/>}<input className={input} name="q" defaultValue={q} placeholder="Имя или почта ученика" aria-label="Имя или почта ученика"/><button className={button}>Найти</button></form><p className="text-sm text-slate-500">Раскройте карточку, чтобы увидеть прогресс{admin?' и изменить доступ':''}.</p><StudentCards people={people} user={user} db={db} section={section}/></section>;
   }
   if (section === 'staff') {
     const people=await db.all("SELECT id,name,email,role FROM User WHERE role IN ('TEACHER','ADMIN') ORDER BY name"), subjects=await db.all('SELECT userId,subject FROM TeacherSubject');
@@ -89,5 +91,5 @@ export default async function CabinetSectionPage({params, searchParams}) {
   }
   if (section === 'settings') content=<section className={`${panel} space-y-4`}><h2 className="font-bold">Профиль</h2><p>Имя: {user.name||'Не указано'}</p><p>Почта: {user.email}</p><Link href="/forgot-password" className={link}>Восстановить пароль →</Link></section>;
   const showCourses=!['plans','settings','staff','reports'].includes(section);
-  return <CabinetShell user={user} active={section} course={course}><header className={panel}><p className="text-xs font-bold uppercase tracking-widest text-sky-600">Личный кабинет</p><h1 className="mt-2 text-2xl font-black sm:text-3xl">{labels[section]}</h1>{showCourses&&<nav aria-label="Выбор направления" className="mt-5 flex flex-wrap gap-2">{allStudents&&<Link href={`/cabinet/${section}`} className={`${button} ${course?'!bg-slate-100 !text-slate-700':''}`}>Все направления</Link>}{choices.map((c)=><Link key={c.id} href={`/cabinet/${section}?course=${c.id}`} aria-current={course===c.id?'page':undefined} className={`${button} ${course===c.id?'':'!bg-slate-100 !text-slate-700'}`}>{c.title}</Link>)}</nav>}</header>{content}</CabinetShell>;
+  return <CabinetShell user={user} active={section === 'learner' ? learnerOrigin : section} course={course}><header className={panel}><p className="text-xs font-bold uppercase tracking-widest text-sky-600">Личный кабинет</p><h1 className="mt-2 text-2xl font-black sm:text-3xl">{labels[section]}</h1>{showCourses&&<nav aria-label="Выбор направления" className="mt-5 flex flex-wrap gap-2">{allStudents&&<Link href={`/cabinet/${section}`} className={`${button} ${course?'!bg-slate-100 !text-slate-700':''}`}>Все направления</Link>}{choices.map((c)=><Link key={c.id} href={section==='learner' ? `/cabinet/learner?student=${encodeURIComponent(learner.id)}&course=${encodeURIComponent(c.id)}&from=${encodeURIComponent(learnerOrigin)}` : `/cabinet/${section}?course=${c.id}`} aria-current={course===c.id?'page':undefined} className={`${button} ${course===c.id?'':'!bg-slate-100 !text-slate-700'}`}>{c.title}</Link>)}</nav>}</header>{content}</CabinetShell>;
 }
