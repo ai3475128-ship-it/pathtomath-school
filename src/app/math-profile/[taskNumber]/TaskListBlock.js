@@ -4,6 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 import { useRouter } from 'next/navigation';
+import { paginateTasks } from '@/lib/task-pagination';
+import { tokenizePlanimetryCondition } from '@/lib/planimetry-condition';
 
 // 🚀 ПОДГОТОВИТЕЛЬНЫЕ ЗАДАЧИ ЕГЭ: Чистые явные импорты секций АЗИМУТ
 import { egeIntro14Tasks } from '../sections-ege-intro/ege-intro-14';
@@ -88,12 +90,20 @@ const tasksRawData = {
 function TaskSolutionCard({ solutionBuilder, isChangingTheme }) {
   return solutionBuilder();
 }
+
+function PlanimetryCondition({ text }) {
+  return tokenizePlanimetryCondition(text).map((part, index) => part.math
+    ? <InlineMath key={index} math={part.value} />
+    : part.value);
+}
+
 export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds }) {
   const router = useRouter();
   const pendingTasks = useRef(new Set());
   const taskListTop = useRef(null);
-  const [paginationState, setPaginationState] = useState({ module: storageModule, page: 1 });
-  const taskPage = paginationState.module === storageModule ? paginationState.page : 1;
+  const paginationKey = `${storageModule}:${onlyTaskIds?.join(',') || ''}`;
+  const [paginationState, setPaginationState] = useState({ key: paginationKey, page: 1 });
+  const taskPage = paginationState.key === paginationKey ? paginationState.page : 1;
 
   const [solvedSubTasks, setSolvedSubTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -199,12 +209,11 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
     );
   }
 
-  const isPaginated = storageModule === '1' && !onlyTaskIds && currentTasks.length > 20;
-  const pageCount = Math.ceil(currentTasks.length / 20);
-  const visibleTasks = isPaginated ? currentTasks.slice((taskPage - 1) * 20, taskPage * 20) : currentTasks;
+  const isPaginated = currentTasks.length > 20;
+  const { pageCount, activePage, items: visibleTasks } = paginateTasks(currentTasks, taskPage);
   const pagination = isPaginated && <nav aria-label="Страницы задач" className="flex flex-wrap items-center gap-2">
-    <span className="mr-1 text-sm font-semibold text-slate-600 dark:text-slate-300">Страница {taskPage} из {pageCount}</span>
-    {Array.from({length: pageCount}, (_, i) => <button key={i} type="button" aria-label={`Страница ${i + 1}`} aria-current={taskPage === i + 1 ? 'page' : undefined} onClick={() => { setPaginationState({ module: storageModule, page: i + 1 }); taskListTop.current?.scrollIntoView({ block: 'start' }); }} className={`h-9 min-w-9 rounded-xl px-3 text-sm font-bold transition-colors ${taskPage === i + 1 ? 'bg-sky-600 text-white dark:bg-[#634EE4]' : 'border border-sky-200 bg-white text-sky-700 hover:bg-sky-50 dark:border-purple-500/30 dark:bg-[#17102b] dark:text-purple-300 dark:hover:bg-purple-950/40'}`}>{i + 1}</button>)}
+    <span className="mr-1 text-sm font-semibold text-slate-600 dark:text-slate-300">Страница {activePage} из {pageCount}</span>
+    {Array.from({length: pageCount}, (_, i) => <button key={i} type="button" aria-label={`Страница ${i + 1}`} aria-current={activePage === i + 1 ? 'page' : undefined} onClick={() => { setPaginationState({ key: paginationKey, page: i + 1 }); taskListTop.current?.scrollIntoView({ block: 'start' }); }} className={`h-9 min-w-9 rounded-xl px-3 text-sm font-bold transition-colors ${activePage === i + 1 ? 'bg-sky-600 text-white dark:bg-[#634EE4]' : 'border border-sky-200 bg-white text-sky-700 hover:bg-sky-50 dark:border-purple-500/30 dark:bg-[#17102b] dark:text-purple-300 dark:hover:bg-purple-950/40'}`}>{i + 1}</button>)}
   </nav>;
 
   return (
@@ -263,7 +272,7 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
                 {/* ЗОНА ЧИСТОГО ТЕКСТА */}
                 {task.conditionText && (
                   <p className="text-base font-normal text-slate-800 dark:text-slate-100 leading-relaxed">
-                    {task.conditionText}
+                    {task.diagramType ? <PlanimetryCondition text={task.conditionText} /> : task.conditionText}
                   </p>
                 )}
 
