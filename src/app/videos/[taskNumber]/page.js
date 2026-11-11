@@ -13,7 +13,7 @@ export default async function VideoSectionPage({ params }) {
   if (!topic) notFound();
   const db = await connectDB(),
     videos = await db.all(
-      `SELECT * FROM Video WHERE sectionNum IN (${topic.videoSections.map(() => "?").join(",")}) ORDER BY createdAt DESC`,
+      `SELECT * FROM Video WHERE subject='ege-math' AND sectionNum IN (${topic.videoSections.map(() => "?").join(",")}) ORDER BY createdAt DESC`,
       topic.videoSections,
     );
   return (

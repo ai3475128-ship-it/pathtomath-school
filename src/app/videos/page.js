@@ -1,3 +1,5 @@
+import EgeCardPreview from '@/app/math-profile/ege/components/EgeCardPreview';
+import previewStyles from '@/app/math-profile/ege/components/EgeCardPreview.module.css';
 import { EGE_SECTIONS } from '@/lib/ege-sections';
 import {requireUser} from '@/lib/auth';
 import React from 'react';
@@ -40,6 +42,12 @@ export default async function VideosPage() {
           </p>
         </div>
 
+        <nav aria-label="Направления видеоуроков" className="mb-10 flex flex-wrap gap-3">
+          <span aria-current="page" className="rounded-full bg-sky-600 px-5 py-2 font-bold text-white">Математика ЕГЭ</span>
+          <Link href="/videos/physics" className="rounded-full border border-sky-200 bg-white px-5 py-2 font-bold text-sky-700 hover:bg-sky-50">Физика ЕГЭ</Link>
+          <Link href="/videos/olympiads" className="rounded-full border border-sky-200 bg-white px-5 py-2 font-bold text-sky-700 hover:bg-sky-50">Олимпиадная математика</Link>
+        </nav>
+
         {/* Часть 1 */}
         <div className="mb-14">
           <div className="border-b border-blue-100/60 pb-3 mb-6 dark:border-purple-950/40">
@@ -52,9 +60,9 @@ export default async function VideosPage() {
                 <Link
                   key={taskNum}
                   href={`/videos/${taskNum}`}
-                  className="group bg-white/90 backdrop-blur-md border border-blue-100/60 p-6 rounded-[24px] shadow-sm hover:shadow-xl hover:bg-sky-500 hover:border-sky-500 dark:bg-purple-950/10 dark:border-purple-500/20 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4] transition-all duration-300"
+                  className={`group bg-white/90 backdrop-blur-md border border-blue-100/60 p-6 rounded-[24px] shadow-sm hover:shadow-xl hover:bg-sky-500 hover:border-sky-500 dark:bg-purple-950/10 dark:border-purple-500/20 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4] transition-all duration-300 min-h-[155px] ${previewStyles.card}`}
                 >
-                  <div className="flex flex-col items-start w-full">
+                  <div className={`flex flex-col items-start w-full ${previewStyles.label}`}>
                     <span className="text-3xl font-black tracking-tight mb-3 transition-colors duration-300 text-sky-500/80 group-hover:text-white/80 dark:text-purple-400/80 dark:group-hover:text-white/50">
                       {String(taskNum).padStart(2, '0')}
                     </span>
@@ -62,6 +70,7 @@ export default async function VideosPage() {
                       {title}
                     </h3>
                   </div>
+                  <EgeCardPreview number={taskNum} />
                 </Link>
               );
             })}
@@ -80,9 +89,9 @@ export default async function VideosPage() {
                 <Link
                   key={taskNum}
                   href={`/videos/${taskNum}`}
-                  className="group bg-white/90 backdrop-blur-md border border-blue-100/60 p-6 rounded-[24px] shadow-sm hover:shadow-xl hover:bg-sky-500 hover:border-sky-500 dark:bg-purple-950/10 dark:border-purple-500/20 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4] transition-all duration-300"
+                  className={`group bg-white/90 backdrop-blur-md border border-blue-100/60 p-6 rounded-[24px] shadow-sm hover:shadow-xl hover:bg-sky-500 hover:border-sky-500 dark:bg-purple-950/10 dark:border-purple-500/20 dark:hover:bg-[#634EE4] dark:hover:border-[#634EE4] transition-all duration-300 min-h-[155px] ${previewStyles.card}`}
                 >
-                  <div className="flex flex-col items-start w-full">
+                  <div className={`flex flex-col items-start w-full ${previewStyles.label}`}>
                     <span className="text-3xl font-black tracking-tight mb-3 transition-colors duration-300 text-sky-500/80 group-hover:text-white/80 dark:text-purple-400/80 dark:group-hover:text-white/50">
                       {String(taskNum).padStart(2, '0')}
                     </span>
@@ -90,6 +99,7 @@ export default async function VideosPage() {
                       {title}
                     </h3>
                   </div>
+                  <EgeCardPreview number={taskNum} />
                 </Link>
               );
             })}

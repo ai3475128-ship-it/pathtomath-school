@@ -20,6 +20,7 @@ function migrate(db) {
   try {
     db.exec(`
  CREATE TABLE IF NOT EXISTS User(id TEXT PRIMARY KEY NOT NULL,email TEXT UNIQUE NOT NULL,name TEXT,password TEXT NOT NULL,createdAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,role TEXT NOT NULL DEFAULT 'STUDENT');
+ CREATE TABLE IF NOT EXISTS TeacherSubject(userId TEXT NOT NULL REFERENCES User(id) ON DELETE CASCADE,subject TEXT NOT NULL,PRIMARY KEY(userId,subject));
  CREATE TABLE IF NOT EXISTS Notes(id TEXT PRIMARY KEY NOT NULL,userId TEXT NOT NULL,dateText TEXT NOT NULL,content TEXT NOT NULL,UNIQUE(userId,dateText));
  CREATE TABLE IF NOT EXISTS ErrorReports(id TEXT PRIMARY KEY NOT NULL,userId TEXT NOT NULL,sectionNumber INTEGER NOT NULL,taskId INTEGER NOT NULL,description TEXT NOT NULL,status TEXT DEFAULT 'OPEN',createdAt TEXT NOT NULL,module TEXT NOT NULL DEFAULT '');
  CREATE TABLE IF NOT EXISTS ActivityLog(id TEXT PRIMARY KEY NOT NULL,userId TEXT NOT NULL,email TEXT NOT NULL,actionType TEXT NOT NULL,timestamp TEXT NOT NULL);
@@ -42,6 +43,13 @@ function migrate(db) {
  CREATE INDEX IF NOT EXISTS Trial_user ON Trial(userId);
  `);
     column(db, "User", "role", "TEXT NOT NULL DEFAULT 'STUDENT'");
+    column(db, "Video", "subject", "TEXT NOT NULL DEFAULT 'ege-math'");
+    column(db, "Video", "topicKey", "TEXT NOT NULL DEFAULT ''");
+    // Существующая медиатека и преподаватели относились к математике ЕГЭ.
+    if (!db.prepare("SELECT id FROM AppMigration WHERE id=?").get("teacher-subjects-v1")) {
+      db.exec("INSERT OR IGNORE INTO TeacherSubject(userId,subject) SELECT id,'ege-math' FROM User WHERE role IN ('ADMIN','TEACHER')");
+      db.prepare("INSERT INTO AppMigration(id,appliedAt) VALUES(?,?)").run("teacher-subjects-v1", new Date().toISOString());
+    }
     column(db, "User", "isBlocked", "INTEGER NOT NULL DEFAULT 0");
     column(db, "ErrorReports", "module", "TEXT NOT NULL DEFAULT ''");
     column(db, "PendingUsers", "attempts", "INTEGER NOT NULL DEFAULT 0");

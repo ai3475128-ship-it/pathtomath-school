@@ -301,7 +301,8 @@ try {
   for (const path of ['/math-profile/physics/intro', '/math-profile/physics/main']) {
     const physicsPage = await request(path);
     assert.equal(physicsPage.status, 200, path);
-    assert.match(physicsPage.text, /пока не добавлены/);
+    if (path.endsWith('/intro')) assert.match(physicsPage.text, /пока не добавлены/);
+    else assert.match(physicsPage.text, /Кинематика/);
   }
   const olympiadHub = await request('/olympiads');
   for (const href of ['/olympiad-calendar', '/math-profile/olympiads/intro', '/math-profile/olympiads/main', '/olympiads/tasks']) {
@@ -611,6 +612,50 @@ try {
   assert.equal(freeVideo.status, 200);
   assert.ok(!freeVideo.text.includes("https://kinescope.io/embed/abc123"));
   check("video publishing and premium access");
+  // Директор имеет те же инструменты преподавателя и может публиковать в новых разделах.
+  assert.equal((await request('/teacher-dashboard', { cookie: sessions.admin })).status, 200);
+  const assignmentsAction = action(admin.text, 'subjects');
+  await invoke('/admin-panel', assignmentsAction, { id: 'teacher', subjects: 'physics' }, sessions.teacher);
+  assert.equal((await db.get("SELECT COUNT(*) AS n FROM TeacherSubject WHERE userId='teacher'")).n, 0);
+  await invoke('/admin-panel', assignmentsAction, { id: 'teacher', subjects: 'physics' }, sessions.admin);
+  assert.equal((await db.get("SELECT subject FROM TeacherSubject WHERE userId='teacher'")).subject, 'physics');
+  for (const [destination, page, label] of [
+    ['physics|1', '/videos/physics/1', 'Физика: тест'],
+    ['olympiad-math|topic:numbers', '/videos/olympiads/topic/numbers', 'Теория чисел: тест'],
+    ['olympiad-math|competition:hse', '/videos/olympiads/competition/hse', 'Высшая проба: тест'],
+  ]) {
+    const addition = new FormData();
+    addition.set('title', label); addition.set('url', 'https://kinescope.io/embed/abc123');
+    addition.set('destination', destination); addition.set('isPremium', 'on');
+    assert.equal((await formRequest('/api/videos/create', addition, sessions.admin)).status, 303);
+    assert.ok((await request(page, { cookie: sessions.a })).text.includes(label));
+    assert.ok(!(await request(page, { cookie: sessions.free })).text.includes('https://kinescope.io/embed/abc123'));
+  }
+  const invalidDestination = new FormData();
+  invalidDestination.set('title', 'Bad topic'); invalidDestination.set('url', 'https://kinescope.io/embed/abc123');
+  invalidDestination.set('destination', 'physics|999');
+  assert.equal((await formRequest('/api/videos/create', invalidDestination, sessions.admin)).status, 400);
+  assert.ok(!(await request('/videos/1', { cookie: sessions.a })).text.includes('Физика: тест'));
+  for (const page of ['/math-profile/physics/main', '/math-profile/physics/main/26', '/videos/physics', '/videos/olympiads', '/videos/olympiads/competitions']) {
+    assert.equal((await request(page, { cookie: sessions.a })).status, 200, page);
+  }
+  check('staff subjects, director teaching and separated video catalogs');
+  const physicsCatalog = await request('/math-profile/physics/main', { cookie: sessions.a });
+  const physicsVideos = await request('/videos/physics', { cookie: sessions.a });
+  const mathVideos = await request('/videos', { cookie: sessions.a });
+  const olympiadVideos = await request('/videos/olympiads', { cookie: sessions.a });
+  const olympiadCompetitionVideos = await request('/videos/olympiads/competitions', { cookie: sessions.a });
+  for (const page of [physicsCatalog, physicsVideos]) {
+    assert.equal((page.text.match(/viewBox="0 0 200 120"/g) || []).length, 26);
+    assert.match(page.text, /Кинематика/);
+    assert.doesNotMatch(page.text, /анализ физических процессов/);
+  }
+  assert.equal((mathVideos.text.match(/viewBox="0 0 200 150"/g) || []).length, 20);
+  assert.equal((olympiadVideos.text.match(/viewBox="(?:0 0 200 120|20 8 160 96)"/g) || []).length, 14);
+  for (const item of olympiads) assert.ok(olympiadCompetitionVideos.text.includes(`href="/videos/olympiads/competition/${item.id}"`), item.id);
+  check('animations cover physics and all video catalog sections');
+
+
   // Existing video section numbers belong to topics, not the new exam numbering.
   for (const [id, number, title] of [
     ["legacy-equations", 13, "Legacy equations lecture"],
