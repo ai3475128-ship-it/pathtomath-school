@@ -34,13 +34,31 @@ const teachersData = [
 
 function TeacherBackdrop({ type }) {
   return (
-    <svg aria-hidden="true" viewBox="0 0 280 360" preserveAspectRatio="xMidYMid slice" className="pointer-events-none absolute inset-0 h-full w-full text-sky-600/25 transition-colors duration-300 group-hover:text-white/35 dark:text-purple-300/30 dark:group-hover:text-white/35" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg aria-hidden="true" viewBox="0 0 280 360" preserveAspectRatio="xMidYMid slice" className="pointer-events-none absolute inset-0 h-full w-full text-sky-600/40 transition-colors duration-300 group-hover:text-white/50 dark:text-purple-300/40 dark:group-hover:text-white/50" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       {type === 1 ? <>
+        <g fill="currentColor" stroke="none" fontFamily="serif" fontSize="12">
+          <text x="10" y="20">∫₀∞ e⁻ˣ² dx</text>
+          <text x="18" y="35">= √π / 2</text>
+          <text x="197" y="23">Γ(½) = √π</text>
+          <text x="192" y="146">∇ × ∇φ = 0</text>
+          <text x="215" y="159" fontSize="9">φ ∈ C²</text>
+          <text x="10" y="208">∂u/∂t = α∇²u</text>
+        </g>
         <path d="M15 120h90 M28 135V40 M30 114c14 0 20-54 38-54s15 37 32 23" />
         <text x="188" y="61" fill="currentColor" stroke="none" fontSize="46" fontFamily="serif">∫</text>
         <text x="198" y="122" fill="currentColor" stroke="none" fontSize="25" fontFamily="serif">∇f</text>
         <path d="M194 173c13-17 25-24 38-8s23 8 35-7 M194 184c13-17 25-24 38-8s23 8 35-7" />
       </> : <>
+        <g fill="currentColor" stroke="none" fontFamily="serif" fontSize="12">
+          <text x="10" y="20">aᵖ⁻¹ ≡ 1 (mod p)</text>
+          <text x="10" y="34" fontSize="10">p ∈ ℙ, p ∤ a</text>
+          <text x="190" y="20">Σₖ₌₀ⁿ C(n,k)</text>
+          <text x="218" y="34">= 2ⁿ</text>
+          <text x="10" y="218">gcd(a, b)</text>
+          <text x="10" y="232">= gcd(b, a mod b)</text>
+          <text x="190" y="142">C(n,k) =</text>
+          <text x="190" y="156">n! / (k!(n−k)!)</text>
+        </g>
         <circle cx="222" cy="74" r="30" />
         <path d="M222 44l-26 45h52z" />
         <text x="21" y="69" fill="currentColor" stroke="none" fontSize="43" fontFamily="serif">Σ</text>
