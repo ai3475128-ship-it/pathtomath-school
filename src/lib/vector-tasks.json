@@ -1,0 +1,2486 @@
+[
+  {
+    "id": 1,
+    "title": "Задача 1",
+    "vectorPrompt": "На координатной плоскости изображён вектор $\\vec a$. Найдите его абсциссу.",
+    "answer": "-4",
+    "vectorGroup": 1,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -4,
+        2,
+        -1,
+        4
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -3,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "title": "Задача 2",
+    "vectorPrompt": "На координатной плоскости изображён вектор $\\vec a$. Найдите его абсциссу.",
+    "answer": "4",
+    "vectorGroup": 1,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        7,
+        -2,
+        2
+      ],
+      "vectors": [
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            6,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "title": "Задача 3",
+    "vectorPrompt": "На координатной плоскости изображён вектор $\\vec a$. Найдите его абсциссу.",
+    "answer": "-3",
+    "vectorGroup": 1,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -3,
+        2,
+        -1,
+        4
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -2,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "title": "Задача 4",
+    "vectorPrompt": "На координатной плоскости изображён вектор $\\vec a$. Найдите его абсциссу.",
+    "answer": "3",
+    "vectorGroup": 1,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        6,
+        -3,
+        2
+      ],
+      "vectors": [
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            5,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "title": "Задача 5",
+    "vectorPrompt": "На рисунке изображён вектор $\\vec a$. Найдите его ординату.",
+    "answer": "3",
+    "vectorGroup": 2,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        6,
+        -1,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            5,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "title": "Задача 6",
+    "vectorPrompt": "На рисунке изображён вектор $\\vec a$. Найдите его ординату.",
+    "answer": "-2",
+    "vectorGroup": 2,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        6,
+        -1,
+        3
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            5,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "title": "Задача 7",
+    "vectorPrompt": "На рисунке изображён вектор $\\vec a$. Найдите его ординату.",
+    "answer": "4",
+    "vectorGroup": 2,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -2,
+        2,
+        -1,
+        7
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            -1,
+            6
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "title": "Задача 8",
+    "vectorPrompt": "На рисунке изображён вектор $\\vec a$. Найдите его ординату.",
+    "answer": "-3",
+    "vectorGroup": 2,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        5,
+        -2,
+        3
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            4,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "title": "Задача 9",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите абсциссу вектора $\\vec a+\\vec b$.",
+    "answer": "-5",
+    "vectorGroup": 3,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        6,
+        -1,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            5,
+            5
+          ],
+          "to": [
+            3,
+            3
+          ]
+        },
+        {
+          "from": [
+            5,
+            1
+          ],
+          "to": [
+            2,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "title": "Задача 10",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите абсциссу вектора $\\vec a+\\vec b$.",
+    "answer": "-1",
+    "vectorGroup": 3,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -2,
+        4,
+        -2,
+        4
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            3,
+            3
+          ]
+        },
+        {
+          "from": [
+            2,
+            -1
+          ],
+          "to": [
+            -1,
+            1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "title": "Задача 11",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите абсциссу вектора $\\vec a+\\vec b$.",
+    "answer": "-4",
+    "vectorGroup": 3,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -2,
+        3,
+        -2,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -1,
+            5
+          ]
+        },
+        {
+          "from": [
+            2,
+            -1
+          ],
+          "to": [
+            0,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "title": "Задача 12",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите абсциссу вектора $\\vec a+\\vec b$.",
+    "answer": "-8",
+    "vectorGroup": 3,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -4,
+        3,
+        -4,
+        2
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -3,
+            -2
+          ]
+        },
+        {
+          "from": [
+            2,
+            -1
+          ],
+          "to": [
+            -2,
+            -3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "title": "Задача 13",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите ординату вектора $\\vec a-\\vec b$.",
+    "answer": "2",
+    "vectorGroup": 4,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -2,
+        4,
+        -3,
+        3
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            3,
+            -1
+          ]
+        },
+        {
+          "from": [
+            -1,
+            2
+          ],
+          "to": [
+            2,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "title": "Задача 14",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите ординату вектора $\\vec a-\\vec b$.",
+    "answer": "-1",
+    "vectorGroup": 4,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -2,
+        2,
+        -1,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -1,
+            3
+          ]
+        },
+        {
+          "from": [
+            -1,
+            2
+          ],
+          "to": [
+            1,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 15,
+    "title": "Задача 15",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите ординату вектора $\\vec a-\\vec b$.",
+    "answer": "-6",
+    "vectorGroup": 4,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -4,
+        2,
+        -3,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -3,
+            -2
+          ]
+        },
+        {
+          "from": [
+            -1,
+            2
+          ],
+          "to": [
+            -3,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 16,
+    "title": "Задача 16",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите ординату вектора $\\vec a-\\vec b$.",
+    "answer": "-7",
+    "vectorGroup": 4,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -4,
+        4,
+        -4,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -3,
+            -3
+          ]
+        },
+        {
+          "from": [
+            -1,
+            2
+          ],
+          "to": [
+            3,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 17,
+    "title": "Задача 17",
+    "vectorPrompt": "Найдите скалярное произведение изображённых векторов $\\vec a$ и $\\vec b$.",
+    "answer": "17",
+    "vectorGroup": 5,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        6,
+        -1,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            5
+          ]
+        },
+        {
+          "from": [
+            2,
+            2
+          ],
+          "to": [
+            5,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "title": "Задача 18",
+    "vectorPrompt": "Найдите скалярное произведение изображённых векторов $\\vec a$ и $\\vec b$.",
+    "answer": "6",
+    "vectorGroup": 5,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -4,
+        3,
+        -2,
+        4
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -3,
+            3
+          ]
+        },
+        {
+          "from": [
+            2,
+            2
+          ],
+          "to": [
+            -1,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 19,
+    "title": "Задача 19",
+    "vectorPrompt": "Найдите скалярное произведение изображённых векторов $\\vec a$ и $\\vec b$.",
+    "answer": "-4",
+    "vectorGroup": 5,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -4,
+        3,
+        -4,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -3,
+            -3
+          ]
+        },
+        {
+          "from": [
+            2,
+            2
+          ],
+          "to": [
+            0,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 20,
+    "title": "Задача 20",
+    "vectorPrompt": "Найдите скалярное произведение изображённых векторов $\\vec a$ и $\\vec b$.",
+    "answer": "4",
+    "vectorGroup": 5,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        7,
+        -3,
+        5
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            5,
+            4
+          ]
+        },
+        {
+          "from": [
+            2,
+            2
+          ],
+          "to": [
+            6,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 21,
+    "title": "Задача 21",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите абсциссу вектора $2\\vec a-\\vec b$.",
+    "answer": "3",
+    "vectorGroup": 6,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        6,
+        -4,
+        5
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            -3
+          ]
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            5,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 22,
+    "title": "Задача 22",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите абсциссу вектора $2\\vec a-\\vec b$.",
+    "answer": "-5",
+    "vectorGroup": 6,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -4,
+        3,
+        -3,
+        5
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -3,
+            4
+          ]
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            -1,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 23,
+    "title": "Задача 23",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите абсциссу вектора $2\\vec a-\\vec b$.",
+    "answer": "7",
+    "vectorGroup": 6,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -2,
+        4,
+        -5,
+        2
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            3,
+            -3
+          ]
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            -1,
+            -4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 24,
+    "title": "Задача 24",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите абсциссу вектора $2\\vec a-\\vec b$.",
+    "answer": "-6",
+    "vectorGroup": 6,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -4,
+        3,
+        -1,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -3,
+            5
+          ]
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            0,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 25,
+    "title": "Задача 25",
+    "vectorPrompt": "Найдите ординату вектора $3\\vec a+2\\vec b$ по рисунку.",
+    "answer": "15",
+    "vectorGroup": 7,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -2,
+        3,
+        -1,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -1,
+            4
+          ]
+        },
+        {
+          "from": [
+            2,
+            2
+          ],
+          "to": [
+            0,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 26,
+    "title": "Задача 26",
+    "vectorPrompt": "Найдите ординату вектора $3\\vec a+2\\vec b$ по рисунку.",
+    "answer": "0",
+    "vectorGroup": 7,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        5,
+        -2,
+        4
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            3,
+            3
+          ]
+        },
+        {
+          "from": [
+            2,
+            2
+          ],
+          "to": [
+            4,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 27,
+    "title": "Задача 27",
+    "vectorPrompt": "Найдите ординату вектора $3\\vec a+2\\vec b$ по рисунку.",
+    "answer": "10",
+    "vectorGroup": 7,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -2,
+        4,
+        -1,
+        5
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            3,
+            3
+          ]
+        },
+        {
+          "from": [
+            2,
+            2
+          ],
+          "to": [
+            -1,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 28,
+    "title": "Задача 28",
+    "vectorPrompt": "Найдите ординату вектора $3\\vec a+2\\vec b$ по рисунку.",
+    "answer": "-17",
+    "vectorGroup": 7,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -2,
+        6,
+        -3,
+        3
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -1,
+            -2
+          ]
+        },
+        {
+          "from": [
+            2,
+            2
+          ],
+          "to": [
+            5,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 29,
+    "title": "Задача 29",
+    "vectorPrompt": "На координатной плоскости изображён вектор $\\vec a$. Найдите его длину.",
+    "answer": "13",
+    "vectorGroup": 8,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -5,
+        2,
+        -1,
+        14
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -4,
+            13
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 30,
+    "title": "Задача 30",
+    "vectorPrompt": "На координатной плоскости изображён вектор $\\vec a$. Найдите его длину.",
+    "answer": "5",
+    "vectorGroup": 8,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -3,
+        2,
+        -1,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -2,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 31,
+    "title": "Задача 31",
+    "vectorPrompt": "На координатной плоскости изображён вектор $\\vec a$. Найдите его длину.",
+    "answer": "5",
+    "vectorGroup": 8,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        5,
+        -1,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 32,
+    "title": "Задача 32",
+    "vectorPrompt": "На координатной плоскости изображён вектор $\\vec a$. Найдите его длину.",
+    "answer": "5",
+    "vectorGroup": 8,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        6,
+        -1,
+        5
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            5,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 33,
+    "title": "Задача 33",
+    "vectorPrompt": "По рисунку найдите скалярное произведение $\\vec a\\cdot(\\vec a+\\vec b)$.",
+    "answer": "20",
+    "vectorGroup": 9,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        6,
+        -2,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            5,
+            -1
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            4,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 34,
+    "title": "Задача 34",
+    "vectorPrompt": "По рисунку найдите скалярное произведение $\\vec a\\cdot(\\vec a+\\vec b)$.",
+    "answer": "-5",
+    "vectorGroup": 9,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -3,
+        7,
+        -2,
+        5
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -2,
+            -1
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            6,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 35,
+    "title": "Задача 35",
+    "vectorPrompt": "По рисунку найдите скалярное произведение $\\vec a\\cdot(\\vec a+\\vec b)$.",
+    "answer": "10",
+    "vectorGroup": 9,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        4,
+        -3,
+        2
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            3,
+            -1
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            0,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 36,
+    "title": "Задача 36",
+    "vectorPrompt": "По рисунку найдите скалярное произведение $\\vec a\\cdot(\\vec a+\\vec b)$.",
+    "answer": "36",
+    "vectorGroup": 9,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        5,
+        -1,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            4
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            4,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 37,
+    "title": "Задача 37",
+    "vectorPrompt": "Найдите скалярное произведение $(\\vec a-\\vec b)\\cdot\\vec b$.",
+    "answer": "-1",
+    "vectorGroup": 10,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        7,
+        -4,
+        2
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            -3
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            6,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 38,
+    "title": "Задача 38",
+    "vectorPrompt": "Найдите скалярное произведение $(\\vec a-\\vec b)\\cdot\\vec b$.",
+    "answer": "-6",
+    "vectorGroup": 10,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        7,
+        -3,
+        2
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            3,
+            -2
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            6,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 39,
+    "title": "Задача 39",
+    "vectorPrompt": "Найдите скалярное произведение $(\\vec a-\\vec b)\\cdot\\vec b$.",
+    "answer": "-28",
+    "vectorGroup": 10,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -3,
+        5,
+        -3,
+        5
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -2,
+            -2
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            4,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 40,
+    "title": "Задача 40",
+    "vectorPrompt": "Найдите скалярное произведение $(\\vec a-\\vec b)\\cdot\\vec b$.",
+    "answer": "2",
+    "vectorGroup": 10,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -2,
+        3,
+        -3,
+        2
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -1,
+            -2
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            0,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 41,
+    "title": "Задача 41",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите определитель их координат $a_xb_y-a_yb_x$.",
+    "answer": "15",
+    "vectorGroup": 11,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        6,
+        -3,
+        4
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            -2
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            5,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 42,
+    "title": "Задача 42",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите определитель их координат $a_xb_y-a_yb_x$.",
+    "answer": "12",
+    "vectorGroup": 11,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -2,
+        3,
+        -2,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -1,
+            5
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            0,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 43,
+    "title": "Задача 43",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите определитель их координат $a_xb_y-a_yb_x$.",
+    "answer": "-7",
+    "vectorGroup": 11,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -3,
+        3,
+        -4,
+        2
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -2,
+            -3
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            -2,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 44,
+    "title": "Задача 44",
+    "vectorPrompt": "На рисунке изображены векторы $\\vec a$ и $\\vec b$. Найдите определитель их координат $a_xb_y-a_yb_x$.",
+    "answer": "16",
+    "vectorGroup": 11,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -3,
+        3,
+        -4,
+        4
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -1,
+            3
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            -2,
+            -3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 45,
+    "title": "Задача 45",
+    "vectorPrompt": "Найдите квадрат длины вектора $\\vec a-\\vec b$, изображённого с помощью двух векторов на рисунке.",
+    "answer": "5",
+    "vectorGroup": 12,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -1,
+        7,
+        -4,
+        2
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            3,
+            -3
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            6,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 46,
+    "title": "Задача 46",
+    "vectorPrompt": "Найдите квадрат длины вектора $\\vec a-\\vec b$, изображённого с помощью двух векторов на рисунке.",
+    "answer": "65",
+    "vectorGroup": 12,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -4,
+        7,
+        -1,
+        5
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -3,
+            3
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            6,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 47,
+    "title": "Задача 47",
+    "vectorPrompt": "Найдите квадрат длины вектора $\\vec a-\\vec b$, изображённого с помощью двух векторов на рисунке.",
+    "answer": "36",
+    "vectorGroup": 12,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -3,
+        6,
+        -2,
+        2
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            -2,
+            -1
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            5,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 48,
+    "title": "Задача 48",
+    "vectorPrompt": "Найдите квадрат длины вектора $\\vec a-\\vec b$, изображённого с помощью двух векторов на рисунке.",
+    "answer": "53",
+    "vectorGroup": 12,
+    "vectorParameters": [],
+    "vectorDiagram": {
+      "kind": "grid",
+      "grid": [
+        -3,
+        5,
+        -1,
+        6
+      ],
+      "vectors": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            3
+          ]
+        },
+        {
+          "from": [
+            2,
+            1
+          ],
+          "to": [
+            -2,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 49,
+    "title": "Задача 49",
+    "vectorPrompt": "На рисунке прямоугольник $ABCD$, $AB=2$, $BC=6$. Найдите $\\overrightarrow{AB}\\cdot\\overrightarrow{AC}$.",
+    "answer": "4",
+    "vectorGroup": 13,
+    "vectorParameters": [
+      2,
+      6
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 2,
+      "height": 6,
+      "skew": 0,
+      "diagonals": "ac"
+    }
+  },
+  {
+    "id": 50,
+    "title": "Задача 50",
+    "vectorPrompt": "На рисунке прямоугольник $ABCD$, $AB=5$, $BC=4$. Найдите $\\overrightarrow{AB}\\cdot\\overrightarrow{AC}$.",
+    "answer": "25",
+    "vectorGroup": 13,
+    "vectorParameters": [
+      5,
+      4
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 5,
+      "height": 4,
+      "skew": 0,
+      "diagonals": "ac"
+    }
+  },
+  {
+    "id": 51,
+    "title": "Задача 51",
+    "vectorPrompt": "На рисунке прямоугольник $ABCD$, $AB=2$, $BC=3$. Найдите $\\overrightarrow{AB}\\cdot\\overrightarrow{AC}$.",
+    "answer": "4",
+    "vectorGroup": 13,
+    "vectorParameters": [
+      2,
+      3
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 2,
+      "height": 3,
+      "skew": 0,
+      "diagonals": "ac"
+    }
+  },
+  {
+    "id": 52,
+    "title": "Задача 52",
+    "vectorPrompt": "На рисунке прямоугольник $ABCD$, $AB=5$, $BC=6$. Найдите $\\overrightarrow{AB}\\cdot\\overrightarrow{AC}$.",
+    "answer": "25",
+    "vectorGroup": 13,
+    "vectorParameters": [
+      5,
+      6
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 5,
+      "height": 6,
+      "skew": 0,
+      "diagonals": "ac"
+    }
+  },
+  {
+    "id": 53,
+    "title": "Задача 53",
+    "vectorPrompt": "В прямоугольнике $ABCD$ стороны $AB=7$, $BC=4$. Найдите $\\overrightarrow{AC}\\cdot\\overrightarrow{BD}$.",
+    "answer": "-33",
+    "vectorGroup": 14,
+    "vectorParameters": [
+      7,
+      4
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 7,
+      "height": 4,
+      "skew": 0,
+      "diagonals": "both"
+    }
+  },
+  {
+    "id": 54,
+    "title": "Задача 54",
+    "vectorPrompt": "В прямоугольнике $ABCD$ стороны $AB=8$, $BC=3$. Найдите $\\overrightarrow{AC}\\cdot\\overrightarrow{BD}$.",
+    "answer": "-55",
+    "vectorGroup": 14,
+    "vectorParameters": [
+      8,
+      3
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 8,
+      "height": 3,
+      "skew": 0,
+      "diagonals": "both"
+    }
+  },
+  {
+    "id": 55,
+    "title": "Задача 55",
+    "vectorPrompt": "В прямоугольнике $ABCD$ стороны $AB=4$, $BC=2$. Найдите $\\overrightarrow{AC}\\cdot\\overrightarrow{BD}$.",
+    "answer": "-12",
+    "vectorGroup": 14,
+    "vectorParameters": [
+      4,
+      2
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 4,
+      "height": 2,
+      "skew": 0,
+      "diagonals": "both"
+    }
+  },
+  {
+    "id": 56,
+    "title": "Задача 56",
+    "vectorPrompt": "В прямоугольнике $ABCD$ стороны $AB=7$, $BC=3$. Найдите $\\overrightarrow{AC}\\cdot\\overrightarrow{BD}$.",
+    "answer": "-40",
+    "vectorGroup": 14,
+    "vectorParameters": [
+      7,
+      3
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 7,
+      "height": 3,
+      "skew": 0,
+      "diagonals": "both"
+    }
+  },
+  {
+    "id": 57,
+    "title": "Задача 57",
+    "vectorPrompt": "В прямоугольнике $ABCD$ известно $AB=8$, $BC=4$. Найдите квадрат длины вектора $\\overrightarrow{AC}$.",
+    "answer": "80",
+    "vectorGroup": 15,
+    "vectorParameters": [
+      8,
+      4
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 8,
+      "height": 4,
+      "skew": 0,
+      "diagonals": "ac"
+    }
+  },
+  {
+    "id": 58,
+    "title": "Задача 58",
+    "vectorPrompt": "В прямоугольнике $ABCD$ известно $AB=6$, $BC=5$. Найдите квадрат длины вектора $\\overrightarrow{AC}$.",
+    "answer": "61",
+    "vectorGroup": 15,
+    "vectorParameters": [
+      6,
+      5
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 6,
+      "height": 5,
+      "skew": 0,
+      "diagonals": "ac"
+    }
+  },
+  {
+    "id": 59,
+    "title": "Задача 59",
+    "vectorPrompt": "В прямоугольнике $ABCD$ известно $AB=8$, $BC=3$. Найдите квадрат длины вектора $\\overrightarrow{AC}$.",
+    "answer": "73",
+    "vectorGroup": 15,
+    "vectorParameters": [
+      8,
+      3
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 8,
+      "height": 3,
+      "skew": 0,
+      "diagonals": "ac"
+    }
+  },
+  {
+    "id": 60,
+    "title": "Задача 60",
+    "vectorPrompt": "В прямоугольнике $ABCD$ известно $AB=8$, $BC=2$. Найдите квадрат длины вектора $\\overrightarrow{AC}$.",
+    "answer": "68",
+    "vectorGroup": 15,
+    "vectorParameters": [
+      8,
+      2
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 8,
+      "height": 2,
+      "skew": 0,
+      "diagonals": "ac"
+    }
+  },
+  {
+    "id": 61,
+    "title": "Задача 61",
+    "vectorPrompt": "В параллелограмме $ABCD$ $AB=3$, $AD=\\sqrt{8}$. Найдите $\\overrightarrow{AB}\\cdot\\overrightarrow{DC}$.",
+    "answer": "9",
+    "vectorGroup": 16,
+    "vectorParameters": [
+      3,
+      8
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 3,
+      "height": 2.0,
+      "skew": 2,
+      "diagonals": "none"
+    }
+  },
+  {
+    "id": 62,
+    "title": "Задача 62",
+    "vectorPrompt": "В параллелограмме $ABCD$ $AB=6$, $AD=\\sqrt{29}$. Найдите $\\overrightarrow{AB}\\cdot\\overrightarrow{DC}$.",
+    "answer": "36",
+    "vectorGroup": 16,
+    "vectorParameters": [
+      6,
+      29
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 6,
+      "height": 5.0,
+      "skew": 2,
+      "diagonals": "none"
+    }
+  },
+  {
+    "id": 63,
+    "title": "Задача 63",
+    "vectorPrompt": "В параллелограмме $ABCD$ $AB=7$, $AD=\\sqrt{40}$. Найдите $\\overrightarrow{AB}\\cdot\\overrightarrow{DC}$.",
+    "answer": "49",
+    "vectorGroup": 16,
+    "vectorParameters": [
+      7,
+      40
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 7,
+      "height": 6.0,
+      "skew": 2,
+      "diagonals": "none"
+    }
+  },
+  {
+    "id": 64,
+    "title": "Задача 64",
+    "vectorPrompt": "В параллелограмме $ABCD$ $AB=4$, $AD=\\sqrt{13}$. Найдите $\\overrightarrow{AB}\\cdot\\overrightarrow{DC}$.",
+    "answer": "16",
+    "vectorGroup": 16,
+    "vectorParameters": [
+      4,
+      13
+    ],
+    "vectorDiagram": {
+      "kind": "quadrilateral",
+      "width": 4,
+      "height": 3.0,
+      "skew": 2,
+      "diagonals": "none"
+    }
+  },
+  {
+    "id": 65,
+    "title": "Задача 65",
+    "vectorPrompt": "Даны $\\vec a=(-4;6)$ и $\\vec b=(-2;-5)$. Найдите абсциссу $\\vec a+3\\vec b$.",
+    "answer": "-10",
+    "vectorGroup": 17,
+    "vectorParameters": [
+      -4,
+      6,
+      -2,
+      -5,
+      3
+    ]
+  },
+  {
+    "id": 66,
+    "title": "Задача 66",
+    "vectorPrompt": "Даны $\\vec a=(1;-3)$ и $\\vec b=(5;-3)$. Найдите абсциссу $\\vec a+2\\vec b$.",
+    "answer": "11",
+    "vectorGroup": 17,
+    "vectorParameters": [
+      1,
+      -3,
+      5,
+      -3,
+      2
+    ]
+  },
+  {
+    "id": 67,
+    "title": "Задача 67",
+    "vectorPrompt": "Даны $\\vec a=(-1;-3)$ и $\\vec b=(-5;-4)$. Найдите абсциссу $\\vec a-2\\vec b$.",
+    "answer": "9",
+    "vectorGroup": 17,
+    "vectorParameters": [
+      -1,
+      -3,
+      -5,
+      -4,
+      -2
+    ]
+  },
+  {
+    "id": 68,
+    "title": "Задача 68",
+    "vectorPrompt": "Даны $\\vec a=(3;-4)$ и $\\vec b=(6;5)$. Найдите абсциссу $\\vec a+3\\vec b$.",
+    "answer": "21",
+    "vectorGroup": 17,
+    "vectorParameters": [
+      3,
+      -4,
+      6,
+      5,
+      3
+    ]
+  },
+  {
+    "id": 69,
+    "title": "Задача 69",
+    "vectorPrompt": "Даны $\\vec a=(1;-5)$ и $\\vec b=(0;-3)$. Найдите $\\vec a\\cdot\\vec b$.",
+    "answer": "15",
+    "vectorGroup": 18,
+    "vectorParameters": [
+      1,
+      -5,
+      0,
+      -3
+    ]
+  },
+  {
+    "id": 70,
+    "title": "Задача 70",
+    "vectorPrompt": "Даны $\\vec a=(2;4)$ и $\\vec b=(2;-6)$. Найдите $\\vec a\\cdot\\vec b$.",
+    "answer": "-20",
+    "vectorGroup": 18,
+    "vectorParameters": [
+      2,
+      4,
+      2,
+      -6
+    ]
+  },
+  {
+    "id": 71,
+    "title": "Задача 71",
+    "vectorPrompt": "Даны $\\vec a=(1;-4)$ и $\\vec b=(-4;1)$. Найдите $\\vec a\\cdot\\vec b$.",
+    "answer": "-8",
+    "vectorGroup": 18,
+    "vectorParameters": [
+      1,
+      -4,
+      -4,
+      1
+    ]
+  },
+  {
+    "id": 72,
+    "title": "Задача 72",
+    "vectorPrompt": "Даны $\\vec a=(1;-3)$ и $\\vec b=(4;-5)$. Найдите $\\vec a\\cdot\\vec b$.",
+    "answer": "19",
+    "vectorGroup": 18,
+    "vectorParameters": [
+      1,
+      -3,
+      4,
+      -5
+    ]
+  },
+  {
+    "id": 73,
+    "title": "Задача 73",
+    "vectorPrompt": "Даны $\\vec a=(-3;5)$ и $\\vec b=(3;4)$. Найдите $(2\\vec a-\\vec b)\\cdot\\vec a$.",
+    "answer": "57",
+    "vectorGroup": 19,
+    "vectorParameters": [
+      -3,
+      5,
+      3,
+      4
+    ]
+  },
+  {
+    "id": 74,
+    "title": "Задача 74",
+    "vectorPrompt": "Даны $\\vec a=(-2;2)$ и $\\vec b=(-5;-3)$. Найдите $(2\\vec a-\\vec b)\\cdot\\vec a$.",
+    "answer": "12",
+    "vectorGroup": 19,
+    "vectorParameters": [
+      -2,
+      2,
+      -5,
+      -3
+    ]
+  },
+  {
+    "id": 75,
+    "title": "Задача 75",
+    "vectorPrompt": "Даны $\\vec a=(-3;3)$ и $\\vec b=(4;1)$. Найдите $(2\\vec a-\\vec b)\\cdot\\vec a$.",
+    "answer": "45",
+    "vectorGroup": 19,
+    "vectorParameters": [
+      -3,
+      3,
+      4,
+      1
+    ]
+  },
+  {
+    "id": 76,
+    "title": "Задача 76",
+    "vectorPrompt": "Даны $\\vec a=(6;-6)$ и $\\vec b=(-4;0)$. Найдите $(2\\vec a-\\vec b)\\cdot\\vec a$.",
+    "answer": "168",
+    "vectorGroup": 19,
+    "vectorParameters": [
+      6,
+      -6,
+      -4,
+      0
+    ]
+  },
+  {
+    "id": 77,
+    "title": "Задача 77",
+    "vectorPrompt": "Даны точки $A(2;4)$ и $B(7;14)$. Найдите длину вектора $\\overrightarrow{AB}$, делённую на $\\sqrt{5}$.",
+    "answer": "5",
+    "vectorGroup": 20,
+    "vectorParameters": [
+      2,
+      4,
+      7,
+      14
+    ]
+  },
+  {
+    "id": 78,
+    "title": "Задача 78",
+    "vectorPrompt": "Даны точки $A(3;2)$ и $B(6;8)$. Найдите длину вектора $\\overrightarrow{AB}$, делённую на $\\sqrt{5}$.",
+    "answer": "3",
+    "vectorGroup": 20,
+    "vectorParameters": [
+      3,
+      2,
+      6,
+      8
+    ]
+  },
+  {
+    "id": 79,
+    "title": "Задача 79",
+    "vectorPrompt": "Даны точки $A(3;3)$ и $B(7;11)$. Найдите длину вектора $\\overrightarrow{AB}$, делённую на $\\sqrt{5}$.",
+    "answer": "4",
+    "vectorGroup": 20,
+    "vectorParameters": [
+      3,
+      3,
+      7,
+      11
+    ]
+  },
+  {
+    "id": 80,
+    "title": "Задача 80",
+    "vectorPrompt": "Даны точки $A(2;4)$ и $B(5;10)$. Найдите длину вектора $\\overrightarrow{AB}$, делённую на $\\sqrt{5}$.",
+    "answer": "3",
+    "vectorGroup": 20,
+    "vectorParameters": [
+      2,
+      4,
+      5,
+      10
+    ]
+  },
+  {
+    "id": 81,
+    "title": "Задача 81",
+    "vectorPrompt": "При каком $k$ векторы $\\vec a=(6;k)$ и $\\vec b=(6;6)$ параллельны?",
+    "answer": "6",
+    "vectorGroup": 21,
+    "vectorParameters": [
+      6,
+      6,
+      6
+    ]
+  },
+  {
+    "id": 82,
+    "title": "Задача 82",
+    "vectorPrompt": "При каком $k$ векторы $\\vec a=(5;k)$ и $\\vec b=(25;20)$ параллельны?",
+    "answer": "4",
+    "vectorGroup": 21,
+    "vectorParameters": [
+      5,
+      25,
+      20
+    ]
+  },
+  {
+    "id": 83,
+    "title": "Задача 83",
+    "vectorPrompt": "При каком $k$ векторы $\\vec a=(5;k)$ и $\\vec b=(5;4)$ параллельны?",
+    "answer": "4",
+    "vectorGroup": 21,
+    "vectorParameters": [
+      5,
+      5,
+      4
+    ]
+  },
+  {
+    "id": 84,
+    "title": "Задача 84",
+    "vectorPrompt": "При каком $k$ векторы $\\vec a=(4;k)$ и $\\vec b=(16;12)$ параллельны?",
+    "answer": "3",
+    "vectorGroup": 21,
+    "vectorParameters": [
+      4,
+      16,
+      12
+    ]
+  },
+  {
+    "id": 85,
+    "title": "Задача 85",
+    "vectorPrompt": "При каком $k$ векторы $\\vec a=(5;k)$ и $\\vec b=(5;5)$ перпендикулярны?",
+    "answer": "-5",
+    "vectorGroup": 22,
+    "vectorParameters": [
+      5,
+      5,
+      5
+    ]
+  },
+  {
+    "id": 86,
+    "title": "Задача 86",
+    "vectorPrompt": "При каком $k$ векторы $\\vec a=(4;k)$ и $\\vec b=(4;4)$ перпендикулярны?",
+    "answer": "-4",
+    "vectorGroup": 22,
+    "vectorParameters": [
+      4,
+      4,
+      4
+    ]
+  },
+  {
+    "id": 87,
+    "title": "Задача 87",
+    "vectorPrompt": "При каком $k$ векторы $\\vec a=(2;k)$ и $\\vec b=(5;2)$ перпендикулярны?",
+    "answer": "-5",
+    "vectorGroup": 22,
+    "vectorParameters": [
+      2,
+      5,
+      2
+    ]
+  },
+  {
+    "id": 88,
+    "title": "Задача 88",
+    "vectorPrompt": "При каком $k$ векторы $\\vec a=(5;k)$ и $\\vec b=(5;5)$ перпендикулярны?",
+    "answer": "-5",
+    "vectorGroup": 22,
+    "vectorParameters": [
+      5,
+      5,
+      5
+    ]
+  },
+  {
+    "id": 89,
+    "title": "Задача 89",
+    "vectorPrompt": "Дан вектор $\\vec a=(6;8)$. Найдите длину вектора $2\\vec a$.",
+    "answer": "20",
+    "vectorGroup": 23,
+    "vectorParameters": [
+      6,
+      8
+    ]
+  },
+  {
+    "id": 90,
+    "title": "Задача 90",
+    "vectorPrompt": "Дан вектор $\\vec a=(8;15)$. Найдите длину вектора $2\\vec a$.",
+    "answer": "34",
+    "vectorGroup": 23,
+    "vectorParameters": [
+      8,
+      15
+    ]
+  },
+  {
+    "id": 91,
+    "title": "Задача 91",
+    "vectorPrompt": "Дан вектор $\\vec a=(8;15)$. Найдите длину вектора $2\\vec a$.",
+    "answer": "34",
+    "vectorGroup": 23,
+    "vectorParameters": [
+      8,
+      15
+    ]
+  },
+  {
+    "id": 92,
+    "title": "Задача 92",
+    "vectorPrompt": "Дан вектор $\\vec a=(6;8)$. Найдите длину вектора $2\\vec a$.",
+    "answer": "20",
+    "vectorGroup": 23,
+    "vectorParameters": [
+      6,
+      8
+    ]
+  },
+  {
+    "id": 93,
+    "title": "Задача 93",
+    "vectorPrompt": "Векторы $\\vec a$ и $\\vec b$ перпендикулярны, $|\\vec a|=7$, $|\\vec b|=6$. Найдите квадрат длины $\\vec a+\\vec b$.",
+    "answer": "85",
+    "vectorGroup": 24,
+    "vectorParameters": [
+      7,
+      6
+    ]
+  },
+  {
+    "id": 94,
+    "title": "Задача 94",
+    "vectorPrompt": "Векторы $\\vec a$ и $\\vec b$ перпендикулярны, $|\\vec a|=2$, $|\\vec b|=8$. Найдите квадрат длины $\\vec a+\\vec b$.",
+    "answer": "68",
+    "vectorGroup": 24,
+    "vectorParameters": [
+      2,
+      8
+    ]
+  },
+  {
+    "id": 95,
+    "title": "Задача 95",
+    "vectorPrompt": "Векторы $\\vec a$ и $\\vec b$ перпендикулярны, $|\\vec a|=3$, $|\\vec b|=8$. Найдите квадрат длины $\\vec a+\\vec b$.",
+    "answer": "73",
+    "vectorGroup": 24,
+    "vectorParameters": [
+      3,
+      8
+    ]
+  },
+  {
+    "id": 96,
+    "title": "Задача 96",
+    "vectorPrompt": "Векторы $\\vec a$ и $\\vec b$ перпендикулярны, $|\\vec a|=6$, $|\\vec b|=6$. Найдите квадрат длины $\\vec a+\\vec b$.",
+    "answer": "72",
+    "vectorGroup": 24,
+    "vectorParameters": [
+      6,
+      6
+    ]
+  },
+  {
+    "id": 97,
+    "title": "Задача 97",
+    "vectorPrompt": "Длины векторов $\\vec a$ и $\\vec b$ равны 5 и 7, угол между ними $60^\\circ$. Найдите удвоенное скалярное произведение $2(\\vec a\\cdot\\vec b)$.",
+    "answer": "35",
+    "vectorGroup": 25,
+    "vectorParameters": [
+      5,
+      7,
+      60
+    ]
+  },
+  {
+    "id": 98,
+    "title": "Задача 98",
+    "vectorPrompt": "Длины векторов $\\vec a$ и $\\vec b$ равны 2 и 4, угол между ними $60^\\circ$. Найдите удвоенное скалярное произведение $2(\\vec a\\cdot\\vec b)$.",
+    "answer": "8",
+    "vectorGroup": 25,
+    "vectorParameters": [
+      2,
+      4,
+      60
+    ]
+  },
+  {
+    "id": 99,
+    "title": "Задача 99",
+    "vectorPrompt": "Длины векторов $\\vec a$ и $\\vec b$ равны 2 и 7, угол между ними $90^\\circ$. Найдите скалярное произведение.",
+    "answer": "0",
+    "vectorGroup": 25,
+    "vectorParameters": [
+      2,
+      7,
+      90
+    ]
+  },
+  {
+    "id": 100,
+    "title": "Задача 100",
+    "vectorPrompt": "Длины векторов $\\vec a$ и $\\vec b$ равны 8 и 8, угол между ними $90^\\circ$. Найдите скалярное произведение.",
+    "answer": "0",
+    "vectorGroup": 25,
+    "vectorParameters": [
+      8,
+      8,
+      90
+    ]
+  }
+]

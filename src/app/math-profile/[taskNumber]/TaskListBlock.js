@@ -60,6 +60,7 @@ import { section18Tasks } from './sectoin18';
 import { section19Tasks } from './sectoin19';
 import { egeOptimizationTasks } from './ege-optimization';
 import PlanimetryDiagram from './PlanimetryDiagram';
+import VectorDiagram from './VectorDiagram';
 
 const egeIntroMap = {
   '14-intro': egeIntro14Tasks, '17-intro': egeIntro17Tasks, '18-intro': egeIntro18Tasks, '19-intro': egeIntro19Tasks
@@ -95,6 +96,12 @@ function PlanimetryCondition({ text }) {
   return tokenizePlanimetryCondition(text).map((part, index) => part.math
     ? <InlineMath key={index} math={part.value} />
     : part.value);
+}
+
+function VectorCondition({ text }) {
+  return text.split(/\$([^$]+)\$/g).map((part, index) => index % 2
+    ? <InlineMath key={index} math={part} />
+    : part);
 }
 
 export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds }) {
@@ -270,6 +277,8 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
               <div className="transition-opacity duration-150 space-y-4">
                 
                 {/* ЗОНА ЧИСТОГО ТЕКСТА */}
+                {task.vectorPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.vectorPrompt}/></p>}
+                {task.vectorDiagram && <VectorDiagram diagram={task.vectorDiagram} taskNumber={task.id}/>}
                 {task.conditionText && (
                   <p className="text-base font-normal text-slate-800 dark:text-slate-100 leading-relaxed">
                     {task.diagramType ? <PlanimetryCondition text={task.conditionText} /> : task.conditionText}

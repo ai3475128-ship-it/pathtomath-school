@@ -1,4 +1,2 @@
-import React from 'react';
-import { InlineMath, BlockMath } from 'react-katex';
-
-export const section2Tasks = []; // Для section2.js будет section2Tasks и т.д.
+import tasks from '@/lib/vector-tasks.json';
+export const section2Tasks = tasks;
