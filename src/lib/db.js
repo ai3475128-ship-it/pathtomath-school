@@ -5,7 +5,7 @@ import { randomUUID } from "node:crypto";
 import { legacyCandidates } from "./task-modules.js";
 const connections = (globalThis.__schoolDatabases ??= new Map());
 // Bump whenever a migration changes, so hot reload also upgrades cached connections.
-const SCHEMA_REVISION = 'student-courses-v3';
+const SCHEMA_REVISION = 'cabinet-goals-v1';
 function column(db, table, name, definition) {
   if (
     !db
@@ -24,6 +24,8 @@ function migrate(db, { insideTransaction = false } = {}) {
  CREATE TABLE IF NOT EXISTS User(id TEXT PRIMARY KEY NOT NULL,email TEXT UNIQUE NOT NULL,name TEXT,password TEXT NOT NULL,createdAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,role TEXT NOT NULL DEFAULT 'STUDENT');
  CREATE TABLE IF NOT EXISTS StudentCourse(userId TEXT NOT NULL REFERENCES User(id) ON DELETE CASCADE,courseId TEXT NOT NULL,PRIMARY KEY(userId,courseId));
  CREATE TABLE IF NOT EXISTS TeacherSubject(userId TEXT NOT NULL REFERENCES User(id) ON DELETE CASCADE,subject TEXT NOT NULL,PRIMARY KEY(userId,subject));
+ CREATE TABLE IF NOT EXISTS StudyGoal(id TEXT PRIMARY KEY NOT NULL,userId TEXT NOT NULL REFERENCES User(id) ON DELETE CASCADE,courseId TEXT NOT NULL,title TEXT NOT NULL,done INTEGER NOT NULL DEFAULT 0 CHECK(done IN (0,1)),createdAt TEXT NOT NULL);
+ CREATE INDEX IF NOT EXISTS StudyGoal_user_course ON StudyGoal(userId,courseId);
  CREATE TABLE IF NOT EXISTS Notes(id TEXT PRIMARY KEY NOT NULL,userId TEXT NOT NULL,dateText TEXT NOT NULL,content TEXT NOT NULL,UNIQUE(userId,dateText));
  CREATE TABLE IF NOT EXISTS ErrorReports(id TEXT PRIMARY KEY NOT NULL,userId TEXT NOT NULL,sectionNumber INTEGER NOT NULL,taskId INTEGER NOT NULL,description TEXT NOT NULL,status TEXT DEFAULT 'OPEN',createdAt TEXT NOT NULL,module TEXT NOT NULL DEFAULT '');
  CREATE TABLE IF NOT EXISTS ActivityLog(id TEXT PRIMARY KEY NOT NULL,userId TEXT NOT NULL,email TEXT NOT NULL,actionType TEXT NOT NULL,timestamp TEXT NOT NULL);

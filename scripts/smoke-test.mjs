@@ -725,6 +725,32 @@ try {
   assert.equal(await db.get("SELECT id FROM Schedule WHERE title='Forbidden maths lesson'"), undefined);
   check('separate course cabinets, videos, assignments and schedules');
 
+  for (const [cookie, required, forbidden] of [[sessions.mathOnly, 'Мои цели', 'Ученики школы'], [sessions.physicsTeacher, 'Аналитика обучения', 'Ученики школы'], [sessions.admin, 'Ученики школы', 'Мои цели']]) {
+    const page = await request('/cabinet', { cookie });
+    const nav = page.text.match(/<nav[^>]*aria-label="Личный кабинет"[\s\S]*?<\/nav>/)?.[0];
+    assert.ok(nav && nav.includes(required) && !nav.includes(forbidden));
+    for (const item of ['Видеоуроки', 'Домашние задания', 'Олимпиадный календарь']) assert.ok(!nav.includes(item));
+  }
+  assert.equal((await request('/cabinet/staff', { cookie: sessions.admin })).status, 200);
+  assert.equal((await request('/cabinet/staff', { cookie: sessions.physicsTeacher })).status, 404);
+  assert.equal((await request('/cabinet/analytics', { cookie: sessions.mathOnly })).status, 404);
+  const courseStudents = await request('/cabinet/course-students?course=physics', { cookie: sessions.physicsTeacher });
+  assert.ok(courseStudents.text.includes('Test physicsOnly') && !courseStudents.text.includes('Test mathOnly'));
+  const goalsPage = await request('/cabinet/goals?course=ege-math', { cookie: sessions.mathOnly });
+  await invoke('/cabinet/goals?course=ege-math', action(goalsPage.text, 'title'), { title: 'Разобрать геометрию', courseId: 'ege-math' }, sessions.mathOnly);
+  const goal = await db.get("SELECT id,done FROM StudyGoal WHERE userId='mathOnly' AND title='Разобрать геометрию'");
+  assert.ok(goal);
+  const goalList = await request('/cabinet/goals?course=ege-math', { cookie: sessions.mathOnly });
+  await invoke('/cabinet/goals?course=ege-math', action(goalList.text, 'goalId'), { goalId: goal.id }, sessions.physicsOnly);
+  assert.equal((await db.get('SELECT done FROM StudyGoal WHERE id=?', [goal.id])).done, 0);
+  await invoke('/cabinet/goals?course=ege-math', action(goalList.text, 'goalId'), { goalId: goal.id }, sessions.mathOnly);
+  assert.equal((await db.get('SELECT done FROM StudyGoal WHERE id=?', [goal.id])).done, 1);
+  const planPage = await request('/cabinet/plans?date=2026-11-11', { cookie: sessions.mathOnly });
+  await invoke('/cabinet/plans?date=2026-11-11', action(planPage.text, 'content'), { date: '2026-11-11', content: 'Личный учебный план' }, sessions.mathOnly);
+  assert.equal((await db.get("SELECT content FROM Notes WHERE userId='mathOnly' AND dateText='2026-11-11'")).content, 'Личный учебный план');
+  assert.ok(!(await request('/cabinet/plans?date=2026-11-11', { cookie: sessions.physicsOnly })).text.includes('Личный учебный план'));
+  check('role-specific workspaces and private goals and plans');
+
 
 
   // Existing video section numbers belong to topics, not the new exam numbering.
