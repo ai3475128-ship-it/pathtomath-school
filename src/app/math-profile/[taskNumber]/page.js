@@ -22,6 +22,11 @@ export default async function TaskPage({ params }) {
     9: 'Тригонометрия', 10: 'Логарифмы и показательные функции', 11: 'Параметры', 12: 'Функции',
     13: 'Планиметрия', 14: 'Стереометрия'
   };
+  const olympiadIntroTitles = {
+    1: 'Логика', 2: 'Теория чисел', 3: 'Тождественные преобразования',
+    4: 'Комбинаторика (Теория Вероятности)', 5: 'Текстовые задачи',
+    6: 'Классическая алгебра', 7: 'Функции',
+  };
 
   // 1️⃣ ВЫЧИСЛЯЕМ ЗАГОВОР СТРАНИЦЫ (pageTitle)
   let pageTitle = `Задание №${taskNumber}`;
@@ -34,7 +39,7 @@ export default async function TaskPage({ params }) {
     pageTitle = `Олимпиады: ${olympiadTitles[num] || 'Задачи'}`;
   } else if (taskNumber && taskNumber.includes('olympiad-') && taskNumber.includes('-intro')) {
     const num = parseInt(taskNumber.replace('olympiad-', ''), 10);
-    pageTitle = `Олимпиады (Подготовительные): ${olympiadTitles[num] || 'Задачи'}`;
+    pageTitle = `Олимпиады (Подготовительные): ${olympiadIntroTitles[num] || 'Задачи'}`;
   } else {
     const taskNumberInt = parseInt(taskNumber, 10);
     pageTitle = `Задание №${taskNumber}: ${egeSection(taskNumberInt)?.title || 'Разбор темы'}`;
@@ -50,7 +55,7 @@ export default async function TaskPage({ params }) {
   } else if (taskNumber && taskNumber.includes('olympiad-') && taskNumber.includes('-intro')) {
     // Подготовительные олимпиады: "Комбинаторика (ТерВер): подготовительные"
     const num = parseInt(taskNumber.replace('olympiad-', ''), 10);
-    const topicName = olympiadTitles[num] || 'Задачи';
+    const topicName = olympiadIntroTitles[num] || 'Задачи';
     breadcrumbLabel = `${topicName}: подготовительные`;
   } else if (taskNumber && taskNumber.includes('olympiad-') && taskNumber.includes('-main')) {
     // Основной олимпиадный банк: "Комбинаторика (ТерВер): олимпиады"
