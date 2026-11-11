@@ -653,6 +653,12 @@ try {
   assert.equal((mathVideos.text.match(/viewBox="0 0 200 150"/g) || []).length, 20);
   assert.equal((olympiadVideos.text.match(/viewBox="(?:0 0 200 120|20 8 160 96)"/g) || []).length, 14);
   for (const item of olympiads) assert.ok(olympiadCompetitionVideos.text.includes(`href="/videos/olympiads/competition/${item.id}"`), item.id);
+  for (const item of olympiads) {
+    assert.ok(!olympiadCompetitionVideos.text.includes(`href="/olympiads/tasks/${item.id}"`), item.id);
+    const videoPage = await request(`/videos/olympiads/competition/${item.id}`, { cookie: sessions.a });
+    assert.equal(videoPage.status, 200, item.id);
+    assert.ok(videoPage.text.includes(item.name), item.id);
+  }
   check('animations cover physics and all video catalog sections');
 
 

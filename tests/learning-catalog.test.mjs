@@ -63,3 +63,41 @@ test('each physics card renders its own illustration for the complete list', asy
   assert.ok(illustrations.every((markup) => markup.includes('<svg') && markup.includes('<path')));
   assert.equal(new Set(illustrations).size, 26);
 });
+
+test('hot reload migrates the cached old connection without losing existing data', (t) => {
+  const dir = mkdtempSync(path.join(os.tmpdir(), 'school-hot-reload-'));
+  const file = path.join(dir, 'database.db');
+  const raw = new DatabaseSync(file);
+  raw.exec(`CREATE TABLE User(id TEXT PRIMARY KEY,email TEXT UNIQUE,name TEXT,password TEXT,createdAt TEXT,role TEXT);
+    INSERT INTO User VALUES('admin','admin@test','Admin','x','2026','ADMIN');
+    CREATE TABLE Video(id TEXT PRIMARY KEY,title TEXT,description TEXT,url TEXT,isPremium INTEGER,sectionNum INTEGER,createdAt TEXT);
+    INSERT INTO Video VALUES('v','Saved lesson',NULL,'https://kinescope.io/embed/a',1,1,'2026');`);
+  let migrations = 0;
+  const oldConnection = {
+    transaction(work) {
+      migrations++;
+      raw.exec('BEGIN IMMEDIATE');
+      try { const result = work(raw); raw.exec('COMMIT'); return result; }
+      catch (error) { raw.exec('ROLLBACK'); throw error; }
+    },
+  };
+  globalThis.__schoolDatabases.set(file, oldConnection);
+  t.after(() => { globalThis.__schoolDatabases.delete(file); raw.close(); rmSync(dir, { recursive: true, force: true }); });
+  assert.equal(openDatabase(file), oldConnection);
+  assert.equal(raw.prepare('SELECT subject FROM Video WHERE id=?').get('v').subject, 'ege-math');
+  assert.equal(raw.prepare('SELECT subject FROM TeacherSubject WHERE userId=?').get('admin').subject, 'ege-math');
+  assert.equal(raw.prepare('SELECT title FROM Video WHERE id=?').get('v').title, 'Saved lesson');
+  assert.equal(openDatabase(file), oldConnection);
+  assert.equal(migrations, 1);
+});
+
+test('physics task 26 block rests on the slope without crossing it', async () => {
+  const { readFileSync } = await import('node:fs');
+  const source = readFileSync('src/app/components/physics-cards/PhysicsPreview.js', 'utf8');
+  const section = source.split('  26: {')[1].split('\n};')[0];
+  assert.match(section, /M91\.12 74\.85 116\.88 63\.89 107\.10 40\.89 81\.34 51\.85Z/);
+  // The block bottom sits on the line from (32,100) to (166,43), while the other vertices stay above it.
+  const signedDistance = ([x, y]) => y - (100 - (x - 32) * 57 / 134);
+  for (const point of [[91.12, 74.85], [116.88, 63.89]]) assert.ok(Math.abs(signedDistance(point)) < 0.02);
+  for (const point of [[107.10, 40.89], [81.34, 51.85]]) assert.ok(signedDistance(point) < -20);
+});

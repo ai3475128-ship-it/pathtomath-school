@@ -9,7 +9,7 @@ export default function CompetitionCard({ olympiad, href }) {
   const logo = userOlympiadLogos[olympiad.id] || olympiadLogos[olympiad.id];
   const hasLogo = custom || Boolean(logo);
 
-  return <Link href={href || `/olympiads/tasks/${olympiad.id}`}
+  return <Link href={href}
     className={`group flex min-h-[150px] flex-col rounded-[24px] border border-blue-100/60 bg-white/80 p-6 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-sky-500 hover:bg-sky-500 hover:shadow-xl dark:border-purple-500/20 dark:bg-purple-950/10 dark:hover:border-sky-500 dark:hover:bg-sky-500 ${styles.card} ${hasLogo ? styles.hasLogo : ''}`}>
     <div className={styles.competitionLabel}>
       <span className="text-xs font-black uppercase tracking-wide text-sky-600 group-hover:text-white dark:text-purple-300 dark:group-hover:text-white">{olympiad.level} уровень</span>
