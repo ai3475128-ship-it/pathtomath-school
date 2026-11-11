@@ -3,6 +3,9 @@ import assert from 'node:assert/strict';
 import tasks from '../src/lib/planimetry-tasks.json' with { type: 'json' };
 import catalog from '../src/lib/task-catalog.json' with { type: 'json' };
 import { planimetryGeometry } from '../src/lib/planimetry-geometry.js';
+import { layoutPlanimetry, planimetryLabelCollisions } from '../src/lib/planimetry-layout.js';
+import { tokenizePlanimetryCondition } from '../src/lib/planimetry-condition.js';
+import katex from 'katex';
 
 const near=(a,b,message)=>assert.ok(Math.abs(a-b)<1e-7,`${message}: ${a} != ${b}`);
 const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
@@ -49,5 +52,24 @@ test('diagrams respect the points, tangencies and angles stated in each problem'
     if([20,21].includes(k)){near(angle(p.C,p.A,p.O),90,`tangency ${t.id}`);near(lineDistance(p.B,p.C,p.O),0,`B on CO ${t.id}`);near(k===20?angle(p.A,p.O,p.B):angle(p.A,p.C,p.O),n[0],`given angle ${t.id}`);}
     if([22,23,24].includes(k))for(const [a,b] of g.segments)near(lineDistance([0,0],p[a],p[b]),1,`incircle ${t.id}`);
     if(k===25){point(p.D,mid(p.A,p.B),`D ${t.id}`);point(p.E,mid(p.A,p.C),`E ${t.id}`);}
+  }
+});
+
+test('all 200 diagrams keep point names clear of strokes and each other inside the viewBox', () => {
+  for (const task of tasks) {
+    const layout = layoutPlanimetry(planimetryGeometry(task.diagramType, task.diagramValues));
+    assert.deepEqual(planimetryLabelCollisions(layout), [], `Task ${task.id}`);
+    for (const { box } of layout.labels) {
+      assert.ok(box.left >= 0 && box.top >= 0 && box.right <= layout.width && box.bottom <= layout.height, `Task ${task.id}: label outside viewBox`);
+    }
+  }
+});
+
+test('mathematical notation in every condition and diagram is valid KaTeX', () => {
+  for (const task of tasks) {
+    const parts = tokenizePlanimetryCondition(task.conditionText);
+    assert.equal(parts.map(({math,value}) => math ? value.replace('^{\\circ}', '°') : value).join(''), task.conditionText);
+    for (const part of parts.filter(({math}) => math)) assert.doesNotThrow(() => katex.renderToString(part.value, { throwOnError: true }), `Task ${task.id}: ${part.value}`);
+    for (const label of layoutPlanimetry(planimetryGeometry(task.diagramType, task.diagramValues)).labels) assert.doesNotThrow(() => katex.renderToString(label.text, { throwOnError: true }), `Task ${task.id}: ${label.text}`);
   }
 });
