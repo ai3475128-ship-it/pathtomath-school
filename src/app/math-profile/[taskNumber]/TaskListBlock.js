@@ -280,7 +280,7 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
 
                 {/* ЗОНА МАТЕМАТИКИ */}
                 {task.mathA && (
-                  <div className={`py-2 w-full ${storageModule === 'ege-optimization' ? 'overflow-x-auto' : 'flex justify-center'}`}>
+                  <div className="w-full overflow-x-auto py-2">
                     {isCustomModule && !task.conditionText && !task.mathA.includes('\\') && !task.mathA.includes('^') ? (
                       <p className="text-base font-normal text-slate-800 dark:text-slate-100 leading-relaxed text-left w-full">
                         {task.mathA}
@@ -307,7 +307,7 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
                       {num === 14 && 'б) Найдите:'}
                       {num === 17 && 'б) Найдите:'}
                     </p>
-                    <div className="transition-opacity duration-150">
+                    <div className="overflow-x-auto transition-opacity duration-150">
                       <BlockMath math={task.mathB} />
                     </div>
                   </>
