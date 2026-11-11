@@ -2,12 +2,13 @@ import { EGE_SECTIONS } from '@/lib/ege-sections';
 import { PHYSICS_SECTIONS, OLYMPIAD_TOPICS } from '@/lib/learning-catalog';
 import { olympiads } from '@/lib/olympiad-calendar';
 
-export default function VideoPublishForm({ user }) {
+export default function VideoPublishForm({ user, stayInCabinet = false }) {
   const canPublish = (id) => user.role === 'ADMIN' || user.subjects.includes(id);
   const input = 'w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm dark:border-purple-900 dark:bg-[#03000a]';
   return <div className="max-w-xl space-y-4 rounded-3xl border border-slate-100 bg-white/80 p-6 dark:border-purple-500/20 dark:bg-[#140e24]/40">
     <h3 className="text-lg font-black text-slate-800 dark:text-white">Добавить видеоурок</h3>
     <form action="/api/videos/create" method="POST" className="space-y-4">
+      {stayInCabinet && <input type="hidden" name="returnTo" value="cabinet" />}
       <label className="block text-sm font-bold">Название<input className={input} name="title" required /></label>
       <label className="block text-sm font-bold">Ссылка для встраивания VK Видео или Kinescope<input className={input} name="url" required /></label>
       <label className="block text-sm font-bold">Направление и раздел

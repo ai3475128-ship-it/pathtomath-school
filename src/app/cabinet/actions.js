@@ -45,3 +45,20 @@ export async function createScheduleEvent(form) {
   await db.run('INSERT INTO Schedule(id,time,title,type,dateText,createdAt,courseId) VALUES(?,?,?,?,?,?,?)', [createId(), time, title, type, date, new Date().toISOString(), course]);
   revalidatePath('/cabinet'); revalidatePath('/cabinet/schedule'); revalidatePath('/teacher-dashboard');
 }
+
+export async function updateStudentCourses(form) {
+  const { requireAdmin } = await import('@/lib/auth');
+  const { setStudentCourses } = await import('@/lib/student-access');
+  const admin = await requireAdmin(), id = form.get('studentId'), courses = form.getAll('courses').map(String), db = await connectDB();
+  if (!setStudentCourses(db, admin, id, courses)) throw Error('Не удалось изменить курсы');
+  revalidatePath('/cabinet/students'); revalidatePath('/cabinet/access'); revalidatePath('/cabinet/course-students'); revalidatePath('/admin-panel'); revalidatePath(`/supervisor/students/${id}`);
+}
+export async function changeStudentBlock(form) {
+  const { requireAdmin } = await import('@/lib/auth');
+  const { setStudentBlocked } = await import('@/lib/student-access');
+  const admin = await requireAdmin(), id = form.get('studentId'), blocked = form.get('blocked');
+  if (typeof id !== 'string' || !['0','1'].includes(blocked)) throw Error('Некорректный запрос');
+  const db = await connectDB();
+  if (!setStudentBlocked(db, admin, id, blocked === '1')) throw Error('Ученик не найден');
+  revalidatePath('/cabinet/students'); revalidatePath('/cabinet/access'); revalidatePath('/cabinet/course-students'); revalidatePath('/admin-panel'); revalidatePath(`/supervisor/students/${id}`);
+}
