@@ -1,0 +1,1402 @@
+[
+  {
+    "id": 1,
+    "title": "Задача 1",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, A_{1}, B_{1}, C_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 2, $BC$ = 3, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism1.svg",
+    "answer": "18"
+  },
+  {
+    "id": 2,
+    "title": "Задача 2",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 2, $BC$ = 3, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism2.svg",
+    "answer": "18"
+  },
+  {
+    "id": 3,
+    "title": "Задача 3",
+    "stereometryPrompt": "Объём куба равен 32. Найдите объём треугольной призмы, отсекаемой от куба плоскостью, проходящей через середины двух рёбер, выходящих из одной вершины, и параллельной третьему ребру, выходящему из этой же вершины.",
+    "stereometryDiagram": "/stereometry-bank/box-cut.svg",
+    "answer": "4"
+  },
+  {
+    "id": 4,
+    "title": "Задача 4",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Объём отсечённой треугольной призмы равен 5. Найдите объём исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "20"
+  },
+  {
+    "id": 5,
+    "title": "Задача 5",
+    "stereometryPrompt": "Площадь боковой поверхности треугольной призмы равна 16. Через среднюю линию её основания проведена плоскость, параллельная боковому ребру. Найдите площадь боковой поверхности отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "8"
+  },
+  {
+    "id": 6,
+    "title": "Задача 6",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Площадь боковой поверхности отсечённой треугольной призмы равна 6. Найдите площадь боковой поверхности исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "12"
+  },
+  {
+    "id": 7,
+    "title": "Задача 7",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы объёмом 28 проведена плоскость, параллельная боковому ребру. Найдите объём отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "7"
+  },
+  {
+    "id": 8,
+    "title": "Задача 8",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 3, боковое ребро равно 6. Найдите объём многогранника с вершинами $A, B, C, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-tetra.svg",
+    "answer": "6"
+  },
+  {
+    "id": 9,
+    "title": "Задача 9",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 3, боковое ребро равно 6. Найдите объём многогранника с вершинами $B, C, A_{1}, B_{1}, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-five.svg",
+    "answer": "12"
+  },
+  {
+    "id": 10,
+    "title": "Задача 10",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 2, $BC$ = 3, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrA.svg",
+    "answer": "12"
+  },
+  {
+    "id": 11,
+    "title": "Задача 11",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 2, $BC$ = 3, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetra.svg",
+    "answer": "6"
+  },
+  {
+    "id": 12,
+    "title": "Задача 12",
+    "stereometryPrompt": "Первая цилиндрическая кружка вдвое выше второй, а радиус второй в полтора раза больше радиуса первой. Найдите отношение объёма второй кружки к объёму первой.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl-0.svg",
+    "answer": "1,125"
+  },
+  {
+    "id": 13,
+    "title": "Задача 13",
+    "stereometryPrompt": "Объём первого цилиндра равен 12. Высота второго цилиндра в 3 раза меньше, а радиус его основания в 2 раза больше, чем у первого. Найдите объём второго цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl3.svg",
+    "answer": "16"
+  },
+  {
+    "id": 14,
+    "title": "Задача 14",
+    "stereometryPrompt": "Во сколько раз уменьшится объём конуса, если его высоту уменьшить в 3 раз, а радиус основания оставить прежним?",
+    "stereometryDiagram": "/stereometry-bank/cone.svg",
+    "answer": "3"
+  },
+  {
+    "id": 15,
+    "title": "Задача 15",
+    "stereometryPrompt": "В сосуде в форме конуса уровень жидкости достигает $\\frac{1}{2}$ высоты сосуда, считая от вершины. Объём жидкости равен 2 мл. Сколько миллилитров нужно долить, чтобы полностью наполнить сосуд?",
+    "stereometryDiagram": "/stereometry-bank/cone-liquid-0.svg",
+    "answer": "14"
+  },
+  {
+    "id": 16,
+    "title": "Задача 16",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Высота цилиндра равна радиусу основания. Площадь боковой поверхности цилиндра равна 2$\\sqrt{2}$. Найдите площадь боковой поверхности конуса.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "2"
+  },
+  {
+    "id": 17,
+    "title": "Задача 17",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Высота цилиндра равна радиусу основания. Площадь боковой поверхности конуса равна 1$\\sqrt{2}$. Найдите площадь боковой поверхности цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "2"
+  },
+  {
+    "id": 18,
+    "title": "Задача 18",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Объём цилиндра равен 15. Найдите объём конуса.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "5"
+  },
+  {
+    "id": 19,
+    "title": "Задача 19",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Объём конуса равен 4. Найдите объём цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "12"
+  },
+  {
+    "id": 20,
+    "title": "Задача 20",
+    "stereometryPrompt": "Цилиндр вписан в правильную четырёхугольную призму. Радиус основания и высота цилиндра равны 5. Найдите объём призмы.",
+    "stereometryDiagram": "/stereometry-bank/box-cylinder.svg",
+    "answer": "500"
+  },
+  {
+    "id": 21,
+    "title": "Задача 21",
+    "stereometryPrompt": "Шар объёмом 8 вписан в цилиндр. Найдите объём цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "12"
+  },
+  {
+    "id": 22,
+    "title": "Задача 22",
+    "stereometryPrompt": "Цилиндр объёмом 12 описан около шара. Найдите объём шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "8"
+  },
+  {
+    "id": 23,
+    "title": "Задача 23",
+    "stereometryPrompt": "Шар вписан в цилиндр. Площадь полной поверхности цилиндра равна 30. Найдите площадь поверхности шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "20"
+  },
+  {
+    "id": 24,
+    "title": "Задача 24",
+    "stereometryPrompt": "Конус вписан в шар. Радиус основания конуса равен радиусу шара. Объём шара равен 28. Найдите объём конуса.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "7"
+  },
+  {
+    "id": 25,
+    "title": "Задача 25",
+    "stereometryPrompt": "Конус вписан в шар. Радиус основания конуса равен радиусу шара. Объём конуса равен 12. Найдите объём шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "48"
+  },
+  {
+    "id": 26,
+    "title": "Задача 26",
+    "stereometryPrompt": "Около конуса описана сфера: она содержит окружность основания и вершину конуса. Центр сферы совпадает с центром основания конуса. Образующая конуса равна 3$\\sqrt{2}$. Найдите радиус сферы.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "3"
+  },
+  {
+    "id": 27,
+    "title": "Задача 27",
+    "stereometryPrompt": "Около конуса описана сфера: она содержит окружность основания и вершину конуса. Центр сферы совпадает с центром основания конуса. Радиус сферы равен 2$\\sqrt{2}$. Найдите образующую конуса.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "4"
+  },
+  {
+    "id": 28,
+    "title": "Задача 28",
+    "stereometryPrompt": "Площадь сечения шара плоскостью, проходящей через его центр, равна 9. Найдите площадь поверхности шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-section.svg",
+    "answer": "36"
+  },
+  {
+    "id": 29,
+    "title": "Задача 29",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 2, $BC$ = 5, $BB_{1}$ = 3.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrB.svg",
+    "answer": "10"
+  },
+  {
+    "id": 30,
+    "title": "Задача 30",
+    "stereometryPrompt": "Объём треугольной пирамиды равен 24. Плоскостью, проходящей через вершину пирамиды и среднюю линию её основания, отсечена треугольная пирамида. Найдите её объём.",
+    "stereometryDiagram": "/stereometry-bank/pyramid-cut.svg",
+    "answer": "6"
+  },
+  {
+    "id": 31,
+    "title": "Задача 31",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 2, $BC$ = 3, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetraD.svg",
+    "answer": "6"
+  },
+  {
+    "id": 32,
+    "title": "Задача 32",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, A_{1}, B_{1}, C_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 3, $BC$ = 4, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism1.svg",
+    "answer": "36"
+  },
+  {
+    "id": 33,
+    "title": "Задача 33",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 3, $BC$ = 4, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism2.svg",
+    "answer": "36"
+  },
+  {
+    "id": 34,
+    "title": "Задача 34",
+    "stereometryPrompt": "Объём куба равен 16. Найдите объём треугольной призмы, отсекаемой от куба плоскостью, проходящей через середины двух рёбер, выходящих из одной вершины, и параллельной третьему ребру, выходящему из этой же вершины.",
+    "stereometryDiagram": "/stereometry-bank/box-cut.svg",
+    "answer": "2"
+  },
+  {
+    "id": 35,
+    "title": "Задача 35",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Объём отсечённой треугольной призмы равен 10. Найдите объём исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "40"
+  },
+  {
+    "id": 36,
+    "title": "Задача 36",
+    "stereometryPrompt": "Площадь боковой поверхности треугольной призмы равна 32. Через среднюю линию её основания проведена плоскость, параллельная боковому ребру. Найдите площадь боковой поверхности отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "16"
+  },
+  {
+    "id": 37,
+    "title": "Задача 37",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Площадь боковой поверхности отсечённой треугольной призмы равна 12. Найдите площадь боковой поверхности исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "24"
+  },
+  {
+    "id": 38,
+    "title": "Задача 38",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы объёмом 56 проведена плоскость, параллельная боковому ребру. Найдите объём отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "14"
+  },
+  {
+    "id": 39,
+    "title": "Задача 39",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 6, боковое ребро равно 6. Найдите объём многогранника с вершинами $A, B, C, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-tetra.svg",
+    "answer": "12"
+  },
+  {
+    "id": 40,
+    "title": "Задача 40",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 6, боковое ребро равно 6. Найдите объём многогранника с вершинами $B, C, A_{1}, B_{1}, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-five.svg",
+    "answer": "24"
+  },
+  {
+    "id": 41,
+    "title": "Задача 41",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 3, $BC$ = 4, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrA.svg",
+    "answer": "24"
+  },
+  {
+    "id": 42,
+    "title": "Задача 42",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 3, $BC$ = 4, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetra.svg",
+    "answer": "12"
+  },
+  {
+    "id": 43,
+    "title": "Задача 43",
+    "stereometryPrompt": "Первая цилиндрическая кружка в 2 раза выше второй, а радиус второй в 3 раза больше радиуса первой. Найдите отношение объёма второй кружки к объёму первой.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl-1.svg",
+    "answer": "4,5"
+  },
+  {
+    "id": 44,
+    "title": "Задача 44",
+    "stereometryPrompt": "Объём первого цилиндра равен 24. Высота второго цилиндра в 3 раза меньше, а радиус его основания в 2 раза больше, чем у первого. Найдите объём второго цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl3.svg",
+    "answer": "32"
+  },
+  {
+    "id": 45,
+    "title": "Задача 45",
+    "stereometryPrompt": "Во сколько раз уменьшится объём конуса, если его высоту уменьшить в 4 раз, а радиус основания оставить прежним?",
+    "stereometryDiagram": "/stereometry-bank/cone.svg",
+    "answer": "4"
+  },
+  {
+    "id": 46,
+    "title": "Задача 46",
+    "stereometryPrompt": "В сосуде в форме конуса уровень жидкости достигает $\\frac{1}{3}$ высоты сосуда, считая от вершины. Объём жидкости равен 4 мл. Сколько миллилитров нужно долить, чтобы полностью наполнить сосуд?",
+    "stereometryDiagram": "/stereometry-bank/cone-liquid-1.svg",
+    "answer": "104"
+  },
+  {
+    "id": 47,
+    "title": "Задача 47",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Высота цилиндра равна радиусу основания. Площадь боковой поверхности цилиндра равна 4$\\sqrt{2}$. Найдите площадь боковой поверхности конуса.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "4"
+  },
+  {
+    "id": 48,
+    "title": "Задача 48",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Высота цилиндра равна радиусу основания. Площадь боковой поверхности конуса равна 2$\\sqrt{2}$. Найдите площадь боковой поверхности цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "4"
+  },
+  {
+    "id": 49,
+    "title": "Задача 49",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Объём цилиндра равен 30. Найдите объём конуса.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "10"
+  },
+  {
+    "id": 50,
+    "title": "Задача 50",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Объём конуса равен 8. Найдите объём цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "24"
+  },
+  {
+    "id": 51,
+    "title": "Задача 51",
+    "stereometryPrompt": "Цилиндр вписан в правильную четырёхугольную призму. Радиус основания цилиндра равен 3, его высота равна 6. Найдите объём призмы.",
+    "stereometryDiagram": "/stereometry-bank/box-cylinder.svg",
+    "answer": "216"
+  },
+  {
+    "id": 52,
+    "title": "Задача 52",
+    "stereometryPrompt": "Шар объёмом 16 вписан в цилиндр. Найдите объём цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "24"
+  },
+  {
+    "id": 53,
+    "title": "Задача 53",
+    "stereometryPrompt": "Цилиндр объёмом 24 описан около шара. Найдите объём шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "16"
+  },
+  {
+    "id": 54,
+    "title": "Задача 54",
+    "stereometryPrompt": "Шар вписан в цилиндр. Площадь полной поверхности цилиндра равна 36. Найдите площадь поверхности шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "24"
+  },
+  {
+    "id": 55,
+    "title": "Задача 55",
+    "stereometryPrompt": "Конус вписан в шар. Радиус основания конуса равен радиусу шара. Объём шара равен 56. Найдите объём конуса.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "14"
+  },
+  {
+    "id": 56,
+    "title": "Задача 56",
+    "stereometryPrompt": "Конус вписан в шар. Радиус основания конуса равен радиусу шара. Объём конуса равен 6. Найдите объём шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "24"
+  },
+  {
+    "id": 57,
+    "title": "Задача 57",
+    "stereometryPrompt": "Около конуса описана сфера: она содержит окружность основания и вершину конуса. Центр сферы совпадает с центром основания конуса. Образующая конуса равна 6$\\sqrt{2}$. Найдите радиус сферы.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "6"
+  },
+  {
+    "id": 58,
+    "title": "Задача 58",
+    "stereometryPrompt": "Около конуса описана сфера: она содержит окружность основания и вершину конуса. Центр сферы совпадает с центром основания конуса. Радиус сферы равен 4$\\sqrt{2}$. Найдите образующую конуса.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "8"
+  },
+  {
+    "id": 59,
+    "title": "Задача 59",
+    "stereometryPrompt": "Площадь сечения шара плоскостью, проходящей через его центр, равна 18. Найдите площадь поверхности шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-section.svg",
+    "answer": "72"
+  },
+  {
+    "id": 60,
+    "title": "Задача 60",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 3, $BC$ = 4, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrB.svg",
+    "answer": "24"
+  },
+  {
+    "id": 61,
+    "title": "Задача 61",
+    "stereometryPrompt": "Объём треугольной пирамиды равен 48. Плоскостью, проходящей через вершину пирамиды и среднюю линию её основания, отсечена треугольная пирамида. Найдите её объём.",
+    "stereometryDiagram": "/stereometry-bank/pyramid-cut.svg",
+    "answer": "12"
+  },
+  {
+    "id": 62,
+    "title": "Задача 62",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 3, $BC$ = 4, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetraD.svg",
+    "answer": "12"
+  },
+  {
+    "id": 63,
+    "title": "Задача 63",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, A_{1}, B_{1}, C_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 4, $BC$ = 5, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism1.svg",
+    "answer": "60"
+  },
+  {
+    "id": 64,
+    "title": "Задача 64",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 4, $BC$ = 5, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism2.svg",
+    "answer": "60"
+  },
+  {
+    "id": 65,
+    "title": "Задача 65",
+    "stereometryPrompt": "Объём куба равен 24. Найдите объём треугольной призмы, отсекаемой от куба плоскостью, проходящей через середины двух рёбер, выходящих из одной вершины, и параллельной третьему ребру, выходящему из этой же вершины.",
+    "stereometryDiagram": "/stereometry-bank/box-cut.svg",
+    "answer": "3"
+  },
+  {
+    "id": 66,
+    "title": "Задача 66",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Объём отсечённой треугольной призмы равен 15. Найдите объём исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "60"
+  },
+  {
+    "id": 67,
+    "title": "Задача 67",
+    "stereometryPrompt": "Площадь боковой поверхности треугольной призмы равна 48. Через среднюю линию её основания проведена плоскость, параллельная боковому ребру. Найдите площадь боковой поверхности отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "24"
+  },
+  {
+    "id": 68,
+    "title": "Задача 68",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Площадь боковой поверхности отсечённой треугольной призмы равна 18. Найдите площадь боковой поверхности исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "36"
+  },
+  {
+    "id": 69,
+    "title": "Задача 69",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы объёмом 84 проведена плоскость, параллельная боковому ребру. Найдите объём отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "21"
+  },
+  {
+    "id": 70,
+    "title": "Задача 70",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 9, боковое ребро равно 6. Найдите объём многогранника с вершинами $A, B, C, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-tetra.svg",
+    "answer": "18"
+  },
+  {
+    "id": 71,
+    "title": "Задача 71",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 9, боковое ребро равно 6. Найдите объём многогранника с вершинами $B, C, A_{1}, B_{1}, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-five.svg",
+    "answer": "36"
+  },
+  {
+    "id": 72,
+    "title": "Задача 72",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 4, $BC$ = 5, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrA.svg",
+    "answer": "40"
+  },
+  {
+    "id": 73,
+    "title": "Задача 73",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 4, $BC$ = 5, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetra.svg",
+    "answer": "20"
+  },
+  {
+    "id": 74,
+    "title": "Задача 74",
+    "stereometryPrompt": "Первая цилиндрическая кружка в 2 раза выше второй, а радиус второй в 4 раза больше радиуса первой. Найдите отношение объёма второй кружки к объёму первой.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl-2.svg",
+    "answer": "8"
+  },
+  {
+    "id": 75,
+    "title": "Задача 75",
+    "stereometryPrompt": "Объём первого цилиндра равен 36. Высота второго цилиндра в 3 раза меньше, а радиус его основания в 2 раза больше, чем у первого. Найдите объём второго цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl3.svg",
+    "answer": "48"
+  },
+  {
+    "id": 76,
+    "title": "Задача 76",
+    "stereometryPrompt": "Во сколько раз уменьшится объём конуса, если его высоту уменьшить в 5 раз, а радиус основания оставить прежним?",
+    "stereometryDiagram": "/stereometry-bank/cone.svg",
+    "answer": "5"
+  },
+  {
+    "id": 77,
+    "title": "Задача 77",
+    "stereometryPrompt": "В сосуде в форме конуса уровень жидкости достигает $\\frac{1}{4}$ высоты сосуда, считая от вершины. Объём жидкости равен 6 мл. Сколько миллилитров нужно долить, чтобы полностью наполнить сосуд?",
+    "stereometryDiagram": "/stereometry-bank/cone-liquid-2.svg",
+    "answer": "378"
+  },
+  {
+    "id": 78,
+    "title": "Задача 78",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Высота цилиндра равна радиусу основания. Площадь боковой поверхности цилиндра равна 6$\\sqrt{2}$. Найдите площадь боковой поверхности конуса.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "6"
+  },
+  {
+    "id": 79,
+    "title": "Задача 79",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Высота цилиндра равна радиусу основания. Площадь боковой поверхности конуса равна 3$\\sqrt{2}$. Найдите площадь боковой поверхности цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "6"
+  },
+  {
+    "id": 80,
+    "title": "Задача 80",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Объём цилиндра равен 45. Найдите объём конуса.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "15"
+  },
+  {
+    "id": 81,
+    "title": "Задача 81",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Объём конуса равен 12. Найдите объём цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "36"
+  },
+  {
+    "id": 82,
+    "title": "Задача 82",
+    "stereometryPrompt": "Цилиндр вписан в правильную четырёхугольную призму. Радиус основания цилиндра равен 4, его высота равна 6. Найдите объём призмы.",
+    "stereometryDiagram": "/stereometry-bank/box-cylinder.svg",
+    "answer": "384"
+  },
+  {
+    "id": 83,
+    "title": "Задача 83",
+    "stereometryPrompt": "Шар объёмом 24 вписан в цилиндр. Найдите объём цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "36"
+  },
+  {
+    "id": 84,
+    "title": "Задача 84",
+    "stereometryPrompt": "Цилиндр объёмом 36 описан около шара. Найдите объём шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "24"
+  },
+  {
+    "id": 85,
+    "title": "Задача 85",
+    "stereometryPrompt": "Шар вписан в цилиндр. Площадь полной поверхности цилиндра равна 54. Найдите площадь поверхности шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "36"
+  },
+  {
+    "id": 86,
+    "title": "Задача 86",
+    "stereometryPrompt": "Конус вписан в шар. Радиус основания конуса равен радиусу шара. Объём шара равен 84. Найдите объём конуса.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "21"
+  },
+  {
+    "id": 87,
+    "title": "Задача 87",
+    "stereometryPrompt": "Конус вписан в шар. Радиус основания конуса равен радиусу шара. Объём конуса равен 9. Найдите объём шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "36"
+  },
+  {
+    "id": 88,
+    "title": "Задача 88",
+    "stereometryPrompt": "Около конуса описана сфера: она содержит окружность основания и вершину конуса. Центр сферы совпадает с центром основания конуса. Образующая конуса равна 9$\\sqrt{2}$. Найдите радиус сферы.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "9"
+  },
+  {
+    "id": 89,
+    "title": "Задача 89",
+    "stereometryPrompt": "Около конуса описана сфера: она содержит окружность основания и вершину конуса. Центр сферы совпадает с центром основания конуса. Радиус сферы равен 6$\\sqrt{2}$. Найдите образующую конуса.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "12"
+  },
+  {
+    "id": 90,
+    "title": "Задача 90",
+    "stereometryPrompt": "Площадь сечения шара плоскостью, проходящей через его центр, равна 27. Найдите площадь поверхности шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-section.svg",
+    "answer": "108"
+  },
+  {
+    "id": 91,
+    "title": "Задача 91",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 4, $BC$ = 5, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrB.svg",
+    "answer": "40"
+  },
+  {
+    "id": 92,
+    "title": "Задача 92",
+    "stereometryPrompt": "Объём треугольной пирамиды равен 72. Плоскостью, проходящей через вершину пирамиды и среднюю линию её основания, отсечена треугольная пирамида. Найдите её объём.",
+    "stereometryDiagram": "/stereometry-bank/pyramid-cut.svg",
+    "answer": "18"
+  },
+  {
+    "id": 93,
+    "title": "Задача 93",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 4, $BC$ = 5, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetraD.svg",
+    "answer": "20"
+  },
+  {
+    "id": 94,
+    "title": "Задача 94",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, A_{1}, B_{1}, C_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 5, $BC$ = 6, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism1.svg",
+    "answer": "90"
+  },
+  {
+    "id": 95,
+    "title": "Задача 95",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 5, $BC$ = 6, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism2.svg",
+    "answer": "90"
+  },
+  {
+    "id": 96,
+    "title": "Задача 96",
+    "stereometryPrompt": "Объём куба равен 32. Найдите объём треугольной призмы, отсекаемой от куба плоскостью, проходящей через середины двух рёбер, выходящих из одной вершины, и параллельной третьему ребру, выходящему из этой же вершины.",
+    "stereometryDiagram": "/stereometry-bank/box-cut.svg",
+    "answer": "4"
+  },
+  {
+    "id": 97,
+    "title": "Задача 97",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Объём отсечённой треугольной призмы равен 20. Найдите объём исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "80"
+  },
+  {
+    "id": 98,
+    "title": "Задача 98",
+    "stereometryPrompt": "Площадь боковой поверхности треугольной призмы равна 64. Через среднюю линию её основания проведена плоскость, параллельная боковому ребру. Найдите площадь боковой поверхности отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "32"
+  },
+  {
+    "id": 99,
+    "title": "Задача 99",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Площадь боковой поверхности отсечённой треугольной призмы равна 24. Найдите площадь боковой поверхности исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "48"
+  },
+  {
+    "id": 100,
+    "title": "Задача 100",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы объёмом 112 проведена плоскость, параллельная боковому ребру. Найдите объём отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "28"
+  },
+  {
+    "id": 101,
+    "title": "Задача 101",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 12, боковое ребро равно 6. Найдите объём многогранника с вершинами $A, B, C, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-tetra.svg",
+    "answer": "24"
+  },
+  {
+    "id": 102,
+    "title": "Задача 102",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 12, боковое ребро равно 6. Найдите объём многогранника с вершинами $B, C, A_{1}, B_{1}, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-five.svg",
+    "answer": "48"
+  },
+  {
+    "id": 103,
+    "title": "Задача 103",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 5, $BC$ = 6, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrA.svg",
+    "answer": "60"
+  },
+  {
+    "id": 104,
+    "title": "Задача 104",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 5, $BC$ = 6, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetra.svg",
+    "answer": "30"
+  },
+  {
+    "id": 105,
+    "title": "Задача 105",
+    "stereometryPrompt": "Первая цилиндрическая кружка в 2 раза выше второй, а радиус второй в 2 раза больше радиуса первой. Найдите отношение объёма второй кружки к объёму первой.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl-3.svg",
+    "answer": "2"
+  },
+  {
+    "id": 106,
+    "title": "Задача 106",
+    "stereometryPrompt": "Объём первого цилиндра равен 48. Высота второго цилиндра в 3 раза меньше, а радиус его основания в 2 раза больше, чем у первого. Найдите объём второго цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl3.svg",
+    "answer": "64"
+  },
+  {
+    "id": 107,
+    "title": "Задача 107",
+    "stereometryPrompt": "Во сколько раз уменьшится объём конуса, если его высоту уменьшить в 6 раз, а радиус основания оставить прежним?",
+    "stereometryDiagram": "/stereometry-bank/cone.svg",
+    "answer": "6"
+  },
+  {
+    "id": 108,
+    "title": "Задача 108",
+    "stereometryPrompt": "В сосуде в форме конуса уровень жидкости достигает $\\frac{1}{2}$ высоты сосуда, считая от вершины. Объём жидкости равен 8 мл. Сколько миллилитров нужно долить, чтобы полностью наполнить сосуд?",
+    "stereometryDiagram": "/stereometry-bank/cone-liquid-3.svg",
+    "answer": "56"
+  },
+  {
+    "id": 109,
+    "title": "Задача 109",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Высота цилиндра равна радиусу основания. Площадь боковой поверхности цилиндра равна 8$\\sqrt{2}$. Найдите площадь боковой поверхности конуса.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "8"
+  },
+  {
+    "id": 110,
+    "title": "Задача 110",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Высота цилиндра равна радиусу основания. Площадь боковой поверхности конуса равна 4$\\sqrt{2}$. Найдите площадь боковой поверхности цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "8"
+  },
+  {
+    "id": 111,
+    "title": "Задача 111",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Объём цилиндра равен 60. Найдите объём конуса.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "20"
+  },
+  {
+    "id": 112,
+    "title": "Задача 112",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Объём конуса равен 16. Найдите объём цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "48"
+  },
+  {
+    "id": 113,
+    "title": "Задача 113",
+    "stereometryPrompt": "Цилиндр вписан в правильную четырёхугольную призму. Радиус основания цилиндра равен 5, его высота равна 6. Найдите объём призмы.",
+    "stereometryDiagram": "/stereometry-bank/box-cylinder.svg",
+    "answer": "600"
+  },
+  {
+    "id": 114,
+    "title": "Задача 114",
+    "stereometryPrompt": "Шар объёмом 32 вписан в цилиндр. Найдите объём цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "48"
+  },
+  {
+    "id": 115,
+    "title": "Задача 115",
+    "stereometryPrompt": "Цилиндр объёмом 48 описан около шара. Найдите объём шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "32"
+  },
+  {
+    "id": 116,
+    "title": "Задача 116",
+    "stereometryPrompt": "Шар вписан в цилиндр. Площадь полной поверхности цилиндра равна 72. Найдите площадь поверхности шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "48"
+  },
+  {
+    "id": 117,
+    "title": "Задача 117",
+    "stereometryPrompt": "Конус вписан в шар. Радиус основания конуса равен радиусу шара. Объём шара равен 112. Найдите объём конуса.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "28"
+  },
+  {
+    "id": 118,
+    "title": "Задача 118",
+    "stereometryPrompt": "Конус вписан в шар. Радиус основания конуса равен радиусу шара. Объём конуса равен 12. Найдите объём шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "48"
+  },
+  {
+    "id": 119,
+    "title": "Задача 119",
+    "stereometryPrompt": "Около конуса описана сфера: она содержит окружность основания и вершину конуса. Центр сферы совпадает с центром основания конуса. Образующая конуса равна 12$\\sqrt{2}$. Найдите радиус сферы.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "12"
+  },
+  {
+    "id": 120,
+    "title": "Задача 120",
+    "stereometryPrompt": "Около конуса описана сфера: она содержит окружность основания и вершину конуса. Центр сферы совпадает с центром основания конуса. Радиус сферы равен 8$\\sqrt{2}$. Найдите образующую конуса.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "16"
+  },
+  {
+    "id": 121,
+    "title": "Задача 121",
+    "stereometryPrompt": "Площадь сечения шара плоскостью, проходящей через его центр, равна 36. Найдите площадь поверхности шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-section.svg",
+    "answer": "144"
+  },
+  {
+    "id": 122,
+    "title": "Задача 122",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 5, $BC$ = 6, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrB.svg",
+    "answer": "60"
+  },
+  {
+    "id": 123,
+    "title": "Задача 123",
+    "stereometryPrompt": "Объём треугольной пирамиды равен 96. Плоскостью, проходящей через вершину пирамиды и среднюю линию её основания, отсечена треугольная пирамида. Найдите её объём.",
+    "stereometryDiagram": "/stereometry-bank/pyramid-cut.svg",
+    "answer": "24"
+  },
+  {
+    "id": 124,
+    "title": "Задача 124",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 5, $BC$ = 6, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetraD.svg",
+    "answer": "30"
+  },
+  {
+    "id": 125,
+    "title": "Задача 125",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, A_{1}, B_{1}, C_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 6, $BC$ = 7, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism1.svg",
+    "answer": "126"
+  },
+  {
+    "id": 126,
+    "title": "Задача 126",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 6, $BC$ = 7, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism2.svg",
+    "answer": "126"
+  },
+  {
+    "id": 127,
+    "title": "Задача 127",
+    "stereometryPrompt": "Объём куба равен 40. Найдите объём треугольной призмы, отсекаемой от куба плоскостью, проходящей через середины двух рёбер, выходящих из одной вершины, и параллельной третьему ребру, выходящему из этой же вершины.",
+    "stereometryDiagram": "/stereometry-bank/box-cut.svg",
+    "answer": "5"
+  },
+  {
+    "id": 128,
+    "title": "Задача 128",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Объём отсечённой треугольной призмы равен 25. Найдите объём исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "100"
+  },
+  {
+    "id": 129,
+    "title": "Задача 129",
+    "stereometryPrompt": "Площадь боковой поверхности треугольной призмы равна 80. Через среднюю линию её основания проведена плоскость, параллельная боковому ребру. Найдите площадь боковой поверхности отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "40"
+  },
+  {
+    "id": 130,
+    "title": "Задача 130",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Площадь боковой поверхности отсечённой треугольной призмы равна 30. Найдите площадь боковой поверхности исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "60"
+  },
+  {
+    "id": 131,
+    "title": "Задача 131",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы объёмом 140 проведена плоскость, параллельная боковому ребру. Найдите объём отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "35"
+  },
+  {
+    "id": 132,
+    "title": "Задача 132",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 15, боковое ребро равно 6. Найдите объём многогранника с вершинами $A, B, C, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-tetra.svg",
+    "answer": "30"
+  },
+  {
+    "id": 133,
+    "title": "Задача 133",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 15, боковое ребро равно 6. Найдите объём многогранника с вершинами $B, C, A_{1}, B_{1}, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-five.svg",
+    "answer": "60"
+  },
+  {
+    "id": 134,
+    "title": "Задача 134",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 6, $BC$ = 7, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrA.svg",
+    "answer": "84"
+  },
+  {
+    "id": 135,
+    "title": "Задача 135",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 6, $BC$ = 7, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetra.svg",
+    "answer": "42"
+  },
+  {
+    "id": 136,
+    "title": "Задача 136",
+    "stereometryPrompt": "Первая цилиндрическая кружка в 2 раза выше второй, а радиус второй в 3 раза больше радиуса первой. Найдите отношение объёма второй кружки к объёму первой.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl-4.svg",
+    "answer": "4,5"
+  },
+  {
+    "id": 137,
+    "title": "Задача 137",
+    "stereometryPrompt": "Объём первого цилиндра равен 60. Высота второго цилиндра в 3 раза меньше, а радиус его основания в 2 раза больше, чем у первого. Найдите объём второго цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl3.svg",
+    "answer": "80"
+  },
+  {
+    "id": 138,
+    "title": "Задача 138",
+    "stereometryPrompt": "Во сколько раз уменьшится объём конуса, если его высоту уменьшить в 7 раз, а радиус основания оставить прежним?",
+    "stereometryDiagram": "/stereometry-bank/cone.svg",
+    "answer": "7"
+  },
+  {
+    "id": 139,
+    "title": "Задача 139",
+    "stereometryPrompt": "В сосуде в форме конуса уровень жидкости достигает $\\frac{1}{3}$ высоты сосуда, считая от вершины. Объём жидкости равен 10 мл. Сколько миллилитров нужно долить, чтобы полностью наполнить сосуд?",
+    "stereometryDiagram": "/stereometry-bank/cone-liquid-4.svg",
+    "answer": "260"
+  },
+  {
+    "id": 140,
+    "title": "Задача 140",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Высота цилиндра равна радиусу основания. Площадь боковой поверхности цилиндра равна 10$\\sqrt{2}$. Найдите площадь боковой поверхности конуса.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "10"
+  },
+  {
+    "id": 141,
+    "title": "Задача 141",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Высота цилиндра равна радиусу основания. Площадь боковой поверхности конуса равна 5$\\sqrt{2}$. Найдите площадь боковой поверхности цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "10"
+  },
+  {
+    "id": 142,
+    "title": "Задача 142",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Объём цилиндра равен 75. Найдите объём конуса.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "25"
+  },
+  {
+    "id": 143,
+    "title": "Задача 143",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Объём конуса равен 20. Найдите объём цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "60"
+  },
+  {
+    "id": 144,
+    "title": "Задача 144",
+    "stereometryPrompt": "Цилиндр вписан в правильную четырёхугольную призму. Радиус основания цилиндра равен 6, его высота равна 6. Найдите объём призмы.",
+    "stereometryDiagram": "/stereometry-bank/box-cylinder.svg",
+    "answer": "864"
+  },
+  {
+    "id": 145,
+    "title": "Задача 145",
+    "stereometryPrompt": "Шар объёмом 40 вписан в цилиндр. Найдите объём цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "60"
+  },
+  {
+    "id": 146,
+    "title": "Задача 146",
+    "stereometryPrompt": "Цилиндр объёмом 60 описан около шара. Найдите объём шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "40"
+  },
+  {
+    "id": 147,
+    "title": "Задача 147",
+    "stereometryPrompt": "Шар вписан в цилиндр. Площадь полной поверхности цилиндра равна 90. Найдите площадь поверхности шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "60"
+  },
+  {
+    "id": 148,
+    "title": "Задача 148",
+    "stereometryPrompt": "Конус вписан в шар. Радиус основания конуса равен радиусу шара. Объём шара равен 140. Найдите объём конуса.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "35"
+  },
+  {
+    "id": 149,
+    "title": "Задача 149",
+    "stereometryPrompt": "Конус вписан в шар. Радиус основания конуса равен радиусу шара. Объём конуса равен 15. Найдите объём шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "60"
+  },
+  {
+    "id": 150,
+    "title": "Задача 150",
+    "stereometryPrompt": "Около конуса описана сфера: она содержит окружность основания и вершину конуса. Центр сферы совпадает с центром основания конуса. Образующая конуса равна 15$\\sqrt{2}$. Найдите радиус сферы.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "15"
+  },
+  {
+    "id": 151,
+    "title": "Задача 151",
+    "stereometryPrompt": "Около конуса описана сфера: она содержит окружность основания и вершину конуса. Центр сферы совпадает с центром основания конуса. Радиус сферы равен 10$\\sqrt{2}$. Найдите образующую конуса.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "20"
+  },
+  {
+    "id": 152,
+    "title": "Задача 152",
+    "stereometryPrompt": "Площадь сечения шара плоскостью, проходящей через его центр, равна 45. Найдите площадь поверхности шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-section.svg",
+    "answer": "180"
+  },
+  {
+    "id": 153,
+    "title": "Задача 153",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 6, $BC$ = 7, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrB.svg",
+    "answer": "84"
+  },
+  {
+    "id": 154,
+    "title": "Задача 154",
+    "stereometryPrompt": "Объём треугольной пирамиды равен 120. Плоскостью, проходящей через вершину пирамиды и среднюю линию её основания, отсечена треугольная пирамида. Найдите её объём.",
+    "stereometryDiagram": "/stereometry-bank/pyramid-cut.svg",
+    "answer": "30"
+  },
+  {
+    "id": 155,
+    "title": "Задача 155",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 6, $BC$ = 7, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetraD.svg",
+    "answer": "42"
+  },
+  {
+    "id": 156,
+    "title": "Задача 156",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, A_{1}, B_{1}, C_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 7, $BC$ = 3, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism1.svg",
+    "answer": "63"
+  },
+  {
+    "id": 157,
+    "title": "Задача 157",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 7, $BC$ = 3, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism2.svg",
+    "answer": "63"
+  },
+  {
+    "id": 158,
+    "title": "Задача 158",
+    "stereometryPrompt": "Объём куба равен 48. Найдите объём треугольной призмы, отсекаемой от куба плоскостью, проходящей через середины двух рёбер, выходящих из одной вершины, и параллельной третьему ребру, выходящему из этой же вершины.",
+    "stereometryDiagram": "/stereometry-bank/box-cut.svg",
+    "answer": "6"
+  },
+  {
+    "id": 159,
+    "title": "Задача 159",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Объём отсечённой треугольной призмы равен 30. Найдите объём исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "120"
+  },
+  {
+    "id": 160,
+    "title": "Задача 160",
+    "stereometryPrompt": "Площадь боковой поверхности треугольной призмы равна 96. Через среднюю линию её основания проведена плоскость, параллельная боковому ребру. Найдите площадь боковой поверхности отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "48"
+  },
+  {
+    "id": 161,
+    "title": "Задача 161",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Площадь боковой поверхности отсечённой треугольной призмы равна 36. Найдите площадь боковой поверхности исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "72"
+  },
+  {
+    "id": 162,
+    "title": "Задача 162",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы объёмом 168 проведена плоскость, параллельная боковому ребру. Найдите объём отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "42"
+  },
+  {
+    "id": 163,
+    "title": "Задача 163",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 18, боковое ребро равно 6. Найдите объём многогранника с вершинами $A, B, C, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-tetra.svg",
+    "answer": "36"
+  },
+  {
+    "id": 164,
+    "title": "Задача 164",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 18, боковое ребро равно 6. Найдите объём многогранника с вершинами $B, C, A_{1}, B_{1}, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-five.svg",
+    "answer": "72"
+  },
+  {
+    "id": 165,
+    "title": "Задача 165",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 7, $BC$ = 3, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrA.svg",
+    "answer": "42"
+  },
+  {
+    "id": 166,
+    "title": "Задача 166",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 7, $BC$ = 3, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetra.svg",
+    "answer": "21"
+  },
+  {
+    "id": 167,
+    "title": "Задача 167",
+    "stereometryPrompt": "Первая цилиндрическая кружка в 2 раза выше второй, а радиус второй в 4 раза больше радиуса первой. Найдите отношение объёма второй кружки к объёму первой.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl-5.svg",
+    "answer": "8"
+  },
+  {
+    "id": 168,
+    "title": "Задача 168",
+    "stereometryPrompt": "Объём первого цилиндра равен 72. Высота второго цилиндра в 3 раза меньше, а радиус его основания в 2 раза больше, чем у первого. Найдите объём второго цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl3.svg",
+    "answer": "96"
+  },
+  {
+    "id": 169,
+    "title": "Задача 169",
+    "stereometryPrompt": "Во сколько раз уменьшится объём конуса, если его высоту уменьшить в 8 раз, а радиус основания оставить прежним?",
+    "stereometryDiagram": "/stereometry-bank/cone.svg",
+    "answer": "8"
+  },
+  {
+    "id": 170,
+    "title": "Задача 170",
+    "stereometryPrompt": "В сосуде в форме конуса уровень жидкости достигает $\\frac{1}{4}$ высоты сосуда, считая от вершины. Объём жидкости равен 12 мл. Сколько миллилитров нужно долить, чтобы полностью наполнить сосуд?",
+    "stereometryDiagram": "/stereometry-bank/cone-liquid-5.svg",
+    "answer": "756"
+  },
+  {
+    "id": 171,
+    "title": "Задача 171",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Высота цилиндра равна радиусу основания. Площадь боковой поверхности цилиндра равна 12$\\sqrt{2}$. Найдите площадь боковой поверхности конуса.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "12"
+  },
+  {
+    "id": 172,
+    "title": "Задача 172",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Высота цилиндра равна радиусу основания. Площадь боковой поверхности конуса равна 6$\\sqrt{2}$. Найдите площадь боковой поверхности цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "12"
+  },
+  {
+    "id": 173,
+    "title": "Задача 173",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Объём цилиндра равен 90. Найдите объём конуса.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "30"
+  },
+  {
+    "id": 174,
+    "title": "Задача 174",
+    "stereometryPrompt": "Цилиндр и конус имеют общие основание и высоту. Объём конуса равен 24. Найдите объём цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/cyl-cone.svg",
+    "answer": "72"
+  },
+  {
+    "id": 175,
+    "title": "Задача 175",
+    "stereometryPrompt": "Цилиндр вписан в правильную четырёхугольную призму. Радиус основания цилиндра равен 7, его высота равна 6. Найдите объём призмы.",
+    "stereometryDiagram": "/stereometry-bank/box-cylinder.svg",
+    "answer": "1176"
+  },
+  {
+    "id": 176,
+    "title": "Задача 176",
+    "stereometryPrompt": "Шар объёмом 48 вписан в цилиндр. Найдите объём цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "72"
+  },
+  {
+    "id": 177,
+    "title": "Задача 177",
+    "stereometryPrompt": "Цилиндр объёмом 72 описан около шара. Найдите объём шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "48"
+  },
+  {
+    "id": 178,
+    "title": "Задача 178",
+    "stereometryPrompt": "Шар вписан в цилиндр. Площадь полной поверхности цилиндра равна 108. Найдите площадь поверхности шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cyl.svg",
+    "answer": "72"
+  },
+  {
+    "id": 179,
+    "title": "Задача 179",
+    "stereometryPrompt": "Конус вписан в шар. Радиус основания конуса равен радиусу шара. Объём шара равен 168. Найдите объём конуса.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "42"
+  },
+  {
+    "id": 180,
+    "title": "Задача 180",
+    "stereometryPrompt": "Конус вписан в шар. Радиус основания конуса равен радиусу шара. Объём конуса равен 18. Найдите объём шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "72"
+  },
+  {
+    "id": 181,
+    "title": "Задача 181",
+    "stereometryPrompt": "Около конуса описана сфера: она содержит окружность основания и вершину конуса. Центр сферы совпадает с центром основания конуса. Образующая конуса равна 18$\\sqrt{2}$. Найдите радиус сферы.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "18"
+  },
+  {
+    "id": 182,
+    "title": "Задача 182",
+    "stereometryPrompt": "Около конуса описана сфера: она содержит окружность основания и вершину конуса. Центр сферы совпадает с центром основания конуса. Радиус сферы равен 12$\\sqrt{2}$. Найдите образующую конуса.",
+    "stereometryDiagram": "/stereometry-bank/sphere-cone.svg",
+    "answer": "24"
+  },
+  {
+    "id": 183,
+    "title": "Задача 183",
+    "stereometryPrompt": "Площадь сечения шара плоскостью, проходящей через его центр, равна 54. Найдите площадь поверхности шара.",
+    "stereometryDiagram": "/stereometry-bank/sphere-section.svg",
+    "answer": "216"
+  },
+  {
+    "id": 184,
+    "title": "Задача 184",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 7, $BC$ = 3, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrB.svg",
+    "answer": "42"
+  },
+  {
+    "id": 185,
+    "title": "Задача 185",
+    "stereometryPrompt": "Объём треугольной пирамиды равен 144. Плоскостью, проходящей через вершину пирамиды и среднюю линию её основания, отсечена треугольная пирамида. Найдите её объём.",
+    "stereometryDiagram": "/stereometry-bank/pyramid-cut.svg",
+    "answer": "36"
+  },
+  {
+    "id": 186,
+    "title": "Задача 186",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 7, $BC$ = 3, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetraD.svg",
+    "answer": "21"
+  },
+  {
+    "id": 187,
+    "title": "Задача 187",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, A_{1}, B_{1}, C_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 8, $BC$ = 4, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism1.svg",
+    "answer": "96"
+  },
+  {
+    "id": 188,
+    "title": "Задача 188",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 8, $BC$ = 4, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-prism2.svg",
+    "answer": "96"
+  },
+  {
+    "id": 189,
+    "title": "Задача 189",
+    "stereometryPrompt": "Объём куба равен 56. Найдите объём треугольной призмы, отсекаемой от куба плоскостью, проходящей через середины двух рёбер, выходящих из одной вершины, и параллельной третьему ребру, выходящему из этой же вершины.",
+    "stereometryDiagram": "/stereometry-bank/box-cut.svg",
+    "answer": "7"
+  },
+  {
+    "id": 190,
+    "title": "Задача 190",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Объём отсечённой треугольной призмы равен 35. Найдите объём исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "140"
+  },
+  {
+    "id": 191,
+    "title": "Задача 191",
+    "stereometryPrompt": "Площадь боковой поверхности треугольной призмы равна 112. Через среднюю линию её основания проведена плоскость, параллельная боковому ребру. Найдите площадь боковой поверхности отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "56"
+  },
+  {
+    "id": 192,
+    "title": "Задача 192",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы проведена плоскость, параллельная боковому ребру. Площадь боковой поверхности отсечённой треугольной призмы равна 42. Найдите площадь боковой поверхности исходной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "84"
+  },
+  {
+    "id": 193,
+    "title": "Задача 193",
+    "stereometryPrompt": "Через среднюю линию основания треугольной призмы объёмом 196 проведена плоскость, параллельная боковому ребру. Найдите объём отсечённой треугольной призмы.",
+    "stereometryDiagram": "/stereometry-bank/tri-cut.svg",
+    "answer": "49"
+  },
+  {
+    "id": 194,
+    "title": "Задача 194",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 21, боковое ребро равно 6. Найдите объём многогранника с вершинами $A, B, C, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-tetra.svg",
+    "answer": "42"
+  },
+  {
+    "id": 195,
+    "title": "Задача 195",
+    "stereometryPrompt": "Площадь основания правильной треугольной призмы $ABCA_{1}B_{1}C_{1}$ равна 21, боковое ребро равно 6. Найдите объём многогранника с вершинами $B, C, A_{1}, B_{1}, C_{1}$.",
+    "stereometryDiagram": "/stereometry-bank/tri-five.svg",
+    "answer": "84"
+  },
+  {
+    "id": 196,
+    "title": "Задача 196",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, D, A_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 8, $BC$ = 4, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-pyrA.svg",
+    "answer": "64"
+  },
+  {
+    "id": 197,
+    "title": "Задача 197",
+    "stereometryPrompt": "Найдите объём многогранника с вершинами $A, B, C, B_{1}$ прямоугольного параллелепипеда $ABCDA_{1}B_{1}C_{1}D_{1}$, если $AB$ = 8, $BC$ = 4, $BB_{1}$ = 6.",
+    "stereometryDiagram": "/stereometry-bank/box-tetra.svg",
+    "answer": "32"
+  },
+  {
+    "id": 198,
+    "title": "Задача 198",
+    "stereometryPrompt": "Первая цилиндрическая кружка в 2 раза выше второй, а радиус второй в 2 раза больше радиуса первой. Найдите отношение объёма второй кружки к объёму первой.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl-6.svg",
+    "answer": "2"
+  },
+  {
+    "id": 199,
+    "title": "Задача 199",
+    "stereometryPrompt": "Объём первого цилиндра равен 84. Высота второго цилиндра в 3 раза меньше, а радиус его основания в 2 раза больше, чем у первого. Найдите объём второго цилиндра.",
+    "stereometryDiagram": "/stereometry-bank/two-cyl3.svg",
+    "answer": "112"
+  },
+  {
+    "id": 200,
+    "title": "Задача 200",
+    "stereometryPrompt": "Во сколько раз уменьшится объём конуса, если его высоту уменьшить в 9 раз, а радиус основания оставить прежним?",
+    "stereometryDiagram": "/stereometry-bank/cone.svg",
+    "answer": "9"
+  }
+]

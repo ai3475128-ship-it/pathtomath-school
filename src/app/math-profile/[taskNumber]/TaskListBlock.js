@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { paginateTasks } from '@/lib/task-pagination';
 import { tokenizePlanimetryCondition } from '@/lib/planimetry-condition';
 
@@ -279,6 +280,12 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
                 {/* ЗОНА ЧИСТОГО ТЕКСТА */}
                 {task.vectorPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.vectorPrompt}/></p>}
                 {task.vectorDiagram && <VectorDiagram diagram={task.vectorDiagram} taskNumber={task.id}/>}
+                {task.stereometryPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.stereometryPrompt}/></p>}
+                {task.stereometryDiagram && (
+                  <div className="rounded-2xl bg-white p-3 sm:p-5">
+                    <Image src={task.stereometryDiagram} alt={`Чертёж к задаче ${task.id}`} width={420} height={304} unoptimized className="mx-auto h-auto w-full max-w-[420px]" />
+                  </div>
+                )}
                 {task.conditionText && (
                   <p className="text-base font-normal text-slate-800 dark:text-slate-100 leading-relaxed">
                     {task.diagramType ? <PlanimetryCondition text={task.conditionText} /> : task.conditionText}
