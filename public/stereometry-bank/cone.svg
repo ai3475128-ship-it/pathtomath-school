@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="296.7" height="215" viewBox="0 0 296.7 215">
+<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.18 .18C.18 .138579 .323269 .105 .5 .105 .676731 .105 .82 .138579 .82 .18"/>
+<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-dasharray=".018,.012" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.82 .18C.82 .221421 .676731 .255 .5 .255 .323269 .255 .18 .221421 .18 .18"/>
+<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.18 .18 .5 .82"/>
+<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.82 .18 .5 .82"/>
+<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-dasharray=".018,.012" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.5 .18V.82"/>
+</svg>

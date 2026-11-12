@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="296.7" height="215" viewBox="0 0 296.7 215">
+<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.8 .49C.8 .718646 .665685 .904 .5 .904 .334315 .904 .2 .718646 .2 .49 .2 .261354 .334315 .076 .5 .076 .665685 .076 .8 .261354 .8 .49"/>
+<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.2 .49C.2 .448579 .334315 .415 .5 .415 .665685 .415 .8 .448579 .8 .49"/>
+<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-dasharray=".018,.012" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.8 .49C.8 .531421 .665685 .565 .5 .565 .334315 .565 .2 .531421 .2 .49"/>
+<path transform="matrix(296.7,0,0,-215,0,215)" d="M.506 .49C.506 .493314 .503314 .496 .5 .496 .496686 .496 .494 .493314 .494 .49 .494 .486686 .496686 .484 .5 .484 .503314 .484 .506 .486686 .506 .49" fill-rule="evenodd"/>
+<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.5 .904 .2 .49"/>
+<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.5 .904 .8 .49"/>
+<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-dasharray=".018,.012" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.5 .49V.904"/>
+</svg>
