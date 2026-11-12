@@ -1,10 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="296.7" height="215" viewBox="0 0 296.7 215">
-<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.18 .18H.84"/>
-<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-dasharray=".018,.012" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.18 .18 .52 .36"/>
-<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-dasharray=".018,.012" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.52 .36 .84 .18"/>
-<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.5 .82 .18 .18"/>
-<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-dasharray=".018,.012" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.5 .82 .52 .36"/>
-<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.5 .82 .84 .18"/>
-<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-dasharray=".018,.012" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.35 .27 .51 .18"/>
-<path transform="matrix(296.7,0,0,-215,0,215)" stroke-width=".0045" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#252525" d="M.5 .82 .51 .18"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" role="img">
+  <g fill="none" stroke="#252525" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="100" y1="600" x2="900" y2="600"/>
+    <line x1="490" y1="105" x2="100" y2="600"/>
+    <line x1="490" y1="105" x2="900" y2="600"/>
+    <line x1="490" y1="105" x2="500" y2="600"/>
+    <line x1="100" y1="600" x2="600" y2="425" stroke-dasharray="13 11"/>
+    <line x1="600" y1="425" x2="900" y2="600" stroke-dasharray="13 11"/>
+    <line x1="490" y1="105" x2="600" y2="425" stroke-dasharray="13 11"/>
+    <line x1="350" y1="512.5" x2="500" y2="600" stroke-dasharray="13 11"/>
+    <line x1="490" y1="105" x2="350" y2="512.5" stroke-dasharray="13 11"/>
+  </g>
+  <g fill="#171717">
+  </g>
 </svg>
