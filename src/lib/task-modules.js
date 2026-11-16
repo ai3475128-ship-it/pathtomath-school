@@ -12,7 +12,7 @@ export function legacyCandidates(number) {
   const result = [];
   for (const [slug, ids] of Object.entries(catalog)) {
     // Новые сборники и разделы не существовали в старой схеме числовых ключей.
-    if (slug === "1" || slug === "2" || slug === "4" || slug === "5" || slug === "6" || slug === "7" || slug === "8" || slug.startsWith("ege-")) continue;
+    if (slug === "1" || slug === "2" || slug === "4" || slug === "5" || slug === "6" || slug === "7" || slug === "8" || slug === "9" || slug.startsWith("ege-")) continue;
     for (const id of ids)
       if ((parseInt(slug, 10) || 0) * 100 + id === number)
         result.push({ module: slug, taskId: id });

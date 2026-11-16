@@ -12,13 +12,13 @@ function add(slug, file) {
     throw Error(`Duplicate task IDs: ${slug}`);
   catalog[slug] = ids;
 }
-for (const [slug, filename] of [["1", "planimetry-tasks.json"], ["2", "vector-tasks.json"], ["3", "stereometry-tasks.json"], ["4", "probability-tasks.json"], ["5", "advanced-probability-tasks.json"], ["6", "ege-equations-tasks.json"], ["7", "calculation-tasks.json"], ["8", "derivative-bank-tasks.json"]]) {
+for (const [slug, filename] of [["1", "planimetry-tasks.json"], ["2", "vector-tasks.json"], ["3", "stereometry-tasks.json"], ["4", "probability-tasks.json"], ["5", "advanced-probability-tasks.json"], ["6", "ege-equations-tasks.json"], ["7", "calculation-tasks.json"], ["8", "derivative-bank-tasks.json"], ["9", "applied-tasks.json"]]) {
   const ids = JSON.parse(readFileSync(path.join(root, "src/lib", filename), "utf8")).map((task) => task.id);
   if (ids.some((id) => !Number.isSafeInteger(id) || id < 1) || new Set(ids).size !== ids.length)
     throw Error(`Invalid or duplicate task IDs: ${slug}`);
   catalog[slug] = ids;
 }
-for (let n = 9; n <= 19; n++) {
+for (let n = 10; n <= 19; n++) {
   add(
     String(n),
     `src/app/math-profile/[taskNumber]/${[13, 14, 15].includes(n) ? "section" : "sectoin"}${n}.js`,

@@ -1,4 +1,3 @@
-import React from 'react';
-import { InlineMath, BlockMath } from 'react-katex';
+import tasks from '@/lib/applied-tasks.json';
 
-export const section9Tasks = []; // Для section2.js будет section2Tasks и т.д.
+export const section9Tasks = tasks;
