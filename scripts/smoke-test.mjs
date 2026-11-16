@@ -551,6 +551,13 @@ try {
   assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=10", {cookie: sessions.a})).text).solvedSubTasks, [80]);
   assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=10", {cookie: sessions.b})).text).solvedSubTasks, []);
   check("word problem page opens and saves separate student progress");
+  const graphAnalysisPage = await request("/math-profile/11");
+  assert.equal(graphAnalysisPage.status, 200);
+  assert.match(graphAnalysisPage.text, /Графики функций/);
+  assert.equal((await progress(sessions.a, { module: "11", taskId: 40, solved: true })).status, 200);
+  assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=11", {cookie: sessions.a})).text).solvedSubTasks, [40]);
+  assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=11", {cookie: sessions.b})).text).solvedSubTasks, []);
+  check("graph analysis page opens and saves separate student progress");
   const optimizationPage = await request("/math-profile/16");
   assert.equal(optimizationPage.status, 200);
 

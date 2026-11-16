@@ -1,0 +1,542 @@
+[
+  {
+    "id": 1,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=kx+b$. Найдите значение $f(7)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 0,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "13",
+    "sourceNumber": "12.1"
+  },
+  {
+    "id": 2,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=kx+b$. Найдите значение $f(4)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 338,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "9",
+    "sourceNumber": "12.1.1"
+  },
+  {
+    "id": 3,
+    "graphPrompt": "На рисунке изображены графики двух линейных функций, пересекающиеся в точке $A$. Найдите абсциссу точки $A$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 676,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "4",
+    "sourceNumber": "12.2"
+  },
+  {
+    "id": 4,
+    "graphPrompt": "На рисунке изображены графики двух линейных функций, пересекающиеся в точке $A$. Найдите абсциссу точки $A$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 1014,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "-8",
+    "sourceNumber": "12.2.1"
+  },
+  {
+    "id": 5,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=ax^2+bx+c$. Найдите значение $f(-3)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 1352,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "20",
+    "sourceNumber": "12.3"
+  },
+  {
+    "id": 6,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=ax^2+bx+c$. Найдите значение $f(-5)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 1690,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "-55",
+    "sourceNumber": "12.3.1"
+  },
+  {
+    "id": 7,
+    "graphPrompt": "На рисунке изображены графики функций видов $f(x)=ax^2+bx+c$ и $g(x)=kx$, пересекающихся в точках $A$ и $B$. Найдите абсциссу точки $B$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 2028,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "6",
+    "sourceNumber": "12.4"
+  },
+  {
+    "id": 8,
+    "graphPrompt": "На рисунке изображены графики функций видов $f(x)=ax^2+bx+c$ и $g(x)=kx$, пересекающихся в точках $A$ и $B$. Найдите абсциссу точки $B$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 2366,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "7",
+    "sourceNumber": "12.4.1"
+  },
+  {
+    "id": 9,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=\\frac{k}{x}$. Найдите значение $f(10)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 2704,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "0,5",
+    "sourceNumber": "12.5"
+  },
+  {
+    "id": 10,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=\\frac{k}{x}$. Найдите значение $f(30)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 3042,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "0,1",
+    "sourceNumber": "12.5.1"
+  },
+  {
+    "id": 11,
+    "graphPrompt": "На рисунке изображены графики функций видов $f(x)=\\frac{k}{x}$ и $g(x)=ax+b$, пересекающихся в точках $A$ и $B$. Найдите абсциссу точки $B$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 3380,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "8",
+    "sourceNumber": "12.6"
+  },
+  {
+    "id": 12,
+    "graphPrompt": "На рисунке изображены графики функций видов $f(x)=\\frac{k}{x}$ и $g(x)=ax+b$, пересекающихся в точках $A$ и $B$. Найдите абсциссу точки $B$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 3718,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "6",
+    "sourceNumber": "12.6.1"
+  },
+  {
+    "id": 13,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=a\\sqrt{x}$. Найдите значение $f(36)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 4056,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "-18",
+    "sourceNumber": "12.7"
+  },
+  {
+    "id": 14,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=a\\sqrt{x}$. Найдите значение $f(25)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 4394,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "20",
+    "sourceNumber": "12.7.1"
+  },
+  {
+    "id": 15,
+    "graphPrompt": "На рисунке изображены графики функций видов $f(x)=a\\sqrt{x}$ и $g(x)=kx$, пересекающихся в точках $A$ и $B$. Найдите абсциссу точки $B$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 4732,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "25",
+    "sourceNumber": "12.8"
+  },
+  {
+    "id": 16,
+    "graphPrompt": "На рисунке изображены графики функций видов $f(x)=a\\sqrt{x}$ и $g(x)=kx$, пересекающихся в точках $A$ и $B$. Найдите абсциссу точки $B$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 5070,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "2,25",
+    "sourceNumber": "12.8.1"
+  },
+  {
+    "id": 17,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=a^x$. Найдите значение $f(-3)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 5408,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "64",
+    "sourceNumber": "12.9"
+  },
+  {
+    "id": 18,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=a^x$. Найдите значение $f(5)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 5746,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "32",
+    "sourceNumber": "12.9.1"
+  },
+  {
+    "id": 19,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=\\log_a x$. Найдите значение $f(8)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 6084,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "-3",
+    "sourceNumber": "12.10"
+  },
+  {
+    "id": 20,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=\\log_a x$. Найдите значение $f(16)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-01.png",
+      "width": 355,
+      "height": 338,
+      "y": 6422,
+      "sheetWidth": 355,
+      "sheetHeight": 6760
+    },
+    "answer": "-4",
+    "sourceNumber": "12.10.1"
+  },
+  {
+    "id": 21,
+    "graphPrompt": "На рисунке изображены графики двух линейных функций. Найдите ординату точки пересечения графиков.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 0,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "-3"
+  },
+  {
+    "id": 22,
+    "graphPrompt": "На рисунке изображены графики двух линейных функций. Найдите ординату точки пересечения графиков.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 412,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "-1"
+  },
+  {
+    "id": 23,
+    "graphPrompt": "На рисунке изображён график функции $f(x)=\\frac{kx+a}{x+b}$. Решите уравнение $f(x)=8$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 824,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "3"
+  },
+  {
+    "id": 24,
+    "graphPrompt": "На рисунке изображён график функции $f(x)=\\frac{kx+a}{x+b}$. Найдите $a$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 1236,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "10"
+  },
+  {
+    "id": 25,
+    "graphPrompt": "На рисунке изображён график функции $f(x)=a\\operatorname{tg}x+b$. Найдите $f(\\operatorname{arctg}2)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 1648,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "1"
+  },
+  {
+    "id": 26,
+    "graphPrompt": "На рисунке изображён график функции $f(x)=a\\sin\\left(\\frac{\\pi x}{b}\\right)+c$, где $a$, $b$, $c$ — целые числа. Найдите $f(-10)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 2060,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "3"
+  },
+  {
+    "id": 27,
+    "graphPrompt": "На рисунке изображён график функции вида $f(x)=\\log_a(x-b)+c$. Найдите значение $f(26)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 2472,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "2"
+  },
+  {
+    "id": 28,
+    "graphPrompt": "На рисунке изображён график функции $f(x)=b+\\log_a\\left(-\\frac1x\\right)$. Найдите значение $x$, при котором $f(x)=5$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 2884,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "-0,125"
+  },
+  {
+    "id": 29,
+    "graphPrompt": "На рисунке изображены графики функций $f(x)=3x+5$ и $g(x)=ax^2+bx+c$, пересекающиеся в точках $A$ и $B$. Найдите ординату точки $B$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 3296,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "5"
+  },
+  {
+    "id": 30,
+    "graphPrompt": "На рисунке изображены графики функций $f(x)=-4x+9$ и $g(x)=ax^2+bx+c$, пересекающиеся в точках $A$ и $B$. Найдите ординату точки $B$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 3708,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "-15"
+  },
+  {
+    "id": 31,
+    "graphPrompt": "На рисунке изображены графики функций $f(x)=a\\sqrt{x}$ и $g(x)=kx+b$, пересекающиеся в точке $A$. Найдите ординату точки $A$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 4120,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "-2"
+  },
+  {
+    "id": 32,
+    "graphPrompt": "На рисунке изображены графики функций $f(x)=a\\sqrt{x}$ и $g(x)=kx+b$, пересекающиеся в точке $A$. Найдите ординату точки $A$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 4532,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "2"
+  },
+  {
+    "id": 33,
+    "graphPrompt": "На рисунке изображены графики функций $f(x)=\\frac{k}{x}$ и $g(x)=ax+b$, пересекающиеся в точках $A$ и $B$. Найдите ординату точки $B$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 4944,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "4"
+  },
+  {
+    "id": 34,
+    "graphPrompt": "На рисунке изображены графики функций $f(x)=\\frac{k}{x}$ и $g(x)=ax^2+bx+c$, пересекающиеся в точках $A$, $B$, $C$. Найдите ординату точки $C$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 5356,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "-2"
+  },
+  {
+    "id": 35,
+    "graphPrompt": "На рисунке изображён график функции $f(x)=a^x$. Найдите значение выражения $\\frac{f(-1)}{f(-5)}$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 5768,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "25"
+  },
+  {
+    "id": 36,
+    "graphPrompt": "На рисунке изображён график функции $f(x)=a^x$. Найдите значение выражения $\\frac{f(3)}{f(9)}$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 6180,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "27"
+  },
+  {
+    "id": 37,
+    "graphPrompt": "На рисунке изображён график функции $f(x)=a^{x-2}$. Найдите значение $x$, при котором $f(x)=27$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 6592,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "-1"
+  },
+  {
+    "id": 38,
+    "graphPrompt": "На рисунке изображён график функции $f(x)=a^{x+2}$. Найдите $f(6)$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 7004,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "16"
+  },
+  {
+    "id": 39,
+    "graphPrompt": "На рисунке изображены графики функций $f(x)=\\sqrt{ax}$ и $g(x)=\\sqrt{x-b}$, которые пересекаются в точке $A$. Найдите абсциссу точки $A$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 7416,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "10,5"
+  },
+  {
+    "id": 40,
+    "graphPrompt": "На рисунке изображены графики функций $f(x)=\\sqrt{ax}$ и $g(x)=\\sqrt{x-b}$, которые пересекаются в точке $A$. Найдите абсциссу точки $A$.",
+    "graphDiagram": {
+      "src": "/ege-11/sheet-02.png",
+      "width": 645,
+      "height": 412,
+      "y": 7828,
+      "sheetWidth": 645,
+      "sheetHeight": 8240
+    },
+    "answer": "15"
+  }
+]
