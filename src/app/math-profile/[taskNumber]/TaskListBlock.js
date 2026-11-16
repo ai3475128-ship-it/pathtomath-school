@@ -65,6 +65,7 @@ import VectorDiagram from './VectorDiagram';
 import EconomicsCondition from './EconomicsCondition';
 import EquationCondition from './EquationCondition';
 import DerivativeDiagram from './DerivativeDiagram';
+import GraphDiagram from './GraphDiagram';
 
 const egeIntroMap = {
   '14-intro': egeIntro14Tasks, '17-intro': egeIntro17Tasks, '18-intro': egeIntro18Tasks, '19-intro': egeIntro19Tasks
@@ -285,6 +286,8 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds, a
                 {task.vectorPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.vectorPrompt}/></p>}
                 {task.probabilityPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.probabilityPrompt}/></p>}
                 {task.wordProblemPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.wordProblemPrompt}/></p>}
+                {task.graphPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.graphPrompt}/></p>}
+                {task.graphDiagram && <GraphDiagram diagram={task.graphDiagram} taskId={task.id} />}
                 {task.equationPrompt && <EquationCondition text={task.equationPrompt} />}
                 {task.calculationExpression && (
                   <div className="space-y-3 text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100">
