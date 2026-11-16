@@ -64,6 +64,7 @@ import PlanimetryDiagram from './PlanimetryDiagram';
 import VectorDiagram from './VectorDiagram';
 import EconomicsCondition from './EconomicsCondition';
 import EquationCondition from './EquationCondition';
+import DerivativeDiagram from './DerivativeDiagram';
 
 const egeIntroMap = {
   '14-intro': egeIntro14Tasks, '17-intro': egeIntro17Tasks, '18-intro': egeIntro18Tasks, '19-intro': egeIntro19Tasks
@@ -284,13 +285,7 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
                 {task.probabilityPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.probabilityPrompt}/></p>}
                 {task.equationPrompt && <EquationCondition text={task.equationPrompt} />}
                 {task.derivativePrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.derivativePrompt}/></p>}
-                {task.derivativeDiagram && (
-                  <div className="rounded-2xl bg-white p-3 sm:p-5">
-                    <svg role="img" aria-label={`График к задаче ${task.id}`} width={task.derivativeDiagram.width} height={task.derivativeDiagram.height} viewBox={`0 ${task.derivativeDiagram.y} ${task.derivativeDiagram.width} ${task.derivativeDiagram.height}`} className="mx-auto h-auto w-full" style={{maxWidth: Math.min(task.derivativeDiagram.width, 700)}}>
-                      <image href={task.derivativeDiagram.src} x="0" y="0" width={task.derivativeDiagram.sheetWidth} height={task.derivativeDiagram.sheetHeight} />
-                    </svg>
-                  </div>
-                )}
+                {task.derivativeDiagram && <DerivativeDiagram diagram={task.derivativeDiagram} taskId={task.id} />}
                 {task.vectorDiagram && <VectorDiagram diagram={task.vectorDiagram} taskNumber={task.id}/>}
                 {task.stereometryPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.stereometryPrompt}/></p>}
                 {task.stereometryDiagram && (
