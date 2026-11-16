@@ -62,6 +62,7 @@ import { section19Tasks } from './sectoin19';
 import { egeOptimizationTasks } from './ege-optimization';
 import PlanimetryDiagram from './PlanimetryDiagram';
 import VectorDiagram from './VectorDiagram';
+import EconomicsCondition from './EconomicsCondition';
 
 const egeIntroMap = {
   '14-intro': egeIntro14Tasks, '17-intro': egeIntro17Tasks, '18-intro': egeIntro18Tasks, '19-intro': egeIntro19Tasks
@@ -295,7 +296,8 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
                 {task.diagramType && <PlanimetryDiagram type={task.diagramType} values={task.diagramValues} taskNumber={task.id} />}
 
                 {/* ЗОНА МАТЕМАТИКИ */}
-                {task.mathA && (
+                {task.mathA && storageModule === '16' && <EconomicsCondition math={task.mathA} />}
+                {task.mathA && storageModule !== '16' && (
                   <div className="w-full overflow-x-auto py-2">
                     {isCustomModule && !task.conditionText && !task.mathA.includes('\\') && !task.mathA.includes('^') ? (
                       <p className="text-base font-normal text-slate-800 dark:text-slate-100 leading-relaxed text-left w-full">
