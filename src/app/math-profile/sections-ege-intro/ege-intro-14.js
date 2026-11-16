@@ -67,9 +67,10 @@ function Solution5() { return <Box>
 </Box>; }
 function Solution6() { return <Box>
   <Figure name="6-condition" caption="Чертёж к условию задачи" />
-  <p>Продлим ребро <MathText>{String.raw`D_1D`}</MathText> за основание до точки <MathText>M</MathText>, для которой <MathText>{String.raw`DM=AA_1=3`}</MathText>. Поскольку <MathText>{String.raw`AD\parallel BC`}</MathText>, а <MathText>{String.raw`DM\parallel B_1B`}</MathText> и соответствующие стороны равны, получаем <MathText>{String.raw`AM\parallel B_1C`}</MathText>. Искомый угол равен углу <MathText>{String.raw`C_1AM`}</MathText>.</p>
-  <Figure name="6-construction" caption="Продлеваем D₁D до M и проводим AM параллельно B₁C" />
-  <p>По теореме Пифагора <MathText>{String.raw`AM=\sqrt{4^2+3^2}=5`}</MathText>, а пространственная диагональ <MathText>{String.raw`AC_1=\sqrt{6^2+4^2+3^2}=\sqrt{61}`}</MathText>. Отрезок <MathText>{String.raw`MC_1`}</MathText> — диагональ прямоугольника со сторонами 6 и 6, поэтому <MathText>{String.raw`MC_1=6\sqrt2`}</MathText>.</p>
+  <p>Под основанием <MathText>ABCD</MathText> достроим второй такой же прямоугольный параллелепипед с общей гранью <MathText>ABCD</MathText>. Его нижние вершины обозначим <MathText>{String.raw`A_2,B_2,C_2,M`}</MathText>, причём <MathText>M</MathText> соответствует вершине <MathText>D</MathText>. Так мы получаем фигуру вдвое большей высоты.</p>
+  <Figure name="6-construction" caption="Удваиваем параллелепипед вниз; диагональ AM параллельна B₁C" />
+  <p>На противоположной грани достроенной части проведём диагональ <MathText>AM</MathText>. Прямоугольники <MathText>{String.raw`ADMA_2`}</MathText> и <MathText>{String.raw`B_1C_1CB`}</MathText> равны, а их соответствующие стороны параллельны: <MathText>{String.raw`AD\parallel B_1C_1`}</MathText>, <MathText>{String.raw`DM\parallel C_1C`}</MathText>. Поэтому соответствующие диагонали <MathText>AM</MathText> и <MathText>{String.raw`B_1C`}</MathText> параллельны. Искомый угол равен <MathText>{String.raw`\angle C_1AM`}</MathText>.</p>
+  <p>По теореме Пифагора <MathText>{String.raw`AM=\sqrt{4^2+3^2}=5`}</MathText>, а пространственная диагональ <MathText>{String.raw`AC_1=\sqrt{6^2+4^2+3^2}=\sqrt{61}`}</MathText>. Отрезок <MathText>{String.raw`MC_1`}</MathText> — диагональ задней грани удвоенного параллелепипеда со сторонами 6 и <MathText>{String.raw`3+3=6`}</MathText>, поэтому <MathText>{String.raw`MC_1=6\sqrt2`}</MathText>.</p>
   <Figure name="6-plane" caption="Треугольник AMC₁" />
   <p>По теореме косинусов при <MathText>{String.raw`\varphi=\angle C_1AM`}</MathText> получаем</p>
   <Formula>{String.raw`72=25+61-2\cdot5\sqrt{61}\cos\varphi,\qquad \cos\varphi=\frac7{5\sqrt{61}}`}</Formula>
