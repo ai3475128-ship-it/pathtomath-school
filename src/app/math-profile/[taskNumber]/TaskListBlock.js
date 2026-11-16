@@ -310,7 +310,7 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds, a
                 {task.stereometryPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.stereometryPrompt}/></p>}
                 {task.stereometryDiagram && (
                   <div className="rounded-2xl bg-white p-3 sm:p-5">
-                    <Image src={task.stereometryDiagram} alt={`Чертёж к задаче ${task.id}`} width={420} height={304} unoptimized className="mx-auto h-auto w-full max-w-[420px]" />
+                    <Image src={task.stereometryDiagram} alt={task.stereometryDiagramAlt || `Чертёж к задаче ${task.id}`} width={420} height={304} unoptimized className="mx-auto h-auto w-full max-w-[420px]" />
                   </div>
                 )}
                 {task.conditionText && (

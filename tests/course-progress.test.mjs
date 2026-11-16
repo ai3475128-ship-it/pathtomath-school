@@ -8,7 +8,7 @@ import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 
 test('practice separates preparatory tasks, bank and olympiad courses', () => {
-  const progress = [{module:'14-intro',taskId:1},{module:'ege-optimization',taskId:1},{module:'olympiad-1-intro',taskId:1},{module:'ege-optimization',taskId:999}];
+  const progress = [{module:'14-intro',taskId:101},{module:'ege-optimization',taskId:1},{module:'olympiad-1-intro',taskId:1},{module:'ege-optimization',taskId:999}];
   const math = practiceGroups('ege-math', progress);
   assert.equal(math[0].rows.find((r) => r.label.startsWith('№14')).done, 1);
   assert.equal(math[1].rows.find((r) => r.label.startsWith('№16')).done, 1);
@@ -39,7 +39,7 @@ test('course report isolates users, tracks currently marked tasks and preserves 
   const dir=mkdtempSync(path.join(os.tmpdir(),'course-progress-')), db=openDatabase(path.join(dir,'db.sqlite'));
   t.after(()=>{db.dispose();rmSync(dir,{recursive:true,force:true});});
   await db.run("INSERT INTO User(id,email,name,password,role) VALUES('a','a@example.test','A','x','PREMIUM_STUDENT'),('b','b@example.test','B','x','PREMIUM_STUDENT')");
-  await db.run("INSERT INTO TaskProgress(userId,module,taskId,completedAt) VALUES('a','ege-optimization',1,'2026-11-01T09:00:00Z'),('a','14-intro',1,'2026-11-02T09:00:00Z'),('b','ege-optimization',2,'2026-11-02T09:00:00Z')");
+  await db.run("INSERT INTO TaskProgress(userId,module,taskId,completedAt) VALUES('a','ege-optimization',1,'2026-11-01T09:00:00Z'),('a','14-intro',101,'2026-11-02T09:00:00Z'),('b','ege-optimization',2,'2026-11-02T09:00:00Z')");
   await db.run("INSERT INTO Trial(id,userId,title,date,courseId,status,score,maxScore) VALUES('t','a','Math','2026-11-02','ege-math','Проверено',75,100)");
   await db.run("INSERT INTO TrialTaskResult(trialId,taskNumber,solved) VALUES('t',5,0)");
   const report=await getCourseProgress(db,'a','ege-math',true);

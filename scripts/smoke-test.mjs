@@ -565,6 +565,15 @@ try {
   assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=12", {cookie: sessions.a})).text).solvedSubTasks, [100]);
   assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=12", {cookie: sessions.b})).text).solvedSubTasks, []);
   check("extremum page opens and saves separate student progress");
+  const stereoPrepPage = await request("/math-profile/14-intro");
+  assert.equal(stereoPrepPage.status, 200);
+  assert.match(stereoPrepPage.text, /Стереометрия/);
+  assert.equal((await progress(sessions.a, {module: "14-intro", taskId: 101, solved: true})).status, 200);
+  assert.equal((await progress(sessions.a, {module: "14-intro", taskId: 107, solved: true})).status, 200);
+  assert.equal((await progress(sessions.a, {module: "14-intro", taskId: 1, solved: true})).status, 400);
+  assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=14-intro", {cookie: sessions.a})).text).solvedSubTasks.sort((a,b)=>a-b), [101,107]);
+  assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=14-intro", {cookie: sessions.b})).text).solvedSubTasks, []);
+  check("stereometry preparation replaces old tasks and keeps progress isolated");
   const optimizationPage = await request("/math-profile/16");
   assert.equal(optimizationPage.status, 200);
 
