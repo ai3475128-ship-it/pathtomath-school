@@ -558,6 +558,13 @@ try {
   assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=11", {cookie: sessions.a})).text).solvedSubTasks, [40]);
   assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=11", {cookie: sessions.b})).text).solvedSubTasks, []);
   check("graph analysis page opens and saves separate student progress");
+  const extremumPage = await request("/math-profile/12");
+  assert.equal(extremumPage.status, 200);
+  assert.match(extremumPage.text, /Наибольшее и наименьшее значение/);
+  assert.equal((await progress(sessions.a, { module: "12", taskId: 100, solved: true })).status, 200);
+  assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=12", {cookie: sessions.a})).text).solvedSubTasks, [100]);
+  assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=12", {cookie: sessions.b})).text).solvedSubTasks, []);
+  check("extremum page opens and saves separate student progress");
   const optimizationPage = await request("/math-profile/16");
   assert.equal(optimizationPage.status, 200);
 

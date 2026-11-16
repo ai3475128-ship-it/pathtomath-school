@@ -18,7 +18,10 @@ for (const [slug, filename] of [["1", "planimetry-tasks.json"], ["2", "vector-ta
     throw Error(`Invalid or duplicate task IDs: ${slug}`);
   catalog[slug] = ids;
 }
-for (let n = 12; n <= 19; n++) {
+catalog["12"] = JSON.parse(readFileSync(path.join(root, "src/lib/extremum-bank-tasks.json"), "utf8")).map((task) => task.id);
+if (catalog["12"].some((id) => !Number.isSafeInteger(id) || id < 1) || new Set(catalog["12"]).size !== catalog["12"].length)
+  throw Error("Invalid or duplicate task IDs: 12");
+for (let n = 13; n <= 19; n++) {
   add(
     String(n),
     `src/app/math-profile/[taskNumber]/${[13, 14, 15].includes(n) ? "section" : "sectoin"}${n}.js`,
