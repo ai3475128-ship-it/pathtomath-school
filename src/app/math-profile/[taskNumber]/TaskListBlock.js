@@ -280,6 +280,7 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
                 
                 {/* ЗОНА ЧИСТОГО ТЕКСТА */}
                 {task.vectorPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.vectorPrompt}/></p>}
+                {task.probabilityPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.probabilityPrompt}/></p>}
                 {task.vectorDiagram && <VectorDiagram diagram={task.vectorDiagram} taskNumber={task.id}/>}
                 {task.stereometryPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.stereometryPrompt}/></p>}
                 {task.stereometryDiagram && (
