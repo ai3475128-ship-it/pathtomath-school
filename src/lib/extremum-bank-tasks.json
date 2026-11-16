@@ -1,0 +1,646 @@
+[
+  {
+    "id": 1,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=x^{3} - 3 x^{2} + 2",
+    "answer": "0"
+  },
+  {
+    "id": 2,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=x^{3} - 27 x + 14",
+    "answer": "-3"
+  },
+  {
+    "id": 3,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=x^{3} - 5 x^{2} + 7 x - 5",
+    "answer": "1"
+  },
+  {
+    "id": 4,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=x^{3} - 18 x^{2} + 81 x + 17",
+    "answer": "9"
+  },
+  {
+    "id": 5,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\left(x + 8\\right)^{2} \\left(5 x - 32\\right) + 11",
+    "answer": "1,6"
+  },
+  {
+    "id": 6,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\left(x - 4\\right)^{2} \\left(x + 5\\right) + 8",
+    "answer": "-2"
+  },
+  {
+    "id": 7,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=x^{4} - 8 x^{2} + 3",
+    "answer": "2",
+    "extremumCondition": "Укажите точку, принадлежащую промежутку $\\left(\\frac{1}{10};\\,4\\right)$."
+  },
+  {
+    "id": 8,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=x^{4} - 8 x^{3} + 18 x^{2} + 3",
+    "answer": "0"
+  },
+  {
+    "id": 9,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=x^{5} + 20 x^{3} - 65 x",
+    "answer": "44",
+    "extremumCondition": "На отрезке $\\left[-4;\\,0\\right]$."
+  },
+  {
+    "id": 10,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=x^{3} - x^{2} - 8 x + 4",
+    "answer": "-8",
+    "extremumCondition": "На отрезке $\\left[1;\\,7\\right]$."
+  },
+  {
+    "id": 11,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=- \\left(x - 2\\right)^{4} + 4 \\left(x - 2\\right)^{2} + 3",
+    "answer": "7",
+    "extremumCondition": "На отрезке $\\left[1;\\,4\\right]$.",
+    "extremumMobileExpression": "\\begin{aligned}y={}&-(x-2)^4\\\\&+4(x-2)^2+3\\end{aligned}"
+  },
+  {
+    "id": 12,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\left(x^{3} + x^{2} + x + 1\\right)^{2}",
+    "answer": "-1"
+  },
+  {
+    "id": 13,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\left(x - 2\\right) \\left(x + 1\\right)^{2} + 4",
+    "answer": "-1"
+  },
+  {
+    "id": 14,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=x^{5} - 15 x^{3} + 11",
+    "answer": "3"
+  },
+  {
+    "id": 15,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=x^{3} - 147 x + 11",
+    "answer": "697",
+    "extremumCondition": "На отрезке $\\left[-8;\\,0\\right]$."
+  },
+  {
+    "id": 16,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=- \\frac{x}{x^{2} + 256}",
+    "answer": "16"
+  },
+  {
+    "id": 17,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=x + 7 + \\frac{196}{x}",
+    "answer": "-14"
+  },
+  {
+    "id": 18,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=\\frac{x^{2} + 441}{x}",
+    "answer": "42",
+    "extremumCondition": "На отрезке $\\left[2;\\,32\\right]$."
+  },
+  {
+    "id": 19,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=\\frac{x^{2} + 25}{x}",
+    "answer": "-10",
+    "extremumCondition": "На отрезке $\\left[-10;\\,-1\\right]$."
+  },
+  {
+    "id": 20,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\frac{- x^{2} - 36}{x}",
+    "answer": "6"
+  },
+  {
+    "id": 21,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\frac{x^{2} + 4 x + 13}{x + 2}",
+    "answer": "1"
+  },
+  {
+    "id": 22,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\frac{x}{x^{2} + 4}",
+    "answer": "2"
+  },
+  {
+    "id": 23,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\frac{x^{2}}{x^{2} + 4}",
+    "answer": "0"
+  },
+  {
+    "id": 24,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\frac{1}{x^{2} + 4 x + 8}",
+    "answer": "-2"
+  },
+  {
+    "id": 25,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\frac{\\left(x - 3\\right)^{2}}{x^{2} + 1}",
+    "answer": "3"
+  },
+  {
+    "id": 26,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=\\frac{x^{2} + 1}{x + 1}",
+    "answer": "2,5",
+    "extremumCondition": "На отрезке $\\left[0;\\,3\\right]$."
+  },
+  {
+    "id": 27,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=x + \\frac{16}{x - 1}",
+    "answer": "9",
+    "extremumCondition": "На отрезке $\\left[2;\\,10\\right]$."
+  },
+  {
+    "id": 28,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\frac{x^{2} - 9}{x^{2} + 9}",
+    "answer": "0"
+  },
+  {
+    "id": 29,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\frac{x - 1}{\\left(x + 1\\right)^{2}}",
+    "answer": "3"
+  },
+  {
+    "id": 30,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\frac{x^{2} + 4}{x^{2} + 1}",
+    "answer": "0"
+  },
+  {
+    "id": 31,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=x^{\\frac{3}{2}} - 9 x + 4",
+    "answer": "36"
+  },
+  {
+    "id": 32,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=- 2 x^{\\frac{3}{2}} + 15 x + 17",
+    "answer": "25"
+  },
+  {
+    "id": 33,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=- 4 x^{\\frac{3}{2}} + 6 x + 11",
+    "answer": "13",
+    "extremumCondition": "На отрезке $\\left[0;\\,21\\right]$."
+  },
+  {
+    "id": 34,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\sqrt{x^{2} - 18 x + 87}",
+    "answer": "9"
+  },
+  {
+    "id": 35,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=\\sqrt{- x^{2} - 30 x + 31}",
+    "answer": "16",
+    "extremumCondition": "На отрезке $\\left[-31;\\,1\\right]$."
+  },
+  {
+    "id": 36,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\sqrt{9 - \\left(x - 1\\right)^{2}}",
+    "answer": "1"
+  },
+  {
+    "id": 37,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=3 x \\sqrt{6 - x}",
+    "answer": "4"
+  },
+  {
+    "id": 38,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\sqrt{x} \\left(9 - x\\right)",
+    "answer": "3"
+  },
+  {
+    "id": 39,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=\\sqrt{x^{2} + 4 x + 13}",
+    "answer": "3",
+    "extremumCondition": "На отрезке $\\left[-5;\\,2\\right]$."
+  },
+  {
+    "id": 40,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=x + \\frac{2}{\\sqrt{x}}",
+    "answer": "1"
+  },
+  {
+    "id": 41,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=\\sqrt{9 - \\left(x - 2\\right)^{2}} + 3",
+    "answer": "6",
+    "extremumCondition": "На отрезке $\\left[-1;\\,5\\right]$."
+  },
+  {
+    "id": 42,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=x + \\sqrt{x^{2} + 6 x + 10}",
+    "answer": "-2",
+    "extremumCondition": "На отрезке $\\left[-3;\\,1\\right]$."
+  },
+  {
+    "id": 43,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=\\frac{2 x^{\\frac{3}{2}}}{3} - 6 x - 5",
+    "answer": "-77",
+    "extremumCondition": "На отрезке $\\left[9;\\,36\\right]$."
+  },
+  {
+    "id": 44,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=- \\frac{2 x^{\\frac{3}{2}}}{3} + 3 x + 1",
+    "answer": "9"
+  },
+  {
+    "id": 45,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=9 x - 9 \\ln{\\left(x + 11 \\right)} + 7",
+    "answer": "-83",
+    "extremumCondition": "На отрезке $\\left[- \\frac{21}{2};\\,0\\right]$."
+  },
+  {
+    "id": 46,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=x^{2} - 14 x + 20 \\ln{\\left(x \\right)} + 3",
+    "answer": "2"
+  },
+  {
+    "id": 47,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=3 x - 3 \\ln{\\left(x + 5 \\right)} + 2",
+    "answer": "-4"
+  },
+  {
+    "id": 48,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=2 x + \\ln{\\left(\\left(x + 4\\right)^{2} \\right)} + 7",
+    "answer": "-5"
+  },
+  {
+    "id": 49,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=- 8 x + \\ln{\\left(8 x \\right)} + 7",
+    "answer": "6",
+    "extremumCondition": "На отрезке $\\left[\\frac{1}{16};\\,\\frac{5}{16}\\right]$."
+  },
+  {
+    "id": 50,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=x - \\ln{\\left(x \\right)}",
+    "answer": "1"
+  },
+  {
+    "id": 51,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=- \\frac{x^{2}}{2} + \\ln{\\left(x^{2} + 1 \\right)}",
+    "answer": "1",
+    "extremumCondition": "Укажите точку, принадлежащую промежутку $\\left(\\frac{1}{10};\\,3\\right)$."
+  },
+  {
+    "id": 52,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\ln{\\left(x \\right)} + \\ln{\\left(4 - x \\right)}",
+    "answer": "2"
+  },
+  {
+    "id": 53,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=- \\frac{3 x}{2} + \\ln{\\left(x \\right)} + \\ln{\\left(x + 1 \\right)}",
+    "answer": "1",
+    "extremumMobileExpression": "\\begin{aligned}y={}&-\\frac{3x}{2}+\\ln x\\\\&+\\ln(x+1)\\end{aligned}"
+  },
+  {
+    "id": 54,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\ln{\\left(x \\right)}^{2}",
+    "answer": "1"
+  },
+  {
+    "id": 55,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=- 10 x + \\ln{\\left(x + 9 \\right)} + 7",
+    "answer": "-8,9"
+  },
+  {
+    "id": 56,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\left(x - 1\\right) \\ln{\\left(x \\right)}",
+    "answer": "1"
+  },
+  {
+    "id": 57,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=x \\ln{\\left(x \\right)} - x",
+    "answer": "1"
+  },
+  {
+    "id": 58,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\ln{\\left(x^{2} - 4 x + 5 \\right)}",
+    "answer": "2"
+  },
+  {
+    "id": 59,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=5 x - \\ln{\\left(\\left(x + 3\\right)^{5} \\right)} + 6",
+    "answer": "-2"
+  },
+  {
+    "id": 60,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=x^{2} - 33 x + 136 \\ln{\\left(x \\right)} + 74",
+    "answer": "8"
+  },
+  {
+    "id": 61,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\left(x + 8\\right)^{2} e^{3 - x}",
+    "answer": "-6"
+  },
+  {
+    "id": 62,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\left(7 - x\\right) e^{7 - x}",
+    "answer": "8"
+  },
+  {
+    "id": 63,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\left(x - 5\\right)^{2} e^{x - 7}",
+    "answer": "3"
+  },
+  {
+    "id": 64,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\left(7 x^{2} - 21 x - 21\\right) e^{x + 12}",
+    "answer": "3"
+  },
+  {
+    "id": 65,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\left(3 x^{2} - 42 x + 42\\right) e^{7 - x}",
+    "answer": "2"
+  },
+  {
+    "id": 66,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=e^{2 x} - 2 e^{x} + 8",
+    "answer": "7",
+    "extremumCondition": "На отрезке $\\left[-2;\\,1\\right]$."
+  },
+  {
+    "id": 67,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=e^{2 x} - 5 e^{x} - 2",
+    "answer": "-8,25",
+    "extremumCondition": "На отрезке $\\left[-2;\\,1\\right]$."
+  },
+  {
+    "id": 68,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=\\left(x - 27\\right) e^{28 - x}",
+    "answer": "1",
+    "extremumCondition": "На отрезке $\\left[23;\\,40\\right]$."
+  },
+  {
+    "id": 69,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=- x e^{x}",
+    "answer": "-1"
+  },
+  {
+    "id": 70,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=- 4 e^{x^{2} - 12 x + 36}",
+    "answer": "-4",
+    "extremumCondition": "На отрезке $\\left[0;\\,12\\right]$."
+  },
+  {
+    "id": 71,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=e^{\\left(x - 3\\right)^{2}}",
+    "answer": "3"
+  },
+  {
+    "id": 72,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=11^{- x^{2} + 6 x}",
+    "answer": "3"
+  },
+  {
+    "id": 73,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\left(\\frac{1}{2}\\right)^{x^{2} - 4 x + 1}",
+    "answer": "2"
+  },
+  {
+    "id": 74,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=\\left(x^{2} - 4 x + 1\\right) e^{x}",
+    "answer": "3"
+  },
+  {
+    "id": 75,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=e^{x} + e^{- x}",
+    "answer": "0"
+  },
+  {
+    "id": 76,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=- \\frac{x}{2} + \\ln{\\left(e^{x} + 1 \\right)}",
+    "answer": "0"
+  },
+  {
+    "id": 77,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=x^{2} e^{- x}",
+    "answer": "2"
+  },
+  {
+    "id": 78,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\frac{e^{x}}{e^{2 x} + 1}",
+    "answer": "0"
+  },
+  {
+    "id": 79,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=2^{x} - 4^{x}",
+    "answer": "-1"
+  },
+  {
+    "id": 80,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=x e^{- \\frac{x^{2}}{2}}",
+    "answer": "1"
+  },
+  {
+    "id": 81,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\left(4 x - 3\\right) \\cos{\\left(x \\right)} - 4 \\sin{\\left(x \\right)} + 9",
+    "answer": "0,75",
+    "extremumCondition": "Укажите точку, принадлежащую промежутку $\\left(0;\\,\\frac{\\pi}{2}\\right)$.",
+    "extremumMobileExpression": "\\begin{aligned}y={}&(4x-3)\\cos x\\\\&-4\\sin x+9\\end{aligned}"
+  },
+  {
+    "id": 82,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=25 x - 25 \\operatorname{tg}{\\left(x \\right)} + 41",
+    "answer": "41",
+    "extremumCondition": "На отрезке $\\left[0;\\,\\frac{\\pi}{4}\\right]$."
+  },
+  {
+    "id": 83,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=- \\frac{42 x}{\\pi} + 10 \\sin{\\left(x \\right)} - 12",
+    "answer": "18",
+    "extremumCondition": "На отрезке $\\left[- \\frac{5 \\pi}{6};\\,0\\right]$."
+  },
+  {
+    "id": 84,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=- 6 \\sqrt{3} x + 12 \\sin{\\left(x \\right)} + \\sqrt{3} \\pi + 6",
+    "answer": "12",
+    "extremumCondition": "На отрезке $\\left[0;\\,\\frac{\\pi}{2}\\right]$.",
+    "extremumMobileExpression": "\\begin{aligned}y={}&-6\\sqrt{3}x+12\\sin x\\\\&+\\sqrt{3}\\pi+6\\end{aligned}"
+  },
+  {
+    "id": 85,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=6 \\sqrt{3} x + 12 \\cos{\\left(x \\right)} - 2 \\sqrt{3} \\pi + 6",
+    "answer": "12",
+    "extremumCondition": "На отрезке $\\left[0;\\,\\frac{\\pi}{2}\\right]$.",
+    "extremumMobileExpression": "\\begin{aligned}y={}&6\\sqrt{3}x+12\\cos x\\\\&-2\\sqrt{3}\\pi+6\\end{aligned}"
+  },
+  {
+    "id": 86,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=\\sin^{2}{\\left(2 x \\right)}",
+    "answer": "1",
+    "extremumCondition": "На отрезке $\\left[0;\\,\\frac{\\pi}{2}\\right]$."
+  },
+  {
+    "id": 87,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=\\sin{\\left(x \\right)} \\cos{\\left(x \\right)}",
+    "answer": "0,5",
+    "extremumCondition": "На отрезке $\\left[0;\\,\\frac{\\pi}{2}\\right]$."
+  },
+  {
+    "id": 88,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=\\sin^{2}{\\left(x \\right)} - \\sin{\\left(x \\right)}",
+    "answer": "-0,25",
+    "extremumCondition": "На отрезке $\\left[0;\\,\\pi\\right]$."
+  },
+  {
+    "id": 89,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=\\sin^{2}{\\left(x \\right)} + \\cos{\\left(x \\right)}",
+    "answer": "1,25",
+    "extremumCondition": "На отрезке $\\left[0;\\,\\frac{\\pi}{2}\\right]$."
+  },
+  {
+    "id": 90,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=\\sin{\\left(x \\right)} + \\cos{\\left(2 x \\right)}",
+    "answer": "1,125",
+    "extremumCondition": "На отрезке $\\left[0;\\,\\frac{\\pi}{2}\\right]$."
+  },
+  {
+    "id": 91,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=2 x + \\sin{\\left(x \\right)}",
+    "answer": "0",
+    "extremumCondition": "На отрезке $\\left[0;\\,\\pi\\right]$."
+  },
+  {
+    "id": 92,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\left(2 x - 1\\right) \\cos{\\left(x \\right)} - 2 \\sin{\\left(x \\right)} + 5",
+    "answer": "0,5",
+    "extremumCondition": "Укажите точку, принадлежащую промежутку $\\left(0;\\,\\frac{\\pi}{2}\\right)$.",
+    "extremumMobileExpression": "\\begin{aligned}y={}&(2x-1)\\cos x\\\\&-2\\sin x+5\\end{aligned}"
+  },
+  {
+    "id": 93,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=\\sin{\\left(x \\right)} + \\cos{\\left(x \\right)}",
+    "answer": "1",
+    "extremumCondition": "На отрезке $\\left[0;\\,\\frac{\\pi}{2}\\right]$."
+  },
+  {
+    "id": 94,
+    "extremumPrompt": "Найдите наибольшее значение функции",
+    "extremumExpression": "y=\\cos^{2}{\\left(x \\right)} + 2 \\cos{\\left(x \\right)}",
+    "answer": "3",
+    "extremumCondition": "На отрезке $\\left[0;\\,\\pi\\right]$."
+  },
+  {
+    "id": 95,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=\\frac{30 x}{\\pi} + 8 \\cos{\\left(x \\right)} + 19",
+    "answer": "-5",
+    "extremumCondition": "На отрезке $\\left[- \\frac{2 \\pi}{3};\\,0\\right]$."
+  },
+  {
+    "id": 96,
+    "extremumPrompt": "Найдите наименьшее значение функции",
+    "extremumExpression": "y=3 x^{2} - 10 x + 4 \\ln{\\left(x \\right)} + 11",
+    "answer": "4",
+    "extremumCondition": "На отрезке $\\left[\\frac{10}{11};\\,\\frac{12}{11}\\right]$."
+  },
+  {
+    "id": 97,
+    "extremumPrompt": "Найдите точку минимума функции",
+    "extremumExpression": "y=x^{2} - \\frac{3 \\ln{\\left(x + 1 \\right)}}{2}",
+    "answer": "0,5"
+  },
+  {
+    "id": 98,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=x^{3} e^{- x}",
+    "answer": "3"
+  },
+  {
+    "id": 99,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\ln{\\left(16 - \\left(x - 3\\right)^{2} \\right)}",
+    "answer": "3"
+  },
+  {
+    "id": 100,
+    "extremumPrompt": "Найдите точку максимума функции",
+    "extremumExpression": "y=\\frac{\\ln{\\left(x \\right)} + 1}{x}",
+    "answer": "1"
+  }
+]

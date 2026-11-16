@@ -289,6 +289,14 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds, a
                 {task.graphPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.graphPrompt}/></p>}
                 {task.graphDiagram && <GraphDiagram diagram={task.graphDiagram} taskId={task.id} />}
                 {task.equationPrompt && <EquationCondition text={task.equationPrompt} />}
+                {task.extremumExpression && (
+                  <div className="space-y-3 text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100">
+                    <p>{task.extremumPrompt}</p>
+                    {task.extremumMobileExpression && <div className="text-center text-sm sm:hidden"><BlockMath math={task.extremumMobileExpression} /></div>}
+                    <div className={`text-center text-sm sm:text-base ${task.extremumMobileExpression ? 'hidden sm:block' : ''}`}><BlockMath math={task.extremumExpression} /></div>
+                    {task.extremumCondition && <p><VectorCondition text={task.extremumCondition} /></p>}
+                  </div>
+                )}
                 {task.calculationExpression && (
                   <div className="space-y-3 text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100">
                     <p>Найдите значение выражения</p>
