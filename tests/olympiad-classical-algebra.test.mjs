@@ -45,7 +45,7 @@ test('requested explanations and method headings are present in the correspondin
   const htmlByTitle=(title)=>renderToStaticMarkup(tasks.find((task)=>task.title===`Задача ${title}`).solutionBuilder());
   const first=htmlByTitle(1);
   assert.doesNotMatch(first,/или/);assert.match(first,/\\begin\{array\}/);
-  assert.match(htmlByTitle(4),/делитель единицы/);
+  assert.match(htmlByTitle(4),/делител[^ ]* единицы/u);
   assert.doesNotMatch(htmlByTitle(5),/Положим|замен/);
   assert.match(htmlByTitle(6),/симметрический/);assert.match(htmlByTitle(6),/постоянном коэффициенте/);
   assert.doesNotMatch(htmlByTitle(9),/Положим|замен/);
@@ -56,10 +56,34 @@ test('requested explanations and method headings are present in the correspondin
   }
   assert.match(htmlByTitle(11),/возвратное уравнение/);
   assert.match(htmlByTitle(14),/первый кубический корень через/);
-  assert.match(htmlByTitle(15),/геометрической прогрессии/);
-  assert.match(htmlByTitle(18),/строго возрастает/);
-  assert.match(htmlByTitle(19),/сократятся/);
+  assert.match(htmlByTitle(15),/тождество/);
+  assert.match(htmlByTitle(18),/без производной/);
+  assert.doesNotMatch(htmlByTitle(18),/f'\(t\)/);
+  assert.match(htmlByTitle(19),/сокращались/);
   assert.match(htmlByTitle(20),/общей степени/);
+});
+
+test('interval cases, admissibility and the boundary value x=1 are correct', () => {
+  const lhs5=x=>Math.sqrt(x-2*Math.sqrt(x-1))+Math.sqrt(x+8-6*Math.sqrt(x-1));
+  for(const x of [1,2,5,10,50,145]) assert.ok(lhs5(x)<=20+1e-10, `task 5: ${x}`);
+  assert.ok(lhs5(146)>20);
+  const alpha=(150-2*Math.sqrt(501))/105,beta=(150+2*Math.sqrt(501))/105;
+  assert.ok(alpha<32/23 && 32/23<beta);
+  const poly=x=>525*x*x-1500*x+976;
+  assert.ok(poly(alpha-0.01)>0 && poly((alpha+beta)/2)<0 && poly(beta+0.01)>0);
+  const l15=x=>(1+x+x*x)*(1+x+x*x+x**3+x**4);
+  const r15=x=>(1+x+x*x+x**3)**2;
+  assert.equal(l15(1),15);assert.equal(r15(1),16);
+  assert.ok(l15(1)<=r15(1));
+  const eq16=x=>Math.sqrt(x*x+2*x+3)-Math.sqrt(x*x+1)-Math.sqrt(x*x-2*x-3)+Math.sqrt(x*x-1);
+  assert.equal(eq16(-1),0);assert.ok(Number.isNaN(eq16(0)));
+  for(const x of [-5,-2,3,4]) assert.ok(Math.abs(eq16(x))>1e-10);
+});
+
+test('polynomial difference has the claimed integer divisor', () => {
+  const coefficients=[2n,-3n,0n,5n,1n];
+  const value=x=>coefficients.reduce((sum,c,k)=>sum+c*x**BigInt(k),0n);
+  for(let a=-4n;a<=4n;a++)for(let b=-4n;b<=4n;b++)if(a!==b)assert.equal((value(a)-value(b))%(a-b),0n);
 });
 
 test('reworked inequality boundaries and vector signs are correct',()=>{
