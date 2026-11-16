@@ -93,12 +93,18 @@ export default async function TaskPage({ params }) {
           </h1>
         </div>
 
-        {(taskNumber === '15-intro' || taskNumber === '3') && <SectionExplorer key={taskNumber} />}
-        {storageModule === 'ege-optimization' && <DerivativeReference />}
+        {(taskNumber === '14-intro' || taskNumber === '3') && <SectionExplorer key={taskNumber} />}
 
         {/* Список задач и модалка репортов */}
         <div className="space-y-4 pt-2">
-          <TaskListBlock key={`tasks-${taskNumber}`} storageModule={storageModule} />
+          <TaskListBlock key={`tasks-${taskNumber}`} storageModule={storageModule} afterLastPage={storageModule === '16' ? (
+            <section className="space-y-6 pt-8">
+              <hr className="border-0 border-t-2 border-slate-300 dark:border-purple-400/40" />
+              <h2 className="text-2xl font-black text-sky-600 dark:text-white">Дополнительные задачи</h2>
+              <DerivativeReference />
+              <TaskListBlock storageModule="ege-optimization" />
+            </section>
+          ) : null} />
           <ErrorReportModal key={`report-${taskNumber}`} sectionNumber={taskNumberIntForComponent} module={taskNumber} />
         </div>
 

@@ -286,7 +286,7 @@ try {
   const egeBank = await request('/math-profile/ege/main');
   assert.equal(egeBank.status, 200);
   const bankMarkup = egeBank.text.split('<script id="_R_">')[0];
-  assert.equal((bankMarkup.match(/viewBox="0 0 200 150"/g) || []).length, 20);
+  assert.equal((bankMarkup.match(/viewBox="0 0 200 150"/g) || []).length, 19);
   function checkCardPreview(markup, href) {
     const card = [...markup.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)].map(match => match[0]).find(link => link.includes(`href="${href}"`));
     assert.ok(card, `Missing card ${href}`);
@@ -295,10 +295,10 @@ try {
     assert.match(card, /<(?:path|circle|rect|text)\b/);
     assert.match(card, /<h3\b/);
   }
-  for (let number = 1; number <= 20; number++) checkCardPreview(bankMarkup, `/math-profile/${number}`);
+  for (let number = 1; number <= 19; number++) checkCardPreview(bankMarkup, `/math-profile/${number}`);
   const introMarkup = (await request('/math-profile/ege/intro')).text.split('<script id="_R_">')[0];
   assert.equal((introMarkup.match(/viewBox="0 0 200 150"/g) || []).length, 4);
-  for (const number of [15, 18, 19, 20]) checkCardPreview(introMarkup, `/math-profile/${number}-intro`);
+  for (const number of [14, 17, 18, 19]) checkCardPreview(introMarkup, `/math-profile/${number}-intro`);
   assert.match(bankMarkup, /href="\/math-profile\/1"/);
   assert.match(bankMarkup, /Планиметрия/);
   const mathHub = await request('/math-profile/ege');
@@ -544,22 +544,22 @@ try {
   assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=ege-optimization", {cookie: sessions.a})).text).solvedSubTasks, [1]);
   assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=ege-optimization", {cookie: sessions.b})).text).solvedSubTasks, []);
   check("optimization task progress belongs to the correct student");
-  const optimizationPage = await request("/math-profile/17");
+  const optimizationPage = await request("/math-profile/16");
   assert.equal(optimizationPage.status, 200);
-  assert.ok(optimizationPage.text.includes("Таблица производных и правила дифференцирования"));
-  const equationsPage = await request("/math-profile/14");
+
+  const equationsPage = await request("/math-profile/13");
   assert.ok(!equationsPage.text.includes("Таблица производных и правила дифференцирования"));
-  check("derivative reference is shown on the optimization task page");
+  check("credit and equation pages open under their restored numbers");
   const profile = await request("/profile", { cookie: sessions.a });
   assert.equal(profile.status, 200);
-  const optimizationLink = profile.text.match(/<a\b[^>]*href="\/math-profile\/17"[^>]*>([\s\S]*?)<\/a>/)?.[1];
+  const optimizationLink = profile.text.match(/<a\b[^>]*href="\/math-profile\/16"[^>]*>([\s\S]*?)<\/a>/)?.[1];
   assert.ok(optimizationLink, "Optimization section should be visible in the student profile");
   const optimizationText = optimizationLink.replace(/<[^>]+>/g, "").replace(/\s+/g, " ");
-  assert.match(optimizationText, /Задание №17\s*1\/14/);
+  assert.match(optimizationText, /Задание №16\s*2\/55/);
   const updatedSupervisor = await request("/supervisor/students/a", {cookie: sessions.teacher});
   const teacherText = updatedSupervisor.text.replace(/<[^>]+>/g, "").replace(/\s+/g, " ");
-  assert.match(teacherText, /№17\s*1\/14/);
-  check("optimization totals appear in student and teacher profiles");
+  assert.match(teacherText, /№16\s*2\/55/);
+  check("credit and additional-task totals appear in student and teacher profiles");
   assert.equal((await request('/math-profile/1')).status, 200);
   assert.equal((await progress(sessions.a, { module: '1', taskId: 200, solved: true })).status, 200);
   assert.equal((await progress(sessions.a, { module: '1', taskId: 201, solved: true })).status, 400);
@@ -688,7 +688,7 @@ try {
     assert.match(page.text, /Кинематика/);
     assert.doesNotMatch(page.text, /анализ физических процессов/);
   }
-  assert.equal((mathVideos.text.match(/viewBox="0 0 200 150"/g) || []).length, 20);
+  assert.equal((mathVideos.text.match(/viewBox="0 0 200 150"/g) || []).length, 19);
   assert.equal((olympiadVideos.text.match(/viewBox="(?:0 0 200 120|20 8 160 96)"/g) || []).length, 14);
   for (const item of olympiads) assert.ok(olympiadCompetitionVideos.text.includes(`href="/videos/olympiads/competition/${item.id}"`), item.id);
   for (const item of olympiads) {
@@ -864,12 +864,12 @@ try {
     ["legacy-extrema", 12, "Legacy extrema lecture"],
   ]) await db.run("INSERT INTO Video(id,title,url,sectionNum,isPremium,createdAt) VALUES(?,?,?,?,?,?)",
     [id, title, "https://kinescope.io/embed/abc123", number, 0, new Date().toISOString()]);
-  for (const [number, title] of [[14,"Legacy equations lecture"],[13,"Legacy finance lecture"],[9,"Legacy extrema lecture"]]) {
+  for (const [number, title] of [[13,"Legacy equations lecture"],[16,"Legacy finance lecture"],[12,"Legacy extrema lecture"]]) {
     const page = await request(`/videos/${number}`, { cookie: sessions.a });
     assert.equal(page.status, 200);
     assert.ok(page.text.includes(title));
   }
-  for (const number of [6,17,20]) {
+  for (const number of [6,16,19]) {
     const newForm = new FormData();
     newForm.set("title", `New lecture ${number}`);
     newForm.set("url", "https://kinescope.io/embed/abc123");
@@ -877,12 +877,12 @@ try {
     assert.equal((await formRequest("/api/videos/create", newForm, sessions.teacher)).status, 303);
     assert.ok((await request(`/videos/${number}`, { cookie: sessions.a })).text.includes(`New lecture ${number}`));
   }
-  for (const [route, title] of [["6","Случайные величины"],["13","Экономические задачи"],["14","Уравнения"],["17","Прикладные задачи на оптимизацию"],["20","Задачи на теорию чисел"],["15-intro","Стереометрия"],["18-intro","Планиметрия"],["19-intro","Параметры"],["20-intro","Теория чисел"]]) {
+  for (const [route, title] of [["6","Простейшие уравнения"],["7","Вычисления и преобразования"],["8","Производная и первообразная"],["16","Экономическая задача"],["19","Числа и их свойства"],["14-intro","Стереометрия"],["17-intro","Планиметрия"],["18-intro","Параметры"],["19-intro","Теория чисел"]]) {
     const page = await request(`/math-profile/${route}`, { cookie: sessions.a });
     assert.equal(page.status, 200);
     assert.ok(page.text.includes(title), `${route}: ${title}`);
   }
-  check("new exam numbering preserves legacy videos and opens the correct topics");
+  check("restored exam numbering preserves legacy videos and opens the correct topics");
   const unknown = await request("/supervisor/students/missing", {
     cookie: sessions.admin,
   });

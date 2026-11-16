@@ -108,7 +108,7 @@ function VectorCondition({ text }) {
     : part);
 }
 
-export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds }) {
+export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds, afterLastPage }) {
   const router = useRouter();
   const pendingTasks = useRef(new Set());
   const taskListTop = useRef(null);
@@ -230,6 +230,7 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
   return (
     <div ref={taskListTop} className="space-y-6 relative scroll-mt-[150px]">
       {pagination}
+      {afterLastPage && activePage < pageCount && <p className="text-sm text-slate-600 dark:text-slate-300">Дополнительные задачи находятся после последней страницы.</p>}
       {visibleTasks.map((task) => {
         const num = parseInt(storageModule, 10) || 0;
         const computedSubTaskId = Number(task.id);
@@ -284,6 +285,13 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
                 {task.vectorPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.vectorPrompt}/></p>}
                 {task.probabilityPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.probabilityPrompt}/></p>}
                 {task.equationPrompt && <EquationCondition text={task.equationPrompt} />}
+                {task.calculationExpression && (
+                  <div className="space-y-3 text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100">
+                    <p>Найдите значение выражения</p>
+                    <div className="text-center text-sm sm:text-base"><BlockMath math={task.calculationExpression} /></div>
+                    {task.calculationCondition && <p><VectorCondition text={task.calculationCondition} /></p>}
+                  </div>
+                )}
                 {task.derivativePrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.derivativePrompt}/></p>}
                 {task.derivativeDiagram && <DerivativeDiagram diagram={task.derivativeDiagram} taskId={task.id} />}
                 {task.vectorDiagram && <VectorDiagram diagram={task.vectorDiagram} taskNumber={task.id}/>}
@@ -372,6 +380,7 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
       })}
 
       {pagination}
+      {activePage === pageCount && afterLastPage}
 
       {/* МОДАЛЬНОЕ ОКНО АВТОРИЗАЦИИ */}
       {showAuthModal && (

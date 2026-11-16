@@ -25,7 +25,7 @@ const roots={6:[-7,7],7:[2,3],8:[-4,1.5],9:[0,12],12:[-2,2],15:[-1/3,3],18:[2,3]
 test('all 50 equations match their answers and render as valid LaTeX',()=>{
  assert.equal(tasks.length,50);assert.equal(residuals.length,50);
  assert.deepEqual(tasks.map(t=>t.id),Array.from({length:50},(_,i)=>i+1));
- assert.deepEqual(catalog['6'],tasks.map(t=>t.id));assert.equal(taskModuleForRoute('7'),'6');
+ assert.deepEqual(catalog['6'],tasks.map(t=>t.id));assert.equal(taskModuleForRoute('6'),'6');
  for(const [i,t] of tasks.entries()){
   assert.equal(t.title,`Задача ${t.id}`);assert.ok(isTaskInModule('6',t.id));
   assert.match(t.answer,/^-?\d+(?:,\d+)?$/);const answer=Number(t.answer.replace(',','.'));
@@ -49,7 +49,7 @@ test('the selected root obeys the requested minimum, maximum and sign',()=>{
  assert.ok(!Number.isFinite(residuals[12](3))); // excluded denominator
  assert.ok(Number.isNaN(residuals[47](.5))); // excluded logarithm arguments
 });
-test('public section 7 has three accessible pages and no unrelated legacy progress',()=>{
+test('public section 6 has three accessible pages and no unrelated legacy progress',()=>{
  assert.equal(paginateTasks(tasks,1).pageCount,3);
  assert.deepEqual(Array.from({length:3},(_,i)=>paginateTasks(tasks,i+1).items).flat(),tasks);
  for(const id of [601,650,700])assert.ok(legacyCandidates(id).every(item=>item.module!=='6'));

@@ -161,12 +161,12 @@ test("new optimization task keeps its own progress and is never assigned legacy 
   const { db } = await fixture(t);
   assert.ok(!legacyCandidates(1).some(({ module }) => module === "ege-optimization"));
   await setTaskProgress(db, "a", "ege-optimization", 1, true);
-  assert.deepEqual(await getEgeProgress(db, "a"), [{ section: 17, taskId: 1 }]);
+  assert.deepEqual(await getEgeProgress(db, "a"), [{ section: 16, taskId: 1 }]);
   assert.deepEqual(await getEgeProgress(db, "b"), []);
   await setTaskProgress(db, "a", "ege-optimization", 1, false);
   assert.deepEqual(await getEgeProgress(db, "a"), []);
   await setTaskProgress(db, "a", "ege-optimization", 14, true);
-  assert.deepEqual(await getEgeProgress(db, "a"), [{ section: 17, taskId: 14 }]);
+  assert.deepEqual(await getEgeProgress(db, "a"), [{ section: 16, taskId: 14 }]);
   await assert.rejects(setTaskProgress(db, "a", "ege-optimization", 15, true));
 });
 test("legacy database migration is non-destructive and preserves ambiguous progress", async (t) => {

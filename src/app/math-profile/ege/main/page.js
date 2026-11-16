@@ -57,7 +57,7 @@ export default function MathProfilePage() {
             <h2 className="text-2xl font-black text-slate-800 dark:text-slate-100 tracking-tight">Часть 1</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {EGE_SECTIONS.slice(0, 13).map(({ number: taskNum, title }) => {
+            {EGE_SECTIONS.slice(0, 12).map(({ number: taskNum, title, previewNumber }) => {
               return (
                 <Link 
                   key={taskNum} 
@@ -82,7 +82,7 @@ export default function MathProfilePage() {
                       {title}
                     </h3>
                   </div>
-                  <EgeCardPreview number={taskNum} />
+                  <EgeCardPreview number={previewNumber} />
                 </Link>
               );
             })}
@@ -95,7 +95,7 @@ export default function MathProfilePage() {
             <h2 className="text-2xl font-black text-slate-800 dark:text-slate-100 tracking-tight">Часть 2</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {EGE_SECTIONS.slice(13).map(({ number: taskNum, title }) => {
+            {EGE_SECTIONS.slice(12).map(({ number: taskNum, title, previewNumber }) => {
               return (
                 <Link 
                   key={taskNum} 
@@ -120,7 +120,7 @@ export default function MathProfilePage() {
                       {title}
                     </h3>
                   </div>
-                  <EgeCardPreview number={taskNum} />
+                  <EgeCardPreview number={previewNumber} />
                 </Link>
               );
             })}

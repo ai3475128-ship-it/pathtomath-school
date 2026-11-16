@@ -10,9 +10,9 @@ import { DatabaseSync } from 'node:sqlite';
 test('practice separates preparatory tasks, bank and olympiad courses', () => {
   const progress = [{module:'14-intro',taskId:1},{module:'ege-optimization',taskId:1},{module:'olympiad-1-intro',taskId:1},{module:'ege-optimization',taskId:999}];
   const math = practiceGroups('ege-math', progress);
-  assert.equal(math[0].rows.find((r) => r.label.startsWith('№15')).done, 1);
-  assert.equal(math[1].rows.find((r) => r.label.startsWith('№17')).done, 1);
-  assert.equal(math[1].rows.find((r) => r.label.startsWith('№17')).total, 14);
+  assert.equal(math[0].rows.find((r) => r.label.startsWith('№14')).done, 1);
+  assert.equal(math[1].rows.find((r) => r.label.startsWith('№16')).done, 1);
+  assert.equal(math[1].rows.find((r) => r.label.startsWith('№16')).total, 55);
   const olymp = practiceGroups('olympiad-math', progress);
   assert.equal(olymp[0].rows[0].done, 1);
   assert.equal(olymp[1].rows.reduce((n, r) => n + r.done, 0), 0);

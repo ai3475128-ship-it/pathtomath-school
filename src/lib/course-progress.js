@@ -22,7 +22,7 @@ export function practiceGroups(course, progress) {
   const solved = new Set(progress.map((p) => `${p.module}:${p.taskId}`));
   if (course === 'ege-math') return [
     { title: 'Подготовительные задачи', rows: EGE_INTRO_SECTIONS.map((s) => item(`№${s.number} · ${s.title}`, [s.module], solved, `/math-profile/${s.number}-intro`)) },
-    { title: 'Банк заданий', rows: EGE_SECTIONS.map((s) => item(`№${s.number} · ${s.title}`, s.number === 9 ? [s.module, '12'] : [s.module], solved, `/math-profile/${s.number}`)) },
+    { title: 'Банк заданий', rows: EGE_SECTIONS.map((s) => item(`№${s.number} · ${s.title}`, s.number === 16 ? [s.module, 'ege-optimization'] : [s.module], solved, `/math-profile/${s.number}`)) },
   ];
   if (course === 'olympiad-math') return [
     { title: 'Подготовительные задачи', rows: OLYMPIAD_PREP.map(([title, moduleId], i) => item(title, [moduleId], solved, `/math-profile/olympiad-${i+1}-intro`)) },
@@ -39,7 +39,7 @@ export function practiceGroups(course, progress) {
   return [];
 }
 export function trialInsights(trials, results, course) {
-  const limit = course === 'ege-math' ? 20 : course === 'physics' ? 26 : course === 'olympiad-math' ? 100 : 0;
+  const limit = course === 'ege-math' ? 19 : course === 'physics' ? 26 : course === 'olympiad-math' ? 100 : 0;
   const checked = trials.filter((t) => t.status === 'Проверено' && Number.isFinite(t.score) && t.maxScore > 0 && t.score >= 0 && t.score <= t.maxScore)
     .sort((a, b) => String(a.date).localeCompare(String(b.date)) || String(a.id).localeCompare(String(b.id)));
   const permitted = new Set(checked.filter((t) => t.courseId === course).map((t) => t.id));
