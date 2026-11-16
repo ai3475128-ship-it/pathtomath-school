@@ -1,4 +1,3 @@
-import React from 'react';
-import { InlineMath, BlockMath } from 'react-katex';
+import tasks from '@/lib/ege-equations-tasks.json';
 
-export const section6Tasks = []; // Для section2.js будет section2Tasks и т.д.
+export const section6Tasks = tasks;
