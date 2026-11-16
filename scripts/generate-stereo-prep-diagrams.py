@@ -18,7 +18,7 @@ def square():
  base={'A':(75,315),'B':(260,355),'C':(340,265),'D':(155,225)}
  return base|{k+'₁':(x,y-180) for k,(x,y) in base.items()}
 def square_draw(task,solution=False):
- v=square(); q=Draw(500,500 if task==6 and solution else 410)
+ v=square(); q=Draw(500,585 if task==6 and solution else 410)
  for a,b in [('A','D'),('D','C'),('D','D₁')]:q.line(v[a],v[b],dash=True)
  for a,b in [('A','B'),('B','C'),('A','A₁'),('B','B₁'),('C','C₁'),('A₁','B₁'),('B₁','C₁'),('C₁','D₁'),('D₁','A₁')]:q.line(v[a],v[b])
  if task==1:
@@ -27,13 +27,18 @@ def square_draw(task,solution=False):
  if task==6:
   q.line(v['A'],v['C₁'],blue,dash=True,width=3.6);q.line(v['B₁'],v['C'],blue,width=3.6)
   if solution:
+   for k in ['A','B','C']: v[k+'₂']=(v[k][0],v[k][1]+180)
    v['M']=(v['D'][0],v['D'][1]+180)
-   q.line(v['D'],v['M'],dash=True);q.line(v['A'],v['M'],green,width=3.5);q.line(v['M'],v['C₁'],green,dash=True,width=3)
+   for a,b in [('D','M'),('M','A₂'),('M','C₂')]:q.line(v[a],v[b],dash=True)
+   for a,b in [('A','A₂'),('B','B₂'),('C','C₂'),('A₂','B₂'),('B₂','C₂')]:q.line(v[a],v[b])
+   q.line(v['A'],v['M'],green,width=3.5);q.line(v['M'],v['C₁'],green,dash=True,width=3)
  if task==7:
   v['K']=mid(v['B'],v['B₁'],.75);q.line(v['A'],v['K'],blue,width=3.5);q.line(v['B'],v['D₁'],blue,dash=True,width=3.5)
   if solution:
    v['M']=mid(v['B₁'],v['D₁'],.25);q.line(v['B₁'],v['D₁'],dash=True);q.line(v['K'],v['M'],green,width=3.5);q.line(v['A'],v['M'],green,dash=True,width=3)
  offsets={'A':(-17,23),'B':(0,28),'C':(18,11),'D':(0,26),'A₁':(-20,-8),'B₁':(-3,-13),'C₁':(21,0),'D₁':(0,-13),'M':(-20,26),'K':(19,7)}
+ if task==6 and solution:
+  offsets.update({'B':(18,5),'B₁':(20,5),'D':(-18,3),'A₂':(-18,24),'B₂':(0,28),'C₂':(20,8),'M':(18,20)})
  if task==7 and solution: offsets['M']=(4,-14)
  for k,p in v.items():q.point(p,k,*offsets[k])
  q.save(f'{task}-'+('construction' if solution else 'condition'))
