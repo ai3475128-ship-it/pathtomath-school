@@ -284,6 +284,7 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds, a
                 {/* ЗОНА ЧИСТОГО ТЕКСТА */}
                 {task.vectorPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.vectorPrompt}/></p>}
                 {task.probabilityPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.probabilityPrompt}/></p>}
+                {task.wordProblemPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.wordProblemPrompt}/></p>}
                 {task.equationPrompt && <EquationCondition text={task.equationPrompt} />}
                 {task.calculationExpression && (
                   <div className="space-y-3 text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100">

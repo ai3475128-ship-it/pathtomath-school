@@ -1,4 +1,3 @@
-import React from 'react';
-import { InlineMath, BlockMath } from 'react-katex';
+import tasks from '@/lib/word-problem-tasks.json';
 
-export const section10Tasks = []; // Для section2.js будет section2Tasks и т.д.
+export const section10Tasks = tasks;
