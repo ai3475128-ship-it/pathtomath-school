@@ -63,6 +63,7 @@ import { egeOptimizationTasks } from './ege-optimization';
 import PlanimetryDiagram from './PlanimetryDiagram';
 import VectorDiagram from './VectorDiagram';
 import EconomicsCondition from './EconomicsCondition';
+import EquationCondition from './EquationCondition';
 
 const egeIntroMap = {
   '14-intro': egeIntro14Tasks, '17-intro': egeIntro17Tasks, '18-intro': egeIntro18Tasks, '19-intro': egeIntro19Tasks
@@ -281,7 +282,7 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
                 {/* ЗОНА ЧИСТОГО ТЕКСТА */}
                 {task.vectorPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.vectorPrompt}/></p>}
                 {task.probabilityPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.probabilityPrompt}/></p>}
-                {task.equationPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.equationPrompt}/></p>}
+                {task.equationPrompt && <EquationCondition text={task.equationPrompt} />}
                 {task.vectorDiagram && <VectorDiagram diagram={task.vectorDiagram} taskNumber={task.id}/>}
                 {task.stereometryPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.stereometryPrompt}/></p>}
                 {task.stereometryDiagram && (
