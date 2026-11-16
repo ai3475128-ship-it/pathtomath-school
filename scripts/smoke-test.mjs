@@ -544,6 +544,13 @@ try {
   assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=ege-optimization", {cookie: sessions.a})).text).solvedSubTasks, [1]);
   assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=ege-optimization", {cookie: sessions.b})).text).solvedSubTasks, []);
   check("optimization task progress belongs to the correct student");
+  const wordProblemPage = await request("/math-profile/10");
+  assert.equal(wordProblemPage.status, 200);
+  assert.match(wordProblemPage.text, /Текстовые задачи/);
+  assert.equal((await progress(sessions.a, { module: "10", taskId: 80, solved: true })).status, 200);
+  assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=10", {cookie: sessions.a})).text).solvedSubTasks, [80]);
+  assert.deepEqual(JSON.parse((await request("/api/user-task-progress?module=10", {cookie: sessions.b})).text).solvedSubTasks, []);
+  check("word problem page opens and saves separate student progress");
   const optimizationPage = await request("/math-profile/16");
   assert.equal(optimizationPage.status, 200);
 
