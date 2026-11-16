@@ -160,7 +160,7 @@ export async function checkTrialMark(form) {
   )
     throw Error("Некорректный балл");
   const fieldsProvided = form.get('taskResultsPresent') === '1';
-  const taskLimit = work.courseId === 'ege-math' ? 20 : work.courseId === 'physics' ? 26 : work.courseId === 'olympiad-math' ? 100 : 0;
+  const taskLimit = work.courseId === 'ege-math' ? 19 : work.courseId === 'physics' ? 26 : work.courseId === 'olympiad-math' ? 100 : 0;
   const taskResults = [];
   if (fieldsProvided) {
     if (!taskLimit) throw Error('По этому пробнику нельзя указать результаты по номерам');
@@ -183,7 +183,8 @@ export async function checkTrialMark(form) {
   db.transaction((raw) => {
     raw.prepare("UPDATE Trial SET score=?,comment=?,status='Проверено' WHERE id=?").run(score, comment, id);
     if (fieldsProvided) {
-      raw.prepare('DELETE FROM TrialTaskResult WHERE trialId=?').run(id);
+      if (work.courseId === 'ege-math') raw.prepare('DELETE FROM TrialTaskResult WHERE trialId=? AND taskNumber<=19').run(id);
+      else raw.prepare('DELETE FROM TrialTaskResult WHERE trialId=?').run(id);
       const insert = raw.prepare('INSERT INTO TrialTaskResult(trialId,taskNumber,solved) VALUES(?,?,?)');
       for (const [number, solved] of taskResults) insert.run(id, number, solved);
     }

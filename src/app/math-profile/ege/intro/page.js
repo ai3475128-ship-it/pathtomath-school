@@ -78,7 +78,7 @@ export default function EgeIntroTasksPage() {
                   {sec.title}
                 </h3>
               </div>
-              <EgeCardPreview number={sec.number} intro />
+              <EgeCardPreview number={sec.previewNumber} intro />
             </Link>
           ))}
         </div>

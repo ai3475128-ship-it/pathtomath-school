@@ -19,7 +19,7 @@ export default function ErrorReportModal({ sectionNumber,module }) {
     setStatusMessage({ type: '', text: '' });
 
     const formData = new FormData();
-    formData.append('module', taskModuleForRoute(String(selectedSection)) || '');
+    formData.append('module', selectedSection === 'ege-optimization' && module === '16' ? 'ege-optimization' : taskModuleForRoute(String(selectedSection)) || '');
     formData.append('taskId', taskId || 0);
     formData.append('description', description);
 
@@ -84,7 +84,7 @@ export default function ErrorReportModal({ sectionNumber,module }) {
                     onClick={() => !isPending && setIsSelectOpen(!isSelectOpen)}
                     className="w-full text-sm bg-slate-50 border border-blue-100/60 rounded-xl p-3 text-slate-700 dark:bg-purple-950/40 dark:border-purple-500/30 dark:text-slate-200 focus:outline-none cursor-pointer flex justify-between items-center shadow-sm select-none"
                   >
-                    <span>{String(selectedSection).includes('olympiad') ? `Олимпиады · раздел ${String(selectedSection).match(/\d+/)?.[0]}` : `Задание №${selectedSection}`}</span>
+                    <span>{selectedSection === 'ege-optimization' ? '№16 · дополнительные задачи' : String(selectedSection).includes('olympiad') ? `Олимпиады · раздел ${String(selectedSection).match(/\d+/)?.[0]}` : `Задание №${selectedSection}`}</span>
                     <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className={`w-3.5 h-3.5 text-blue-500 transition-transform duration-300 ${isSelectOpen ? 'rotate-180' : ''}`}><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
                   </div>
 
@@ -93,7 +93,8 @@ export default function ErrorReportModal({ sectionNumber,module }) {
                       <div className="fixed inset-0 z-10" onClick={() => setIsSelectOpen(false)} />
                       <div className="absolute left-0 right-0 mt-2 max-h-48 overflow-y-auto bg-white/95 backdrop-blur-md border border-blue-100 rounded-xl shadow-xl z-20 font-medium text-sm p-1.5 divide-y divide-blue-50/50 dark:bg-[#140e24]/95 dark:border-purple-500/30">
                         {module && module !== String(parseInt(module,10)) && <div onClick={() => {setSelectedSection(module);setIsSelectOpen(false);}} className="px-3 py-2.5 rounded-lg cursor-pointer text-sky-600">Текущий раздел</div>}
-                        {[...Array(20)].map((_, idx) => (
+                        {module === '16' && <div onClick={() => {setSelectedSection('ege-optimization');setIsSelectOpen(false);}} className="px-3 py-2.5 rounded-lg cursor-pointer text-sky-600">№16 · дополнительные задачи</div>}
+                        {[...Array(19)].map((_, idx) => (
                           <div
                             key={idx + 1}
                             onClick={() => { setSelectedSection(String(idx + 1)); setIsSelectOpen(false); }}

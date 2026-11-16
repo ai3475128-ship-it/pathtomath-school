@@ -18,7 +18,7 @@ const sourceAnswers={
 function sourceAnswer(ref){const parts=ref.split('.'),group=parts.slice(0,2).join('.'),index=parts[2]?Number(parts[2]):0;return sourceAnswers[group]?.[index];}
 test('all problems and answers preserve the supplied sources, with formulas and images intact',()=>{
  assert.equal(tasks.length,78);assert.deepEqual(tasks.map(t=>t.id),Array.from({length:78},(_,i)=>i+1));
- assert.equal(taskModuleForRoute('9'),'8');assert.deepEqual(catalog['8'],tasks.map(t=>t.id));
+ assert.equal(taskModuleForRoute('8'),'8');assert.deepEqual(catalog['8'],tasks.map(t=>t.id));
  for(const t of tasks){
   assert.ok(isTaskInModule('8',t.id));assert.ok(t.derivativePrompt.length>70,`Задача ${t.id}: условие`);
   assert.equal(t.answer,t.id>=10&&t.id<=14?['2','3','8','4','2'][t.id-10]:sourceAnswer(t.sourceNumber),`Задача ${t.id}: ответ`);

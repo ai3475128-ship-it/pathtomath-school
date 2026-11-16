@@ -1,0 +1,630 @@
+[
+  {
+    "id": 1,
+    "title": "Задача 1",
+    "calculationExpression": "\\frac{735^2-265^2}{1000}",
+    "answer": "470"
+  },
+  {
+    "id": 2,
+    "title": "Задача 2",
+    "calculationExpression": "\\frac{812^2-188^2}{1000}",
+    "answer": "624"
+  },
+  {
+    "id": 3,
+    "title": "Задача 3",
+    "calculationExpression": "\\frac{13^3-7^3}{13-7}",
+    "answer": "309"
+  },
+  {
+    "id": 4,
+    "title": "Задача 4",
+    "calculationExpression": "\\frac{11^3+4^3}{11+4}",
+    "answer": "93"
+  },
+  {
+    "id": 5,
+    "title": "Задача 5",
+    "calculationExpression": "\\frac{\\frac34-\\frac14}{\\frac56-\\frac13}",
+    "answer": "1"
+  },
+  {
+    "id": 6,
+    "title": "Задача 6",
+    "calculationExpression": "\\frac{\\frac78-\\frac38}{\\frac23-\\frac16}",
+    "answer": "1"
+  },
+  {
+    "id": 7,
+    "title": "Задача 7",
+    "calculationExpression": "61a-11b+50",
+    "answer": "10",
+    "calculationCondition": "Если $\\frac{2a-7b+5}{7a-2b+5}=9$."
+  },
+  {
+    "id": 8,
+    "title": "Задача 8",
+    "calculationExpression": "17a+b+20",
+    "answer": "8",
+    "calculationCondition": "Если $\\frac{3a-5b+4}{5a-b+4}=4$."
+  },
+  {
+    "id": 9,
+    "title": "Задача 9",
+    "calculationExpression": "\\frac{x^2-49}{x-7}",
+    "answer": "20",
+    "calculationCondition": "При $x=13$."
+  },
+  {
+    "id": 10,
+    "title": "Задача 10",
+    "calculationExpression": "\\frac{y^3-8}{y-2}",
+    "answer": "39",
+    "calculationCondition": "При $y=5$."
+  },
+  {
+    "id": 11,
+    "title": "Задача 11",
+    "calculationExpression": "\\sqrt{(a-4)^2}+\\sqrt{(a-7)^2}",
+    "answer": "3",
+    "calculationCondition": "При $4\\leqslant a\\leqslant7$."
+  },
+  {
+    "id": 12,
+    "title": "Задача 12",
+    "calculationExpression": "\\sqrt{(x+2)^2}+\\sqrt{(x-5)^2}",
+    "answer": "7",
+    "calculationCondition": "При $-2\\leqslant x\\leqslant5$."
+  },
+  {
+    "id": 13,
+    "title": "Задача 13",
+    "calculationExpression": "\\frac{\\sqrt{10}\\sqrt{15}}{\\sqrt6}",
+    "answer": "5"
+  },
+  {
+    "id": 14,
+    "title": "Задача 14",
+    "calculationExpression": "\\frac{\\sqrt{14}\\sqrt{21}}{\\sqrt6}",
+    "answer": "7"
+  },
+  {
+    "id": 15,
+    "title": "Задача 15",
+    "calculationExpression": "\\frac{\\sqrt[3]{6}\\sqrt[3]{12}}{\\sqrt[3]{9}}",
+    "answer": "2"
+  },
+  {
+    "id": 16,
+    "title": "Задача 16",
+    "calculationExpression": "\\frac{\\sqrt[3]{20}\\sqrt[3]{25}}{\\sqrt[3]{4}}",
+    "answer": "5"
+  },
+  {
+    "id": 17,
+    "title": "Задача 17",
+    "calculationExpression": "\\frac{\\sqrt[4]{18}\\sqrt[4]{27}}{\\sqrt[4]{6}}",
+    "answer": "3"
+  },
+  {
+    "id": 18,
+    "title": "Задача 18",
+    "calculationExpression": "\\frac{\\sqrt[4]{8}\\sqrt[4]{32}}{\\sqrt[4]{16}}",
+    "answer": "2"
+  },
+  {
+    "id": 19,
+    "title": "Задача 19",
+    "calculationExpression": "\\sqrt[5]{32^2}",
+    "answer": "4"
+  },
+  {
+    "id": 20,
+    "title": "Задача 20",
+    "calculationExpression": "\\sqrt[3]{125^2}",
+    "answer": "25"
+  },
+  {
+    "id": 21,
+    "title": "Задача 21",
+    "calculationExpression": "\\frac{\\sqrt{75}-\\sqrt{12}}{\\sqrt3}",
+    "answer": "3"
+  },
+  {
+    "id": 22,
+    "title": "Задача 22",
+    "calculationExpression": "\\frac{\\sqrt{98}-\\sqrt8}{\\sqrt2}",
+    "answer": "5"
+  },
+  {
+    "id": 23,
+    "title": "Задача 23",
+    "calculationExpression": "(5+\\sqrt7)(5-\\sqrt7)",
+    "answer": "18"
+  },
+  {
+    "id": 24,
+    "title": "Задача 24",
+    "calculationExpression": "(4\\sqrt3+5)(4\\sqrt3-5)",
+    "answer": "23"
+  },
+  {
+    "id": 25,
+    "title": "Задача 25",
+    "calculationExpression": "\\sqrt{7+4\\sqrt3}-\\sqrt3",
+    "answer": "2"
+  },
+  {
+    "id": 26,
+    "title": "Задача 26",
+    "calculationExpression": "\\sqrt{11+6\\sqrt2}-\\sqrt2",
+    "answer": "3"
+  },
+  {
+    "id": 27,
+    "title": "Задача 27",
+    "calculationExpression": "\\frac{3^{11}\\cdot3^4}{3^{12}}",
+    "answer": "27"
+  },
+  {
+    "id": 28,
+    "title": "Задача 28",
+    "calculationExpression": "\\frac{5^8\\cdot5^{-3}}{5^3}",
+    "answer": "25"
+  },
+  {
+    "id": 29,
+    "title": "Задача 29",
+    "calculationExpression": "\\frac{4^7}{8^4}",
+    "answer": "4"
+  },
+  {
+    "id": 30,
+    "title": "Задача 30",
+    "calculationExpression": "\\frac{27^4}{9^5}",
+    "answer": "9"
+  },
+  {
+    "id": 31,
+    "title": "Задача 31",
+    "calculationExpression": "\\frac{4^{4{,}75}}{8^{2{,}5}}",
+    "answer": "4"
+  },
+  {
+    "id": 32,
+    "title": "Задача 32",
+    "calculationExpression": "\\frac{125^{3{,}2}}{25^{3{,}3}}",
+    "answer": "125"
+  },
+  {
+    "id": 33,
+    "title": "Задача 33",
+    "calculationExpression": "81^{\\frac34}\\cdot27^{-\\frac13}",
+    "answer": "9"
+  },
+  {
+    "id": 34,
+    "title": "Задача 34",
+    "calculationExpression": "32^{\\frac25}\\cdot8^{-\\frac13}",
+    "answer": "2"
+  },
+  {
+    "id": 35,
+    "title": "Задача 35",
+    "calculationExpression": "\\left(2^{\\frac35}\\cdot5^{\\frac25}\\right)^5",
+    "answer": "200"
+  },
+  {
+    "id": 36,
+    "title": "Задача 36",
+    "calculationExpression": "\\left(3^{\\frac23}\\cdot2^{\\frac13}\\right)^6",
+    "answer": "324"
+  },
+  {
+    "id": 37,
+    "title": "Задача 37",
+    "calculationExpression": "\\frac{2^{-3}+2^{-4}}{2^{-5}}",
+    "answer": "6"
+  },
+  {
+    "id": 38,
+    "title": "Задача 38",
+    "calculationExpression": "\\frac{3^{-2}-3^{-3}}{3^{-4}}",
+    "answer": "6"
+  },
+  {
+    "id": 39,
+    "title": "Задача 39",
+    "calculationExpression": "\\sqrt{2^6\\cdot5^2}",
+    "answer": "40"
+  },
+  {
+    "id": 40,
+    "title": "Задача 40",
+    "calculationExpression": "\\sqrt[3]{3^6\\cdot2^3}",
+    "answer": "18"
+  },
+  {
+    "id": 41,
+    "title": "Задача 41",
+    "calculationExpression": "\\log_3 243",
+    "answer": "5"
+  },
+  {
+    "id": 42,
+    "title": "Задача 42",
+    "calculationExpression": "\\log_{\\frac12}32",
+    "answer": "-5"
+  },
+  {
+    "id": 43,
+    "title": "Задача 43",
+    "calculationExpression": "\\log_3 2{,}7+\\log_3 10",
+    "answer": "3"
+  },
+  {
+    "id": 44,
+    "title": "Задача 44",
+    "calculationExpression": "\\log_2 12+\\log_2\\frac23",
+    "answer": "3"
+  },
+  {
+    "id": 45,
+    "title": "Задача 45",
+    "calculationExpression": "\\log_{0{,}2}100-\\log_{0{,}2}4",
+    "answer": "-2"
+  },
+  {
+    "id": 46,
+    "title": "Задача 46",
+    "calculationExpression": "\\log_3 162-\\log_3 2",
+    "answer": "4"
+  },
+  {
+    "id": 47,
+    "title": "Задача 47",
+    "calculationExpression": "2\\log_5 10-\\log_5 4",
+    "answer": "2"
+  },
+  {
+    "id": 48,
+    "title": "Задача 48",
+    "calculationExpression": "3\\log_2 6-\\log_2 27",
+    "answer": "3"
+  },
+  {
+    "id": 49,
+    "title": "Задача 49",
+    "calculationExpression": "\\frac{\\log_4 125}{\\log_8 625}",
+    "answer": "1,125"
+  },
+  {
+    "id": 50,
+    "title": "Задача 50",
+    "calculationExpression": "\\frac{\\log_{81}32}{\\log_{27}4}",
+    "answer": "1,875"
+  },
+  {
+    "id": 51,
+    "title": "Задача 51",
+    "calculationExpression": "\\frac{\\log_2 7}{\\log_4 7}",
+    "answer": "2"
+  },
+  {
+    "id": 52,
+    "title": "Задача 52",
+    "calculationExpression": "\\frac{\\log_9 5}{\\log_3 5}",
+    "answer": "0,5"
+  },
+  {
+    "id": 53,
+    "title": "Задача 53",
+    "calculationExpression": "\\log_{25}5",
+    "answer": "0,5"
+  },
+  {
+    "id": 54,
+    "title": "Задача 54",
+    "calculationExpression": "\\log_{16}8",
+    "answer": "0,75"
+  },
+  {
+    "id": 55,
+    "title": "Задача 55",
+    "calculationExpression": "7^{\\log_7 13}",
+    "answer": "13"
+  },
+  {
+    "id": 56,
+    "title": "Задача 56",
+    "calculationExpression": "5^{\\log_5 18}",
+    "answer": "18"
+  },
+  {
+    "id": 57,
+    "title": "Задача 57",
+    "calculationExpression": "49^{\\log_7 3}",
+    "answer": "9"
+  },
+  {
+    "id": 58,
+    "title": "Задача 58",
+    "calculationExpression": "8^{\\log_2 5}",
+    "answer": "125"
+  },
+  {
+    "id": 59,
+    "title": "Задача 59",
+    "calculationExpression": "3^{2+\\log_3 2}",
+    "answer": "18"
+  },
+  {
+    "id": 60,
+    "title": "Задача 60",
+    "calculationExpression": "5^{1+\\log_5 4}",
+    "answer": "20"
+  },
+  {
+    "id": 61,
+    "title": "Задача 61",
+    "calculationExpression": "\\log_a(b^6\\sqrt a)",
+    "answer": "-2,5",
+    "calculationCondition": "Если $\\log_b a=-2$."
+  },
+  {
+    "id": 62,
+    "title": "Задача 62",
+    "calculationExpression": "\\log_a(a^4b^3)",
+    "answer": "5",
+    "calculationCondition": "Если $\\log_b a=3$."
+  },
+  {
+    "id": 63,
+    "title": "Задача 63",
+    "calculationExpression": "\\log_a b",
+    "answer": "4",
+    "calculationCondition": "Если $\\log_b a=0{,}25$."
+  },
+  {
+    "id": 64,
+    "title": "Задача 64",
+    "calculationExpression": "\\log_m n",
+    "answer": "-0,5",
+    "calculationCondition": "Если $\\log_n m=-2$."
+  },
+  {
+    "id": 65,
+    "title": "Задача 65",
+    "calculationExpression": "4\\sin30^\\circ+2\\cos60^\\circ",
+    "answer": "3"
+  },
+  {
+    "id": 66,
+    "title": "Задача 66",
+    "calculationExpression": "6\\cos60^\\circ-4\\sin30^\\circ",
+    "answer": "1"
+  },
+  {
+    "id": 67,
+    "title": "Задача 67",
+    "calculationExpression": "2\\sin150^\\circ+4\\cos120^\\circ",
+    "answer": "-1"
+  },
+  {
+    "id": 68,
+    "title": "Задача 68",
+    "calculationExpression": "3\\cos240^\\circ-2\\sin330^\\circ",
+    "answer": "-0,5"
+  },
+  {
+    "id": 69,
+    "title": "Задача 69",
+    "calculationExpression": "2\\sin\\frac{7\\pi}{6}+4\\cos\\frac{4\\pi}{3}",
+    "answer": "-3"
+  },
+  {
+    "id": 70,
+    "title": "Задача 70",
+    "calculationExpression": "6\\cos\\frac{5\\pi}{3}-2\\sin\\frac{11\\pi}{6}",
+    "answer": "4"
+  },
+  {
+    "id": 71,
+    "title": "Задача 71",
+    "calculationExpression": "\\frac{\\sin38^\\circ}{\\cos52^\\circ}",
+    "answer": "1"
+  },
+  {
+    "id": 72,
+    "title": "Задача 72",
+    "calculationExpression": "\\frac{\\cos17^\\circ}{\\sin73^\\circ}",
+    "answer": "1"
+  },
+  {
+    "id": 73,
+    "title": "Задача 73",
+    "calculationExpression": "5\\sin\\alpha",
+    "answer": "-4",
+    "calculationCondition": "Если $\\cos\\alpha=-0{,}6$ и $\\alpha\\in\\left(\\pi;\\frac{3\\pi}{2}\\right)$."
+  },
+  {
+    "id": 74,
+    "title": "Задача 74",
+    "calculationExpression": "10\\sin\\beta",
+    "answer": "-6",
+    "calculationCondition": "Если $\\cos\\beta=0{,}8$ и $\\beta\\in\\left(\\frac{3\\pi}{2};2\\pi\\right)$."
+  },
+  {
+    "id": 75,
+    "title": "Задача 75",
+    "calculationExpression": "5\\cos\\alpha",
+    "answer": "-3",
+    "calculationCondition": "Если $\\sin\\alpha=0{,}8$ и $\\alpha\\in\\left(\\frac\\pi2;\\pi\\right)$."
+  },
+  {
+    "id": 76,
+    "title": "Задача 76",
+    "calculationExpression": "13\\cos\\beta",
+    "answer": "12",
+    "calculationCondition": "Если $\\sin\\beta=-\\frac5{13}$ и $\\beta\\in\\left(\\frac{3\\pi}{2};2\\pi\\right)$."
+  },
+  {
+    "id": 77,
+    "title": "Задача 77",
+    "calculationExpression": "\\tan\\alpha",
+    "answer": "0,75",
+    "calculationCondition": "Если $\\sin\\alpha=0{,}6$ и $\\cos\\alpha=0{,}8$."
+  },
+  {
+    "id": 78,
+    "title": "Задача 78",
+    "calculationExpression": "\\tan\\beta",
+    "answer": "-2,4",
+    "calculationCondition": "Если $\\sin\\beta=-\\frac{12}{13}$ и $\\cos\\beta=\\frac5{13}$."
+  },
+  {
+    "id": 79,
+    "title": "Задача 79",
+    "calculationExpression": "25\\sin^2\\alpha",
+    "answer": "16",
+    "calculationCondition": "Если $\\cos\\alpha=0{,}6$."
+  },
+  {
+    "id": 80,
+    "title": "Задача 80",
+    "calculationExpression": "49\\cos^2\\beta",
+    "answer": "24",
+    "calculationCondition": "Если $\\sin\\beta=\\frac57$."
+  },
+  {
+    "id": 81,
+    "title": "Задача 81",
+    "calculationExpression": "\\sin2\\alpha",
+    "answer": "0,96",
+    "calculationCondition": "Если $\\sin\\alpha=0{,}6$ и $\\cos\\alpha=0{,}8$."
+  },
+  {
+    "id": 82,
+    "title": "Задача 82",
+    "calculationExpression": "\\sin2\\beta",
+    "answer": "-0,96",
+    "calculationCondition": "Если $\\sin\\beta=-0{,}6$ и $\\cos\\beta=0{,}8$."
+  },
+  {
+    "id": 83,
+    "title": "Задача 83",
+    "calculationExpression": "\\cos2\\alpha",
+    "answer": "0,28",
+    "calculationCondition": "Если $\\cos\\alpha=0{,}8$."
+  },
+  {
+    "id": 84,
+    "title": "Задача 84",
+    "calculationExpression": "\\cos2\\beta",
+    "answer": "0,28",
+    "calculationCondition": "Если $\\sin\\beta=0{,}6$."
+  },
+  {
+    "id": 85,
+    "title": "Задача 85",
+    "calculationExpression": "\\tan2\\alpha",
+    "answer": "0,75",
+    "calculationCondition": "Если $\\tan\\alpha=\\frac13$."
+  },
+  {
+    "id": 86,
+    "title": "Задача 86",
+    "calculationExpression": "3\\tan2\\beta",
+    "answer": "4",
+    "calculationCondition": "Если $\\tan\\beta=\\frac12$."
+  },
+  {
+    "id": 87,
+    "title": "Задача 87",
+    "calculationExpression": "\\frac{44\\sin140^\\circ\\cos140^\\circ}{\\sin280^\\circ}",
+    "answer": "22"
+  },
+  {
+    "id": 88,
+    "title": "Задача 88",
+    "calculationExpression": "\\frac{18\\sin35^\\circ\\cos35^\\circ}{\\sin70^\\circ}",
+    "answer": "9"
+  },
+  {
+    "id": 89,
+    "title": "Задача 89",
+    "calculationExpression": "\\frac{10\\sin85^\\circ\\cos85^\\circ}{\\sin190^\\circ}",
+    "answer": "-5"
+  },
+  {
+    "id": 90,
+    "title": "Задача 90",
+    "calculationExpression": "\\frac{6\\sin95^\\circ\\cos95^\\circ}{\\sin170^\\circ}",
+    "answer": "-3"
+  },
+  {
+    "id": 91,
+    "title": "Задача 91",
+    "calculationExpression": "\\sin^2 23^\\circ+\\sin^2 67^\\circ",
+    "answer": "1"
+  },
+  {
+    "id": 92,
+    "title": "Задача 92",
+    "calculationExpression": "\\cos^2 31^\\circ+\\cos^2 59^\\circ",
+    "answer": "1"
+  },
+  {
+    "id": 93,
+    "title": "Задача 93",
+    "calculationExpression": "2\\sin390^\\circ+4\\cos420^\\circ",
+    "answer": "3"
+  },
+  {
+    "id": 94,
+    "title": "Задача 94",
+    "calculationExpression": "6\\cos720^\\circ-2\\sin690^\\circ",
+    "answer": "7"
+  },
+  {
+    "id": 95,
+    "title": "Задача 95",
+    "calculationExpression": "\\frac{3\\sin\\alpha}{\\cos\\alpha}",
+    "answer": "6",
+    "calculationCondition": "Если $\\tan\\alpha=2$."
+  },
+  {
+    "id": 96,
+    "title": "Задача 96",
+    "calculationExpression": "\\frac{5\\cos\\beta}{\\sin\\beta}",
+    "answer": "20",
+    "calculationCondition": "Если $\\tan\\beta=0{,}25$."
+  },
+  {
+    "id": 97,
+    "title": "Задача 97",
+    "calculationExpression": "\\frac{\\sin\\alpha}{\\cos\\alpha}+\\frac{\\cos\\alpha}{\\sin\\alpha}",
+    "answer": "2,5",
+    "calculationCondition": "Если $\\sin2\\alpha=0{,}8$."
+  },
+  {
+    "id": 98,
+    "title": "Задача 98",
+    "calculationExpression": "\\frac{\\sin\\beta}{\\cos\\beta}+\\frac{\\cos\\beta}{\\sin\\beta}",
+    "answer": "4",
+    "calculationCondition": "Если $\\sin2\\beta=0{,}5$."
+  },
+  {
+    "id": 99,
+    "title": "Задача 99",
+    "calculationExpression": "\\sqrt2\\tan\\frac{11\\pi}{6}\\cdot\\sin\\left(-\\frac{13\\pi}{3}\\right):\\cos\\frac{19\\pi}{4}",
+    "answer": "-1"
+  },
+  {
+    "id": 100,
+    "title": "Задача 100",
+    "calculationExpression": "6\\sqrt6\\sin\\frac{23\\pi}{6}\\cdot\\cos\\left(-\\frac{11\\pi}{4}\\right):\\tan\\frac{8\\pi}{3}",
+    "answer": "-3"
+  }
+]

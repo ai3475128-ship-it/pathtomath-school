@@ -83,7 +83,7 @@ export default async function ProfilePage({ searchParams }) {
 
   const solvedStatsBySection = {};
   solvedTasks.forEach(({ section: sectionNum }) => {
-    if (sectionNum >= 1 && sectionNum <= 20) {
+    if (sectionNum >= 1 && sectionNum <= 19) {
       solvedStatsBySection[sectionNum] = (solvedStatsBySection[sectionNum] || 0) + 1;
     }
   });
@@ -103,8 +103,8 @@ export default async function ProfilePage({ searchParams }) {
     if (number) totalStatsBySection[number] = (totalStatsBySection[number] || 0) + count;
   }
 
-  const totalTasks = 20;
-  const solvedTasksList = Array.from(new Set(solvedTasks.map(({ section }) => section))).filter(num => num >= 1 && num <= 20);
+  const totalTasks = 19;
+  const solvedTasksList = Array.from(new Set(solvedTasks.map(({ section }) => section))).filter(num => num >= 1 && num <= 19);
 
   const validTrials = trials.filter(t => t.status === 'Проверено');
   const averageTrialScore = validTrials.length > 0
