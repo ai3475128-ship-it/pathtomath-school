@@ -356,7 +356,7 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds })
               isSolutionOpen ? 'max-h-none opacity-100 mt-4' : 'max-h-0 opacity-0 pointer-events-none'
             }`}>
               {isSolutionOpen && (task.answer != null ? (
-                <p className="font-semibold text-emerald-700 dark:text-emerald-300">Ответ: {task.answer}</p>
+                <p className="font-semibold text-emerald-700 dark:text-emerald-300">Ответ: {task.probabilityPrompt ? <VectorCondition text={task.answer} /> : task.answer}</p>
               ) : (
                 <TaskSolutionCard solutionBuilder={task.solutionBuilder} isChangingTheme={isChangingTheme} />
               ))}

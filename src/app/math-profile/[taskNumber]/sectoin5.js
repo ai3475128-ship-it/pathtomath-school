@@ -1,4 +1,3 @@
-import React from 'react';
-import { InlineMath, BlockMath } from 'react-katex';
+import tasks from '@/lib/advanced-probability-tasks.json';
 
-export const section5Tasks = []; // Для section2.js будет section2Tasks и т.д.
+export const section5Tasks = tasks;
