@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { olympiads, events, registryUrl, orderOlympiadsByDates } from '../src/lib/olympiad-calendar.js';
+import { olympiads, calendarOlympiads, events, registryUrl, orderOlympiadsByDates, calendarMonth, shiftCalendarMonth, eventsForMonth, activeEvents } from '../src/lib/olympiad-calendar.js';
 
 test('all listed olympiads have unique IDs, levels and organizer links', () => {
   assert.equal(olympiads.length, 21);
@@ -13,8 +13,10 @@ test('all listed olympiads have unique IDs, levels and organizer links', () => {
 });
 
 test('calendar dates are ordered, refer to known olympiads and have a source', () => {
+  assert.equal(new Set(calendarOlympiads.map((o) => o.id)).size, calendarOlympiads.length);
+  assert.equal(new Set(events.map((e) => e.id)).size, events.length);
   for (const event of events) {
-    assert.ok(olympiads.some((o) => o.id === event.olympiad));
+    assert.ok(calendarOlympiads.some((o) => o.id === event.olympiad));
     assert.match(event.start, /^\d{4}-\d{2}-\d{2}$/);
     if (event.end) {
       assert.match(event.end, /^\d{4}-\d{2}-\d{2}$/);
@@ -73,6 +75,26 @@ test('sorting follows the next relevant deadline and only confirmed completed fi
 test('registration with an unknown closing date does not imply completion', () => {
   const result = orderOlympiadsByDates([{ id: 'pvg', name: 'Покори Воробьёвы горы!' }], events, '2026-12-05');
   assert.equal(result[0].completed, false);
-  assert.equal(result[0].nextDate, undefined);
-  assert.equal(result[0].dates[0].end, null);
+  assert.equal(result[0].nextDate, '2026-12-08');
+  assert.equal(result[0].dates.find((event) => event.id === 'pvg-registration').end, null);
+});
+
+
+test('calendar months and events preserve date boundaries without timezone shifts', () => {
+  assert.equal(calendarMonth('2026-10','2026-11-17'),'2026-10');
+  assert.equal(calendarMonth('2026-13','2026-11-17'),'2026-11');
+  assert.equal(calendarMonth(undefined,'2027-01-01'),'2027-01');
+  assert.equal(shiftCalendarMonth('2026-12',1),'2027-01');
+  assert.equal(shiftCalendarMonth('2027-01',-1),'2026-12');
+  const sample=[{id:'window',olympiad:'x',kinds:['qualifying'],start:'2026-10-30',end:'2026-11-02',stage:'Отбор'},{id:'day',olympiad:'y',kinds:['qualifying'],start:'2026-11-01',end:'2026-11-01',stage:'Тур'},{id:'unknown',olympiad:'z',kinds:['registration'],start:'2026-10-01',end:null,stage:'Открытие'}];
+  assert.deepEqual(eventsForMonth(sample,'2026-11').map(e=>[e.id,e.date,e.boundary]),[['window','2026-11-01','continues'],['day','2026-11-01','single'],['window','2026-11-02','end']]);
+  assert.deepEqual(activeEvents(sample,'2026-11-02').map(e=>e.id),['window']);
+  assert.deepEqual(activeEvents(sample,'2026-11-03'),[]);
+  const msu=events.find(e=>e.id==='lomonosov-qual');
+  const formula=events.find(e=>e.id==='formula-math');
+  assert.ok(activeEvents([formula],'2026-11-18',new Date('2026-11-17T23:59:58Z')).length);
+  assert.equal(activeEvents([formula],'2026-11-18',new Date('2026-11-18T00:00:01Z')).length,0);
+  assert.equal(msu.start,'2026-11-20');assert.equal(msu.end,'2026-11-27');
+  assert.ok(eventsForMonth(events,'2026-10').some(e=>e.id==='siberia-math'));
+  assert.ok(eventsForMonth(events,'2026-11').some(e=>e.id==='spbu-math-qual'));
 });
