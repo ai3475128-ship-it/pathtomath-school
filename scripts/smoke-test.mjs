@@ -252,6 +252,16 @@ try {
   assert.match(olympiadCalendar.text, /Следующий месяц/);
   assert.match(olympiadCalendar.text, /Всесибирская/);
   assert.match(olympiadCalendar.text, /href="\/olympiad-calendar\/siberia"/);
+  assert.match(olympiadCalendar.text, /href="#day-2026-10-18"/);
+  const directoryStart = olympiadCalendar.text.indexOf('Все олимпиады');
+  assert.ok(directoryStart > 0, 'Olympiad directory should be visible');
+  const calendarDirectory = olympiadCalendar.text.slice(directoryStart, olympiadCalendar.text.indexOf('</section>', directoryStart));
+  assert.match(calendarDirectory, /<table/);
+  assert.match(calendarDirectory, /I уровень/);
+  assert.match(calendarDirectory, /II уровень/);
+  assert.match(calendarDirectory, /III уровень/);
+  assert.match(calendarDirectory, /href="\/olympiad-calendar\/spbu"/);
+  assert.doesNotMatch(calendarDirectory, /group-hover/);
   const novemberCalendar = await request('/olympiad-calendar?month=2026-11');
   assert.match(novemberCalendar.text, /Ноябрь 2026/);
   assert.match(novemberCalendar.text, /Актуально сейчас/);
