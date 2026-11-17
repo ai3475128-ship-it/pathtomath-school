@@ -34,7 +34,7 @@ export default function MenuLinks({ hasUser, userRole }) {
     <nav className="hidden md:flex items-center gap-3 xl:gap-6 h-full">
       {navLinks.map((link) => {
         // Проверяем активность вкладки
-        const isOlympiad = pathname === '/olympiad-calendar' || pathname.startsWith('/olympiads') || pathname.startsWith('/math-profile/olympiads') || pathname.startsWith('/math-profile/olympiad-');
+        const isOlympiad = pathname.startsWith('/olympiad-calendar') || pathname.startsWith('/olympiads') || pathname.startsWith('/math-profile/olympiads') || pathname.startsWith('/math-profile/olympiad-');
         const isActive = link.href === '/olympiads' ? isOlympiad : link.href === '/math-profile' ? pathname.startsWith('/math-profile') && !isOlympiad : pathname === link.href || pathname.startsWith(link.href + '/');
 
         return (
