@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { olympiads, calendarOlympiads, events, registryUrl, orderOlympiadsByDates, calendarMonth, shiftCalendarMonth, eventsForMonth, activeEvents } from '../src/lib/olympiad-calendar.js';
+import { olympiads, calendarOlympiads, events, registryUrl, orderOlympiadsByDates, calendarMonth, shiftCalendarMonth, monthGrid, eventsForMonth, activeEvents } from '../src/lib/olympiad-calendar.js';
 
 test('all listed olympiads have unique IDs, levels and organizer links', () => {
   assert.equal(olympiads.length, 21);
@@ -97,4 +97,14 @@ test('calendar months and events preserve date boundaries without timezone shift
   assert.equal(msu.start,'2026-11-20');assert.equal(msu.end,'2026-11-27');
   assert.ok(eventsForMonth(events,'2026-10').some(e=>e.id==='siberia-math'));
   assert.ok(eventsForMonth(events,'2026-11').some(e=>e.id==='spbu-math-qual'));
+});
+
+test('calendar grid starts on Monday and handles leap years', () => {
+  const october = monthGrid('2026-10');
+  assert.deepEqual(october.slice(0, 4), [null, null, null, '2026-10-01']);
+  assert.equal(october.length % 7, 0);
+  const november = monthGrid('2026-11');
+  assert.equal(november[6], '2026-11-01');
+  assert.equal(monthGrid('2027-02').filter(Boolean).length, 28);
+  assert.ok(monthGrid('2028-02').includes('2028-02-29'));
 });

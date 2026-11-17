@@ -115,6 +115,17 @@ export function shiftCalendarMonth(month, delta) {
   const d = new Date(Date.UTC(y, m - 1 + delta, 1));
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
 }
+// Дни раскладываются с понедельника, без зависимости от часового пояса сервера.
+export function monthGrid(month) {
+  const [year, number] = month.split('-').map(Number);
+  const leading = (new Date(Date.UTC(year, number - 1, 1)).getUTCDay() + 6) % 7;
+  const length = new Date(Date.UTC(year, number, 0)).getUTCDate();
+  const total = Math.ceil((leading + length) / 7) * 7;
+  return Array.from({ length: total }, (_, index) => {
+    const day = index - leading + 1;
+    return day >= 1 && day <= length ? `${month}-${String(day).padStart(2, '0')}` : null;
+  });
+}
 export function eventsForMonth(allEvents, month) {
   const points = [];
   const monthStart = `${month}-01`;
