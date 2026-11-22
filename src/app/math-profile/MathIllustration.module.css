@@ -28,7 +28,7 @@
   gap: 5px;
   text-align: center;
   transform: translate(-50%, -50%);
-  transition: transform 850ms cubic-bezier(.22, 1, .36, 1);
+  transition: transform 1350ms cubic-bezier(.37, 0, .2, 1);
 }
 
 .sum {
@@ -48,7 +48,7 @@
   font-size: 18px;
   line-height: 1;
   opacity: 0;
-  transition: opacity 700ms ease, transform 800ms cubic-bezier(.22, 1, .36, 1);
+  transition: opacity 900ms ease, transform 1100ms cubic-bezier(.37, 0, .2, 1);
 }
 
 .upper { transform: translateY(-14px); }
@@ -58,19 +58,32 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  display: flex;
+  align-items: baseline;
+  gap: .24em;
   font-size: 19px;
   font-style: italic;
+  transform: translate(-16px, -50%);
+}
+
+.details > span {
+  display: inline-block;
   opacity: 0;
-  transform: translate(0, -50%);
-  transition: opacity 650ms ease, transform 850ms cubic-bezier(.22, 1, .36, 1);
+  transform: translateX(8px);
+  transition: opacity 900ms ease, transform 1100ms cubic-bezier(.37, 0, .2, 1);
 }
 
 .formula sub { font-size: .6em; }
 
 .subject:hover .sumBlock, .subject:focus-visible .sumBlock { transform: translate(calc(-50% - min(80px, 20vw)), -50%); }
 .subject:hover .upper, .subject:hover .lower,
-.subject:focus-visible .upper, .subject:focus-visible .lower { opacity: 1; transform: translateY(0); }
-.subject:hover .details, .subject:focus-visible .details { opacity: 1; transform: translate(-16px, -50%); transition-delay: 120ms; }
+.subject:focus-visible .upper, .subject:focus-visible .lower { opacity: 1; transform: translateY(0); transition-delay: 300ms; }
+.subject:hover .details > span, .subject:focus-visible .details > span { opacity: 1; transform: translateX(0); }
+.subject:hover .summand, .subject:focus-visible .summand { transition-delay: 500ms; }
+.subject:hover .equals, .subject:focus-visible .equals { transition-delay: 700ms; }
+.subject:hover .first, .subject:focus-visible .first { transition-delay: 850ms; }
+.subject:hover .second, .subject:focus-visible .second { transition-delay: 1000ms; }
+.subject:hover .remainder, .subject:focus-visible .remainder { transition-delay: 1150ms; }
 
 .orbits, .nucleus { transform-origin: 100px 100px; }
 .orbits { transition: transform 1200ms cubic-bezier(.2,.7,.2,1); }
@@ -98,7 +111,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sumBlock, .upper, .lower, .details, .orbits { transition: none; }
+  .sumBlock, .upper, .lower, .details > span, .orbits { transition: none; }
   .subject:hover .nucleus, .subject:focus-visible .nucleus,
   .subject:hover .burst circle, .subject:focus-visible .burst circle { animation: none; }
 }
