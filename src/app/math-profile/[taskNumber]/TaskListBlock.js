@@ -64,6 +64,7 @@ import { egeOptimizationTasks } from './ege-optimization';
 import PlanimetryDiagram from './PlanimetryDiagram';
 import VectorDiagram from './VectorDiagram';
 import EconomicsCondition from './EconomicsCondition';
+import SolveButton from './SolveButton';
 import EquationCondition from './EquationCondition';
 import DerivativeDiagram from './DerivativeDiagram';
 import GraphDiagram from './GraphDiagram';
@@ -258,17 +259,7 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds, a
               <h4 className="text-base font-black text-sky-600 dark:text-purple-300 tracking-tight transition-colors duration-500">
                 {task.title || `Задача ${task.id}`}
               </h4>
-              <button
-                type="button"
-                onClick={() => handleToggleClick(task.id)}
-                className={`px-4 py-1.5 rounded-xl font-extrabold text-[11px] uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                  isSubTaskSolved
-                    ? 'bg-blue-50 text-blue-500 border border-blue-200 hover:bg-blue-100/50 dark:bg-purple-950/20 dark:text-purple-300 dark:border-purple-500/40 dark:shadow-[0_0_15px_rgba(168,85,247,0.15)]'
-                    : 'bg-gradient-to-r from-sky-400 to-blue-500 text-white hover:scale-[1.02] hover:brightness-110 dark:from-[#634EE4] dark:to-[#523fd1] dark:shadow-[0_0_15px_rgba(99,78,228,0.4)] dark:hover:shadow-[0_0_25px_rgba(99,78,228,0.65)]'
-                }`}
-              >
-                {isSubTaskSolved ? '✓ Решено' : 'Решить'}
-              </button>
+              <SolveButton isSolved={isSubTaskSolved} onClick={() => handleToggleClick(task.id)} />
             </div>
             <div className="space-y-3 text-sm md:text-base font-normal text-slate-800 dark:text-slate-200 leading-relaxed transition-colors duration-500 mt-4">
               
