@@ -12,7 +12,7 @@ test('practice separates preparatory tasks, bank and olympiad courses', () => {
   const math = practiceGroups('ege-math', progress);
   assert.equal(math[0].rows.find((r) => r.label.startsWith('№14')).done, 1);
   assert.equal(math[1].rows.find((r) => r.label.startsWith('№16')).done, 1);
-  assert.equal(math[1].rows.find((r) => r.label.startsWith('№16')).total, 55);
+  assert.equal(math[1].rows.find((r) => r.label.startsWith('№16')).total, 115);
   const olymp = practiceGroups('olympiad-math', progress);
   assert.equal(olymp[0].rows[0].done, 1);
   assert.equal(olymp[1].rows.reduce((n, r) => n + r.done, 0), 0);

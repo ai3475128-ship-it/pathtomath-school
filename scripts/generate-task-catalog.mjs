@@ -27,6 +27,10 @@ for (let n = 13; n <= 19; n++) {
     `src/app/math-profile/[taskNumber]/${[13, 14, 15].includes(n) ? "section" : "sectoin"}${n}.js`,
   );
 }
+const economicExtraIds = JSON.parse(readFileSync(path.join(root, "src/lib/ege16-new-tasks.json"), "utf8")).map((task) => task.id);
+if (economicExtraIds.some((id) => !Number.isSafeInteger(id) || id < 1) || new Set([...catalog["16"], ...economicExtraIds]).size !== catalog["16"].length + economicExtraIds.length)
+  throw Error("Invalid or duplicate task IDs: 16");
+catalog["16"].push(...economicExtraIds);
 catalog["ege-random"] = [];
 add("ege-optimization", "src/app/math-profile/[taskNumber]/ege-optimization.js");
 for (const n of [14, 17, 18, 19])

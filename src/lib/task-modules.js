@@ -14,7 +14,7 @@ export function legacyCandidates(number) {
     // Новые сборники и разделы не существовали в старой схеме числовых ключей.
     if (slug === "1" || slug === "2" || slug === "4" || slug === "5" || slug === "6" || slug === "7" || slug === "8" || slug === "9" || slug === "10" || slug === "11" || slug === "12" || slug === "14-intro" || slug.startsWith("ege-")) continue;
     for (const id of ids)
-      if ((parseInt(slug, 10) || 0) * 100 + id === number)
+      if (!(slug === "16" && id >= 1001) && (parseInt(slug, 10) || 0) * 100 + id === number)
         result.push({ module: slug, taskId: id });
   }
   return result;
