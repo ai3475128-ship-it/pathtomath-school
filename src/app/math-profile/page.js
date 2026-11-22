@@ -13,7 +13,6 @@ function MathIllustration() {
         <span className={styles.lower}>i = 1</span>
       </span>
       <span className={styles.term}>a<sub>i</sub></span>
-      <span className={styles.expansion}>= a<sub>1</sub> + ··· + a<sub>n</sub></span>
     </span>
   </span>;
 }
