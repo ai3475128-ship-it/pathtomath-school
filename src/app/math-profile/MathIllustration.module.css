@@ -1,11 +1,10 @@
-.button {
+.math {
   display: flex;
   width: min(100%, 340px);
   height: 176px;
   align-items: center;
   justify-content: center;
   font-family: Georgia, 'Times New Roman', serif;
-  pointer-events: auto;
 }
 
 .formula {
@@ -55,9 +54,28 @@
 .expansion { font-size: 21px; transition-delay: 850ms; }
 .formula sub { font-size: .6em; }
 
-.expanded .upper, .expanded .lower { opacity: 1; transform: translateY(0); }
-.expanded .term { max-width: 45px; opacity: 1; transform: translateX(0); }
-.expanded .expansion { max-width: 175px; opacity: 1; transform: translateX(0); }
+.subject:hover .upper, .subject:hover .lower,
+.subject:focus-visible .upper, .subject:focus-visible .lower { opacity: 1; transform: translateY(0); }
+.subject:hover .term, .subject:focus-visible .term { max-width: 45px; opacity: 1; transform: translateX(0); }
+.subject:hover .expansion, .subject:focus-visible .expansion { max-width: 175px; opacity: 1; transform: translateX(0); }
+
+.orbits, .nucleus { transform-origin: 100px 100px; }
+.orbits { transition: transform 1200ms cubic-bezier(.2,.7,.2,1); }
+.subject:hover .orbits, .subject:focus-visible .orbits { transform: rotate(30deg); }
+.burst circle { opacity: 0; }
+.subject:hover .nucleus, .subject:focus-visible .nucleus { animation: nucleus-pulse 1100ms ease-out both; }
+.subject:hover .burst circle, .subject:focus-visible .burst circle { animation: particle-burst 1100ms ease-out both; }
+
+@keyframes nucleus-pulse {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(1.45); }
+}
+
+@keyframes particle-burst {
+  0% { opacity: 0; transform: translate(0, 0); }
+  20% { opacity: .9; }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)); }
+}
 
 @media (max-width: 380px) {
   .sumBlock { width: 74px; }
@@ -67,5 +85,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .upper, .lower, .term, .expansion { transition: none; }
+  .upper, .lower, .term, .expansion, .orbits { transition: none; }
+  .subject:hover .nucleus, .subject:focus-visible .nucleus,
+  .subject:hover .burst circle, .subject:focus-visible .burst circle { animation: none; }
 }
