@@ -17,12 +17,15 @@ body {
   transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out, border-color 0.4s ease-in-out;
 }
 
-/* 🌟 БРОНЕБОЙНАЯ ЗАЩИТА ОТ ДЁРГАНИЯ ДЛЯ ВСЕХ ИНТЕРАКТИВНЫХ ЭЛЕМЕНТОВ
-   Принудительно говорим браузеру плавно менять только цвета при смене темы,
-   чтобы размеры букв и паддинги не вызывали микро-прыжков вёрстки */
-.group, a, button, h1, p, span, li {
-  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out, border-color 0.4s ease-in-out, opacity 0.4s ease-in-out !important;
+/* Default transitions include transforms and shadows; component utilities can override them. */
+@layer base {
+  a, button {
+    transition-property: color, background-color, border-color, box-shadow, transform, filter, opacity;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+  }
 }
+
 /* 🚀 ИСПРАВЛЕНО: Скроллбар стал ультратонким (2px) и полностью сливается с темным фоном платформы */
 ::-webkit-scrollbar {
   width: 2px !important;

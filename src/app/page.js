@@ -61,7 +61,7 @@ export default async function Home() {
           {!isAuthenticated && (
             <Link 
               href="/register"
-className="px-8 py-3.5 font-bold rounded-2xl shadow-md transition-all duration-300 uppercase tracking-wider text-xs whitespace-nowrap
+className="inline-flex min-h-11 items-center justify-center px-8 py-3.5 font-bold rounded-2xl shadow-md transition-all duration-300 uppercase tracking-wider text-xs whitespace-nowrap
            bg-gradient-to-r from-sky-300 via-sky-400 to-blue-400 text-white shadow-sky-400/10 hover:shadow-xl hover:shadow-sky-400/20
            dark:from-[#7C3AED] dark:via-[#634EE4] dark:to-[#4F46E5] dark:text-white dark:border dark:border-purple-500/20 dark:shadow-[0_0_15px_rgba(99,78,228,0.3)] dark:hover:shadow-[0_0_25px_rgba(99,78,228,0.6)] dark:hover:brightness-110"
             >
@@ -71,16 +71,16 @@ className="px-8 py-3.5 font-bold rounded-2xl shadow-md transition-all duration-3
 
 <Link 
   href="/math-profile"
-  className="px-8 py-3.5 font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.01] cursor-pointer border
-             bg-white text-sky-500 border-sky-400/40 shadow-sm hover:border-sky-600 hover:text-sky-600 hover:shadow-[0_0_15px_rgba(14,165,233,0.2)]
-             dark:bg-[#140e24]/40 dark:text-purple-400 dark:border-purple-500/30 dark:hover:border-purple-400 dark:hover:text-purple-300 dark:hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+  className="inline-flex min-h-11 items-center justify-center px-8 py-3.5 font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-300 cursor-pointer border
+             bg-white text-sky-500 border-sky-400/40 shadow-sm hover:border-sky-500 hover:bg-sky-500 hover:text-white hover:shadow-[0_0_15px_rgba(14,165,233,0.2)]
+             dark:bg-[#140e24]/40 dark:text-purple-400 dark:border-purple-500/30 dark:hover:border-purple-400 dark:hover:bg-[#634EE4] dark:hover:text-white dark:hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
 >
   ЕГЭ
 </Link>
 
-<Link href="/olympiads" className="px-8 py-3.5 font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.01] cursor-pointer border
-             bg-white text-sky-500 border-sky-400/40 shadow-sm hover:border-sky-600 hover:text-sky-600 hover:shadow-[0_0_15px_rgba(14,165,233,0.2)]
-             dark:bg-[#140e24]/40 dark:text-purple-400 dark:border-purple-500/30 dark:hover:border-purple-400 dark:hover:text-purple-300 dark:hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]">
+<Link href="/olympiads" className="inline-flex min-h-11 items-center justify-center px-8 py-3.5 font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-300 cursor-pointer border
+             bg-white text-sky-500 border-sky-400/40 shadow-sm hover:border-sky-500 hover:bg-sky-500 hover:text-white hover:shadow-[0_0_15px_rgba(14,165,233,0.2)]
+             dark:bg-[#140e24]/40 dark:text-purple-400 dark:border-purple-500/30 dark:hover:border-purple-400 dark:hover:bg-[#634EE4] dark:hover:text-white dark:hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]">
   Олимпиады
 </Link>
 
