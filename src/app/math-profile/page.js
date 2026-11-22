@@ -12,7 +12,7 @@ function MathIllustration() {
         </svg>
         <span className={styles.lower}>i = 1</span>
       </span>
-      <span className={styles.term}>a<sub>i</sub></span>
+      <span className={styles.details}>a<sub>i</sub> = a<sub>1</sub> + a<sub>2</sub> + ⋯ + a<sub>n</sub></span>
     </span>
   </span>;
 }
