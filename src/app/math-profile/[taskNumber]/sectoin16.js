@@ -1,5 +1,7 @@
 import React from 'react';
 import { InlineMath, BlockMath } from 'react-katex';
+import newTasks from '@/lib/ege16-new-tasks.json';
+import EconomicTaskSolution from './EconomicTaskSolution';
 
 export const section16Tasks = [
       {
@@ -3333,10 +3335,11 @@ export const section16Tasks = [
         </div>
       </div>
     )
-  }
-
-
-
+  },
+  ...newTasks.map((task) => ({
+    ...task,
+    solutionBuilder: () => <EconomicTaskSolution task={task} />,
+  })),
 ];
 
 
