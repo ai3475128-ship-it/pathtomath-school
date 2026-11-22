@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { paginateTasks } from '@/lib/task-pagination';
 import { tokenizePlanimetryCondition } from '@/lib/planimetry-condition';
+import { splitFinancialCondition } from '@/lib/financial-condition';
 
 // 🚀 ПОДГОТОВИТЕЛЬНЫЕ ЗАДАЧИ ЕГЭ: Чистые явные импорты секций АЗИМУТ
 import { egeIntro14Tasks } from '../sections-ege-intro/ege-intro-14';
@@ -107,6 +108,17 @@ function VectorCondition({ text }) {
   return text.split(/\$([^$]+)\$/g).map((part, index) => index % 2
     ? <InlineMath key={index} math={part} />
     : part);
+}
+
+function FinancialCondition({ text }) {
+  const { opening, terms, question } = splitFinancialCondition(text);
+  if (!terms.length) return <p><VectorCondition text={opening} /></p>;
+  return <div className="space-y-1 text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100 [overflow-wrap:anywhere]">
+    <p><VectorCondition text={opening} /></p>
+    <p>Условия:</p>
+    <ul className="space-y-0.5">{terms.map((sentence, index) => <li key={index} className="relative pl-5 before:absolute before:left-0 before:content-['–']"><VectorCondition text={sentence} /></li>)}</ul>
+    <p><VectorCondition text={question} /></p>
+  </div>;
 }
 
 export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds, afterLastPage }) {
@@ -285,7 +297,9 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds, a
                 {/* ЗОНА ЧИСТОГО ТЕКСТА */}
                 {task.vectorPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.vectorPrompt}/></p>}
                 {task.probabilityPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.probabilityPrompt}/></p>}
-                {task.wordProblemPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.wordProblemPrompt}/></p>}
+                {task.wordProblemPrompt && (storageModule === '16' && task.financeSchedule
+                  ? <FinancialCondition text={task.wordProblemPrompt} />
+                  : <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.wordProblemPrompt}/></p>)}
                 {task.graphPrompt && <p className="text-base font-normal leading-relaxed text-slate-800 dark:text-slate-100"><VectorCondition text={task.graphPrompt}/></p>}
                 {task.graphDiagram && <GraphDiagram diagram={task.graphDiagram} taskId={task.id} />}
                 {task.equationPrompt && <EquationCondition text={task.equationPrompt} />}
@@ -383,7 +397,9 @@ export default React.memo(function TaskListBlock({ storageModule, onlyTaskIds, a
               {isSolutionOpen && (task.answer != null ? (
                 <p className="font-semibold text-emerald-700 dark:text-emerald-300">Ответ: {task.probabilityPrompt ? <VectorCondition text={task.answer} /> : task.answer}</p>
               ) : (
-                <TaskSolutionCard solutionBuilder={task.solutionBuilder} isChangingTheme={isChangingTheme} />
+                <div className={storageModule === '16' ? 'economic-solution' : undefined}>
+                  <TaskSolutionCard solutionBuilder={task.solutionBuilder} isChangingTheme={isChangingTheme} />
+                </div>
               ))}
             </div>
 

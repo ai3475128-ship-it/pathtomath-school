@@ -20,7 +20,7 @@ export default function EconomicsCondition({ math }) {
           })}
         </tr>)}</tbody>
       </table>;
-      if (block.type === 'bullet') return <p key={index} className="relative pl-5 before:absolute before:left-1 before:content-['•']"><Parts parts={block.parts} /></p>;
+      if (block.type === 'bullet') return <p key={index} className="relative pl-5 before:absolute before:left-1 before:content-['–']"><Parts parts={block.parts} /></p>;
       return <p key={index}><Parts parts={block.parts} /></p>;
     })}
   </div>;
