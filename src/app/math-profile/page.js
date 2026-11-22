@@ -7,7 +7,9 @@ function MathIllustration() {
     <span className={styles.formula}>
       <span className={styles.sumBlock}>
         <span className={styles.upper}>n</span>
-        <span className={styles.sum}>∑</span>
+        <svg className={styles.sum} viewBox="14 16 72 88" aria-hidden="true">
+          <path fill="currentColor" d="M18 16h60l3 11h-3c-1-4-4-7-9-7H34l25 36-26 38h36c6 0 9-3 11-8h3l-4 18H18v-3l30-42L18 19z" />
+        </svg>
         <span className={styles.lower}>i = 1</span>
       </span>
       <span className={styles.term}>a<sub>i</sub></span>
