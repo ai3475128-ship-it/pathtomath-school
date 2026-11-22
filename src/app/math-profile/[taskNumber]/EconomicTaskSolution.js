@@ -3,8 +3,13 @@ import { BlockMath, InlineMath } from 'react-katex';
 import FinanceSchedule, { TextWithMath } from './FinanceSchedule';
 
 function SolutionStep({ text }) {
-  const display = text.match(/^(.+?:)\s*\$([^$]+)\$(?:\s*(тыс\. рублей|рублей|млн рублей))?([.,]?)$/u);
-  if (display) return <><p><TextWithMath text={display[1]} /></p><BlockMath math={display[2] + (display[3] ? `\\quad \\text{${display[3]}}` : '') + display[4]} /></>;
+  // Long equations at the end of a sentence get a separate centred line.
+  const display = text.match(/^([^$]+?)\s*\$([^$]*(?:=|\\le|\\ge|<|>)[^$]*)\$(?:\s*(тыс\. рублей|рублей|млн рублей))?([.,]?)$/u);
+  if (display) {
+    const lead = display[1].trimEnd();
+    const label = /[:.!?]$/u.test(lead) ? lead : `${lead}:`;
+    return <><p>{label}</p><BlockMath math={display[2] + (display[3] ? `\\quad \\text{${display[3]}}` : '') + display[4]} /></>;
+  }
   return <p><TextWithMath text={text} /></p>;
 }
 
