@@ -1,6 +1,8 @@
 import React from 'react';
 import { InlineMath, BlockMath } from 'react-katex';
 import newTasks from '@/lib/ege16-new-tasks.json';
+import financialSchedules from '@/lib/ege16-financial-schedules.json';
+import FinanceSchedule from './FinanceSchedule';
 import EconomicTaskSolution from './EconomicTaskSolution';
 
 export const section16Tasks = [
@@ -267,7 +269,7 @@ export const section16Tasks = [
         <BlockMath>{"1{,}31S - 93 = 1348 \\iff 1{,}31S = 1441 \\iff S = \\frac{1441}{1{,}31} = 1100"}</BlockMath>
 
         <p>Найдём искомый долг на 15-е число 30-го месяца, который по нашей таблице равен <InlineMath>{"S - 580"}</InlineMath>:</p>
-        <BlockMath>{"S - 580 = 1100 - 600 = 500"}</BlockMath>
+        <BlockMath>{"S - 600 = 1100 - 600 = 500"}</BlockMath>
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -462,6 +464,7 @@ export const section16Tasks = [
           <p>• <InlineMath>{"S"}</InlineMath> — сумма кредита, млн. рублей;</p>
           <p>• <InlineMath>{"X_1, X_2, X_3"}</InlineMath> — платежи в 1-й, 2-й и 3-й год соответственно, млн. рублей.</p>
         </div>
+        <FinanceSchedule schedule={financialSchedules[6]} />
         <p>
 
         </p>
@@ -1284,6 +1287,7 @@ export const section16Tasks = [
           <BlockMath>{"r_1 = 2k, \\quad r_2 = 3k, \\quad r_3 = 5k."}</BlockMath>
           <p>• <InlineMath>{"x_1, x_2, x_3"}</InlineMath> — суммы, вложенные в первый, второй и третий банки соответственно.</p>
         </div>
+        <FinanceSchedule schedule={financialSchedules[16]} />
 
         
         <p>Прибыль от вклада в каждом банке равна произведению вложенной суммы на процентную ставку (в долях):</p>
@@ -1868,7 +1872,7 @@ export const section16Tasks = [
         <BlockMath>{"250\\,000p^2 - 150\\,000p - 180\\,000 = 0."}</BlockMath>
 
         <p>Разделим на 10 000:</p>
-        <BlockMath>{"255p^2 - 15p - 18 = 0."}</BlockMath>
+        <BlockMath>{"25p^2 - 15p - 18 = 0."}</BlockMath>
 
         <p>Дискриминант:</p>
         <BlockMath>{"D = 15^2 + 4 \\cdot 25 \\cdot 18 = 225 + 1800 = 2025 = 45^2."}</BlockMath>
@@ -1989,6 +1993,7 @@ export const section16Tasks = [
           <p>• <InlineMath>{"d = \\frac{S}{n}"}</InlineMath> — сумма, на которую ежемесячно уменьшается долг;</p>
           <p>• <InlineMath>{"A"}</InlineMath> — общая сумма всех выплат.</p>
         </div>
+        <FinanceSchedule schedule={financialSchedules[24]} />
         <p>
           Заметим, что долг уменьшается каждый месяц на одну и ту же сумму <InlineMath>{"d"}</InlineMath>, следовательно значения долга на 15-е число образуют арифметическую прогрессию. Долг перед месяцем <InlineMath>{"k"}</InlineMath>: <InlineMath>{"S - (k-1)d"}</InlineMath>. Платёж в месяце <InlineMath>{"k"}</InlineMath>:
         </p>
@@ -2022,7 +2027,7 @@ export const section16Tasks = [
   {
     id: 25,
     title: "Задача 25",
-    mathA: "\\begin{array}{l} \\text{Пенсионный фонд владеет ценными бумагами, которые стоят } 10t \\text{ тыс.} \\\\ \\text{рублей в конце года } t \\ (t = 1; 2; \\dots). \\text{ В конце любого года пенсионный фонд может} \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\\\ \\text{продать ценные бумаги и положить деньги на счёт в банке, при этом в конце каждого} \\\\ \\text{следующего года сумма на счёте будет увеличиваться в } 1 + r \\text{ раз. Pensionный фонд} \\\\ \\text{хочет продать ценные бумаги в конце такого года, чтобы в конце двадцатого года} \\\\ \\text{сумма на его счёте была наибольшей. Расчёты показали, что для этого ценные бумаги} \\\\ \\text{нужно продавать строго в конце пятого года (продать их в конце любого другого года} \\\\ \\text{будет менее выгодно). При каких положительных значениях } r \\text{ это возможно?} \\end{array}",
+    mathA: "\\begin{array}{l} \\text{Пенсионный фонд владеет ценными бумагами, которые стоят } 10t \\text{ тыс.} \\\\ \\text{рублей в конце года } t \\ (t = 1; 2; \\dots). \\text{ В конце любого года пенсионный фонд может} \\quad \\quad \\quad \\quad \\quad \\quad \\quad \\\\ \\text{продать ценные бумаги и положить деньги на счёт в банке, при этом в конце каждого} \\\\ \\text{следующего года сумма на счёте будет увеличиваться в } 1 + r \\text{ раз. Пенсионный фонд} \\\\ \\text{хочет продать ценные бумаги в конце такого года, чтобы в конце двадцатого года} \\\\ \\text{сумма на его счёте была наибольшей. Расчёты показали, что для этого ценные бумаги} \\\\ \\text{нужно продавать строго в конце пятого года (продать их в конце любого другого года} \\\\ \\text{будет менее выгодно). При каких положительных значениях } r \\text{ это возможно?} \\end{array}",
     mathB: "",
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
@@ -2032,6 +2037,7 @@ export const section16Tasks = [
           <p>• <InlineMath>{"t"}</InlineMath> — год продажи ценных бумаг;</p>
           <p>• <InlineMath>{"f(t) = 10t \\cdot (1 + r)^{20-t}"}</InlineMath> — сумма на счёте в конце 20-го года, если бумаги проданы в конце года <InlineMath>{"t"}</InlineMath>.</p>
         </div>
+        <FinanceSchedule schedule={financialSchedules[25]} />
 
         <p>Составим уравнение исходя из условий задачи.</p>
         <p>
@@ -3106,6 +3112,7 @@ export const section16Tasks = [
           <p>• <InlineMath>{"d = \\frac{S}{n}"}</InlineMath> — сумма, на которую ежемесячно уменьшается долг;</p>
           <p>• <InlineMath>{"A"}</InlineMath> — общая сумма всех выплат.</p>
         </div>
+        <FinanceSchedule schedule={financialSchedules[39]} />
 
         <p>
           Заметим, что долг уменьшается каждый месяц на одну и ту же сумму <InlineMath>{"d"}</InlineMath>, следовательно значения долга образуют арифметическую прогрессию. Долг перед месяцем <InlineMath>{"k"}</InlineMath> равен <InlineMath>{"S - (k - 1)d"}</InlineMath>, а платёж в этом месяце:
@@ -3338,7 +3345,8 @@ export const section16Tasks = [
   },
   ...newTasks.map((task) => ({
     ...task,
-    solutionBuilder: () => <EconomicTaskSolution task={task} />,
+    financeSchedule: financialSchedules[task.id],
+    solutionBuilder: () => <EconomicTaskSolution task={{ ...task, financeSchedule: financialSchedules[task.id] }} />,
   })),
 ];
 
