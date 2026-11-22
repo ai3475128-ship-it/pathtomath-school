@@ -20,33 +20,33 @@ export const section16Tasks = [
         
         <p>Составим пошаговую таблицу движения долга по годам:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-3 font-bold text-center">Год</th>
-                <th className="p-3 font-bold text-center">Долг до начисления %, руб.</th>
-                <th className="p-3 font-bold text-center">Платёж, руб.</th>
-                <th className="p-3 font-bold text-center">Долг после платежа, руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-3 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-3 font-bold text-center">Долг до начисления %, руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-3 font-bold text-center">Платёж, руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-3 font-bold text-center">Долг после платежа, руб.</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20 text-center">
-                <td className="p-3">1</td>
-                <td className="p-3"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-3"><InlineMath>{"x"}</InlineMath></td>
-                <td className="p-3"><InlineMath>{"pS - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-3">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-3"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-3"><InlineMath>{"x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-3"><InlineMath>{"pS - x"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20 text-center">
-                <td className="p-3">2</td>
-                <td className="p-3"><InlineMath>{"pS - x"}</InlineMath></td>
-                <td className="p-3"><InlineMath>{"x"}</InlineMath></td>
-                <td className="p-3"><InlineMath>{"p(pS - x) - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-3">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-3"><InlineMath>{"pS - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-3"><InlineMath>{"x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-3"><InlineMath>{"p(pS - x) - x"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20 text-center">
-                <td className="p-3">3</td>
-                <td className="p-3"><InlineMath>{"p^2S - px - x"}</InlineMath></td>
-                <td className="p-3"><InlineMath>{"x"}</InlineMath></td>
-                <td className="p-3"><InlineMath>{"p(p^2S - px - x) - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-3">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-3"><InlineMath>{"p^2S - px - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-3"><InlineMath>{"x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-3"><InlineMath>{"p(p^2S - px - x) - x"}</InlineMath></td>
               </tr>
             </tbody>
           </table>
@@ -99,51 +99,51 @@ export const section16Tasks = [
         
         <p>Составим таблицу для дифференцированных платежей:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг до %, млн руб.</th>
-                <th className="p-2 font-bold text-center">Долг после %, млн руб.</th>
-                <th className="p-2 font-bold text-center">Выплата, млн руб.</th>
-                <th className="p-2 font-bold text-center">Долг после выплаты, млн руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до %, млн руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после %, млн руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Выплата, млн руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после выплаты, млн руб.</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}2S + \\frac{S}{n}"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S - \\frac{S}{n}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}2S + \\frac{S}{n}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - \\frac{S}{n}"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2</td>
-                <td className="p-2"><InlineMath>{"S - \\frac{S}{n}"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2\\left(S - \\frac{S}{n}\\right)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}2\\left(S - \\frac{S}{n}\\right) + \\frac{S}{n}"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S - 2\\cdot\\frac{S}{n}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - \\frac{S}{n}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2\\left(S - \\frac{S}{n}\\right)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}2\\left(S - \\frac{S}{n}\\right) + \\frac{S}{n}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 2\\cdot\\frac{S}{n}"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">3</td>
-                <td className="p-2"><InlineMath>{"S - 2\\cdot\\frac{S}{n}"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2\\left(S - 2\\cdot\\frac{S}{n}\\right)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}2\\left(S - 2\\cdot\\frac{S}{n}\\right) + \\frac{S}{n}"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S - 3\\cdot\\frac{S}{n}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 2\\cdot\\frac{S}{n}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2\\left(S - 2\\cdot\\frac{S}{n}\\right)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}2\\left(S - 2\\cdot\\frac{S}{n}\\right) + \\frac{S}{n}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 3\\cdot\\frac{S}{n}"}</InlineMath></td>
               </tr>
               <tr className="text-slate-400">
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">n</td>
-                <td className="p-2"><InlineMath>{"\\frac{S}{n}"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2\\cdot\\frac{S}{n}"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}2\\cdot\\frac{S}{n} + \\frac{S}{n}"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">n</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{S}{n}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2\\cdot\\frac{S}{n}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}2\\cdot\\frac{S}{n} + \\frac{S}{n}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -185,65 +185,65 @@ export const section16Tasks = [
         
         <p>Составим таблицу платежей и остатка долга:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Платёж</th>
-                <th className="p-2 font-bold text-center">Долг до %, тыс. руб.</th>
-                <th className="p-2 font-bold text-center">Долг после %, тыс. руб.</th>
-                <th className="p-2 font-bold text-center">Сумма платежа, тыс. руб.</th>
-                <th className="p-2 font-bold text-center">Долг после платежа, тыс. руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до %, тыс. руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после %, тыс. руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма платежа, тыс. руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после платежа, тыс. руб.</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01S + 20"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S - 20"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01S + 20"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 20"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2</td>
-                <td className="p-2"><InlineMath>{"S - 20"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01(S - 20)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01(S - 20) + 20"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S - 40"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 20"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01(S - 20)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01(S - 20) + 20"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 40"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">3</td>
-                <td className="p-2"><InlineMath>{"S - 40"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01(S - 40)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01(S - 40) + 20"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S - 60"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 40"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01(S - 40)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01(S - 40) + 20"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 60"}</InlineMath></td>
               </tr>
               <tr className="text-slate-400">
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">29</td>
-                <td className="p-2"><InlineMath>{"S - 560"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01(S - 560)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01(S - 560) + 20"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S - 580"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">29</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 560"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01(S - 560)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01(S - 560) + 20"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 580"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">30</td>
-                <td className="p-2"><InlineMath>{"S - 580"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01(S - 580)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01(S - 580) + 20"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S - 600"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">30</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 580"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01(S - 580)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01(S - 580) + 20"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 600"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">31</td>
-                <td className="p-2"><InlineMath>{"S - 600"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01(S - 600)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01(S - 600)"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">31</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 600"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01(S - 600)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01(S - 600)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -298,45 +298,45 @@ export const section16Tasks = [
 
         <p>Составим таблицу для всех периодов платежей:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Месяц</th>
-                <th className="p-2 font-bold text-center">Долг до %, тыс. руб.</th>
-                <th className="p-2 font-bold text-center">Долг после %, тыс. руб.</th>
-                <th className="p-2 font-bold text-center">Платёж, тыс. руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Месяц</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до %, тыс. руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после %, тыс. руб.</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж, тыс. руб.</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01S + d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01S + d"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2</td>
-                <td className="p-2"><InlineMath>{"S - d"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01(S - d)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01(S - d) + d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01(S - d)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01(S - d) + d"}</InlineMath></td>
               </tr>
               <tr className="text-slate-400">
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">n</td>
-                <td className="p-2"><InlineMath>{"S - (n-1)d"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01(S - (n-1)d)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01(S - (n-1)d) + d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">n</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - (n-1)d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01(S - (n-1)d)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01(S - (n-1)d) + d"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">n + 1</td>
-                <td className="p-2">300</td>
-                <td className="p-2">303</td>
-                <td className="p-2">303</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">n + 1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">300</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">303</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">303</td>
               </tr>
             </tbody>
           </table>
@@ -390,21 +390,21 @@ export const section16Tasks = [
         <p>Составим таблицу для k-го года:</p>
 
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг до начисления % <InlineMath>{"(D_{k-1})"}</InlineMath></th>
-                <th className="p-2 font-bold text-center">Долг после начисления %</th>
-                <th className="p-2 font-bold text-center">Платёж, млн. рублей <InlineMath>{"(X_k)"}</InlineMath></th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до начисления % <InlineMath>{"(D_{k-1})"}</InlineMath></th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж, млн. рублей <InlineMath>{"(X_k)"}</InlineMath></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">k</td>
-                <td className="p-2"><InlineMath>{"S - (k-1)d"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2(S - (k-1)d)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}2(S - (k-1)d) + d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">k</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - (k-1)d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2(S - (k-1)d)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}2(S - (k-1)d) + d"}</InlineMath></td>
               </tr>
             </tbody>
           </table>
@@ -513,37 +513,37 @@ export const section16Tasks = [
         <p>Составим таблицу:</p>
 
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг до начисления %</th>
-                <th className="p-2 font-bold text-center">Долг после начисления %</th>
-                <th className="p-2 font-bold text-center">Платёж</th>
-                <th className="p-2 font-bold text-center">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после платежа</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2">6</td>
-                <td className="p-2"><InlineMath>{"6\\left(1 + \\frac{r}{100}\\right)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}4 + 0{,}06r"}</InlineMath></td>
-                <td className="p-2">5,6</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">6</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"6\\left(1 + \\frac{r}{100}\\right)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}4 + 0{,}06r"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">5,6</td>
               </tr>
               <tr className="text-slate-400">
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">15</td>
-                <td className="p-2">0,4</td>
-                <td className="p-2"><InlineMath>{"0{,}4\\left(1 + \\frac{r}{100}\\right)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}4\\left(1 + \\frac{r}{100}\\right)"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">15</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0,4</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}4\\left(1 + \\frac{r}{100}\\right)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}4\\left(1 + \\frac{r}{100}\\right)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -590,45 +590,45 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг на июль пред. года</th>
-                <th className="p-2 font-bold text-center">Долг после роста</th>
-                <th className="p-2 font-bold text-center">Долг на июль этого года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль пред. года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль этого года</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2027</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2027</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2028</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2028</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2029</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2029</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2030</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2S - 360"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2030</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2S - 360"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2031</td>
-                <td className="p-2"><InlineMath>{"1{,}2S - 360"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2(1{,}2S - 360)"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2031</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2S - 360"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2(1{,}2S - 360)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -675,45 +675,45 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг на июль пред. года</th>
-                <th className="p-2 font-bold text-center">Долг после роста</th>
-                <th className="p-2 font-bold text-center">Долг на июль этого года (после платежа)</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль пред. года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль этого года (после платежа)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2027</td>
-                <td className="p-2">220</td>
-                <td className="p-2"><InlineMath>{"220p"}</InlineMath></td>
-                <td className="p-2">220</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2027</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">220</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"220p"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">220</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2028</td>
-                <td className="p-2">220</td>
-                <td className="p-2"><InlineMath>{"220p"}</InlineMath></td>
-                <td className="p-2">220</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2028</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">220</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"220p"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">220</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2029</td>
-                <td className="p-2">220</td>
-                <td className="p-2"><InlineMath>{"220p"}</InlineMath></td>
-                <td className="p-2">220</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2029</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">220</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"220p"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">220</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2030</td>
-                <td className="p-2">220</td>
-                <td className="p-2"><InlineMath>{"220p"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"220p - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2030</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">220</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"220p"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"220p - X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2031</td>
-                <td className="p-2"><InlineMath>{"220p - X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"p(220p - X)"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2031</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"220p - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p(220p - X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -778,51 +778,51 @@ export const section16Tasks = [
         </p>
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг до %</th>
-                <th className="p-2 font-bold text-center">Долг после %</th>
-                <th className="p-2 font-bold text-center">Долг на июль этого года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль этого года</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2026</td>
-                <td className="p-2">600</td>
-                <td className="p-2"><InlineMath>{"600p_1"}</InlineMath></td>
-                <td className="p-2">500</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2026</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">600</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"600p_1"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">500</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2027</td>
-                <td className="p-2">500</td>
-                <td className="p-2"><InlineMath>{"500p_1"}</InlineMath></td>
-                <td className="p-2">400</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2027</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">500</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"500p_1"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">400</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2028</td>
-                <td className="p-2">400</td>
-                <td className="p-2"><InlineMath>{"400p_1"}</InlineMath></td>
-                <td className="p-2">300</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2028</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">400</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"400p_1"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">300</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2029</td>
-                <td className="p-2">300</td>
-                <td className="p-2">345</td>
-                <td className="p-2">200</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2029</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">300</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">345</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">200</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2030</td>
-                <td className="p-2">200</td>
-                <td className="p-2">230</td>
-                <td className="p-2">100</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2030</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">200</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">230</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">100</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2031</td>
-                <td className="p-2">100</td>
-                <td className="p-2">115</td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2031</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">100</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">115</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -873,63 +873,63 @@ export const section16Tasks = [
           Заметим, что долг на июль уменьшается с каждым годом на одну и ту же сумму <InlineMath>{"\\frac{S}{8}"}</InlineMath>, следовательно значения долга образуют арифметическую прогрессию. Составим таблицу:
         </p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг на июль пред. года</th>
-                <th className="p-2 font-bold text-center">Ставка</th>
-                <th className="p-2 font-bold text-center">Долг на июль этого года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль пред. года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Ставка</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль этого года</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2026</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2">15%</td>
-                <td className="p-2"><InlineMath>{"\\frac{7S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2026</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">15%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{7S}{8}"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2027</td>
-                <td className="p-2"><InlineMath>{"\\frac{7S}{8}"}</InlineMath></td>
-                <td className="p-2">15%</td>
-                <td className="p-2"><InlineMath>{"\\frac{6S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2027</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{7S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">15%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{6S}{8}"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2028</td>
-                <td className="p-2"><InlineMath>{"\\frac{6S}{8}"}</InlineMath></td>
-                <td className="p-2">15%</td>
-                <td className="p-2"><InlineMath>{"\\frac{5S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2028</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{6S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">15%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{5S}{8}"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2029</td>
-                <td className="p-2"><InlineMath>{"\\frac{5S}{8}"}</InlineMath></td>
-                <td className="p-2">15%</td>
-                <td className="p-2"><InlineMath>{"\\frac{4S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2029</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{5S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">15%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{4S}{8}"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2030</td>
-                <td className="p-2"><InlineMath>{"\\frac{4S}{8}"}</InlineMath></td>
-                <td className="p-2">11%</td>
-                <td className="p-2"><InlineMath>{"\\frac{3S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2030</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{4S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">11%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{3S}{8}"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2031</td>
-                <td className="p-2"><InlineMath>{"\\frac{3S}{8}"}</InlineMath></td>
-                <td className="p-2">11%</td>
-                <td className="p-2"><InlineMath>{"\\frac{2S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2031</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{3S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">11%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{2S}{8}"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2032</td>
-                <td className="p-2"><InlineMath>{"\\frac{2S}{8}"}</InlineMath></td>
-                <td className="p-2">11%</td>
-                <td className="p-2"><InlineMath>{"\\frac{S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2032</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{2S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">11%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{S}{8}"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2033</td>
-                <td className="p-2"><InlineMath>{"\\frac{S}{8}"}</InlineMath></td>
-                <td className="p-2">11%</td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2033</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{S}{8}"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">11%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -979,45 +979,45 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг на июль пред. года</th>
-                <th className="p-2 font-bold text-center">Долг после роста</th>
-                <th className="p-2 font-bold text-center">Долг на июль этого года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль пред. года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль этого года</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2017</td>
-                <td className="p-2">1100</td>
-                <td className="p-2">1320</td>
-                <td className="p-2">1100</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2017</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1100</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1320</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1100</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2018</td>
-                <td className="p-2">1100</td>
-                <td className="p-2">1320</td>
-                <td className="p-2">1100</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2018</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1100</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1320</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1100</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2019</td>
-                <td className="p-2">1100</td>
-                <td className="p-2">1320</td>
-                <td className="p-2">1100</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2019</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1100</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1320</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1100</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2020</td>
-                <td className="p-2">1100</td>
-                <td className="p-2">1320</td>
-                <td className="p-2"><InlineMath>{"1320 - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2020</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1100</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1320</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1320 - X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2021</td>
-                <td className="p-2"><InlineMath>{"1320 - X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2(1320 - X)"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2021</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1320 - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2(1320 - X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -1064,37 +1064,37 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг на июль пред. года</th>
-                <th className="p-2 font-bold text-center">Долг после роста</th>
-                <th className="p-2 font-bold text-center">Платёж</th>
-                <th className="p-2 font-bold text-center">Долг на июль этого года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль пред. года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль этого года</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2027</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}3S"}</InlineMath></td>
-                <td className="p-2">300</td>
-                <td className="p-2"><InlineMath>{"1{,}3S - 300"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2027</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}3S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">300</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}3S - 300"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2028</td>
-                <td className="p-2"><InlineMath>{"1{,}3S - 300"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}3(1{,}3S - 300)"}</InlineMath></td>
-                <td className="p-2">300</td>
-                <td className="p-2"><InlineMath>{"1{,}69S - 390 - 300"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2028</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}3S - 300"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}3(1{,}3S - 300)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">300</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}69S - 390 - 300"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2029</td>
-                <td className="p-2"><InlineMath>{"1{,}69S - 690"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1.3(1{,}69S - 690)"}</InlineMath></td>
-                <td className="p-2">860,6</td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2029</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}69S - 690"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1.3(1{,}69S - 690)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">860,6</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -1135,37 +1135,37 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг до начисления %</th>
-                <th className="p-2 font-bold text-center">Долг после начисления %</th>
-                <th className="p-2 font-bold text-center">Платёж</th>
-                <th className="p-2 font-bold text-center">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после платежа</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"\\frac{5}{4}S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"x"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"\\frac{5}{4}S - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{5}{4}S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{5}{4}S - x"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2</td>
-                <td className="p-2"><InlineMath>{"\\frac{5}{4}S - x"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"\\frac{5}{4}\\left(\\frac{5}{4}S - x\\right)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"x"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"\\frac{25}{16}S - \\frac{5}{4}x - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{5}{4}S - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{5}{4}\\left(\\frac{5}{4}S - x\\right)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{25}{16}S - \\frac{5}{4}x - x"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">3</td>
-                <td className="p-2"><InlineMath>{"\\frac{25}{16}S - \\frac{9}{4}x"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"\\frac{5}{4}\\left(\\frac{25}{16}S - \\frac{9}{4}x\\right)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"x"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{25}{16}S - \\frac{9}{4}x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"\\frac{5}{4}\\left(\\frac{25}{16}S - \\frac{9}{4}x\\right)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -1221,37 +1221,37 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Сумма до начисления %</th>
-                <th className="p-2 font-bold text-center">Сумма после начисления %</th>
-                <th className="p-2 font-bold text-center">Операция</th>
-                <th className="p-2 font-bold text-center">Сумма после операции</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма до начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Операция</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после операции</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}1A"}</InlineMath></td>
-                <td className="p-2">снятие 10%</td>
-                <td className="p-2"><InlineMath>{"1{,}1A - 0.1 \\cdot 1{,}1A = 0{,}99A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}1A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">снятие 10%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}1A - 0.1 \\cdot 1{,}1A = 0{,}99A"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2</td>
-                <td className="p-2"><InlineMath>{"0{,}99A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}1 \\cdot 0{,}99A = 1{,}089A"}</InlineMath></td>
-                <td className="p-2">пополнение 10%</td>
-                <td className="p-2"><InlineMath>{"1{,}089A + 0{,}1 \\cdot 1{,}089A = 1{,}1979A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}99A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}1 \\cdot 0{,}99A = 1{,}089A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">пополнение 10%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}089A + 0{,}1 \\cdot 1{,}089A = 1{,}1979A"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">3</td>
-                <td className="p-2"><InlineMath>{"1{,}1979A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}1 \\cdot 1{,}1979A = 1{,}31769A"}</InlineMath></td>
-                <td className="p-2">нет</td>
-                <td className="p-2"><InlineMath>{"1{,}31769A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}1979A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}1 \\cdot 1{,}1979A = 1{,}31769A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">нет</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}31769A"}</InlineMath></td>
               </tr>
             </tbody>
           </table>
@@ -1346,44 +1346,44 @@ export const section16Tasks = [
         </p>
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Месяц</th>
-                <th className="p-2 font-bold text-center">Долг до начисления %</th>
-                <th className="p-2 font-bold text-center">Долг после начисления %</th>
-                <th className="p-2 font-bold text-center">Платёж</th>
-                <th className="p-2 font-bold text-center">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Месяц</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после платежа</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01S + 20"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S - 20"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01S + 20"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 20"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2</td>
-                <td className="p-2"><InlineMath>{"S - 20"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01(S - 20)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01(S - 20) + 20"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S - 40"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 20"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01(S - 20)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01(S - 20) + 20"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 40"}</InlineMath></td>
               </tr>
               <tr className="text-slate-400">
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">n</td>
-                <td className="p-2"><InlineMath>{"S - 20(n - 1)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01(S - 20(n - 1))"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01(S - 20(n - 1)) + 20"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"S - 20n"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">n</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 20(n - 1)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01(S - 20(n - 1))"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01(S - 20(n - 1)) + 20"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 20n"}</InlineMath></td>
               </tr>
             </tbody>
           </table>
@@ -1394,39 +1394,39 @@ export const section16Tasks = [
         </p>
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Месяц</th>
-                <th className="p-2 font-bold text-center">Долг до начисления %</th>
-                <th className="p-2 font-bold text-center">Долг после начисления %</th>
-                <th className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Месяц</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">n + 1</td>
-                <td className="p-2"><InlineMath>{"S - 20n"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01(S - 20n)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01(S - 20n) + 10"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">n + 1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 20n"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01(S - 20n)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01(S - 20n) + 10"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">n + 2</td>
-                <td className="p-2"><InlineMath>{"S - 20n - 10"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01(S - 20n - 10)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01(S - 20n - 10) + 10"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">n + 2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 20n - 10"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01(S - 20n - 10)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01(S - 20n - 10) + 10"}</InlineMath></td>
               </tr>
               <tr className="text-slate-400">
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2n</td>
-                <td className="p-2"><InlineMath>{"(S - 20n) - 10(n - 1)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01((S - 20n) - 10(n - 1))"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}01((S - 20n) - 10(n - 1)) + 10"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2n</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"(S - 20n) - 10(n - 1)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01((S - 20n) - 10(n - 1))"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}01((S - 20n) - 10(n - 1)) + 10"}</InlineMath></td>
               </tr>
             </tbody>
           </table>
@@ -1438,23 +1438,23 @@ export const section16Tasks = [
         <p className="font-semibold">Шаг 4. Последний, (2n + 1)-й месяц.</p>
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Месяц</th>
-                <th className="p-2 font-bold text-center">Долг до начисления %</th>
-                <th className="p-2 font-bold text-center">Долг после начисления %</th>
-                <th className="p-2 font-bold text-center">Платёж</th>
-                <th className="p-2 font-bold text-center">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Месяц</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после платежа</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2n + 1</td>
-                <td className="p-2">50</td>
-                <td className="p-2"><InlineMath>{"1{,}01 \\cdot 50"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}01 \\cdot 50 = 50{,}5"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2n + 1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">50</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01 \\cdot 50"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}01 \\cdot 50 = 50{,}5"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -1533,29 +1533,29 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг на июль пред. года</th>
-                <th className="p-2 font-bold text-center">Долг на июль этого года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль пред. года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль этого года</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2029</td>
-                <td className="p-2">16</td>
-                <td className="p-2"><InlineMath>{"0{,}7 \\cdot 16 = 11{,}2"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2029</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">16</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}7 \\cdot 16 = 11{,}2"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2030</td>
-                <td className="p-2">11,2</td>
-                <td className="p-2"><InlineMath>{"0{,}7 \\cdot 11{,}2 = 7{,}84"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2030</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">11,2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}7 \\cdot 11{,}2 = 7{,}84"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2031</td>
-                <td className="p-2">7,84</td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2031</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">7,84</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -1605,37 +1605,37 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг на 15 января</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на 15 января</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2027</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2027</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2028</td>
-                <td className="p-2"><InlineMath>{"S - d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2028</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - d"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2029</td>
-                <td className="p-2"><InlineMath>{"S - 2d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2029</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S - 2d"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2030</td>
-                <td className="p-2"><InlineMath>{"0{,}5(S - 2d)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2030</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}5(S - 2d)"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2031</td>
-                <td className="p-2"><InlineMath>{"0{,}5(S - 2d) - d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2031</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}5(S - 2d) - d"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2032</td>
-                <td className="p-2"><InlineMath>{"0{,}5(S - 2d) - 2d = 0"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2032</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}5(S - 2d) - 2d = 0"}</InlineMath></td>
               </tr>
             </tbody>
           </table>
@@ -1696,34 +1696,34 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг на июль пред. года</th>
-                <th className="p-2 font-bold text-center">Долг на июль этого года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль пред. года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль этого года</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2029</td>
-                <td className="p-2">40</td>
-                <td className="p-2"><InlineMath>{"0{,}75 \\cdot 40 = 30"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2029</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">40</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}75 \\cdot 40 = 30"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2030</td>
-                <td className="p-2">30</td>
-                <td className="p-2"><InlineMath>{"0{,}75 \\cdot 30 = 22{,}5"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2030</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">30</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}75 \\cdot 30 = 22{,}5"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2031</td>
-                <td className="p-2">22,5</td>
-                <td className="p-2"><InlineMath>{"0{,}75 \\cdot 22{,}5 = 16{,}875"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2031</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">22,5</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}75 \\cdot 22{,}5 = 16{,}875"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2032</td>
-                <td className="p-2">16,875</td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2032</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">16,875</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -1768,34 +1768,34 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг на июль пред. года</th>
-                <th className="p-2 font-bold text-center">Долг на июль этого года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль пред. года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль этого года</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2029</td>
-                <td className="p-2">16000</td>
-                <td className="p-2"><InlineMath>{"0{,}75 \\cdot 16000 = 12000"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2029</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">16000</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}75 \\cdot 16000 = 12000"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2030</td>
-                <td className="p-2">12000</td>
-                <td className="p-2"><InlineMath>{"0{,}75 \\cdot 12000 = 9000"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2030</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">12000</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}75 \\cdot 12000 = 9000"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2031</td>
-                <td className="p-2">9000</td>
-                <td className="p-2"><InlineMath>{"0{,}75 \\cdot 9000 = 6750"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2031</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">9000</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}75 \\cdot 9000 = 6750"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2032</td>
-                <td className="p-2">6750</td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2032</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">6750</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -1834,30 +1834,30 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг до роста</th>
-                <th className="p-2 font-bold text-center">Долг после роста</th>
-                <th className="p-2 font-bold text-center">Платёж</th>
-                <th className="p-2 font-bold text-center">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после платежа</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"pS"}</InlineMath></td>
-                <td className="p-2">150 000</td>
-                <td className="p-2"><InlineMath>{"pS - 150\\,000"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"pS"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">150 000</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"pS - 150\\,000"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2</td>
-                <td className="p-2"><InlineMath>{"pS - 150\\,000"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"p(pS - 150\\,000)"}</InlineMath></td>
-                <td className="p-2">180 000</td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"pS - 150\\,000"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p(pS - 150\\,000)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">180 000</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -1907,37 +1907,37 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Сумма до роста</th>
-                <th className="p-2 font-bold text-center">Сумма после роста</th>
-                <th className="p-2 font-bold text-center">Снятие</th>
-                <th className="p-2 font-bold text-center">Сумма после снятия</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма до роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Снятие</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после снятия</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1 (2027)</td>
-                <td className="p-2"><InlineMath>{"A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2A - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1 (2027)</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2A - X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2 (2028)</td>
-                <td className="p-2"><InlineMath>{"1{,}2A - X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2(1{,}2A - X)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}44A - 2{,}2X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2 (2028)</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2A - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2(1{,}2A - X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}44A - 2{,}2X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">3 (2029)</td>
-                <td className="p-2"><InlineMath>{"1{,}44A - 2{,}2X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2(1{,}44A - 2{,}2X)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3 (2029)</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}44A - 2{,}2X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2(1{,}44A - 2{,}2X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -2090,37 +2090,37 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Сумма до роста</th>
-                <th className="p-2 font-bold text-center">Сумма после роста</th>
-                <th className="p-2 font-bold text-center">Снятие</th>
-                <th className="p-2 font-bold text-center">Сумма после снятия</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма до роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Снятие</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после снятия</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1 (2027)</td>
-                <td className="p-2"><InlineMath>{"A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25A - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1 (2027)</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25A - X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2 (2028)</td>
-                <td className="p-2"><InlineMath>{"1{,}25A - X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25(1{,}25A - X)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}5625A - 2{,}25X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2 (2028)</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25A - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25(1{,}25A - X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}5625A - 2{,}25X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">3 (2029)</td>
-                <td className="p-2"><InlineMath>{"1{,}5625A - 2{,}25X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25(1{,}5625A - 2{,}25X)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3 (2029)</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}5625A - 2{,}25X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25(1{,}5625A - 2{,}25X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -2168,39 +2168,39 @@ export const section16Tasks = [
         <p>Составим таблицу платежей <InlineMath>{"(X_k = p \\cdot D_{k-1} - D_k)"}</InlineMath>:</p>
         
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Месяц</th>
-                <th className="p-2 font-bold text-center">Долг до</th>
-                <th className="p-2 font-bold text-center">Долг на 15-е число</th>
-                <th className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Месяц</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на 15-е число</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2">0,6S</td>
-                <td className="p-2"><InlineMath>{"pS - 0{,}6S = S(p - 0{,}6)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0,6S</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"pS - 0{,}6S = S(p - 0{,}6)"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2</td>
-                <td className="p-2">0,6S</td>
-                <td className="p-2">0,3S</td>
-                <td className="p-2"><InlineMath>{"0{,}6pS - 0{,}3S = S(0{,}6p - 0{,}3)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0,6S</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0,3S</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}6pS - 0{,}3S = S(0{,}6p - 0{,}3)"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">3</td>
-                <td className="p-2">0,3S</td>
-                <td className="p-2">0,1S</td>
-                <td className="p-2"><InlineMath>{"0{,}3pS - 0{,}1S = S(0{,}3p - 0{,}1)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0,3S</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0,1S</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}3pS - 0{,}1S = S(0{,}3p - 0{,}1)"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">4</td>
-                <td className="p-2">0,1S</td>
-                <td className="p-2">0</td>
-                <td className="p-2"><InlineMath>{"0{,}1pS"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">4</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0,1S</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}1pS"}</InlineMath></td>
               </tr>
             </tbody>
           </table>
@@ -2250,58 +2250,58 @@ export const section16Tasks = [
         </p>
         
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Месяц</th>
-                <th className="p-2 font-bold text-center">Долг до начисления %</th>
-                <th className="p-2 font-bold text-center">Долг после начисления %</th>
-                <th className="p-2 font-bold text-center">Платёж</th>
-                <th className="p-2 font-bold text-center">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Месяц</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после платежа</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2">6</td>
-                <td className="p-2">6,18</td>
-                <td className="p-2"><InlineMath>{"0{,}03 \\cdot 6 + 0{,}25 = 0{,}43"}</InlineMath></td>
-                <td className="p-2">5,75</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">6</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">6,18</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}03 \\cdot 6 + 0{,}25 = 0{,}43"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">5,75</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2</td>
-                <td className="p-2">5,75</td>
-                <td className="p-2">5,9225</td>
-                <td className="p-2"><InlineMath>{"0{,}03 \\cdot 5{,}75 + 0{,}25 = 0{,}4225"}</InlineMath></td>
-                <td className="p-2">5,5</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">5,75</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">5,9225</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}03 \\cdot 5{,}75 + 0{,}25 = 0{,}4225"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">5,5</td>
               </tr>
               <tr className="text-slate-400">
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">k</td>
-                <td className="p-2"><InlineMath>{"6 - 0{,}25(k - 1)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}03(6 - 0{,}25(k - 1))"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}03(6 - 0{,}25(k - 1)) + 0{,}25"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"6 - 0{,}25k"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">k</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"6 - 0{,}25(k - 1)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}03(6 - 0{,}25(k - 1))"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}03(6 - 0{,}25(k - 1)) + 0{,}25"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"6 - 0{,}25k"}</InlineMath></td>
               </tr>
               <tr className="text-slate-400">
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">12</td>
-                <td className="p-2">3,25</td>
-                <td className="p-2">3,3475</td>
-                <td className="p-2"><InlineMath>{"0{,}03 \\cdot 3{,}25 + 0{,}25 = 0{,}3475"}</InlineMath></td>
-                <td className="p-2">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">12</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3,25</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3,3475</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}03 \\cdot 3{,}25 + 0{,}25 = 0{,}3475"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3</td>
               </tr>
             </tbody>
           </table>
@@ -2350,37 +2350,37 @@ export const section16Tasks = [
         </p>
         
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Месяц</th>
-                <th className="p-2 font-bold text-center">Долг до начисления %</th>
-                <th className="p-2 font-bold text-center">Долг после начисления %</th>
-                <th className="p-2 font-bold text-center">Платёж</th>
-                <th className="p-2 font-bold text-center">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Месяц</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после платежа</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">49</td>
-                <td className="p-2"><InlineMath>{"18 - 0{,}3 \\cdot 48 = 3{,}6"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"p \\cdot 3{,}6"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"(p - 1) \\cdot 3{,}6 + 0{,}3"}</InlineMath></td>
-                <td className="p-2">3,3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">49</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"18 - 0{,}3 \\cdot 48 = 3{,}6"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p \\cdot 3{,}6"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"(p - 1) \\cdot 3{,}6 + 0{,}3"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3,3</td>
               </tr>
               <tr className="text-slate-400">
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">60</td>
-                <td className="p-2">0,3</td>
-                <td className="p-2"><InlineMath>{"p \\cdot 0{,}3"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"(p - 1) \\cdot 0{,}3 + 0{,}3"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">60</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0,3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p \\cdot 0{,}3"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"(p - 1) \\cdot 0{,}3 + 0{,}3"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -2435,51 +2435,51 @@ export const section16Tasks = [
         </p>
         
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Месяц</th>
-                <th className="p-2 font-bold text-center">Долг до начисления %</th>
-                <th className="p-2 font-bold text-center">Долг после начисления %</th>
-                <th className="p-2 font-bold text-center">Платёж</th>
-                <th className="p-2 font-bold text-center">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Месяц</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после платежа</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}04A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}04A + d"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"A - d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}04A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}04A + d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"A - d"}</InlineMath></td>
               </tr>
               <tr className="text-slate-400">
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">k</td>
-                <td className="p-2"><InlineMath>{"A - (k - 1)d"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}04(A - (k - 1)d)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}04(A - (k - 1)d) + d"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"A - kd"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">k</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"A - (k - 1)d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}04(A - (k - 1)d)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}04(A - (k - 1)d) + d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"A - kd"}</InlineMath></td>
               </tr>
               <tr className="text-slate-400">
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
-                <td className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-1">...</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">12</td>
-                <td className="p-2"><InlineMath>{"A - 11d"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}04(A - 11d)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}04(A - 11d) + d"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"A - 12d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">12</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"A - 11d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}04(A - 11d)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}04(A - 11d) + d"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"A - 12d"}</InlineMath></td>
               </tr>
             </tbody>
           </table>
@@ -2574,39 +2574,39 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Сумма до начисления %</th>
-                <th className="p-2 font-bold text-center">Доп. взнос</th>
-                <th className="p-2 font-bold text-center">Сумма после начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма до начисления %</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Доп. взнос</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после начисления %</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2">0</td>
-                <td className="p-2"><InlineMath>{"pS"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"pS"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2</td>
-                <td className="p-2"><InlineMath>{"pS"}</InlineMath></td>
-                <td className="p-2">0</td>
-                <td className="p-2"><InlineMath>{"p^2S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"pS"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p^2S"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">3</td>
-                <td className="p-2"><InlineMath>{"p^2S"}</InlineMath></td>
-                <td className="p-2">3</td>
-                <td className="p-2"><InlineMath>{"(p^2S + 3)p"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p^2S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"(p^2S + 3)p"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">4</td>
-                <td className="p-2"><InlineMath>{"(p^2S + 3)p"}</InlineMath></td>
-                <td className="p-2">3</td>
-                <td className="p-2"><InlineMath>{"((p^2S + 3)p + 3)p"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">4</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"(p^2S + 3)p"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"((p^2S + 3)p + 3)p"}</InlineMath></td>
               </tr>
             </tbody>
           </table>
@@ -2655,45 +2655,45 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг на июль пред. года</th>
-                <th className="p-2 font-bold text-center">Долг после роста</th>
-                <th className="p-2 font-bold text-center">Долг на июль этого года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль пред. года</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг на июль этого года</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2026</td>
-                <td className="p-2">9</td>
-                <td className="p-2">11,25</td>
-                <td className="p-2">9</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2026</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">9</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">11,25</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">9</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2027</td>
-                <td className="p-2">9</td>
-                <td className="p-2">11,25</td>
-                <td className="p-2">9</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2027</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">9</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">11,25</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">9</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2028</td>
-                <td className="p-2">9</td>
-                <td className="p-2">11,25</td>
-                <td className="p-2">9</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2028</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">9</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">11,25</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">9</td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2029</td>
-                <td className="p-2">9</td>
-                <td className="p-2">11,25</td>
-                <td className="p-2"><InlineMath>{"11{,}25 - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2029</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">9</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">11,25</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"11{,}25 - X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2030</td>
-                <td className="p-2"><InlineMath>{"11{,}25 - X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25(11{,}25 - X)"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2030</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"11{,}25 - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25(11{,}25 - X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -2738,37 +2738,37 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Сумма до роста</th>
-                <th className="p-2 font-bold text-center">Сумма после роста</th>
-                <th className="p-2 font-bold text-center">Снятие</th>
-                <th className="p-2 font-bold text-center">Сумма после снятия</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма до роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Снятие</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после снятия</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1 (2027)</td>
-                <td className="p-2"><InlineMath>{"A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25A - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1 (2027)</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25A - X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2 (2028)</td>
-                <td className="p-2"><InlineMath>{"1{,}25A - X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25(1{,}25A - X)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}5625A - 2{,}25X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2 (2028)</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25A - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25(1{,}25A - X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}5625A - 2{,}25X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">3 (2029)</td>
-                <td className="p-2"><InlineMath>{"1{,}5625A - 2{,}25X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25(1{,}5625A - 2{,}25X)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3 (2029)</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}5625A - 2{,}25X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25(1{,}5625A - 2{,}25X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -2813,37 +2813,37 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Сумма до роста</th>
-                <th className="p-2 font-bold text-center">Сумма после роста</th>
-                <th className="p-2 font-bold text-center">Снятие</th>
-                <th className="p-2 font-bold text-center">Сумма после снятия</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма до роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Снятие</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после снятия</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1 (2027)</td>
-                <td className="p-2"><InlineMath>{"A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2A"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2A - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1 (2027)</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2A"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2A - X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2 (2028)</td>
-                <td className="p-2"><InlineMath>{"1{,}2A - X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2(1{,}2A - X)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}44A - 2{,}2X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2 (2028)</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2A - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2(1{,}2A - X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}44A - 2{,}2X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">3 (2029)</td>
-                <td className="p-2"><InlineMath>{"1{,}44A - 2{,}2X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2(1{,}44A - 2{,}2X)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3 (2029)</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}44A - 2{,}2X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2(1{,}44A - 2{,}2X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -2888,37 +2888,37 @@ export const section16Tasks = [
         
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Сумма до роста</th>
-                <th className="p-2 font-bold text-center">Сумма после роста</th>
-                <th className="p-2 font-bold text-center">Снятие</th>
-                <th className="p-2 font-bold text-center">Сумма после снятия</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма до роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Снятие</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Сумма после снятия</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2">819 000</td>
-                <td className="p-2">982 800</td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"982\\,800 - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">819 000</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">982 800</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"982\\,800 - X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2</td>
-                <td className="p-2"><InlineMath>{"982\\,800 - X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2(982\\,800 - X)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1\\,179\\,360 - 2{,}2X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"982\\,800 - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2(982\\,800 - X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1\\,179\\,360 - 2{,}2X"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">3</td>
-                <td className="p-2"><InlineMath>{"1\\,179\\,360 - 2{,}2X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}2(1\\,179\\,360 - 2{,}2X)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"X"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1\\,179\\,360 - 2{,}2X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2(1\\,179\\,360 - 2{,}2X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -2965,37 +2965,37 @@ export const section16Tasks = [
 
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг до роста</th>
-                <th className="p-2 font-bold text-center">Ставка</th>
-                <th className="p-2 font-bold text-center">Долг после роста</th>
-                <th className="p-2 font-bold text-center">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Ставка</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после платежа</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2027</td>
-                <td className="p-2">800 000</td>
-                <td className="p-2">10%</td>
-                <td className="p-2">880 000</td>
-                <td className="p-2"><InlineMath>{"880\\,000 - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2027</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">800 000</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">10%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">880 000</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"880\\,000 - x"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2028</td>
-                <td className="p-2"><InlineMath>{"880\\,000 - x"}</InlineMath></td>
-                <td className="p-2">10%</td>
-                <td className="p-2"><InlineMath>{"1{,}1(880\\,000 - x)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"968\\,000 - 1{,}1x - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2028</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"880\\,000 - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">10%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}1(880\\,000 - x)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"968\\,000 - 1{,}1x - x"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2029</td>
-                <td className="p-2"><InlineMath>{"968\\,000 - 2{,}1x"}</InlineMath></td>
-                <td className="p-2">20%</td>
-                <td className="p-2"><InlineMath>{"1{,}2(968\\,000 - 2{,}1x)"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2029</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"968\\,000 - 2{,}1x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">20%</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}2(968\\,000 - 2{,}1x)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -3037,33 +3037,33 @@ export const section16Tasks = [
 
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг до роста</th>
-                <th className="p-2 font-bold text-center">Долг после роста</th>
-                <th className="p-2 font-bold text-center">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после платежа</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25S - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25S - x"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2</td>
-                <td className="p-2"><InlineMath>{"1{,}25S - x"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25(1{,}25S - x)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}5625S - 2{,}25x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25S - x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25(1{,}25S - x)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}5625S - 2{,}25x"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">3</td>
-                <td className="p-2"><InlineMath>{"1{,}5625S - 2{,}25x"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25(1{,}5625S - 2{,}25x)"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}5625S - 2{,}25x"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25(1{,}5625S - 2{,}25x)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -3166,39 +3166,39 @@ export const section16Tasks = [
 
         <p>Составим таблицу:</p>
         <div className="overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-2 font-bold text-center">Год</th>
-                <th className="p-2 font-bold text-center">Долг до роста</th>
-                <th className="p-2 font-bold text-center">Долг после платежа</th>
-                <th className="p-2 font-bold text-center">Платёж</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг до роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="p-2 font-bold text-center">Платёж</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-center">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2027</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}8S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25S - 0{,}8S = 0{,}45S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2027</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}8S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25S - 0{,}8S = 0{,}45S"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2028</td>
-                <td className="p-2"><InlineMath>{"0{,}8S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}6S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25 \\cdot 0{,}8S - 0{,}6S = 0{,}4S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2028</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}8S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}6S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25 \\cdot 0{,}8S - 0{,}6S = 0{,}4S"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2029</td>
-                <td className="p-2"><InlineMath>{"0{,}6S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"0{,}4S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"1{,}25 \\cdot 0{,}6S - 0{,}4S = 0{,}35S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2029</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}6S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}4S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25 \\cdot 0{,}6S - 0{,}4S = 0{,}35S"}</InlineMath></td>
               </tr>
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-900/20">
-                <td className="p-2">2030</td>
-                <td className="p-2"><InlineMath>{"0{,}4S"}</InlineMath></td>
-                <td className="p-2">0</td>
-                <td className="p-2"><InlineMath>{"1{,}25 \\cdot 0{,}4S = 0{,}5S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2030</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"0{,}4S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"1{,}25 \\cdot 0{,}4S = 0{,}5S"}</InlineMath></td>
               </tr>
             </tbody>
           </table>
@@ -3243,39 +3243,39 @@ export const section16Tasks = [
         <p>Вариант 1 (срок 4 года, платёж <InlineMath>{"X"}</InlineMath>):</p>
 
         <div className="overflow-x-auto my-2">
-          <table className="min-w-full border-collapse border border-slate-200 dark:border-purple-950/40 text-center text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="min-w-full border-collapse border border-slate-200 dark:border-purple-950/40 text-center text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-purple-950/10">
-                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Год</th>
-                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг до роста</th>
-                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг после роста</th>
-                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг до роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг после платежа</th>
               </tr>
             </thead>
             <tbody>
               <tr className="border-b border-slate-100 dark:border-purple-950/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"pS"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"pS - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"pS"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"pS - X"}</InlineMath></td>
               </tr>
               <tr className="border-b border-slate-100 dark:border-purple-950/20">
-                <td className="p-2">2</td>
-                <td className="p-2"><InlineMath>{"pS - X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"p(pS - X)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"p^2S - pX - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"pS - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p(pS - X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p^2S - pX - X"}</InlineMath></td>
               </tr>
               <tr className="border-b border-slate-100 dark:border-purple-950/20">
-                <td className="p-2">3</td>
-                <td className="p-2"><InlineMath>{"p^2S - pX - X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"p(p^2S - pX - X)"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"p^3S - p^2X - pX - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">3</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p^2S - pX - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p(p^2S - pX - X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p^3S - p^2X - pX - X"}</InlineMath></td>
               </tr>
               <tr className="border-b border-slate-100 dark:border-purple-950/20">
-                <td className="p-2">4</td>
-                <td className="p-2"><InlineMath>{"p^3S - p^2X - pX - X"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"p(p^3S - p^2X - pX - X)"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">4</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p^3S - p^2X - pX - X"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p(p^3S - p^2X - pX - X)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
@@ -3287,27 +3287,27 @@ export const section16Tasks = [
         <p>Вариант 2 (срок 2 года, платёж <InlineMath>{"Y"}</InlineMath>):</p>
 
         <div className="overflow-x-auto my-2">
-          <table className="min-w-full border-collapse border border-slate-200 dark:border-purple-950/40 text-center text-xs md:text-sm">
+          <table style={{ border: "1px solid currentColor", borderCollapse: "collapse" }} className="min-w-full border-collapse border border-slate-200 dark:border-purple-950/40 text-center text-xs md:text-sm">
             <thead>
               <tr className="bg-slate-50 dark:bg-purple-950/10">
-                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Год</th>
-                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг до роста</th>
-                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг после роста</th>
-                <th className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг после платежа</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Год</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг до роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг после роста</th>
+                <th style={{ border: "1px solid currentColor", padding: "10px 12px", fontFamily: "Georgia, serif", fontWeight: 400 }} className="border border-slate-200 dark:border-purple-950/30 p-2 font-bold">Долг после платежа</th>
               </tr>
             </thead>
             <tbody>
               <tr className="border-b border-slate-100 dark:border-purple-950/20">
-                <td className="p-2">1</td>
-                <td className="p-2"><InlineMath>{"S"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"pS"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"pS - Y"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">1</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"S"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"pS"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"pS - Y"}</InlineMath></td>
               </tr>
               <tr className="border-b border-slate-100 dark:border-purple-950/20">
-                <td className="p-2">2</td>
-                <td className="p-2"><InlineMath>{"pS - Y"}</InlineMath></td>
-                <td className="p-2"><InlineMath>{"p(pS - Y)"}</InlineMath></td>
-                <td className="p-2">0</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">2</td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"pS - Y"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2"><InlineMath>{"p(pS - Y)"}</InlineMath></td>
+                <td style={{ border: "1px solid currentColor", padding: "10px 12px" }} className="p-2">0</td>
               </tr>
             </tbody>
           </table>
