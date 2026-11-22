@@ -42,12 +42,11 @@ export default function ErrorReportModal({ sectionNumber,module }) {
 
   return (
     <>
-      {/* 🔮 ПРЯМОУГОЛЬНАЯ КНОПКА С МАКСИМАЛЬНЫМ ПРИОРИТЕТОМ Z-INDEX */}
-      <div className="fixed bottom-6 right-6 z-[9999]">
-        <div className="absolute inset-0 bg-blue-500 rounded-xl blur-md opacity-20" />
-        <button 
+      <div className="fixed right-3 z-40" style={{ bottom: 'var(--cookie-surface-offset, 5rem)' }}>
+        <button
+          type="button"
           onClick={() => setIsOpen(true)}
-          className="relative flex items-center gap-2 px-5 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-[#7C3AED] dark:to-[#634EE4] text-white rounded-xl shadow-lg border border-white/10 transition-all duration-300 hover:scale-[1.03] active:scale-95 cursor-pointer select-none font-black text-xs uppercase tracking-widest"
+          className="flex min-h-11 items-center gap-2 rounded-xl border border-white/10 bg-gradient-to-r from-sky-400 to-blue-500 px-5 py-3 text-xs font-black uppercase tracking-wider text-white shadow-md transition-[filter,box-shadow] duration-200 hover:brightness-110 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 motion-reduce:transition-none dark:from-[#7C3AED] dark:to-[#634EE4]"
         >
           <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 text-white/90">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
