@@ -127,11 +127,12 @@ function Illustration({ number, intro }) {
     </>;
     case 18: return <><circle cx="100" cy="78" r="55" pathLength="1" className={`${styles.line} ${styles.draw}`} /><g className={styles.reveal}><path d="M50 101 86 25 153 91Z M50 101 100 78 153 91 M79 40 Q86 43 97 36 M84 85 Q100 104 117 82" className={styles.line} /><Text x={87} y={53} size={14}>α</Text><Text x={101} y={109} size={14}>2α</Text></g></>;
     case 19: return <>
-      <Text y={22} size={15}>f(x) = x³ + x</Text>
-      <path d="M35 121H170 M42 128V29" className={styles.line} />
-      <Line d="M42 115 C68 110 76 85 100 75 S132 40 165 35" />
-      <g className={styles.parameterLine}><path d="M34 75h137" className={styles.line} /><Text x={176} y={70} size={14}>a</Text></g>
-      <g className={styles.reveal}><Dot cx={100} cy={75} /><Text y={145} size={13}>f′(x) = 3x² + 1 &gt; 0</Text></g>
+      <path d="M25 115H180 M65 130V20" className={styles.line} />
+      <g className={styles.parameterParabola}>
+        <path d="M15 34 Q65 142 115 34" className={styles.line} />
+        <circle cx="65" cy="88" r="3.5" className={styles.dot} />
+      </g>
+      <Text y={144} size={16}>y = (x − a)²</Text>
     </>;
     case 20: return <>
       <Text y={74} size={23} className={styles.early}>17 = 5 · 3 + 2</Text>
