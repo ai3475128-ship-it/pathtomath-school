@@ -7,6 +7,8 @@
 .line { fill: none; stroke: white; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .dashed { fill: none; stroke: white; stroke-width: 1.7; stroke-dasharray: 5 4; stroke-linecap: round; opacity: .65; }
 .hatch { fill: none; stroke: white; stroke-width: 1; opacity: .65; }
+.intervalEquation { display: flex; justify-content: center; align-items: center; height: 58px; color: white; font-size: 15px; white-space: nowrap; }
+.intervalOutline { fill: none; stroke: white; stroke-width: 1.2; stroke-linecap: round; opacity: .75; }
 .text { fill: white; font-family: Georgia, 'Times New Roman', serif; }
 .dot, .bar { fill: white; }
 .cutout { fill: var(--card-color); stroke: white; stroke-width: 2; }

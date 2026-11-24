@@ -1,4 +1,6 @@
 import styles from './EgeCardPreview.module.css';
+import { InlineMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
 
 const Line = ({ d, className = '' }) => <path d={d} pathLength="1" className={`${styles.line} ${styles.draw} ${className}`} />;
 const SmoothLine = ({ d, delay = 0 }) => <path d={d} pathLength="1" className={`${styles.line} ${styles.smoothDraw}`} style={{ '--delay': `${delay}ms` }} />;
@@ -97,14 +99,26 @@ function Illustration({ number, intro }) {
       </g>
     </>;
     case 16: return <>
-      <Text y={31} size={16}>(x + 1)(x − 2) &gt; 0</Text>
-      <path d="M24 85h152 M169 80l7 5-7 5" className={styles.line} />
-      <g className={styles.reveal}>
-        <circle cx="76" cy="85" r="5" className={styles.cutout} /><circle cx="124" cy="85" r="5" className={styles.cutout} />
-        <Text x={76} y={109} size={15}>−1</Text><Text x={124} y={109} size={15}>2</Text>
-        <Text x={48} y={72} size={19}>+</Text><Text x={100} y={72} size={19}>−</Text><Text x={151} y={72} size={19}>+</Text>
-        <path d="M30 124h38 M132 124h38" className={styles.line} />
-      </g>
+      {/* (2x−1)(x−2)/x ≤ 0: 0 is excluded, 1/2 and 2 are included. */}
+      <SmoothFade delay={100}>
+        <foreignObject x="15" y="0" width="170" height="58">
+          <div xmlns="http://www.w3.org/1999/xhtml" className={styles.intervalEquation}>
+            <InlineMath math={'\\dfrac{(2x-1)(x-2)}{x}\\leq 0'} />
+          </div>
+        </foreignObject>
+      </SmoothFade>
+      <SmoothLine d="M20 105h160 M174 101l6 4-6 4" delay={300} />
+      <SmoothFade delay={700}><circle cx="62" cy="105" r="4.5" className={styles.cutout} /><Text x={62} y={127} size={15}>0</Text></SmoothFade>
+      <SmoothFade delay={900}><circle cx="105" cy="105" r="4.5" className={styles.dot} /><Text x={105} y={127} size={15}>0,5</Text></SmoothFade>
+      <SmoothFade delay={1100}><circle cx="148" cy="105" r="4.5" className={styles.dot} /><Text x={148} y={127} size={15}>2</Text></SmoothFade>
+      <SmoothFade delay={1300}>
+        <Text x={42} y={84} size={17}>−</Text><Text x={83} y={84} size={17}>+</Text>
+        <Text x={126} y={84} size={17}>−</Text><Text x={166} y={84} size={17}>+</Text>
+      </SmoothFade>
+      <SmoothFade delay={1650}>
+        <path d="M22 103V96 Q22 91 28 91H55 Q62 91 62 98 M105 98 Q105 91 112 91H141 Q148 91 148 98" className={styles.intervalOutline} />
+        <path d="M29 102l3-9 M39 102l3-9 M49 102l3-9 M112 102l3-9 M122 102l3-9 M132 102l3-9 M142 102l3-9" className={styles.hatch} />
+      </SmoothFade>
     </>;
     case 17: return <>
       <Axes /><path d="M40 120 Q100 -20 160 120" className={styles.line} />
