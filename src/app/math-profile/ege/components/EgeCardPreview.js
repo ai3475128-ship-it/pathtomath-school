@@ -135,8 +135,15 @@ function Illustration({ number, intro }) {
       <Text y={144} size={16}>y = (x − a)²</Text>
     </>;
     case 20: return <>
-      <Text y={74} size={23} className={styles.early}>17 = 5 · 3 + 2</Text>
-      <g className={styles.reveal}><Text y={75} size={20}>17 ≡ 2 (mod 5)</Text><Text y={105} size={19}>5 ∤ 17</Text></g>
+      <SmoothFade delay={300}><Text x={38} y={38} size={16}>P(1)</Text></SmoothFade>
+      <SmoothFade delay={700}><Text x={123} y={38} size={16}>P(k) ⇒ P(k + 1)</Text></SmoothFade>
+      {['1', '2', '3', '⋯', 'n'].map((label, i) => (
+        <SmoothFade key={label} delay={300 + i * 400}>
+          <rect x={22 + i * 33} y="61" width="27" height="27" rx="6" className={styles.inductionTile} />
+          <Text x={35.5 + i * 33} y={80} size={16}>{label}</Text>
+        </SmoothFade>
+      ))}
+      <SmoothFade delay={1900}><Text y={119} size={13}>P(n) для всех n ∈ ℕ</Text></SmoothFade>
     </>;
     default: return null;
   }
