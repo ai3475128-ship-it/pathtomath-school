@@ -7,12 +7,10 @@ function MathIllustration() {
     <span className={styles.formula}>
       <span className={styles.sumBlock}>
         <span className={styles.upper}>n</span>
-        <svg className={styles.sum} viewBox="14 16 72 88" aria-hidden="true">
-          <path fill="currentColor" d="M18 16h60l3 11h-3c-1-4-4-7-9-7H34l25 36-26 38h36c6 0 9-3 11-8h3l-4 18H18v-3l30-42L18 19z" />
-        </svg>
+        <span className={styles.sum}>∑</span>
         <span className={styles.lower}>i = 1</span>
       </span>
-      <span className={styles.details}>a<sub>i</sub> = a<sub>1</sub> + a<sub>2</sub> + ⋯ + a<sub>n</sub></span>
+      <span className={styles.details}><i>a</i><sub>i</sub> = <i>a</i><sub>1</sub> + <i>a</i><sub>2</sub> + ⋯ + <i>a</i><sub>n</sub></span>
     </span>
   </span>;
 }
