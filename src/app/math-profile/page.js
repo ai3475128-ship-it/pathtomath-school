@@ -12,13 +12,7 @@ function MathIllustration() {
         </svg>
         <span className={styles.lower}>i = 1</span>
       </span>
-      <span className={styles.details}>
-        <span className={styles.summand}>a<sub>i</sub></span>
-        <span className={styles.equals}>=</span>
-        <span className={styles.first}>a<sub>1</sub></span>
-        <span className={styles.second}>+ a<sub>2</sub></span>
-        <span className={styles.remainder}>+ ⋯ + a<sub>n</sub></span>
-      </span>
+      <span className={styles.details}>a<sub>i</sub> = a<sub>1</sub> + a<sub>2</sub> + ⋯ + a<sub>n</sub></span>
     </span>
   </span>;
 }
