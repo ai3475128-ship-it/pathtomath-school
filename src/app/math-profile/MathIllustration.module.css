@@ -59,20 +59,13 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  display: flex;
-  align-items: baseline;
-  gap: .24em;
+  display: block;
   font-size: 22px;
   font-style: italic;
   transform: translate(-16px, -50%);
-}
-
-.details > span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateX(4px);
-  transition: opacity 1100ms ease, transform 1200ms cubic-bezier(.25, .1, .25, 1);
-  will-change: opacity, transform;
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path 2000ms cubic-bezier(.37, 0, .22, 1);
+  will-change: clip-path;
 }
 
 .formula sub { font-size: .6em; }
@@ -80,12 +73,7 @@
 .subject:hover .sumBlock, .subject:focus-visible .sumBlock { transform: translate(calc(-50% - min(80px, 20vw)), -50%); }
 .subject:hover .upper, .subject:hover .lower,
 .subject:focus-visible .upper, .subject:focus-visible .lower { opacity: 1; transform: translateY(0); transition-delay: 200ms; }
-.subject:hover .details > span, .subject:focus-visible .details > span { opacity: 1; transform: translateX(0); }
-.subject:hover .summand, .subject:focus-visible .summand { transition-delay: 350ms; }
-.subject:hover .equals, .subject:focus-visible .equals { transition-delay: 500ms; }
-.subject:hover .first, .subject:focus-visible .first { transition-delay: 650ms; }
-.subject:hover .second, .subject:focus-visible .second { transition-delay: 800ms; }
-.subject:hover .remainder, .subject:focus-visible .remainder { transition-delay: 950ms; }
+.subject:hover .details, .subject:focus-visible .details { clip-path: inset(0 0 0 0); }
 
 .orbits {
   transform-box: view-box;
@@ -120,7 +108,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sumBlock, .upper, .lower, .details > span, .orbits { transition: none; }
+  .sumBlock, .upper, .lower, .details, .orbits { transition: none; }
   .subject:hover .nucleus, .subject:focus-visible .nucleus,
   .subject:hover .burst circle, .subject:focus-visible .burst circle { animation: none; }
 }
