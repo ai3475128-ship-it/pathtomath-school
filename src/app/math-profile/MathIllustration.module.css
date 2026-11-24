@@ -1,10 +1,11 @@
 .math {
   display: flex;
-  width: min(100%, 340px);
+  width: min(100%, 440px);
   height: 176px;
   align-items: center;
   justify-content: center;
   font-family: Georgia, 'Times New Roman', serif;
+  container-type: inline-size;
 }
 
 .formula {
@@ -28,8 +29,6 @@
   gap: 5px;
   text-align: center;
   transform: translate(-50%, -50%);
-  transition: transform 1500ms cubic-bezier(.25, .1, .25, 1);
-  will-change: transform;
 }
 
 .sum {
@@ -58,11 +57,11 @@
 .details {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: calc(50% + 50px);
   display: block;
-  font-size: 22px;
+  font-size: clamp(11px, calc(5.1cqw - 2px), 20px);
   font-style: italic;
-  transform: translate(-16px, -50%);
+  transform: translateY(-50%);
   clip-path: inset(0 0 0 100%);
   transition: clip-path 2000ms cubic-bezier(.37, 0, .22, 1);
   will-change: clip-path;
@@ -70,7 +69,6 @@
 
 .formula sub { font-size: .6em; }
 
-.subject:hover .sumBlock, .subject:focus-visible .sumBlock { transform: translate(calc(-50% - min(80px, 20vw)), -50%); }
 .subject:hover .upper, .subject:hover .lower,
 .subject:focus-visible .upper, .subject:focus-visible .lower { opacity: 1; transform: translateY(0); transition-delay: 200ms; }
 .subject:hover .details, .subject:focus-visible .details { clip-path: inset(0 0 0 0); }
@@ -103,12 +101,11 @@
 @media (max-width: 380px) {
   .sumBlock { width: 74px; }
   .sum { width: 68px; height: 86px; }
-  .details { font-size: 15px; }
-  .subject:hover .sumBlock, .subject:focus-visible .sumBlock { transform: translate(calc(-50% - 54px), -50%); }
+  .details { left: calc(50% + 39px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sumBlock, .upper, .lower, .details, .orbits { transition: none; }
+  .upper, .lower, .details, .orbits { transition: none; }
   .subject:hover .nucleus, .subject:focus-visible .nucleus,
   .subject:hover .burst circle, .subject:focus-visible .burst circle { animation: none; }
 }
