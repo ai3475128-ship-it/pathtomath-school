@@ -75,3 +75,35 @@ test('system inequalities retain their original domain while showing corrected a
     assert.ok(answer.includes(snippet), `Задача ${id}: исправленный ответ`);
   }
 });
+
+test('interval diagrams use valid boundaries and preserve isolated solutions', () => {
+  const diagrams = new Map();
+  function visit(node, collected) {
+    if (!node || typeof node !== 'object') return;
+    if (node.type?.name === 'InequalityNumberLine') collected.push(node.props);
+    React.Children.forEach(node.props?.children, child => visit(child, collected));
+  }
+  for (const task of tasks) {
+    const collected = [];
+    visit(task.solutionBuilder(), collected);
+    diagrams.set(task.id, collected);
+    for (const diagram of collected) {
+      assert.ok(Array.isArray(diagram.points));
+      for (const [start, end] of diagram.selected) {
+        assert.ok(Number.isInteger(start) && Number.isInteger(end) && start >= 0 && start < end && end <= diagram.points.length + 1, `Задача ${task.id}: границы интервала`);
+      }
+    }
+  }
+  assert.equal([...diagrams.values()].flat().length, 128);
+  const example = diagrams.get(9).at(-1);
+  assert.deepEqual(example.points.map(({ label, closed }) => [label, closed]), [['0', false], ['1', false], ['27', true], ['81', false]]);
+  assert.deepEqual(example.selected, [[1, 2], [4, 5]]);
+  assert.equal(diagrams.get(92).length, 2);
+  assert.deepEqual(diagrams.get(92).at(-1).selected, [[1, 2]]);
+  const system = diagrams.get(100)[0];
+  assert.deepEqual(system.points.map(({ label, closed }) => [label, closed]), [['-5', true], ['-4', true], ['8', true]]);
+  assert.deepEqual(system.selected, [[1, 2]]);
+  const isolated = diagrams.get(116).at(-1);
+  assert.deepEqual(isolated.points.map(({ label, closed }) => [label, closed]), [['0', true], ['1', true], ['3', true]]);
+  assert.deepEqual(isolated.selected, [[2, 3]]);
+});
