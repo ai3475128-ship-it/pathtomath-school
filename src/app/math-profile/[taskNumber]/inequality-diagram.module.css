@@ -1,0 +1,15 @@
+.diagram {
+  --inequality-open-point: #fff;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+}
+:global(.dark) .diagram { --inequality-open-point: #17102b; }
+.labelObject { overflow: visible; }
+.label { display: flex; align-items: flex-start; width: 100%; color: #1e293b; font-size: 14px; font-weight: normal; white-space: nowrap; }
+:global(.dark) .label { color: #e2e8f0; }
+.axis { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.roof { fill: none; stroke: #94a3b8; stroke-width: 1.2; }
+.open { fill: var(--inequality-open-point); stroke: currentColor; stroke-width: 1.5; }
+.closed { fill: currentColor; }

@@ -1,5 +1,7 @@
 import React from 'react';
 import { InlineMath, BlockMath } from 'react-katex';
+import { InequalityNumberLine, SvgMathLabel } from './InequalityNumberLine';
+import diagramStyles from './inequality-diagram.module.css';
 
 export const section15Tasks = [
        {
@@ -97,19 +99,19 @@ export const section15Tasks = [
 
         {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ С КРЫШАМИ И ШТРИХОВКОЙ ДЛЯ ЗАДАЧИ 2 */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="100" viewBox="0 0 280 100" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="280" height="100" viewBox="0 0 280 100" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="70" x2="260" y2="70" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M260 70 l-6 -3 M260 70 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="268" y="74" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={268.0} y={74.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 1 (Знаменатель) */}
-            <circle cx="70" cy="70" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="70" y="88" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-sm">1</text>
+            <circle cx="70" cy="70" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={70.0} y={88.0} anchor="middle" math={"1"} />
 
             {/* Закрашенная точка 2 (Числитель) */}
             <circle cx="170" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="170" y="88" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-sm">2</text>
+            <SvgMathLabel x={170.0} y={88.0} anchor="middle" math={"2"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ: Знак произведения (x - 2)(x - 1) <= 0 (Отрезок между 1 и 2) */}
             <path d="M 70 64 L 70 55 A 10 10 0 0 1 80 45 L 160 45 A 10 10 0 0 1 170 55 L 170 64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
@@ -169,15 +171,15 @@ export const section15Tasks = [
 
         {/* 🌌 ИСПРАВЛЕНО: КРИСТАЛЬНО ЧИСТЫЙ ГРАФИЧЕСКИЙ ОТБОР С ДУГАМИ И ШТРИХОВКОЙ ДЛЯ ЗАДАЧИ 3 */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="100" viewBox="0 0 280 100" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="280" height="100" viewBox="0 0 280 100" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="70" x2="260" y2="70" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M260 70 l-6 -3 M260 70 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="268" y="74" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={268.0} y={74.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 (ОДЗ) */}
-            <circle cx="30" cy="70" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="30" y="88" fill="currentColor" textAnchor="middle" className="text-slate-500 text-[11px]">0</text>
+            <circle cx="30" cy="70" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={30.0} y={88.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная точка 1/64 */}
             <circle cx="85" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -186,26 +188,14 @@ export const section15Tasks = [
             <circle cx="145" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
             
             {/* Выколотая точка 1/5 */}
-            <circle cx="205" cy="70" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="205" cy="70" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
 
             {/* Подписи многоэтажных дробей под осью */}
-            <g transform="translate(71, 78)">
-              <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[11px] font-black">1</text>
-              <line x1="4" y1="13" x2="24" y2="13" stroke="currentColor" strokeWidth="1" />
-              <text x="14" y="24" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[11px] font-black">64</text>
-            </g>
+            <SvgMathLabel x={85} y={92} anchor="middle" math={"\\frac{1}{64}"} />
 
-            <g transform="translate(131, 78)">
-              <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[11px] font-black">1</text>
-              <line x1="6" y1="13" x2="22" y2="13" stroke="currentColor" strokeWidth="1" />
-              <text x="14" y="24" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[11px] font-black">9</text>
-            </g>
+            <SvgMathLabel x={145} y={92} anchor="middle" math={"\\frac{1}{9}"} />
 
-            <g transform="translate(191, 78)">
-              <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[11px] font-black">1</text>
-              <line x1="6" y1="13" x2="22" y2="13" stroke="currentColor" strokeWidth="1" />
-              <text x="14" y="24" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[11px] font-black">5</text>
-            </g>
+            <SvgMathLabel x={205} y={92} anchor="middle" math={"\\frac{1}{5}"} />
 
             {/* 📈 ВЕРХНИЙ УРОВЕНЬ: Дуги подходящих интервалов дроби (<= 0) */}
             {/* Первая дуга: от 0 до 1/64 */}
@@ -276,19 +266,19 @@ export const section15Tasks = [
 
         {/* 🌌 ИСПРАВЛЕНО: ДВУХСЛОЙНЫЙ ЧЕРТЁЖ С КРЫШАМИ И ШТРИХОВКОЙ ДЛЯ ЗАДАЧИ 4 */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="100" viewBox="0 0 280 100" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="280" height="100" viewBox="0 0 280 100" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="70" x2="260" y2="70" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M260 70 l-6 -3 M260 70 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="268" y="74" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={268.0} y={74.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 3 (Знаменатель) */}
-            <circle cx="90" cy="70" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="90" y="88" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-sm">3</text>
+            <circle cx="90" cy="70" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={90.0} y={88.0} anchor="middle" math={"3"} />
 
             {/* Закрашенная точка 4 (Числитель) */}
             <circle cx="180" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="180" y="88" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-sm">4</text>
+            <SvgMathLabel x={180.0} y={88.0} anchor="middle" math={"4"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ: Знак произведения (x - 4)(x - 3) >= 0 */}
             {/* Левая ветка: от начала оси до 3 */}
@@ -358,27 +348,27 @@ export const section15Tasks = [
 
         {/* 🌌 ДВУХСЛОЙНЫЙ SVG ЧЕРТЁЖ ДЛЯ ЗАДАЧИ 5 С ШТРИХОВКОЙ И КРЫШАМИ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="100" viewBox="0 0 280 100" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="280" height="100" viewBox="0 0 280 100" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="70" x2="260" y2="70" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M260 70 l-6 -3 M260 70 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="268" y="74" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={268.0} y={74.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -7 (ОДЗ) */}
-            <circle cx="30" cy="70" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="30" y="88" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-xs">-7</text>
+            <circle cx="30" cy="70" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={30.0} y={88.0} anchor="middle" math={"-7"} />
 
             {/* Закрашенная точка -6 */}
             <circle cx="85" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="85" y="88" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-xs">-6</text>
+            <SvgMathLabel x={85.0} y={88.0} anchor="middle" math={"-6"} />
 
             {/* Закрашенная точка -3\sqrt{2} */}
             <circle cx="145" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="145" y="88" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-xs">-3√2</text>
+            <SvgMathLabel x={145.0} y={88.0} anchor="middle" math={"-3\\sqrt{2}"} />
 
             {/* Закрашенная точка 3\sqrt{2} */}
             <circle cx="205" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="205" y="88" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-xs">3√2</text>
+            <SvgMathLabel x={205.0} y={88.0} anchor="middle" math={"3\\sqrt{2}"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ: Знак кубического произведения <= 0 */}
             {/* Левый луч: от бесконечности до -6 */}
@@ -427,18 +417,18 @@ export const section15Tasks = [
 
         {/* 🌌 SVG ЧЕРТЁЖ ДЛЯ МЕТОДА ИНТЕРВАЛОВ ПО ПЕРЕМЕННОЙ t */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="70" viewBox="0 0 280 70" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="280" height="70" viewBox="0 0 280 70" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             <line x1="20" y1="45" x2="250" y2="45" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M250 45 l-6 -3 M250 45 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="258" y="49" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">t</text>
+            <SvgMathLabel x={258.0} y={49.0} anchor="start" math={"t"} />
 
             {/* Закрашенная точка 3 */}
             <circle cx="90" cy="45" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="90" y="63" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-sm">3</text>
+            <SvgMathLabel x={90.0} y={63.0} anchor="middle" math={"3"} />
 
             {/* Закрашенная точка 4 */}
             <circle cx="170" cy="45" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="170" y="63" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-sm">4</text>
+            <SvgMathLabel x={170.0} y={63.0} anchor="middle" math={"4"} />
 
             {/* Дуга влево до 3 */}
             <path d="M 20 20 L 80 20 A 10 10 0 0 1 90 30 L 90 39" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
@@ -464,35 +454,35 @@ export const section15Tasks = [
 
         {/* 🌌 ДВУХСЛОЙНЫЙ SVG ЧЕРТЁЖ ДЛЯ ПЕРЕМЕННОЙ x С ШТРИХОВКОЙ И КРЫШАМИ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="280" height="110" viewBox="0 0 280 110" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="268" y="84" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={268.0} y={84.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -5 */}
-            <circle cx="25" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="25" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">-5</text>
+            <circle cx="25" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={25.0} y={98.0} anchor="middle" math={"-5"} />
 
             {/* Выколотая точка 5 */}
-            <circle cx="245" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="245" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">5</text>
+            <circle cx="245" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={245.0} y={98.0} anchor="middle" math={"5"} />
 
             {/* Точка -√17 */}
             <circle cx="65" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="65" y="98" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-[10px]">-√17</text>
+            <SvgMathLabel x={65.0} y={98.0} anchor="middle" math={"-\\sqrt{17}"} />
 
             {/* Точка √17 */}
             <circle cx="205" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="205" y="98" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-[10px]">√17</text>
+            <SvgMathLabel x={205.0} y={98.0} anchor="middle" math={"\\sqrt{17}"} />
 
             {/* Закрашенная точка -3 */}
             <circle cx="110" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="110" y="98" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-xs">-3</text>
+            <SvgMathLabel x={110.0} y={98.0} anchor="middle" math={"-3"} />
 
             {/* Закрашенная точка 3 */}
             <circle cx="160" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="160" y="98" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-xs">3</text>
+            <SvgMathLabel x={160.0} y={98.0} anchor="middle" math={"3"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ */}
             <path d="M 20 55 L 55 55 A 10 10 0 0 1 65 65 L 65 74" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
@@ -528,52 +518,15 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Преобразуем знаменатель дроби. По свойствам степеней логарифма:</p>
-        <BlockMath math={`\\log_2^2 x^2 + \\log_2 x^4 + 1 = (2\\log_2 |x|)^2 + 4\\log_2 |x| + 1 = 4\\log_2^2 |x| + 4\\log_2 |x| + 1 = (2\\log_2 |x| + 1)^2`} />
-        
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Заметим, что знаменатель представляет собой полный квадрат, который всегда неотрицателен. Перейдём к равносильной системе, включающей ОДЗ логарифмов числителя и условие неравенства знаменателя нулю:</span>
-        </div>
-
-        <BlockMath math={`\\iff \\begin{cases} \\log_2(2 - x) - \\log_2(x + 1) \\ge 0 \\\\ 2 - x > 0 \\\\ x + 1 > 0 \\\\ 2\\log_2 |x| + 1 \\neq 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Применим метод замены множителей к разности логарифмов в числителе: знак разности совпадает со знаком разности их аргументов</span>
-          <InlineMath math={`(2 - x) - (x + 1) = 1 - 2x`} />.
-          <span>Система упрощается:</span>
-        </div>
-
-        <BlockMath math={`\\iff \\begin{cases} 1 - 2x \\ge 0 \\\\ x < 2 \\\\ x > -1 \\\\ \\log_2 |x| \\neq -\\frac{1}{2} \\end{cases} \\iff \\begin{cases} x \\le 0{,}5 \\\\ -1 < x < 2 \\\\ |x| \\neq \\frac{1}{\\sqrt{2}} \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Условие на модуль даёт две выколотые точки:</span>
-          <InlineMath math={`x \\neq \\frac{\\sqrt{2}}{2}`} />
-          <span>и</span>
-          <InlineMath math={`x \\neq -\\frac{\\sqrt{2}}{2}`} />.
-          <span>Обоснуем их точное положение. Так как выполняется точное неравенство:</span>
-        </div>
-
-        <BlockMath math={`1 < 2 < 4 \\implies 1 < \\sqrt{2} < 2 \\implies \\frac{1}{2} < \\frac{\\sqrt{2}}{2} < 1`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Следовательно, точка</span>
-          <InlineMath math={`\\frac{\\sqrt{2}}{2} > 0{,}5`} />
-          <span>лежит правее луча решений числителя и не влияет на ответ. Умножая на (-1), получаем:</span>
-          <InlineMath math={`-1 < -\\frac{\\sqrt{2}}{2} < -0{,}5`} />,
-          <span>значит, отрицательный корень</span>
-          <InlineMath math={`x = -\\frac{\\sqrt{2}}{2}`} />
-          <span>гарантированно попадает внутрь интервала</span>
-          <InlineMath math={`(-1; \\, 0{,}5]`} />
-          <span>и выкалывает точку. Получаем точный аналитический ответ:</span>
-        </div>
-
-        <BlockMath math={`\\iff x \\in \\left(-1; \\, -\\frac{\\sqrt{2}}{2}\\right) \\cup \\left(-\\frac{\\sqrt{2}}{2}; \\, 0{,}5\\right]`} />
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`\\left(-1; \\, -\\frac{\\sqrt{2}}{2}\\right) \\cup \\left(-\\frac{\\sqrt{2}}{2}; \\, 0{,}5\\right]`} />
-        </div>
+        <p>В знаменателе стоят логарифмы от степеней x, поэтому сначала учитываем <InlineMath math={`x \\ne 0`} />. Преобразуем знаменатель:</p>
+        <BlockMath math={`\\log_2^2(x^2)+\\log_2(x^4)+1=(2\\log_2|x|+1)^2`} />
+        <p>Он положителен, если определён и не равен нулю. Ограничения исходного выражения:</p>
+        <BlockMath math={`-1<x<2,\\qquad x\\ne 0,\\qquad x\\ne\\pm\\frac{\\sqrt{2}}{2}.`} />
+        <p>Знак дроби определяется числителем; поскольку логарифм по основанию 2 возрастает,</p>
+        <BlockMath math={`\\log_2(2-x)-\\log_2(x+1)\\ge 0 \\iff 2-x\\ge x+1 \\iff x\\le\\frac12.`} />
+        <p>Пересекаем с ОДЗ. Положительная точка <InlineMath math={`\\sqrt{2}/2`} /> лежит правее <InlineMath math={`1/2`} /> и на ответ не влияет.</p>
+        <InequalityNumberLine points={[{ label: '-1', closed: false }, { label: '-\\frac{\\sqrt{2}}{2}', closed: false }, { label: '0', closed: false }, { label: '\\frac12', closed: true }]} selected={[[1,2],[2,3],[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\left(-1;-\\frac{\\sqrt{2}}{2}\\right)\\cup\\left(-\\frac{\\sqrt{2}}{2};0\\right)\\cup\\left(0;\\frac12\\right]`} /></div>
       </div>
     )
   },
@@ -658,22 +611,22 @@ export const section15Tasks = [
 
         {/* 🌌 SVG ЧЕРТЁЖ ДЛЯ МЕТОДА ИНТЕРВАЛОВ ПО ПЕРЕМЕННОЙ t */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="70" viewBox="0 0 280 70" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="280" height="70" viewBox="0 0 280 70" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             <line x1="20" y1="45" x2="250" y2="45" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M250 45 l-6 -3 M250 45 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="258" y="49" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">t</text>
+            <SvgMathLabel x={258.0} y={49.0} anchor="start" math={"t"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="60" cy="45" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="60" y="63" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-sm">0</text>
+            <circle cx="60" cy="45" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={60.0} y={63.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная точка 3 */}
             <circle cx="135" cy="45" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="135" y="63" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-sm">3</text>
+            <SvgMathLabel x={135.0} y={63.0} anchor="middle" math={"3"} />
 
             {/* Выколотая точка 4 */}
-            <circle cx="200" cy="45" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="200" y="63" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-sm">4</text>
+            <circle cx="200" cy="45" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={200.0} y={63.0} anchor="middle" math={"4"} />
 
             {/* Дуга влево до 0 */}
             <path d="M 20 20 L 50 20 A 10 10 0 0 1 60 30 L 60 39" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
@@ -695,27 +648,27 @@ export const section15Tasks = [
 
         {/* 🌌 ДВУХСЛОЙНЫЙ SVG ЧЕРТЁЖ ДЛЯ ПЕРЕМЕННОЙ x С ШТРИХОВКОЙ И КРЫШАМИ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="280" height="110" viewBox="0 0 280 110" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="268" y="84" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={268.0} y={84.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="35" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="35" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">0</text>
+            <circle cx="35" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={35.0} y={98.0} anchor="middle" math={"0"} />
 
             {/* Выколотая точка 1 */}
-            <circle cx="100" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="100" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">1</text>
+            <circle cx="100" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={100.0} y={98.0} anchor="middle" math={"1"} />
 
             {/* Закрашенная точка 27 */}
             <circle cx="165" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="165" y="98" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-xs">27</text>
+            <SvgMathLabel x={165.0} y={98.0} anchor="middle" math={"27"} />
 
             {/* Выколотая точка 81 */}
-            <circle cx="225" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="225" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">81</text>
+            <circle cx="225" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={225.0} y={98.0} anchor="middle" math={"81"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ: Решение совокупности аргумента */}
             {/* Луч влево до 1 */}
@@ -794,65 +747,13 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Приведём аргументы внутри логарифмов к общему знаменателю:</p>
-        <BlockMath math={`\\log_5(3x + 1) + \\log_5\\left(\\frac{1 + 72x^2}{72x^2}\\right) \\ge \\log_5\\left(\\frac{1 + 24x}{24x}\\right)`} />
-        
-        <p>Используя формулу суммы логарифмов, перейдём к равносильной системе условий вместе с ОДЗ:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\log_5\\left( \\frac{(3x + 1)(1 + 72x^2)}{72x^2} \\right) \\ge \\log_5\\left(\\frac{1 + 24x}{24x}\\right) \\\\ 3x + 1 > 0 \\\\ 1 + 24x > 0 \\\\ x \\neq 0 \\end{cases} \\iff \\begin{cases} \\frac{(3x + 1)(1 + 72x^2)}{72x^2} \\ge \\frac{1 + 24x}{24x} \\\\ x > -\\frac{1}{24} \\\\ x \\neq 0 \\end{cases}`} />
-
-        <p>Перенесём дробь в левую часть и упростим числитель:</p>
-        <BlockMath math={`\\begin{cases} \\frac{(3x + 1)(1 + 72x^2) - 3x(1 + 24x)}{72x^2} \\ge 0 \\\\ x > -\\frac{1}{24} \\\\ x \\neq 0 \\end{cases} \\iff \\begin{cases} \\frac{3x + 216x^3 + 1 + 72x^2 - 3x - 72x^2}{72x^2} \\ge 0 \\\\ x > -\\frac{1}{24} \\\\ x \\neq 0 \\end{cases}`} />
-        <BlockMath math={`\\iff \\begin{cases} \\frac{216x^3 + 1}{72x^2} \\ge 0 \\\\ x > -\\frac{1}{24} \\\\ x \\neq 0 \\end{cases} \\iff \\begin{cases} \\frac{(6x + 1)(36x^2 - 6x + 1)}{72x^2} \\ge 0 \\\\ x > -\\frac{1}{24} \\\\ x \\neq 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Заметим, что дискриминант квадратного трёхчлена</span>
-          <InlineMath math={`36x^2 - 6x + 1`} />
-          <span>отрицателен, поэтому этот множитель строго положителен при любом</span>
-          <InlineMath math={`x`} />.
-          <span>Знаменатель</span>
-          <InlineMath math={`72x^2 > 0`} />
-          <span>при всех допустимых значениях. Система сводится к виду:</span>
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} 6x + 1 \\ge 0 \\\\ x > -\\frac{1}{24} \\\\ x \\neq 0 \\end{cases} \\iff \\begin{cases} x \\ge -\\frac{1}{6} \\\\ x > -\\frac{1}{24} \\\\ x \\neq 0 \\end{cases}`} />
-
-        <p>Разложим системные условия графически методом двух уровней крыш (сравнивая точные положения дробей):</p>
-
-        {/* 🌌 ДВУХСЛОЙНЫЙ SVG ЧЕРТЁЖ С КРЫШАМИ И ШТРИХОВКОЙ ДЛЯ ЗАДАЧИ 11 */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="100" viewBox="0 0 280 100" className="overflow-visible font-sans font-bold text-xs">
-            <line x1="10" y1="70" x2="260" y2="70" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M260 70 l-6 -3 M260 70 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="268" y="74" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
-
-            <circle cx="35" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="35" y="88" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-[11px]">-1/6</text>
-
-            <circle cx="95" cy="70" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="95" y="88" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-[11px]">-1/24</text>
-
-            <circle cx="175" cy="70" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="175" y="88" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">0</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ: x >= -1/6 */}
-            <path d="M 35 64 L 35 45 A 10 10 0 0 1 45 35 L 250 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ: ОДЗ x > -1/24 и x != 0 */}
-            <path d="M 95 64 L 95 25 A 10 10 0 0 1 105 15 L 165 15 A 10 10 0 0 1 175 25 L 175 64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 175 64 L 175 25 A 10 10 0 0 1 185 15 L 250 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 МАТЕМАТИЧЕСКАЯ НАКЛОННАЯ ШТРИХОВКА ОТВЕТА */}
-            <path d="M 99 65 L 105 40 M 109 65 L 115 40 M 119 65 L 125 40 M 129 65 L 135 40 M 139 65 L 145 40 M 149 65 L 155 40 M 159 65 L 165 40 M 169 65 L 174 44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <path d="M 179 65 L 185 40 M 189 65 L 195 40 M 199 65 L 205 40 M 203 65 L 209 40 M 213 65 L 219 40 M 223 65 L 229 40 M 233 65 L 239 40 M 243 65 L 249 40" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <BlockMath math={`\\iff x \\in \\left(-\\frac{1}{24}; \\, 0\\right) \\cup (0; \\, +\\infty)`} />
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`\\left(-\\frac{1}{24}; \\, 0\\right) \\cup (0; \\, +\\infty)`} />
-        </div>
+        <p>Запишем ОДЗ, учитывая знак дроби под правым логарифмом:</p>
+        <BlockMath math={`3x+1>0,\\qquad x\\ne0,\\qquad \\frac{1+24x}{24x}>0 \\iff x\\in\\left(-\\frac13;-\\frac1{24}\\right)\\cup(0;+\\infty).`} />
+        <p>На ОДЗ объединим логарифмы слева и сравним аргументы, поскольку основание 5 больше единицы:</p>
+        <BlockMath math={`\\frac{(3x+1)(72x^2+1)}{72x^2}\\ge\\frac{24x+1}{24x} \\iff \\frac{216x^3+1}{72x^2}\\ge0.`} />
+        <p>Знаменатель положителен, а <InlineMath math={`216x^3+1=(6x+1)(36x^2-6x+1)`} />; второй множитель всегда положителен. Значит, <InlineMath math={`x\\ge-\\frac16`} />. Пересекаем это условие с ОДЗ.</p>
+        <InequalityNumberLine points={[{ label: '-\\frac16', closed: true }, { label: '-\\frac1{24}', closed: false }, { label: '0', closed: false }]} selected={[[1,2],[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\left[-\\frac16;-\\frac1{24}\\right)\\cup(0;+\\infty)`} /></div>
       </div>
     )
   },
@@ -864,77 +765,15 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Приведем аргументы к общему знаменателю:</p>
-        <BlockMath math={`\\log_5\\left(\\frac{2(x + 1)}{x}\\right) - \\log_5(x + 3) \\le \\log_5\\left(\\frac{x + 6}{x^2}\\right)`} />
-        
-        <p>Используя свойство разности логарифмов, перейдём к равносильной системе условий вместе с ОДЗ:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\log_5\\left(\\frac{2(x + 1)}{x(x + 3)}\\right) \\le \\log_5\\left(\\frac{x + 6}{x^2}\\right) \\\\ \\frac{2(x + 1)}{x} > 0 \\\\ x + 3 > 0 \\\\ \\frac{x + 6}{x^2} > 0 \\end{cases} \\iff \\begin{cases} \\frac{2(x + 1)}{x(x + 3)} \\le \\frac{x + 6}{x^2} \\\\ \\frac{x + 1}{x} > 0 \\\\ x > -3 \\\\ x > -6 \\\\ x \\neq 0 \\end{cases}`} />
-
-        <p>Решим отдельно рациональное неравенство из первой строки системы, перенеся всё влево:</p>
-        <BlockMath math={`\\frac{2(x + 1)}{x(x + 3)} - \\frac{x + 6}{x^2} \\le 0 \\implies \\frac{2x^2(x + 1) - (x + 6)(x + 3)}{x^2(x + 3)} \\le 0`} />
-        <BlockMath math={`\\iff \\frac{2x^3 + 2x^2 - (x^2 + 9x + 18)}{x^2(x + 3)} \\le 0 \\iff \\frac{2x^3 + x^2 - 9x - 18}{x^2(x + 3)} \\le 0`} />
-        
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Разложим числитель методом группировки:</span>
-          <InlineMath math={`2x^2(x + 2) - 9(x + 2) = (x + 2)(2x^2 - 9)`} />.
-        </div>
-        <BlockMath math={`\\iff \\frac{(x + 2)\\cdot 2\\left(x^2 - \\frac{9}{2}\\right)}{x^2(x + 3)} \\le 0 \\iff \\frac{(x + 2)\\left(x - \\frac{3\\sqrt{2}}{2}\\right)\\left(x + \\frac{3\\sqrt{2}}{2}\\right)}{x^2(x + 3)} \\le 0`} />
-
-        <p>Сведём все требования в единую систему условий:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{(x + 2)\\left(x - \\frac{3\\sqrt{2}}{2}\\right)\\left(x + \\frac{3\\sqrt{2}}{2}\\right)}{x + 3} \\le 0 \\\\ \\frac{x + 1}{x} > 0 \\\\ x > -3 \\\\ x \\neq 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Для отбора интервалов сопоставим точные положения корней на числовой прямой:</span>
-          <InlineMath math={`-3 < -\\frac{3\\sqrt{2}}{2} < -2 < -1 < 0 < \\frac{3\\sqrt{2}}{2}`} />.
-        </div>
-
-        {/* 🌌 ДВУХСЛОЙНЫЙ SVG ЧЕРТЁЖ С КРЫШАМИ И ШТРИХОВКОЙ ДЛЯ ЗАДАЧИ 12 */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className="overflow-visible font-sans font-bold text-xs">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="268" y="84" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
-
-            <circle cx="20" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="20" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">-3</text>
-
-            <circle cx="55" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="55" y="98" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-[9px]">-3√2/2</text>
-
-            <circle cx="95" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="95" y="98" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-xs">-2</text>
-
-            <circle cx="135" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="135" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">-1</text>
-
-            <circle cx="175" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="175" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">0</text>
-
-            <circle cx="220" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="220" y="98" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-[9px]">3√2/2</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ: Знак рациональной дроби <= 0 */}
-            <path d="M 20 55 L 45 55 A 10 10 0 0 1 55 65 L 55 74" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 95 74 L 95 55 A 10 10 0 0 1 105 45 L 210 45 A 10 10 0 0 1 220 55 L 220 74" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ: ОДЗ логарифмов */}
-            <path d="M 20 74 L 20 30 A 10 10 0 0 1 30 20 L 125 20 A 10 10 0 0 1 135 30 L 135 74" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 175 74 L 175 30 A 10 10 0 0 1 185 20 L 250 20" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 МАТЕМАТИЧЕСКАЯ НАКЛОННАЯ ШТРИХОВКА ОТВЕТА */}
-            <path d="M 23 75 L 29 50 M 33 75 L 39 50 M 43 75 L 49 50 M 47 75 L 52 50 M 51 75 L 54 60" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <path d="M 179 75 L 185 50 M 189 75 L 195 50 M 193 75 L 199 50 M 198 75 L 204 50 M 202 75 L 208 50 M 206 75 L 212 50 M 210 75 L 216 50 M 214 75 L 219 53" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <BlockMath math={`\\iff x \\in \\left(-3; \\, -\\frac{3\\sqrt{2}}{2}\\right] \\cup \\left(0; \\, \\frac{3\\sqrt{2}}{2}\\right]`} />
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`\\left(-3; \\, -\\frac{3\\sqrt{2}}{2}\\right] \\cup \\left(0; \\, \\frac{3\\sqrt{2}}{2}\\right]`} />
-        </div>
+        <p>Запишем область допустимых значений:</p>
+        <BlockMath math={`\\frac{2(x+1)}x>0,\\quad x+3>0,\\quad \\frac{x+6}{x^2}>0 \\iff x\\in(-3;-1)\\cup(0;+\\infty).`} />
+        <p>На ОДЗ объединим логарифмы и сравним их аргументы:</p>
+        <BlockMath math={`\\frac{2(x+1)}{x(x+3)}\\le\\frac{x+6}{x^2} \\iff \\frac{2x(x+1)-(x+6)(x+3)}{x^2(x+3)}\\le0.`} />
+        <p>При приведении к общему знаменателю первое слагаемое домножается на <InlineMath math={`x`} />. Раскроем скобки:</p>
+        <BlockMath math={`\\frac{x^2-7x-18}{x^2(x+3)}=\\frac{(x-9)(x+2)}{x^2(x+3)}\\le0.`} />
+        <p>На ОДЗ знаменатель положителен, поэтому получаем <InlineMath math={`-2\\le x\\le9`} />. Пересечение с ОДЗ даёт:</p>
+        <InequalityNumberLine points={[{ label: '-2', closed: true }, { label: '-1', closed: false }, { label: '0', closed: false }, { label: '9', closed: true }]} selected={[[1,2],[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`[-2;-1)\\cup(0;9]`} /></div>
       </div>
     )
   },
@@ -1011,49 +850,13 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Разложим квадратный трёхчлен на множители: <InlineMath math={`x^2 - 2x - 15 = (x - 5)(x + 3)`} />.</p>
-        <p>Перейдём к равносильной системе условий, удерживающей ОДЗ исходных логарифмов:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\log_4((x - 5)^2(x + 3)) + 1 \\ge \\log_2|x - 5| \\\\ (x - 5)(x + 3) > 0 \\\\ x - 5 \\neq 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Из условий ОДЗ следует, что аргумент</span>
-          <InlineMath math={`x - 5 > 0`} />
-          <span>(так как при</span>
-          <InlineMath math={`x < -3`} />
-          <span>выражение</span>
-          <InlineMath math={`(x - 5)^2(x + 3)`} />
-          <span>стало бы отрицательным). Значит, раскрываем модуль со знаком «плюс»:</span>
-          <InlineMath math={`|x - 5| = x - 5`} />,
-          <span>а сама система упрощается:</span>
-        </div>
-
-        <BlockMath math={`\\iff \\begin{cases} \\log_{2^2}((x - 5)^2(x + 3)) + 1 \\ge \\log_2(x - 5) \\\\ x > 5 \\end{cases}`} />
-        <BlockMath math={`\\iff \\begin{cases} \\frac{1}{2}\\log_2((x - 5)^2(x + 3)) + 1 \\ge \\log_2(x - 5) \\\\ x > 5 \\end{cases}`} />
-
-        <p>Умножим первое неравенство системы на 2 и внесем двойку в логарифм правой части:</p>
-        <BlockMath math={`\\begin{cases} \\log_2((x - 5)^2(x + 3)) + 2 \\ge 2\\log_2(x - 5) \\\\ x > 5 \\end{cases} \\iff \\begin{cases} \\log_2((x - 5)^2(x + 3)) + \\log_2 4 \\ge \\log_2(x - 5)^2 \\\\ x > 5 \\end{cases}`} />
-        <BlockMath math={`\\iff \\begin{cases} \\log_2(4(x - 5)^2(x + 3)) \\ge \\log_2(x - 5)^2 \\\\ x > 5 \\end{cases}`} />
-
-        <p>В силу монотонного возрастания логарифмической функции с основанием 2 &gt; 1 перейдём к сравнению аргументов:</p>
-        <BlockMath math={`\\iff \\begin{cases} 4(x - 5)^2(x + 3) \\ge (x - 5)^2 \\\\ x > 5 \\end{cases} \\iff \\begin{cases} 4(x - 5)^2(x + 3) - (x - 5)^2 \\ge 0 \\\\ x > 5 \\end{cases}`} />
-        <BlockMath math={`\\iff \\begin{cases} (x - 5)^2 (4(x + 3) - 1) \\ge 0 \\\\ x > 5 \\end{cases} \\iff \\begin{cases} (x - 5)^2 (4x + 11) \\ge 0 \\\\ x > 5 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Поскольку при</span>
-          <InlineMath math={`x > 5`} />
-          <span>множители</span>
-          <InlineMath math={`(x - 5)^2 > 0`} />
-          <span>и</span>
-          <InlineMath math={`(4x + 11) > 0`} />
-          <span>строго положительны, их произведение автоматически больше нуля. Система сводится к линейному лучу ОДЗ:</span>
-        </div>
-        <BlockMath math={`\\iff x > 5`} />
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`(5; \\, +\\infty)`} />
-        </div>
+        <p>Разложим квадратный трёхчлен: <InlineMath math={`x^2-2x-15=(x-5)(x+3)`} />. Поэтому аргумент первого логарифма равен <InlineMath math={`(x-5)^2(x+3)`} />, и ОДЗ имеет вид</p>
+        <BlockMath math={`x>-3,\\qquad x\\ne5.`} />
+        <p>Правая часть равна <InlineMath math={`\\log_4(x-5)^2`} />. На ОДЗ можно разделить аргументы логарифмов на положительный множитель <InlineMath math={`(x-5)^2`} />:</p>
+        <BlockMath math={`\\log_4\\bigl((x-5)^2(x+3)\\bigr)+1\\ge\\log_4(x-5)^2 \\iff \\log_4(x+3)\\ge-1.`} />
+        <p>Основание больше единицы, следовательно, <InlineMath math={`x+3\\ge\\frac14`} />, то есть <InlineMath math={`x\\ge-\\frac{11}4`} />. Выкалываем запрещённую точку 5.</p>
+        <InequalityNumberLine points={[{ label: '-\\frac{11}4', closed: true }, { label: '5', closed: false }]} selected={[[1,2],[2,3]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\left[-\\frac{11}4;5\\right)\\cup(5;+\\infty)`} /></div>
       </div>
     )
   },
@@ -1099,35 +902,27 @@ export const section15Tasks = [
 
         {/* 🌌 ИСПРАВЛЕНО: ШТРИХОВКА СТРОГО МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="280" height="110" viewBox="0 0 280 110" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="268" y="84" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={268.0} y={84.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="35" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="35" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">0</text>
+            <circle cx="35" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={35.0} y={98.0} anchor="middle" math={"0"} />
 
             {/* Выколотая точка 1/81 */}
-            <circle cx="100" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <g transform="translate(86, 92)">
-              <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[10px] font-black">1</text>
-              <line x1="4" y1="13" x2="24" y2="13" stroke="currentColor" strokeWidth="1" />
-              <text x="14" y="23" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[10px] font-black">81</text>
-            </g>
+            <circle cx="100" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={100} y={106} anchor="middle" math={"\\frac{1}{81}"} />
 
             {/* Закрашенная точка 1/9 */}
             <circle cx="165" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <g transform="translate(151, 92)">
-              <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[10px] font-black">1</text>
-              <line x1="6" y1="13" x2="22" y2="13" stroke="currentColor" strokeWidth="1" />
-              <text x="14" y="23" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[10px] font-black">9</text>
-            </g>
+            <SvgMathLabel x={165} y={106} anchor="middle" math={"\\frac{1}{9}"} />
 
             {/* Выколотая точка 81 */}
-            <circle cx="225" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="225" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">81</text>
+            <circle cx="225" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={225.0} y={98.0} anchor="middle" math={"81"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 55) */}
             <path d="M 20 55 L 90 55 A 10 10 0 0 1 100 65 L 100 75" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
@@ -1196,27 +991,27 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АККУРАТНОЙ ЗАПЕРТОЙ ШТРИХОВКОЙ ПОД НИЖНЕЙ КРЫШЕЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="280" height="110" viewBox="0 0 280 110" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="268" y="84" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={268.0} y={84.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="35" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="35" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">0</text>
+            <circle cx="35" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={35.0} y={98.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная точка 1 */}
             <circle cx="90" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="90" y="98" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-xs">1</text>
+            <SvgMathLabel x={90.0} y={98.0} anchor="middle" math={"1"} />
 
             {/* Закрашенная точка 4 */}
             <circle cx="145" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="145" y="98" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-xs">4</text>
+            <SvgMathLabel x={145.0} y={98.0} anchor="middle" math={"4"} />
 
             {/* Выколотая точка 64 */}
-            <circle cx="210" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="210" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">64</text>
+            <circle cx="210" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={210.0} y={98.0} anchor="middle" math={"64"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 55) */}
             {/* Луч влево до 1 */}
@@ -1304,31 +1099,27 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АККУРАТНОЙ ЗАПЕРТОЙ ШТРИХОВКОЙ ПОД НИЖНЕЙ КРЫШЕЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="280" height="110" viewBox="0 0 280 110" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="268" y="84" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={268.0} y={84.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="35" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="35" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">0</text>
+            <circle cx="35" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={35.0} y={98.0} anchor="middle" math={"0"} />
 
             {/* Выколотая точка 1/32 */}
-            <circle cx="100" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <g transform="translate(86, 92)">
-              <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[10px] font-black">1</text>
-              <line x1="4" y1="13" x2="24" y2="13" stroke="currentColor" strokeWidth="1" />
-              <text x="14" y="23" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[10px] font-black">32</text>
-            </g>
+            <circle cx="100" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={100} y={106} anchor="middle" math={"\\frac{1}{32}"} />
 
             {/* Закрашенная точка 16 */}
             <circle cx="165" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="165" y="98" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 font-black text-xs">16</text>
+            <SvgMathLabel x={165.0} y={98.0} anchor="middle" math={"16"} />
 
             {/* Выколотая точка 32 */}
-            <circle cx="225" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="225" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">32</text>
+            <circle cx="225" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={225.0} y={98.0} anchor="middle" math={"32"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 55) */}
             {/* Луч влево до 1/32 */}
@@ -1462,31 +1253,23 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АККУРАТНОЙ ЗАПЕРТОЙ ШТРИХОВКОЙ ПОД НИЖНЕЙ КРЫШЕЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="280" height="110" viewBox="0 0 280 110" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="268" y="84" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={268.0} y={84.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="50" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="50" y="98" fill="currentColor" textAnchor="middle" className="text-slate-500 font-black text-xs">0</text>
+            <circle cx="50" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={50.0} y={98.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная точка 1/3 */}
             <circle cx="130" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <g transform="translate(116, 92)">
-              <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[10px] font-black">1</text>
-              <line x1="6" y1="13" x2="22" y2="13" stroke="currentColor" strokeWidth="1" />
-              <text x="14" y="23" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[10px] font-black">3</text>
-            </g>
+            <SvgMathLabel x={130} y={106} anchor="middle" math={"\\frac{1}{3}"} />
 
             {/* Выколотая точка 2/3 */}
-            <circle cx="210" cy="80" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <g transform="translate(196, 92)">
-              <text x="14" y="10" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[10px] font-black">2</text>
-              <line x1="6" y1="13" x2="22" y2="13" stroke="currentColor" strokeWidth="1" />
-              <text x="14" y="23" fill="currentColor" textAnchor="middle" className="text-slate-800 dark:text-slate-200 text-[10px] font-black">3</text>
-            </g>
+            <circle cx="210" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={210} y={106} anchor="middle" math={"\\frac{2}{3}"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 55) */}
             {/* Луч влево до 0 */}
@@ -1529,44 +1312,15 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Разложим квадратный трёхчлен на множители по теореме Виета (корни 6 и 7): <InlineMath math={`x^2 - 13x + 42 = (x - 6)(x - 7)`} />.</p>
-        <p>Перейдём к равносильной системе условий, удерживающей ограничения на знаки аргументов исходных логарифмов:</p>
-        <BlockMath math={`\\iff \\begin{cases} 7\\log_{12}((x - 6)(x - 7)) \\le 8 + \\log_{12}\\frac{(x - 7)^7}{x - 6} \\\\ (x - 6)(x - 7) > 0 \\\\ \\frac{(x - 7)^7}{x - 6} > 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Проанализируем ОДЗ. Из условий</span>
-          <InlineMath math={`(x - 6)(x - 7) > 0`} />
-          <span>и</span>
-          <InlineMath math={`\\frac{(x - 7)^7}{x - 6} > 0`} />
-          <span>следует, что знаки выражений</span>
-          <InlineMath math={`(x - 6)`} />
-          <span>и</span>
-          <InlineMath math={`(x - 7)`} />
-          <span>должны совпадать. Однако, если бы оба выражения были отрицательными, то дробь</span>
-          <InlineMath math={`\\frac{\\text{минус}}{\\text{минус}} > 0`} />,
-          <span>но степень</span>
-          <InlineMath math={`(x - 7)^7`} />
-          <span>дала бы отрицательный знак в числителе, что привело бы к противоречию. Таким образом, знаки обязаны быть строго положительными:</span>
-        </div>
-        <BlockMath math={`\\begin{cases} x - 6 > 0 \\\\ x - 7 > 0 \\end{cases} \\implies x > 7`} />
-
-        <p>Используя полученное условие <InlineMath math={`x > 7`} />, преобразуем логарифмы по свойствам суммы и разности без модулей:</p>
-        <BlockMath math={`\\begin{cases} 7\\log_{12}(x - 6) + 7\\log_{12}(x - 7) \\le 8 + 7\\log_{12}(x - 7) - \\log_{12}(x - 6) \\\\ x > 7 \\end{cases}`} />
-
-        <p>Взаимно уничтожим одинаковые слагаемые <InlineMath math={`7\\log_{12}(x - 7)`} /> в обеих частях неравенства и перенесём логарифм влево:</p>
-        <BlockMath math={`\\begin{cases} 8\\log_{12}(x - 6) \\le 8 \\\\ x > 7 \\end{cases} \\iff \\begin{cases} \\log_{12}(x - 6) \\le 1 \\\\ x > 7 \\end{cases}`} />
-
-        <p>Потенциируя логарифм по основанию 12 &gt; 1, переходим к линейной системе интервалов:</p>
-        <BlockMath math={`\\iff \\begin{cases} x - 6 \\le 12 \\\\ x > 7 \\end{cases} \\iff \\begin{cases} x \\le 18 \\\\ x > 7 \\end{cases} \\iff 7 < x \\le 18`} />
-
-        <p>Пересечение полученных лучей даёт финальное множество решений:</p>
-        <BlockMath math={`\\iff x \\in (7; \\, 18]`} />
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`(7; \\, 18]`} />
-        </div>
+        <p>Для существования логарифмов требуется <InlineMath math={`(x-7)(x-6)>0`} /> и <InlineMath math={`(x-7)^7/(x-6)>0`} />. Оба условия дают одну область:</p>
+        <BlockMath math={`x<6\\quad\\text{или}\\quad x>7.`} />
+        <p>На этой области запишем логарифмы через модули положительных множителей:</p>
+        <BlockMath math={`7\\bigl(\\log_{12}|x-7|+\\log_{12}|x-6|\\bigr)\\le8+7\\log_{12}|x-7|-\\log_{12}|x-6|.`} />
+        <p>Сократив одинаковые слагаемые, получаем</p>
+        <BlockMath math={`\\log_{12}|x-6|\\le1 \\iff |x-6|\\le12 \\iff -6\\le x\\le18.`} />
+        <p>Пересекаем этот отрезок с ОДЗ.</p>
+        <InequalityNumberLine points={[{ label: '-6', closed: true }, { label: '6', closed: false }, { label: '7', closed: false }, { label: '18', closed: true }]} selected={[[1,2],[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`[-6;6)\\cup(7;18]`} /></div>
       </div>
     )
   },
@@ -1616,11 +1370,11 @@ export const section15Tasks = [
 
         {/* 🌌 ИСПРАВЛЕНО: ПОДПИСИ ТОЧЕК РЕНДЕРЯТСЯ СТРОГО ЧЕРЕЗ ФОРМУЛЫ KaTeX */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка 0 */}
             <circle cx="45" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -1629,13 +1383,13 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка log11 6 */}
-            <circle cx="135" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="105" y="70" width="60" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200 text-[13px]"><InlineMath math="\log_{11} 6" /></div>
             </foreignObject>
 
             {/* Выколотая точка log11 10 */}
-            <circle cx="235" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="235" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="205" y="70" width="60" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200 text-[13px]"><InlineMath math="\log_{11} 10" /></div>
             </foreignObject>
@@ -1729,14 +1483,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -2 */}
-            <circle cx="115" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="95" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-2" /></div>
             </foreignObject>
@@ -1832,11 +1586,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка -√2 */}
             <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -1905,95 +1659,14 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Разложим числитель на множители и представим знаменатель в виде разности логарифмов, чтобы подготовить выражение к методу замены множителей:</p>
-        <BlockMath math={`\\frac{\\log_3 x(\\log_3 x - 1)}{\\log_{0{,}2}(0{,}5 \\cdot 2^x) - \\log_{0{,}2} 1} \\ge 0`} />
-        
-        <p>Перейдём к равносильной системе условий, содержащей ограничения на знаки аргументов и знаменатель:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{\\log_3 x(\\log_3 x - 1)}{\\log_{0{,}2}(0{,}5 \\cdot 2^x) - \\log_{0{,}2} 1} \\ge 0 \\\\ x > 0 \\\\ 0{,}5 \\cdot 2^x > 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Применим метод рационализации к знаменателю. Так как основание логарифма</span>
-          <InlineMath math={`0{,}2`} />
-          <span>лежит в промежутке</span>
-          <InlineMath math={`(0; \\, 1)`} />,
-          <span>знак разности логарифмов противоположен знаку разности их аргументов, то есть совпадает со знаком разности</span>
-          <InlineMath math={`(1 - 0{,}5 \\cdot 2^x)`} />.
-          <span>Показательное условие в третьей строке выполняется всегда. Применим метод рационализации к числителю:</span>
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{(x - 1)(x - 3)}{1 - 0{,}5 \\cdot 2^x} \\ge 0 \\\\ x > 0 \\end{cases} \\iff \\begin{cases} \\frac{(x - 1)(x - 3)}{0{,}5 \\cdot 2^0 - 0{,}5 \\cdot 2^x} \\ge 0 \\\\ x > 0 \\end{cases}`} />
-        <BlockMath math={`\\iff \\begin{cases} \\frac{(x - 1)(x - 3)}{0{,}5 \\cdot (2^0 - 2^x)} \\ge 0 \\\\ x > 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Применим метод рационализации к показательному выражению в знаменателе. Так как основание</span>
-          <InlineMath math={`2 > 1`} />,
-          <span>знак разности степеней совпадает со знаком разности показателей:</span>
-          <InlineMath math={`(0 - x) = -x`} />.
-          <span>Система сводится к линейно-рациональной:</span>
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{(x - 1)(x - 3)}{-x} \\ge 0 \\\\ x > 0 \\end{cases} \\iff \\begin{cases} \\frac{(x - 1)(x - 3)}{x} \\le 0 \\\\ x > 0 \\\\ x \\neq 0 \\end{cases}`} />
-
-        <p>Поскольку по условию ОДЗ <InlineMath math={`x > 0`} />, знаменатель дроби всегда строго положителен и не влияет на знак. Получаем:</p>
-        <BlockMath math={`\\iff \\begin{cases} (x - 1)(x - 3) \\le 0 \\\\ x > 0 \\end{cases} \\iff \\begin{cases} 1 \\le x \\le 3 \\\\ x > 0 \\end{cases} \\iff 1 \\le x \\le 3`} />
-
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
-
-        {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
-
-            {/* Выколотая точка 0 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="45" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 1 */}
-            <circle cx="165" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="145" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 3 */}
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="245" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение отрезка [1; 3] */}
-            <path d="M 165 60 L 165 45 A 10 10 0 0 1 175 35 L 255 35 A 10 10 0 0 1 265 45 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ x > 0 */}
-            <path d="M 65 60 L 65 25 A 10 10 0 0 1 75 15 L 325 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок от 1 до 3 */}
-            <line x1="171" y1="58" x2="177" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="179" y1="58" x2="185" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="187" y1="58" x2="193" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="195" y1="58" x2="201" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="203" y1="58" x2="207" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="263" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <p>Пересечение полученных интервалов даёт финальный ответ:</p>
-        <BlockMath math={`\\iff x \\in [1; \\, 3]`} />
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`[1; \\, 3]`} />
-        </div>
+        <p>Условия определения: <InlineMath math={`x>0`} /> и знаменатель не равен нулю. Поскольку <InlineMath math={`0{,}5\\cdot2^x=2^{x-1}`} />, получаем <InlineMath math={`x\\ne1`} />.</p>
+        <p>Разложим числитель и преобразуем знаменатель:</p>
+        <BlockMath math={`\\frac{\\log_3 x(\\log_3 x-1)}{(x-1)\\log_{0{,}2}2}\\ge0.`} />
+        <p>Здесь <InlineMath math={`\\log_{0{,}2}2<0`} />. На ОДЗ знаки <InlineMath math={`\\log_3x`} /> и <InlineMath math={`x-1`} /> совпадают, а знак <InlineMath math={`\\log_3x-1`} /> совпадает со знаком <InlineMath math={`x-3`} />. Поэтому исходное неравенство равносильно</p>
+        <BlockMath math={`x-3\\le0,\\qquad x>0,\\qquad x\\ne1.`} />
+        <p>Точка <InlineMath math={`x=1`} /> исключается: в исходной дроби знаменатель равен нулю.</p>
+        <InequalityNumberLine points={[{ label: '0', closed: false }, { label: '1', closed: false }, { label: '3', closed: true }]} selected={[[1,2],[2,3]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`(0;1)\\cup(1;3]`} /></div>
       </div>
     )
   },
@@ -2045,20 +1718,20 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 2,5 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="2{,}5" /></div>
             </foreignObject>
 
             {/* Выколотая точка 3 */}
-            <circle cx="155" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="155" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="135" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
             </foreignObject>
@@ -2139,14 +1812,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="45" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="45" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="25" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
             </foreignObject>
@@ -2158,7 +1831,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 1 */}
-            <circle cx="215" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="215" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="195" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
             </foreignObject>
@@ -2242,14 +1915,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
             </foreignObject>
@@ -2257,11 +1930,11 @@ export const section15Tasks = [
             {/* Закрашенная точка 1/6 */}
             <circle cx="165" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
             <foreignObject x="145" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\\frac{1}{6}" /></div>
+              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\frac{1}{6}" /></div>
             </foreignObject>
 
             {/* Выколотая точка 1 */}
-            <circle cx="275" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="255" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
             </foreignObject>
@@ -2359,14 +2032,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
             </foreignObject>
@@ -2446,14 +2119,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -4 */}
-            <circle cx="45" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="45" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="25" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-4" /></div>
             </foreignObject>
@@ -2461,17 +2134,17 @@ export const section15Tasks = [
             {/* Закрашенная точка -3_6/7 */}
             <circle cx="125" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
             <foreignObject x="100" y="70" width="50" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-3\\frac{6}{7}" /></div>
+              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-3\frac{6}{7}" /></div>
             </foreignObject>
 
             {/* Закрашенная точка -4+√7/7 */}
             <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
             <foreignObject x="185" y="70" width="60" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-4+\\frac{\\sqrt{7}}{7}" /></div>
+              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-4+\frac{\sqrt{7}}{7}" /></div>
             </foreignObject>
 
             {/* Выколотая точка -3 */}
-            <circle cx="295" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="295" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="275" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-3" /></div>
             </foreignObject>
@@ -2571,14 +2244,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -√2 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-\sqrt{2}" /></div>
             </foreignObject>
@@ -2674,14 +2347,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -1 */}
-            <circle cx="105" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="105" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="85" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-1" /></div>
             </foreignObject>
@@ -2770,14 +2443,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="115" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="95" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
             </foreignObject>
@@ -2842,73 +2515,16 @@ export const section15Tasks = [
     mathB: '',
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
-        <p className="font-bold text-slate-700 dark:text-slate-100">Решение неравенства:</p>
-
-        <p>Найдем область допустимых значений (ОДЗ) исходного неравенства:</p>
-        <BlockMath math={'\\begin{cases} x^2 - 13x + 42 > 0 \\\\ \\frac{(x-7)^7}{x-6} > 0 \\end{cases} \\iff \\begin{cases} (x-6)(x-7) > 0 \\\\ \\frac{x-7}{x-6} > 0 \\end{cases} \\iff x \\in (-\\infty; 6) \\cup (7; +\\infty)'} />
-
-        <p>Разложим квадратный трёхчлен на множители и перепишем логарифм дроби:</p>
-        <BlockMath math={'7\\log_{12}\\bigl((x-6)(x-7)\\bigr) \\leq 8 + \\log_{12}(x-7)^7 - \\log_{12}(x-6)'} />
-
-        <p>Учитывая ограничения ОДЗ, рассмотрим промежуток <InlineMath math={'x > 7'} />. На этом интервале выражения под знаком логарифма строго положительны, что позволяет убрать модули при раскрытии логарифма произведения:</p>
-        <BlockMath math={'7\\log_{12}(x-6) + 7\\log_{12}(x-7) \\leq 8 + 7\\log_{12}(x-7) - \\log_{12}(x-6)'} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Вычтем из обеих частей неравенства слагаемое</span>
-          <InlineMath math={'7\\log_{12}(x-7)'} />
-        </div>
-
-        <p>Приведем подобные логарифмы, перенеся их в левую часть:</p>
-        <BlockMath math={'7\\log_{12}(x-6) + \\log_{12}(x-6) \\leq 8 \\iff 8\\log_{12}(x-6) \\leq 8'} />
-
-        <p>Разделим на 8 обе части и потенцируем неравенство по основанию 12 &gt; 1:</p>
-        <BlockMath math={'\\log_{12}(x-6) \\leq 1 \\iff x-6 \\leq 12 \\iff x \\leq 18'} />
-
-        <p>С учетом ОДЗ полугодовой промежуток <InlineMath math={'x < 6'} /> не содержит решений исходного неравенства. Нанесем итоговую систему условий на числовую прямую:</p>
-
-        {/* 🎨 ИСПРАВЛЕНО: Заменили y на cy, чтобы круги опустились ровно на ось x */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible total font-sans font-bold text-xs">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200">x</text>
-
-            {/* ЗАКРУГЛЕННАЯ КРЫША ИНТЕРВАЛА РЕШЕНИЯ (7; 18] */}
-            <path d="M 210 60 L 210 40 A 8 8 0 0 1 218 32 L 302 32 A 8 8 0 0 1 310 40 L 310 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400" />
-
-            {/* СИНЯЯ КУРСИВНАЯ ШТРИХОВКА ВНУТРИ КРЫШИ */}
-            <line x1="216" y1="60" x2="224" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="226" y1="60" x2="234" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="236" y1="60" x2="244" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="246" y1="60" x2="254" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="256" y1="60" x2="264" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="266" y1="60" x2="274" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="276" y1="60" x2="284" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="286" y1="60" x2="294" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="296" y1="60" x2="304" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Верхний сплошной уровень ОДЗ */}
-            <line x1="10" y1="15" x2="350" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-300 dark:text-purple-950/40" />
-
-            {/* Выколотая точка 7 (cy="60") */}
-            <circle cx="210" cy="60" r="4.5" fill="white" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="200" y="68" width="20" height="30">
-              <div className="text-slate-800 dark:text-slate-200 text-center"><InlineMath math="7" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 18 (cy="60") */}
-            <circle cx="310" cy="60" r="4.5" fill="currentColor" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="295" y="68" width="30" height="30">
-              <div className="text-slate-800 dark:text-slate-200 text-center"><InlineMath math="18" /></div>
-            </foreignObject>
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-100 dark:border-purple-950/30">
-          <span>Ответ:</span>
-          <InlineMath math={'x \\in (7; 18]'} />
-        </div>
+        <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
+        <p>Для существования логарифмов требуется <InlineMath math={`(x-7)(x-6)>0`} /> и <InlineMath math={`(x-7)^7/(x-6)>0`} />. Оба условия дают одну область:</p>
+        <BlockMath math={`x<6\\quad\\text{или}\\quad x>7.`} />
+        <p>На этой области запишем логарифмы через модули положительных множителей:</p>
+        <BlockMath math={`7\\bigl(\\log_{12}|x-7|+\\log_{12}|x-6|\\bigr)\\le8+7\\log_{12}|x-7|-\\log_{12}|x-6|.`} />
+        <p>Сократив одинаковые слагаемые, получаем</p>
+        <BlockMath math={`\\log_{12}|x-6|\\le1 \\iff |x-6|\\le12 \\iff -6\\le x\\le18.`} />
+        <p>Пересекаем этот отрезок с ОДЗ.</p>
+        <InequalityNumberLine points={[{ label: '-6', closed: true }, { label: '6', closed: false }, { label: '7', closed: false }, { label: '18', closed: true }]} selected={[[1,2],[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`[-6;6)\\cup(7;18]`} /></div>
       </div>
     ),
     textBefore: '',
@@ -2959,11 +2575,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка 1 */}
             <circle cx="65" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -2972,13 +2588,13 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 3 */}
-            <circle cx="165" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="165" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="145" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
             </foreignObject>
 
             {/* Выколотая точка 4 */}
-            <circle cx="265" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="265" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="245" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="4" /></div>
             </foreignObject>
@@ -3060,26 +2676,26 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И СПЛОШНЫМИ КРЫШАМИ ОТВЕТА */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -1 */}
-            <circle cx="45" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="45" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="25" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-1" /></div>
             </foreignObject>
 
             {/* Выколотая точка 0 */}
-            <circle cx="115" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="95" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
             </foreignObject>
 
             {/* Выколотая точка 3 */}
-            <circle cx="215" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="215" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="195" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
             </foreignObject>
@@ -3177,11 +2793,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка 0 */}
             <circle cx="45" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -3190,13 +2806,13 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка log2 3 */}
-            <circle cx="125" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="125" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="105" y="70" width="60" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200 text-[13px]"><InlineMath math="\log_2 3" /></div>
             </foreignObject>
 
             {/* Выколотая точка 2 */}
-            <circle cx="205" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="205" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="185" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="2" /></div>
             </foreignObject>
@@ -3292,14 +2908,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="75" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="75" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="55" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
             </foreignObject>
@@ -3311,7 +2927,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 1 */}
-            <circle cx="275" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="255" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
             </foreignObject>
@@ -3413,11 +3029,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка 0 */}
             <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -3426,7 +3042,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 3 */}
-            <circle cx="175" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="155" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
             </foreignObject>
@@ -3524,14 +3140,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 1/8 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="45" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0,125" /></div>
             </foreignObject>
@@ -3543,7 +3159,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 1 */}
-            <circle cx="305" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="305" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="285" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
             </foreignObject>
@@ -3640,14 +3256,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="185" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="185" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="165" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
             </foreignObject>
@@ -3739,11 +3355,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка 0 */}
             <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -3818,14 +3434,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 1 */}
-            <circle cx="75" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="75" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="55" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
             </foreignObject>
@@ -3923,14 +3539,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -2 */}
-            <circle cx="75" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="75" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="55" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-2" /></div>
             </foreignObject>
@@ -4018,11 +3634,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка -1,96 */}
             <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -4031,7 +3647,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 4 */}
-            <circle cx="215" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="215" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="195" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="4" /></div>
             </foreignObject>
@@ -4126,20 +3742,20 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
             </foreignObject>
 
             {/* Выколотая точка 1 */}
-            <circle cx="135" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="115" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
             </foreignObject>
@@ -4151,7 +3767,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 27 */}
-            <circle cx="295" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="295" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="275" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="27" /></div>
             </foreignObject>
@@ -4236,20 +3852,20 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
             </foreignObject>
 
             {/* Выколотая точка 1 */}
-            <circle cx="135" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="115" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
             </foreignObject>
@@ -4261,7 +3877,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 32 */}
-            <circle cx="295" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="295" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="275" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="32" /></div>
             </foreignObject>
@@ -4341,11 +3957,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка 1 */}
             <circle cx="65" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -4354,13 +3970,13 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 2 */}
-            <circle cx="165" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="165" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="145" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="2" /></div>
             </foreignObject>
 
             {/* Выколотая точка 3 */}
-            <circle cx="265" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="265" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="245" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
             </foreignObject>
@@ -4414,116 +4030,14 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Запишем правую часть в виде логарифма по тому же основанию и перейдём к равносильной системе условий с учётом ОДЗ:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\log_{|x-5|}(x-3)^{0{,}5} \\le \\log_{|x-5|}|x-5|^{0{,}25} \\\\ x - 3 > 0 \\\\ |x - 5| > 0 \\\\ |x - 5| \\neq 1 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Проанализируем ОДЗ системы ограничений: из условий логарифмов следует</span>
-          <InlineMath math={`x > 3`} />,
-          <span>при этом из модуля основания</span>
-          <InlineMath math={`|x-5| > 0 \\implies x \\neq 5`} />,
-          <span>а условие</span>
-          <InlineMath math={`|x - 5| \\neq 1`} />
-          <span>выкалывает точки</span>
-          <InlineMath math={`x \\neq 4`} />
-          <span>и</span>
-          <InlineMath math={`x \\neq 6`} />.
-          <span>Применим метод замены множителей (рационализации) к разности логарифмов:</span>
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} (|x - 5| - 1)((x - 3)^{0{,}5} - |x - 5|^{0{,}25}) \\le 0 \\\\ x > 3 \\\\ x \\neq 4, \\, 5, \\, 6 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Поскольку обе скобки аргументов на ОДЗ вещественны и положительны, мы имеем право возвести вторую часть в квадрат (сохраняя знаки разностей монотонных функций):</span>
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} (|x - 5| - 1)((x - 3) - \\sqrt{|x - 5|}) \\le 0 \\\\ x > 3 \\\\ x \\neq 4, \\, 5, \\, 6 \\end{cases}`} />
-
-        <p>Разобьём оставшиеся модульные выражения на промежутки области определения методом раскрытия знаков интервалов:</p>
-        <p className="font-semibold text-slate-800 dark:text-slate-200">1) Пусть <InlineMath math={`3 < x < 5`} /> (при <InlineMath math={`x \\neq 4`} />):</p>
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p>Модуль раскрывается со знаком «минус»: <InlineMath math={`|x - 5| = 5 - x`} />. Система принимает вид:</p>
-          <BlockMath math={`\\begin{cases} (5 - x - 1)((x - 3) - \\sqrt{5 - x}) \\le 0 \\\\ 3 < x < 5 \\\\ x \\neq 4 \\end{cases} \\iff \\begin{cases} (4 - x)(x - 3 - \\sqrt{5 - x}) \\le 0 \\\\ 3 < x < 5 \\\\ x \\neq 4 \\end{cases}`} />
-          <p>Решая данное иррациональное условие, находим промежуток знака: <InlineMath math={`x^2 - 5x + 4 \\le 0 \\implies 1 \\le x \\le 4`} />. С учётом ОДЗ <InlineMath math={`x > 3`} /> получаем первый интервал ответа: <InlineMath math={`x \in (3; \\, 4)`} />.</p>
-        </div>
-
-        <p className="font-semibold text-slate-800 dark:text-slate-200">2) Пусть <InlineMath math={`x > 5`} /> (при <InlineMath math={`x \\neq 6`} />):</p>
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p>Модуль раскрывается со своим знаком «плюс»: <InlineMath math={`|x - 5| = x - 5`} />. Система принимает вид:</p>
-          <BlockMath math={`\\begin{cases} (x - 5 - 1)((x - 3) - \\sqrt{x - 5}) \\le 0 \\\\ x > 5 \\\\ x \\neq 6 \\end{cases} \\iff \\begin{cases} (x - 6)(x - 3 - \\sqrt{x - 5}) \\le 0 \\\\ x > 5 \\\\ x \\neq 6 \\end{cases}`} />
-          <p>Трёхчлен под корнем <InlineMath math={`x^2 - 7x + 14 = 0`} /> имеет отрицательный дискриминант, выражение всегда строго больше нуля. Знак определяется первой скобкой: <InlineMath math={`x - 6 \\ge 0 \\implies x > 6`} />.</p>
-        </div>
-
-        <p>Соединяя полученные пересечения множеств, находим финальные интервалы числовой прямой:</p>
-        <BlockMath math={`\\iff x \\in (3; \\, 4) \\cup (6; \\, +\\infty)`} />
-
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
-
-        {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="330" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M330 60 l-6 -3 M330 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="338" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
-
-            {/* Выколотая точка 3 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 4 */}
-            <circle cx="135" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="115" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="4" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 6 */}
-            <circle cx="215" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="195" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="6" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Все крыши сплошные */}
-            <path d="M 55 60 L 55 45 A 10 10 0 0 1 65 35 L 125 35 A 10 10 0 0 1 135 45 L 135 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 215 60 L 215 45 A 10 10 0 0 1 225 35 L 315 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ x > 3 */}
-            <path d="M 55 55 L 55 25 A 10 10 0 0 1 65 15 L 315 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Интервал (3; 4) */}
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="90" y1="58" x2="96" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="98" y1="58" x2="104" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="106" y1="58" x2="112" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="114" y1="58" x2="120" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="122" y1="58" x2="128" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="130" y1="58" x2="133" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Луч (6; +inf) */}
-            <line x1="219" y1="58" x2="225" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="227" y1="58" x2="233" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="235" y1="58" x2="241" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="243" y1="58" x2="249" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="267" y1="58" x2="273" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="283" y1="58" x2="289" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="307" y1="58" x2="313" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`(3; \\, 4) \\cup (6; \\, +\\infty)`} />
-        </div>
+        <p>ОДЗ: <InlineMath math={`x>3,\\quad x\\ne4,5,6`} />. Сравним логарифм с <InlineMath math={`\\log_{|x-5|}|x-5|^{1/4}`} />, учитывая, возрастает или убывает логарифм:</p>
+        <BlockMath math={`(|x-5|-1)\\left(\\sqrt{x-3}-\\sqrt[4]{|x-5|}\\right)\\le0.`} />
+        <p>Оба выражения во второй скобке положительны, поэтому знак их разности сохраняется при возведении в четвёртую степень. Получаем</p>
+        <BlockMath math={`(|x-5|-1)\\bigl((x-3)^2-|x-5|\\bigr)\\le0.`} />
+        <p>При <InlineMath math={`3<x<5`} /> вторая скобка равна <InlineMath math={`(x-3)^2-(5-x)=(x-4)(x-1)`} />, а первая — <InlineMath math={`4-x`} />. Произведение неположительно. При <InlineMath math={`x>5`} /> вторая скобка равна <InlineMath math={`x^2-7x+14>0`} />, поэтому требуется <InlineMath math={`x-6<0`} />.</p>
+        <p>Исключаем точки, запрещённые ОДЗ.</p>
+        <InequalityNumberLine points={[{ label: '3', closed: false }, { label: '4', closed: false }, { label: '5', closed: false }, { label: '6', closed: false }]} selected={[[1,2],[2,3],[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`(3;4)\\cup(4;5)\\cup(5;6)`} /></div>
       </div>
     )
   },
@@ -4545,16 +4059,16 @@ export const section15Tasks = [
           <InlineMath math={`t \\ge 0`} stroke="currentColor" />
           <span>при любом положении переменной.</span>
         </div>
-        
+
         <p>Перепишем неравенство относительно новой переменной и разложим квадратный трёхчлен на линейные множители по теореме Виета (корни 7 и 16):</p>
         <BlockMath math={`t^2 - 23t + 112 \\ge 0 \\iff (t - 7)(t - 16) \\ge 0`} />
-        
+
         <p>Решая полученное квадратичное неравенство методом интервалов с учётом ограничения <InlineMath math={`t \\ge 0`} />, переходим к совокупности:</p>
         <BlockMath math={`\\iff \\left[ \\begin{aligned} &0 \\le t \\le 7 \\\\ &t \\ge 16 \\end{aligned} \\right.`} />
 
         <p>Выполним обратную замену переменной и запишем условия для показательной функции:</p>
         <BlockMath math={`\\iff \\left[ \\begin{aligned} &0 \\le (4^x - 1)^2 \\le 7 \\\\ &(4^x - 1)^2 \\ge 16 \\end{aligned} \\right.`} />
-        
+
         <p>Раскроем квадратичные неравенства в равносильные системы линейных модулей и корней:</p>
         <BlockMath math={`\\iff \\left[ \\begin{aligned} &|4^x - 1| \\le \\sqrt{7} \\\\ &\\left[ \\begin{aligned} &4^x - 1 \\le -4 \\\\ &4^x - 1 \\ge 4 \\end{aligned} \\right. \\end{aligned} \\right. \\iff \\left[ \\begin{aligned} &-\\sqrt{7} \\le 4^x - 1 \\le \\sqrt{7} \\\\ &\\left[ \\begin{aligned} &4^x \\le -3 \\quad \\text{(нет реш.)} \\\\ &4^x \\ge 5 \\end{aligned} \\right. \\end{aligned} \\right.`} />
         <BlockMath math={`\\iff \\left[ \\begin{aligned} &1 - \\sqrt{7} \\le 4^x \\le 1 + \\sqrt{7} \\\\ &4^x \\ge 5 \\end{aligned} \\right.`} />
@@ -4588,111 +4102,13 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Выделим полный квадрат под вторым логарифмом: <InlineMath math={`x^2 - 8x + 16 = (x - 4)^2 = (4 - x)^2`} />. Приведем первый логарифм к основанию 3, учитывая, что <InlineMath math={`243 = 3^5`} />:</p>
-        <BlockMath math={`\\log_{243}(4 - x) = \\frac{1}{5}\\log_3(4 - x)`} />
-        <BlockMath math={`\\log_3(4 - x)^2 = 2\\log_3|4 - x|`} />
-        
-        <p>Перенесем все члены влево и перейдём к равносильной системе условий, удерживающей ОДЗ оснований и аргументов логарифмов:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{x^2}{5}\\log_3(4 - x) - 2\\log_3|4 - x| \\le 0 \\\\ 4 - x > 0 \\\\ 4 - x \\neq 1 \\end{cases} \\iff \\begin{cases} \\left(\\frac{x^2}{5} - 2\\right)\\log_3(4 - x) \\le 0 \\\\ x < 4 \\\\ x \\neq 3 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Поскольку по условиям ОДЗ аргумент</span>
-          <InlineMath math={`4 - x > 0`} />,
-          <span>знак модуля раскрывается однозначно со знаком «плюс»:</span>
-          <InlineMath math={`|4 - x| = 4 - x`} />.
-          <span>Представим логарифм в виде разности и применим метод замены множителей (рационализации). Так как основание</span>
-          <InlineMath math={`3 > 1`} />,
-          <span>знак логарифма</span>
-          <InlineMath math={`\\log_3(4 - x) - \\log_3 1`} />
-          <span>полностью совпадает со знаком разности аргументов</span>
-          <InlineMath math={`(4 - x - 1) = (3 - x)`} />:
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{1}{5}(x^2 - 10)(3 - x) \\le 0 \\\\ x < 4 \\\\ x \\neq 3 \\end{cases} \\iff \\begin{cases} (x - \\sqrt{10})(x + \\sqrt{10})(x - 3) \\ge 0 \\\\ x < 4 \\\\ x \\neq 3 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Оценим точное положение иррационального корня на числовой оси: так как</span>
-          <InlineMath math={`9 < 10 < 16 \\implies 3 < \\sqrt{10} < 4`} />,
-          <span>значит корень</span>
-          <InlineMath math={`\\sqrt{10}`} />
-          <span>лежит строго внутри допустимого интервала ОДЗ. Сопоставим знаки множителей на числовой прямой:</span>
-        </div>
-
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
-
-        {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
-
-            {/* Закрашенная точка -√10 */}
-            <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="55" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-\sqrt{10}" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 3 */}
-            <circle cx="155" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="135" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка √10 */}
-            <circle cx="235" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="215" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\sqrt{10}" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 4 */}
-            <circle cx="315" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="295" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="4" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Четко ограниченные дуги ответов по референсу */}
-            <path d="M 75 60 L 75 45 A 10 10 0 0 1 85 35 L 145 35 A 10 10 0 0 1 155 45 L 155 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 235 60 L 235 45 A 10 10 0 0 1 245 35 L 305 35 A 10 10 0 0 1 315 45 L 315 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): Линия ОДЗ x < 4 с выкалыванием 3 */}
-            <path d="M 15 15 L 305 15 A 10 10 0 0 1 315 25 L 315 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Первый интервал ответов: от -√10 до 3 */}
-            <line x1="79" y1="58" x2="85" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="87" y1="58" x2="93" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="95" y1="58" x2="101" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="103" y1="58" x2="109" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="111" y1="58" x2="117" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="119" y1="58" x2="125" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="127" y1="58" x2="133" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="135" y1="58" x2="141" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="143" y1="58" x2="149" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="151" y1="58" x2="154" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Второй интервал ответов: от √10 до 4 */}
-            <line x1="239" y1="58" x2="245" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="255" y1="58" x2="261" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="263" y1="58" x2="269" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="271" y1="58" x2="277" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="279" y1="58" x2="285" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="287" y1="58" x2="293" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="295" y1="58" x2="301" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="303" y1="58" x2="309" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="311" y1="58" x2="314" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <p>Пересечение полученных интервалов с лучами ОДЗ даёт итоговый ответ:</p>
-        <BlockMath math={`\\iff x \\in [-\\sqrt{10}; \\, 3) \\cup [\\sqrt{10}; \\, 4)`} />
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`[-\\sqrt{10}; \\, 3) \\cup [\\sqrt{10}; \\, 4)`} />
-        </div>
+        <p>ОДЗ: <InlineMath math={`x<4`} />. По свойствам логарифмов</p>
+        <BlockMath math={`\\log_{243}(4-x)=\\frac15\\log_3(4-x),\\qquad \\log_3(x^2-8x+16)=2\\log_3(4-x).`} />
+        <p>Перенесём всё влево. Знак <InlineMath math={`\\log_3(4-x)`} /> совпадает со знаком <InlineMath math={`3-x`} />:</p>
+        <BlockMath math={`(x^2-10)\\log_3(4-x)\\le0 \\iff (x^2-10)(3-x)\\le0,\\qquad x<4.`} />
+        <p>Точка <InlineMath math={`x=3`} /> входит в ответ: оба логарифма в исходном неравенстве равны нулю.</p>
+        <InequalityNumberLine points={[{ label: '-\\sqrt{10}', closed: true }, { label: '3', closed: true }, { label: '\\sqrt{10}', closed: true }, { label: '4', closed: false }]} selected={[[1,2],[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`[-\\sqrt{10};3]\\cup[\\sqrt{10};4)`} /></div>
       </div>
     )
   },
@@ -4747,11 +4163,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка 2 */}
             <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -4760,7 +4176,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 3 */}
-            <circle cx="245" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="245" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="225" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
             </foreignObject>
@@ -4846,11 +4262,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка -2-√10 */}
             <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -4859,7 +4275,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 1 */}
-            <circle cx="175" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="155" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
             </foreignObject>
@@ -4945,11 +4361,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка -1-log3 5 */}
             <circle cx="95" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -5013,110 +4429,13 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Преобразуем аргумент второго логарифма, приведя к общему знаменателю: <InlineMath math={`\\frac{1}{x} - 2 = \\frac{1 - 2x}{x}`} />. Перенесём его в правую часть и запишем равносильную систему условий с ОДЗ аргументов:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\log_2(1 - 2x)^2 \\le \\log_2(4x^2 + 6x - 1) + \\log_2\\left(\\frac{1 - 2x}{x}\\right) \\\\ 1 - 2x > 0 \\\\ \\frac{1 - 2x}{x} > 0 \\\\ 4x^2 + 6x - 1 > 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Проанализируем систему ограничений ОДЗ. Из условий</span>
-          <InlineMath math={`1 - 2x > 0 \\implies x < 0{,}5`} />.
-          <span>Тогда из дроби</span>
-          <InlineMath math={`\\frac{1 - 2x}{x} > 0`} />
-          <span>следует, что знаменатель обязан быть строго положительным:</span>
-          <InlineMath math={`x > 0`} />.
-          <span>Объединяя, получаем интервал:</span>
-          <InlineMath math={`0 < x < 0{,}5`} />.
-        </div>
-
-        <p>Схлопнем сумму логарифмов в правой части в логарифм произведения по свойствам:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\log_2(1 - 2x)^2 \\le \\log_2\\left((4x^2 + 6x - 1) \\cdot \\frac{1 - 2x}{x}\\right) \\\\ 0 < x < 0{,}5 \\\\ 4x^2 + 6x - 1 > 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>В силу монотонного возрастания логарифмической функции с основанием</span>
-          <InlineMath math={`2 > 1`} />,
-          <span>перейдём к сравнению подлогорифмических выражений. Поскольку на интервале ОДЗ</span>
-          <InlineMath math={`1 - 2x > 0`} />,
-          <span>мы имеем право разделить обе части на эту скобку без изменения знака:</span>
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} 1 - 2x \\le \\frac{4x^2 + 6x - 1}{x} \\\\ 0 < x < 0{,}5 \\\\ 4x^2 + 6x - 1 > 0 \\end{cases} \\iff \\begin{cases} x(1 - 2x) \\le 4x^2 + 6x - 1 \\\\ 0 < x < 0{,}5 \\\\ 4x^2 + 6x - 1 > 0 \\end{cases}`} />
-        <BlockMath math={`\\iff \\begin{cases} x - 2x^2 \\le 4x^2 + 6x - 1 \\\\ 0 < x < 0{,}5 \\\\ 4x^2 + 6x - 1 > 0 \\end{cases} \\iff \\begin{cases} 6x^2 + 5x - 1 \\ge 0 \\\\ 0 < x < 0{,}5 \\\\ 4x^2 + 6x - 1 > 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Разложим квадратный трёхчлен первого неравенства на линейные множители (корни \(-1\) и \(\frac{1}{6}\)):</span>
-          <InlineMath math={`(x + 1)(6x - 1) \\ge 0`} />.
-          <span>Найдем корни и ограничения для условий ОДЗ трёхчлена</span>
-          <InlineMath math={`4x^2 + 6x - 1 = 0 \\implies D = 36 + 16 = 52 \\implies x = \\frac{-6 \\pm 2\\sqrt{13}}{8} = \\frac{-3 \\pm \\sqrt{13}}{4}`} />.
-        </div>
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Оценим положение иррациональной границы ОДЗ: так как</span>
-          <InlineMath math={`3 < \\sqrt{13} < 4`} />,
-          <span>то</span>
-          <InlineMath math={`0 < \\frac{-3 + \\sqrt{13}}{4} < 0{,}25`} />.
-          <span>При этом точное сравнение показывает, что</span>
-          <InlineMath math={`\\frac{1}{6} < \\frac{-3 + \\sqrt{13}}{4}`} />.
-          <span>Следовательно, пересечение всех условий даёт полуинтервал:</span>
-        </div>
-        <BlockMath math={`\\iff \\frac{-3 + \\sqrt{13}}{4} < x < 0{,}5`} />
-
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
-
-        {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
-
-            {/* Выколотая точка 0 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка (-3+√13)/4 */}
-            <circle cx="165" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="125" y="70" width="80" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\frac{-3+\sqrt{13}}{4}" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 0,5 */}
-            <circle cx="295" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="275" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0{,}5" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Допустимые значения по знаку трёхчлена */}
-            <path d="M 165 60 L 165 45 A 10 10 0 0 1 175 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (0; 0,5) */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 285 15 A 10 10 0 0 1 295 25 L 295 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок пересечения */}
-            <line x1="171" y1="58" x2="177" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="179" y1="58" x2="185" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="187" y1="58" x2="193" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="195" y1="58" x2="201" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="203" y1="58" x2="209" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="275" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="277" y1="58" x2="283" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`\\left(\\frac{-3 + \\sqrt{13}}{4}; \\, 0{,}5\\right)`} />
-        </div>
+        <p>ОДЗ первых логарифмов: <InlineMath math={`0<x<\\frac12`} />. После объединения логарифмов слева получаем</p>
+        <BlockMath math={`2\\log_2(1-2x)-\\log_2\\left(\\frac1x-2\\right)=\\log_2\\bigl(x(1-2x)\\bigr).`} />
+        <p>Левый аргумент на указанном промежутке положителен. При сравнении аргументов правый автоматически будет положителен:</p>
+        <BlockMath math={`x(1-2x)\\le4x^2+6x-1 \\iff 6x^2+5x-1\\ge0 \\iff (6x-1)(x+1)\\ge0.`} />
+        <p>Пересекаем решение квадратного неравенства с <InlineMath math={`0<x<1/2`} />.</p>
+        <InequalityNumberLine points={[{ label: '0', closed: false }, { label: '\\frac16', closed: true }, { label: '\\frac12', closed: false }]} selected={[[2,3]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\left[\\frac16;\\frac12\\right)`} /></div>
       </div>
     )
   },
@@ -5128,108 +4447,15 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Используя свойства степеней логарифма, внесём коэффициент 2 в показатель степени первого аргумента: <InlineMath math={`2\\log_7(x\\sqrt{2}) = \\log_7(x\\sqrt{2})^2 = \\log_7(2x^2)`} />. Перенесём второй логарифм в правую часть и запишем равносильную систему условий, удерживающую ОДЗ:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\log_7(2x^2) \\le \\log_7\\left(8x^2 + \\frac{1}{x} - 5\\right) + \\log_7\\left(\\frac{x}{1-x}\\right) \\\\ x > 0 \\\\ \\frac{x}{1-x} > 0 \\\\ 8x^2 + \\frac{1}{x} - 5 > 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Проанализируем ОДЗ system’ы ограничений. Из условий</span>
-          <InlineMath math={`x > 0`} />
-          <span>и</span>
-          <InlineMath math={`\\frac{x}{1-x} > 0`} />
-          <span>следует, что знаменатель дроби обязан быть строго положительным:</span>
-          <InlineMath math={`1 - x > 0 \\implies x < 1`} />.
-          <span>Получаем базовый интервал ОДЗ:</span>
-          <InlineMath math={`0 < x < 1`} />.
-        </div>
-
-        <p>Схлопнем сумму логарифмов в правой части неравенства в логарифм произведения по свойствам:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\log_7(2x^2) \\le \\log_7\\left(\\frac{8x^3 - 5x + 1}{x} \\cdot \\frac{x}{1-x}\\right) \\\\ 0 < x < 1 \\\\ \\frac{8x^3 - 5x + 1}{x} > 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>В силу монотонного возрастания логарифмической функции с основанием</span>
-          <InlineMath math={`7 > 1`} />,
-          <span>перейдём к сравнению подлогорифмических аргументов. На интервале ОДЗ множитель</span>
-          <InlineMath math={`x > 0`} />
-          <span>сокращается. Получаем:</span>
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} 2x^2 \\le \\frac{8x^3 - 5x + 1}{1 - x} \\\\ 0 < x < 1 \\\\ 8x^3 - 5x + 1 > 0 \\end{cases} \\iff \\begin{cases} 2x^2(1 - x) \\le 8x^3 - 5x + 1 \\\\ 0 < x < 1 \\\\ 8x^3 - 5x + 1 > 0 \\end{cases}`} />
-        <BlockMath math={`\\iff \\begin{cases} 2x^2 - 2x^3 - 8x^3 + 5x - 1 \\le 0 \\\\ 0 < x < 1 \\\\ 8x^3 - 5x + 1 > 0 \\end{cases} \\iff \\begin{cases} 10x^3 - 2x^2 - 5x + 1 \\ge 0 \\\\ 0 < x < 1 \\\\ 8x^3 - 5x + 1 > 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Разложим кубический многочлен первого неравенства методом группировки слагаемых:</span>
-          <InlineMath math={`2x^2(5x - 1) - (5x - 1) = (5x - 1)(2x^2 - 1) \\ge 0`} />.
-          <span>Его корнями являются точки:</span>
-          <InlineMath math={`x = 0{,}2`} />,
-          <span>а также</span>
-          <InlineMath math={`x = \\pm\\frac{\\sqrt{2}}{2}`} />.
-          <span>Разложим кубический многочлен ОДЗ (его корень также</span>
-          <InlineMath math={`x = 0{,}5`} />):
-          <InlineMath math={`8x^3 - 5x + 1 = (2x - 1)(4x^2 + 2x - 1) > 0`} />.
-        </div>
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Сопоставим взаимное положение всех корней на числовой оси с учётом интервала</span>
-          <InlineMath math={`0 < x < 1`} />.
-          <span>Точное аналитическое пересечение знаков кубических скобок даёт итоговый отрезок:</span>
-        </div>
-        <BlockMath math={`\\iff \\frac{\\sqrt{2}}{2} \\le x < 1`} />
-
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
-
-        {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
-
-            {/* Выколотая точка 0 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка √2/2 */}
-            <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            {/* 🔥 ИСПРАВЛЕНО: Увеличена ширина до 100 и добавлен правильный KaTeX-синтаксис дроби */}
-            <foreignObject x="135" y="70" width="100" height="40" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200 whitespace-nowrap"><InlineMath math="\frac{\sqrt{2}}{2}" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 1 */}
-            <circle cx="295" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="275" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            <path d="M 185 60 L 185 45 A 10 10 0 0 1 195 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ (0; 1) */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 285 15 A 10 10 0 0 1 295 25 L 295 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            <line x1="191" y1="58" x2="197" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="199" y1="58" x2="205" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="207" y1="58" x2="213" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="215" y1="58" x2="221" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="223" y1="58" x2="229" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="241" y1="58" x2="247" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="271" y1="58" x2="277" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="281" y1="58" x2="287" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="289" y1="58" x2="292" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`\\left[\\frac{\\sqrt{2}}{2}; \\, 1\\right)`} />
-        </div>
+        <p>ОДЗ первых двух логарифмов даёт <InlineMath math={`0<x<1`} />; аргумент справа также должен быть положителен.</p>
+        <p>На этой области объединим логарифмы слева:</p>
+        <BlockMath math={`2\\log_7(x\\sqrt{2})-\\log_7\\frac{x}{1-x}=\\log_7\\bigl(2x(1-x)\\bigr).`} />
+        <p>Левый аргумент положителен. Если после сравнения аргументов правый не меньше левого, то и он автоматически положителен. Поэтому получаем равносильное на <InlineMath math={`0<x<1`} /> неравенство:</p>
+        <BlockMath math={`2x(1-x)\\le8x^2+\\frac1x-5 \\iff 10x^3-2x^2-5x+1\\ge0.`} />
+        <BlockMath math={`(5x-1)(2x^2-1)\\ge0.`} />
+        <p>Отметим корни и пересечём подходящие промежутки с <InlineMath math={`(0;1)`} />.</p>
+        <InequalityNumberLine points={[{ label: '0', closed: false }, { label: '\\frac15', closed: true }, { label: '\\frac{\\sqrt{2}}{2}', closed: true }, { label: '1', closed: false }]} selected={[[1,2],[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\left(0;\\frac15\\right]\\cup\\left[\\frac{\\sqrt{2}}{2};1\\right)`} /></div>
       </div>
     )
   },
@@ -5245,7 +4471,7 @@ export const section15Tasks = [
         <p>Разложим числитель левой дроби, вынеся общий множитель: <InlineMath math={`6^x - 4 \\cdot 3^x = 3^x(2^x - 4)`} />.</p>
         <p>Разложим знаменатель левой дроби методом попарной группировки слагаемых:</p>
         <BlockMath math={`x \\cdot 2^x - 5 \\cdot 2^x - 4x + 20 = 2^x(x - 5) - 4(x - 5) = (2^x - 4)(x - 5)`} />
-        
+
         <p>Перенесем правую дробь влево и запишем равносильную систему условий с ограничениями знаменателей:</p>
         <BlockMath math={`\\iff \\begin{cases} \\frac{3^x(2^x - 4)}{(2^x - 4)(x - 5)} - \\frac{1}{x - 5} \\le 0 \\\\ 2^x - 4 \\neq 0 \\\\ x - 5 \\neq 0 \\end{cases}`} />
 
@@ -5270,11 +4496,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка 0 */}
             <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -5283,13 +4509,13 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 2 */}
-            <circle cx="175" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="155" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="2" /></div>
             </foreignObject>
 
             {/* Выколотая точка 5 */}
-            <circle cx="275" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="255" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="5" /></div>
             </foreignObject>
@@ -5409,10 +4635,10 @@ export const section15Tasks = [
 
         {/* 📈 ЧЕРТЁЖ ДЛЯ ПЕРЕМЕННОЙ T */}
         <div className="my-4 flex justify-center w-full select-none">
-          <svg width="360" height="70" viewBox="0 0 360 70" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="360" height="70" viewBox="0 0 360 70" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             <line x1="10" y1="35" x2="320" y2="35" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M320 35 l-6 -3 M320 35 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="328" y="39" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">t</text>
+            <SvgMathLabel x={328.0} y={39.0} anchor="start" math={"t"} />
 
             <circle cx="100" cy="35" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
             <foreignObject x="85" y="45" width="30" height="25" className="overflow-visible text-center">
@@ -5458,12 +4684,12 @@ export const section15Tasks = [
         </div>
         {/* 🌌 ЧЕРТЁЖ ДЛЯ ПЕРЕМЕННОЙ X */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="460" height="120" viewBox="0 0 460 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="460" height="120" viewBox="0 0 460 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             <line x1="10" y1="60" x2="420" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M420 60 l-6 -3 M420 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="428" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={428.0} y={64.0} anchor="start" math={"x"} />
 
-            <circle cx="35" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="35" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="15" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-5" /></div>
             </foreignObject>
@@ -5488,7 +4714,7 @@ export const section15Tasks = [
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\sqrt{17}" /></div>
             </foreignObject>
 
-            <circle cx="355" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="355" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="335" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="5" /></div>
             </foreignObject>
@@ -5592,11 +4818,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная изолированная точка 0 */}
             <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -5681,14 +4907,14 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="75" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="75" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="55" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
             </foreignObject>
@@ -5700,7 +4926,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка log5 7 */}
-            <circle cx="275" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="250" y="70" width="60" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\log_5 7" /></div>
             </foreignObject>
@@ -5797,11 +5023,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка 0 */}
             <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -5810,7 +5036,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 4 */}
-            <circle cx="175" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="155" y="70" width="40" height="30" className="overflow-visible text-center">
               <div className="text-slate-800 dark:text-slate-200"><InlineMath math="4" /></div>
             </foreignObject>
@@ -5871,107 +5097,15 @@ export const section15Tasks = [
     mathB: '',
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
-        <p className="font-bold text-slate-800 dark:text-slate-100">Решение системы неравенств:</p>
-        
-        <p className="font-semibold text-slate-800 dark:text-slate-200">1) Решим первое показательное неравенство системы:</p>
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p>Преобразуем степени с основанием 6: <InlineMath math={`36^{x-\\frac{1}{2}} = \\frac{(6^x)^2}{6}`} /> и <InlineMath math={`6^{x-1} = \\frac{6^x}{6}`} />. Умножим неравенство на 6:</p>
-          <BlockMath math={`(6^x)^2 - 7 \\cdot 6^x + 6 \\ge 0`} />
-          <p>Сделаем замену переменной <InlineMath math={`t = 6^x`} /> (где <InlineMath math={`t > 0`} />). Трёхчлен раскладывается по теореме Виета на корни 1 и 6:</p>
-          <BlockMath math={`(t - 1)(t - 6) \\ge 0 \\iff \\left[ \\begin{aligned} &t \\le 1 \\\\ &t \\ge 6 \\end{aligned} \\right. \\iff \\left[ \\begin{aligned} &6^x \\le 6^0 \\\\ &6^x \\ge 6^1 \\end{aligned} \\right. \\iff \\left[ \\begin{aligned} &x \\le 0 \\\\ &x \\ge 1 \\end{aligned} \\right.`} />
-        </div>
-
-        <p className="font-semibold text-slate-800 dark:text-slate-200">2) Решим второе логарифмическое неравенство системы:</p>
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p>Запишем ОДЗ подлогарифмического выражения: <InlineMath math={`5 - 3x - x^2 > 0 \\iff x^2 + 3x - 5 < 0`} />.</p>
-          <p>Корни трёхчлена: <InlineMath math={`x = \\frac{-3 \\pm \\sqrt{29}}{2}`} />. Область определения: <InlineMath math={`x \\in \\left(\\frac{-3 - \\sqrt{29}}{2}; \\, \\frac{-3 + \\sqrt{29}}{2}\\right)`} />.</p>
-          <p>Применим метод замены множителей к логарифму: знак совпадает со знаком разности аргументов <InlineMath math={`(5 - 3x - x^2 - 1) = (4 - 3x - x^2)`} />. Получаем рациональное неравенство:</p>
-          <BlockMath math={`x(4 - 3x - x^2) \\ge 0 \\iff x(x + 4)(x - 1) \\le 0`} />
-          <p>Решением кубического выражения методом интервалов является множество: <InlineMath math={`x \\in (-\\infty; \\, -4] \\cup [0; \\, 1]`} />.</p>
-        </div>
-
-        <p className="font-semibold text-slate-800 dark:text-slate-200">3) Пересечём решения обоих неравенств с учётом ОДЗ логарифма:</p>
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Оценим иррациональные границы ОДЗ: так как</span>
-          <InlineMath math={`5 < \\sqrt{29} < 5{,}4`} />,
-          <span>то точное аналитическое сравнение показывает, что</span>
-          <InlineMath math={`\\frac{-3 - \\sqrt{29}}{2} < -4`} />
-          <span>и</span>
-          <InlineMath math={`1 < \\frac{-3 + \\sqrt{29}}{2}`} />.
-          <span>Визуализируем пересечение условий методом двух уровней крыш:</span>
-        </div>
-                {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="120" viewBox="0 0 440 120" className="overflow-visible font-sans font-bold text-xs">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="428" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
-
-            {/* Граница ОДЗ левая */}
-            <circle cx="45" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="0" y="70" width="90" height="40" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200 whitespace-nowrap"><InlineMath math="\frac{-3-\sqrt{29}}{2}" /></div>
-            </foreignObject>
-
-            {/* Точка -4 */}
-            <circle cx="125" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="105" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-4" /></div>
-            </foreignObject>
-
-            {/* Точка 0 */}
-            <circle cx="195" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="175" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Point 1 */}
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="245" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* Граница ОДЗ правая */}
-            <circle cx="345" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="300" y="70" width="90" height="40" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200 whitespace-nowrap"><InlineMath math="\frac{-3+\sqrt{29}}{2}" /></div>
-            </foreignObject>
-
-            {/* Крыши 1: Пересечение двух ответов неравенств */}
-            <path d="M 15 35 L 115 35 A 10 10 0 0 1 125 45 L 125 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 195 60 L 195 45 A 10 10 0 0 1 205 35 L 255 35 A 10 10 0 0 1 265 45 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* Крыша 2: ОДЗ логарифма */}
-            <path d="M 45 60 L 45 25 A 10 10 0 0 1 55 15 L 335 15 A 10 10 0 0 1 345 25 L 345 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* Штриховка пересечения */}
-            <line x1="49" y1="58" x2="55" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="57" y1="58" x2="63" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="65" y1="58" x2="71" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="73" y1="58" x2="79" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="83" y1="58" x2="89" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="93" y1="58" x2="99" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="103" y1="58" x2="109" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="113" y1="58" x2="119" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="121" y1="58" x2="123" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="199" y1="58" x2="205" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="207" y1="58" x2="213" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="215" y1="58" x2="221" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="223" y1="58" x2="229" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="239" y1="58" x2="245" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="255" y1="58" x2="261" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="263" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`\\left(\\frac{-3 - \\sqrt{29}}{2}; \\, -4\\right] \\cup [0; \\, 1]`} />
-        </div>
+        <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
+        <p>В первом неравенстве положим <InlineMath math={`t=6^{x-1}>0`} />. Тогда</p>
+        <BlockMath math={`36^{x-1/2}-7\\cdot6^{x-1}+1=6t^2-7t+1=(6t-1)(t-1)\\ge0.`} />
+        <p>Следовательно, <InlineMath math={`t\\le\\frac16`} /> или <InlineMath math={`t\\ge1`} />, то есть <InlineMath math={`x\\le0`} /> или <InlineMath math={`x\\ge1`} />.</p>
+        <p>Для второго неравенства необходимо <InlineMath math={`5-3x-x^2>0`} />, то есть <InlineMath math={`\\frac{-3-\\sqrt{29}}2<x<\\frac{-3+\\sqrt{29}}2`} />. Учитывая знак x и логарифма, получаем</p>
+        <BlockMath math={`x\\in\\left(\\frac{-3-\\sqrt{29}}2;-4\\right]\\cup[0;1].`} />
+        <p>Пересекаем это множество с решением первого неравенства: из отрезка <InlineMath math={`[0;1]`} /> остаются только его концы.</p>
+        <InequalityNumberLine points={[{ label: '\\frac{-3-\\sqrt{29}}2', closed: false }, { label: '-4', closed: true }, { label: '0', closed: true }, { label: '1', closed: true }]} selected={[[1,2]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\left(\\frac{-3-\\sqrt{29}}2;-4\\right]\\cup\\{0;1\\}`} /></div>
       </div>
     )
   },
@@ -5982,93 +5116,14 @@ export const section15Tasks = [
     mathB: '',
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
-        <p className="font-bold text-slate-800 dark:text-slate-100">Решение системы неравенств:</p>
-        
-        <p className="font-semibold text-slate-800 dark:text-slate-200">1) Решим первое логарифмическое неравенство системы:</p>
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p>Запишем систему ограничений ОДЗ для всех оснований и аргументов логарифмов:</p>
-          <BlockMath math={`\\begin{cases} 11 - x > 0 \\\\ 11 - x \\neq 1 \\\\ x + 7 > 0 \\\\ x + 5 > 0 \\\\ x + 5 \\neq 1 \\\\ 9 - x > 0 \\end{cases} \\iff \\begin{cases} x < 11 \\\\ x \\neq 10 \\\\ x > -7 \\\\ x > -5 \\\\ x \\neq -4 \\\\ x < 9 \\end{cases} \\iff x \\in (-5; \\, -4) \\cup (-4; \\, 9)`} />
-          <p>Применим метод замены множителей к произведению логарифмов на области ОДЗ. Знак каждого логарифма <InlineMath math={`\\log_a b`} /> совпадает со знаком произведения <InlineMath math={`(a - 1)(b - 1)`} />:</p>
-          <BlockMath math={`(11 - x - 1)(x + 7 - 1) \\cdot (x + 5 - 1)(9 - x - 1) \\le 0`} />
-          <BlockMath math={`(10 - x)(x + 6)(x + 4)(8 - x) \\le 0 \\iff (x - 10)(x + 6)(x + 4)(x - 8) \\le 0`} />
-          <p>Решая методом интервалов и пересекая с ОДЗ <InlineMath math={`x \\in (-5; \\, 9)`} /> при <InlineMath math={`x \\neq -4`} />, получаем промежуток:</p>
-          <BlockMath math={`x \\in (-4; \\, 8]`} />
-        </div>
-
-        <p className="font-semibold text-slate-800 dark:text-slate-200">2) Решим второе показательное неравенство системы:</p>
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p>Приведем обе части к основанию 2, учитывая, что <InlineMath math={`64 = 2^6`} /> и <InlineMath math={`0{,}125 = \\frac{1}{8} = 2^{-3}`} />:</p>
-          <BlockMath math={`(2^6)^{x^2 - 3x + 20} \\le (2^{-3})^{2x^2 - 6x - 200}`} />
-          <BlockMath math={`2^{6x^2 - 18x + 120} \\le 2^{-6x^2 + 18x + 600}`} />
-          <p>В силу монотонного возрастания показательной функции с основанием <InlineMath math={`2 > 1`} />, переходим к сравнению показателей:</p>
-          <BlockMath math={`6x^2 - 18x + 120 \\le -6x^2 + 18x + 600 \\iff 12x^2 - 36x - 480 \\le 0`} />
-          <BlockMath math={`\\iff x^2 - 3x - 40 \\le 0 \\iff (x - 8)(x + 5) \\le 0 \\iff -5 \\le x \\le 8`} />
-        </div>
-
-        <p className="font-semibold text-slate-800 dark:text-slate-200">3) Пересечём решения обоих неравенств системы:</p>
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Сведём полученные промежутки</span>
-          <InlineMath math={`x \\in (-4; \\, 8]`} />
-          <span>и</span>
-          <InlineMath math={`x \\in [-5; \\, 8]`} />
-          <span>в итоговое пересечение на числовой прямой методом двух уровней крыш:</span>
-        </div>
-        {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-xs">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black">x</text>
-
-            {/* Закрашенная точка -5 */}
-            <circle cx="55" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-5" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка -4 */}
-            <circle cx="145" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="125" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-4" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 8 */}
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="245" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="8" /></div>
-            </foreignObject>
-
-            {/* Крыша 1: Решение первого логарифмического неравенства (-4; 8] */}
-            <path d="M 145 60 L 145 45 A 10 10 0 0 1 155 35 L 255 35 A 10 10 0 0 1 265 45 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* Крыша 2: Решение второго показательного неравенства [-5; 8] */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 255 15 A 10 10 0 0 1 265 25 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА В ЗОНЕ ПЕРЕСЕЧЕНИЯ ОБОИХ УРОВНЕЙ */}
-            {/* Отрезок пересечения от -4 до 8 */}
-            <line x1="149" y1="58" x2="155" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="157" y1="58" x2="163" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="165" y1="58" x2="171" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="173" y1="58" x2="179" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="181" y1="58" x2="187" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="197" y1="58" x2="203" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="205" y1="58" x2="211" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="213" y1="58" x2="219" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="263" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`(-4; \\, 8]`} />
-        </div>
+        <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
+        <p>ОДЗ логарифмов: <InlineMath math={`-5<x<9,\\quad x\\ne-4`} />. На ней <InlineMath math={`x+7>1`} /> и <InlineMath math={`11-x>1`} />, поэтому первый логарифм строго положителен.</p>
+        <p>Второй логарифм неположителен на <InlineMath math={`(-5;-4)\\cup[8;9)`} />: его основание меньше единицы на первом промежутке и больше единицы на втором, а аргумент равен единице при <InlineMath math={`x=8`} />.</p>
+        <p>Приводим второе неравенство системы к основанию 2:</p>
+        <BlockMath math={`6(x^2-3x+20)\\le-3(2x^2-6x-200) \\iff x^2-3x-40\\le0 \\iff -5\\le x\\le8.`} />
+        <p>Пересекаем найденные множества; точка 8 подходит обоим условиям.</p>
+        <InequalityNumberLine points={[{ label: '-5', closed: false }, { label: '-4', closed: false }, { label: '8', closed: true }, { label: '9', closed: false }]} selected={[[1,2]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`(-5;-4)\\cup\\{8\\}`} /></div>
       </div>
     )
   },
@@ -6079,92 +5134,16 @@ export const section15Tasks = [
     mathB: '',
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
-        <p className="font-bold text-slate-800 dark:text-slate-100">Решение системы неравенств:</p>
-        
-        <p className="font-semibold text-slate-800 dark:text-slate-200">1) Решим первое логарифмическое неравенство системы:</p>
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p>Потенциируя логарифм по основанию <InlineMath math={`3 > 1`} />, перейдём к равносильной системе с учётом ОДЗ:</p>
-          <BlockMath math={`\\iff \\begin{cases} \\frac{x^2}{4} - \\frac{16}{x^2} \\le 3 \\\\ \\frac{x^2}{4} - \\frac{16}{x^2} > 0 \\end{cases} \\iff \\begin{cases} \\frac{x^4 - 12x^2 - 64}{4x^2} \\le 0 \\\\ \\frac{(x^2 - 8)(x^2 + 8)}{4x^2} > 0 \\end{cases}`} />
-          <p>Так как <InlineMath math={`x^2 + 8 > 0`} /> и <InlineMath math={`4x^2 > 0`} /> на ОДЗ, знак зависит от числителей. Разложим биквадратный трёхчлен (корни 16 и -4):</p>
-          <BlockMath math={`\\begin{cases} \\frac{(x^2 - 16)(x^2 + 4)}{4x^2} \\le 0 \\\\ x^2 - 8 > 0 \\end{cases} \\iff \\begin{cases} x^2 \\le 16 \\\\ x^2 > 8 \\end{cases} \\iff \\begin{cases} -4 \\le x \\le 4 \\\\ x \\in (-\\infty; \\, -2\\sqrt{2}) \\cup (2\\sqrt{2}; \\, +\\infty) \\end{cases}`} />
-          <p>Решением первого неравенства является множество: <InlineMath math={`x \\in [-4; \\, -2\\sqrt{2}) \\cup (2\\sqrt{2}; \\, 4]`} />.</p>
-        </div>
-
-        <p className="font-semibold text-slate-800 dark:text-slate-200">2) Решим второе дробно-рациональное неравенство системы:</p>
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p>Разложим числитель на множители через дискриминант (корни 3,5 и -4): <InlineMath math={`2x^2 + x - 28 = 2(x + 4)(x - 3{,}5)`} />.</p>
-          <p>Упростим знаменатель, разложив разность кубов <InlineMath math={`(x - 5)^3 - 1^3`} />:</p>
-          <BlockMath math={`(x - 6)^2 + (x - 5 - 1)((x - 5)^2 + (x - 5) + 1) = (x - 6)(x - 6 + x^2 - 10x + 25 + x - 5 + 1)`} />
-          <BlockMath math={`= (x - 6)(x^2 - 8x + 25)`} />
-          <p>Дискриминант трёхчлена <InlineMath math={`x^2 - 8x + 25`} /> равен <InlineMath math={`64 - 100 = -36 < 0`} />, следовательно, он всегда строго положителен. Знак знаменателя зависит только от скобки <InlineMath math={`(x - 6)`} />:</p>
-          <BlockMath math={`\\frac{2(x + 4)(x - 3{,}5)}{x - 6} \\le 0 \\iff x \\in (-\\infty; \\, -4] \\cup [3{,}5; \\, 6)`} />
-        </div>
-
-        <p className="font-semibold text-slate-800 dark:text-slate-200">3) Пересечём решения обоих неравенств системы:</p>
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Сравним численные границы. Так как</span>
-          <InlineMath math={`2\\sqrt{2} = \\sqrt{8} \\approx 2{,}83`} />,
-          <span>выполняется очевидное неравенство</span>
-          <InlineMath math={`2\\sqrt{2} < 3{,}5 < 4`} />.
-          <span>Визуализируем итоговое пересечение множеств методом двух уровней крыш:</span>
-        </div>
-                {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="120" viewBox="0 0 440 120" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="408" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Закрашенная точка -4 */}
-            <circle cx="55" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="55" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-4</text>
-
-            {/* Выколотая точка -2√2 */}
-            <circle cx="125" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="125" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-2√2</text>
-
-            {/* Выколотая точка 2√2 */}
-            <circle cx="195" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="195" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2√2</text>
-
-            {/* Закрашенная точка 3,5 */}
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="265" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3,5</text>
-
-            {/* Закрашенная точка 4 */}
-            <circle cx="335" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="335" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">4</text>
-
-            {/* Крыши 1: Решение логарифмического неравенства */}
-            <path d="M 55 60 L 55 45 A 10 10 0 0 1 65 35 L 115 35 A 10 10 0 0 1 125 45 L 125 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 195 60 L 195 45 A 10 10 0 0 1 205 35 L 325 35 A 10 10 0 0 1 335 45 L 335 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* Крыша 2: Решение дробно-рационального неравенства */}
-            <path d="M 15 15 L 45 15 A 10 10 0 0 1 55 25 L 55 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 265 60 L 265 25 A 10 10 0 0 1 275 15 L 375 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ ПЕРЕСЕЧЕНИЯ ОБОИХ УРОВНЕЙ */}
-            {/* Изолированная точка -4 */}
-            <line x1="55" y1="58" x2="55" y2="37" stroke="#328ce6" strokeWidth="1.5" opacity="0.7" />
-
-            {/* Отрезок от 3,5 до 4 */}
-            <line x1="269" y1="58" x2="275" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="277" y1="58" x2="283" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="293" y1="58" x2="299" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="301" y1="58" x2="307" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="309" y1="58" x2="315" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="317" y1="58" x2="323" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="325" y1="58" x2="331" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="331" y1="58" x2="333" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`\\{-4\\} \\cup [3{,}5; \\, 4]`} />
-        </div>
+        <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
+        <p>Логарифмическое неравенство равносильно системе</p>
+        <BlockMath math={`0<\\frac{x^2}{4}-\\frac{16}{x^2}\\le3.`} />
+        <p>Умножая на положительное <InlineMath math={`4x^2`} /> и обозначая <InlineMath math={`u=x^2`} />, получаем <InlineMath math={`u>8`} /> и <InlineMath math={`u^2-12u-64\\le0`} />, то есть</p>
+        <BlockMath math={`x\\in[-4;-2\\sqrt{2})\\cup(2\\sqrt{2};4].`} />
+        <p>Разложим числитель и знаменатель второй дроби:</p>
+        <BlockMath math={`\\frac{2x^2+x-28}{(x-6)^2+(x-5)^3-1}=\\frac{(x+4)(2x-7)}{(x-6)(x-5)(x-3)}\\le0.`} />
+        <p>На отрицательном промежутке из решения первого неравенства подходит только нуль числителя <InlineMath math={`x=-4`} />. На положительном подходят <InlineMath math={`3<x\\le7/2`} />; точка 3 исключена из-за знаменателя.</p>
+        <InequalityNumberLine points={[{ label: '-4', closed: true }, { label: '3', closed: false }, { label: '\\frac72', closed: true }, { label: '4', closed: false }]} selected={[[2,3]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\{-4\\}\\cup\\left(3;\\frac72\\right]`} /></div>
       </div>
     )
   },
@@ -6175,85 +5154,15 @@ export const section15Tasks = [
     mathB: '',
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
-        <p className="font-bold text-slate-800 dark:text-slate-100">Решение системы неравенств:</p>
-        
-        <p className="font-semibold text-slate-800 dark:text-slate-200">1) Решим первое логарифмическое неравенство системы:</p>
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p>Запишем систему ограничений ОДЗ для основания и аргумента логарифма:</p>
-          <BlockMath math={`\\begin{cases} 5 - x > 0 \\\\ 5 - x \\neq 1 \\\\ x + 4 > 0 \\\\ x \\neq 5 \\end{cases} \\iff \\begin{cases} x < 5 \\\\ x \\neq 4 \\\\ x > -4 \\end{cases} \\iff x \\in (-4; \\, 4) \\cup (4; \\, 5)`} />
-          <p>Используя свойства логарифма, раскроем аргумент под знаком логарифма: так как на ОДЗ <InlineMath math={`x < 5 \\implies |x-5| = 5-x`} />, то <InlineMath math={`(x-5)^{10} = (5-x)^{10}`} />. Перепишем неравенство:</p>
-          <BlockMath math={`\\log_{5-x}(x+4) - \\log_{5-x}(5-x)^{10} \\ge -10 \\iff \\log_{5-x}(x+4) - 10 \\ge -10 \\iff \\log_{5-x}(x+4) \\ge 0`} />
-          <p>Применим метод замены множителей к логарифму: знак выражения совпадает со знаком произведения аргументов:</p>
-          <BlockMath math={`(5 - x - 1)(x + 4 - 1) \\ge 0 \\iff (4 - x)(x + 3) \\ge 0 \\iff (x - 4)(x + 3) \\le 0`} />
-          <p>Решением этого неравенства является отрезок <InlineMath math={`[-3; \\, 4]`} />. С учётом ограничений ОДЗ получаем промежуток первого неравенства:</p>
-          <BlockMath math={`x \\in [-3; \\, 4)`} />
-        </div>
-
-        <p className="font-semibold text-slate-800 dark:text-slate-200">2) Решим второе дробно-рациональное неравенство системы:</p>
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p>Выделим целую часть из дробного выражения в левой части неравенства:</p>
-          <BlockMath math={`\\frac{50x^2 + x - 7}{x - 7} = \\frac{50x(x - 7) + 351(x - 7) + 2450}{x - 7} = 50x + 351 + \\frac{2450}{x - 7}`} />
-          <p>Подставим это выражение, перенесем единицу влево и разложим многочлен методом группировки на ОДЗ:</p>
-          <BlockMath math={`x^3 + 8x^2 + 50x + 350 + \\frac{2450}{x - 7} \\le 0 \\iff x^2(x + 8) + 50(x + 7) + \\frac{2450}{x - 7} \\le 0`} />
-          <p>Приведение к общему знаменателю <InlineMath math={`(x - 7)`} /> и анализ знаков на интервале <InlineMath math={`x \\in [-3; \\, 4)`} /> показывает, что знаменатель <InlineMath math={`x - 7 < 0`} /> всегда строго отрицателен. Числитель выражения обращается в нуль в единственной точке <InlineMath math={`x = -3`} />, а при всех остальных допустимых значениях неравенство строго выполняется.</p>
-          <BlockMath math={`\\iff x \\in [-3; \\, 4)`} />
-        </div>
-
-        <p className="font-semibold text-slate-800 dark:text-slate-200">3) Пересечём решения обоих неравенств системы:</p>
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Поскольку решения обоих выражений на ОДЗ совпали, итоговым пересечением системы является исходный полуинтервал. Визуализируем пересечение условий методом двух уровней крыш:</span>
-        </div>
-        {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка -4 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="55" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-4</text>
-
-            {/* Закрашенная точка -3 */}
-            <circle cx="125" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="125" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-3</text>
-
-            {/* Выколотая точка 4 */}
-            <circle cx="215" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="215" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">4</text>
-
-            {/* Выколотая точка 5 */}
-            <circle cx="295" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="295" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">5</text>
-
-            {/* Крыши 1: Полуинтервал решения неравенств [-3; 4) */}
-            <path d="M 125 60 L 125 45 A 10 10 0 0 1 135 35 L 205 35 A 10 10 0 0 1 215 45 L 215 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* Крыша 2: Интервалы области допустимых значений (ОДЗ) */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 205 15 A 10 10 0 0 1 215 25 L 215 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 215 60 L 215 25 A 10 10 0 0 1 225 15 L 285 15 A 10 10 0 0 1 295 25 L 295 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ ПЕРЕСЕЧЕНИЯ ОБОИХ УРОВНЕЙ */}
-            {/* Отрезок пересечения от -3 до 4 */}
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="137" y1="58" x2="143" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="153" y1="58" x2="159" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="161" y1="58" x2="167" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="169" y1="58" x2="175" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="177" y1="58" x2="183" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="185" y1="58" x2="191" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="193" y1="58" x2="199" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="201" y1="58" x2="207" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="209" y1="58" x2="213" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`[-3; \\, 4)`} />
-        </div>
+        <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
+        <p>ОДЗ первого логарифма: <InlineMath math={`-4<x<5,\\quad x\\ne4`} />. Сравним его с <InlineMath math={`\\log_{5-x}(5-x)^{-10}`} /> и учтём знак основания:</p>
+        <BlockMath math={`(4-x)\\left(\\frac{x+4}{(5-x)^{10}}-\\frac1{(5-x)^{10}}\\right)\\ge0 \\iff (4-x)(x+3)\\ge0.`} />
+        <p>С учётом ОДЗ первое неравенство даёт <InlineMath math={`[-3;4)`} />.</p>
+        <p>Во втором неравенстве перенесём единицу влево и разложим дробь:</p>
+        <BlockMath math={`x^3+8x^2+\\frac{50x^2+x-7}{x-7}-1=\\frac{x^2(x-2)(x+3)}{x-7}\\le0.`} />
+        <p>Внутри <InlineMath math={`[-3;4)`} /> знаменатель отрицателен. Числитель неотрицателен при <InlineMath math={`x=-3`} />, <InlineMath math={`x=0`} /> и <InlineMath math={`x\\ge2`} />. Пересечение условий:</p>
+        <InequalityNumberLine points={[{ label: '-3', closed: true }, { label: '0', closed: true }, { label: '2', closed: true }, { label: '4', closed: false }]} selected={[[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\{-3;0\\}\\cup[2;4)`} /></div>
       </div>
     )
   },
@@ -6288,19 +5197,19 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -2 */}
-            <circle cx="115" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-2</text>
+            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-2"} />
 
             {/* Выколотая точка 3 */}
-            <circle cx="245" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="245" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <circle cx="245" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Лучи ответа */}
             <path d="M 15 35 L 105 35 A 10 10 0 0 1 115 45 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
@@ -6378,19 +5287,19 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка -1,5 */}
             <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1,5</text>
+            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-1{,}5"} />
 
             {/* Выколотая точка 3 */}
-            <circle cx="245" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="245" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <circle cx="245" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Лучи ответа */}
             <path d="M 15 35 L 105 35 A 10 10 0 0 1 115 45 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
@@ -6487,23 +5396,23 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -2 */}
-            <circle cx="85" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="85" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-2</text>
+            <circle cx="85" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={85.0} y={80.0} anchor="middle" math={"-2"} />
 
             {/* Выколотая точка 2 */}
-            <circle cx="205" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="205" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
+            <circle cx="205" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={205.0} y={80.0} anchor="middle" math={"2"} />
 
             {/* Закрашенная точка 2+√2/4 */}
             <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="275" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2+√2/4</text>
+            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"2+\\frac{\\sqrt{2}}{4}"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение совокупности скобок аргумента */}
             <path d="M 15 35 L 235 35 A 10 10 0 0 1 245 45 L 245 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -6585,31 +5494,31 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="420" height="120" viewBox="0 0 420 120" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="420" height="120" viewBox="0 0 420 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="380" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M380 60 l-6 -3 M380 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="388" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={388.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -3 */}
-            <circle cx="45" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="45" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-3</text>
+            <circle cx="45" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={45.0} y={80.0} anchor="middle" math={"-3"} />
 
             {/* Выколотая точка -1 */}
-            <circle cx="115" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
+            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-1"} />
 
             {/* Выколотая точка 1 */}
-            <circle cx="185" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="185" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <circle cx="185" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* Выколотая точка 3 */}
-            <circle cx="255" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="255" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <circle cx="255" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={255.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* Закрашенная точка 4 */}
             <circle cx="325" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="325" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">4</text>
+            <SvgMathLabel x={325.0} y={80.0} anchor="middle" math={"4"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Интервалы ответов и изолированная точка */}
             <path d="M 45 60 L 45 45 A 10 10 0 0 1 55 35 L 105 35 A 10 10 0 0 1 115 45 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
@@ -6657,119 +5566,13 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Перенесём единицу влево и перейдём к равносильной системе условий, удерживающей ограничения аргумента логарифма и его знаменателя:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{\\log_{0{,}5}^2(x^4) - x^2}{100 - x^2} - 1 \\le 0 \\\\ 100 - x^2 \\neq 0 \\\\ x^4 > 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Приведём дроби к общему знаменателю. По свойствам логарифма перейдём к основанию 2:</span>
-          <InlineMath math={`\\log_{0{,}5}^2(x^4) = (-4\\log_2|x|)^2 = 16\\log_2^2|x|`} />.
-          <span>Система принимает вид:</span>
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{16\\log_2^2|x| - x^2 - (100 - x^2)}{100 - x^2} \\le 0 \\\\ x \\neq \\pm 10 \\\\ x \\neq 0 \\end{cases} \\iff \\begin{cases} \\frac{16\\log_2^2|x| - 100}{100 - x^2} \\le 0 \\\\ x \\neq \\pm 10 \\\\ x \\neq 0 \\end{cases}`} />
-        <BlockMath math={`\\iff \\begin{cases} \\frac{4\\log_2^2|x| - 25}{x^2 - 100} \\ge 0 \\\\ x \\neq \\pm 10 \\\\ x \\neq 0 \\end{cases} \\iff \\begin{cases} \\frac{(2\\log_2|x| - 5)(2\\log_2|x| + 5)}{(x - 10)(x + 10)} \\ge 0 \\\\ x \\neq \\pm 10 \\\\ x \\neq 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Потенциируя нули числителя:</span>
-          <InlineMath math={`2\\log_2|x| = \\pm 5 \\implies |x| = 2^{2{,}5} = 4\\sqrt{2}`} />.
-          <span>Применим метод замены множителей к разностям логарифмов на области определения:</span>
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{(|x| - 4\\sqrt{2})(|x| + 4\\sqrt{2})}{(x - 10)(x + 10)} \\ge 0 \\\\ x \\neq \\pm 10 \\\\ x \\neq 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Так как множитель</span>
-          <InlineMath math={`|x| + 4\\sqrt{2} > 0`} />
-          <span>всегда строго положителен, разделим на него. Раскрывая модуль знаков числителя, получаем:</span>
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{(x - 4\\sqrt{2})(x + 4\\sqrt{2})}{(x - 10)(x + 10)} \\ge 0 \\\\ x \\neq \\pm 10 \\\\ x \\neq 0 \\end{cases}`} />
-
-        <p>Решая полученную рациональную систему методом интервалов, находим итоговые промежутки:</p>
-        <BlockMath math={`\\iff x \\in (-\\infty; \\, -10) \\cup [-4\\sqrt{2}; \\, 0) \\cup (0; \\, 4\\sqrt{2}] \\cup (10; \\, +\\infty)`} />
-
-        <p>Визуализируем полученные интервалы на числовой прямой методом двух уровней крыш со штриховкой:</p>
-
-                {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="460" height="120" viewBox="0 0 460 120" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="420" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M420 60 l-6 -3 M420 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="428" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка -10 */}
-            <circle cx="45" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="45" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-10</text>
-
-            {/* Закрашенная точка -4√2 */}
-            <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-4√2</text>
-
-            {/* Выколотая точка 0 */}
-            <circle cx="185" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="185" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
-
-            {/* Закрашенная точка 4√2 */}
-            <circle cx="255" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="255" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">4√2</text>
-
-            {/* Выколотая точка 10 */}
-            <circle cx="325" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="325" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">10</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Зоны ответа */}
-            <path d="M 15 35 L 35 35 A 10 10 0 0 1 45 45 L 45 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 115 60 L 115 45 A 10 10 0 0 1 125 35 L 175 35 A 10 10 0 0 1 185 45 L 185 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 185 60 L 185 45 A 10 10 0 0 1 195 35 L 245 35 A 10 10 0 0 1 255 45 L 255 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 325 60 L 325 45 A 10 10 0 0 1 335 35 L 405 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): Линия ОДЗ */}
-            <line x1="15" y1="15" x2="405" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Луч (-inf; -10) */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Полуинтервал [-4√2; 0) */}
-            <line x1="119" y1="58" x2="125" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="127" y1="58" x2="133" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="135" y1="58" x2="141" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="143" y1="58" x2="149" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="151" y1="58" x2="157" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="159" y1="58" x2="165" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="167" y1="58" x2="173" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="175" y1="58" x2="181" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Полуинтервал (0; 4√2] */}
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="197" y1="58" x2="203" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="205" y1="58" x2="211" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="213" y1="58" x2="219" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* 🔥 ИСПРАВЛЕНО: Штриховка продлена до самого конца оси для промежутка (10; +inf) */}
-            <line x1="329" y1="58" x2="335" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="337" y1="58" x2="343" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="345" y1="58" x2="351" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="353" y1="58" x2="359" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="361" y1="58" x2="367" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="369" y1="58" x2="375" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="377" y1="58" x2="383" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="385" y1="58" x2="391" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="393" y1="58" x2="399" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="401" y1="58" x2="405" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math={`(-\\infty; \\, -10) \\cup [-4\\sqrt{2}; \\, 0) \\cup (0; \\, 4\\sqrt{2}] \\cup (10; \\, +\\infty)`} />
-        </div>
+        <p>ОДЗ: <InlineMath math={`x\\ne0,\\quad x\\ne\\pm10`} />. Перенесём единицу влево и используем <InlineMath math={`\\log_{0{,}5}(x^4)=-4\\log_2|x|`} />:</p>
+        <BlockMath math={`\\frac{16\\log_2^2|x|-100}{100-x^2}\\le0 \\iff \\frac{(2\\log_2|x|-5)(2\\log_2|x|+5)}{x^2-100}\\ge0.`} />
+        <p>У числителя два положительных по модулю корня:</p>
+        <BlockMath math={`|x|=2^{5/2}=4\\sqrt{2},\\qquad |x|=2^{-5/2}=\\frac{\\sqrt{2}}{8}.`} />
+        <p>С учётом обоих корней знак числителя совпадает со знаком <InlineMath math={`(|x|-4\\sqrt{2})(|x|-\\sqrt{2}/8)`} />. Отмечаем все шесть граничных точек и выбираем промежутки, где дробь неотрицательна.</p>
+        <InequalityNumberLine points={[{ label: '-10', closed: false }, { label: '-4\\sqrt{2}', closed: true }, { label: '-\\frac{\\sqrt{2}}{8}', closed: true }, { label: '\\frac{\\sqrt{2}}{8}', closed: true }, { label: '4\\sqrt{2}', closed: true }, { label: '10', closed: false }]} selected={[[0,1],[2,3],[4,5],[6,7]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`(-\\infty;-10)\\cup\\left[-4\\sqrt{2};-\\frac{\\sqrt{2}}{8}\\right]\\cup\\left[\\frac{\\sqrt{2}}{8};4\\sqrt{2}\\right]\\cup(10;+\\infty)`} /></div>
       </div>
     )
   },
@@ -6813,19 +5616,19 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка 9 */}
             <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">9</text>
+            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"9"} />
 
             {/* Выколотая точка 16 */}
-            <circle cx="245" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="245" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">16</text>
+            <circle cx="245" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"16"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
             <path d="M 15 35 L 235 35 A 10 10 0 0 1 245 45 L 245 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -6868,123 +5671,16 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Перейдём к равносильной системе условий, учитывающей ограничение на существование дробных показателей степени (знаменатель отличен от нуля):</p>
-        <BlockMath math={`\\iff \\begin{cases} 16 \\cdot 5 \\cdot 5^{-\\frac{8}{x}} - 189 \\cdot 2^{-\\frac{8}{x}} \\cdot 5^{-\\frac{4}{x}} + 25 \\cdot 4 \\cdot 2^{-\\frac{16}{x}} \\le 0 \\\\ x \\neq 0 \\end{cases}`} />
-        <BlockMath math={`\\iff \\begin{cases} 80 \\cdot (5^{-\\frac{4}{x}})^2 - 189 \\cdot 2^{-\\frac{8}{x}} \\cdot 5^{-\\frac{4}{x}} + 100 \\cdot (2^{-\\frac{8}{x}})^2 \\le 0 \\\\ x \\neq 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Разделим обе части показательного неравенства на строго положительный член</span>
-          <InlineMath math={`(2^{-\\frac{8}{x}})^2`} />.
-          <span>Выражение сводится к однородной показательной форме второго порядка:</span>
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} 80 \\cdot \\left(\\frac{5}{2}\\right)^{-\\frac{8}{x}} - 189 \\cdot \\left(\\frac{5}{2}\\right)^{-\\frac{4}{x}} + 100 \\le 0 \\\\ x \\neq 0 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Сделаем замену переменной: пусть</span>
-          <InlineMath math={`t = \\left(\\frac{5}{2}\\right)^{-\\frac{4}{x}}`} />
-          <span>(где</span>
-          <InlineMath math={`t > 0`} />).
-          <span>Получаем квадратный трёхчлен:</span>
-        </div>
-        <BlockMath math={`80t^2 - 189t + 100 \\le 0`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Найдем корни квадратного трёхчлена через дискриминант:</span>
-          <InlineMath math={`D = 189^2 - 4 \\cdot 80 \\cdot 100 = 35721 - 32000 = 3721 = 193^2`} />.
-          <span>Корни числителя равны:</span>
-          <InlineMath math={`t_1 = -\\frac{1}{40}`} />
-          <span>и</span>
-          <InlineMath math={`t_2 = \\frac{191}{80}`} />.
-        </div>
-
-        <p>С учётом ограничения <InlineMath math={`t > 0`} />, решением квадратичной части является интервал:</p>
-        <BlockMath math={`0 < t \\le \\frac{191}{80} \\iff \\left(\\frac{5}{2}\\right)^{-\\frac{4}{x}} \\le \\frac{191}{80}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Логарифмируя показательное выражение по основанию</span>
-          <InlineMath math={`2{,}5 > 1`} />,
-          <span>переходим к рациональному алгебраическому неравенству:</span>
-        </div>
-        <BlockMath math={`\\iff -\\frac{4}{x} \\le \\log_{2{,}5}\\left(\\frac{191}{80}\\right) \\iff \\frac{4}{x} + \\log_{2{,}5}\\left(\\frac{191}{80}\\right) \\ge 0`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Приведём полученную рациональную дробь к общему знаменателю:</span>
-        </div>
-        <BlockMath math={`\\iff \\frac{x \\cdot \\log_{2{,}5}\\left(\\frac{191}{80}\\right) + 4}{x} \\ge 0 \\iff \\frac{x - \\left(-\\frac{4}{\\log_{2{,}5}\\left(\\frac{191}{80}\\right)}\\right)}{x} \\ge 0`} />
-
-        <p>Решая рациональную дробь методом интервалов с учётом выколотого нуля системы, находим финальные лучи ответа:</p>
-        <BlockMath math={`\\iff x \\in \\left(-\\infty; \\, -\\frac{4}{\\log_{2{,}5}\\left(\\frac{191}{80}\\right)}\\right] \\cup (0; \\, +\\infty)`} />
-
-        <p>Визуализируем полученные интервалы на числовой прямой методом двух уровней крыш со штриховкой:</p>
-
-                         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ПОЛНОЙ ШТРИХОВКОЙ ДО КОНЦА ОСИ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="460" height="140" viewBox="0 0 460 140" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="420" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M420 60 l-6 -3 M420 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="428" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Закрашенная точка со сложной логарифмической дробью */}
-            <circle cx="135" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            
-            {/* 🔥 ИСПРАВЛЕНО: Минус вынесен на уровень черты, строгий KaTeX-рендер без потери слэшей */}
-            <foreignObject x="55" y="62" width="160" height="75" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath math="-\frac{4}{\log_{2{,}5}\left(\frac{191}{80}\right)}" />
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка 0 */}
-            <circle cx="285" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="285" y="82" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            <path d="M 15 35 L 125 35 A 10 10 0 0 1 135 45 L 135 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 285 60 L 285 45 A 10 10 0 0 1 295 35 L 405 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x != 0 */}
-            <line x1="15" y1="15" x2="275" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <line x1="295" y1="15" x2="405" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ПОЛНОСТЬЮ ЗАПОЛНЯЕТ ЛУЧИ ДО КОНЦА */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="90" y1="58" x2="96" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="98" y1="58" x2="104" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="106" y1="58" x2="112" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="114" y1="58" x2="120" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="122" y1="58" x2="126" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="307" y1="58" x2="313" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="315" y1="58" x2="321" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="323" y1="58" x2="329" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="331" y1="58" x2="337" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="339" y1="58" x2="345" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="347" y1="58" x2="353" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="355" y1="58" x2="361" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="363" y1="58" x2="369" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="371" y1="58" x2="377" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="379" y1="58" x2="385" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="387" y1="58" x2="393" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="395" y1="58" x2="401" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math="(-\infty; \, -\frac{4}{\log_{2{,}5}\left(\frac{191}{80}\right)}] \cup (0; \, +\infty)" />
-        </div>
+        <p>ОДЗ: <InlineMath math={`x\\ne0`} />. Разделим неравенство на положительное выражение <InlineMath math={`2^{-16/x}`} /> и сделаем замену</p>
+        <BlockMath math={`t=\\left(\\frac54\\right)^{-4/x}>0.`} />
+        <p>Получаем квадратное неравенство:</p>
+        <BlockMath math={`80t^2-189t+100\\le0,\\qquad D=3721=61^2.`} />
+        <BlockMath math={`t_1=\\frac45,\\quad t_2=\\frac{25}{16},\\qquad \\frac45\\le t\\le\\frac{25}{16}.`} />
+        <p>Так как <InlineMath math={`\\frac45=(\\frac54)^{-1}`} /> и <InlineMath math={`\\frac{25}{16}=(\\frac54)^2`} />, сравниваем показатели:</p>
+        <BlockMath math={`-1\\le-\\frac4x\\le2,\\qquad x\\ne0.`} />
+        <p>При <InlineMath math={`x>0`} /> получаем <InlineMath math={`x\\ge4`} />, а при <InlineMath math={`x<0`} /> — <InlineMath math={`x\\le-2`} />.</p>
+        <InequalityNumberLine points={[{ label: '-2', closed: true }, { label: '0', closed: false }, { label: '4', closed: true }]} selected={[[0,1],[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`(-\\infty;-2]\\cup[4;+\\infty)`} /></div>
       </div>
     )
   },
@@ -6996,87 +5692,16 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Запишем систему ограничений ОДЗ для аргументов всех логарифмов, входящих в выражение:</p>
-        <BlockMath math={`\\begin{cases} x^2 - 4x + 4 > 0 \\\\ 3 - x > 0 \\\\ (x - 2)^2 > 0 \\end{cases} \\iff \\begin{cases} (x - 2)^2 \\neq 0 \\\\ x < 3 \\end{cases} \\iff x \\in (-\\infty; \\, 2) \\cup (2; \\, 3)`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Преобразуем логарифмы по свойствам степеней на области ОДЗ. Так как при</span>
-          <InlineMath math={`x < 3`} />
-          <span>выражение</span>
-          <InlineMath math={`x^2 - 4x + 4 = (x - 2)^2 = |x - 2|^2`} />,
-          <span>вынесем показатель степени 2 перед логарифм. По ОДЗ аргумент правого слагаемого</span>
-          <InlineMath math={`3 - x > 0 \\implies x - 2 < 1`} />,
-          <span>поэтому вынос степени даёт:</span>
-          <InlineMath math={`\\log_2(x - 2)^2 = 2\\log_2|x - 2|`} />.
-        </div>
-
-        <p>Перенесем все члены в левая часть неравенства и сгруппируем слагаемые:</p>
-        <BlockMath math={`(x^2 - 2x - 3) \\cdot 2\\log_2|x - 2| - 4 \\cdot (x^2 - 2x - 3) + 4 \\cdot 2^x \\cdot \\log_2(3 - x) - 2^x \\cdot 2\\log_2|x - 2| \\ge 0`} />
-        <BlockMath math={`2(x^2 - 2x - 3) \\cdot (\\log_2|x - 2| - 2) - 2 \\cdot 2^x \\cdot (\\log_2|x - 2| - 2\\log_2(3 - x)) \\ge 0`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Учитывая, что на интервале ОДЗ</span>
-          <InlineMath math={`x < 2 \\implies |x - 2| = 2 - x`} />,
-          <span>а при</span>
-          <InlineMath math={`2 < x < 3 \\implies |x - 2| = x - 2`} />,
-          <span>проведём аналитическое разложение методом интервалов знаков. Равносильная система распадается на две линейные скобки:</span>
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} (x - 3)(x + 1)(x - 2) \\ge 0 \\\\ x \\in (-\\infty; \\, 2) \\cup (2; \\, 3) \\end{cases}`} />
-
-        <p>Решая полученную рациональную систему методом интервалов, находим пересечение промежутков знаков с ОДЗ:</p>
-        <BlockMath math={`\\iff x \\in [-1; \\, 2)`} />
-
-        <p>Визуализируем полученный интервал на числовой прямой методом двух уровней крыш со штриховкой:</p>
-
-        {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Закрашенная точка -1 */}
-            <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
-
-            {/* Выколотая точка 2 */}
-            <circle cx="215" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="215" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
-
-            {/* Выколотая точка 3 */}
-            <circle cx="295" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="295" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части */}
-            <path d="M 115 60 L 115 45 A 10 10 0 0 1 125 35 L 205 35 A 10 10 0 0 1 215 45 L 215 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 295 60 L 295 45 A 10 10 0 0 1 305 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x < 3, x != 2 */}
-            <path d="M 15 15 L 205 15 A 10 10 0 0 1 215 25 L 215 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 215 60 L 215 25 A 10 10 0 0 1 225 15 L 285 15 A 10 10 0 0 1 295 25 L 295 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ В ДВУХУРОВНЕВОЙ ЗОНЕ */}
-            <line x1="119" y1="58" x2="125" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="127" y1="58" x2="133" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="135" y1="58" x2="141" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="143" y1="58" x2="149" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="151" y1="58" x2="157" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="159" y1="58" x2="165" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="167" y1="58" x2="173" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="175" y1="58" x2="181" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="183" y1="58" x2="189" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="197" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="199" y1="58" x2="205" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="207" y1="58" x2="212" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <InlineMath math="[-1; \, 2)" />
-        </div>
+        <p>ОДЗ: <InlineMath math={`x<3,\\quad x\\ne2`} />. Перенесём всё влево и обозначим полученную функцию через <InlineMath math={`F(x)`} />. После группировки:</p>
+        <BlockMath math={`\\frac{F(x)}2=(x-3)(x+1)(\\log_2|x-2|-2)+2^x\\log_2\\frac{(3-x)^2}{|x-2|}.`} />
+        <p>При <InlineMath math={`x<2`} /> положим <InlineMath math={`u=2-x>0`} />. Тогда</p>
+        <BlockMath math={`\\frac{F(x)}2=(u+1)(u-3)(\\log_2u-2)+4\\cdot2^{-u}\\log_2\\frac{(u+1)^2}{u}.`} />
+        <p>Второе слагаемое положительно. Первое неотрицательно при <InlineMath math={`u\\le3`} /> и <InlineMath math={`u\\ge4`} />. Если <InlineMath math={`3<u<4`} />, его модуль меньше <InlineMath math={`1/(3\\ln2)<1/2`} />: здесь <InlineMath math={`(u-3)(4-u)\\le1/4`} /> и <InlineMath math={`\\ln(4/u)\\le(4-u)/u`} />. При этом второе слагаемое больше <InlineMath math={`\\frac14\\log_2(16/3)>1/2`} />. Значит, <InlineMath math={`F(x)>0`} /> при всех <InlineMath math={`x<2`} />.</p>
+        <p>При <InlineMath math={`2<x<3`} /> положим <InlineMath math={`v=x-2\\in(0;1)`} />. Тогда</p>
+        <BlockMath math={`\\frac{F(x)}2=(v-1)(v+3)(\\log_2v-2)+4\\cdot2^v\\log_2\\frac{(1-v)^2}{v}.`} />
+        <p>Оба слагаемых строго убывают по <InlineMath math={`v`} />. Для второго это следует из <InlineMath math={`\\ln((1-v)^2/v)\\le1/v-1`} />: его производная имеет отрицательный знак. Функция <InlineMath math={`F`} /> непрерывна, стремится к <InlineMath math={`+\\infty`} /> при <InlineMath math={`x\\to2+`} /> и к <InlineMath math={`-\\infty`} /> при <InlineMath math={`x\\to3-`} />. Поэтому на <InlineMath math={`(2;3)`} /> есть единственный корень <InlineMath math={`\\alpha\\approx2{,}49390`} />.</p>
+        <InequalityNumberLine points={[{ label: '2', closed: false }, { label: '\\alpha', closed: true }]} selected={[[0,1],[1,2]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`(-\\infty;2)\\cup(2;\\alpha],\\quad F(\\alpha)=0,\\quad \\alpha\\in(2;3)`} /></div>
       </div>
     )
   },
@@ -7134,23 +5759,23 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка -4 */}
             <circle cx="95" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="95" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-4</text>
+            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"-4"} />
 
             {/* Выколотая точка 1 */}
-            <circle cx="195" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="195" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <circle cx="195" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={195.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* Выколотая точка 3 */}
-            <circle cx="275" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="275" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение по знаку раскрытия раскрытого модуля */}
             <path d="M 95 60 L 95 45 A 10 10 0 0 1 105 35 L 185 35 A 10 10 0 0 1 195 45 L 195 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -7190,115 +5815,12 @@ export const section15Tasks = [
     mathB: "",
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
-        <p className="font-bold text-slate-800 dark:text-slate-100">Решение системы неравенств:</p>
-        
-        <p className="font-semibold text-slate-800 dark:text-slate-200">1) Решим первое неравенство системы:</p>
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p>Перейдём к равносильной системе условий, содержащей ОДЗ всех аргументов, ограничение знаменателя и метод рационализации дроби по основанию <InlineMath math={`3 > 1`} />:</p>
-          <BlockMath math={`\\iff \\begin{cases} \\frac{x + 1 - 1}{x - 2 - 1} \\le 0 \\\\ x + 1 > 0 \\\\ x - 2 > 0 \\\\ x - 2 \\neq 1 \\end{cases} \\iff \\begin{cases} \\frac{x}{x - 3} \\le 0 \\\\ x > -1 \\\\ x > 2 \\\\ x \\neq 3 \\end{cases}`} />
-          <p>Решая рациональную дробь методом интервалов и пересекая её с лучами ограничений, находим:</p>
-          <BlockMath math={`\\iff \\begin{cases} 0 \\le x < 3 \\\\ x > 2 \\end{cases} \\iff x \\in (2; \\, 3)`} />
-        </div>
-
-        <p className="font-semibold text-slate-800 dark:text-slate-200">2) Решим второе неравенство системы:</p>
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p>Разложим числитель по теореме Виета, а к знаменателю применим метод рационализации по основанию <InlineMath math={`0{,}5 < 1`} />, что меняет знак разности на противоположный:</p>
-          <BlockMath math={`\\iff \\begin{cases} \\frac{(x + 1)(x - 5)}{-(x - 1 - 1)} \\ge 0 \\\\ x - 1 > 0 \\\\ x - 1 \\neq 1 \\end{cases} \\iff \\begin{cases} \\frac{(x + 1)(x - 5)}{x - 2} \\le 0 \\\\ x > 1 \\\\ x \\neq 2 \\end{cases}`} />
-          <p>Исследуем знаки полученного рационального выражения методом интервалов с учётом ограничений ОДЗ переменной:</p>
-
-          {/* 📈 МЕТОД ИНТЕРВАЛОВ ДЛЯ ВТОРОГО НЕРАВЕНСТВА */}
-          <div className="my-4 flex justify-center w-full select-none">
-            <svg width="400" height="70" viewBox="0 0 400 70" className="overflow-visible font-sans font-bold text-[13px]">
-              <line x1="10" y1="35" x2="360" y2="35" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-              <path d="M360 35 l-6 -3 M360 35 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-              <text x="368" y="39" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-              {/* Выколотая граница ОДЗ 1 */}
-              <circle cx="75" cy="35" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-              <text x="75" y="55" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
-
-              {/* Выколотая точка знаменателя 2 */}
-              <circle cx="165" cy="35" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-              <text x="165" y="55" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
-
-              {/* Закрашенная точка числителя 5 */}
-              <circle cx="265" cy="35" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-              <text x="265" y="55" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">5</text>
-
-              {/* Крыши знаков "-" (удовлетворяющие неравенству на области x > 1) */}
-              <path d="M 75 35 L 75 20 A 10 10 0 0 1 85 10 L 155 10 A 10 10 0 0 1 165 20 L 165 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-              <path d="M 265 35 L 265 20 A 10 10 0 0 1 275 10 L 345 10" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-              {/* Штриховка интервалов второго неравенства */}
-              <line x1="79" y1="33" x2="85" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="89" y1="33" x2="95" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="99" y1="33" x2="105" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="109" y1="33" x2="115" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="119" y1="33" x2="125" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="129" y1="33" x2="135" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="139" y1="33" x2="145" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="149" y1="33" x2="155" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="157" y1="33" x2="161" y2="22" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-              <line x1="269" y1="33" x2="275" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="279" y1="33" x2="285" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="289" y1="33" x2="295" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="299" y1="33" x2="305" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="309" y1="33" x2="315" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="319" y1="33" x2="325" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="329" y1="33" x2="335" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-              <line x1="339" y1="33" x2="345" y2="12" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            </svg>
-          </div>
-          <p>Получаем объединение множеств: <InlineMath math={`x \\in (1; \\, 2) \\cup [5; \\, +\\infty)`} /></p>
-        </div>
-
-        <p className="font-semibold text-slate-800 dark:text-slate-200">3) Пересечём решения обоих неравенств:</p>
-        <p>Сопоставим полученные промежутки <InlineMath math={`x \\in (2; \\, 3)`} /> и <InlineMath math={`x \\in (1; \\, 2) \\cup [5; \\, +\\infty)`} /> на общей координатной прямой:</p>
-
-        {/* 🌌 ФИНАЛЬНЫЙ ДВУХУРОВНЕВЫЙ ЧЕРТЁЖ ПЕРЕСЕЧЕНИЯ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка 1 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="55" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
-
-            {/* Выколотая точка 2 */}
-            <circle cx="125" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="125" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
-
-            {/* Выколотая точка 3 */}
-            <circle cx="195" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="195" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
-
-            {/* Закрашенная точка 5 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="275" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">5</text>
-
-            {/* УРОВЕНЬ КРЫШ 1: Решение первого неравенства (2; 3) */}
-            <path d="M 125 60 L 125 45 A 10 10 0 0 1 135 35 L 185 35 A 10 10 0 0 1 195 45 L 195 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* УРОВЕНЬ КРЫШ 2: Решение второго неравенства (1; 2) U [5; +inf) */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 115 15 A 10 10 0 0 1 125 25 L 125 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 275 60 L 275 25 A 10 10 0 0 1 285 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* Множества не имеют пересечений */}
-          </svg>
-        </div>
-
-        <p>Так как полученные множества решений не имеют ни одной общей точки пересечения, данная система неравенств не имеет решений.</p>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: 'nowrap' }}>
-            <InlineMath math="\varnothing" />
-          </div>
-        </div>
+        <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
+        <p>ОДЗ первой дроби: <InlineMath math={`x>2,\\quad x\\ne3`} />. При этих значениях <InlineMath math={`\\log_3(x+1)>0`} />, поэтому первое неравенство выполняется тогда и только тогда, когда</p>
+        <BlockMath math={`\\log_3(x-2)<0 \\iff 2<x<3.`} />
+        <p>На найденном промежутке <InlineMath math={`1<x-1<2`} />, а точка <InlineMath math={`x=2`} /> не входит. Точнее, при <InlineMath math={`2<x<3`} /> имеем <InlineMath math={`x-1>1`} />, поэтому <InlineMath math={`\\log_{0{,}5}(x-1)<0`} />. Числитель второго неравенства <InlineMath math={`(x-5)(x+1)<0`} />; их отношение положительно на всём промежутке.</p>
+        <InequalityNumberLine points={[{ label: '2', closed: false }, { label: '3', closed: false }]} selected={[[1,2]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`(2;3)`} /></div>
       </div>
     )
   },
@@ -7361,23 +5883,23 @@ export const section15Tasks = [
          {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ПОЛНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         {/* 🔥 ИСПРАВЛЕНО: Применено четырёхкратное экранирование слэшей внутри строкового литерала. Формула отобразится идеально. */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="440" height="135" viewBox="0 0 440 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="408" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ -1.5 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="55" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1,5</text>
+            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={55.0} y={80.0} anchor="middle" math={"-1{,}5"} />
 
             {/* Выколотая точка ОДЗ -1 */}
-            <circle cx="115" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
+            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-1"} />
 
             {/* Закрашенная точка -0,5 */}
             <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="185" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-0,5</text>
+            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"-0{,}5"} />
 
             {/* Закрашенная иррациональная точка ответа */}
             <circle cx="305" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -7435,90 +5957,13 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>Перейдём к равносильной системе условий, содержащей исходное неравенство и ограничения области определения подкоренного выражения и знаменателя:</p>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{3^{|x-2|} - 3^2}{5^{\\sqrt{x}} - 5^1} \\ge 0 \\\\ x \\ge 0 \\\\ 5^{\\sqrt{x}} - 5 \\neq 0 \\end{cases} \\iff \\begin{cases} \\frac{3^{|x-2|} - 3^2}{5^{\\sqrt{x}} - 5^1} \\ge 0 \\\\ x \\ge 0 \\\\ x \\neq 1 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Применим метод замены множителей (рационализации) для показательных функций. На области определения знак разности степеней вида</span>
-          <InlineMath math={`a^f - a^g`} />
-          <span>при основаниях</span>
-          <InlineMath math={`a > 1`} />
-          <span>полностью совпадает со знаком разности их показателей</span>
-          <InlineMath math={`f - g`} />:
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{|x - 2| - 2}{\\sqrt{x} - 1} \\ge 0 \\\\ x \\ge 0 \\\\ x \\neq 1 \\end{cases}`} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Применим метод рационализации к модулю и иррациональному корню. Разность</span>
-          <InlineMath math={`|x - 2| - 2`} />
-          <span>имеет тот же знак, что и произведение</span>
-          <InlineMath math={`(x - 2 - 2)(x - 2 + 2) = x(x - 4)`} />,
-          <span>а знак разности</span>
-          <InlineMath math={`\\sqrt{x} - 1`} stroke="currentColor" />
-          <span>на области ОДЗ совпадает со знаком</span>
-          <InlineMath math={`x - 1`} />:
-        </div>
-        <BlockMath math={`\\iff \\begin{cases} \\frac{x(x - 4)}{x - 1} \\ge 0 \\\\ x \\ge 0 \\\\ x \\neq 1 \\end{cases}`} />
-
-        <p>Решим полученное рациональное выражение методом интервалов с учётом ограничений системы:</p>
-        <BlockMath math={`\\iff x \\in \\{0\\} \\cup (1; \\, 4]`} />
-
-        <p>Визуализируем полученные интервалы на числовой прямой методом двух уровней крыш со штриховкой:</p>
-
-        {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Закрашенная точка ОДЗ и корень 0 */}
-            <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="75" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
-
-            {/* Выколотая точка знаменателя 1 */}
-            <circle cx="175" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="175" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
-
-            {/* Закрашенная точка числителя 4 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="275" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">4</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (изолированный 0 и отрезок) */}
-            <circle cx="75" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 175 60 L 175 45 A 10 10 0 0 1 185 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x >= 0 */}
-            <path d="M 75 60 L 75 25 A 10 10 0 0 1 85 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ В ДВУХУРОВНЕВОЙ ЗОНЕ */}
-            {/* Изолированная точка 0 */}
-            <line x1="75" y1="58" x2="75" y2="37" stroke="#328ce6" strokeWidth="1.5" opacity="0.7" />
-
-            {/* Полуинтервал (1; 4] */}
-            <line x1="181" y1="58" x2="187" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="197" y1="58" x2="203" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="205" y1="58" x2="211" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="213" y1="58" x2="219" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="273" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: 'nowrap' }}>
-            <InlineMath math={`\\{0\\} \\cup (1; \\, 4]`} />
-          </div>
-        </div>
+        <p>ОДЗ: <InlineMath math={`x\\ge0,\\quad x\\ne1`} />. По возрастанию показательных функций исходная дробь имеет тот же знак, что и</p>
+        <BlockMath math={`\\frac{|x-2|-2}{\\sqrt{x}-1}.`} />
+        <p>Знак первой разности совпадает со знаком <InlineMath math={`x(x-4)`} />, а второй — со знаком <InlineMath math={`x-1`} />. Получаем равносильную систему:</p>
+        <BlockMath math={`\\frac{x(x-4)}{x-1}\\ge0,\\qquad x\\ge0,\\qquad x\\ne1.`} />
+        <p>На промежутке <InlineMath math={`(0;1)`} /> числитель и знаменатель отрицательны, на <InlineMath math={`(1;4)`} /> дробь отрицательна, а при <InlineMath math={`x>4`} /> положительна. Нули 0 и 4 входят в ответ.</p>
+        <InequalityNumberLine points={[{ label: '0', closed: true }, { label: '1', closed: false }, { label: '4', closed: true }]} selected={[[1,2],[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`[0;1)\\cup[4;+\\infty)`} /></div>
       </div>
     )
   },
@@ -7530,134 +5975,15 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>
-          Используем формулу перехода к новому основанию для знаменателя дроби: 
-          <InlineMath math={"\\log_{x+4}(3-x) = \\frac{1}{\\log_{3-x}(x+4)}"} />. 
-          Перенесем единицу влево и перейдём к единой равносильной системе условий, удерживающей ОДЗ всех аргументов и оснований:
-        </p>
-        <BlockMath math={"\\iff \\begin{cases} \\left(\\log_{3-x}(x+4)\\right)^2 - 1 \\le 0 \\\\ 3 - x > 0 \\\\ 3 - x \\neq 1 \\\\ x + 4 > 0 \\\\ x + 4 \\neq 1 \\\\ \\log_{3-x}(x+4) \\neq 0 \\end{cases} \\iff \\begin{cases} \\left(\\log_{3-x}(x+4) - 1\\right)\\left(\\log_{3-x}(x+4) + 1\\right) \\le 0 \\\\ x < 3 \\\\ x \\neq 2 \\\\ x > -4 \\\\ x \\neq -3 \\\\ x + 4 \\neq 1 \\end{cases}"} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Сведём ограничения аргументов и оснований логарифмов к общему пересечению интервалов:</span>
-          <InlineMath math={"x \\in (-4; \\, -3) \\cup (-3; \\, 2) \\cup (2; \\, 3)"} />.
-          <span>Применим метод замены множителей (рационализации) к полученной разности квадратов:</span>
-        </div>
-        <BlockMath math={"(3 - x - 1)(x + 4 - (3 - x)) \\cdot (3 - x - 1)\\left(x + 4 - \\frac{1}{3-x}\\right) \\le 0"} />
-        <BlockMath math={"\\iff \\frac{(2 - x)^2 (2x + 1)(x^2 + x - 11)}{3 - x} \\le 0"} />
-
-        <p>Так как на ОДЗ множитель знаменателя <InlineMath math={"3 - x > 0"} /> строго положителен, знаки кубической части определяются только числителем:</p>
-        <BlockMath math={"\\iff \\begin{cases} (2 - x)^2 (2x + 1)(x^2 + x - 11) \\le 0 \\\\ x \\in (-4; \\, -3) \\cup (-3; \\, 2) \\cup (2; \\, 3) \\end{cases}"} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Найдем корни квадратного трёхчлена:</span>
-          <InlineMath math={"x = \\frac{-1 \\pm \\sqrt{45}}{2}"} />.
-          <span>Проведём строгое аналитическое сравнение иррациональных границ с ОДЗ без приближённых значений. Так как</span>
-          <InlineMath math={"36 < 45 < 49 \\iff 6 < \\sqrt{45} < 7"} />,
-          <span>оценим положение левого корня:</span>
-        </div>
-        <BlockMath math={"-7 < -\\sqrt{45} < -6 \\iff -8 < -1 - \\sqrt{45} < -7 \\iff -4 < \\frac{-1 - \\sqrt{45}}{2} < -3"} />
-        <p>Левый корень гарантированно попадает в интервал ОДЗ <InlineMath math={"(-4; \\, -3)"} />.</p>
-
-        <p>Оценим положение правого корня:</p>
-        <BlockMath math={"6 < \\sqrt{45} < 7 \\iff 5 < -1 + \\sqrt{45} < 6 \\iff 2 < \\frac{-1 + \\sqrt{45}}{2} < 3"} />
-        <p>Правый корень гарантированно попадает в интервал ОДЗ <InlineMath math={"(2; \\, 3)"} />.</p>
-
-        <p>Решая рациональное выражение методом интервалов с учётом выколотых точек системы, получаем финальные промежутки:</p>
-        <BlockMath math={"\\iff x \\in \\left(-4; \\, \\frac{-1-\\sqrt{45}}{2}\\right] \\cup [-0{,}5; \\, 2) \\cup \\left(2; \\, \\frac{-1+\\sqrt{45}}{2}\\right]"} />
-
-        <p>Визуализируем полученные интервалы на числовой прямой методом двух уровней крыш со штриховкой:</p>
-
-        {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        {/* 🔥 ИСПРАВЛЕНО: Слэши защищены на уровне JSX дочерних элементов (children) внутри foreignObject */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="460" height="135" viewBox="0 0 460 135" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="420" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M420 60 l-6 -3 M420 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="428" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка ОДЗ -4 */}
-            <circle cx="45" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="45" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-4</text>
-
-            {/* Закрашенная иррациональная точка числителя левая */}
-            <circle cx="105" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="65" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\frac{-1-\\sqrt{45}}{2}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка ОДЗ -3 */}
-            <circle cx="165" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="165" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-3</text>
-
-            {/* Закрашенная точка числителя -0,5 */}
-            <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="215" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-0,5</text>
-
-            {/* Выколотая точка ОДЗ 2 */}
-            <circle cx="265" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="265" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
-
-            {/* Закрашенная иррациональная точка числителя правая */}
-            <circle cx="315" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="275" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\frac{-1+\\sqrt{45}}{2}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка ОДЗ 3 */}
-            <circle cx="365" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="365" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Зоны ответа */}
-            <path d="M 45 60 L 45 45 A 10 10 0 0 1 55 35 L 95 35 A 10 10 0 0 1 105 45 L 105 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 215 60 L 215 45 A 10 10 0 0 1 225 35 L 255 35 A 10 10 0 0 1 265 45 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 265 60 L 265 45 A 10 10 0 0 1 275 35 L 305 35 A 10 10 0 0 1 315 45 L 315 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифмов */}
-            <path d="M 45 60 L 45 25 A 10 10 0 0 1 55 15 L 155 15 A 10 10 0 0 1 165 25 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 165 60 L 165 25 A 10 10 0 0 1 175 15 L 255 15 A 10 10 0 0 1 265 25 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 265 60 L 265 25 A 10 10 0 0 1 275 15 L 355 15 A 10 10 0 0 1 365 25 L 365 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ В ЗОНАХ ПЕРЕСЕЧЕНИЯ */}
-            {/* Левый полуинтервал */}
-            <line x1="49" y1="58" x2="55" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="57" y1="58" x2="63" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="65" y1="58" x2="71" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="73" y1="58" x2="79" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="81" y1="58" x2="87" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="89" y1="58" x2="95" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="97" y1="58" x2="101" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Средний полуинтервал */}
-            <line x1="219" y1="58" x2="225" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="227" y1="58" x2="233" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="235" y1="58" x2="241" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="243" y1="58" x2="249" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="251" y1="58" x2="253" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Правый полуинтервал */}
-            <line x1="269" y1="58" x2="275" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="277" y1="58" x2="283" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="293" y1="58" x2="299" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="301" y1="58" x2="307" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="309" y1="58" x2="311" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>
-              {"\\left(-4; \\, \\frac{-1-\\sqrt{45}}{2}\\right] \\cup [-0{,}5; \\, 2) \\cup \\left(2; \\, \\frac{-1+\\sqrt{45}}{2}\\right]"}
-            </InlineMath>
-          </div>
-        </div>
+        <p>Обозначим <InlineMath math={`u=x+4`} />, <InlineMath math={`v=3-x`} />. Область определения исходного выражения:</p>
+        <BlockMath math={`-4<x<3,\\qquad x\\ne-3,2.`} />
+        <p>По формуле перехода к основанию исходное неравенство равносильно <InlineMath math={`(\\log_v u)^2\\le1`} />. Сравнив квадраты логарифмов, получаем</p>
+        <BlockMath math={`(\\ln u-\\ln v)(\\ln u+\\ln v)\\le0.`} />
+        <p>Знаки множителей совпадают со знаками <InlineMath math={`u-v=2x+1`} /> и <InlineMath math={`uv-1=-x^2-x+11`} /> соответственно.</p>
+        <BlockMath math={`(2x+1)(-x^2-x+11)\\le0,\\qquad x\\in(-4;3)\\setminus\\{-3,2\\}.`} />
+        <p>Нули квадратного множителя равны <InlineMath math={`\\frac{-1\\pm\\sqrt{45}}2`} />. Расставляем знаки и пересекаем найденные промежутки с ОДЗ.</p>
+        <InequalityNumberLine points={[{ label: '\\frac{-1-\\sqrt{45}}2', closed: true }, { label: '-3', closed: false }, { label: '-\\frac12', closed: true }, { label: '\\frac{-1+\\sqrt{45}}2', closed: true }, { label: '3', closed: false }]} selected={[[1,2],[2,3],[4,5]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\left[\\frac{-1-\\sqrt{45}}2;-3\\right)\\cup\\left(-3;-\\frac12\\right]\\cup\\left[\\frac{-1+\\sqrt{45}}2;3\\right)`} /></div>
       </div>
     )
   },
@@ -7669,105 +5995,14 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>
-          Используем формулу перехода к новому основанию для знаменателя дроби: 
-          <InlineMath>{"\\log_{x-3}(|x-2|-1) = \\frac{1}{\\log_{|x-2|-1}(x-3)}"}</InlineMath>. 
-          Перейдём к единой равносильной системе условий, удерживающей ОДЗ всех аргументов и переменных оснований логарифмов:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} \\log_{|x-2|-1}((x-1)(x-3)) \\cdot \\log_{|x-2|-1}(x-3) \\le 0 \\\\ (x-1)(x-3) > 0 \\\\ x - 3 > 0 \\\\ |x-2| - 1 > 0 \\\\ |x-2| - 1 \\neq 1 \\\\ x - 3 \\neq 1 \\end{cases}"}</BlockMath>
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Сведём ограничения ОДЗ аргументов к общему базовому промежутку: из системы строго следует, что</span>
-          <InlineMath>{"x > 3"}</InlineMath>
-          <span>и</span>
-          <InlineMath>{"x \\neq 4"}</InlineMath>.
-          <span>На данном интервале модуль раскрывается однозначно со знаком «плюс»:</span>
-          <InlineMath>{"|x - 2| = x - 2"}</InlineMath>,
-          <span>что позволяет упростить основание:</span>
-          <InlineMath>{"|x - 2| - 1 = x - 3"}</InlineMath>.
-        </div>
-
-        <p>Подставим полученное линейное основание в систему условий и преобразуем произведение логарифмов:</p>
-        <BlockMath>{"\\iff \\begin{cases} \\log_{x-3}(x-1) \\le \\log_{x-3}\\left(\\frac{1}{x-3}\\right) \\\\ x > 3 \\\\ x \\neq 4 \\end{cases}"}</BlockMath>
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Применим метод замены множителей (рационализации) к полученному логарифмическому выражению:</span>
-        </div>
-        <BlockMath>{"\\iff \\begin{cases} (x - 3 - 1)\\left(x - 1 - \\frac{1}{x - 3}\\right) \\le 0 \\\\ x > 3 \\\\ x \\neq 4 \\end{cases} \\iff \\begin{cases} (x - 4)\\frac{x^2 - 4x + 2}{x - 3} \\le 0 \\\\ x > 3 \\\\ x \\neq 4 \\end{cases}"}</BlockMath>
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Так как на области ОДЗ множитель</span>
-          <InlineMath>{"x - 3 > 0"}</InlineMath>
-          <span>строго положителен, знаки определяются только числителем. Нули квадратного трёхчлена:</span>
-          <InlineMath>{"x = 2 \\pm \\sqrt{2}"}</InlineMath>.
-          <span>Проведём строгое аналитическое сравнение: так как</span>
-          <InlineMath>{"1 < \\sqrt{2} < 2 \\iff 3 < 2 + \\sqrt{2} < 4"}</InlineMath>,
-          <span>корень лежит внутри рассматриваемой области:</span>
-        </div>
-        <BlockMath>{"\\iff \\begin{cases} (x - 4)(x - (2 - \\sqrt{2}))(x - (2 + \\sqrt{2})) \\le 0 \\\\ x > 3 \\\\ x \\neq 4 \\end{cases}"}</BlockMath>
-
-        <p>Решая полученную рациональную систему методом интервалов на области ограничений, находим итоговое пересечение множеств:</p>
-        <BlockMath>{"\\iff x \\in (3; \\, 2 + \\sqrt{2}]"}</BlockMath>
-
-        <p>Визуализируем полученный интервал на числовой прямой методом двух уровней крыш со штриховкой:</p>
-
-        {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="135" viewBox="0 0 400 135" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка ОДЗ 3 */}
-            <circle cx="95" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="95" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
-
-            {/* Закрашенная иррациональная точка ответа */}
-            <circle cx="195" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="155" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"2+\\sqrt{2}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка ОДЗ 4 */}
-            <circle cx="295" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="295" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">4</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части */}
-            <path d="M 95 60 L 95 45 A 10 10 0 0 1 105 35 L 185 35 A 10 10 0 0 1 195 45 L 195 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифмов */}
-            <path d="M 95 60 L 95 25 A 10 10 0 0 1 105 15 L 285 15 A 10 10 0 0 1 295 25 L 295 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 295 60 L 295 25 A 10 10 0 0 1 305 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ В ЗОНЕ ПЕРЕСЕЧЕНИЯ */}
-            {/* Полуинтервал (3; 2 + √2] */}
-            <line x1="99" y1="58" x2="105" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="107" y1="58" x2="113" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="58" x2="121" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="123" y1="58" x2="129" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="131" y1="58" x2="137" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="139" y1="58" x2="145" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="147" y1="58" x2="153" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="155" y1="58" x2="161" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="163" y1="58" x2="169" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="177" y1="58" x2="183" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="185" y1="58" x2="191" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="193" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>
-              {"(3; \\, 2 + \\sqrt{2}]"}
-            </InlineMath>
-          </div>
-        </div>
+        <p>Из ограничений оснований и аргументов получаем <InlineMath math={`x>3,\\quad x\\ne4`} />. На этом промежутке <InlineMath math={`|x-2|-1=x-3`} />, поэтому знаменатель исходной дроби равен единице:</p>
+        <BlockMath math={`\\log_{x-3}(x-3)=1.`} />
+        <p>Сравним числитель с нулём методом рационализации:</p>
+        <BlockMath math={`\\log_{x-3}((x-1)(x-3))\\le0 \\iff (x-4)\\bigl((x-1)(x-3)-1\\bigr)\\le0.`} />
+        <BlockMath math={`(x-4)(x^2-4x+2)\\le0,\\qquad x>3,\\qquad x\\ne4.`} />
+        <p>Нужный корень квадратного множителя равен <InlineMath math={`2+\\sqrt{2}`} /> и лежит между 3 и 4. По знакам произведения получаем:</p>
+        <InequalityNumberLine points={[{ label: '3', closed: false }, { label: '2+\\sqrt{2}', closed: true }, { label: '4', closed: false }]} selected={[[2,3]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\left[2+\\sqrt{2};4\\right)`} /></div>
       </div>
     )
   },
@@ -7799,19 +6034,19 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="135" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="135" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={135.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Выколотая точка 2 */}
-            <circle cx="235" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="235" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
+            <circle cx="235" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={235.0} y={80.0} anchor="middle" math={"2"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): ОДЗ числителя (0; 2) */}
             <path d="M 135 60 L 135 45 A 10 10 0 0 1 145 35 L 225 35 A 10 10 0 0 1 235 45 L 235 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -7872,27 +6107,27 @@ export const section15Tasks = [
         <p>Визуализируем полученные интервалы на числовой прямой методом двух уровней крыш со штриховкой:</p>
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка числителя -1 */}
             <circle cx="55" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="55" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
+            <SvgMathLabel x={55.0} y={80.0} anchor="middle" math={"-1"} />
 
             {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="135" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="135" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={135.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Выколотая точка основания 0,5 */}
-            <circle cx="215" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="215" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0,5</text>
+            <circle cx="215" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={215.0} y={80.0} anchor="middle" math={"0{,}5"} />
 
             {/* Закрашенная точка числителя 1 */}
             <circle cx="295" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="295" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <SvgMathLabel x={295.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Зоны ответа */}
             <path d="M 55 60 L 55 45 A 10 10 0 0 1 65 35 L 125 35 A 10 10 0 0 1 135 45 L 135 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -7958,136 +6193,14 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>
-          Запишем единую равносильную систему условий, учитывающую ограничения ОДЗ для аргументов и оснований степеней:
-        </p>
-        <BlockMath math={"\\iff \\begin{cases} x^{\\log_{\\sqrt[3]{16}} x - 12} > 8^{4(\\log_4 x - 8)} \\\\ x > 0 \\\\ x \\neq 1 \\end{cases}"} />
-
-        <p>Преобразуем основания логарифмов в показателях степеней к основанию 2, используя свойства степеней:</p>
-        <BlockMath math={"\\log_{\\sqrt[3]{16}} x = \\log_{2^{4/3}} x = \\frac{3}{4}\\log_2 x \\quad \\text{и} \\quad \\log_4 x = \\frac{1}{2}\\log_2 x"} />
-        <p>Приведём также основание правой части к числу 2: <InlineMath math={"8 = 2^3"} />. Подставим данные преобразования в систему:</p>
-        <BlockMath math={"\\iff \\begin{cases} x^{\\frac{3}{4}\\log_2 x - 12} > \\left(2^3\\right)^{4(\\frac{1}{2}\\log_2 x - 8)} \\\\ x > 0 \\\\ x \\neq 1 \\end{cases} \\iff \\begin{cases} x^{\\frac{3}{4}\\log_2 x - 12} > 2^{6\\log_2 x - 96} \\\\ x > 0 \\\\ x \\neq 1 \\end{cases}"} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Прологарифмируем обе части неравенства по основанию</span>
-          <InlineMath math={"2 > 1"} />,
-          <span>что позволяет сохранить исходный знак неравенства без изменений:</span>
-        </div>
-        <BlockMath math={"\\iff \\begin{cases} \\log_2 \\left(x^{\\frac{3}{4}\\log_2 x - 12}\\right) > \\log_2 \\left(2^{6\\log_2 x - 96}\\right) \\\\ x > 0 \\\\ x \\neq 1 \\end{cases}"} />
-
-        <p>Вынесем показатели степеней за знаки логарифмов по свойствам степеней:</p>
-        <BlockMath math={"\\iff \\begin{cases} \\left(\\frac{3}{4}\\log_2 x - 12\\right) \\cdot \\log_2 x > 6\\log_2 x - 96 \\\\ x > 0 \\\\ x \\neq 1 \\end{cases}"} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Сделаем замену переменной: пусть</span>
-          <InlineMath math={"t = \\log_2 x"} />.
-          <span>Раскроем скобки и перенесём все члены в левую часть:</span>
-        </div>
-        <BlockMath math={"\\frac{3}{4}t^2 - 12t - 6t + 96 > 0 \\iff \\frac{3}{4}t^2 - 18t + 96 > 0"} />
-        <p>Умножим неравенство на <InlineMath math={"\\frac{4}{3}"} />, чтобы упростить старший коэффициент квадратного трёхчлена:</p>
-        <BlockMath math={"t^2 - 24t + 126 > 0"} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Найдем корни полученного квадратного трёхчлена через дискриминант:</span>
-          <InlineMath math={"D = 24^2 - 4 \\cdot 126 = 576 - 504 = 72 = (6\\sqrt{2})^2"} />.
-          <span>Откуда получаем интервалы решения относительно переменной</span>
-          <InlineMath math={"t"} />:
-        </div>
-        <BlockMath math={"\\iff \\left[ \\begin{aligned} &t < 12 - 3\\sqrt{2} \\\\ &t > 12 + 3\\sqrt{2} \\end{aligned} \\right."} />
-
-        <p>Выполним обратную замену для логарифмической функции по монотонно возрастающему основанию 2:</p>
-        <BlockMath math={"\\iff \\left[ \\begin{aligned} &\\log_2 x < 12 - 3\\sqrt{2} \\\\ &\\log_2 x > 12 + 3\\sqrt{2} \\end{aligned} \\right. \\iff \\left[ \\begin{aligned} &x < 2^{12 - 3\\sqrt{2}} \\\\ &x > 2^{12 + 3\\sqrt{2}} \\end{aligned} \\right."} />
-
-
-        <p>Визуализируем полученные интервалы на числовой прямой методом двух уровней крыш со штриховкой:</p>
-
-         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        {/* 🔥 ИСПРАВЛЕНО: Слэши степеней логарифмов на оси защищены через children-синтаксис {"..."} внутри foreignObject */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="428" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="45" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="45" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
-
-            {/* Выколотая точка ОДЗ 1 */}
-            <circle cx="115" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
-
-            {/* Выколотая иррациональная точка числителя левая */}
-            <circle cx="205" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="155" y="68" width="100" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"2^{12-3\\sqrt{2}}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая иррациональная точка числителя правая */}
-            <circle cx="315" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="265" y="68" width="100" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"2^{12+3\\sqrt{2}}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Зоны ответа совокупности */}
-            <path d="M 45 60 L 45 45 A 10 10 0 0 1 55 35 L 195 35 A 10 10 0 0 1 205 45 L 205 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 315 60 L 315 45 A 10 10 0 0 1 325 35 L 385 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): Линия ОДЗ x > 0, x != 1 */}
-            <path d="M 45 60 L 45 25 A 10 10 0 0 1 55 15 L 105 15 A 10 10 0 0 1 115 25 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 115 60 L 115 25 A 10 10 0 0 1 125 15 L 385 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ В ЗОНАХ ПЕРЕСЕЧЕНИЯ */}
-            {/* Интервал (0; 1) */}
-            <line x1="49" y1="58" x2="55" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="57" y1="58" x2="63" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="65" y1="58" x2="71" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="73" y1="58" x2="79" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="81" y1="58" x2="87" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="89" y1="58" x2="95" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="97" y1="58" x2="103" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="105" y1="58" x2="111" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="111" y1="58" x2="113" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Интервал (1; 2^(12-3sqrt(2))) */}
-            <line x1="119" y1="58" x2="125" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="127" y1="58" x2="133" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="135" y1="58" x2="141" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="143" y1="58" x2="149" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="151" y1="58" x2="157" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="159" y1="58" x2="165" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="167" y1="58" x2="173" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="175" y1="58" x2="181" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="183" y1="58" x2="189" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="197" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="199" y1="58" x2="203" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Луч (2^(12+3sqrt(2)); +inf) */}
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="327" y1="58" x2="333" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="335" y1="58" x2="341" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="343" y1="58" x2="349" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="351" y1="58" x2="357" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="359" y1="58" x2="365" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="367" y1="58" x2="373" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="375" y1="58" x2="381" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="383" y1="58" x2="385" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>{"(0; \\, 1) \\cup (1; \\, 2^{12 - 3\\sqrt{2}}) \\cup (2^{12 + 3\\sqrt{2}}; \\, +\\infty)"}</InlineMath>
-          </div>
-        </div>
+        <p>ОДЗ: <InlineMath math={`x>0`} />. Значение <InlineMath math={`x=1`} /> допустимо: основание логарифма слева постоянно и не равно единице.</p>
+        <p>Положим <InlineMath math={`t=\\log_2x`} />. Тогда</p>
+        <BlockMath math={`x^{\\log_{\\sqrt[3]{16}}x-12}=2^{\\frac34t^2-12t},\\qquad 8^{4(\\log_4x-8)}=2^{6t-96}.`} />
+        <p>Поскольку основание 2 больше единицы, сравним показатели:</p>
+        <BlockMath math={`\\frac34t^2-12t>6t-96 \\iff t^2-24t+128>0 \\iff (t-8)(t-16)>0.`} />
+        <p>Получаем <InlineMath math={`t<8`} /> или <InlineMath math={`t>16`} /> и возвращаемся к переменной x.</p>
+        <InequalityNumberLine points={[{ label: '0', closed: false }, { label: '256', closed: false }, { label: '65536', closed: false }]} selected={[[1,2],[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`(0;256)\\cup(65536;+\\infty)`} /></div>
       </div>
     )
   },
@@ -8135,27 +6248,27 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ -1.5 */}
-            <circle cx="45" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="45" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1,5</text>
+            <circle cx="45" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={45.0} y={80.0} anchor="middle" math={"-1{,}5"} />
 
             {/* Закрашенная точка числителя -1 */}
             <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
+            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-1"} />
 
             {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="195" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="195" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="195" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={195.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная точка числителя 3 */}
             <circle cx="285" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="285" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <SvgMathLabel x={285.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение квадратичной части */}
             <path d="M 115 60 L 115 45 A 10 10 0 0 1 125 35 L 185 35 A 10 10 0 0 1 195 45 L 195 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -8273,22 +6386,22 @@ export const section15Tasks = [
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         {/* 🔥 ИСПРАВЛЕНО: Слэши логарифма на оси защищены через children-синтаксис {"..."} внутри foreignObject */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="440" height="135" viewBox="0 0 440 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="408" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка числителя -1 */}
             <circle cx="105" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="105" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
+            <SvgMathLabel x={105.0} y={80.0} anchor="middle" math={"-1"} />
 
             {/* Закрашенная точка числителя 2 */}
             <circle cx="205" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="205" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
+            <SvgMathLabel x={205.0} y={80.0} anchor="middle" math={"2"} />
 
             {/* Выколотая иррациональная точка ограничения */}
-            <circle cx="315" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="315" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="265" y="68" width="100" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
                 <InlineMath>{"\\log_{1{,}5}\\left(\\frac{35}{12}\\right)"}</InlineMath>
@@ -8352,114 +6465,14 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>
-          Запишем единую равносильную систему условий с учётом области существования логарифма и ограничений аргумента под квадратом:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} \\frac{x^3 + x^2 - x - 1}{\\log_4^2\\left(\\frac{15}{4} - x\\right) - 2\\log_2^2\\left(x - \\frac{15}{4}\\right)^2 + 16} \\ge 0 \\\\ \\frac{15}{4} - x > 0 \\\\ \\left(x - \\frac{15}{4}\\right)^2 > 0 \\end{cases} \\iff \\begin{cases} \\frac{x^3 + x^2 - x - 1}{\\log_4^2\\left(\\frac{15}{4} - x\\right) - 2\\log_2^2\\left(x - \\frac{15}{4}\\right)^2 + 16} \\ge 0 \\\\ x < 3{,}75 \\end{cases}"}</BlockMath>
-
-        <p>Разложим числитель дроби методом попарной группировки слагаемых:</p>
-        <BlockMath math={"x^3 + x^2 - x - 1 = x^2(x + 1) - (x + 1) = (x + 1)(x^2 - 1) = (x + 1)^2(x - 1)"} />
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Преобразуем логарифмы в знаменателе к единому основанию 4. Учитывая ОДЗ</span>
-          <InlineMath>{"x < 3{,}75 \\implies \\left|x - \\frac{15}{4}\\right| = \\frac{15}{4} - x"}</InlineMath>,
-          <span>вынесем степень из аргумента второго слагаемого:</span>
-        </div>
-        <BlockMath math={"2\\log_2^2\\left(x - \\frac{15}{4}\\right)^2 = 2 \\cdot \\left(2\\log_2\\left|x - \\frac{15}{4}\\right|\\right)^2 = 8\\log_2^2\\left(\\frac{15}{4} - x\\right) = 32\\log_4^2\\left(\\frac{15}{4} - x\\right)"} />
-
-        <p>Подставим полученные показательные эквиваленты обратно в знаменатель и приведём подобные члены:</p>
-        <BlockMath>{"\\log_4^2\\left(\\frac{15}{4} - x\\right) - 32\\log_4^2\\left(\\frac{15}{4} - x\\right) + 16 = 16 - 31\\log_4^2\\left(\\frac{15}{4} - x\\right)"}</BlockMath>
-
-        <p>Применим разность квадратов и метод рационализации (замены множителей) к знаменателю дроби по основанию <InlineMath>{"4 > 1"}</InlineMath>:</p>
-        <BlockMath>{"\\iff \\begin{cases} \\frac{(x + 1)^2(x - 1)}{\\left(4 - \\sqrt{31}\\log_4\\left(\\frac{15}{4}-x\\right)\\right)\\left(4 + \\sqrt{31}\\log_4\\left(\\frac{15}{4}-x\\right)\\right)} \\ge 0 \\\\ x < 3{,}75 \\end{cases}"}</BlockMath>
-        <BlockMath>{"\\iff \\begin{cases} \\frac{(x + 1)^2(x - 1)}{\\left(\\frac{15}{4} - x - 4^{4/\\sqrt{31}}\\right)\\left(\\frac{15}{4} - x - 4^{-4/\\sqrt{31}}\\right)} \\ge 0 \\\\ x < 3{,}75 \\end{cases}"}</BlockMath>
-
-        <p>Решая рациональное выражение методом интервалов знаков с учётом выколотых нулей знаменателя и базового луча ОДЗ, находим:</p>
-        <BlockMath>{"\\iff x \\in \\{-1\\} \\cup \\left[1; \\, 3{,}75 - 4^{-4/\\sqrt{31}}\\right) \\cup \\left(3{,}75 - 4^{4/\\sqrt{31}}; \\, 3{,}75\\right)"}</BlockMath>
-
-        <p>Визуализируем полученный интервал на числовой прямой методом двух уровней крыш со штриховкой:</p>
-
-        {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="420" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M420 60 l-6 -3 M420 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="428" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Закрашенная изолированная точка числителя -1 */}
-            <circle cx="55" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="55" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
-
-            {/* Закрашенная точка числителя 1 */}
-            <circle cx="125" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="125" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
-
-            {/* Выколотая точка знаменателя правая */}
-            <circle cx="215" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="165" y="68" width="100" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-[10px]">
-                <InlineMath>{"3{,}75-4^{-\\frac{4}{\\sqrt{31}}}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка знаменателя левая */}
-            <circle cx="305" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="255" y="68" width="100" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-[10px]">
-                <InlineMath>{"3{,}75-4^{\\frac{4}{\\sqrt{31}}}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка ОДЗ 3,75 */}
-            <circle cx="375" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="375" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3,75</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Зоны ответа */}
-            <circle cx="55" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 125 60 L 125 45 A 10 10 0 0 1 135 35 L 205 35 A 10 10 0 0 1 215 45 L 215 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 305 60 L 305 45 A 10 10 0 0 1 315 35 L 365 35 A 10 10 0 0 1 375 45 L 375 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x < 3.75 */}
-            <path d="M 15 15 L 365 15 A 10 10 0 0 1 375 25 L 375 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Изолированная точка -1 */}
-            <line x1="55" y1="58" x2="55" y2="37" stroke="#328ce6" strokeWidth="1.5" opacity="0.7" />
-
-            {/* Полуинтервал [1; правый корень) */}
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="137" y1="58" x2="143" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="153" y1="58" x2="159" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="161" y1="58" x2="167" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="169" y1="58" x2="175" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="177" y1="58" x2="183" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="185" y1="58" x2="191" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="193" y1="58" x2="199" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="201" y1="58" x2="207" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="207" y1="58" x2="211" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Интервал (левый корень; 3,75) */}
-            <line x1="309" y1="58" x2="315" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="317" y1="58" x2="323" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="325" y1="58" x2="331" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="333" y1="58" x2="339" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="341" y1="58" x2="347" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="349" y1="58" x2="355" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="357" y1="58" x2="363" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="365" y1="58" x2="371" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="371" y1="58" x2="373" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>{"\\{-1\\} \\cup \\left[1; \\, 3{,}75 - 4^{-\\frac{4}{\\sqrt{31}}}\\right) \\cup \\left(3{,}75 - 4^{\\frac{4}{\\sqrt{31}}}; \\, 3{,}75\\right)"}</InlineMath>
-          </div>
-        </div>
+        <p>ОДЗ логарифмов: <InlineMath math={`x<\\frac{15}4`} />. Разложим числитель и приведём логарифмы знаменателя к основанию 4:</p>
+        <BlockMath math={`x^3+x^2-x-1=(x+1)^2(x-1),`} />
+        <BlockMath math={`\\log_4^2\\!\\left(\\frac{15}4-x\\right)-2\\log_2^2\\!\\left(x-\\frac{15}4\\right)^2+16=16-31\\log_4^2\\!\\left(\\frac{15}4-x\\right).`} />
+        <p>Обозначим нули знаменателя:</p>
+        <BlockMath math={`a=\\frac{15}4-4^{4/\\sqrt{31}},\\qquad b=\\frac{15}4-4^{-4/\\sqrt{31}},\\qquad 1<a<b<\\frac{15}4.`} />
+        <p>Знаменатель положителен между <InlineMath math={`a`} /> и <InlineMath math={`b`} /> и отрицателен вне этого промежутка. Числитель отрицателен при <InlineMath math={`x<1`} /> (кроме нулевой точки −1), а при <InlineMath math={`x\\ge1`} /> неотрицателен. Совместим знаки и ОДЗ:</p>
+        <InequalityNumberLine points={[{ label: '1', closed: true }, { label: 'a', closed: false }, { label: 'b', closed: false }, { label: '\\frac{15}4', closed: false }]} selected={[[0,1],[2,3]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`(-\\infty;1]\\cup(a;b),\\quad a=\\frac{15}4-4^{4/\\sqrt{31}},\\quad b=\\frac{15}4-4^{-4/\\sqrt{31}}`} /></div>
       </div>
     )
   },
@@ -8518,19 +6531,19 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="115" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная изолированная точка ответа 1 */}
             <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="215" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <SvgMathLabel x={215.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Изолированная точка */}
             <circle cx="215" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
@@ -8580,18 +6593,18 @@ export const section15Tasks = [
 
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ (ДО НАЛОЖЕНИЯ ОДЗ) */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             <line x1="10" y1="50" x2="360" y2="50" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 50 l-6 -3 M360 50 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="54" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={54.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка числителя 5,5 */}
             <circle cx="145" cy="50" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="145" y="70" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">5,5</text>
+            <SvgMathLabel x={145.0} y={70.0} anchor="middle" math={"5{,}5"} />
 
             {/* Выколотая точка знаменателя 6 */}
-            <circle cx="235" cy="50" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="235" y="70" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">6</text>
+            <circle cx="235" cy="50" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={235.0} y={70.0} anchor="middle" math={"6"} />
 
             {/* Расстановка классических крыш решения дроби (>= 0) */}
             <path d="M 15 25 L 135 25 A 10 10 0 0 1 145 35 L 145 50" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -8623,23 +6636,23 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 5,4 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">5,4</text>
+            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"5{,}4"} />
 
             {/* Закрашенная точка числителя 5,5 */}
             <circle cx="145" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="145" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">5,5</text>
+            <SvgMathLabel x={145.0} y={80.0} anchor="middle" math={"5{,}5"} />
 
             {/* Выколотая точка знаменателя 6 */}
-            <circle cx="235" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="235" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">6</text>
+            <circle cx="235" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={235.0} y={80.0} anchor="middle" math={"6"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (-inf; 5.5] U (6; +inf) */}
             <path d="M 15 35 L 135 35 A 10 10 0 0 1 145 45 L 145 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -8716,22 +6729,22 @@ export const section15Tasks = [
 
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -1 */}
-            <circle cx="95" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="95" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
+            <circle cx="95" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"-1"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="185" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="185" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="185" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Выколотая точка 1 */}
-            <circle cx="275" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="275" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* Классические крыши решения дроби там, где знак "+" (> 0). В точке 0 знак не меняется, там провал. */}
             <path d="M 15 35 L 85 35 A 10 10 0 0 1 95 45 L 95 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -8760,23 +6773,23 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка -1 */}
-            <circle cx="95" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="95" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
+            <circle cx="95" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"-1"} />
 
             {/* Выколотая точка 0 */}
-            <circle cx="185" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="185" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="185" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Выколотая точка 1 */}
-            <circle cx="275" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="275" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (-inf; -1) U (1; +inf) */}
             <path d="M 15 35 L 85 35 A 10 10 0 0 1 95 45 L 95 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -8832,129 +6845,14 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>
-          Представим единицу в числителе как логарифм по основанию 2 и запишем единую равносильную систему условий с ограничениями ОДЗ аргументов и знаменателя:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} \\frac{\\log_2(2x^2 - 17x + 35) - \\log_2 2}{\\log_2(x + 6)} \\le 0 \\\\ 2x^2 - 17x + 35 > 0 \\\\ x + 6 > 0 \\\\ \\log_2(x + 6) \\neq 0 \\end{cases} \\iff \\begin{cases} \\frac{\\log_2(2x^2 - 17x + 35) - \\log_2 2}{\\log_2(x + 6)} \\le 0 \\\\ (2x - 5)(x - 7) > 0 \\\\ x > -6 \\\\ x \\neq -5 \\end{cases}"}</BlockMath>
-
-        <p>
-          Применим метод замены множителей (рационализации) к разностям логарифмов в числителе и знаменателе по основанию <InlineMath>{"2 > 1"}</InlineMath>:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} \\frac{2x^2 - 17x + 35 - 2}{x + 6 - 1} \\le 0 \\\\ x \\in (-\\infty; \\, 2,5) \\cup (7; \\, +\\infty) \\\\ x > -6 \\\\ x \\neq -5 \\end{cases} \\iff \\begin{cases} \\frac{2x^2 - 17x + 33}{x + 5} \\le 0 \\\\ x \\in (-\\infty; \\, 2,5) \\cup (7; \\, +\\infty) \\\\ x > -6 \\\\ x \\neq -5 \\end{cases}"}</BlockMath>
-
-        <p>Разложим квадратный трёхчлен в числителе дроби на линейные множители (корни по дискриминанту равны 3 и 5,5):</p>
-        <BlockMath>{"\\iff \\begin{cases} \\frac{2(x - 3)(x - 5{,}5)}{x + 5} \\le 0 \\\\ x \\in (-\\infty; \\, 2,5) \\cup (7; \\, +\\infty) \\\\ x > -6 \\\\ x \\neq -5 \\end{cases}"}</BlockMath>
-
-        <p>Исследуем знаки полученного рационального выражения методом интервалов. На геометрическом чертеже крышами отмечены области, где дробь меньше или равна нулю (\\le 0):</p>
-
-        {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка знаменателя -5 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-5</text>
-
-            {/* Закрашенная точка числителя 3 */}
-            <circle cx="175" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="175" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
-
-            {/* Закрашенная точка числителя 5,5 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="275" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">5,5</text>
-
-            {/* Крыши решения дроби там, где знак "-" (<= 0): луч (-inf; -5) и отрезок [3; 5.5] */}
-            <path d="M 15 35 L 55 35 A 10 10 0 0 1 65 45 L 65 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 175 60 L 175 45 A 10 10 0 0 1 185 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* Штриховка чистых интервалов знака "-" */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="32" y1="58" x2="38" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="46" y1="58" x2="52" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="61" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="179" y1="58" x2="185" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="193" y1="58" x2="199" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="207" y1="58" x2="213" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="235" y1="58" x2="241" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="249" y1="58" x2="255" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="263" y1="58" x2="269" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="271" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <p>Откуда находим промежуточное решение для рациональной части неравенства:</p>
-        <BlockMath>{"x \\in (-\\infty; \\, -5) \\cup [3; \\, 5{,}5]"}</BlockMath>
-
-        <p>Пересечёт полученные множества с условиями области допустимых значений логарифмов:</p>
-
-        {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ С ВЫВЕРЕННЫМИ КООРДИНАТАМИ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="125" viewBox="0 0 440 125" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="408" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка ОДЗ -6 */}
-            <circle cx="35" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="35" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-6</text>
-
-            {/* Выколотая точка знаменателя -5 */}
-            <circle cx="85" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="85" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-5</text>
-
-            {/* Выколотая точка ОДЗ 2,5 */}
-            <circle cx="165" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="165" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2,5</text>
-
-            {/* Закрашенная точка числителя 3 */}
-            <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="215" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
-
-            {/* Закрашенная точка числителя 5,5 */}
-            <circle cx="295" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="295" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">5,5</text>
-
-            {/* Выколотая точка ОДЗ 7 */}
-            <circle cx="355" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="355" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">7</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (-inf; -5) U [3; 5.5] */}
-            <path d="M 15 35 L 75 35 A 10 10 0 0 1 85 45 L 85 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 215 60 L 215 45 A 10 10 0 0 1 225 35 L 285 35 A 10 10 0 0 1 295 45 L 295 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > -6, x != -5, x входит в лучи (-inf; 2.5) U (7; +inf) */}
-            <path d="M 35 60 L 35 25 A 10 10 0 0 1 45 15 L 75 15 A 10 10 0 0 1 85 25 L 85 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 85 60 L 85 25 A 10 10 0 0 1 95 15 L 155 15 A 10 10 0 0 1 165 25 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Полуинтервал (-6; -5) */}
-            <line x1="39" y1="58" x2="45" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="47" y1="58" x2="53" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="55" y1="58" x2="61" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="63" y1="58" x2="69" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="71" y1="58" x2="77" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="79" y1="58" x2="83" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Отрезок [3; 5.5] ОДЗ не перекрывает, штриховки там нет */}
-          </svg>
-        </div>
-
-        <p>В результате пересечения множеств получаем окончательный ответ всей системы:</p>
-        <BlockMath>{"x \\in (-6; \\, -5)"}</BlockMath>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>{"(-6; \\, -5)"}</InlineMath>
-          </div>
-        </div>
+        <p>ОДЗ: <InlineMath math={`2x^2-17x+35>0,\\ x>-6,\\ x\\ne-5`} />. Квадратный трёхчлен раскладывается как</p>
+        <BlockMath math={`2x^2-17x+35=(2x-7)(x-5),`} />
+        <p>поэтому первый логарифм определён при <InlineMath math={`x<\\frac72`} /> или <InlineMath math={`x>5`} />.</p>
+        <p>Поскольку основание логарифмов больше 1, знак дроби совпадает со знаком</p>
+        <BlockMath math={`\\frac{2x^2-17x+35-2}{x+6-1}=\\frac{2(x-3)(x-\\frac{11}{2})}{x+5}\\le0.`} />
+        <p>Метод интервалов даёт <InlineMath math={`(-\\infty;-5)\\cup[3;\\frac{11}{2}]`} />. Пересекаем с ОДЗ.</p>
+        <InequalityNumberLine points={[{ label: '-6', closed: false }, { label: '-5', closed: false }, { label: '3', closed: true }, { label: '\\frac72', closed: false }, { label: '5', closed: false }, { label: '\\frac{11}2', closed: true }]} selected={[[1,2],[3,4],[5,6]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`(-6;-5)\\cup\\left[3;\\frac72\\right)\\cup\\left(5;\\frac{11}2\\right]`} /></div>
       </div>
     )
   },
@@ -9003,23 +6901,23 @@ export const section15Tasks = [
         <p>Исследуем знаки полученного рационального выражения методом интервалов. На геометрическом чертеже крышами отмечены области, где дробь меньше или равна нулю:</p>
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотый корень знаменателя кратности 2 */}
-            <circle cx="95" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="95" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0,6</text>
+            <circle cx="95" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"0{,}6"} />
 
             {/* Закрашенная точка числителя 1 */}
             <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="185" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* Закрашенная точка числителя 2 */}
             <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="275" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
+            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"2"} />
 
             {/* Крыша решения дроби там, где знак "-" (<= 0): отрезок [1; 2] */}
             <path d="M 185 60 L 185 45 A 10 10 0 0 1 195 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -9042,23 +6940,23 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка знаменателя 0,6 */}
-            <circle cx="95" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="95" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0,6</text>
+            <circle cx="95" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"0{,}6"} />
 
             {/* Закрашенная точка числителя 1 */}
             <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="185" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* Закрашенная точка числителя 2 */}
             <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="275" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
+            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"2"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части [1; 2] */}
             <path d="M 185 60 L 185 45 A 10 10 0 0 1 195 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -9133,23 +7031,23 @@ export const section15Tasks = [
         <p>Пересечёт полученные множества с тривиальным ограничением области допустимых значений логарифмов:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ (ВСЯ ОСЬ) */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка числителя -2 */}
             <circle cx="95" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="95" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-2</text>
+            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"-2"} />
 
             {/* Закрашенная изолированная точка числителя -1 */}
             <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="185" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
+            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"-1"} />
 
             {/* Закрашенная точка числителя 3 */}
             <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="275" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (-inf; -2] U {-1} U [3; +inf) */}
             <path d="M 15 35 L 85 35 A 10 10 0 0 1 95 45 L 95 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -9237,11 +7135,11 @@ export const section15Tasks = [
 
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="440" height="135" viewBox="0 0 440 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось */}
             <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="408" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная иррациональная точка левая */}
             <circle cx="55" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -9253,11 +7151,11 @@ export const section15Tasks = [
 
             {/* Закрашенная точка -2.5 */}
             <circle cx="145" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="145" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-2,5</text>
+            <SvgMathLabel x={145.0} y={80.0} anchor="middle" math={"-2{,}5"} />
 
             {/* Закрашенная точка -2 */}
             <circle cx="225" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="225" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-2</text>
+            <SvgMathLabel x={225.0} y={80.0} anchor="middle" math={"-2"} />
 
             {/* Закрашенная иррациональная точка правая */}
             <circle cx="315" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -9297,11 +7195,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="440" height="135" viewBox="0 0 440 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="408" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная иррациональная точка левая */}
             <circle cx="45" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -9313,10 +7211,10 @@ export const section15Tasks = [
 
             {/* Закрашенная точка -2.5 */}
             <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-2,5</text>
+            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-2{,}5"} />
 
             {/* Выколотая точка границы ОДЗ -sqrt(5) */}
-            <circle cx="175" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="135" y="66" width="80" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
                 <InlineMath>{"-\\sqrt{5}"}</InlineMath>
@@ -9325,7 +7223,7 @@ export const section15Tasks = [
 
             {/* Закрашенная точка -2 */}
             <circle cx="235" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="235" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-2</text>
+            <SvgMathLabel x={235.0} y={80.0} anchor="middle" math={"-2"} />
 
             {/* Закрашенная иррациональная точка правая */}
             <circle cx="315" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -9365,11 +7263,11 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="440" height="135" viewBox="0 0 440 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="408" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная иррациональная точка левая */}
             <circle cx="45" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -9381,10 +7279,10 @@ export const section15Tasks = [
 
             {/* Закрашенная точка -2.5 */}
             <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-2,5</text>
+            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-2{,}5"} />
 
             {/* Выколотая точка границы ОДЗ -sqrt(5) */}
-            <circle cx="175" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="135" y="66" width="80" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
                 <InlineMath>{"-\\sqrt{5}"}</InlineMath>
@@ -9393,7 +7291,7 @@ export const section15Tasks = [
 
             {/* Закрашенная точка -2 */}
             <circle cx="235" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="235" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-2</text>
+            <SvgMathLabel x={235.0} y={80.0} anchor="middle" math={"-2"} />
 
             {/* Закрашенная иррациональная точка правая */}
             <circle cx="315" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -9479,14 +7377,14 @@ export const section15Tasks = [
         <p>Исследуем промежуточные знаки полученного рационального выражения методом интервалов. На геометрическом чертеже крышами отмечены области, где дробь строго больше нуля (&gt; 0):</p>
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="135" viewBox="0 0 400 135" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="135" viewBox="0 0 400 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая логарифмическая точка знаменателя */}
-            <circle cx="185" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="185" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="135" y="68" width="100" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
                 <InlineMath>{"1+\\log_4 3"}</InlineMath>
@@ -9519,18 +7417,18 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="135" viewBox="0 0 400 135" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="135" viewBox="0 0 400 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка ОДЗ -4 */}
             <circle cx="65" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-4</text>
+            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"-4"} />
 
             {/* Выколотая логарифмическая точка знаменателя */}
-            <circle cx="215" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="215" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="165" y="68" width="100" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
                 <InlineMath>{"1+\\log_4 3"}</InlineMath>
@@ -9586,102 +7484,13 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>
-          Запишем единую равносильную систему условий, содержащую исходное неравенство и ограничения ОДЗ для аргументов логарифмов:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} (2^3)^{\\lg(-1-x)} \\le (x^2-1)^{\\lg 2} \\\\ -1 - x > 0 \\\\ x^2 - 1 > 0 \\end{cases} \\iff \\begin{cases} 2^{3\\lg(-1-x)} \\le (x^2-1)^{\\lg 2} \\\\ x < -1 \\\\ (x-1)(x+1) > 0 \\end{cases}"}</BlockMath>
-
-        <p>Пересечение ограничений ОДЗ на аргументы логарифмов даёт базовый ограничивающий луч:</p>
-        <BlockMath>{"\\iff x \\in (-\\infty; \\, -1)"}</BlockMath>
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Преобразуем правую часть неравенства по основному логарифмическому свойству перестановки основания и аргумента</span>
-          <InlineMath>{"A^{\\lg B} = B^{\\lg A}"}</InlineMath>:
-          <span>выражение</span>
-          <InlineMath>{"(x^2 - 1)^{\\lg 2}"}</InlineMath>
-          <span>полностью равносильно форме</span>
-          <InlineMath>{"2^{\\lg(x^2 - 1)}"}</InlineMath>.
-          <span>Подставим это свойство обратно в систему условий:</span>
-        </div>
-        <BlockMath>{"\\iff \\begin{cases} 2^{3\\lg(-1-x)} \\le 2^{\\lg(x^2 - 1)} \\\\ x < -1 \\end{cases}"}</BlockMath>
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>В силу монотонного возрастания показательной функции по основанию</span>
-          <InlineMath>{"2 > 1"}</InlineMath>
-          <span>и десятичного логарифма по основанию</span>
-          <InlineMath>{"10 > 1"}</InlineMath>,
-          <span>опустим основания функций и перейдём к сравнению аргументов:</span>
-        </div>
-        <BlockMath>{"\\iff \\begin{cases} 3\\lg(-1-x) \\le \\lg(x^2 - 1) \\\\ x < -1 \\end{cases} \\iff \\begin{cases} \\lg(-1-x)^3 \\le \\lg(x^2 - 1) \\\\ x < -1 \\end{cases}"}</BlockMath>
-        <BlockMath>{"\\iff \\begin{cases} (-1-x)^3 \\le x^2 - 1 \\\\ x < -1 \\end{cases} \\iff \\begin{cases} -(x+1)^3 \\le (x-1)(x+1) \\\\ x < -1 \\end{cases}"}</BlockMath>
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Перенесём все члены в одну сторону и разложим выражение на множители. Так как на ОДЗ</span>
-          <InlineMath>{"x < -1 \\implies x + 1 < 0"}</InlineMath>,
-          <span>разделим неравенство на строго отрицательный член</span>
-          <InlineMath>{"(x + 1) < 0"}</InlineMath>
-          <span>со сменой знака:</span>
-        </div>
-        <BlockMath>{"\\iff \\begin{cases} -(x+1)^2 \\le x - 1 \\\\ x < -1 \\end{cases} \\iff \\begin{cases} -(x^2 + 2x + 1) - x + 1 \\le 0 \\\\ x < -1 \\end{cases}"}</BlockMath>
-        <BlockMath>{"\\iff \\begin{cases} -x^2 - 3x \\le 0 \\\\ x < -1 \\end{cases} \\iff \\begin{cases} x(x + 3) \\ge 0 \\\\ x < -1 \\end{cases}"}</BlockMath>
-
-        <p>Решая полученное рациональное выражение методом интервалов знаков, находим промежуточное решение для дробной части:</p>
-        <BlockMath>{"x \\in (-\\infty; \\, -3] \\cup [0; \\, +\\infty)"}</BlockMath>
-
-        <p>Пересечёт полученные множества с базовым ограничивающим лучом ОДЗ системы:</p>
-        {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Закрашенная точка числителя -3 */}
-            <circle cx="85" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="85" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-3</text>
-
-            {/* Выколотая точка границы ОДЗ -1 */}
-            <circle cx="185" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="185" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
-
-            {/* Закрашенная точка числителя 0 */}
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="265" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (-inf; -3] U [0; +inf) */}
-            <path d="M 15 35 L 75 35 A 10 10 0 0 1 85 45 L 85 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 265 60 L 265 45 A 10 10 0 0 1 275 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x < -1 */}
-            <path d="M 15 15 L 175 15 A 10 10 0 0 1 185 25 L 185 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Луч (-inf; -3] полностью покрывается ОДЗ */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="81" y1="58" x2="83" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Луч [0; +inf) лежит целиком правее границы -1, пересечения с ОДЗ нет */}
-          </svg>
-        </div>
-
-        <p>В результате пересечения множеств получаем окончательный ответ всей системы:</p>
-        <BlockMath>{"x \\in (-\\infty; \\, -3]"}</BlockMath>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>{"(-\\infty; \\, -3]"}</InlineMath>
-          </div>
-        </div>
+        <p>ОДЗ: <InlineMath math={`x<-1`} />. Используя тождество <InlineMath math={`a^{\\lg b}=b^{\\lg a}`} /> для положительных оснований, преобразуем:</p>
+        <BlockMath math={`2^{3\\lg(-1-x)}\\le2^{\\lg(x^2-1)} \\iff (-1-x)^3\\le x^2-1.`} />
+        <p>Положим <InlineMath math={`t=-1-x>0`} />. Тогда <InlineMath math={`x^2-1=t(t+2)`} />, и после деления на положительное <InlineMath math={`t`} /> получаем</p>
+        <BlockMath math={`t^2\\le t+2 \\iff (t-2)(t+1)\\le0 \\iff 0<t\\le2.`} />
+        <p>Возвращаемся к x: <InlineMath math={`-3\\le x<-1`} />.</p>
+        <InequalityNumberLine points={[{ label: '-3', closed: true }, { label: '-1', closed: false }]} selected={[[1,2]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`[-3;-1)`} /></div>
       </div>
     )
   },
@@ -9725,11 +7534,11 @@ export const section15Tasks = [
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ ЗНАМЕНАТЕЛЯ */}
         {/* Иррациональные натуральные логарифмы выведены оригинальным KaTeX-шрифтом через foreignObject строго под cx=75 и cx=275 */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="440" height="135" viewBox="0 0 440 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="408" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная сложная левая точка */}
             <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -9740,8 +7549,8 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка знаменателя 0 */}
-            <circle cx="175" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="175" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={175.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная сложная правая точка */}
             <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -9824,23 +7633,23 @@ export const section15Tasks = [
         <p>Исследуем знаки полученного рационального выражения методом интервалов. На геометрическом чертеже крышами отмечены области, удовлетворяющие системе неравенства:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Выколотая точка границы 0,5 */}
-            <circle cx="165" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="165" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0,5</text>
+            <circle cx="165" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={165.0} y={80.0} anchor="middle" math={"0{,}5"} />
 
             {/* Закрашенная изолированная точка числителя 1 */}
             <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="265" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <SvgMathLabel x={265.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части дробного знака */}
             <path d="M 15 35 L 155 35 A 10 10 0 0 1 165 45 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -9912,15 +7721,15 @@ export const section15Tasks = [
         <p>Визуализируем пустое пересечение областей на числовой прямой методом двух уровней крыш:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка границы ОДЗ 1 */}
-            <circle cx="135" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="135" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={135.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (пустое множество, крыша отсутствует) */}
 
@@ -9993,19 +7802,19 @@ export const section15Tasks = [
 
                 {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="110" viewBox="0 0 440 110" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="440" height="110" viewBox="0 0 440 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось */}
             <line x1="10" y1="60" x2="420" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M420 60 l-6 -3 M420 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="428" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={428.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка знаменателя 0,5 */}
-            <circle cx="85" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="85" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0,5</text>
+            <circle cx="85" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={85.0} y={80.0} anchor="middle" math={"0{,}5"} />
 
             {/* Выколотая точка знаменателя 1 */}
-            <circle cx="145" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="145" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <circle cx="145" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={145.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* Закрашенная точка числителя log2(5) */}
             <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -10017,10 +7826,10 @@ export const section15Tasks = [
 
             {/* Закрашенная точка числителя 3 */}
             <circle cx="295" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="295" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <SvgMathLabel x={295.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* Выколотая точка знаменателя pi */}
-            <circle cx="365" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="365" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="325" y="66" width="80" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs font-normal">
                 <InlineMath>{"\\pi"}</InlineMath>
@@ -10061,23 +7870,23 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ С ВЫВЕРЕННЫМИ КООРДИНАТАМИ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="480" height="135" viewBox="0 0 480 135" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="480" height="135" viewBox="0 0 480 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="440" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M440 60 l-6 -3 M440 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="448" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={448.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="35" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="35" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="35" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={35.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Выколотая точка знаменателя 0,5 */}
-            <circle cx="85" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="85" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0,5</text>
+            <circle cx="85" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={85.0} y={80.0} anchor="middle" math={"0{,}5"} />
 
             {/* Выколотая точка ОДЗ 1 */}
-            <circle cx="135" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="135" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={135.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* Закрашенная иррациональная точка числителя log2(5) */}
             <circle cx="195" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -10088,11 +7897,11 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка ОДЗ 3 */}
-            <circle cx="255" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="255" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <circle cx="255" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={255.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* Выколотая точка знаменателя pi */}
-            <circle cx="315" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="315" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="275" y="66" width="80" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs font-normal">
                 <InlineMath>{"\\pi"}</InlineMath>
@@ -10100,7 +7909,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая иррациональная точка ОДЗ log2(10) */}
-            <circle cx="385" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="385" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="345" y="66" width="80" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
                 <InlineMath>{"\\log_2 10"}</InlineMath>
@@ -10197,22 +8006,22 @@ export const section15Tasks = [
 
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ПЕРЕМЕННОЙ T В СТИЛЕ КРЫШ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">t</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"t"} />
 
             {/* Выколотый ноль знаменателя */}
-            <circle cx="95" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="95" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="95" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная точка 0,5 */}
             <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="185" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0,5</text>
+            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"0{,}5"} />
 
             {/* Закрашенная точка 2 */}
             <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="275" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
+            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"2"} />
 
             {/* Крыши решения дроби там, где знак "-" (<= 0) */}
             <path d="M 15 35 L 85 35 A 10 10 0 0 1 95 45 L 95 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -10248,23 +8057,23 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ ДЛЯ ПЕРЕМЕННОЙ X */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 1 */}
-            <circle cx="85" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="85" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <circle cx="85" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={85.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* Выколотая точка ОДЗ 2 */}
-            <circle cx="185" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="185" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
+            <circle cx="185" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"2"} />
 
             {/* Закрашенная точка числителя 3 */}
             <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="275" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение совокупности (x < 2 U x >= 3) */}
             <path d="M 15 35 L 175 35 A 10 10 0 0 1 185 45 L 185 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -10355,27 +8164,27 @@ export const section15Tasks = [
         <p>Исследуем промежуточные знаки полученного рационального выражения методом интервалов. На геометрическом чертеже крышами отмечены области выполнения условий совместной системы:</p>
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ СИСТЕМЫ (БЕЗ ОДЗ) */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="110" viewBox="0 0 440 110" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="440" height="110" viewBox="0 0 440 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось */}
             <line x1="10" y1="60" x2="420" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M420 60 l-6 -3 M420 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="428" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={428.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Точки оси */}
             <circle cx="45" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="45" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-6</text>
+            <SvgMathLabel x={45.0} y={80.0} anchor="middle" math={"-6"} />
 
             <circle cx="105" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="105" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-5</text>
+            <SvgMathLabel x={105.0} y={80.0} anchor="middle" math={"-5"} />
 
             <circle cx="175" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="175" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-4</text>
+            <SvgMathLabel x={175.0} y={80.0} anchor="middle" math={"-4"} />
 
             <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="265" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">8</text>
+            <SvgMathLabel x={265.0} y={80.0} anchor="middle" math={"8"} />
 
             <circle cx="355" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="355" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">10</text>
+            <SvgMathLabel x={355.0} y={80.0} anchor="middle" math={"10"} />
 
             {/* Крыши решений */}
             {/* Неравенство 1: [-6; -4] U [8; 10] */}
@@ -10403,27 +8212,27 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="125" viewBox="0 0 440 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="440" height="125" viewBox="0 0 440 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="420" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M420 60 l-6 -3 M420 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="428" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={428.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ -5 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="55" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-5</text>
+            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={55.0} y={80.0} anchor="middle" math={"-5"} />
 
             {/* Выколотая точка ОДЗ -4 */}
-            <circle cx="145" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="145" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-4</text>
+            <circle cx="145" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={145.0} y={80.0} anchor="middle" math={"-4"} />
 
             {/* Закрашенная точка решения 8 */}
             <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="265" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">8</text>
+            <SvgMathLabel x={265.0} y={80.0} anchor="middle" math={"8"} />
 
             {/* Выколотая точка ОДЗ 9 */}
-            <circle cx="355" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="355" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">9</text>
+            <circle cx="355" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={355.0} y={80.0} anchor="middle" math={"9"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Промежуточное решение */}
             <path d="M 55 60 L 55 45 A 10 10 0 0 1 65 35 L 135 35 A 10 10 0 0 1 145 45 L 145 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -10513,15 +8322,15 @@ export const section15Tasks = [
         <p>Исследуем знаки полученных выражений методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ СИСТЕМЫ (БЕЗ ОДЗ) */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Точки оси */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="55" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-3</text>
+            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={55.0} y={80.0} anchor="middle" math={"-3"} />
 
             <circle cx="135" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
             <foreignObject x="95" y="66" width="80" height="50" className="overflow-visible">
@@ -10531,9 +8340,9 @@ export const section15Tasks = [
             </foreignObject>
 
             <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="215" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
+            <SvgMathLabel x={215.0} y={80.0} anchor="middle" math={"-1"} />
 
-            <circle cx="295" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="295" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="255" y="66" width="80" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
                 <InlineMath>{"\\frac{1}{3}"}</InlineMath>
@@ -10571,15 +8380,15 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Точки координатной сетки */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="55" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-3</text>
+            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={55.0} y={80.0} anchor="middle" math={"-3"} />
 
             <circle cx="125" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
             <foreignObject x="85" y="66" width="80" height="50" className="overflow-visible">
@@ -10589,9 +8398,9 @@ export const section15Tasks = [
             </foreignObject>
 
             <circle cx="195" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="195" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-1</text>
+            <SvgMathLabel x={195.0} y={80.0} anchor="middle" math={"-1"} />
 
-            <circle cx="265" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="265" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="225" y="66" width="80" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
                 <InlineMath>{"\\frac{1}{3}"}</InlineMath>
@@ -10680,19 +8489,19 @@ export const section15Tasks = [
         <p>Исследуем знаки полученного рационального выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка знаменателя 0 */}
-            <circle cx="115" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная точка числителя 2 */}
             <circle cx="245" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="245" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
+            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"2"} />
 
             {/* Крыши решения там, где знак "-" (<= 0): отрезок полуинтервал */}
             <path d="M 115 60 L 115 45 A 10 10 0 0 1 125 35 L 235 35 A 10 10 0 0 1 245 45 L 245 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -10718,19 +8527,19 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="115" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная точка решения 2 */}
             <circle cx="245" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="245" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
+            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"2"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Промежуточное решение */}
             <path d="M 115 60 L 115 45 A 10 10 0 0 1 125 35 L 235 35 A 10 10 0 0 1 245 45 L 245 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -10814,19 +8623,19 @@ export const section15Tasks = [
         <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения совместной системы неравенств:</p>
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка 8 */}
-            <circle cx="145" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="145" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">8</text>
+            <circle cx="145" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={145.0} y={80.0} anchor="middle" math={"8"} />
 
             {/* Выколотая точка 16 */}
-            <circle cx="245" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="245" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">16</text>
+            <circle cx="245" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"16"} />
 
             {/* Крыши решения совокупности */}
             <path d="M 15 35 L 135 35 A 10 10 0 0 1 145 45 L 145 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -10858,23 +8667,23 @@ export const section15Tasks = [
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Выколотая точка 8 */}
-            <circle cx="165" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="165" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">8</text>
+            <circle cx="165" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={165.0} y={80.0} anchor="middle" math={"8"} />
 
             {/* Выколотая точка 16 */}
-            <circle cx="255" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="255" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">16</text>
+            <circle cx="255" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={255.0} y={80.0} anchor="middle" math={"16"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Промежуточное решение */}
             <path d="M 15 35 L 155 35 A 10 10 0 0 1 165 45 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -10965,14 +8774,14 @@ export const section15Tasks = [
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
         {/* Иррациональная точка выведена оригинальным KaTeX-шрифтом через foreignObject строго под cx=115 */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка границы ОДЗ log3(2.5) */}
-            <circle cx="115" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="75" y="66" width="80" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
                 <InlineMath>{"\\log_3 2.5"}</InlineMath>
@@ -10980,8 +8789,8 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка ОДЗ 1 */}
-            <circle cx="245" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="245" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <circle cx="245" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (Вся числовая ось) */}
             <line x1="15" y1="35" x2="345" y2="35" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -11062,15 +8871,15 @@ export const section15Tasks = [
         <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
         {/* 🌌 ЧЕРТЁЖ: К КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная точка числителя 1/8 */}
             <circle cx="165" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -11082,7 +8891,7 @@ export const section15Tasks = [
 
             {/* Закрашенная точка числителя 2 */}
             <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="265" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
+            <SvgMathLabel x={265.0} y={80.0} anchor="middle" math={"2"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части совокупности */}
             <path d="M 15 35 L 155 35 A 10 10 0 0 1 165 45 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -11184,19 +8993,19 @@ export const section15Tasks = [
         {/* 🌌 ЧЕРТЁЖ: К КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
         {/* Иррациональная точка выведена оригинальным KaTeX-шрифтом через foreignObject строго под cx=265 */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная точка числителя 1 */}
             <circle cx="165" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="165" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <SvgMathLabel x={165.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* Закрашенная иррациональная точка числителя log_{1.5} 6 */}
             <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -11283,19 +9092,19 @@ export const section15Tasks = [
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
         {/* Иррациональная дробная координата выведена оригинальным KaTeX-шрифтом через foreignObject строго под cx=215 */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="125" viewBox="0 0 440 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="440" height="125" viewBox="0 0 440 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="408" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ -3 */}
-            <circle cx="45" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="45" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-3</text>
+            <circle cx="45" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={45.0} y={80.0} anchor="middle" math={"-3"} />
 
             {/* Выколотая точка ОДЗ -2 */}
-            <circle cx="115" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="115" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-2</text>
+            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-2"} />
 
             {/* Закрашенная точка числителя 3/13 */}
             <circle cx="195" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -11306,12 +9115,12 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка ОДЗ 3 */}
-            <circle cx="265" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="265" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <circle cx="265" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={265.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* Выколотая точка ОДЗ 4 */}
-            <circle cx="335" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="335" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">4</text>
+            <circle cx="335" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={335.0} y={80.0} anchor="middle" math={"4"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части */}
             <path d="M 15 35 L 105 35 A 10 10 0 0 1 115 45 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -11374,111 +9183,14 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>
-          Запишем исходное неравенство в виде единой равносильной системы условий, содержащей ограничения ОДЗ для всех аргументов и переменных оснований логарифмических функций:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} 8^{\\log_{x^2-1}(x-1)} + 8^{\\log_{x^2-1}(x+1)} \\le 6 \\\\ x - 1 > 0 \\\\ x + 1 > 0 \\\\ x^2 - 1 > 0 \\\\ x^2 - 1 \\neq 1 \\end{cases} \\iff \\begin{cases} 8^{\\log_{x^2-1}(x-1)} + 8^{\\log_{x^2-1}(x+1)} \\le 6 \\\\ x > 1 \\\\ x > -1 \\\\ x \\in (-\\infty; \\, -1) \\cup (1; \\, +\\infty) \\\\ x^2 \\neq 2 \\end{cases}"}</BlockMath>
-
-        <p>
-          Сведём ограничения аргументов и оснований к общему пересечению интервалов ОДЗ системы: 
-          <InlineMath>{"x \\in (1; \\, \\sqrt{2}) \\cup (\\sqrt{2}; \\, +\\infty)"}</InlineMath>.
-        </p>
-
-        <p>
-          Преобразуем слагаемые в левой части неравенства, используя основное логарифмическое тождество перестановки основания и аргумента степени: <InlineMath>{"A^{\\log_B C} = C^{\\log_B A}"}</InlineMath>.
-        </p>
-        <BlockMath>{"8^{\\log_{x^2-1}(x-1)} = (x-1)^{\\log_{x^2-1} 8}"}</BlockMath>
-        <BlockMath>{"8^{\\log_{x^2-1}(x+1)} = (x+1)^{\\log_{x^2-1} 8}"}</BlockMath>
-
-        <p>
-          Сделаем замену переменной. Пусть первое слагаемое равно <InlineMath>{"t"}</InlineMath>: 
-          <BlockMath>{"t = (x-1)^{\\log_{x^2-1} 8}"}</BlockMath>
-          Выразим через <InlineMath>{"t"}</InlineMath> второе слагаемое, перемножив их между собой по свойствам одинаковых показателей степеней на ОДЗ:
-          <BlockMath>{"(x-1)^{\\log_{x^2-1} 8} \\cdot (x+1)^{\\log_{x^2-1} 8} = \\left((x-1)(x+1)\\right)^{\\log_{x^2-1} 8} = (x^2 - 1)^{\\log_{x^2-1} 8} = 8"}</BlockMath>
-          Поскольку их произведение равно 8, то второе слагаемое выражается как <InlineMath>{"\\frac{8}{t}"}</InlineMath>.
-        </p>
-
-        <p>Перейдём к простейшему дробно-рациональному неравенству относительно введённой переменной t:</p>
-        <BlockMath>{"t + \\frac{8}{t} \\le 6 \\iff \\frac{t^2 - 6t + 8}{t} \\le 0 \\iff \\frac{(t - 2)(t - 4)}{t} \\le 0"}</BlockMath>
-
-        <p>
-          Поскольку исходные показательные функции всегда строго положительны на ОДЗ, то <InlineMath>{"t > 0"}</InlineMath>. Применяя метод интервалов, находим решение для переменной t:
-          <BlockMath>{"2 \\le t \\le 4"}</BlockMath>
-        </p>
-
-        <p>Выполним обратную замену, вернувшись к показательной функции со свойством тождества:</p>
-        <BlockMath>{"2 \\le 8^{\\log_{x^2-1}(x-1)} \\le 4 \\iff 2^1 \\le 2^{3\\log_{x^2-1}(x-1)} \\le 2^2 \\iff \\frac{1}{3} \\le \\log_{x^2-1}(x-1) \\le \\frac{2}{3}"}</BlockMath>
-
-        <p>
-          Представим константы границ в виде логарифмов по основанию <InlineMath>{"x^2-1"}</InlineMath> и разберём два классических школьных случая в зависимости от числового промежутка переменного основания логарифма:
-        </p>
-
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-3">
-          <p className="font-semibold text-slate-800 dark:text-slate-200">Случай 1. Если основание логарифма больше единицы, то есть <InlineMath>{"x \\in (\\sqrt{2}; \\, +\\infty)"}</InlineMath>:</p>
-          <p>Опускаем логарифмы с сохранением знаков неравенств:</p>
-          <BlockMath>{"(x^2 - 1)^{1/3} \\le x - 1 \\le (x^2 - 1)^{2/3} \\iff \\begin{cases} x^2 - 1 \\le (x-1)^3 \\\\ (x-1)^3 \\le (x^2-1)^2 \\end{cases}"}</BlockMath>
-          <p>При раскрытии скобок и анализе графиков функций получаем, что на данном числовом луче совместных вещественных решений нет.</p>
-        </div>
-
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-3">
-          <p className="font-semibold text-slate-800 dark:text-slate-200">Случай 2. Если основание логарифма лежит между нулём и единицей, то есть <InlineMath>{"x \\in (1; \\, \\sqrt{2})"}</InlineMath>:</p>
-          <p>Опускаем логарифмы со сменой знаков неравенств на противоположные:</p>
-          <BlockMath>{"(x^2 - 1)^{2/3} \\le x - 1 \\le (x^2 - 1)^{1/3} \\iff \\begin{cases} (x^2-1)^2 \\le (x-1)^3 \\\\ (x-1)^3 \\le x^2 - 1 \\end{cases}"}</BlockMath>
-          <p>Сокращая обе части на строго положительную на ОДЗ разность <InlineMath>{"(x-1) > 0"}</InlineMath>, находим единственное изолированное решение — точку золотого сечения: <InlineMath>{"x = \\frac{1+\\sqrt{5}}{2}"}</InlineMath>.</p>
-        </div>
-
-        <p>Визуализируем наложение полученного изолированного корня на интервалы области допустимых значений:</p>
-        {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
-        {/* Иррациональные координаты выведены оригинальным KaTeX-шрифтом через foreignObject */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="125" viewBox="0 0 440 125" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="408" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка ОДЗ 1 */}
-            <circle cx="55" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="55" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
-
-            {/* Закрашенная золотая точка решения */}
-            <circle cx="155" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="115" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\frac{1+\\sqrt{5}}{2}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка границы ОДЗ sqrt(2) */}
-            <circle cx="255" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="215" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\sqrt{2}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Изолированное решение золотого сечения */}
-            <circle cx="155" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифма (1; sqrt 2) U (sqrt 2; +inf) */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 245 15 A 10 10 0 0 1 255 25 L 255 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 255 60 L 255 25 A 10 10 0 0 1 265 15 L 375 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА НА ИЗОЛИРОВАННУЮ ТОЧКУ */}
-            <line x1="155" y1="58" x2="155" y2="37" stroke="#328ce6" strokeWidth="1.5" opacity="0.7" />
-          </svg>
-        </div>
-
-        <p>В результате пересечения множеств получаем окончательный изолированный ответ олимпиадного неравенства ДВИ:</p>
-        <BlockMath>{"x = \\frac{1 + \\sqrt{5}}{2}"}</BlockMath>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>{"\\frac{1 + \\sqrt{5}}{2}"}</InlineMath>
-          </div>
-        </div>
+        <p>ОДЗ: <InlineMath math={`x>1,\\quad x\\ne\\sqrt{2}`} />. Обозначим</p>
+        <BlockMath math={`a=\\log_{x^2-1}(x-1),\\qquad b=\\log_{x^2-1}(x+1).`} />
+        <p>Так как <InlineMath math={`(x-1)(x+1)=x^2-1`} />, имеем <InlineMath math={`a+b=1`} />. Положим <InlineMath math={`t=8^a>0`} />. Тогда <InlineMath math={`8^b=8/t`} />, и</p>
+        <BlockMath math={`t+\\frac8t\\le6 \\iff (t-2)(t-4)\\le0 \\iff 2\\le t\\le4 \\iff \\frac13\\le a\\le\\frac23.`} />
+        <p>При <InlineMath math={`1<x<\\sqrt{2}`} /> число <InlineMath math={`a>1`} />, а при <InlineMath math={`\\sqrt{2}<x<2`} /> имеем <InlineMath math={`a<0`} />. Значит, достаточно рассмотреть <InlineMath math={`x\\ge2`} />, где основание больше единицы.</p>
+        <p>Условие <InlineMath math={`a\\ge1/3`} /> равносильно <InlineMath math={`(x-1)^3\\ge x^2-1`} />, то есть <InlineMath math={`x\\ge3`} />. Второе условие <InlineMath math={`a\\le2/3`} /> при <InlineMath math={`x\\ge3`} /> выполняется автоматически.</p>
+        <InequalityNumberLine points={[{ label: '1', closed: false }, { label: '\\sqrt{2}', closed: false }, { label: '3', closed: true }]} selected={[[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`[3;+\\infty)`} /></div>
       </div>
     )
   },
@@ -11524,23 +9236,23 @@ export const section15Tasks = [
         <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
         {/* 🌌 ЧЕРТЁЖ: К КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка ОДЗ 0 */}
             <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="75" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <SvgMathLabel x={75.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Выколотая точка числителя 4 */}
-            <circle cx="195" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="195" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">4</text>
+            <circle cx="195" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={195.0} y={80.0} anchor="middle" math={"4"} />
 
             {/* Закрашенная точка ОДЗ 6 */}
             <circle cx="315" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="315" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">6</text>
+            <SvgMathLabel x={315.0} y={80.0} anchor="middle" math={"6"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части числителя (Вся ось, кроме 4) */}
             <path d="M 15 35 L 185 35 A 10 10 0 0 1 195 45 L 195 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -11627,11 +9339,11 @@ export const section15Tasks = [
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
         {/* Дробные координаты выведены оригинальным KaTeX-шрифтом через foreignObject */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная точка числителя 1/9 */}
             <circle cx="55" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -11642,7 +9354,7 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка ОДЗ 1/3 */}
-            <circle cx="155" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="155" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="115" y="66" width="80" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
                 <InlineMath>{"\\frac{1}{3}"}</InlineMath>
@@ -11697,84 +9409,13 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>
-          Представим число 2 в правой части как логарифм по основанию <InlineMath>{"x"}</InlineMath> и перейдём к единой равносильной системе условий, содержащей ограничения ОДЗ для аргумента и переменного основания логарифмической функции:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} \\log_x \\frac{2x}{3-x} \\le \\log_x x^2 \\\\ \\frac{2x}{3-x} > 0 \\\\ x > 0 \\\\ x \\neq 1 \\end{cases} \\iff \\begin{cases} \\log_x \\frac{2x}{3-x} \\le \\log_x x^2 \\\\ 3 - x > 0 \\\\ x > 0 \\\\ x \\neq 1 \\end{cases}"}</BlockMath>
-
-        <p>
-          Сведём ограничения аргументов и переменных оснований к общему пересечению интервалов ОДЗ системы: 
-          <InlineMath>{"x \\in (0; \\, 1) \\cup (1; \\, 3)"}</InlineMath>.
-          Применим метод замены множителей (рационализации) к полученной логарифмической разности:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} (x - 1) \\cdot \\left(\\frac{2x}{3-x} - x^2\\right) \\le 0 \\\\ x \\in (0; \\, 1) \\cup (1; \\, 3) \\end{cases}"}</BlockMath>
-        <BlockMath>{"\\iff \\begin{cases} (x - 1) \\cdot \\frac{2x - x^2(3-x)}{3-x} \\le 0 \\\\ x \\in (0; \\, 1) \\cup (1; \\, 3) \\end{cases} \\iff \\begin{cases} \\frac{(x - 1)(x^3 - 3x^2 + 2x)}{3-x} \\le 0 \\\\ x \\in (0; \\, 1) \\cup (1; \\, 3) \\end{cases}"}</BlockMath>
-
-        <p>Вынесем общий множитель x в числителе и разложим квадратный трёхчлен на линейные скобки:</p>
-        <BlockMath>{"\\iff \\begin{cases} \\frac{x(x - 1)(x^2 - 3x + 2)}{3-x} \\le 0 \\\\ x \\in (0; \\, 1) \\cup (1; \\, 3) \\end{cases} \\iff \\begin{cases} \\frac{x(x - 1)^2(x - 2)}{3-x} \\le 0 \\\\ x \\in (0; \\, 1) \\cup (1; \\, 3) \\end{cases}"}</BlockMath>
-
-        <p>Умножим неравенство на \(-1\) и поменяем знаки в знаменателе для приведения к каноническому интервальному виду:</p>
-        <BlockMath>{"\\iff \\begin{cases} \\frac{x(x - 1)^2(x - 2)}{x - 3} \\ge 0 \\\\ x \\in (0; \\, 1) \\cup (1; \\, 3) \\end{cases}"}</BlockMath>
-
-        <p>Решая основное рациональное выражение методом интервалов знаков, находим промежуточное решение (без учёта ОДЗ):</p>
-        <BlockMath>{"x \\in (-\\infty; \\, 0] \\cup \\{1\\} \\cup [2; \\, 3)"}</BlockMath>
-
-        <p>Пересечёт полученные множества со сквозными базовыми интервалами области допустимых значений логарифма:</p>
-        {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Закрашенная точка 0 */}
-            <circle cx="55" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="55" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
-
-            {/* Выколотая точка ОДЗ 1 */}
-            <circle cx="135" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="135" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
-
-            {/* Закрашенная точка числителя 2 */}
-            <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="215" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
-
-            {/* Выколотая точка границы ОДЗ 3 */}
-            <circle cx="295" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="295" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части */}
-            <path d="M 15 35 L 55 35 A 10 10 0 0 1 65 45 L 65 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <circle cx="135" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 215 60 L 215 45 A 10 10 0 0 1 225 35 L 285 35 A 10 10 0 0 1 295 45 L 295 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифма (0; 1) U (1; 3) */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 125 15 A 10 10 0 0 1 135 25 L 135 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 135 60 L 135 25 A 10 10 0 0 1 145 15 L 285 15 A 10 10 0 0 1 295 25 L 295 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Полуинтервал [2; 3) */}
-            <line x1="219" y1="58" x2="225" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="233" y1="58" x2="239" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="289" y1="58" x2="293" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="293" y1="58" x2="295" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
-        <BlockMath>{"x \\in [2; \\, 3)"}</BlockMath>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>{"[2; \\, 3)"}</InlineMath>
-          </div>
-        </div>
+        <p>ОДЗ: <InlineMath math={`0<x<3,\\quad x\\ne1`} />. Представим 2 как <InlineMath math={`\\log_x x^2`} /> и учтём знак основания при сравнении логарифмов:</p>
+        <BlockMath math={`(x-1)\\left(\\frac{2x}{3-x}-x^2\\right)\\le0.`} />
+        <p>После разложения получаем:</p>
+        <BlockMath math={`\\frac{x(x-1)^2(x-2)}{3-x}\\le0.`} />
+        <p>На ОДЗ множители <InlineMath math={`x`} />, <InlineMath math={`(x-1)^2`} /> и <InlineMath math={`3-x`} /> положительны. Поэтому <InlineMath math={`x-2\\le0`} />. Выкалываем запрещённую точку 1.</p>
+        <InequalityNumberLine points={[{ label: '0', closed: false }, { label: '1', closed: false }, { label: '2', closed: true }]} selected={[[1,2],[2,3]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`(0;1)\\cup(1;2]`} /></div>
       </div>
     )
   },
@@ -11825,23 +9466,23 @@ export const section15Tasks = [
         <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 2,5 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2,5</text>
+            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"2{,}5"} />
 
             {/* Выколотая точка ОДЗ 3 */}
-            <circle cx="165" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="165" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <circle cx="165" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={165.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* Закрашенная изолированная точка решения 4 */}
             <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="265" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">4</text>
+            <SvgMathLabel x={265.0} y={80.0} anchor="middle" math={"4"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (x < 3 U {4}) */}
             <path d="M 15 35 L 155 35 A 10 10 0 0 1 165 45 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -11920,18 +9561,18 @@ export const section15Tasks = [
         <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
                 {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ С ВЫВЕРЕННОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Выколотая точка 1/9 */}
-            <circle cx="155" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="155" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="115" y="66" width="80" height="50" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
                 <InlineMath>{"\\frac{1}{9}"}</InlineMath>
@@ -11939,8 +9580,8 @@ export const section15Tasks = [
             </foreignObject>
 
             {/* Выколотая точка 9 */}
-            <circle cx="255" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="255" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">9</text>
+            <circle cx="255" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={255.0} y={80.0} anchor="middle" math={"9"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Промежуточное решение */}
             <path d="M 15 35 L 145 35 A 10 10 0 0 1 155 45 L 155 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -11997,84 +9638,13 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>
-          Представим число 2 в правой части как логарифм по основанию <InlineMath>{"\\sqrt{3-x}"}</InlineMath> и запишем исходное неравенство в виде единой равносильной системы условий, содержащей ограничения ОДЗ для аргумента и подкоренного переменного основания:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} \\log_{\\sqrt{3-x}}(3+x) \\le \\log_{\\sqrt{3-x}}(\\sqrt{3-x})^2 \\\\ 3 + x > 0 \\\\ 3 - x > 0 \\\\ \\sqrt{3-x} \\neq 1 \\end{cases} \\iff \\begin{cases} \\log_{\\sqrt{3-x}}(3+x) \\le \\log_{\\sqrt{3-x}}(3-x) \\\\ x > -3 \\\\ x < 3 \\\\ x \\neq 2 \\end{cases}"}</BlockMath>
-
-        <p>
-          Сведём ограничения аргументов и переменных оснований к общему пересечению интервалов ОДЗ системы: 
-          <InlineMath>{"x \\in (-3; \\, 2) \\cup (2; \\, 3)"}</InlineMath>.
-          Применим метод замены множителей (рационализации) к полученной разности логарифмов:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} (\\sqrt{3-x} - 1) \\cdot \\left((3 + x) - (3 - x)\\right) \\le 0 \\\\ x \\in (-3; \\, 2) \\cup (2; \\, 3) \\end{cases} \\iff \\begin{cases} (\\sqrt{3-x} - 1) \\cdot 2x \\le 0 \\\\ x \\in (-3; \\, 2) \\cup (2; \\, 3) \\end{cases}"}</BlockMath>
-
-        <p>
-          Умножим неравенство на строго положительное сопряжённое выражение <InlineMath>{"\\sqrt{3-x} + 1 > 0"}</InlineMath> для избавления от иррациональности знака первой скобки:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} (3 - x - 1) \\cdot x \\le 0 \\\\ x \\in (-3; \\, 2) \\cup (2; \\, 3) \\end{cases} \\iff \\begin{cases} x(2 - x) \\le 0 \\\\ x \\in (-3; \\, 2) \\cup (2; \\, 3) \\end{cases} \\iff \\begin{cases} x(x - 2) \\ge 0 \\\\ x \\in (-3; \\, 2) \\cup (2; \\, 3) \\end{cases}"}</BlockMath>
-
-        <p>Решая основное рациональное выражение методом интервалов знаков, находим промежуточное решение (без учёта ОДЗ):</p>
-        <BlockMath>{"x \\in (-\\infty; \\, 0] \\cup [2; \\, +\\infty)"}</BlockMath>
-
-        <p>Пересечёт полученные множества со сквозными базовыми интервалами области допустимых значений логарифма:</p>
-        {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка ОДЗ -3 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">-3</text>
-
-            {/* Закрашенная точка числителя 0 */}
-            <circle cx="145" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="145" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
-
-            {/* Выколотая точка ОДЗ 2 */}
-            <circle cx="225" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="225" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
-
-            {/* Выколотая точка границы ОДЗ 3 */}
-            <circle cx="305" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="305" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (x <= 0 U x >= 2) */}
-            <path d="M 15 35 L 135 35 A 10 10 0 0 1 145 45 L 145 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 225 60 L 225 45 A 10 10 0 0 1 235 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифма (-3; 2) U (2; 3) */}
-            <path d="M 65 60 L 65 25 A 10 10 0 0 1 75 15 L 215 15 A 10 10 0 0 1 225 25 L 225 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 225 60 L 225 25 A 10 10 0 0 1 235 15 L 295 15 A 10 10 0 0 1 305 25 L 305 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА СТРОГО В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Выверенный полуинтервал (-3; 0] */}
-            <line x1="69" y1="58" x2="75" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="77" y1="58" x2="83" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="85" y1="58" x2="91" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="93" y1="58" x2="99" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="101" y1="58" x2="107" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="109" y1="58" x2="115" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="117" y1="58" x2="123" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="125" y1="58" x2="131" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="133" y1="58" x2="139" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="139" y1="58" x2="141" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
-        <BlockMath>{"x \\in (-3; \\, 0]"}</BlockMath>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>{"(-3; \\, 0]"}</InlineMath>
-          </div>
-        </div>
+        <p>ОДЗ: <InlineMath math={`-3<x<3,\\quad x\\ne2`} />. Представим 2 как логарифм от квадрата основания и применим рационализацию:</p>
+        <BlockMath math={`(\\sqrt{3-x}-1)\\bigl((3+x)-(3-x)\\bigr)\\le0.`} />
+        <p>Умножение на положительное сопряжённое <InlineMath math={`\\sqrt{3-x}+1`} /> сохраняет знак, поэтому</p>
+        <BlockMath math={`x(2-x)\\le0 \\iff x\\le0 \\text{ или } x\\ge2.`} />
+        <p>Пересекаем с ОДЗ: точка 2 исключена, но промежуток от 2 до 3 входит в ответ.</p>
+        <InequalityNumberLine points={[{ label: '-3', closed: false }, { label: '0', closed: true }, { label: '2', closed: false }, { label: '3', closed: false }]} selected={[[1,2],[3,4]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`(-3;0]\\cup(2;3)`} /></div>
       </div>
     )
   },
@@ -12114,15 +9684,15 @@ export const section15Tasks = [
         <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ С ВЫВЕРЕННОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная точка числителя 1/9 */}
             <circle cx="155" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
@@ -12134,7 +9704,7 @@ export const section15Tasks = [
 
             {/* Закрашенная точка числителя 3 */}
             <circle cx="255" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="255" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <SvgMathLabel x={255.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части совокупности */}
             <path d="M 15 35 L 145 35 A 10 10 0 0 1 155 45 L 155 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -12231,7 +9801,7 @@ export const section15Tasks = [
         <p>Визуализируем наложение полученного отрезка и изолированной точки на числовой оси:</p>
         {/* 🌌 ЧЕРТЁЖ: ИДЕАЛЬНОЕ НАЛОЖЕНИЕ КРЫШ С АВТОМАТИЧЕСКОЙ СЕТОЧНОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             <defs>
               <pattern id="diagonalHatch116" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
                 <line x1="0" y1="0" x2="0" y2="8" stroke="#328ce6" strokeWidth="1" opacity="0.4" />
@@ -12241,19 +9811,19 @@ export const section15Tasks = [
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Закрашенная изолированная точка решения 0 */}
             <circle cx="85" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="85" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
+            <SvgMathLabel x={85.0} y={80.0} anchor="middle" math={"0"} />
 
             {/* Закрашенная точка числителя 1 */}
             <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="185" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* Закрашенная точка числителя 3 */}
             <circle cx="285" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="285" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">3</text>
+            <SvgMathLabel x={285.0} y={80.0} anchor="middle" math={"3"} />
 
             {/* 📈 КРЫШИ РЕШЕНИЯ В СТИЛЕ СТУПЕНЕЙ */}
             {/* Изолированная точка 0 */}
@@ -12307,7 +9877,7 @@ export const section15Tasks = [
         <p>Пересечёт полученный луч со сквозным интервалом области допустимых значений ОДЗ системы:</p>
         {/* 🌌 ЧЕРТЁЖ: ИДЕАЛЬНОЕ НАЛОЖЕНИЕ КРЫШ С АВТОМАТИЧЕСКОЙ СЕТОЧНОЙ ШТРИХОВКОЙ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             <defs>
               <pattern id="diagonalHatch117" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
                 <line x1="0" y1="0" x2="0" y2="8" stroke="#328ce6" strokeWidth="1" opacity="0.4" />
@@ -12317,15 +9887,15 @@ export const section15Tasks = [
             {/* Главная числовая ось X */}
             <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
             <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
+            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
 
             {/* Выколотая точка ОДЗ 1 */}
-            <circle cx="95" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="95" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
+            <circle cx="95" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"1"} />
 
             {/* Закрашенная точка числителя 2 */}
             <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="215" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
+            <SvgMathLabel x={215.0} y={80.0} anchor="middle" math={"2"} />
 
             {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (x >= 2) */}
             <path d="M 215 60 L 215 45 A 10 10 0 0 1 225 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
@@ -12358,88 +9928,13 @@ export const section15Tasks = [
     mathB: "",
         solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
-        <p className="font-bold text-slate-800 dark:text-slate-100">Решение уравнения:</p>
-        
-        <p>
-          Запишем исходное уравнение в виде единой равносильной системы условий, содержащей ограничения ОДЗ для всех аргументов и переменных оснований логарифмических функций:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} |\\log_3^2 x - \\log_{2x}^2 2| = \\log_3^2 x + \\log_{2x}^2 2 - 2 \\\\ x > 0 \\\\ 2x > 0 \\\\ 2x \\neq 1 \\end{cases} \\iff \\begin{cases} |\\log_3^2 x - \\log_{2x}^2 2| = \\log_3^2 x + \\log_{2x}^2 2 - 2 \\\\ x \\in (0; \\, 0.5) \\cup (0.5; \\, +\\infty) \\end{cases}"}</BlockMath>
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Сделаем замену переменных для упрощения алгебраической структуры: пусть</span>
-          <InlineMath>{"a = \\log_3^2 x"}</InlineMath>
-          <span>и</span>
-          <InlineMath>{"b = \\log_{2x}^2 2"}</InlineMath>
-          <span>(где по определению полных квадратов</span>
-          <InlineMath>{"a \\ge 0"}</InlineMath>,
-          <InlineMath>{"b > 0"}</InlineMath>).
-          <span>Уравнение принимает вид:</span>
-        </div>
-        <BlockMath>{"|a - b| = a + b - 2"}</BlockMath>
-
-        <p>
-          Раскроем модуль по определению, перейдя к совокупности двух систем условий на знаки подмодульного выражения:
-        </p>
-        <BlockMath>{"\\iff \\left[ \\begin{aligned} &\\begin{cases} a - b \\ge 0 \\\\ a - b = a + b - 2 \\end{cases} \\\\ &\\begin{cases} a - b < 0 \\\\ -(a - b) = a + b - 2 \\end{cases} \\end{aligned} \\right. \\iff \\left[ \\begin{aligned} &\\begin{cases} a \\ge b \\\\ b = 1 \\end{cases} \\\\ &\\begin{cases} a < b \\\\ a = 1 \\end{cases} \\end{aligned} \\right. \\iff \\left[ \\begin{aligned} &\\begin{cases} b = 1 \\\\ a \\ge 1 \\end{cases} \\\\ &\\begin{cases} a = 1 \\\\ b > 1 \\end{cases} \\end{aligned} \\right."}</BlockMath>
-
-        <p>Выполним обратную замену для каждой из ветвей полученной совокупности систем условий:</p>
-
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p className="font-semibold text-slate-800 dark:text-slate-200">Ветвь 1. Условия системы b = 1 и a &ge; 1:</p>
-          <BlockMath>{"\\begin{cases} \\log_{2x}^2 2 = 1 \\\\ \\log_3^2 x \\ge 1 \\end{cases} \\iff \\begin{cases} \\log_{2x} 2 = \\pm 1 \\\\ |\\log_3 x| \\ge 1 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &2x = 2 \\iff x = 1 \\\\ &2x = \\frac{1}{2} \\iff x = 0.25 \\end{aligned} \\right. \\\\ x \\in (0; \\, 1/3] \\cup [3; \\, +\\infty) \\end{cases}"}</BlockMath>
-          <p>Проверяя корни, замечаем, что точка <InlineMath>{"x = 1"}</InlineMath> не подходит под неравенство, а точка <InlineMath>{"x = 0.25"}</InlineMath> полностью удовлетворяет условию (<InlineMath>{"0.25 \\le 1/3"}</InlineMath>). Получаем корень: <InlineMath>{"x = \\frac{1}{4}"}</InlineMath>.</p>
-        </div>
-
-        <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
-          <p className="font-semibold text-slate-800 dark:text-slate-200">Ветвь 2. Условия системы a = 1 и b &gt; 1:</p>
-          <BlockMath>{"\\begin{cases} \\log_3^2 x = 1 \\\\ \\log_{2x}^2 2 > 1 \\end{cases} \\iff \\begin{cases} \\log_3 x = \\pm 1 \\\\ |\\log_{2x} 2| > 1 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &x = 3 \\\\ &x = \\frac{1}{3} \\end{aligned} \\right. \\\\ 0 < |\\log_2(2x)| < 1 \\end{cases}"}</BlockMath>
-          <p>Подставляя оба значения, находим, что точка <InlineMath>{"x = 3"}</InlineMath> даёт верное неравенство <InlineMath>{"|\\log_2 6| > 1"}</InlineMath> (так как <InlineMath>{"\\log_2 6 > \\log_2 4 = 2 > 1"}</InlineMath>), а точка <InlineMath>{"x = 1/3"}</InlineMath> не удовлетворяет ограничению. Получаем второй корень: <InlineMath>{"x = 3"}</InlineMath>.</p>
-        </div>
-
-        <p>Объединяя результаты, получаем итоговые дискретные точки на числовой прямой:</p>
-
-        {/* 🌌 ЧЕРТЁЖ: ИДЕАЛЬНОЕ ОТОБРАЖЕНИЕ ДИСКРЕТНЫХ ТОЧЕК НА ЧИСЛОВОЙ ОСИ X ПО СТАНДАРТУ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
-
-            {/* Выколотая точка ОДЗ 0,5 */}
-            <circle cx="165" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="165" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0,5</text>
-
-            {/* Закрашенная изолированная точка корня 1/4 */}
-            <circle cx="115" cy="60" r="5" fill="#22c55e" />
-            <foreignObject x="75" y="20" width="80" height="35" className="overflow-visible">
-              <div className="text-emerald-600 dark:text-emerald-400 flex justify-center items-start text-xs font-black">
-                <InlineMath>{"\\frac{1}{4}"}</InlineMath>
-              </div>
-            </foreignObject>
-            <line x1="115" y1="55" x2="115" y2="38" stroke="#22c55e" strokeWidth="1.2" strokeDasharray="2 2" />
-
-            {/* Закрашенная изолированная точка корня 3 */}
-            <circle cx="265" cy="60" r="5" fill="#22c55e" />
-            <foreignObject x="225" y="28" width="80" height="35" className="overflow-visible">
-              <div className="text-emerald-600 dark:text-emerald-400 flex justify-center items-start text-xs font-black">
-                <InlineMath>{"3"}</InlineMath>
-              </div>
-            </foreignObject>
-            <line x1="265" y1="55" x2="265" y2="38" stroke="#22c55e" strokeWidth="1.2" strokeDasharray="2 2" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>{"\\left\\{\\frac{1}{4}; \\, 3\\right\\}"}</InlineMath>
-          </div>
-        </div>
+        <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
+        <p>ОДЗ: <InlineMath math={`x>0,\\quad x\\ne\\frac12`} />. Положим <InlineMath math={`a=\\log_3^2x`} /> и <InlineMath math={`b=\\log_{2x}^22`} />. Тогда исходное уравнение равносильно</p>
+        <BlockMath math={`|a-b|=a+b-2 \\iff \\min(a,b)=1.`} />
+        <p>Если <InlineMath math={`b=1,\\ a\\ge1`} />, то <InlineMath math={`x=1`} /> или <InlineMath math={`x=\\frac14`} />; проверку проходит только <InlineMath math={`x=\\frac14`} />.</p>
+        <p>Если <InlineMath math={`a=1,\\ b\\ge1`} />, то <InlineMath math={`x=3`} /> или <InlineMath math={`x=\\frac13`} />. При <InlineMath math={`x=3`} /> имеем <InlineMath math={`b=(\\log_6 2)^2<1`} />, а при <InlineMath math={`x=\\frac13`} /> выполняется <InlineMath math={`b=(\\log_{2/3}2)^2>1`} />. Поэтому подходит только вторая точка.</p>
+        <InequalityNumberLine points={[{ label: '\\frac14', closed: true }, { label: '\\frac13', closed: true }, { label: '\\frac12', closed: false }]} selected={[]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\left\\{\\frac14;\\frac13\\right\\}`} /></div>
       </div>
     )
   },
@@ -12480,7 +9975,7 @@ export const section15Tasks = [
         <p>Визуализируем полученное простейшее тригонометрическое неравенство на числовой окружности. Дуги решения выделены автоматической сеточной штриховкой:</p>
         {/* 🌌 ЧЕРТЁЖ: ТРИГОНОМЕТРИЧЕСКИЙ КРУГ С ВЫВЕРЕННЫМИ ДУГАМИ И ПОДПИСЯМИ ПО СТАНДАРТУ */}
         <div className="my-6 flex justify-center w-full select-none">
-          <svg width="240" height="240" viewBox="0 0 240 240" className="overflow-visible font-sans font-bold text-[13px]">
+          <svg width="240" height="240" viewBox="0 0 240 240" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
             <defs>
               <pattern id="trigHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
                 <line x1="0" y1="0" x2="0" y2="8" stroke="#328ce6" strokeWidth="1" opacity="0.4" />
@@ -12496,11 +9991,11 @@ export const section15Tasks = [
 
             {/* Линия уровня sin x = 0,5 (y = 120 - 40 = 80) */}
             <line x1="30" y1="80" x2="210" y2="80" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-400" />
-            <text x="15" y="84" fill="currentColor" className="text-slate-500 text-xs">0,5</text>
+            <SvgMathLabel x={15.0} y={84.0} anchor="start" math={"0{,}5"} />
 
             {/* Линия уровня sin x = 1 (y = 120 - 80 = 40) */}
             <line x1="30" y1="40" x2="210" y2="40" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-400" />
-            <text x="15" y="44" fill="currentColor" className="text-slate-500 text-xs">1</text>
+            <SvgMathLabel x={15.0} y={44.0} anchor="start" math={"1"} />
 
             {/* 🟦 СЕТОЧНАЯ ШТРИХОВКА ДЛЯ ЦЕЛЕВЫХ СЕКТОРОВ ДУГИ (от pi/6 до 5pi/6 за вычетом pi/2) */}
             {/* Левый сектор */}
@@ -12510,19 +10005,19 @@ export const section15Tasks = [
 
             {/* Выколотые и закрашенные пограничные точки на тригонометрическом круге */}
             {/* Точка pi/6 (30 градусов) -> cx = 120 + 80*cos(30) = 189.28, cy = 120 - 80*sin(30) = 80 */}
-            <circle cx="189.28" cy="80" r="4" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="189.28" cy="80" r="4" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="194" y="65" width="50" height="30" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 text-xs"><InlineMath>{"\\frac{\\pi}{6}"}</InlineMath></div>
             </foreignObject>
 
             {/* Точка 5pi/6 (150 градусов) -> cx = 120 - 69.28 = 50.72, cy = 80 */}
-            <circle cx="50.72" cy="80" r="4" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="50.72" cy="80" r="4" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="15" y="65" width="50" height="30" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 text-xs"><InlineMath>{"\\frac{5\\pi}{6}"}</InlineMath></div>
             </foreignObject>
 
             {/* Выколотая вершина pi/2 (94 градуса) -> cx = 120, cy = 40 */}
-            <circle cx="120" cy="40" r="4" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
+            <circle cx="120" cy="40" r="4" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
             <foreignObject x="112" y="10" width="50" height="30" className="overflow-visible">
               <div className="text-slate-800 dark:text-slate-200 text-xs"><InlineMath>{"\\frac{\\pi}{2}"}</InlineMath></div>
             </foreignObject>
@@ -12549,77 +10044,13 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>
-          Запишем исходное неравенство и ограничение области допустимых значений (ОДЗ) строго ненулевого знаменателя первой дроби в единую систему условий:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} \\frac{1}{(x - \\sqrt{2})^2} + 3x^2 - 2\\sqrt{2}x + 2 + 2\\left(-2x(\\sqrt{2}+1) + (\\sqrt{2}+1)^2\\right) \\le 2 \\\\ x \\neq \\sqrt{2} \\end{cases}"}</BlockMath>
-
-        <p>
-          Преобразуем и сгруппируем многочлен в целой части неравенства. Раскроем скобки и выделим полные квадраты относительно разности <InlineMath>{"(x - \\sqrt{2})"}</InlineMath>:
-        </p>
-        <BlockMath>{"3x^2 - 2\\sqrt{2}x + 2 = 2x^2 - 4\\sqrt{2}x + 4 + x^2 + 2\\sqrt{2}x - 2 = 2(x - \\sqrt{2})^2 + x^2 + 2\\sqrt{2}x - 2"}</BlockMath>
-        <p>
-          Раскрывая внутреннее выражение с множителем 2 и объединяя его с полученным разложением, вся целая часть исходного выражения преобразуется в полный квадрат разности:
-        </p>
-        <BlockMath>{"2(x - \\sqrt{2})^2 - 4x(\\sqrt{2}+1) + 2(\\sqrt{2}+1)^2 + x^2 + 2\\sqrt{2}x - 2 - 2 = (x - \\sqrt{2})^2 - 2(x - \\sqrt{2})(\\sqrt{2}+1) + (\\sqrt{2}+1)^2"}</BlockMath>
-        <BlockMath>{"= \\left((x - \\sqrt{2}) - (\\sqrt{2} + 1)\\right)^2 = (x - 2\\sqrt{2} - 1)^2"}</BlockMath>
-
-        <p>Подставим свёрнутый квадрат обратно в сквозную систему условий:</p>
-        <BlockMath>{"\\iff \\begin{cases} \\frac{1}{(x - \\sqrt{2})^2} + (x - 2\\sqrt{2} - 1)^2 \\le 2 \\\\ x \\neq \\sqrt{2} \\end{cases}"}</BlockMath>
-
-        <p>
-          Сделаем изящный переход. Заметим, что по свойству неотрицательности квадратов вещественных чисел сумма вида <InlineMath>{"X^2 + Y^2 \\le 2"}</InlineMath>, сопряжённая с функциональным ограничением произведения базовых аргументов, выполняется как равенство строго в пограничных точках экстремума. Неравенство сводится к единственному возможному условию:
-        </p>
-        <BlockMath>{"\\iff (x - \\sqrt{2})^2 = 1 \\iff x - \\sqrt{2} = \\pm 1 \\iff \\left[ \\begin{aligned} &x = \\sqrt{2} + 1 \\\\ &x = \\sqrt{2} - 1 \\end{aligned} \\right."}</BlockMath>
-
-        <p>
-          Подстановкой убеждаемся, что обе полученные иррациональные точки обращают выражение в верное числовое равенство <InlineMath>{"1 + 1 = 2 \\le 2"}</InlineMath>. Они являются единственными дискретными решениями системы.
-        </p>
-
-        <p>Визуализируем положение изолированных иррациональных корней на числовой оси относительно выколотой точки ОДЗ:</p>
-        {/* 🌌 ЧЕРТЁЖ: ОТОБРАЖЕНИЕ ИЗОЛИРОВАННЫХ ИРРАЦИОНАЛЬНЫХ ТОЧЕК ПО СТАНДАРТУ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className="overflow-visible font-sans font-bold text-[13px]">
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка ОДЗ sqrt(2) */}
-            <circle cx="185" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="145" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-500 flex justify-center items-start text-xs">
-                <InlineMath>{"\\sqrt{2}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Закрашенная изолированная точка левого корня sqrt(2) - 1 */}
-            <circle cx="95" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="55" y="20" width="80" height="35" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs font-black">
-                <InlineMath>{"\\sqrt{2}-1"}</InlineMath>
-              </div>
-            </foreignObject>
-            <line x1="95" y1="55" x2="95" y2="38" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 2" className="text-slate-400 dark:text-slate-600" opacity="0.6" />
-
-            {/* Закрашенная изолированная точка правого корня sqrt(2) + 1 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="235" y="20" width="80" height="35" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs font-black">
-                <InlineMath>{"\\sqrt{2}+1"}</InlineMath>
-              </div>
-            </foreignObject>
-            <line x1="275" y1="55" x2="275" y2="38" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 2" className="text-slate-400 dark:text-slate-600" opacity="0.6" />
-          </svg>
-        </div>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>{"\\left\\{\\sqrt{2} - 1; \\, \\sqrt{2} + 1\\right\\}"}</InlineMath>
-          </div>
-        </div>
+        <p>ОДЗ: <InlineMath math={`x\\ne\\sqrt{2}`} />. Положим <InlineMath math={`t=x-\\sqrt{2}`} /> и перенесём правую часть влево. После раскрытия скобок исходное неравенство принимает вид</p>
+        <BlockMath math={`\\frac1{t^2}+3t^2-4t\\le0.`} />
+        <p>Умножаем на положительное <InlineMath math={`t^2`} /> и раскладываем многочлен:</p>
+        <BlockMath math={`3t^4-4t^3+1=(t-1)^2(3t^2+2t+1)\\le0.`} />
+        <p>У квадратного множителя дискриминант отрицателен, а старший коэффициент положителен, поэтому он всегда положителен. Неравенство возможно только при <InlineMath math={`t=1`} />, то есть <InlineMath math={`x=\\sqrt{2}+1`} />.</p>
+        <InequalityNumberLine points={[{ label: '\\sqrt{2}', closed: false }, { label: '\\sqrt{2}+1', closed: true }]} selected={[]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\{\\sqrt{2}+1\\}`} /></div>
       </div>
     )
   },
@@ -12631,109 +10062,13 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>
-          Запишем исходное неравенство и ограничение области допустимых значений (ОДЗ) строго положительного тригонометрического аргумента в единую систему условий:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} 4\\log_2^4(\\sin^3 x) + 8\\log_2(\\sin x) > 1 \\\\ \\sin^3 x > 0 \\\\ \\sin x > 0 \\end{cases} \\iff \\begin{cases} 4\\log_2^4(\\sin^3 x) + 8\\log_2(\\sin x) > 1 \\\\ \\sin x > 0 \\end{cases}"}</BlockMath>
-
-        <p>
-          Используя свойство вынесения степени аргумента логарифма <InlineMath>{"\\log_2(\\sin^3 x) = 3\\log_2(\\sin x)"}</InlineMath>, учтём возведение коэффициента в четвёртую степень: 
-          <InlineMath>{"(3\\log_2(\\sin x))^4 = 81\\log_2^4(\\sin x)"}</InlineMath>. Подставим полученное выражение в основное неравенство системы:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} 4 \\cdot 81\\log_2^4(\\sin x) + 8\\log_2(\\sin x) > 1 \\\\ \\sin x > 0 \\end{cases} \\iff \\begin{cases} 324\\log_2^4(\\sin x) + 8\\log_2(\\sin x) - 1 > 0 \\\\ \\sin x > 0 \\end{cases}"}</BlockMath>
-
-        <div className="flex flex-wrap items-center gap-1">
-          <span>Сделаем замену переменной: пусть</span>
-          <InlineMath>{"t = \\log_2(\\sin x)"}</InlineMath>.
-          <span>Поскольку для любого вещественного х выполняется тригонометрическая граница</span>
-          <InlineMath>{"0 < \\sin x \\le 1"}</InlineMath>,
-          <span>то по свойствам монотонного возрастания логарифма область значений переменной зажата условием</span>
-          <InlineMath>{"t \\le 0"}</InlineMath>.
-          <span>Получаем биквадратное выражение:</span>
-        </div>
-        <BlockMath>{"324t^4 + 8t - 1 > 0 \\iff (18t^2 + 6t - 1)(18t^2 - 6t + 1) > 0"}</BlockMath>
-
-        <p>
-          Проанализируем знаки полученных сомножителей. Дискриминант второй скобки равен <InlineMath>{"D = (-6)^2 - 4 \\cdot 18 \\cdot 1 = 36 - 72 = -36 < 0"}</InlineMath>. Так как старший коэффициент положителен, квадратный трёхчлен <InlineMath>{"18t^2 - 6t + 1 > 0"}</InlineMath> строго больше нуля при любых вещественных значениях. Разделим на него обе части без изменения знака:
-        </p>
-        <BlockMath>{"\\iff 18t^2 + 6t - 1 > 0"}</BlockMath>
-        <p>Корнями полученного квадратного трёхчлена через четверть дискриминанта являются числа:</p>
-        <BlockMath>{"t_{1,2} = \\frac{-3 \\pm \\sqrt{9 - 18 \\cdot (-1)}}{18} = \\frac{-3 \\pm 3\\sqrt{3}}{18} = \\frac{-1 \\pm \\sqrt{3}}{6}"}</BlockMath>
-
-        <p>
-          С учётом базового ограничения <InlineMath>{"t \\le 0"}</InlineMath>, решением квадратичного выражения относительно переменной t является строго левый открытый луч:
-          <BlockMath>{"t < \\frac{-1 - \\sqrt{3}}{6}"}</BlockMath>
-          Выполним обратную замену, возвращаясь к исходной тригонометрической переменной:
-        </p>
-        <BlockMath>{"\\log_2(\\sin x) < \\frac{-1 - \\sqrt{3}}{6} \\iff 0 < \\sin x < 2^{\\frac{-1 - \\sqrt{3}}{6}}"}</BlockMath>
-
-        <p>Визуализируем полученное простейшее тригонометрическое неравенство на числовой окружности. Дуги решения выделены автоматической сеточной штриховкой:</p>
-        {/* 🌌 ЧЕРТЁЖ: ТРИГОНОМЕТРИЧЕСКИЙ КРУГ С ПОЛНЫМИ ИСХОДНЫМИ ЗНАЧЕНИЯМИ КОНСТАНТ ПО СТАНДАРТУ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="240" height="240" viewBox="0 0 240 240" className="overflow-visible font-sans font-bold text-[13px]">
-            <defs>
-              <pattern id="trigHatch121" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                <line x1="0" y1="0" x2="0" y2="8" stroke="#328ce6" strokeWidth="1" opacity="0.4" />
-              </pattern>
-            </defs>
-
-            {/* Оси координат круга */}
-            <line x1="20" y1="120" x2="220" y2="120" stroke="currentColor" strokeWidth="1" className="text-slate-300 dark:text-slate-700" />
-            <line x1="120" y1="20" x2="120" y2="220" stroke="currentColor" strokeWidth="1" className="text-slate-300 dark:text-slate-700" />
-
-            {/* Линия уровня sin x = level (y = 120 - 32 = 88) */}
-            <line x1="30" y1="88" x2="210" y2="88" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-slate-400" />
-
-            {/* 🟦 СЕТОЧНАЯ ШТРИХОВКА СТРОГО ВНУТРИ СЕГМЕНТОВ ДУГ (0 < sin x < level) */}
-            {/* Правая дуга */}
-            <path d="M 200 120 A 80 80 0 0 0 193.5 88 L 120 120 Z" fill="url(#trigHatch121)" pointerEvents="none" />
-            {/* Левая дуга */}
-            <path d="M 46.5 88 A 80 80 0 0 0 40 120 L 120 120 Z" fill="url(#trigHatch121)" pointerEvents="none" />
-
-            {/* Главная окружность R = 80 */}
-            <circle cx="120" cy="120" r="80" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-
-            {/* Выколотые пограничные точки на тригонометрическом круге */}
-            {/* Точка 0 */}
-            <circle cx="200" cy="120" r="4" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="206" y="112" width="20" height="20" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 text-xs">0</div>
-            </foreignObject>
-
-            {/* Точка pi */}
-            <circle cx="40" cy="120" r="4" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="24" y="112" width="20" height="20" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 text-xs"><InlineMath>{"\\pi"}</InlineMath></div>
-            </foreignObject>
-
-            {/* Правая иррациональная точка */}
-            <circle cx="193.5" cy="88" r="4" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="198" y="68" width="130" height="35" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 text-[11px]">
-                <InlineMath>{"\\arcsin 2^{\\frac{-1 - \\sqrt{3}}{6}}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Левая иррациональная точка */}
-            <circle cx="46.5" cy="88" r="4" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="-115" y="68" width="155" height="35" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 text-[11px] text-right">
-                <InlineMath>{"\\pi - \\arcsin 2^{\\frac{-1 - \\sqrt{3}}{6}}"}</InlineMath>
-              </div>
-            </foreignObject>
-          </svg>
-        </div>
-
-        <p>Запишем аналитическое описание выделенных дуг тригонометрического круга со всеми числовыми значениями границ и учётом периода полного оборота:</p>
-        <BlockMath>{"x \\in \\left(2\\pi k; \\, \\arcsin 2^{\\frac{-1 - \\sqrt{3}}{6}} + 2\\pi k\\right) \\cup \\left(\\pi - \\arcsin 2^{\\frac{-1 - \\sqrt{3}}{6}} + 2\\pi k; \\, \\pi + 2\\pi k\\right), \\quad k \\in \\mathbb{Z}"}</BlockMath>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>{"\\left(2\\pi k; \\, \\arcsin 2^{\\frac{-1 - \\sqrt{3}}{6}} + 2\\pi k\\right) \\cup \\left(\\pi - \\arcsin 2^{\\frac{-1 - \\sqrt{3}}{6}} + 2\\pi k; \\, \\pi + 2\\pi k\\right), \\, k \\in \\mathbb{Z}"}</InlineMath>
-          </div>
-        </div>
+        <p>ОДЗ: <InlineMath math={`\\sin x>0`} />. Положим <InlineMath math={`t=\\log_2(\\sin x)\\le0`} />. Поскольку <InlineMath math={`\\log_2(\\sin^3x)=3t`} />, получаем</p>
+        <BlockMath math={`324t^4+8t-1>0,\\qquad t\\le0.`} />
+        <p>Обозначим левую часть через <InlineMath math={`f(t)`} />. Производная <InlineMath math={`f'(t)=1296t^3+8`} /> имеет ровно один нуль <InlineMath math={`t_c=-\\sqrt[3]{1/162}<0`} />. На <InlineMath math={`(-\\infty;t_c)`} /> функция убывает, на <InlineMath math={`(t_c;0]`} /> возрастает; при этом <InlineMath math={`f(0)=-1`} /> и <InlineMath math={`f(t)\\to+\\infty`} /> при <InlineMath math={`t\\to-\\infty`} />.</p>
+        <p>Поэтому уравнение <InlineMath math={`f(t)=0`} /> имеет единственный отрицательный корень <InlineMath math={`t_0\\approx-0{,}324595`} />, и решение — <InlineMath math={`t<t_0`} />.</p>
+        <InequalityNumberLine points={[{ label: 't_0', closed: false }, { label: '0', closed: false }]} variable="t" selected={[[0,1]]} />
+        <p>Переходя обратно к синусу и обозначая <InlineMath math={`\\beta=\\arcsin(2^{t_0})`} />, получаем <InlineMath math={`0<\\sin x<2^{t_0}`} />.</p>
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`\\displaystyle\\bigcup_{k\\in\\mathbb Z}\\bigl((2\\pi k;\\beta+2\\pi k)\\cup(\\pi-\\beta+2\\pi k;\\pi+2\\pi k)\\bigr),\\quad \\beta=\\arcsin(2^{t_0})`} /></div>
       </div>
     )
   },
@@ -12745,77 +10080,16 @@ export const section15Tasks = [
     solutionBuilder: () => (
       <div className="space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-300">
         <p className="font-bold text-slate-800 dark:text-slate-100">Решение неравенства:</p>
-        
-        <p>
-          Преобразуем правую часть исходного неравенства по свойству логарифма частного: 
-          <InlineMath>{"\\log_2 \\frac{x}{2} + 1 = \\log_2 x - \\log_2 2 + 1 = \\log_2 x"}</InlineMath>.
-          Запишем единую равносильную систему условий, содержащую ограничения ОДЗ для всех аргументов, знаменателей и неотрицательность подкоренного выражения:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} \\sqrt{\\frac{5(\\log_2(x + 2) - 1)}{\\log_2(x + 2) + 1}} \\le \\log_2 x \\\\ \\frac{5(\\log_2(x + 2) - 1)}{\\log_2(x + 2) + 1} \\ge 0 \\\\ \\log_2(x + 2) + 1 \\neq 0 \\\\ x + 2 > 0 \\\\ x > 0 \\end{cases}"}</BlockMath>
-
-        <p>
-          Сведём ограничения аргументов логарифмов к базовому лучу ОДЗ системы: 
-          <InlineMath>{"x > 0"}</InlineMath>. При этом условие под корнем <InlineMath>{"\\log_2(x+2) \\ge 1 \\iff x+2 \\ge 2 \\iff x \\ge 0"}</InlineMath> выполняется автоматически на всей области <InlineMath>{"x > 0"}</InlineMath>.
-          Поскольку на ОДЗ правая часть <InlineMath>{"\\log_2 x"}</InlineMath> обязана быть неотрицательной для существования решения, возведём обе части иррационального неравенства в квадрат:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} \\frac{5(\\log_2(x + 2) - 1)}{\\log_2(x + 2) + 1} \\le \\log_2^2 x \\\\ \\log_2 x \\ge 0 \\\\ x > 0 \\end{cases} \\iff \\begin{cases} \\frac{5(\\log_2(x + 2) - 1)}{\\log_2(x + 2) + 1} \\le \\log_2^2 x \\\\ x \\ge 1 \\end{cases}"}</BlockMath>
-
-        <p>
-          Проанализируем левую часть неравенства при условии <InlineMath>{"x \\ge 1"}</InlineMath>. Заметим, что по олимпиадной специфике ДВИ, точным решением этой монотонной логарифмической конструкции является пограничная точка перехода. Проверим граничное значение <InlineMath>{"x = 2"}</InlineMath>:
-          <BlockMath>{"\\text{Левая часть: } \\sqrt{\\frac{5(\\log_2 4 - 1)}{\\log_2 4 + 1}} = \\sqrt{\\frac{5(2 - 1)}{2 + 1}} = \\sqrt{\\frac{5}{3}}"}</BlockMath>
-          <BlockMath>{"\\text{Правая часть: } \\log_2 2 = 1"}</BlockMath>
-          Так как <InlineMath>{"\\sqrt{5/3} > 1"}</InlineMath>, точка <InlineMath>{"x = 2"}</InlineMath> не обращает выражение в верное неравенство. Исследуем поведение функций методом интервалов знаков. Неравенство преобразуется к виду:
-        </p>
-        <BlockMath>{"\\iff \\begin{cases} x \\in [2; \\, +\\infty) \\\\ x \\ge 1 \\end{cases} \\iff x \\in [2; \\, +\\infty)"}</BlockMath>
-
-        <p>Исследуем знаки полученного рационального выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
-        {/* 🌌 ЧЕРТЁЖ: К КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className="overflow-visible font-sans font-bold text-[13px]">
-            <defs>
-              <pattern id="diagonalHatch122" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                <line x1="0" y1="0" x2="0" y2="8" stroke="#328ce6" strokeWidth="1" opacity="0.4" />
-              </pattern>
-            </defs>
-
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <text x="368" y="64" fill="currentColor" className="text-slate-800 dark:text-slate-200 font-black text-sm">x</text>
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#140e24' : '#ffffff'} stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <text x="65" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">0</text>
-
-            {/* Закрашенная точка ОДЗ 1 */}
-            <circle cx="155" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="155" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">1</text>
-
-            {/* Закрашенная точка решения 2 */}
-            <circle cx="245" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <text x="245" y="80" textAnchor="middle" fill="currentColor" className="text-slate-800 dark:text-slate-200">2</text>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части */}
-            <path d="M 245 60 L 245 45 A 10 10 0 0 1 255 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): Граница x >= 1 */}
-            <path d="M 155 60 L 155 25 A 10 10 0 0 1 165 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СЕТОЧНАЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Открытый луч [2; +inf) */}
-            <rect x="245" y="35" width="100" height="25" fill="url(#diagonalHatch122)" pointerEvents="none" />
-          </svg>
-        </div>
-
-        <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
-        <BlockMath>{"x \\in [2; \\, +\\infty)"}</BlockMath>
-
-        <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
-          <span>Ответ:</span>
-          <div style={{ whiteSpace: "nowrap" }}>
-            <InlineMath>{"[2; \\, +\\infty)"}</InlineMath>
-          </div>
-        </div>
+        <p>По свойствам логарифма правая часть равна <InlineMath math={`\\log_2x`} />. ОДЗ исходного неравенства — <InlineMath math={`x>0`} />. Левая часть неотрицательна, значит, решения возможны только при <InlineMath math={`x\\ge1`} />.</p>
+        <p>При <InlineMath math={`1\\le x\\le2`} /> положим <InlineMath math={`L=\\log_2(x+2)`} />. Тогда <InlineMath math={`L\\ge\\log_2 3>3/2`} />, поэтому</p>
+        <BlockMath math={`\\frac{5(L-1)}{L+1}>1\\ge\\log_2^2x.`} />
+        <p>Следовательно, на этом отрезке решений нет. При <InlineMath math={`x\\ge2`} /> положим <InlineMath math={`t=\\log_2x\\ge1`} /> и <InlineMath math={`L(t)=\\log_2(2+2^t)\\ge2`} />. Неравенство равносильно</p>
+        <BlockMath math={`\\frac{5(L(t)-1)}{(L(t)+1)t^2}\\le1.`} />
+        <p>Левая часть строго убывает: <InlineMath math={`0<L'(t)<1`} /> и <InlineMath math={`t\\le L(t)<L(t)^2-1`} />, откуда её производная отрицательна. При <InlineMath math={`t=1`} /> она больше 1, а при <InlineMath math={`t\\to+\\infty`} /> стремится к нулю. Значит, граница решения существует и единственна.</p>
+        <p>Обозначим через <InlineMath math={`\\alpha`} /> единственный корень уравнения</p>
+        <BlockMath math={`\\log_2^2\\alpha=\\frac{5(\\log_2(\\alpha+2)-1)}{\\log_2(\\alpha+2)+1},\\qquad \\alpha>2;\\quad \\alpha\\approx2{,}58061.`} />
+        <InequalityNumberLine points={[{ label: '\\alpha', closed: true }]} selected={[[1,2]]} />
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200/40">Ответ: <InlineMath math={`[\\alpha;+\\infty)`} /></div>
       </div>
     )
   }
