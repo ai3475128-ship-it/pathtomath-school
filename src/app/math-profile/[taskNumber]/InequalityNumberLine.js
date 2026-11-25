@@ -20,8 +20,7 @@ export function InequalityNumberLine({ points, selected, variable = 'x' }) {
   const topY = 48;
   const pointXs = points.map((_, i) => points.length === 1 ? 280 : 80 + i * (400 / (points.length - 1)));
   const positions = [30, ...pointXs, 510];
-  const stagger = points.length >= 5;
-  const height = stagger ? 188 : 154;
+  const height = 154;
   return <div className="my-6 flex justify-center w-full">
     <svg width="560" height={height} viewBox={`0 0 560 ${height}`} className={styles.diagram} role="img" aria-label="Числовая прямая: отмечены границы и заштрихованы промежутки решения">
       <defs><pattern id={patternId} width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(20)"><line x1="0" x2="0" y1="0" y2="10" stroke="#328ce6" strokeWidth="1.7" opacity=".58" /></pattern></defs>
@@ -39,8 +38,7 @@ export function InequalityNumberLine({ points, selected, variable = 'x' }) {
       <path d={`M20 ${axisY} H525 M517 ${axisY - 5} L525 ${axisY} L517 ${axisY + 5}`} className={styles.axis} />
       {points.map((point, i) => <g key={i}>
         <circle cx={pointXs[i]} cy={axisY} r="5.5" className={point.closed ? styles.closed : styles.open} />
-        {stagger && i % 2 === 1 && <path d={`M${pointXs[i]} ${axisY + 8} V125`} className={styles.guide} />}
-        <SvgMathLabel x={pointXs[i]} y={stagger && i % 2 === 1 ? 148 : 109} math={point.label} className={styles.numberLabel} />
+        <SvgMathLabel x={pointXs[i]} y={109} math={point.label} className={styles.numberLabel} />
       </g>)}
       <SvgMathLabel x={534} y={84} math={variable} anchor="start" className={styles.numberLabel} />
     </svg>
