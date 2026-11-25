@@ -95,35 +95,10 @@ export const section15Tasks = [
 
         <BlockMath math={`\\iff \\begin{cases} (x - 2)(x - 1) \\le 0 \\\\ x \\neq 1 \\end{cases}`} />
 
-        <p>Изобразим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Изобразим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 КРИСТАЛЬНО ЧИСТЫЙ SVG ЧЕРТЁЖ С КРЫШАМИ И ШТРИХОВКОЙ ДЛЯ ЗАДАЧИ 2 */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="100" viewBox="0 0 280 100" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="70" x2="260" y2="70" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M260 70 l-6 -3 M260 70 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={268.0} y={74.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 1 (Знаменатель) */}
-            <circle cx="70" cy="70" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={70.0} y={88.0} anchor="middle" math={"1"} />
-
-            {/* Закрашенная точка 2 (Числитель) */}
-            <circle cx="170" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={170.0} y={88.0} anchor="middle" math={"2"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ: Знак произведения (x - 2)(x - 1) <= 0 (Отрезок между 1 и 2) */}
-            <path d="M 70 64 L 70 55 A 10 10 0 0 1 80 45 L 160 45 A 10 10 0 0 1 170 55 L 170 64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ: Ограничение знаменателя x != 1 (Две бесконечные ветки) */}
-            <path d="M 20 20 L 60 20 A 10 10 0 0 1 70 30 L 70 64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 70 64 L 70 30 A 10 10 0 0 1 80 20 L 250 20" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 МАТЕМАТИЧЕСКАЯ НАКЛОННАЯ ШТРИХОВКА НА ИНТЕРВАЛЕ ОТВЕТА (1; 2] */}
-            <path d="M 74 65 L 80 48 M 84 65 L 90 48 M 94 65 L 100 48 M 104 65 L 110 48 M 114 65 L 120 48 M 124 65 L 130 48 M 134 65 L 140 48 M 144 65 L 150 48 M 154 65 L 160 48 M 164 65 L 169 49" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "1", closed: false }, { label: "2", closed: true }]} selected={[[1, 2]]} />
 
         <p>Пересечение условий даёт итоговый полуинтервал решений:</p>
         <BlockMath math={`\\iff 1 < x \\le 2`} />
@@ -170,51 +145,7 @@ export const section15Tasks = [
         <p>Решим полученную систему методом интервалов. Нанесём ОДЗ и знаки дроби на числовую прямую в виде строгих геометрических дуг:</p>
 
         {/* 🌌 ИСПРАВЛЕНО: КРИСТАЛЬНО ЧИСТЫЙ ГРАФИЧЕСКИЙ ОТБОР С ДУГАМИ И ШТРИХОВКОЙ ДЛЯ ЗАДАЧИ 3 */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="100" viewBox="0 0 280 100" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="70" x2="260" y2="70" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M260 70 l-6 -3 M260 70 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={268.0} y={74.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 (ОДЗ) */}
-            <circle cx="30" cy="70" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={30.0} y={88.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная точка 1/64 */}
-            <circle cx="85" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            
-            {/* Закрашенная точка 1/9 */}
-            <circle cx="145" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            
-            {/* Выколотая точка 1/5 */}
-            <circle cx="205" cy="70" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-
-            {/* Подписи многоэтажных дробей под осью */}
-            <SvgMathLabel x={85} y={92} anchor="middle" math={"\\frac{1}{64}"} />
-
-            <SvgMathLabel x={145} y={92} anchor="middle" math={"\\frac{1}{9}"} />
-
-            <SvgMathLabel x={205} y={92} anchor="middle" math={"\\frac{1}{5}"} />
-
-            {/* 📈 ВЕРХНИЙ УРОВЕНЬ: Дуги подходящих интервалов дроби (<= 0) */}
-            {/* Первая дуга: от 0 до 1/64 */}
-            <path d="M 30 64 L 30 45 A 10 10 0 0 1 40 35 L 75 35 A 10 10 0 0 1 85 45 L 85 64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            
-            {/* Вторая дуга: от 1/9 до 1/5 */}
-            <path d="M 145 64 L 145 45 A 10 10 0 0 1 155 35 L 195 35 A 10 10 0 0 1 205 45 L 205 64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ: Сплошная линия ОДЗ (x > 0) */}
-            <path d="M 30 64 L 30 20 A 10 10 0 0 1 40 10 L 250 10" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 МАТЕМАТИЧЕСКАЯ НАКЛОННАЯ ШТРИХОВКА ПОДХОДЯЩИХ ОБЛАСТЕЙ (Где пересекаются оба условия) */}
-            {/* Штриховка первого интервала (0; 1/64] */}
-            <path d="M 34 65 L 40 40 M 44 65 L 50 40 M 54 65 L 60 40 M 64 65 L 70 40 M 74 65 L 80 40 M 81 65 L 84 52" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            
-            {/* Штриховка второго интервала [1/9; 1/5) */}
-            <path d="M 149 65 L 155 40 M 159 65 L 165 40 M 169 65 L 175 40 M 179 65 L 185 40 M 189 65 L 195 40 M 199 65 L 204 44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "\\frac{1}{64}", closed: true }, { label: "\\frac{1}{9}", closed: true }, { label: "\\frac{1}{5}", closed: false }]} selected={[[1, 2], [3, 4]]} />
 
         <p>Объединяя все промежутки, где выполняются оба системных требования, находим финальный ответ неравенства:</p>
 
@@ -262,44 +193,10 @@ export const section15Tasks = [
 
         <BlockMath math={`\\iff \\begin{cases} \\frac{x - 4}{x - 3} \\ge 0 \\\\ x \\neq 3 \\end{cases} \\iff \\begin{cases} (x - 4)(x - 3) \\ge 0 \\\\ x \\neq 3 \\end{cases}`} />
 
-        <p>Разложим полученное системное условие на числовой прямой в совокупность интервалов при помощи двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой в совокупность интервалов методом интервалов:</p>
 
         {/* 🌌 ИСПРАВЛЕНО: ДВУХСЛОЙНЫЙ ЧЕРТЁЖ С КРЫШАМИ И ШТРИХОВКОЙ ДЛЯ ЗАДАЧИ 4 */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="100" viewBox="0 0 280 100" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="70" x2="260" y2="70" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M260 70 l-6 -3 M260 70 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={268.0} y={74.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 3 (Знаменатель) */}
-            <circle cx="90" cy="70" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={90.0} y={88.0} anchor="middle" math={"3"} />
-
-            {/* Закрашенная точка 4 (Числитель) */}
-            <circle cx="180" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={180.0} y={88.0} anchor="middle" math={"4"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ: Знак произведения (x - 4)(x - 3) >= 0 */}
-            {/* Левая ветка: от начала оси до 3 */}
-            <path d="M 20 45 L 80 45 A 10 10 0 0 1 90 55 L 90 64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Правая ветка: от 4 до конца оси */}
-            <path d="M 180 64 L 180 55 A 10 10 0 0 1 190 45 L 250 45" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ КРЫШ: Условие знаменателя x != 3 (Две ветки, исключающие точку 3) */}
-            {/* Левая ветка ОДЗ до точки 3 */}
-            <path d="M 20 20 L 80 20 A 10 10 0 0 1 90 30 L 90 64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            {/* Правая ветка ОДЗ после точки 3 уходит в бесконечность */}
-            <path d="M 90 64 L 90 30 A 10 10 0 0 1 100 20 L 250 20" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 МАТЕМАТИЧЕСКАЯ НАКЛОННАЯ ШТРИХОВКА (В местах пересечения условий) */}
-            {/* Штриховка левой области ответа (x < 3) */}
-            <path d="M 24 65 L 30 40 M 34 65 L 40 40 M 44 65 L 50 40 M 54 65 L 60 40 M 64 65 L 70 40 M 74 65 L 80 40 M 84 65 L 88 48" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            
-            {/* Штриховка правой области ответа (x >= 4) */}
-            <path d="M 184 65 L 190 40 M 194 65 L 200 40 M 204 65 L 210 40 M 214 65 L 220 40 M 224 65 L 230 40 M 234 65 L 240 40 M 244 65 L 250 40" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "3", closed: false }, { label: "4", closed: true }]} selected={[[0, 1], [2, 3]]} />
 
         <p>Итоговая совокупность равносильных переходов даёт финальное множество решений неравенства:</p>
         <BlockMath math={`\\iff \\left[ \\begin{aligned} &x < 3 \\\\ &x \\ge 4 \\end{aligned} \\right.`} />
@@ -344,48 +241,10 @@ export const section15Tasks = [
 
         <BlockMath math={`\\iff \\begin{cases} (x - 3\\sqrt{2})(x + 3\\sqrt{2})(x + 6) \\le 0 \\\\ x > -7 \\end{cases}`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ДВУХСЛОЙНЫЙ SVG ЧЕРТЁЖ ДЛЯ ЗАДАЧИ 5 С ШТРИХОВКОЙ И КРЫШАМИ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="100" viewBox="0 0 280 100" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="70" x2="260" y2="70" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M260 70 l-6 -3 M260 70 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={268.0} y={74.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -7 (ОДЗ) */}
-            <circle cx="30" cy="70" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={30.0} y={88.0} anchor="middle" math={"-7"} />
-
-            {/* Закрашенная точка -6 */}
-            <circle cx="85" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={85.0} y={88.0} anchor="middle" math={"-6"} />
-
-            {/* Закрашенная точка -3\sqrt{2} */}
-            <circle cx="145" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={145.0} y={88.0} anchor="middle" math={"-3\\sqrt{2}"} />
-
-            {/* Закрашенная точка 3\sqrt{2} */}
-            <circle cx="205" cy="70" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={205.0} y={88.0} anchor="middle" math={"3\\sqrt{2}"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ: Знак кубического произведения <= 0 */}
-            {/* Левый луч: от бесконечности до -6 */}
-            <path d="M 20 45 L 75 45 A 10 10 0 0 1 85 55 L 85 64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Центральный отрезок: от -3\sqrt{2} до 3\sqrt{2} */}
-            <path d="M 145 64 L 145 55 A 10 10 0 0 1 155 45 L 195 45 A 10 10 0 0 1 205 55 L 205 64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ: Условие ОДЗ x > -7 */}
-            <path d="M 30 64 L 30 30 A 10 10 0 0 1 40 20 L 250 20" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ДЛЯ ВЫДЕЛЕНИЯ ОБЛАСТЕЙ ОТВЕТА (Пересечение уровней) */}
-            {/* Интервал (-7; -6] */}
-            <path d="M 34 65 L 40 40 M 44 65 L 50 40 M 54 65 L 60 40 M 64 65 L 70 40 M 74 65 L 80 40 M 81 65 L 84 52" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            {/* Интервал [-3\sqrt{2}; 3\sqrt{2}] */}
-            <path d="M 149 65 L 155 40 M 159 65 L 165 40 M 169 65 L 175 40 M 179 65 L 185 40 M 189 65 L 195 40 M 199 65 L 204 44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-7", closed: false }, { label: "-6", closed: true }, { label: "-3\\sqrt{2}", closed: true }, { label: "3\\sqrt{2}", closed: true }]} selected={[[1, 2], [3, 4]]} />
 
         <p>Сводя пересечения условий в итоговые промежутки, получаем окончательный ответ неравенства:</p>
         <BlockMath math={`\\iff x \\in (-7; \\, -6] \\cup [-3\\sqrt{2}; \\, 3\\sqrt{2}]`} />
@@ -416,30 +275,7 @@ export const section15Tasks = [
         <p>Решим вспомогательное неравенство относительно переменной <InlineMath math={`t`} /> методом интервалов:</p>
 
         {/* 🌌 SVG ЧЕРТЁЖ ДЛЯ МЕТОДА ИНТЕРВАЛОВ ПО ПЕРЕМЕННОЙ t */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="70" viewBox="0 0 280 70" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            <line x1="20" y1="45" x2="250" y2="45" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M250 45 l-6 -3 M250 45 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={258.0} y={49.0} anchor="start" math={"t"} />
-
-            {/* Закрашенная точка 3 */}
-            <circle cx="90" cy="45" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={90.0} y={63.0} anchor="middle" math={"3"} />
-
-            {/* Закрашенная точка 4 */}
-            <circle cx="170" cy="45" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={170.0} y={63.0} anchor="middle" math={"4"} />
-
-            {/* Дуга влево до 3 */}
-            <path d="M 20 20 L 80 20 A 10 10 0 0 1 90 30 L 90 39" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Дуга вправо от 4 */}
-            <path d="M 170 39 L 170 30 A 10 10 0 0 1 180 20 L 250 20" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* Штриховка областей решения для t */}
-            <path d="M 24 50 L 30 25 M 34 50 L 40 25 M 44 50 L 50 25 M 54 50 L 60 25 M 64 50 L 70 25 M 74 50 L 80 25 M 84 50 L 88 34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <path d="M 174 50 L 180 25 M 184 50 L 190 25 M 194 50 L 200 25 M 204 50 L 210 25 M 214 50 L 220 25 M 224 50 L 230 25 M 234 50 L 240 25 M 244 50 L 250 25" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "3", closed: true }, { label: "4", closed: true }]} selected={[[0, 1], [2, 3]]} variable="t" />
 
         <p>Получаем совокупность условий: <InlineMath math={`t \\le 3`} /> или <InlineMath math={`t \\ge 4`} />. Выполним обратную замену с учётом ОДЗ логарифма:</p>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &\\log_2(25 - x^2) \\le 3 \\\\ &\\log_2(25 - x^2) \\ge 4 \\end{aligned} \\right. \\\\ 25 - x^2 > 0 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &25 - x^2 \\le 2^3 \\\\ &25 - x^2 \\ge 2^4 \\end{aligned} \\right. \\\\ 25 - x^2 > 0 \\end{cases}`} />
@@ -450,54 +286,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &(x - \\sqrt{17})(x + \\sqrt{17}) \\ge 0 \\\\ &(x - 3)(x + 3) \\le 0 \\end{aligned} \\right. \\\\ -5 < x < 5 \\end{cases}`} />
 
-        <p>Разложим полученное системное условие для переменной <InlineMath math={`x`} /> на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие для переменной <InlineMath math={`x`} /> на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ДВУХСЛОЙНЫЙ SVG ЧЕРТЁЖ ДЛЯ ПЕРЕМЕННОЙ x С ШТРИХОВКОЙ И КРЫШАМИ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={268.0} y={84.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -5 */}
-            <circle cx="25" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={25.0} y={98.0} anchor="middle" math={"-5"} />
-
-            {/* Выколотая точка 5 */}
-            <circle cx="245" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={245.0} y={98.0} anchor="middle" math={"5"} />
-
-            {/* Точка -√17 */}
-            <circle cx="65" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={65.0} y={98.0} anchor="middle" math={"-\\sqrt{17}"} />
-
-            {/* Точка √17 */}
-            <circle cx="205" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={205.0} y={98.0} anchor="middle" math={"\\sqrt{17}"} />
-
-            {/* Закрашенная точка -3 */}
-            <circle cx="110" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={110.0} y={98.0} anchor="middle" math={"-3"} />
-
-            {/* Закрашенная точка 3 */}
-            <circle cx="160" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={160.0} y={98.0} anchor="middle" math={"3"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ */}
-            <path d="M 20 55 L 55 55 A 10 10 0 0 1 65 65 L 65 74" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 110 74 L 110 65 A 10 10 0 0 1 120 55 L 150 55 A 10 10 0 0 1 160 65 L 160 74" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 205 74 L 205 65 A 10 10 0 0 1 215 55 L 250 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ: Отрезок ОДЗ (-5; 5) */}
-            <path d="M 25 74 L 25 30 A 10 10 0 0 1 35 20 L 235 20 A 10 10 0 0 1 245 30 L 245 74" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА НА ИНТЕРВАЛАХ ОТВЕТА */}
-            <path d="M 28 75 L 34 50 M 38 75 L 44 50 M 48 75 L 54 50 M 58 75 L 64 50 M 62 75 L 64 66" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <path d="M 114 75 L 120 50 M 124 75 L 130 50 M 134 75 L 140 50 M 144 75 L 150 50 M 154 75 L 160 50 M 158 75 L 160 66" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <path d="M 208 75 L 214 50 M 218 75 L 224 50 M 228 75 L 234 50 M 238 75 L 244 50 M 242 75 L 244 66" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-5", closed: false }, { label: "-\\sqrt{17}", closed: true }, { label: "-3", closed: true }, { label: "3", closed: true }, { label: "\\sqrt{17}", closed: true }, { label: "5", closed: false }]} selected={[[1, 2], [3, 4], [5, 6]]} />
 
         <p>Находя пересечение множеств на числовой прямой, получаем окончательное решение исходного неравенства:</p>
         <BlockMath math={`\\iff x \\in (-5; \\, -\\sqrt{17}] \\cup [-3; \\, 3] \\cup [\\sqrt{17}; \\, 5)`} />
@@ -610,84 +402,15 @@ export const section15Tasks = [
         <p>Решим вспомогательное рациональное неравенство для переменной <InlineMath math={`t`} /> методом интервалов:</p>
 
         {/* 🌌 SVG ЧЕРТЁЖ ДЛЯ МЕТОДА ИНТЕРВАЛОВ ПО ПЕРЕМЕННОЙ t */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="70" viewBox="0 0 280 70" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            <line x1="20" y1="45" x2="250" y2="45" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M250 45 l-6 -3 M250 45 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={258.0} y={49.0} anchor="start" math={"t"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="60" cy="45" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={60.0} y={63.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная точка 3 */}
-            <circle cx="135" cy="45" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={135.0} y={63.0} anchor="middle" math={"3"} />
-
-            {/* Выколотая точка 4 */}
-            <circle cx="200" cy="45" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={200.0} y={63.0} anchor="middle" math={"4"} />
-
-            {/* Дуга влево до 0 */}
-            <path d="M 20 20 L 50 20 A 10 10 0 0 1 60 30 L 60 39" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Изолированная точка 3 */}
-            <circle cx="135" cy="20" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-            {/* Дуга вправо от 4 */}
-            <path d="M 200 39 L 200 30 A 10 10 0 0 1 210 20 L 250 20" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* Штриховка областей решения для t */}
-            <path d="M 24 50 L 30 25 M 34 50 L 40 25 M 44 50 L 50 25 M 54 50 L 59 27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <path d="M 204 50 L 210 25 M 214 50 L 220 25 M 224 50 L 230 25 M 234 50 L 240 25 M 244 50 L 250 25" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "3", closed: true }, { label: "4", closed: false }]} selected={[[0, 1], [3, 4]]} variable="t" />
 
         <p>Получаем совокупность для переменной <InlineMath math={`t`} stroke="currentColor" />: <InlineMath math={`t < 0`} />, <InlineMath math={`t = 3`} /> или <InlineMath math={`t > 4`} />. Перейдём к обратной замене:</p>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &\\log_3 x < 0 \\\\ &\\log_3 x = 3 \\\\ &\\log_3 x > 4 \\end{aligned} \\right. \\\\ x > 0 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &x < 1 \\\\ &x = 27 \\\\ &x > 81 \\end{aligned} \\right. \\\\ x > 0 \\end{cases}`} />
 
-        <p>Разложим полученное финальное условие для переменной <InlineMath math={`x`} /> на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное финальное условие для переменной <InlineMath math={`x`} /> на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ДВУХСЛОЙНЫЙ SVG ЧЕРТЁЖ ДЛЯ ПЕРЕМЕННОЙ x С ШТРИХОВКОЙ И КРЫШАМИ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={268.0} y={84.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="35" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={35.0} y={98.0} anchor="middle" math={"0"} />
-
-            {/* Выколотая точка 1 */}
-            <circle cx="100" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={100.0} y={98.0} anchor="middle" math={"1"} />
-
-            {/* Закрашенная точка 27 */}
-            <circle cx="165" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={165.0} y={98.0} anchor="middle" math={"27"} />
-
-            {/* Выколотая точка 81 */}
-            <circle cx="225" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={225.0} y={98.0} anchor="middle" math={"81"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ: Решение совокупности аргумента */}
-            {/* Луч влево до 1 */}
-            <path d="M 20 55 L 90 55 A 10 10 0 0 1 100 65 L 100 74" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Изолированная точка 27 */}
-            <circle cx="165" cy="55" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-            {/* Луч вправо от 81 */}
-            <path d="M 225 74 L 225 65 A 10 10 0 0 1 235 55 L 250 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ: Отрезок ОДЗ x > 0 */}
-            <path d="M 35 74 L 35 30 A 10 10 0 0 1 45 20 L 250 20" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА НА ИНТЕРВАЛАХ ОТВЕТА */}
-            {/* Интервал (0; 1) */}
-            <path d="M 39 75 L 45 50 M 49 75 L 55 50 M 53 75 L 59 50 M 59 75 L 65 50 M 69 75 L 75 50 M 79 75 L 85 50 M 89 75 L 95 50 M 94 75 L 99 53" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            {/* Интервал (81; +inf) */}
-            <path d="M 228 75 L 234 50 M 238 75 L 244 50 M 248 75 L 250 58" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "1", closed: false }, { label: "27", closed: true }, { label: "81", closed: false }]} selected={[[1, 2], [4, 5]]} />
 
         <p>Объединяя интервалы пересечения и изолированную точку, получаем финальный ответ:</p>
         <BlockMath math={`\\iff x \\in (0; \\, 1) \\cup \\{27\\} \\cup (81; \\, +\\infty)`} />
@@ -898,56 +621,10 @@ export const section15Tasks = [
         <p>Потенциируя логарифмические условия по основанию 3 &gt; 1, переходим к переменной x:</p>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &x < \\frac{1}{81} \\\\ &x = \\frac{1}{9} \\\\ &x > 81 \\end{aligned} \\right. \\\\ x > 0 \\end{cases} \\iff \\left[ \\begin{aligned} &0 < x < \\frac{1}{81} \\\\ &x = \\frac{1}{9} \\\\ &x > 81 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ИСПРАВЛЕНО: ШТРИХОВКА СТРОГО МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={268.0} y={84.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="35" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={35.0} y={98.0} anchor="middle" math={"0"} />
-
-            {/* Выколотая точка 1/81 */}
-            <circle cx="100" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={100} y={106} anchor="middle" math={"\\frac{1}{81}"} />
-
-            {/* Закрашенная точка 1/9 */}
-            <circle cx="165" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={165} y={106} anchor="middle" math={"\\frac{1}{9}"} />
-
-            {/* Выколотая точка 81 */}
-            <circle cx="225" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={225.0} y={98.0} anchor="middle" math={"81"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 55) */}
-            <path d="M 20 55 L 90 55 A 10 10 0 0 1 100 65 L 100 75" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <circle cx="165" cy="55" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 225 75 L 225 65 A 10 10 0 0 1 235 55 L 255 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 20): Отрезок ОДЗ x > 0 */}
-            <path d="M 35 75 L 35 30 A 10 10 0 0 1 45 20 L 255 20" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 ШТРИХОВКА ЗАПЕРТА СНИЗУ (Идёт от y=78 до y=57, не пересекая верхнюю линию) */}
-            {/* Левый отрезок (0; 1/81) */}
-            <line x1="42" y1="78" x2="48" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="78" x2="56" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="78" x2="64" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="78" x2="72" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="78" x2="80" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="78" x2="88" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="90" y1="78" x2="96" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Правый отрезок (81; +inf) */}
-            <line x1="229" y1="78" x2="235" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="78" x2="243" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="78" x2="251" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "\\frac{1}{81}", closed: false }, { label: "\\frac{1}{9}", closed: true }, { label: "81", closed: false }]} selected={[[1, 2], [4, 5]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -987,68 +664,10 @@ export const section15Tasks = [
         <p>Потенциируя условия по основанию <InlineMath math={`4 > 1`} />, переходим к переменной <InlineMath math={`x`} />:</p>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &x \\le 1 \\\\ &x \\ge 4 \\end{aligned} \\right. \\\\ x \\neq 64 \\\\ x > 0 \\end{cases} \\iff \\left[ \\begin{aligned} &0 < x \\le 1 \\\\ &4 \\le x < 64 \\\\ &x > 64 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АККУРАТНОЙ ЗАПЕРТОЙ ШТРИХОВКОЙ ПОД НИЖНЕЙ КРЫШЕЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={268.0} y={84.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="35" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={35.0} y={98.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная точка 1 */}
-            <circle cx="90" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={90.0} y={98.0} anchor="middle" math={"1"} />
-
-            {/* Закрашенная точка 4 */}
-            <circle cx="145" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={145.0} y={98.0} anchor="middle" math={"4"} />
-
-            {/* Выколотая точка 64 */}
-            <circle cx="210" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={210.0} y={98.0} anchor="middle" math={"64"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 55) */}
-            {/* Луч влево до 1 */}
-            <path d="M 20 55 L 80 55 A 10 10 0 0 1 90 65 L 90 75" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Луч вправо от 4 с выкалыванием точки 64 */}
-            <path d="M 145 75 L 145 65 A 10 10 0 0 1 155 55 L 200 55 A 10 10 0 0 1 210 65 L 210 75" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 210 75 L 210 65 A 10 10 0 0 1 220 55 L 255 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 20): Отрезок ОДЗ x > 0 */}
-            <path d="M 35 75 L 35 30 A 10 10 0 0 1 45 20 L 255 20" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 ШТРИХОВКА СТРОГО ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Интервал (0; 1] */}
-            <line x1="42" y1="78" x2="48" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="78" x2="56" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="78" x2="64" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="78" x2="72" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="78" x2="80" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="78" x2="88" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Интервал [4; 64) */}
-            <line x1="149" y1="78" x2="155" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="157" y1="78" x2="163" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="165" y1="78" x2="171" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="173" y1="78" x2="179" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="181" y1="78" x2="187" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="189" y1="78" x2="195" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="197" y1="78" x2="203" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Интервал (64; +inf) */}
-            <line x1="214" y1="78" x2="220" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="222" y1="78" x2="228" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="230" y1="78" x2="236" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="238" y1="78" x2="244" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="246" y1="78" x2="252" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "1", closed: true }, { label: "4", closed: true }, { label: "64", closed: false }]} selected={[[1, 2], [3, 4], [4, 5]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -1095,59 +714,10 @@ export const section15Tasks = [
         <p>Потенциируя логарифмические условия по основанию 2 &gt; 1, переходим к переменной x:</p>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &x < \\frac{1}{32} \\\\ &x = 16 \\\\ &x > 32 \\end{aligned} \\right. \\\\ x > 0 \\end{cases} \\iff \\left[ \\begin{aligned} &0 < x < \\frac{1}{32} \\\\ &x = 16 \\\\ &x > 32 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АККУРАТНОЙ ЗАПЕРТОЙ ШТРИХОВКОЙ ПОД НИЖНЕЙ КРЫШЕЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={268.0} y={84.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="35" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={35.0} y={98.0} anchor="middle" math={"0"} />
-
-            {/* Выколотая точка 1/32 */}
-            <circle cx="100" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={100} y={106} anchor="middle" math={"\\frac{1}{32}"} />
-
-            {/* Закрашенная точка 16 */}
-            <circle cx="165" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={165.0} y={98.0} anchor="middle" math={"16"} />
-
-            {/* Выколотая точка 32 */}
-            <circle cx="225" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={225.0} y={98.0} anchor="middle" math={"32"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 55) */}
-            {/* Луч влево до 1/32 */}
-            <path d="M 20 55 L 90 55 A 10 10 0 0 1 100 65 L 100 75" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Изолированная точка 16 */}
-            <circle cx="165" cy="55" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-            {/* Луч вправо от 32 */}
-            <path d="M 225 75 L 225 65 A 10 10 0 0 1 235 55 L 255 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 20): Отрезок ОДЗ x > 0 */}
-            <path d="M 35 75 L 35 30 A 10 10 0 0 1 45 20 L 255 20" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 ШТРИХОВКА СТРОГО ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Интервал (0; 1/32) */}
-            <line x1="42" y1="78" x2="48" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="78" x2="56" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="78" x2="64" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="78" x2="72" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="78" x2="80" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="78" x2="88" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="90" y1="78" x2="96" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Интервал (32; +inf) */}
-            <line x1="229" y1="78" x2="235" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="78" x2="243" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="78" x2="251" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "\\frac{1}{32}", closed: false }, { label: "16", closed: true }, { label: "32", closed: false }]} selected={[[1, 2], [4, 5]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -1249,53 +819,10 @@ export const section15Tasks = [
         <p>Выразим переменную x, представив числа как степени двойки (основание 2 &gt; 1 монотонно возрастает):</p>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &2^{3x} < 2^0 \\\\ &2^{3x} = 2^1 \\\\ &2^{3x} > 2^2 \\end{aligned} \\right. \\\\ x \\in \\mathbb{R} \\end{cases} \\iff \\left[ \\begin{aligned} &x < 0 \\\\ &x = \\frac{1}{3} \\\\ &x > \\frac{2}{3} \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АККУРАТНОЙ ЗАПЕРТОЙ ШТРИХОВКОЙ ПОД НИЖНЕЙ КРЫШЕЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="280" height="110" viewBox="0 0 280 110" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M260 80 l-6 -3 M260 80 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={268.0} y={84.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="50" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={50.0} y={98.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная точка 1/3 */}
-            <circle cx="130" cy="80" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={130} y={106} anchor="middle" math={"\\frac{1}{3}"} />
-
-            {/* Выколотая точка 2/3 */}
-            <circle cx="210" cy="80" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={210} y={106} anchor="middle" math={"\\frac{2}{3}"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 55) */}
-            {/* Луч влево до 0 */}
-            <path d="M 20 55 L 40 55 A 10 10 0 0 1 50 65 L 50 75" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Изолированная точка 1/3 */}
-            <circle cx="130" cy="55" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-            {/* Луч вправо от 2/3 */}
-            <path d="M 210 75 L 210 65 A 10 10 0 0 1 220 55 L 255 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 20): Бесконечная прямая (так как ОДЗ верно для всех x) */}
-            <line x1="20" y1="20" x2="255" y2="20" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 ШТРИХОВКА СТРОГО ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Левый промежуток */}
-            <line x1="22" y1="78" x2="28" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="30" y1="78" x2="36" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="38" y1="78" x2="44" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Правый промежуток */}
-            <line x1="214" y1="78" x2="220" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="222" y1="78" x2="228" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="230" y1="78" x2="236" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="238" y1="78" x2="244" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="246" y1="78" x2="252" y2="57" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "\\frac{1}{3}", closed: true }, { label: "\\frac{2}{3}", closed: false }]} selected={[[0, 1], [3, 4]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -1366,76 +893,10 @@ export const section15Tasks = [
         <p>Потенциируя условия по основанию 11 &gt; 1, переходим к переменной x:</p>
         <BlockMath math={`\\iff \\left[ \\begin{aligned} &x \\le 0 \\\\ &\\log_{11} 6 < x \\le 1 \\quad \\text{при } x \\neq \\log_{11} 10 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ИСПРАВЛЕНО: ПОДПИСИ ТОЧЕК РЕНДЕРЯТСЯ СТРОГО ЧЕРЕЗ ФОРМУЛЫ KaTeX */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка 0 */}
-            <circle cx="45" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="25" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка log11 6 */}
-            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="105" y="70" width="60" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200 text-[13px]"><InlineMath math="\log_{11} 6" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка log11 10 */}
-            <circle cx="235" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="205" y="70" width="60" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200 text-[13px]"><InlineMath math="\log_{11} 10" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 1 */}
-            <circle cx="315" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="295" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            <path d="M 15 35 L 35 35 A 10 10 0 0 1 45 45 L 45 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 135 55 L 135 45 A 10 10 0 0 1 145 35 L 225 35 A 10 10 0 0 1 235 45 L 235 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 235 55 L 235 45 A 10 10 0 0 1 245 35 L 305 35 A 10 10 0 0 1 315 45 L 315 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ: Ограничения ОДЗ */}
-            <line x1="15" y1="15" x2="335" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            
-            <line x1="141" y1="78" x2="147" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.0" />
-            <line x1="141" y1="58" x2="147" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="149" y1="58" x2="155" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="157" y1="58" x2="163" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="165" y1="58" x2="171" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="173" y1="58" x2="179" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="181" y1="58" x2="187" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="197" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="201" y1="58" x2="207" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="233" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="241" y1="58" x2="247" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="271" y1="58" x2="277" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="281" y1="58" x2="287" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="301" y1="58" x2="307" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="311" y1="58" x2="313" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: true }, { label: "\\log_{11} 6", closed: false }, { label: "\\log_{11} 10", closed: false }, { label: "1", closed: true }]} selected={[[0, 1], [2, 3], [3, 4]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -1479,65 +940,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff \\frac{x(x + 2)}{x + 2} \\le 0 \\iff \\begin{cases} x \\le 0 \\\\ x + 2 \\neq 0 \\end{cases} \\iff \\begin{cases} x \\le 0 \\\\ x \\neq -2 \\end{cases}`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -2 */}
-            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="95" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-2" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 0 */}
-            <circle cx="245" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="225" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            <path d="M 15 35 L 105 35 A 10 10 0 0 1 115 45 L 115 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 115 55 L 115 45 A 10 10 0 0 1 125 35 L 235 35 A 10 10 0 0 1 245 45 L 245 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15) */}
-            <line x1="15" y1="15" x2="265" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="90" y1="58" x2="96" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="98" y1="58" x2="104" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="106" y1="58" x2="110" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="121" y1="58" x2="127" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="137" y1="58" x2="143" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="153" y1="58" x2="159" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="161" y1="58" x2="167" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="171" y1="58" x2="177" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="181" y1="58" x2="187" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="197" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="201" y1="58" x2="207" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="242" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-2", closed: false }, { label: "0", closed: true }]} selected={[[0, 1], [1, 2]]} />
 
         <p>Сводя пересечения интервалов на оси, получаем окончательное решение:</p>
         <BlockMath math={`\\iff x \\in (-\\infty; \\, -2) \\cup (-2; \\, 0]`} />
@@ -1582,64 +988,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff (x - \\sqrt{2})(x + \\sqrt{2}) \\ge 0`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка -√2 */}
-            <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="95" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-\sqrt{2}" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка √2 */}
-            <circle cx="245" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="225" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\sqrt{2}" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение совокупности лучей */}
-            <path d="M 15 35 L 105 35 A 10 10 0 0 1 115 45 L 115 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 245 55 L 245 45 A 10 10 0 0 1 255 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Левый луч */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="90" y1="58" x2="96" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="98" y1="58" x2="104" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="106" y1="58" x2="110" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Правый луч */}
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="267" y1="58" x2="273" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="283" y1="58" x2="289" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="307" y1="58" x2="313" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="315" y1="58" x2="321" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="323" y1="58" x2="329" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="331" y1="58" x2="337" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-\\sqrt{2}", closed: true }, { label: "\\sqrt{2}", closed: true }]} selected={[[0, 1], [2, 3]]} />
 
         <p>Пересечение полученных лучей даёт финальное множество решений:</p>
         <BlockMath math={`\\iff x \\in (-\\infty; \\, -\\sqrt{2}] \\cup [\\sqrt{2}; \\, +\\infty)`} />
@@ -1714,59 +1066,10 @@ export const section15Tasks = [
 
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &x - 3 < 0 \\\\ &x = 3{,}2 \\end{aligned} \\right. \\\\ x > 2{,}5 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &x < 3 \\\\ &x = 3{,}2 \\end{aligned} \\right. \\\\ x > 2{,}5 \\end{cases}`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 2,5 */}
-            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="2{,}5" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 3 */}
-            <circle cx="155" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="135" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 3,2 */}
-            <circle cx="255" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="235" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3{,}2" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            {/* Ветка влево до 3 */}
-            <path d="M 15 35 L 145 35 A 10 10 0 0 1 155 45 L 155 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Изолированная точка 3,2 */}
-            <circle cx="255" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ x > 2,5 */}
-            <path d="M 55 55 L 55 25 A 10 10 0 0 1 65 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок пересечения (2,5; 3) */}
-            <line x1="59" y1="58" x2="65" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="67" y1="58" x2="73" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="75" y1="58" x2="81" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="83" y1="58" x2="89" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="91" y1="58" x2="97" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="99" y1="58" x2="105" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="107" y1="58" x2="113" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="58" x2="121" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="123" y1="58" x2="129" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="131" y1="58" x2="137" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="139" y1="58" x2="145" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="147" y1="58" x2="151" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "2{,}5", closed: false }, { label: "3", closed: false }, { label: "3{,}2", closed: true }]} selected={[[1, 2]]} />
 
         <p>Сводя пересечения интервалов и добавляя изолированное решение числителя, получаем окончательный ответ:</p>
         <BlockMath math={`\\iff x \\in (2{,}5; \\, 3) \\cup \\{3{,}2\\}`} />
@@ -1808,72 +1111,10 @@ export const section15Tasks = [
         <p>Потенциируя логарифмические условия по основанию <InlineMath math={`3 > 1`} />, переходим к линейным промежуткам:</p>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &x \\le \\frac{1}{9} \\\\ &1 < x \\le 81 \\end{aligned} \\right. \\\\ x > 0 \\\\ x \\neq 1 \\end{cases} \\iff \\left[ \\begin{aligned} &0 < x \\le \\frac{1}{9} \\\\ &1 < x \\le 81 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="45" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="25" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 1/9 */}
-            <circle cx="125" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="105" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\frac{1}{9}" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 1 */}
-            <circle cx="215" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="195" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 81 */}
-            <circle cx="295" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="275" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="81" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            <path d="M 15 35 L 115 35 A 10 10 0 0 1 125 45 L 125 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 215 55 L 215 45 A 10 10 0 0 1 225 35 L 285 35 A 10 10 0 0 1 295 45 L 295 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ x > 0 */}
-            <path d="M 45 60 L 45 25 A 10 10 0 0 1 55 15 L 315 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок от 0 до 1/9 */}
-            <line x1="48" y1="58" x2="54" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="56" y1="58" x2="62" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="64" y1="58" x2="70" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="72" y1="58" x2="78" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="80" y1="58" x2="86" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="88" y1="58" x2="94" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="96" y1="58" x2="102" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="104" y1="58" x2="110" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="112" y1="58" x2="118" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="120" y1="58" x2="123" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Отрезок от 1 до 81 */}
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="255" y1="58" x2="261" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="265" y1="58" x2="271" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="293" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "\\frac{1}{9}", closed: true }, { label: "1", closed: false }, { label: "81", closed: true }]} selected={[[1, 2], [3, 4]]} />
 
         <p>Объединяя интервалы пересечения, получаем окончательное решение:</p>
         <BlockMath math={`\\iff x \\in \\left(0; \\, \\frac{1}{9}\\right] \\cup (1; \\, 81]`} />
@@ -1911,57 +1152,10 @@ export const section15Tasks = [
         <p>Потенциируя условия по основанию <InlineMath math={`36 > 1`} />, переходим к двойному неравенству для переменной <InlineMath math={`x`} />:</p>
         <BlockMath math={`\\iff 36^{-\\frac{1}{2}} \\le x < 36^0 \\iff \\frac{1}{\\sqrt{36}} \\le x < 1 \\iff \\frac{1}{6} \\le x < 1`} />
 
-        <p>Так как полученные условия пересекаются с лучом ОДЗ <InlineMath math={`x > 0`} />, разложим итоговое решение на числовой прямой методом двух уровней крыш:</p>
+        <p>Так как полученные условия пересекаются с лучом ОДЗ <InlineMath math={`x > 0`} />, разложим итоговое решение на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 1/6 */}
-            <circle cx="165" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="145" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\frac{1}{6}" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 1 */}
-            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="255" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Полуинтервал [1/6; 1) */}
-            <path d="M 165 60 L 165 45 A 10 10 0 0 1 175 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ x > 0 */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок пересечения от 1/6 до 1 */}
-            <line x1="171" y1="58" x2="177" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="179" y1="58" x2="185" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="187" y1="58" x2="193" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="195" y1="58" x2="201" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="203" y1="58" x2="209" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="273" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "\\frac{1}{6}", closed: true }, { label: "1", closed: false }]} selected={[[1, 2]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -2028,56 +1222,10 @@ export const section15Tasks = [
           <span>лежит строго правее начала луча ОДЗ.</span>
         </div>
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 3-√2 */}
-            <circle cx="145" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="115" y="70" width="60" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3 - \sqrt{2}" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 3+√2 */}
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="235" y="70" width="60" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3 + \sqrt{2}" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Отрезок ответа */}
-            <path d="M 145 60 L 145 45 A 10 10 0 0 1 155 35 L 255 35 A 10 10 0 0 1 265 45 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ x > 0 */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            <line x1="151" y1="58" x2="157" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="159" y1="58" x2="165" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="167" y1="58" x2="173" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="175" y1="58" x2="181" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="183" y1="58" x2="189" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="197" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="201" y1="58" x2="207" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="241" y1="58" x2="247" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="263" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "3 - \\sqrt{2}", closed: true }, { label: "3 + \\sqrt{2}", closed: true }]} selected={[[1, 2]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -2115,72 +1263,10 @@ export const section15Tasks = [
         <p>Потенциируя логарифмические условия по основанию <InlineMath math={`7 > 1`} />, переходим к линейным промежуткам:</p>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &x + 4 \\le \\frac{1}{7} \\\\ &\\frac{1}{\\sqrt{7}} \\le x + 4 < 1 \\end{aligned} \\right. \\\\ x > -4 \\\\ x \\neq -3 \\end{cases} \\iff \\left[ \\begin{aligned} &-4 < x \\le -3\\frac{6}{7} \\\\ &-4 + \\frac{\\sqrt{7}}{7} \\le x < -3 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -4 */}
-            <circle cx="45" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="25" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-4" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка -3_6/7 */}
-            <circle cx="125" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="100" y="70" width="50" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-3\frac{6}{7}" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка -4+√7/7 */}
-            <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="185" y="70" width="60" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-4+\frac{\sqrt{7}}{7}" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка -3 */}
-            <circle cx="295" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="275" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-3" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            <path d="M 15 35 L 115 35 A 10 10 0 0 1 125 45 L 125 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 215 55 L 215 45 A 10 10 0 0 1 225 35 L 285 35 A 10 10 0 0 1 295 45 L 295 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ x > -4 */}
-            <path d="M 45 55 L 45 25 A 10 10 0 0 1 55 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок от -4 до -3_6/7 */}
-            <line x1="48" y1="58" x2="54" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="56" y1="58" x2="62" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="64" y1="58" x2="70" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="72" y1="58" x2="78" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="80" y1="58" x2="86" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="88" y1="58" x2="94" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="96" y1="58" x2="102" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="104" y1="58" x2="110" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="112" y1="58" x2="118" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="120" y1="58" x2="123" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Отрезок от -4+√7/7 до -3 */}
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="255" y1="58" x2="261" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="265" y1="58" x2="271" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="293" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-4", closed: false }, { label: "-3\\frac{6}{7}", closed: true }, { label: "-4+\\frac{\\sqrt{7}}{7}", closed: true }, { label: "-3", closed: false }]} selected={[[1, 2], [3, 4]]} />
 
         <p>Объединяя интервалы пересечения, получаем окончательное решение:</p>
         <BlockMath math={`\\iff x \\in \\left(-4; \\, -3\\frac{6}{7}\\right] \\cup \\left[-4 + \\frac{\\sqrt{7}}{7}; \\, -3\\right)`} />
@@ -2240,61 +1326,10 @@ export const section15Tasks = [
           <span>лежит правее изолированного корня и не влияет на него.</span>
         </div>
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -√2 */}
-            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-\sqrt{2}" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка -1 */}
-            <circle cx="155" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="135" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-1" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 1 */}
-            <circle cx="255" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="235" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение x <= -1 с выкалыванием -√2 и изолированная точка 1 */}
-            <path d="M 15 35 L 45 35 A 10 10 0 0 1 55 45 L 55 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 55 55 L 55 45 A 10 10 0 0 1 65 35 L 145 35 A 10 10 0 0 1 155 45 L 155 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <circle cx="255" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): Ограничения знаменателя (Вся ось) */}
-            <line x1="15" y1="15" x2="315" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Левый луч */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            {/* Отрезок от -√2 до -1 */}
-            <line x1="61" y1="58" x2="67" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="69" y1="58" x2="75" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="77" y1="58" x2="83" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="85" y1="58" x2="91" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="95" y1="58" x2="101" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="105" y1="58" x2="111" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="58" x2="121" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="125" y1="58" x2="131" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="135" y1="58" x2="141" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-\\sqrt{2}", closed: false }, { label: "-1", closed: true }, { label: "1", closed: true }]} selected={[[0, 1], [1, 2]]} />
 
         <p>Объединяя интервалы пересечения и изолированное решение, получаем итоговый ответ:</p>
         <BlockMath math={`\\iff x \\in (-\\infty; \\, -\\sqrt{2}) \\cup (-\\sqrt{2}; \\, -1] \\cup \\{1\\}`} />
@@ -2343,52 +1378,10 @@ export const section15Tasks = [
         <p>В силу монотонного возрастания показательной функции с основанием 2 &gt; 1 перейдём к простейшим линейным ограничениям:</p>
         <BlockMath math={`\\iff -1 < x \\le 5`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -1 */}
-            <circle cx="105" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="85" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-1" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 5 */}
-            <circle cx="255" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="235" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="5" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Полуинтервал (-1; 5] */}
-            <path d="M 105 60 L 105 45 A 10 10 0 0 1 115 35 L 245 35 A 10 10 0 0 1 255 45 L 255 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="335" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            <line x1="111" y1="58" x2="117" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="119" y1="58" x2="125" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="127" y1="58" x2="133" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="137" y1="58" x2="143" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="147" y1="58" x2="153" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="157" y1="58" x2="163" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="167" y1="58" x2="173" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="177" y1="58" x2="183" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="187" y1="58" x2="193" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="197" y1="58" x2="203" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="207" y1="58" x2="213" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="217" y1="58" x2="223" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="227" y1="58" x2="233" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="251" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-1", closed: false }, { label: "5", closed: true }]} selected={[[1, 2]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -2439,64 +1432,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff \\begin{cases} \\frac{x^2(x - 3)}{x} \\ge 0 \\\\ x \\neq 0 \\end{cases} \\iff \\begin{cases} x(x - 3) \\ge 0 \\\\ x \\neq 0 \\end{cases}`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="95" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 3 */}
-            <circle cx="245" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="225" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение совокупности x < 0 и x >= 3 */}
-            <path d="M 15 35 L 105 35 A 10 10 0 0 1 115 45 L 115 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 245 55 L 245 45 A 10 10 0 0 1 255 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): Ограничение знаменателя x != 0 (Вся ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Левый луч */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="90" y1="58" x2="96" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="98" y1="58" x2="104" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="106" y1="58" x2="110" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Правый луч */}
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="267" y1="58" x2="273" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="283" y1="58" x2="289" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="307" y1="58" x2="313" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="315" y1="58" x2="321" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="323" y1="58" x2="329" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="331" y1="58" x2="337" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "3", closed: true }]} selected={[[0, 1], [2, 3]]} />
 
         <p>Пересечение полученных интервалов на оси даёт финальное множество решений:</p>
         <BlockMath math={`\\iff x \\in (-\\infty; \\, 0) \\cup [3; \\, +\\infty)`} />
@@ -2571,57 +1510,10 @@ export const section15Tasks = [
         <p>В силу монотонного возрастания показательной функции с основанием 2 &gt; 1, переходим к переменной x:</p>
         <BlockMath math={`\\iff \\left[ \\begin{aligned} &3 < x < 4 \\\\ &x = 1 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка 1 */}
-            <circle cx="65" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="45" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 3 */}
-            <circle cx="165" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="145" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 4 */}
-            <circle cx="265" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="245" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="4" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение отрезка [3; 4] и изолированная точка 1 */}
-            <circle cx="65" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 165 60 L 165 45 A 10 10 0 0 1 175 35 L 255 35 A 10 10 0 0 1 265 45 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="325" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок от 3 до 4 */}
-            <line x1="171" y1="58" x2="177" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="179" y1="58" x2="185" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="187" y1="58" x2="193" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="195" y1="58" x2="201" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="203" y1="58" x2="207" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="263" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "1", closed: true }, { label: "3", closed: false }, { label: "4", closed: false }]} selected={[[2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -2672,72 +1564,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff x \\in (-1; \\, 0) \\cup (3; \\, 4]`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И СПЛОШНЫМИ КРЫШАМИ ОТВЕТА */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -1 */}
-            <circle cx="45" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="25" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-1" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 0 */}
-            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="95" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 3 */}
-            <circle cx="215" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="195" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 4 */}
-            <circle cx="295" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="275" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="4" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Обе крыши сплошные */}
-            <path d="M 45 60 L 45 45 A 10 10 0 0 1 55 35 L 105 35 A 10 10 0 0 1 115 45 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 215 60 L 215 45 A 10 10 0 0 1 225 35 L 285 35 A 10 10 0 0 1 295 45 L 295 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ аргументов */}
-            <path d="M 15 15 L 105 15 A 10 10 0 0 1 115 25 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 215 60 L 215 25 A 10 10 0 0 1 225 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок от -1 до 0 */}
-            <line x1="48" y1="58" x2="54" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="56" y1="58" x2="62" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="64" y1="58" x2="70" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="72" y1="58" x2="78" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="80" y1="58" x2="86" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="88" y1="58" x2="94" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="96" y1="58" x2="102" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="104" y1="58" x2="110" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="112" y1="58" x2="114" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Отрезок от 3 до 4 */}
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="255" y1="58" x2="261" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="265" y1="58" x2="271" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="293" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-1", closed: false }, { label: "0", closed: false }, { label: "3", closed: false }, { label: "4", closed: true }]} selected={[[1, 2], [3, 4]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -2789,77 +1619,10 @@ export const section15Tasks = [
         <p>Потенциируя условия по основанию 2 &gt; 1, переходим к переменной x:</p>
         <BlockMath math={`\\iff \\left[ \\begin{aligned} &x \\le 0 \\\\ &\\log_2 3 < x \\le 3 \\quad \\text{при } x \\neq 2 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка 0 */}
-            <circle cx="45" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="25" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка log2 3 */}
-            <circle cx="125" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="105" y="70" width="60" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200 text-[13px]"><InlineMath math="\log_2 3" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 2 */}
-            <circle cx="205" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="185" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="2" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 3 */}
-            <circle cx="285" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="265" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            {/* Луч влево до 0 */}
-            <path d="M 15 35 L 35 35 A 10 10 0 0 1 45 45 L 45 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Интервалы от log2 3 до 3 с выкалыванием 2 */}
-            <path d="M 125 55 L 125 45 A 10 10 0 0 1 135 35 L 195 35 A 10 10 0 0 1 205 45 L 205 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 205 55 L 205 45 A 10 10 0 0 1 215 35 L 275 35 A 10 10 0 0 1 285 45 L 285 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="315" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Левый луч */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            
-            {/* Отрезок от log2 3 до 2 */}
-            <line x1="131" y1="58" x2="137" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="141" y1="58" x2="147" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="151" y1="58" x2="157" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="161" y1="58" x2="167" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="171" y1="58" x2="177" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="181" y1="58" x2="187" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="197" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="199" y1="58" x2="203" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Отрезок от 2 до 3 */}
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="241" y1="58" x2="247" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="271" y1="58" x2="277" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="281" y1="58" x2="283" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: true }, { label: "\\log_2 3", closed: false }, { label: "2", closed: false }, { label: "3", closed: true }]} selected={[[0, 1], [2, 3], [3, 4]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -2904,66 +1667,10 @@ export const section15Tasks = [
         <p>Выразим переменную x, представив числа в виде степеней с основанием 9 &gt; 1 (монотонно возрастает):</p>
         <BlockMath math={`\\iff \\left[ \\begin{aligned} &9^x < 9^0 \\\\ &9^x = 9^{0{,}5} \\\\ &9^x > 9^1 \\end{aligned} \\right. \\iff \\left[ \\begin{aligned} &x < 0 \\\\ &x = 0{,}5 \\\\ &x > 1 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="75" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="55" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 0,5 */}
-            <circle cx="175" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="155" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0{,}5" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 1 */}
-            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="255" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            {/* Луч влево до 0 */}
-            <path d="M 15 35 L 65 35 A 10 10 0 0 1 75 45 L 75 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Изолированная точка 0,5 */}
-            <circle cx="175" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-            {/* Луч вправо от 1 */}
-            <path d="M 275 60 L 275 45 A 10 10 0 0 1 285 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Левый луч (строго от начала до x = 0) */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="71" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Правый луч (строго от x = 1 до конца оси) */}
-            <line x1="281" y1="58" x2="287" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="289" y1="58" x2="295" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="297" y1="58" x2="303" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="305" y1="58" x2="311" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="313" y1="58" x2="319" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="321" y1="58" x2="327" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="329" y1="58" x2="335" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="337" y1="58" x2="343" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "0{,}5", closed: true }, { label: "1", closed: false }]} selected={[[0, 1], [3, 4]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -3025,71 +1732,10 @@ export const section15Tasks = [
         <p>Пересечём полученный отрезковый промежуток с лучами ОДЗ. Поскольку подмножество <InlineMath math={`[0; \\, 7]`} /> полностью лежит внутри интервала <InlineMath math={`(-0{,}75; \\, +\\infty)`} />, ограничения ОДЗ лишь выкалывают точку 3. Получаем:</p>
         <BlockMath math={`\\iff x \\in [0; \\, 3) \\cup (3; \\, 7]`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка 0 */}
-            <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="55" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 3 */}
-            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="155" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 7 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="255" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="7" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение отрезка с выколотой 3 */}
-            <path d="M 75 60 L 75 45 A 10 10 0 0 1 85 35 L 165 35 A 10 10 0 0 1 175 45 L 175 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 175 60 L 175 45 A 10 10 0 0 1 185 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок от 0 до 3 */}
-            <line x1="78" y1="58" x2="84" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="86" y1="58" x2="92" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="94" y1="58" x2="100" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="102" y1="58" x2="108" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="110" y1="58" x2="116" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="118" y1="58" x2="124" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="126" y1="58" x2="132" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="134" y1="58" x2="140" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="142" y1="58" x2="148" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="150" y1="58" x2="156" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="158" y1="58" x2="164" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="166" y1="58" x2="171" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Отрезок от 3 до 7 */}
-            <line x1="181" y1="58" x2="187" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="197" y1="58" x2="203" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="205" y1="58" x2="211" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="213" y1="58" x2="219" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="272" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: true }, { label: "3", closed: false }, { label: "7", closed: true }]} selected={[[1, 2], [2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -3136,59 +1782,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff \\begin{cases} x \\le \\frac{1}{2} \\\\ \\frac{1}{8} < x < 1 \\end{cases} \\iff \\frac{1}{8} < x \\le \\frac{1}{2}`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 1/8 */}
-            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="45" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0,125" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 1/2 */}
-            <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="165" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0,5" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 1 */}
-            <circle cx="305" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="285" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение x <= 1/2 */}
-            <path d="M 15 35 L 175 35 A 10 10 0 0 1 185 45 L 185 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): Интервал ОДЗ (1/8; 1) */}
-            <path d="M 65 60 L 65 25 A 10 10 0 0 1 75 15 L 295 15 A 10 10 0 0 1 305 25 L 305 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок пересечения от 1/8 до 1/2 */}
-            <line x1="69" y1="58" x2="75" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="77" y1="58" x2="83" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="85" y1="58" x2="91" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="93" y1="58" x2="99" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="101" y1="58" x2="107" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="109" y1="58" x2="115" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="117" y1="58" x2="123" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="125" y1="58" x2="131" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="133" y1="58" x2="139" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="141" y1="58" x2="147" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="149" y1="58" x2="155" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="157" y1="58" x2="163" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="165" y1="58" x2="171" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="173" y1="58" x2="179" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="181" y1="58" x2="184" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0{,}125", closed: false }, { label: "0{,}5", closed: true }]} selected={[[1, 2]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -3252,50 +1849,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff x < 0`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="185" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="165" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Луч ответа x < 0 */}
-            <path d="M 15 35 L 175 35 A 10 10 0 0 1 185 45 L 185 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="92" y1="58" x2="98" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="102" y1="58" x2="108" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="112" y1="58" x2="118" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="122" y1="58" x2="128" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="132" y1="58" x2="138" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="142" y1="58" x2="148" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="152" y1="58" x2="158" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="162" y1="58" x2="168" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="172" y1="58" x2="178" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="181" y1="58" x2="184" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }]} selected={[[0, 1]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -3351,51 +1908,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff 0 \\le x \\le 1`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ЗАПЕРТОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка 0 */}
-            <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="95" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 1 */}
-            <circle cx="245" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="225" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Отрезок ответа [0; 1] */}
-            <path d="M 115 60 L 115 45 A 10 10 0 0 1 125 35 L 235 35 A 10 10 0 0 1 245 45 L 245 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            <line x1="121" y1="58" x2="127" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="137" y1="58" x2="143" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="153" y1="58" x2="159" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="161" y1="58" x2="167" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="171" y1="58" x2="177" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="181" y1="58" x2="187" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="197" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="201" y1="58" x2="207" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="242" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: true }, { label: "1", closed: true }]} selected={[[1, 2]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -3430,60 +1946,10 @@ export const section15Tasks = [
         <p>Потенциируя логарифм по основанию <InlineMath math={`2 > 1`} />, переходим к двойному линейному неравенству для аргумента:</p>
         <BlockMath math={`\\iff \\begin{cases} x + 1 \\le 2^5 \\\\ x > 1 \\end{cases} \\iff \\begin{cases} x \\le 31 \\\\ x > 1 \\end{cases} \\iff 1 < x \\le 31`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 1 */}
-            <circle cx="75" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="55" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 31 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="255" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="31" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Полуинтервал решения */}
-            <path d="M 75 60 L 75 45 A 10 10 0 0 1 85 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ x > 1 */}
-            <path d="M 75 60 L 75 25 A 10 10 0 0 1 85 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            <line x1="78" y1="58" x2="84" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="86" y1="58" x2="92" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="94" y1="58" x2="100" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="102" y1="58" x2="108" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="110" y1="58" x2="116" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="118" y1="58" x2="124" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="126" y1="58" x2="132" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="134" y1="58" x2="140" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="142" y1="58" x2="148" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="150" y1="58" x2="156" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="158" y1="58" x2="164" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="166" y1="58" x2="172" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="174" y1="58" x2="180" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="184" y1="58" x2="190" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="194" y1="58" x2="200" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="204" y1="58" x2="210" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="214" y1="58" x2="220" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="224" y1="58" x2="230" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="234" y1="58" x2="240" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="244" y1="58" x2="250" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="254" y1="58" x2="260" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="264" y1="58" x2="270" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="272" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "1", closed: false }, { label: "31", closed: true }]} selected={[[1, 2]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -3535,58 +2001,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &x + 1 \\le 0 \\\\ &x = 1 \\end{aligned} \\right. \\\\ x > -2 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &x \\le -1 \\\\ &x = 1 \\end{aligned} \\right. \\\\ x > -2 \\end{cases} \\iff \\left[ \\begin{aligned} &-2 < x \\le -1 \\\\ &x = 1 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -2 */}
-            <circle cx="75" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="55" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-2" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка -1 */}
-            <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="165" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-1" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 1 */}
-            <circle cx="295" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="275" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение отрезка решения и изолированная точка */}
-            <path d="M 75 60 L 75 45 A 10 10 0 0 1 85 35 L 175 35 A 10 10 0 0 1 185 45 L 185 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <circle cx="295" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ x > -2 */}
-            <path d="M 75 60 L 75 25 A 10 10 0 0 1 85 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок от -2 до -1 (Линии начинаются со смещением от x = 81) */}
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="90" y1="58" x2="96" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="98" y1="58" x2="104" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="106" y1="58" x2="112" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="114" y1="58" x2="120" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="122" y1="58" x2="128" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="130" y1="58" x2="136" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="138" y1="58" x2="144" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="146" y1="58" x2="152" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="154" y1="58" x2="160" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="162" y1="58" x2="168" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="170" y1="58" x2="176" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="178" y1="58" x2="182" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-2", closed: false }, { label: "-1", closed: true }, { label: "1", closed: true }]} selected={[[1, 2]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -3630,70 +2048,10 @@ export const section15Tasks = [
         <p>Потенциируя логарифмическое условие по основанию <InlineMath math={`5 > 1`} />, переходим к линейной системе интервалов:</p>
         <BlockMath math={`\\iff \\begin{cases} x + 2 \\ge 5^{-2} \\\\ x > -2 \\\\ x \\neq 4 \\end{cases} \\iff \\begin{cases} x + 2 \\ge \\frac{1}{25} \\\\ x > -2 \\\\ x \\neq 4 \\end{cases} \\iff \\begin{cases} x \\ge -1{,}96 \\\\ x \\neq 4 \\end{cases}`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка -1,96 */}
-            <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="50" y="70" width="50" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-1{,}96" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 4 */}
-            <circle cx="215" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="195" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="4" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Полуинтервалы решения */}
-            <path d="M 75 60 L 75 45 A 10 10 0 0 1 85 35 L 205 35 A 10 10 0 0 1 215 45 L 215 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 215 60 L 215 45 A 10 10 0 0 1 225 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (луч x > -2 полностью покрывает область) */}
-            <line x1="25" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок от -1,96 до 4 */}
-            <line x1="78" y1="58" x2="84" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="86" y1="58" x2="92" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="94" y1="58" x2="100" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="102" y1="58" x2="108" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="110" y1="58" x2="116" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="118" y1="58" x2="124" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="126" y1="58" x2="132" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="134" y1="58" x2="140" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="142" y1="58" x2="148" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="150" y1="58" x2="156" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="158" y1="58" x2="164" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="166" y1="58" x2="172" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="174" y1="58" x2="180" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="184" y1="58" x2="190" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="194" y1="58" x2="200" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="204" y1="58" x2="209" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Отрезок от 4 до конца */}
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="255" y1="58" x2="261" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="265" y1="58" x2="271" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="295" y1="58" x2="301" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="305" y1="58" x2="311" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="315" y1="58" x2="321" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="323" y1="58" x2="329" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="331" y1="58" x2="337" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-1{,}96", closed: true }, { label: "4", closed: false }]} selected={[[1, 2], [2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -3738,73 +2096,10 @@ export const section15Tasks = [
         <p>Потенциируя логарифмические условия по основанию 3 &gt; 1, переходим к переменной x:</p>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &x < 1 \\\\ &x = 3 \\\\ &x > 27 \\end{aligned} \\right. \\\\ x > 0 \\end{cases} \\iff \\left[ \\begin{aligned} &0 < x < 1 \\\\ &x = 3 \\\\ &x > 27 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 1 */}
-            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="115" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 3 */}
-            <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="195" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 27 */}
-            <circle cx="295" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="275" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="27" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            {/* Луч влево до 1 */}
-            <path d="M 15 35 L 125 35 A 10 10 0 0 1 135 45 L 135 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Изолированная точка 3 */}
-            <circle cx="215" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-            {/* Луч вправо от 27 */}
-            <path d="M 295 60 L 295 45 A 10 10 0 0 1 305 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ x > 0 */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Интервал (0; 1) */}
-            <line x1="59" y1="58" x2="65" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="67" y1="58" x2="73" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="75" y1="58" x2="81" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="83" y1="58" x2="89" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="91" y1="58" x2="97" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="99" y1="58" x2="105" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="107" y1="58" x2="113" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="58" x2="121" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="123" y1="58" x2="129" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="131" y1="58" x2="134" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Интервал (27; +inf) */}
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="307" y1="58" x2="313" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="315" y1="58" x2="321" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="323" y1="58" x2="329" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="331" y1="58" x2="337" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="339" y1="58" x2="345" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "1", closed: false }, { label: "3", closed: true }, { label: "27", closed: false }]} selected={[[1, 2], [4, 5]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -3848,70 +2143,10 @@ export const section15Tasks = [
         <p>Потенциируя логарифмические условия по основанию 2 &gt; 1, переходим к переменной x:</p>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &x < 1 \\\\ &x = 4 \\\\ &x > 32 \\end{aligned} \\right. \\\\ x > 0 \\end{cases} \\iff \\left[ \\begin{aligned} &0 < x < 1 \\\\ &x = 4 \\\\ &x > 32 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="35" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 1 */}
-            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="115" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 4 */}
-            <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="195" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="4" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 32 */}
-            <circle cx="295" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="275" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="32" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            <path d="M 15 35 L 125 35 A 10 10 0 0 1 135 45 L 135 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <circle cx="215" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 295 60 L 295 45 A 10 10 0 0 1 305 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ x > 0 */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Интервал (0; 1) */}
-            <line x1="59" y1="58" x2="65" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="67" y1="58" x2="73" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="75" y1="58" x2="81" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="83" y1="58" x2="89" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="91" y1="58" x2="97" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="99" y1="58" x2="105" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="107" y1="58" x2="113" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="58" x2="121" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="123" y1="58" x2="129" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="131" y1="58" x2="134" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Интервал (32; +inf) */}
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="307" y1="58" x2="313" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="315" y1="58" x2="321" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="323" y1="58" x2="329" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="331" y1="58" x2="337" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="339" y1="58" x2="345" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "1", closed: false }, { label: "4", closed: true }, { label: "32", closed: false }]} selected={[[1, 2], [4, 5]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -3953,67 +2188,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff \\left[ \\begin{aligned} &x \\le 1 \\\\ &2 < x < 3 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка 1 */}
-            <circle cx="65" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="45" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 2 */}
-            <circle cx="165" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="145" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="2" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 3 */}
-            <circle cx="265" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="245" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            {/* Луч влево до 1 */}
-            <path d="M 15 35 L 55 35 A 10 10 0 0 1 65 45 L 65 55" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Интервал от 2 до 3 */}
-            <path d="M 165 60 L 165 45 A 10 10 0 0 1 175 35 L 255 35 A 10 10 0 0 1 265 45 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Левый луч */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="63" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Интервал от 2 до 3 */}
-            <line x1="171" y1="58" x2="177" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="179" y1="58" x2="185" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="187" y1="58" x2="193" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="195" y1="58" x2="201" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="203" y1="58" x2="207" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="263" y2="43" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "1", closed: true }, { label: "2", closed: false }, { label: "3", closed: false }]} selected={[[0, 1], [2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -4159,51 +2337,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff 2 \\le x < 3`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка 2 */}
-            <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="95" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="2" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 3 */}
-            <circle cx="245" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="225" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Полуинтервал ответа [2; 3) */}
-            <path d="M 115 60 L 115 45 A 10 10 0 0 1 125 35 L 235 35 A 10 10 0 0 1 245 45 L 245 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            <line x1="121" y1="58" x2="127" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="137" y1="58" x2="143" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="153" y1="58" x2="159" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="161" y1="58" x2="167" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="171" y1="58" x2="177" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="181" y1="58" x2="187" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="197" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="201" y1="58" x2="207" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="242" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "2", closed: true }, { label: "3", closed: false }]} selected={[[1, 2]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -4258,65 +2395,10 @@ export const section15Tasks = [
           <InlineMath math={`x = 1`} />.
         </div>
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка -2-√10 */}
-            <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="45" y="70" width="60" height="35" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200 leading-none"><InlineMath math="-2-\sqrt{10}" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 1 */}
-            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="155" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка -2+√10 */}
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="235" y="70" width="60" height="35" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200 leading-none"><InlineMath math="-2+\sqrt{10}" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Четко ограниченные дуги ответов */}
-            <path d="M 15 35 L 65 35 A 10 10 0 0 1 75 45 L 75 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 175 60 L 175 45 A 10 10 0 0 1 185 35 L 255 35 A 10 10 0 0 1 265 45 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Левый луч */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="71" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Отрезок от 1 до -2+√10 */}
-            <line x1="181" y1="58" x2="187" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="197" y1="58" x2="203" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="205" y1="58" x2="211" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="213" y1="58" x2="219" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="263" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-2-\\sqrt{10}", closed: true }, { label: "1", closed: false }, { label: "-2+\\sqrt{10}", closed: true }]} selected={[[0, 1], [2, 3]]} />
 
         <p>Объединяя полученные интервалы пересечения, получаем окончательное решение:</p>
         <BlockMath math={`\\iff x \\in (-\\infty; \\, -2 - \\sqrt{10}] \\cup (1; \\, -2 + \\sqrt{10}]`} />
@@ -4357,62 +2439,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff \\left[ \\begin{aligned} &x \\le -1 - \\log_3 5 \\\\ &x \\ge 1 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка -1-log3 5 */}
-            <circle cx="95" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            {/* 🔥 ИСПРАВЛЕНО: Увеличена ширина контейнера формулы и применен правильный KaTeX-шрифт */}
-            <foreignObject x="45" y="70" width="100" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200 whitespace-nowrap"><InlineMath math="-1 - \log_3 5" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 1 */}
-            <circle cx="255" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="235" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Две сплошные дуги ответов */}
-            <path d="M 15 35 L 85 35 A 10 10 0 0 1 95 45 L 95 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 255 60 L 255 45 A 10 10 0 0 1 265 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Левый луч */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="90" y1="58" x2="93" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Правый луч */}
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="275" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="277" y1="58" x2="283" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="293" y1="58" x2="299" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="301" y1="58" x2="307" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="309" y1="58" x2="315" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="317" y1="58" x2="323" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="325" y1="58" x2="331" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="333" y1="58" x2="339" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-1 - \\log_3 5", closed: true }, { label: "1", closed: true }]} selected={[[0, 1], [2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -4492,68 +2522,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff \\begin{cases} \\frac{x}{x - 5} \\le 0 \\\\ x \\neq 2 \\end{cases} \\iff \\begin{cases} 0 \\le x < 5 \\\\ x \\neq 2 \\end{cases}`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка 0 */}
-            <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="55" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 2 */}
-            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="155" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="2" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 5 */}
-            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="255" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="5" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Полуинтервал решения с выколотой двойкой */}
-            <path d="M 75 60 L 75 45 A 10 10 0 0 1 85 35 L 165 35 A 10 10 0 0 1 175 45 L 175 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 175 60 L 175 45 A 10 10 0 0 1 185 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Отрезок от 0 до 2 */}
-            <line x1="79" y1="58" x2="85" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="87" y1="58" x2="93" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="95" y1="58" x2="101" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="103" y1="58" x2="109" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="111" y1="58" x2="117" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="119" y1="58" x2="125" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="127" y1="58" x2="133" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="135" y1="58" x2="141" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="155" y1="58" x2="161" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="167" y1="58" x2="171" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Отрезок от 2 до 5 */}
-            <line x1="181" y1="58" x2="187" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="197" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="201" y1="58" x2="207" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="241" y1="58" x2="247" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="272" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: true }, { label: "2", closed: false }, { label: "5", closed: false }]} selected={[[1, 2], [2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -4634,42 +2606,7 @@ export const section15Tasks = [
         <p>Решим полученное неравенство для переменной <InlineMath math={`t`} /> методом интервалов:</p>
 
         {/* 📈 ЧЕРТЁЖ ДЛЯ ПЕРЕМЕННОЙ T */}
-        <div className="my-4 flex justify-center w-full select-none">
-          <svg width="360" height="70" viewBox="0 0 360 70" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            <line x1="10" y1="35" x2="320" y2="35" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M320 35 l-6 -3 M320 35 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={328.0} y={39.0} anchor="start" math={"t"} />
-
-            <circle cx="100" cy="35" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="85" y="45" width="30" height="25" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            <circle cx="220" cy="35" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="205" y="45" width="30" height="25" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="4" /></div>
-            </foreignObject>
-
-            <path d="M 15 15 L 90 15 A 10 10 0 0 1 100 25 L 100 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 220 35 L 220 25 A 10 10 0 0 1 230 15 L 305 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            <line x1="20" y1="33" x2="26" y2="17" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="32" y1="33" x2="38" y2="17" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="44" y1="33" x2="50" y2="17" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="56" y1="33" x2="62" y2="17" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="68" y1="33" x2="74" y2="17" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="80" y1="33" x2="86" y2="17" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="92" y1="33" x2="96" y2="23" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="226" y1="33" x2="232" y2="17" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="238" y1="33" x2="244" y2="17" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="250" y1="33" x2="256" y2="17" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="262" y1="33" x2="268" y2="17" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="274" y1="33" x2="280" y2="17" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="286" y1="33" x2="292" y2="17" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="298" y1="33" x2="302" y2="23" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "3", closed: true }, { label: "4", closed: true }]} selected={[[0, 1], [2, 3]]} variable="t" />
 
         <p>Возвращаемся к системе ограничений для аргумента логарифма:</p>
         <BlockMath math={`\\iff \\begin{cases} \\left[ \\begin{aligned} &\\log_2(25 - x^2) \\le 3 \\\\ &\\log_2(25 - x^2) \\ge 4 \\end{aligned} \\right. \\\\ 25 - x^2 > 0 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &25 - x^2 \\le 8 \\\\ &25 - x^2 \\ge 16 \\end{aligned} \\right. \\\\ x^2 < 25 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &x^2 \\ge 17 \\\\ &x^2 \\le 9 \\end{aligned} \\right. \\\\ -5 < x < 5 \\end{cases}`} />
@@ -4680,79 +2617,10 @@ export const section15Tasks = [
         <div className="flex flex-wrap items-center gap-1">
           <span>Поскольку</span>
           <InlineMath math={`4 < \\sqrt{17} < 5`} />,
-          <span>визуализируем итоговое пересечение условий с ОДЗ методом двух уровней крыш:</span>
+          <span>визуализируем итоговое пересечение условий с ОДЗ методом интервалов:</span>
         </div>
         {/* 🌌 ЧЕРТЁЖ ДЛЯ ПЕРЕМЕННОЙ X */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="460" height="120" viewBox="0 0 460 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            <line x1="10" y1="60" x2="420" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M420 60 l-6 -3 M420 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={428.0} y={64.0} anchor="start" math={"x"} />
-
-            <circle cx="35" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="15" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-5" /></div>
-            </foreignObject>
-
-            <circle cx="95" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="70" y="70" width="50" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-\sqrt{17}" /></div>
-            </foreignObject>
-
-            <circle cx="155" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="135" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="-3" /></div>
-            </foreignObject>
-
-            <circle cx="235" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="215" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="3" /></div>
-            </foreignObject>
-
-            <circle cx="295" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="270" y="70" width="50" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\sqrt{17}" /></div>
-            </foreignObject>
-
-            <circle cx="355" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="335" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="5" /></div>
-            </foreignObject>
-
-            <path d="M 15 35 L 85 35 A 10 10 0 0 1 95 45 L 95 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 155 60 L 155 45 A 10 10 0 0 1 165 35 L 225 35 A 10 10 0 0 1 235 45 L 235 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 295 60 L 295 45 A 10 10 0 0 1 305 35 L 375 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            <path d="M 35 60 L 35 25 A 10 10 0 0 1 45 15 L 345 15 A 10 10 0 0 1 355 25 L 355 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            <line x1="39" y1="58" x2="45" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="47" y1="58" x2="53" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="55" y1="58" x2="61" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="63" y1="58" x2="69" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="71" y1="58" x2="77" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="79" y1="58" x2="85" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="87" y1="58" x2="91" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="159" y1="58" x2="165" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="167" y1="58" x2="173" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="175" y1="58" x2="181" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="183" y1="58" x2="189" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="197" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="199" y1="58" x2="205" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="207" y1="58" x2="213" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="215" y1="58" x2="221" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="223" y1="58" x2="229" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="233" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="307" y1="58" x2="313" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="315" y1="58" x2="321" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="323" y1="58" x2="329" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="331" y1="58" x2="337" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="339" y1="58" x2="345" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="347" y1="58" x2="351" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-5", closed: false }, { label: "-\\sqrt{17}", closed: true }, { label: "-3", closed: true }, { label: "3", closed: true }, { label: "\\sqrt{17}", closed: true }, { label: "5", closed: false }]} selected={[[1, 2], [3, 4], [5, 6]]} />
 
         <p>Сводя пересечения интервалов на числовой прямой, получаем окончательное решение:</p>
         <BlockMath math={`\\iff x \\in (-5; \\, -\\sqrt{17}] \\cup [-3; \\, 3] \\cup [\\sqrt{17}; \\, 5)`} />
@@ -4814,50 +2682,10 @@ export const section15Tasks = [
         <p>Выполним обратную замену для показательной функции по основанию 3 &gt; 1:</p>
         <BlockMath math={`\\iff \\left[ \\begin{aligned} &3^x = 3^0 \\\\ &3^x \\ge 3^2 \\end{aligned} \\right. \\iff \\left[ \\begin{aligned} &x = 0 \\\\ &x \\ge 2 \\end{aligned} \\right.`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная изолированная точка 0 */}
-            <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="95" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 2 */}
-            <circle cx="245" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="225" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="2" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Изолированная точка и луч вправо */}
-            <circle cx="115" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 245 60 L 245 45 A 10 10 0 0 1 255 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Правый луч */}
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="267" y1="58" x2="273" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="283" y1="58" x2="289" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="307" y1="58" x2="313" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="315" y1="58" x2="321" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="323" y1="58" x2="329" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="331" y1="58" x2="337" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: true }, { label: "2", closed: true }]} selected={[[2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -4903,68 +2731,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff x \\in (-\\infty; \\, 0) \\cup [1; \\, \\log_5 7)`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="75" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="55" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 1 */}
-            <circle cx="175" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="155" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="1" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка log5 7 */}
-            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="250" y="70" width="60" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="\log_5 7" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            {/* Луч влево до 0 */}
-            <path d="M 15 35 L 65 35 A 10 10 0 0 1 75 45 L 75 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            {/* Полуинтервал [1; log5 7) */}
-            <path d="M 175 60 L 175 45 A 10 10 0 0 1 185 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся числовая ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Левый луч */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="71" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Отрезок от 1 до log5 7 */}
-            <line x1="181" y1="58" x2="187" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="197" y1="58" x2="203" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="205" y1="58" x2="211" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="213" y1="58" x2="219" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="272" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "1", closed: true }, { label: "\\log_5 7", closed: false }]} selected={[[0, 1], [2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -5019,69 +2789,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff \\begin{cases} x(x - 7) \\le 0 \\\\ x \\neq 4 \\\\ x \\in (-\\infty; \\, -2{,}5) \\cup (-1; \\, +\\infty) \\end{cases} \\iff x \\in [0; \\, 4) \\cup (4; \\, 7]`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ПОДПИСЯМИ KaTeX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-xs ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка 0 */}
-            <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="55" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="0" /></div>
-            </foreignObject>
-
-            {/* Выколотая точка 4 */}
-            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="155" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="4" /></div>
-            </foreignObject>
-
-            {/* Закрашенная точка 7 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="255" y="70" width="40" height="30" className="overflow-visible text-center">
-              <div className="text-slate-800 dark:text-slate-200"><InlineMath math="7" /></div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение отрезка с выколотой 4 */}
-            <path d="M 75 60 L 75 45 A 10 10 0 0 1 85 35 L 165 35 A 10 10 0 0 1 175 45 L 175 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 175 60 L 175 45 A 10 10 0 0 1 185 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            <line x1="78" y1="58" x2="84" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="86" y1="58" x2="92" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="94" y1="58" x2="100" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="102" y1="58" x2="108" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="110" y1="58" x2="116" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="118" y1="58" x2="124" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="126" y1="58" x2="132" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="134" y1="58" x2="140" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="142" y1="58" x2="148" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="150" y1="58" x2="156" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="158" y1="58" x2="164" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="166" y1="58" x2="171" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="181" y1="58" x2="187" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="197" y1="58" x2="203" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="205" y1="58" x2="211" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="213" y1="58" x2="219" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="272" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: true }, { label: "4", closed: false }, { label: "7", closed: true }]} selected={[[1, 2], [2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -5193,60 +2904,10 @@ export const section15Tasks = [
         <p>Объединяя полученные открытые числовые лучи, находим финальное аналитическое решение:</p>
         <BlockMath math={`\\iff x \\in (-\\infty; \\, -2) \\cup (3; \\, +\\infty)`} />
 
-        <p>Визуализируем полученные интервалы на числовой прямой методом сплошных крыш со штриховкой:</p>
+        <p>Визуализируем полученные интервалы на числовой прямой с помощью штриховки:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -2 */}
-            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-2"} />
-
-            {/* Выколотая точка 3 */}
-            <circle cx="245" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Лучи ответа */}
-            <path d="M 15 35 L 105 35 A 10 10 0 0 1 115 45 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 245 60 L 245 45 A 10 10 0 0 1 255 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Левый луч */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="90" y1="58" x2="96" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="98" y1="58" x2="104" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="106" y1="58" x2="111" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Правый луч */}
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="267" y1="58" x2="273" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="283" y1="58" x2="289" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="307" y1="58" x2="313" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="315" y1="58" x2="321" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="323" y1="58" x2="329" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="333" y1="58" x2="339" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-2", closed: false }, { label: "3", closed: false }]} selected={[[0, 1], [2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -5283,61 +2944,10 @@ export const section15Tasks = [
         <p>Объединяя полученные промежутки, находим финальное аналитическое решение:</p>
         <BlockMath math={`\\iff x \\in (-\\infty; \\, -1{,}5] \\cup (3; \\, +\\infty)`} />
 
-        <p>Визуализируем полученные интервалы на числовой прямой методом двух уровней крыш со штриховкой:</p>
+        <p>Визуализируем полученные интервалы на числовой прямой с помощью штриховки:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка -1,5 */}
-            <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-1{,}5"} />
-
-            {/* Выколотая точка 3 */}
-            <circle cx="245" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Лучи ответа */}
-            <path d="M 15 35 L 105 35 A 10 10 0 0 1 115 45 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 245 60 L 245 45 A 10 10 0 0 1 255 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ (Вся ось кроме выколотой 3) */}
-            <line x1="15" y1="15" x2="235" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <line x1="255" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Левый луч */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="90" y1="58" x2="96" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="98" y1="58" x2="104" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="106" y1="58" x2="111" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Правый луч */}
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="267" y1="58" x2="273" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="283" y1="58" x2="289" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="307" y1="58" x2="313" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="315" y1="58" x2="321" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="323" y1="58" x2="329" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="333" y1="58" x2="339" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-1{,}5", closed: true }, { label: "3", closed: false }]} selected={[[0, 1], [2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -5392,59 +3002,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff x \\in (-\\infty; \\, -2) \\cup [2 + \\frac{\\sqrt{2}}{4}; \\, +\\infty)`} />
 
-        <p>Разложим полученное системное условие на числовой прямой методом двух уровней крыш:</p>
+        <p>Разложим полученное системное условие на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -2 */}
-            <circle cx="85" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={85.0} y={80.0} anchor="middle" math={"-2"} />
-
-            {/* Выколотая точка 2 */}
-            <circle cx="205" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={205.0} y={80.0} anchor="middle" math={"2"} />
-
-            {/* Закрашенная точка 2+√2/4 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"2+\\frac{\\sqrt{2}}{4}"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение совокупности скобок аргумента */}
-            <path d="M 15 35 L 235 35 A 10 10 0 0 1 245 45 L 245 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 275 60 L 275 45 A 10 10 0 0 1 285 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): Лучи интервалов ОДЗ */}
-            <path d="M 15 15 L 75 15 A 10 10 0 0 1 85 25 L 85 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 205 60 L 205 25 A 10 10 0 0 1 215 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ В ДВУХУРОВНЕВЫХ ЗОНАХ */}
-            {/* Левый интервал ответов: (-inf; -2) */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="81" y1="58" x2="83" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Правый интервал ответов: [2+√2/4; +inf) */}
-            <line x1="279" y1="58" x2="285" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="287" y1="58" x2="293" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="295" y1="58" x2="301" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="303" y1="58" x2="309" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="311" y1="58" x2="317" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="327" y1="58" x2="333" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="335" y1="58" x2="341" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-2", closed: false }, { label: "2+\\frac{\\sqrt{2}}{4}", closed: true }]} selected={[[0, 1], [2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -5490,66 +3051,10 @@ export const section15Tasks = [
         <p>Объединяя интервалы показательной части с изолированной точкой и пересекая с ОДЗ <InlineMath math={`x \\le 4`} />, находим итоговое решение:</p>
         <BlockMath math={`\\iff x \\in ((-3; \\, -1) \\cup (1; \\, 3)) \\cup \\{4\\}`} />
 
-        <p>Визуализируем полученные интервалы на числовой прямой методом сплошных крыш со штриховкой:</p>
+        <p>Визуализируем полученные интервалы на числовой прямой с помощью штриховки:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="420" height="120" viewBox="0 0 420 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="380" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M380 60 l-6 -3 M380 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={388.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -3 */}
-            <circle cx="45" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={45.0} y={80.0} anchor="middle" math={"-3"} />
-
-            {/* Выколотая точка -1 */}
-            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-1"} />
-
-            {/* Выколотая точка 1 */}
-            <circle cx="185" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* Выколотая точка 3 */}
-            <circle cx="255" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={255.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* Закрашенная точка 4 */}
-            <circle cx="325" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={325.0} y={80.0} anchor="middle" math={"4"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Интервалы ответов и изолированная точка */}
-            <path d="M 45 60 L 45 45 A 10 10 0 0 1 55 35 L 105 35 A 10 10 0 0 1 115 45 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <path d="M 185 60 L 185 45 A 10 10 0 0 1 195 35 L 245 35 A 10 10 0 0 1 255 45 L 255 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" />
-            <circle cx="325" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ (y = 15): ОДЗ x <= 4 */}
-            <path d="M 15 15 L 315 15 A 10 10 0 0 1 325 25 L 325 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            <line x1="49" y1="58" x2="55" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="57" y1="58" x2="63" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="65" y1="58" x2="71" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="73" y1="58" x2="79" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="81" y1="58" x2="87" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="89" y1="58" x2="95" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="97" y1="58" x2="103" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="105" y1="58" x2="111" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="111" y1="58" x2="113" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="197" y1="58" x2="203" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="205" y1="58" x2="211" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="213" y1="58" x2="219" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="251" y1="58" x2="253" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-3", closed: false }, { label: "-1", closed: false }, { label: "1", closed: false }, { label: "3", closed: false }, { label: "4", closed: true }]} selected={[[1, 2], [3, 4]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -5612,49 +3117,10 @@ export const section15Tasks = [
         </div>
         <BlockMath math={`\\iff \\begin{cases} x < 16 \\\\ x \\ge 9 \\end{cases} \\iff 9 \\le x < 16`} />
 
-        <p>Визуализируем пересечение финальных интервалов на числовой прямой методом двух уровней крыш со штриховкой:</p>
+        <p>Визуализируем пересечение финальных интервалов на числовой прямой с помощью штриховки:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка 9 */}
-            <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"9"} />
-
-            {/* Выколотая точка 16 */}
-            <circle cx="245" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"16"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35) */}
-            <path d="M 15 35 L 235 35 A 10 10 0 0 1 245 45 L 245 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x >= 9 */}
-            <path d="M 115 60 L 115 25 A 10 10 0 0 1 125 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ В ДВУХУРОВНЕВОЙ ЗОНЕ */}
-            <line x1="119" y1="58" x2="125" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="127" y1="58" x2="133" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="135" y1="58" x2="141" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="143" y1="58" x2="149" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="151" y1="58" x2="157" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="159" y1="58" x2="165" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="167" y1="58" x2="173" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="175" y1="58" x2="181" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="183" y1="58" x2="189" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="197" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="199" y1="58" x2="205" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="207" y1="58" x2="213" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="215" y1="58" x2="221" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="223" y1="58" x2="229" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="239" y1="58" x2="242" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "9", closed: true }, { label: "16", closed: false }]} selected={[[1, 2]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -5755,51 +3221,10 @@ export const section15Tasks = [
         <p>Объединяя результаты обоих интервалов ОДЗ, находим окончательный промежуток системы:</p>
         <BlockMath math={`\\iff x \\in [-4; \\, 1)`} />
 
-        <p>Визуализируем итоговый интервал пересечения на числовой прямой методом двух уровней крыш со штриховкой:</p>
+        <p>Визуализируем итоговый интервал пересечения на числовой прямой с помощью штриховки:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка -4 */}
-            <circle cx="95" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"-4"} />
-
-            {/* Выколотая точка 1 */}
-            <circle cx="195" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={195.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* Выколотая точка 3 */}
-            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение по знаку раскрытия раскрытого модуля */}
-            <path d="M 95 60 L 95 45 A 10 10 0 0 1 105 35 L 185 35 A 10 10 0 0 1 195 45 L 195 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифмов */}
-            <path d="M 15 15 L 185 15 A 10 10 0 0 1 195 25 L 195 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 275 60 L 275 25 A 10 10 0 0 1 285 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ В ДВУХУРОВНЕВОЙ ЗОНЕ */}
-            {/* Полуинтервал [-4; 1) */}
-            <line x1="99" y1="58" x2="105" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="107" y1="58" x2="113" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="58" x2="121" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="123" y1="58" x2="129" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="131" y1="58" x2="137" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="153" y1="58" x2="159" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="161" y1="58" x2="167" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="169" y1="58" x2="175" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="177" y1="58" x2="183" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="185" y1="58" x2="191" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="191" y1="58" x2="193" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-4", closed: true }, { label: "1", closed: false }]} selected={[[1, 2]]} />
 
                <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40 whitespace-nowrap">
           <span>Ответ:</span>
@@ -5878,64 +3303,11 @@ export const section15Tasks = [
         <p>Объединяя результаты пересечений промежутков №2 и №3, получаем итоговое непрерывное аналитическое решение:</p>
         <BlockMath math={`\\iff x \\in \\left[-0{,}5; \\, \\frac{-5 + \\sqrt{513}}{4}\\right]`} />
 
-        <p>Визуализируем полученный интервал на числовой прямой методом двух уровней крыш со штриховкой:</p>
+        <p>Визуализируем полученный интервал на числовой прямой с помощью штриховки:</p>
 
          {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ПОЛНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         {/* 🔥 ИСПРАВЛЕНО: Применено четырёхкратное экранирование слэшей внутри строкового литерала. Формула отобразится идеально. */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ -1.5 */}
-            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={55.0} y={80.0} anchor="middle" math={"-1{,}5"} />
-
-            {/* Выколотая точка ОДЗ -1 */}
-            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-1"} />
-
-            {/* Закрашенная точка -0,5 */}
-            <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"-0{,}5"} />
-
-            {/* Закрашенная иррациональная точка ответа */}
-            <circle cx="305" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-
-            {/* Контейнер с красивой иррациональной дробью точно под правой точкой (cx = 305) */}
-            <foreignObject x="255" y="68" width="100" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath math={`\\dfrac{-5 + \\sqrt{513}}{4}`} />
-              </div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Итоговый непрерывный отложенный отрез */}
-            <path d="M 185 60 L 185 45 A 10 10 0 0 1 195 35 L 295 35 A 10 10 0 0 1 305 45 L 305 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифмов */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 105 15 A 10 10 0 0 1 115 25 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 115 60 L 115 25 A 10 10 0 0 1 125 15 L 375 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ В ДВУХУРОВНЕВОЙ ЗОНЕ */}
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="197" y1="58" x2="203" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="205" y1="58" x2="211" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="213" y1="58" x2="219" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="275" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="277" y1="58" x2="283" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="293" y1="58" x2="299" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="299" y1="58" x2="303" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-0{,}5", closed: true }, { label: "\\dfrac{-5 + \\sqrt{513}}{4}", closed: true }]} selected={[[1, 2]]} />
 
 
 
@@ -6030,34 +3402,10 @@ export const section15Tasks = [
         <BlockMath>{"\\iff \\begin{cases} \\log_{|x|-1}(2x - x^2) \\cdot \\log_{x^2 - 2x}(|x|-1) \\le 0 \\\\ x \\in \\varnothing \\end{cases} \\iff x \\in \\varnothing"}</BlockMath>
 
         <p>Так как области определения аргументов логарифмов взаимно исключают друг друга, вся система не имеет совместных решений.</p>
-        <p>Визуализируем пустое пересечение областей на числовой прямой методом двух уровней крыш:</p>
+        <p>Визуализируем пустое пересечение областей на числовой прямой методом интервалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={135.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Выколотая точка 2 */}
-            <circle cx="235" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={235.0} y={80.0} anchor="middle" math={"2"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): ОДЗ числителя (0; 2) */}
-            <path d="M 135 60 L 135 45 A 10 10 0 0 1 145 35 L 225 35 A 10 10 0 0 1 235 45 L 235 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ знаменателя (-inf; 0) U (2; +inf) */}
-            <path d="M 15 15 L 125 15 A 10 10 0 0 1 135 25 L 135 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 235 60 L 235 25 A 10 10 0 0 1 245 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* Множества не имеют пересечений, штриховка отсутствует */}
-          </svg>
-        </div>
+        <InequalityNumberLine points={[]} selected={[]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -6104,77 +3452,9 @@ export const section15Tasks = [
         <BlockMath math={"\\iff \\begin{cases} (x - 1)(x - (-1)) \\le 0 \\\\ x \\neq 0 \\\\ x \\neq 0{,}5 \\end{cases} \\iff \\begin{cases} (x - 1)(x + 1) \\le 0 \\\\ x \\neq 0 \\\\ x \\neq 0{,}5 \\end{cases}"} />
         <BlockMath math={"\\iff \\begin{cases} -1 \\le x \\le 1 \\\\ x \\neq 0 \\\\ x \\neq 0{,}5 \\end{cases} \\iff x \\in [-1; \\, 0) \\cup (0; \\, 0{,}5) \\cup (0{,}5; \\, 1]"} />
 
-        <p>Визуализируем полученные интервалы на числовой прямой методом двух уровней крыш со штриховкой:</p>
+        <p>Визуализируем полученные интервалы на числовой прямой с помощью штриховки:</p>
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ТЕКСТОВЫМИ ПОДПИСЯМИ И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка числителя -1 */}
-            <circle cx="55" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={55.0} y={80.0} anchor="middle" math={"-1"} />
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={135.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Выколотая точка основания 0,5 */}
-            <circle cx="215" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={215.0} y={80.0} anchor="middle" math={"0{,}5"} />
-
-            {/* Закрашенная точка числителя 1 */}
-            <circle cx="295" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={295.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Зоны ответа */}
-            <path d="M 55 60 L 55 45 A 10 10 0 0 1 65 35 L 125 35 A 10 10 0 0 1 135 45 L 135 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 135 60 L 135 45 A 10 10 0 0 1 145 35 L 205 35 A 10 10 0 0 1 215 45 L 215 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 215 60 L 215 45 A 10 10 0 0 1 225 35 L 285 35 A 10 10 0 0 1 295 45 L 295 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): Линия ОДЗ */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Полуинтервал [-1; 0) */}
-            <line x1="59" y1="58" x2="65" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="67" y1="58" x2="73" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="75" y1="58" x2="81" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="83" y1="58" x2="89" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="91" y1="58" x2="97" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="99" y1="58" x2="105" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="107" y1="58" x2="113" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="58" x2="121" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="123" y1="58" x2="129" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="133" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Интервал (0; 0,5) */}
-            <line x1="139" y1="58" x2="145" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="147" y1="58" x2="153" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="155" y1="58" x2="161" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="163" y1="58" x2="169" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="171" y1="58" x2="177" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="179" y1="58" x2="185" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="187" y1="58" x2="193" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="195" y1="58" x2="201" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="203" y1="58" x2="209" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="209" y1="58" x2="213" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Полуинтервал (0,5; 1] */}
-            <line x1="219" y1="58" x2="225" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="227" y1="58" x2="233" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="235" y1="58" x2="241" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="243" y1="58" x2="249" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="267" y1="58" x2="273" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="283" y1="58" x2="289" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="289" y1="58" x2="293" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-1", closed: true }, { label: "0", closed: false }, { label: "0{,}5", closed: false }, { label: "1", closed: true }]} selected={[[1, 2], [2, 3], [3, 4]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -6244,66 +3524,10 @@ export const section15Tasks = [
         <p>Пересекая полученный непрерывный отрез с выколотыми точками ограничений ОДЗ, находим финальные интервалы ответа:</p>
         <BlockMath>{"\\iff x \\in [-1; \\, 0) \\cup (0; \\, 3]"}</BlockMath>
 
-        <p>Визуализируем полученные интервалы на числовой прямой методом двух уровней крыш со штриховкой:</p>
+        <p>Визуализируем полученные интервалы на числовой прямой с помощью штриховки:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ -1.5 */}
-            <circle cx="45" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={45.0} y={80.0} anchor="middle" math={"-1{,}5"} />
-
-            {/* Закрашенная точка числителя -1 */}
-            <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-1"} />
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="195" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={195.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная точка числителя 3 */}
-            <circle cx="285" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={285.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение квадратичной части */}
-            <path d="M 115 60 L 115 45 A 10 10 0 0 1 125 35 L 185 35 A 10 10 0 0 1 195 45 L 195 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 195 60 L 195 45 A 10 10 0 0 1 205 35 L 275 35 A 10 10 0 0 1 285 45 L 285 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифмов */}
-            <path d="M 45 60 L 45 25 A 10 10 0 0 1 55 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ */}
-            {/* Полуинтервал [-1; 0) */}
-            <line x1="119" y1="58" x2="125" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="127" y1="58" x2="133" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="135" y1="58" x2="141" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="143" y1="58" x2="149" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="151" y1="58" x2="157" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="159" y1="58" x2="165" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="167" y1="58" x2="173" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="175" y1="58" x2="181" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="183" y1="58" x2="189" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="189" y1="58" x2="193" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Полуинтервал (0; 3] */}
-            <line x1="199" y1="58" x2="205" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="207" y1="58" x2="213" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="215" y1="58" x2="221" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="223" y1="58" x2="229" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="239" y1="58" x2="245" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="255" y1="58" x2="261" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="263" y1="58" x2="269" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="271" y1="58" x2="277" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="279" y1="58" x2="283" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-1", closed: true }, { label: "0", closed: false }, { label: "3", closed: true }]} selected={[[1, 2], [2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -6381,71 +3605,11 @@ export const section15Tasks = [
         <p>Пересекая найденную совокупность решений с ограничением, находим финальные интервалы:</p>
         <BlockMath>{"\\iff x \\in (-\\infty; \\, -1] \\cup \\left[2; \\, \\log_{1{,}5}\\left(\\frac{35}{12}\\right)\\right)"}</BlockMath>
 
-        <p>Визуализируем полученные интервалы на числовой прямой методом двух уровней крыш со штриховкой:</p>
+        <p>Визуализируем полученные интервалы на числовой прямой с помощью штриховки:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
         {/* 🔥 ИСПРАВЛЕНО: Слэши логарифма на оси защищены через children-синтаксис {"..."} внутри foreignObject */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка числителя -1 */}
-            <circle cx="105" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={105.0} y={80.0} anchor="middle" math={"-1"} />
-
-            {/* Закрашенная точка числителя 2 */}
-            <circle cx="205" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={205.0} y={80.0} anchor="middle" math={"2"} />
-
-            {/* Выколотая иррациональная точка ограничения */}
-            <circle cx="315" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="265" y="68" width="100" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\log_{1{,}5}\\left(\\frac{35}{12}\\right)"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение однородной совокупности */}
-            <path d="M 15 35 L 95 35 A 10 10 0 0 1 105 45 L 105 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 205 60 L 205 45 A 10 10 0 0 1 215 35 L 385 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): Ограничение аргумента логарифма */}
-            <path d="M 15 15 L 305 15 A 10 10 0 0 1 315 25 L 315 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА МЕЖДУ ОСЬЮ И НИЖНЕЙ КРЫШЕЙ В ДВУХУРОВНЕВОЙ ЗОНЕ */}
-            {/* Левый луч */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="90" y1="58" x2="96" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="96" y1="58" x2="101" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Правый отрезок */}
-            <line x1="209" y1="58" x2="215" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="217" y1="58" x2="223" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="225" y1="58" x2="231" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="233" y1="58" x2="239" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="241" y1="58" x2="247" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="249" y1="58" x2="255" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="257" y1="58" x2="263" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="265" y1="58" x2="271" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="273" y1="58" x2="279" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="281" y1="58" x2="287" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="289" y1="58" x2="295" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="297" y1="58" x2="303" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="305" y1="58" x2="311" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="311" y1="58" x2="313" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-1", closed: true }, { label: "2", closed: true }, { label: "\\log_{1{,}5}\\left(\\frac{35}{12}\\right)", closed: false }]} selected={[[0, 1], [2, 3]]} />
 
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
@@ -6527,34 +3691,10 @@ export const section15Tasks = [
         <p>Поскольку квадрат любой вещественной величины неотрицателен, равенство нулю достигается строго в одной изолированной точке:</p>
         <BlockMath>{"\\iff x = 1"}</BlockMath>
 
-        <p>Визуализируем полученное решение на числовой прямой методом двух уровней крыш со штриховкой:</p>
+        <p>Визуализируем полученное решение на числовой прямой с помощью штриховки:</p>
 
         {/* 🌌 ЧЕРТЁЖ С АКАДЕМИЧЕСКИМИ ШРИФТАМИ KATEX И ИДЕАЛЬНОЙ ШТРИХОВКОЙ ПО СЕТКЕ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная изолированная точка ответа 1 */}
-            <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={215.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Изолированная точка */}
-            <circle cx="215" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифмов x > 0 */}
-            <path d="M 115 60 L 115 25 A 10 10 0 0 1 125 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ВЕРТИКАЛЬНАЯ ШТРИХОВКА ДЛЯ ИЗОЛИРОВАННОЙ ТОЧКИ */}
-            <line x1="215" y1="58" x2="215" y2="37" stroke="#328ce6" strokeWidth="1.5" opacity="0.7" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "1", closed: true }]} selected={[]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -6592,106 +3732,14 @@ export const section15Tasks = [
         <p>Исследуем знаки полученной рациональной дроби методом интервалов на числовой прямой:</p>
 
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ (ДО НАЛОЖЕНИЯ ОДЗ) */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            <line x1="10" y1="50" x2="360" y2="50" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 50 l-6 -3 M360 50 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={54.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка числителя 5,5 */}
-            <circle cx="145" cy="50" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={145.0} y={70.0} anchor="middle" math={"5{,}5"} />
-
-            {/* Выколотая точка знаменателя 6 */}
-            <circle cx="235" cy="50" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={235.0} y={70.0} anchor="middle" math={"6"} />
-
-            {/* Расстановка классических крыш решения дроби (>= 0) */}
-            <path d="M 15 25 L 135 25 A 10 10 0 0 1 145 35 L 145 50" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 235 50 L 235 35 A 10 10 0 0 1 245 25 L 345 25" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* Штриховка чистой дроби */}
-            <line x1="19" y1="48" x2="25" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="35" y1="48" x2="41" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="51" y1="48" x2="57" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="67" y1="48" x2="73" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="83" y1="48" x2="89" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="99" y1="48" x2="105" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="48" x2="121" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="131" y1="48" x2="137" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="243" y1="48" x2="249" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="48" x2="265" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="48" x2="281" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="48" x2="297" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="307" y1="48" x2="313" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="323" y1="48" x2="329" y2="27" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="339" y1="48" x2="343" y2="34" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "5{,}5", closed: true }, { label: "6", closed: false }]} selected={[[0, 1], [2, 3]]} />
 
         <p>Откуда находим промежуточное решение для дробной части:</p>
         <BlockMath>{"x \\in (-\\infty; \\, 5{,}5] \\cup (6; \\, +\\infty)"}</BlockMath>
         <p>Пересечём полученные лучи с условиями области допустимых значений системы:</p>
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 5,4 */}
-            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"5{,}4"} />
-
-            {/* Закрашенная точка числителя 5,5 */}
-            <circle cx="145" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={145.0} y={80.0} anchor="middle" math={"5{,}5"} />
-
-            {/* Выколотая точка знаменателя 6 */}
-            <circle cx="235" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={235.0} y={80.0} anchor="middle" math={"6"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (-inf; 5.5] U (6; +inf) */}
-            <path d="M 15 35 L 135 35 A 10 10 0 0 1 145 45 L 145 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 235 60 L 235 45 A 10 10 0 0 1 245 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > 5,4 (с выколотой 6) */}
-            <path d="M 65 60 L 65 25 A 10 10 0 0 1 75 15 L 225 15 A 10 10 0 0 1 235 25 L 235 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 235 60 L 235 25 A 10 10 0 0 1 245 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Полуинтервал (5,4; 5,5] */}
-            <line x1="69" y1="58" x2="75" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="77" y1="58" x2="83" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="85" y1="58" x2="91" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="93" y1="58" x2="99" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="101" y1="58" x2="107" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="109" y1="58" x2="115" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="117" y1="58" x2="123" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="125" y1="58" x2="131" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="133" y1="58" x2="139" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="139" y1="58" x2="143" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Открытый луч (6; +inf) */}
-            <line x1="239" y1="58" x2="245" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="255" y1="58" x2="261" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="263" y1="58" x2="269" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="271" y1="58" x2="277" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="279" y1="58" x2="285" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="287" y1="58" x2="293" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="295" y1="58" x2="301" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="303" y1="58" x2="309" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="311" y1="58" x2="317" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="327" y1="58" x2="333" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="335" y1="58" x2="341" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="343" y1="58" x2="345" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "5{,}4", closed: false }, { label: "5{,}5", closed: true }, { label: "6", closed: false }]} selected={[[1, 2], [3, 4]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ системы:</p>
         <BlockMath>{"x \\in (5{,}4; \\, 5{,}5] \\cup (6; \\, +\\infty)"}</BlockMath>
@@ -6725,46 +3773,10 @@ export const section15Tasks = [
         <BlockMath>{"\\iff \\begin{cases} (x^2 - 1)(x^2 + 1 - 1) > 0 \\\\ x \\neq 0 \\\\ x \\neq \\pm 1 \\end{cases} \\iff \\begin{cases} x^2(x^2 - 1) > 0 \\\\ x \\neq 0 \\\\ x \\neq \\pm 1 \\end{cases}"}</BlockMath>
         <BlockMath>{"\\iff \\begin{cases} x^2(x - 1)(x + 1) > 0 \\\\ x \\neq 0 \\\\ x \\neq \\pm 1 \\end{cases}"}</BlockMath>
 
-        <p>Исследуем знаки полученной рациональной дроби методом интервалов. На геометрическом чертеже крышами отмечены области, где функция строго больше нуля (&gt; 0):</p>
+        <p>Исследуем знаки полученной рациональной дроби методом интервалов. На числовой прямой выделены области, где функция строго больше нуля (&gt; 0):</p>
 
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -1 */}
-            <circle cx="95" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"-1"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="185" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Выколотая точка 1 */}
-            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* Классические крыши решения дроби там, где знак "+" (> 0). В точке 0 знак не меняется, там провал. */}
-            <path d="M 15 35 L 85 35 A 10 10 0 0 1 95 45 L 95 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 275 60 L 275 45 A 10 10 0 0 1 285 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* Штриховка чистых интервалов знака "+" */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="32" y1="58" x2="38" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="46" y1="58" x2="52" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="60" y1="58" x2="66" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="88" y1="58" x2="91" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="279" y1="58" x2="285" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="293" y1="58" x2="299" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="307" y1="58" x2="313" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="321" y1="58" x2="327" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="335" y1="58" x2="341" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-1", closed: false }, { label: "1", closed: false }]} selected={[[0, 1], [2, 3]]} />
 
         <p>Откуда находим промежуточное решение для рациональной части:</p>
         <BlockMath>{"x \\in (-\\infty; \\, -1) \\cup (1; \\, +\\infty)"}</BlockMath>
@@ -6772,58 +3784,7 @@ export const section15Tasks = [
         <p>Пересечёт полученные лучи с условиями области допустимых значений системы:</p>
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка -1 */}
-            <circle cx="95" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"-1"} />
-
-            {/* Выколотая точка 0 */}
-            <circle cx="185" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Выколотая точка 1 */}
-            <circle cx="275" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (-inf; -1) U (1; +inf) */}
-            <path d="M 15 35 L 85 35 A 10 10 0 0 1 95 45 L 95 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 275 60 L 275 45 A 10 10 0 0 1 285 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x != 0, x != 1, x != -1 */}
-            <path d="M 15 15 L 85 15 A 10 10 0 0 1 95 25 L 95 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 95 60 L 95 25 A 10 10 0 0 1 105 15 L 175 15 A 10 10 0 0 1 185 25 L 185 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 185 60 L 185 25 A 10 10 0 0 1 195 15 L 265 15 A 10 10 0 0 1 275 25 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 275 60 L 275 25 A 10 10 0 0 1 285 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-{/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="88" y1="58" x2="91" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="279" y1="58" x2="285" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="287" y1="58" x2="293" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="295" y1="58" x2="301" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="303" y1="58" x2="309" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="311" y1="58" x2="317" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="327" y1="58" x2="333" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="335" y1="58" x2="341" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="343" y1="58" x2="345" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-1", closed: false }, { label: "1", closed: false }]} selected={[[0, 1], [2, 3]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ системы:</p>
         <BlockMath>{"x \\in (-\\infty; \\, -1) \\cup (1; \\, +\\infty)"}</BlockMath>
@@ -6898,40 +3859,9 @@ export const section15Tasks = [
         <p>С учётом этого преобразуем исходное дробное неравенство к общему рациональному виду:</p>
         <BlockMath>{"\\iff \\begin{cases} \\frac{(x - 1)(x - 2)}{5(x - 0{,}6)^2} \\le 0 \\\\ x \\neq 0{,}6 \\end{cases}"}</BlockMath>
 
-        <p>Исследуем знаки полученного рационального выражения методом интервалов. На геометрическом чертеже крышами отмечены области, где дробь меньше или равна нулю:</p>
+        <p>Исследуем знаки полученного рационального выражения методом интервалов. На числовой прямой выделены области, где дробь меньше или равна нулю:</p>
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотый корень знаменателя кратности 2 */}
-            <circle cx="95" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"0{,}6"} />
-
-            {/* Закрашенная точка числителя 1 */}
-            <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* Закрашенная точка числителя 2 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"2"} />
-
-            {/* Крыша решения дроби там, где знак "-" (<= 0): отрезок [1; 2] */}
-            <path d="M 185 60 L 185 45 A 10 10 0 0 1 195 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* Штриховка чистых интервалов знака "-" */}
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="203" y1="58" x2="209" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="217" y1="58" x2="223" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="273" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "1", closed: true }, { label: "2", closed: true }]} selected={[[1, 2]]} />
 
         <p>Откуда находим промежуточное решение для дробной части неравенства:</p>
         <BlockMath>{"x \\in [1; \\, 2]"}</BlockMath>
@@ -6939,47 +3869,7 @@ export const section15Tasks = [
         <p>Пересечёт полученный отрезок с условием выколотой точки знаменателя:</p>
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка знаменателя 0,6 */}
-            <circle cx="95" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"0{,}6"} />
-
-            {/* Закрашенная точка числителя 1 */}
-            <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* Закрашенная точка числителя 2 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"2"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части [1; 2] */}
-            <path d="M 185 60 L 185 45 A 10 10 0 0 1 195 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x != 0,6 (Вся ось с выколотой точкой) */}
-            <path d="M 15 15 L 85 15 A 10 10 0 0 1 95 25 L 95 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 95 60 L 95 25 A 10 10 0 0 1 105 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Поскольку точка 0,6 лежит левее отрезка [1; 2], она не выкалывает из него решений */}
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="197" y1="58" x2="203" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="205" y1="58" x2="211" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="213" y1="58" x2="219" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="221" y1="58" x2="227" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="237" y1="58" x2="243" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="253" y1="58" x2="259" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="273" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "1", closed: true }, { label: "2", closed: true }]} selected={[[1, 2]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ всей системы:</p>
         <BlockMath>{"x \\in [1; \\, 2]"}</BlockMath>
@@ -7030,61 +3920,7 @@ export const section15Tasks = [
 
         <p>Пересечёт полученные множества с тривиальным ограничением области допустимых значений логарифмов:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ (ВСЯ ОСЬ) */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка числителя -2 */}
-            <circle cx="95" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"-2"} />
-
-            {/* Закрашенная изолированная точка числителя -1 */}
-            <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"-1"} />
-
-            {/* Закрашенная точка числителя 3 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (-inf; -2] U {-1} U [3; +inf) */}
-            <path d="M 15 35 L 85 35 A 10 10 0 0 1 95 45 L 95 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <circle cx="185" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 275 60 L 275 45 A 10 10 0 0 1 285 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ (Выполняется при всех действительных x, сплошная ось) */}
-            <line x1="15" y1="15" x2="345" y2="15" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Левый открытый луч */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="26" y1="58" x2="32" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="34" y1="58" x2="40" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="42" y1="58" x2="48" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="50" y1="58" x2="56" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="58" y1="58" x2="64" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="66" y1="58" x2="72" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="82" y1="58" x2="88" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="88" y1="58" x2="91" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Изолированная точка -1 */}
-            <line x1="185" y1="58" x2="185" y2="37" stroke="#328ce6" strokeWidth="1.5" opacity="0.7" />
-
-            {/* Правый открытый луч */}
-            <line x1="279" y1="58" x2="285" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="287" y1="58" x2="293" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="295" y1="58" x2="301" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="303" y1="58" x2="309" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="311" y1="58" x2="317" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="327" y1="58" x2="333" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="335" y1="58" x2="341" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="343" y1="58" x2="345" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-2", closed: true }, { label: "-1", closed: true }, { label: "3", closed: true }]} selected={[[0, 1], [3, 4]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ системы:</p>
         <BlockMath>{"x \\in (-\\infty; \\, -2] \\cup \\{-1\\} \\cup [3; \\, +\\infty)"}</BlockMath>
@@ -7131,195 +3967,18 @@ export const section15Tasks = [
         </div>
         <BlockMath>{"\\iff \\begin{cases} (x + 2)(x + 2.5)(x - \\sqrt{5})(x + \\sqrt{5} + 1) \\le 0 \\\\ x < -\\sqrt{5} \\end{cases}"}</BlockMath>
 
-        <p>Исследуем знаки полученного рационального выражения методом интервалов. На геометрическом чертеже крышами отмечены области, где произведение скобок меньше или равно нулю (&le; 0):</p>
+        <p>Исследуем знаки полученного рационального выражения методом интервалов. На числовой прямой выделены области, где произведение скобок меньше или равно нулю (&le; 0):</p>
 
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось */}
-            <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная иррациональная точка левая */}
-            <circle cx="55" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="15" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"-\\sqrt{5}-1"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Закрашенная точка -2.5 */}
-            <circle cx="145" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={145.0} y={80.0} anchor="middle" math={"-2{,}5"} />
-
-            {/* Закрашенная точка -2 */}
-            <circle cx="225" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={225.0} y={80.0} anchor="middle" math={"-2"} />
-
-            {/* Закрашенная иррациональная точка правая */}
-            <circle cx="315" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="275" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\sqrt{5}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Крыши решения там, где знак "-" (<= 0) */}
-            <path d="M 55 60 L 55 45 A 10 10 0 0 1 65 35 L 135 35 A 10 10 0 0 1 145 45 L 145 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 225 60 L 225 45 A 10 10 0 0 1 235 35 L 305 35 A 10 10 0 0 1 315 45 L 315 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* Штриховка чистых интервалов знака "-" */}
-            <line x1="59" y1="58" x2="65" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="73" y1="58" x2="79" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="87" y1="58" x2="93" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="101" y1="58" x2="107" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="58" x2="121" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="139" y1="58" x2="141" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="243" y1="58" x2="249" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="257" y1="58" x2="263" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="271" y1="58" x2="277" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="309" y1="58" x2="311" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-\\sqrt{5}-1", closed: true }, { label: "-2{,}5", closed: true }, { label: "-2", closed: true }, { label: "\\sqrt{5}", closed: true }]} selected={[[1, 2], [3, 4]]} />
 
         <p>Откуда находим промежуточное решение для рациональной части неравенства:</p>
         <BlockMath>{"x \\in [-\\sqrt{5} - 1; \\, -2.5] \\cup [-2; \\, \\sqrt{5}]"}</BlockMath>
 
-        <p>Пересечёт полученные множества с базовым ограничивающим лучом ОДЗ логарифмов:</p>
+        <p>Пересечём полученные множества с базовым ограничивающим лучом ОДЗ логарифмов:</p>
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная иррациональная точка левая */}
-            <circle cx="45" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="5" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"-\\sqrt{5}-1"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Закрашенная точка -2.5 */}
-            <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-2{,}5"} />
-
-            {/* Выколотая точка границы ОДЗ -sqrt(5) */}
-            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="135" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"-\\sqrt{5}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Закрашенная точка -2 */}
-            <circle cx="235" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={235.0} y={80.0} anchor="middle" math={"-2"} />
-
-            {/* Закрашенная иррациональная точка правая */}
-            <circle cx="315" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="275" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\sqrt{5}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Крыши решения там, где знак "-" (<= 0) */}
-            <path d="M 55 60 L 55 45 A 10 10 0 0 1 65 35 L 135 35 A 10 10 0 0 1 145 45 L 145 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 225 60 L 225 45 A 10 10 0 0 1 235 35 L 305 35 A 10 10 0 0 1 315 45 L 315 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* Штриховка чистых интервалов знака "-" */}
-            <line x1="59" y1="58" x2="65" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="73" y1="58" x2="79" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="87" y1="58" x2="93" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="101" y1="58" x2="107" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="58" x2="121" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="139" y1="58" x2="141" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="229" y1="58" x2="235" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="243" y1="58" x2="249" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="257" y1="58" x2="263" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="271" y1="58" x2="277" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="309" y1="58" x2="311" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
-
-        <p>Откуда находим промежуточное решение для рациональной части неравенства:</p>
-        <BlockMath>{"x \\in [-\\sqrt{5} - 1; \\, -2.5] \\cup [-2; \\, \\sqrt{5}]"}</BlockMath>
-
-        <p>Пересечёт полученные множества с базовым ограничивающим лучом ОДЗ логарифмов:</p>
-
-        {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная иррациональная точка левая */}
-            <circle cx="45" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="5" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"-\\sqrt{5}-1"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Закрашенная точка -2.5 */}
-            <circle cx="115" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-2{,}5"} />
-
-            {/* Выколотая точка границы ОДЗ -sqrt(5) */}
-            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="135" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"-\\sqrt{5}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Закрашенная точка -2 */}
-            <circle cx="235" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={235.0} y={80.0} anchor="middle" math={"-2"} />
-
-            {/* Закрашенная иррациональная точка правая */}
-            <circle cx="315" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="275" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\sqrt{5}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части */}
-            <path d="M 45 60 L 45 45 A 10 10 0 0 1 55 35 L 105 35 A 10 10 0 0 1 115 45 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 235 60 L 235 45 A 10 10 0 0 1 245 35 L 305 35 A 10 10 0 0 1 315 45 L 315 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x < -sqrt(5) */}
-            <path d="M 15 15 L 165 15 A 10 10 0 0 1 175 25 L 175 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            <line x1="49" y1="58" x2="55" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="57" y1="58" x2="63" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="65" y1="58" x2="71" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="73" y1="58" x2="79" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="81" y1="58" x2="87" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="89" y1="58" x2="95" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="97" y1="58" x2="103" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="105" y1="58" x2="111" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="111" y1="58" x2="113" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-\\sqrt{5}-1", closed: true }, { label: "-2{,}5", closed: true }]} selected={[[1, 2]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ всей системы:</p>
         <BlockMath>{"x \\in [-\\sqrt{5} - 1; \\, -2.5]"}</BlockMath>
@@ -7374,41 +4033,9 @@ export const section15Tasks = [
         </div>
         <BlockMath>{"\\iff \\begin{cases} x - (1 + \\log_4 3) > 0 \\\\ x > -4 \\end{cases} \\iff \\begin{cases} x > 1 + \\log_4 3 \\\\ x > -4 \\end{cases}"}</BlockMath>
 
-        <p>Исследуем промежуточные знаки полученного рационального выражения методом интервалов. На геометрическом чертеже крышами отмечены области, где дробь строго больше нуля (&gt; 0):</p>
+        <p>Исследуем промежуточные знаки полученного рационального выражения методом интервалов. На числовой прямой выделены области, где дробь строго больше нуля (&gt; 0):</p>
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="135" viewBox="0 0 400 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая логарифмическая точка знаменателя */}
-            <circle cx="185" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="135" y="68" width="100" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"1+\\log_4 3"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Крыша решения там, где знак "+" (> 0): открытый луч */}
-            <path d="M 185 60 L 185 45 A 10 10 0 0 1 195 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* Штриховка чистых интервалов знака "+" */}
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="203" y1="58" x2="209" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="217" y1="58" x2="223" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="273" y1="58" x2="279" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="287" y1="58" x2="293" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="301" y1="58" x2="307" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="315" y1="58" x2="321" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="327" y1="58" x2="333" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="339" y1="58" x2="345" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "1+\\log_4 3", closed: false }]} selected={[[1, 2]]} />
 
         <p>Откуда находим промежуточное решение для дробной части неравенства:</p>
         <BlockMath>{"x \\in (1 + \\log_4 3; \\, +\\infty)"}</BlockMath>
@@ -7416,53 +4043,7 @@ export const section15Tasks = [
         <p>Пересечёт полученный луч со всеми условиями области допустимых значений ОДЗ радикалов:</p>
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="135" viewBox="0 0 400 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка ОДЗ -4 */}
-            <circle cx="65" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"-4"} />
-
-            {/* Выколотая логарифмическая точка знаменателя */}
-            <circle cx="215" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="165" y="68" width="100" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"1+\\log_4 3"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Изолированное решение -4 и луч */}
-            <circle cx="65" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 215 60 L 215 45 A 10 10 0 0 1 225 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x >= -4 */}
-            <path d="M 65 60 L 65 25 A 10 10 0 0 1 75 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Изолированная точка -4 */}
-            <line x1="65" y1="58" x2="65" y2="37" stroke="#328ce6" strokeWidth="1.5" opacity="0.7" />
-
-            {/* Луч (1 + log4(3); +inf) */}
-            <line x1="219" y1="58" x2="225" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="227" y1="58" x2="233" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="235" y1="58" x2="241" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="243" y1="58" x2="249" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="251" y1="58" x2="257" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="267" y1="58" x2="273" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="283" y1="58" x2="289" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="299" y1="58" x2="305" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="313" y1="58" x2="319" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="321" y1="58" x2="327" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="335" y1="58" x2="341" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-4", closed: true }, { label: "1+\\log_4 3", closed: false }]} selected={[[2, 3]]} />
 
         <p>Объединяя изолированный корень и непрерывный луч, получаем итоговое решение:</p>
         <BlockMath>{"x \\in \\{-4\\} \\cup (1 + \\log_4 3; \\, +\\infty)"}</BlockMath>
@@ -7533,65 +4114,7 @@ export const section15Tasks = [
         <p>Пересечёт полученные множества с базовым ограничением ОДЗ знаменателя (выколотой точкой 0):</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ ЗНАМЕНАТЕЛЯ */}
         {/* Иррациональные натуральные логарифмы выведены оригинальным KaTeX-шрифтом через foreignObject строго под cx=75 и cx=275 */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="135" viewBox="0 0 440 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная сложная левая точка */}
-            <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="15" y="66" width="120" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-[10px]">
-                <InlineMath>{"\\frac{-\\ln 7-\\sqrt{\\ln^2 7+4}}{2}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка знаменателя 0 */}
-            <circle cx="175" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={175.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная сложная правая точка */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="215" y="66" width="120" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-[10px]">
-                <InlineMath>{"\\frac{-\\ln 7+\\sqrt{\\ln^2 7+4}}{2}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части полуинтервал и луч */}
-            <path d="M 75 60 L 75 45 A 10 10 0 0 1 85 35 L 165 35 A 10 10 0 0 1 175 45 L 175 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 275 60 L 275 45 A 10 10 0 0 1 285 35 L 375 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x != 0 (Сплошная линия со штриховкой, исключая 0) */}
-            <path d="M 15 15 L 165 15 A 10 10 0 0 1 175 25 L 175 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 175 60 L 175 25 A 10 10 0 0 1 185 15 L 375 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Полуинтервал */}
-            <line x1="79" y1="58" x2="85" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="91" y1="58" x2="97" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="103" y1="58" x2="109" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="58" x2="121" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="127" y1="58" x2="133" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="139" y1="58" x2="145" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="151" y1="58" x2="157" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="163" y1="58" x2="169" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="169" y1="58" x2="171" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Луч */}
-            <line x1="279" y1="58" x2="285" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="303" y1="58" x2="309" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="315" y1="58" x2="321" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="327" y1="58" x2="333" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="339" y1="58" x2="345" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="351" y1="58" x2="357" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="363" y1="58" x2="369" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="375" y1="58" x2="375" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "\\frac{-\\ln 7-\\sqrt{\\ln^2 7+4}}{2}", closed: true }, { label: "0", closed: false }, { label: "\\frac{-\\ln 7+\\sqrt{\\ln^2 7+4}}{2}", closed: true }]} selected={[[1, 2], [3, 4]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ всей системы:</p>
         <BlockMath>{"x \\in \\left[ \\frac{-\\ln 7 - \\sqrt{(\\ln 7)^2 + 4}}{2}; \\, 0 \\right) \\cup \\left[ \\frac{-\\ln 7 + \\sqrt{(\\ln 7)^2 + 4}}{2}; \\, +\\infty \\right)"}</BlockMath>
@@ -7630,54 +4153,9 @@ export const section15Tasks = [
         </p>
         <BlockMath>{"\\iff \\begin{cases} \\left[ \\begin{aligned} &\\frac{1}{2x - 1} \\le 0 \\\\ &x = 1 \\end{aligned} \\right. \\\\ x \\in (0; \\, 0{,}5) \\cup (0{,}5; \\, +\\infty) \\end{cases} \\iff x \\in (0; \\, 0{,}5) \\cup \\{1\\}"}</BlockMath>
 
-        <p>Исследуем знаки полученного рационального выражения методом интервалов. На геометрическом чертеже крышами отмечены области, удовлетворяющие системе неравенства:</p>
+        <p>Исследуем знаки полученного рационального выражения методом интервалов. На числовой прямой выделены области, удовлетворяющие системе неравенства:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Выколотая точка границы 0,5 */}
-            <circle cx="165" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={165.0} y={80.0} anchor="middle" math={"0{,}5"} />
-
-            {/* Закрашенная изолированная точка числителя 1 */}
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={265.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части дробного знака */}
-            <path d="M 15 35 L 155 35 A 10 10 0 0 1 165 45 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <circle cx="265" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > 0, x != 0,5 */}
-            <path d="M 65 60 L 65 25 A 10 10 0 0 1 75 15 L 155 15 A 10 10 0 0 1 165 25 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 165 60 L 165 25 A 10 10 0 0 1 175 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Интервал (0; 0,5) */}
-            <line x1="69" y1="58" x2="75" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="77" y1="58" x2="83" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="85" y1="58" x2="91" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="93" y1="58" x2="99" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="101" y1="58" x2="107" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="109" y1="58" x2="115" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="117" y1="58" x2="123" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="125" y1="58" x2="131" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="133" y1="58" x2="139" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="141" y1="58" x2="147" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="149" y1="58" x2="155" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="157" y1="58" x2="161" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Изолированная закрашенная точка 1 */}
-            <line x1="265" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.5" opacity="0.7" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "0{,}5", closed: false }, { label: "1", closed: true }]} selected={[[1, 2]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ всей системы:</p>
         <BlockMath>{"x \\in (0; \\, 0{,}5) \\cup \\{1\\}"}</BlockMath>
@@ -7718,27 +4196,9 @@ export const section15Tasks = [
         </p>
         <p>Следовательно, полученная рациональная система не имеет совместных решений на своей области определения.</p>
 
-        <p>Визуализируем пустое пересечение областей на числовой прямой методом двух уровней крыш:</p>
+        <p>Визуализируем пустое пересечение областей на числовой прямой методом интервалов:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="120" viewBox="0 0 400 120" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка границы ОДЗ 1 */}
-            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={135.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (пустое множество, крыша отсутствует) */}
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > 1 */}
-            <path d="M 135 60 L 135 25 A 10 10 0 0 1 145 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* Множества не имеют пересечений, штриховка отсутствует */}
-          </svg>
-        </div>
+        <InequalityNumberLine points={[]} selected={[]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -7798,70 +4258,10 @@ export const section15Tasks = [
           <InlineMath>{"3 < \\pi < 3{,}25 < \\log_2 10"}</InlineMath>. Следовательно, корень знаменателя <InlineMath>{"x = \\pi"}</InlineMath> входит в область ОДЗ неравенства, разбивая правый интервал и меняя знак тригонометрической функции <InlineMath>{"\\sin x"}</InlineMath>.
         </p>
 
-        <p>Определим знаки полученного выражения методом интервалов на области <InlineMath>{"(0; \\, 2\\pi)"}</InlineMath>. На чертеже крышами отмечены области, где дробь меньше или равна нулю (\\le 0):</p>
+        <p>Определим знаки полученного выражения методом интервалов на области <InlineMath>{"(0; \\, 2\\pi)"}</InlineMath>. На числовой прямой выделены области, где дробь меньше или равна нулю (\\le 0):</p>
 
                 {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="110" viewBox="0 0 440 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось */}
-            <line x1="10" y1="60" x2="420" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M420 60 l-6 -3 M420 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={428.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка знаменателя 0,5 */}
-            <circle cx="85" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={85.0} y={80.0} anchor="middle" math={"0{,}5"} />
-
-            {/* Выколотая точка знаменателя 1 */}
-            <circle cx="145" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={145.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* Закрашенная точка числителя log2(5) */}
-            <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="175" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\log_2 5"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Закрашенная точка числителя 3 */}
-            <circle cx="295" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={295.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* Выколотая точка знаменателя pi */}
-            <circle cx="365" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="325" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs font-normal">
-                <InlineMath>{"\\pi"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Крыши решения там, где знак дроби меньше или равен нулю (<= 0) */}
-            <path d="M 85 60 L 85 45 A 10 10 0 0 1 95 35 L 135 35 A 10 10 0 0 1 145 45 L 145 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 215 60 L 215 45 A 10 10 0 0 1 225 35 L 285 35 A 10 10 0 0 1 295 45 L 295 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 365 60 L 365 45 A 10 10 0 0 1 375 35 L 415 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* Штриховка интервалов */}
-            <line x1="89" y1="58" x2="95" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="97" y1="58" x2="103" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="105" y1="58" x2="111" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="113" y1="58" x2="119" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="121" y1="58" x2="127" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="131" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="219" y1="58" x2="225" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="233" y1="58" x2="239" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="289" y1="58" x2="291" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="369" y1="58" x2="375" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="383" y1="58" x2="389" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="397" y1="58" x2="403" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="411" y1="58" x2="413" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0{,}5", closed: false }, { label: "1", closed: false }, { label: "\\log_2 5", closed: true }, { label: "3", closed: true }, { label: "\\pi", closed: false }]} selected={[[1, 2], [3, 4], [5, 6]]} />
 
         <p>Откуда находим промежуточное решение для дробной части неравенства:</p>
         <BlockMath>{"x \\in (0{,}5; \\, 1) \\cup [\\log_2 5; \\, 3] \\cup (\\pi; \\, +\\infty)"}</BlockMath>
@@ -7869,93 +4269,7 @@ export const section15Tasks = [
         <p>Пересечёт полученные множества с базовыми интервалами ОДЗ системы логарифмов:</p>
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ С ВЫВЕРЕННЫМИ КООРДИНАТАМИ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="480" height="135" viewBox="0 0 480 135" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="440" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M440 60 l-6 -3 M440 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={448.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="35" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={35.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Выколотая точка знаменателя 0,5 */}
-            <circle cx="85" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={85.0} y={80.0} anchor="middle" math={"0{,}5"} />
-
-            {/* Выколотая точка ОДЗ 1 */}
-            <circle cx="135" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={135.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* Закрашенная иррациональная точка числителя log2(5) */}
-            <circle cx="195" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="155" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\log_2 5"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка ОДЗ 3 */}
-            <circle cx="255" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={255.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* Выколотая точка знаменателя pi */}
-            <circle cx="315" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="275" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs font-normal">
-                <InlineMath>{"\\pi"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая иррациональная точка ОДЗ log2(10) */}
-            <circle cx="385" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="345" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\log_2 10"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части */}
-            <path d="M 85 60 L 85 45 A 10 10 0 0 1 95 35 L 125 35 A 10 10 0 0 1 135 45 L 135 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 195 60 L 195 45 A 10 10 0 0 1 205 35 L 245 35 A 10 10 0 0 1 255 45 L 255 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 315 60 L 315 45 A 10 10 0 0 1 325 35 L 435 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифмов */}
-            <path d="M 35 60 L 35 25 A 10 10 0 0 1 45 15 L 125 15 A 10 10 0 0 1 135 25 L 135 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 135 60 L 135 25 A 10 10 0 0 1 145 15 L 245 15 A 10 10 0 0 1 255 25 L 255 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 255 60 L 255 25 A 10 10 0 0 1 265 15 L 375 15 A 10 10 0 0 1 385 25 L 385 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Интервал (0.5; 1) */}
-            <line x1="89" y1="58" x2="95" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="97" y1="58" x2="103" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="105" y1="58" x2="111" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="113" y1="58" x2="119" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="121" y1="58" x2="127" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="131" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Полуинтервал [log2(5); 3) */}
-            <line x1="199" y1="58" x2="205" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="207" y1="58" x2="213" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="215" y1="58" x2="221" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="223" y1="58" x2="229" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="239" y1="58" x2="245" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="249" y1="58" x2="251" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Интервал (pi; log2 10) */}
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="327" y1="58" x2="333" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="335" y1="58" x2="341" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="343" y1="58" x2="349" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="351" y1="58" x2="357" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="359" y1="58" x2="365" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="367" y1="58" x2="373" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="375" y1="58" x2="381" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="381" y1="58" x2="383" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0{,}5", closed: false }, { label: "1", closed: false }, { label: "\\log_2 5", closed: true }, { label: "3", closed: false }, { label: "\\pi", closed: false }, { label: "\\log_2 10", closed: false }]} selected={[[1, 2], [3, 4], [5, 6]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ всей системы:</p>
         <BlockMath>{"x \\in (0{,}5; \\, 1) \\cup [\\log_2 5; \\, 3) \\cup (\\pi; \\, \\log_2 10)"}</BlockMath>
@@ -8002,48 +4316,10 @@ export const section15Tasks = [
         </div>
         <BlockMath>{"2t + \\frac{2}{t} \\le 5 \\iff \\frac{2t^2 - 5t + 2}{t} \\le 0 \\iff \\frac{2(t - 0{,}5)(t - 2)}{t} \\le 0"}</BlockMath>
 
-        <p>Исследуем знаки полученной рациональной дроби относительно переменной t методом интервалов. Крышами отмечены области, где функция меньше или равна нулю (&le; 0):</p>
+        <p>Исследуем знаки полученной рациональной дроби относительно переменной t методом интервалов. На числовой прямой выделены области, где функция меньше или равна нулю (&le; 0):</p>
 
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ПЕРЕМЕННОЙ T В СТИЛЕ КРЫШ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"t"} />
-
-            {/* Выколотый ноль знаменателя */}
-            <circle cx="95" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная точка 0,5 */}
-            <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"0{,}5"} />
-
-            {/* Закрашенная точка 2 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"2"} />
-
-            {/* Крыши решения дроби там, где знак "-" (<= 0) */}
-            <path d="M 15 35 L 85 35 A 10 10 0 0 1 95 45 L 95 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 185 60 L 185 45 A 10 10 0 0 1 195 35 L 265 35 A 10 10 0 0 1 275 45 L 275 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* Штриховка интервалов t */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="32" y1="58" x2="38" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="46" y1="58" x2="52" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="60" y1="58" x2="66" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="88" y1="58" x2="91" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="203" y1="58" x2="209" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="217" y1="58" x2="223" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="245" y1="58" x2="251" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="271" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "0{,}5", closed: true }, { label: "2", closed: true }]} selected={[[0, 1], [2, 3]]} variable="t" />
 
         <p>Откуда получаем совокупность промежутков для обратной замены:</p>
         <BlockMath>{"\\left[ \\begin{aligned} &t < 0 \\\\ &0{,}5 \\le t \\le 2 \\end{aligned} \\right. \\iff \\left[ \\begin{aligned} &\\log_{x+1}(x - 1) < \\log_{x+1} 1 \\\\ &\\log_{x+1}\\sqrt{x + 1} \\le \\log_{x+1}(x - 1) \\le \\log_{x+1}(x + 1)^2 \\end{aligned} \\right."}</BlockMath>
@@ -8056,60 +4332,7 @@ export const section15Tasks = [
         <p>Пересечём полученную совокупность лучей с интервалами ОДЗ логарифмической системы:</p>
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ ДЛЯ ПЕРЕМЕННОЙ X */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 1 */}
-            <circle cx="85" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={85.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* Выколотая точка ОДЗ 2 */}
-            <circle cx="185" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"2"} />
-
-            {/* Закрашенная точка числителя 3 */}
-            <circle cx="275" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={275.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение совокупности (x < 2 U x >= 3) */}
-            <path d="M 15 35 L 175 35 A 10 10 0 0 1 185 45 L 185 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 275 60 L 275 45 A 10 10 0 0 1 285 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > 1, x != 2 */}
-            <path d="M 85 60 L 85 25 A 10 10 0 0 1 95 15 L 175 15 A 10 10 0 0 1 185 25 L 185 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 185 60 L 185 25 A 10 10 0 0 1 195 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА В ЗОНАХ ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Интервал (1; 2) */}
-            <line x1="89" y1="58" x2="95" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="97" y1="58" x2="103" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="105" y1="58" x2="111" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="113" y1="58" x2="119" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="121" y1="58" x2="127" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="137" y1="58" x2="143" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="153" y1="58" x2="159" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="161" y1="58" x2="167" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="169" y1="58" x2="175" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="175" y1="58" x2="179" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Луч [3; +inf) */}
-            <line x1="279" y1="58" x2="285" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="287" y1="58" x2="293" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="295" y1="58" x2="301" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="303" y1="58" x2="309" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="311" y1="58" x2="317" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="327" y1="58" x2="333" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="335" y1="58" x2="341" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="341" y1="58" x2="343" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "1", closed: false }, { label: "2", closed: false }, { label: "3", closed: true }]} selected={[[1, 2], [3, 4]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадной системы ДВИ:</p>
         <BlockMath>{"x \\in (1; \\, 2) \\cup [3; \\, +\\infty)"}</BlockMath>
@@ -8161,49 +4384,9 @@ export const section15Tasks = [
         </p>
         <BlockMath>{"\\begin{cases} (x - 10)(x + 6)(x + 4)(x - 8) \\le 0 \\\\ -5 \\le x \\le 8 \\end{cases}"}</BlockMath>
 
-        <p>Исследуем промежуточные знаки полученного рационального выражения методом интервалов. На геометрическом чертеже крышами отмечены области выполнения условий совместной системы:</p>
+        <p>Исследуем промежуточные знаки полученного рационального выражения методом интервалов. На числовой прямой выделены области выполнения условий совместной системы:</p>
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ СИСТЕМЫ (БЕЗ ОДЗ) */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="110" viewBox="0 0 440 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось */}
-            <line x1="10" y1="60" x2="420" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M420 60 l-6 -3 M420 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={428.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Точки оси */}
-            <circle cx="45" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={45.0} y={80.0} anchor="middle" math={"-6"} />
-
-            <circle cx="105" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={105.0} y={80.0} anchor="middle" math={"-5"} />
-
-            <circle cx="175" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={175.0} y={80.0} anchor="middle" math={"-4"} />
-
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={265.0} y={80.0} anchor="middle" math={"8"} />
-
-            <circle cx="355" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={355.0} y={80.0} anchor="middle" math={"10"} />
-
-            {/* Крыши решений */}
-            {/* Неравенство 1: [-6; -4] U [8; 10] */}
-            <path d="M 45 60 L 45 45 A 10 10 0 0 1 55 35 L 165 35 A 10 10 0 0 1 175 45 L 175 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 265 60 L 265 45 A 10 10 0 0 1 275 35 L 345 35 A 10 10 0 0 1 355 45 L 355 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            {/* Неравенство 2: [-5; 8] */}
-            <path d="M 105 60 L 105 20 A 10 10 0 0 1 115 10 L 255 10 A 10 10 0 0 1 265 20 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.5" />
-
-            {/* Штриховка совместного пересечения: [-5; -4] и изолированная точка {8} */}
-            <line x1="109" y1="58" x2="115" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="123" y1="58" x2="129" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="137" y1="58" x2="143" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="151" y1="58" x2="157" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="165" y1="58" x2="171" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="171" y1="58" x2="173" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="265" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.5" opacity="0.7" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-5", closed: true }, { label: "-4", closed: true }, { label: "8", closed: true }]} selected={[[1, 2]]} />
 
                <p>Откуда находим промежуточное решение рациональной системы условий:</p>
         <BlockMath>{"x \\in [-5; \\, -4] \\cup \\{8\\}"}</BlockMath>
@@ -8211,51 +4394,7 @@ export const section15Tasks = [
         <p>Пересечём полученные множества со сквозными интервалами области допустимых значений ОДЗ:</p>
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="125" viewBox="0 0 440 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="420" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M420 60 l-6 -3 M420 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={428.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ -5 */}
-            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={55.0} y={80.0} anchor="middle" math={"-5"} />
-
-            {/* Выколотая точка ОДЗ -4 */}
-            <circle cx="145" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={145.0} y={80.0} anchor="middle" math={"-4"} />
-
-            {/* Закрашенная точка решения 8 */}
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={265.0} y={80.0} anchor="middle" math={"8"} />
-
-            {/* Выколотая точка ОДЗ 9 */}
-            <circle cx="355" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={355.0} y={80.0} anchor="middle" math={"9"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Промежуточное решение */}
-            <path d="M 55 60 L 55 45 A 10 10 0 0 1 65 35 L 135 35 A 10 10 0 0 1 145 45 L 145 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <circle cx="265" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ (-5; -4) U (-4; 9) */}
-            <path d="M 55 60 L 55 25 A 10 10 0 0 1 65 15 L 135 15 A 10 10 0 0 1 145 25 L 145 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 145 60 L 145 25 A 10 10 0 0 1 155 15 L 345 15 A 10 10 0 0 1 355 25 L 355 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Границы -5 и -4 выкалываются по ОДЗ, превращая отрезок в интервал (-5; -4) */}
-            <line x1="59" y1="58" x2="65" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="73" y1="58" x2="79" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="87" y1="58" x2="93" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="101" y1="58" x2="107" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="58" x2="121" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="139" y1="58" x2="141" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Изолированная закрашенная точка {8} полностью входит в ОДЗ */}
-            <line x1="265" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.5" opacity="0.7" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-5", closed: false }, { label: "-4", closed: false }, { label: "8", closed: true }]} selected={[[1, 2]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадной системы ДВИ:</p>
         <BlockMath>{"x \\in (-5; \\, -4) \\cup \\{8\\}"}</BlockMath>
@@ -8319,59 +4458,9 @@ export const section15Tasks = [
         </div>
         <BlockMath>{"\\iff \\begin{cases} 3(x + 3)\\left(x - \\frac{1}{3}\\right) < 0 \\\\ 3(x + 1)\\left(x + \\frac{5}{3}\\right) \\ge 0 \\end{cases}"}</BlockMath>
 
-        <p>Исследуем знаки полученных выражений методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
+        <p>Исследуем знаки полученных выражений методом интервалов на числовой прямой. На числовой прямой выделены области выполнения условий совместной системы:</p>
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ СИСТЕМЫ (БЕЗ ОДЗ) */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Точки оси */}
-            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={55.0} y={80.0} anchor="middle" math={"-3"} />
-
-            <circle cx="135" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="95" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"-\\frac{5}{3}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={215.0} y={80.0} anchor="middle" math={"-1"} />
-
-            <circle cx="295" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="255" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\frac{1}{3}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Крыши решений */}
-            {/* Неравенство 1: (-3; 1/3) */}
-            <path d="M 55 60 L 55 45 A 10 10 0 0 1 65 35 L 285 35 A 10 10 0 0 1 295 45 L 295 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            {/* Неравенство 2: (-inf; -5/3] U [-1; +inf) */}
-            <path d="M 15 15 L 125 15 A 10 10 0 0 1 135 25 L 135 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.5" />
-            <path d="M 215 60 L 215 25 A 10 10 0 0 1 225 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.5" />
-
-            {/* Штриховка пересечения: (-3; -5/3] и [-1; 1/3) */}
-            <line x1="59" y1="58" x2="65" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="73" y1="58" x2="79" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="87" y1="58" x2="93" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="101" y1="58" x2="107" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="115" y1="58" x2="121" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="133" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="219" y1="58" x2="225" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="233" y1="58" x2="239" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="261" y1="58" x2="267" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="275" y1="58" x2="281" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="289" y1="58" x2="291" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-3", closed: false }, { label: "-\\frac{5}{3}", closed: true }, { label: "-1", closed: true }, { label: "\\frac{1}{3}", closed: false }]} selected={[[1, 2], [3, 4]]} />
 
         <p>Откуда находим промежуточное решение рациональной системы неравенств:</p>
         <BlockMath>{"x \\in \\left(-3; \\, -\\frac{5}{3}\\right] \\cup \\left[-1; \\, \\frac{1}{3}\\right)"}</BlockMath>
@@ -8379,58 +4468,7 @@ export const section15Tasks = [
         <p>Пересечёт полученные промежутки с фоновым условием ОДЗ неотрицательности логарифма:</p>
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Точки координатной сетки */}
-            <circle cx="55" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={55.0} y={80.0} anchor="middle" math={"-3"} />
-
-            <circle cx="125" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="85" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"-\\frac{5}{3}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            <circle cx="195" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={195.0} y={80.0} anchor="middle" math={"-1"} />
-
-            <circle cx="265" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="225" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\frac{1}{3}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Промежуточное решение */}
-            <path d="M 55 60 L 55 45 A 10 10 0 0 1 65 35 L 115 35 A 10 10 0 0 1 125 45 L 125 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 195 60 L 195 45 A 10 10 0 0 1 205 35 L 255 35 A 10 10 0 0 1 265 45 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ 3x^2 + 8x + 5 >= 0 аналогично совпадает с (-inf; -5/3] U [-1; +inf) */}
-            <path d="M 15 15 L 115 15 A 10 10 0 0 1 125 25 L 125 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 195 60 L 195 25 A 10 10 0 0 1 205 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            <line x1="59" y1="58" x2="65" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="71" y1="58" x2="77" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="83" y1="58" x2="89" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="95" y1="58" x2="101" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="107" y1="58" x2="113" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="119" y1="58" x2="123" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="199" y1="58" x2="205" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="211" y1="58" x2="217" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="223" y1="58" x2="229" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="235" y1="58" x2="241" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="263" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-3", closed: false }, { label: "-\\frac{5}{3}", closed: true }, { label: "-1", closed: true }, { label: "\\frac{1}{3}", closed: false }]} selected={[[1, 2], [3, 4]]} />
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in \\left(-3; \\, -\\frac{5}{3}\\right] \\cup \\left[-1; \\, \\frac{1}{3}\\right)"}</BlockMath>
 
@@ -8486,39 +4524,9 @@ export const section15Tasks = [
         <p>Выполним обратную замену для переменной х:</p>
         <BlockMath>{"1 < 3^x \\le 9 \\iff 3^0 < 3^x \\le 3^2 \\iff 0 < x \\le 2"}</BlockMath>
 
-        <p>Исследуем знаки полученного рационального выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
+        <p>Исследуем знаки полученного рационального выражения методом интервалов на числовой прямой. На числовой прямой выделены области выполнения условий совместной системы:</p>
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка знаменателя 0 */}
-            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная точка числителя 2 */}
-            <circle cx="245" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"2"} />
-
-            {/* Крыши решения там, где знак "-" (<= 0): отрезок полуинтервал */}
-            <path d="M 115 60 L 115 45 A 10 10 0 0 1 125 35 L 235 35 A 10 10 0 0 1 245 45 L 245 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* Штриховка чистых интервалов знака "-" */}
-            <line x1="119" y1="58" x2="125" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="133" y1="58" x2="139" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="147" y1="58" x2="153" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="161" y1="58" x2="167" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="175" y1="58" x2="181" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="203" y1="58" x2="209" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="217" y1="58" x2="223" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="239" y1="58" x2="241" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "2", closed: true }]} selected={[[1, 2]]} />
 
         <p>Откуда находим промежуточное решение для дробной части неравенства:</p>
         <BlockMath>{"x \\in (0; \\, 2]"}</BlockMath>
@@ -8526,40 +4534,7 @@ export const section15Tasks = [
         <p>Пересечёт полученные множества со сквозными интервалами области допустимых значений ОДЗ:</p>
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная точка решения 2 */}
-            <circle cx="245" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"2"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Промежуточное решение */}
-            <path d="M 115 60 L 115 45 A 10 10 0 0 1 125 35 L 235 35 A 10 10 0 0 1 245 45 L 245 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > 0 */}
-            <path d="M 115 60 L 115 25 A 10 10 0 0 1 125 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            <line x1="119" y1="58" x2="125" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="133" y1="58" x2="139" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="147" y1="58" x2="153" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="161" y1="58" x2="167" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="175" y1="58" x2="181" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="203" y1="58" x2="209" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="217" y1="58" x2="223" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="239" y1="58" x2="241" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "2", closed: true }]} selected={[[1, 2]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in (0; \\, 2]"}</BlockMath>
@@ -8620,103 +4595,14 @@ export const section15Tasks = [
         <p>Выполним обратную замену для переменной х с удержанием базового ограничения ОДЗ:</p>
         <BlockMath>{"\\iff \\begin{cases} \\left[ \\begin{aligned} &\\log_2 x < 3 \\\\ &\\log_2 x > 4 \\end{aligned} \\right. \\\\ x > 0 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &x < 8 \\\\ &x > 16 \\end{aligned} \\right. \\\\ x > 0 \\end{cases}"}</BlockMath>
 
-        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения совместной системы неравенств:</p>
+        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На числовой прямой выделены области выполнения совместной системы неравенств:</p>
         {/* 📈 ЧЕРТЁЖ №1: МЕТОД ИНТЕРВАЛОВ ДЛЯ ДРОБИ В СТИЛЕ КРЫШ (БЕЗ ОДЗ) */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка 8 */}
-            <circle cx="145" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={145.0} y={80.0} anchor="middle" math={"8"} />
-
-            {/* Выколотая точка 16 */}
-            <circle cx="245" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"16"} />
-
-            {/* Крыши решения совокупности */}
-            <path d="M 15 35 L 135 35 A 10 10 0 0 1 145 45 L 145 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 245 60 L 245 45 A 10 10 0 0 1 255 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* Штриховка чистых интервалов */}
-            <line x1="18" y1="58" x2="24" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="32" y1="58" x2="38" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="46" y1="58" x2="52" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="60" y1="58" x2="66" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="74" y1="58" x2="80" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="88" y1="58" x2="94" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="102" y1="58" x2="108" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="116" y1="58" x2="122" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="130" y1="58" x2="136" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="138" y1="58" x2="141" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            <line x1="249" y1="58" x2="255" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="263" y1="58" x2="269" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="277" y1="58" x2="283" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="305" y1="58" x2="311" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="333" y1="58" x2="339" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "8", closed: false }, { label: "16", closed: false }]} selected={[[0, 1], [2, 3]]} />
 
         <p>Пересечёт полученные множества со сквозными интервалами области допустимых значений ОДЗ:</p>
 
         {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Выколотая точка 8 */}
-            <circle cx="165" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={165.0} y={80.0} anchor="middle" math={"8"} />
-
-            {/* Выколотая точка 16 */}
-            <circle cx="255" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={255.0} y={80.0} anchor="middle" math={"16"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Промежуточное решение */}
-            <path d="M 15 35 L 155 35 A 10 10 0 0 1 165 45 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 255 60 L 255 45 A 10 10 0 0 1 265 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > 0 */}
-            <path d="M 65 60 L 65 25 A 10 10 0 0 1 75 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Ограничение ОДЗ x>0 обрезает левый луч, превращая его в интервал (0; 8) */}
-            <line x1="69" y1="58" x2="75" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="77" y1="58" x2="83" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="85" y1="58" x2="91" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="97" y1="58" x2="103" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="105" y1="58" x2="111" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="113" y1="58" x2="119" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="121" y1="58" x2="127" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="137" y1="58" x2="143" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="153" y1="58" x2="159" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="159" y1="58" x2="161" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Луч (16; +inf) */}
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="267" y1="58" x2="273" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="277" y1="58" x2="283" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="305" y1="58" x2="311" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="333" y1="58" x2="339" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "8", closed: false }, { label: "16", closed: false }]} selected={[[1, 2], [3, 4]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in (0; \\, 8) \\cup (16; \\, +\\infty)"}</BlockMath>
@@ -8770,58 +4656,10 @@ export const section15Tasks = [
         <p>Выполним обратную замену для переменной х с удержанием базовых логарифмических границ:</p>
         <BlockMath>{"\\iff 2.5 < 3^x \\neq 3 \\iff x \\in (\\log_3 2.5; \\, 1) \\cup (1; \\, +\\infty)"}</BlockMath>
 
-        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
+        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На числовой прямой выделены области выполнения условий совместной системы:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
         {/* Иррациональная точка выведена оригинальным KaTeX-шрифтом через foreignObject строго под cx=115 */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка границы ОДЗ log3(2.5) */}
-            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="75" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\log_3 2.5"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка ОДЗ 1 */}
-            <circle cx="245" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={245.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (Вся числовая ось) */}
-            <line x1="15" y1="35" x2="345" y2="35" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > log3(2.5), x != 1 */}
-            <path d="M 115 60 L 115 25 A 10 10 0 0 1 125 15 L 235 15 A 10 10 0 0 1 245 25 L 245 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 245 60 L 245 25 A 10 10 0 0 1 255 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Интервал (log3 2.5; 1) */}
-            <line x1="119" y1="58" x2="125" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="133" y1="58" x2="139" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="147" y1="58" x2="153" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="161" y1="58" x2="167" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="175" y1="58" x2="181" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="189" y1="58" x2="195" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="203" y1="58" x2="209" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="217" y1="58" x2="223" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="239" y1="58" x2="241" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Открытый луч (1; +inf) */}
-            <line x1="249" y1="58" x2="255" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="263" y1="58" x2="269" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="277" y1="58" x2="283" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="291" y1="58" x2="297" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="305" y1="58" x2="311" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="333" y1="58" x2="339" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "\\log_3 2.5", closed: false }, { label: "1", closed: false }]} selected={[[1, 2], [2, 3]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in (\\log_3 2.5; \\, 1) \\cup (1; \\, +\\infty)"}</BlockMath>
@@ -8868,63 +4706,9 @@ export const section15Tasks = [
         <p>Выполним обратную замену для переменной х внутри сквозной системы условий:</p>
         <BlockMath>{"\\iff \\begin{cases} \\left[ \\begin{aligned} &\\log_2 x \\le -3 \\\\ &\\log_2 x \\ge 1 \\end{aligned} \\right. \\\\ x > 0 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &x \\le 2^{-3} \\\\ &x \\ge 2^1 \\end{aligned} \\right. \\\\ x > 0 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &x \\le \\frac{1}{8} \\\\ &x \\ge 2 \\end{aligned} \\right. \\\\ x > 0 \\end{cases}"}</BlockMath>
 
-        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
+        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На числовой прямой выделены области выполнения условий совместной системы:</p>
         {/* 🌌 ЧЕРТЁЖ: К КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная точка числителя 1/8 */}
-            <circle cx="165" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="125" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\frac{1}{8}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Закрашенная точка числителя 2 */}
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={265.0} y={80.0} anchor="middle" math={"2"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части совокупности */}
-            <path d="M 15 35 L 155 35 A 10 10 0 0 1 165 45 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 265 60 L 265 45 A 10 10 0 0 1 275 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > 0 */}
-            <path d="M 65 60 L 65 25 A 10 10 0 0 1 75 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Отрезок пересечения (0; 1/8] */}
-            <line x1="69" y1="58" x2="75" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="77" y1="58" x2="83" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="85" y1="58" x2="91" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="97" y1="58" x2="103" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="105" y1="58" x2="111" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="113" y1="58" x2="119" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="121" y1="58" x2="127" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="137" y1="58" x2="143" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="153" y1="58" x2="159" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="159" y1="58" x2="161" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Открытый луч [2; +inf) */}
-            <line x1="269" y1="58" x2="275" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="277" y1="58" x2="283" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="293" y1="58" x2="299" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="305" y1="58" x2="311" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="333" y1="58" x2="339" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "\\frac{1}{8}", closed: true }, { label: "2", closed: true }]} selected={[[1, 2], [3, 4]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in \\left(0; \\, \\frac{1}{8}\\right] \\cup [2; \\, +\\infty)"}</BlockMath>
@@ -8992,61 +4776,7 @@ export const section15Tasks = [
         <p>Пересечёт полученные множества со сквозным интервалом области допустимых значений ОДЗ системы:</p>
         {/* 🌌 ЧЕРТЁЖ: К КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
         {/* Иррациональная точка выведена оригинальным KaTeX-шрифтом через foreignObject строго под cx=265 */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная точка числителя 1 */}
-            <circle cx="165" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={165.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* Закрашенная иррациональная точка числителя log_{1.5} 6 */}
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="225" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\log_{1.5} 6"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части совокупности */}
-            <path d="M 15 35 L 155 35 A 10 10 0 0 1 165 45 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 265 60 L 265 45 A 10 10 0 0 1 275 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > 0 */}
-            <path d="M 65 60 L 65 25 A 10 10 0 0 1 75 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Отрезок пересечения (0; 1] */}
-            <line x1="69" y1="58" x2="75" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="77" y1="58" x2="83" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="85" y1="58" x2="91" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="97" y1="58" x2="103" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="105" y1="58" x2="111" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="113" y1="58" x2="119" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="121" y1="58" x2="127" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="137" y1="58" x2="143" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="153" y1="58" x2="159" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="159" y1="58" x2="161" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Открытый луч [log_{1.5} 6; +inf) */}
-            <line x1="269" y1="58" x2="275" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="277" y1="58" x2="283" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="285" y1="58" x2="291" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="293" y1="58" x2="299" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="305" y1="58" x2="311" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="333" y1="58" x2="339" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "1", closed: true }, { label: "\\log_{1.5} 6", closed: true }]} selected={[[1, 2], [3, 4]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in (0; \\, 1] \\cup [\\log_{1.5} 6; \\, +\\infty)"}</BlockMath>
@@ -9091,77 +4821,7 @@ export const section15Tasks = [
         <p>Пересечёт полученные множества со сквозными базовыми интервалами области допустимых значений логарифма:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
         {/* Иррациональная дробная координата выведена оригинальным KaTeX-шрифтом через foreignObject строго под cx=215 */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="440" height="125" viewBox="0 0 440 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="400" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M400 60 l-6 -3 M400 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={408.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ -3 */}
-            <circle cx="45" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={45.0} y={80.0} anchor="middle" math={"-3"} />
-
-            {/* Выколотая точка ОДЗ -2 */}
-            <circle cx="115" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={115.0} y={80.0} anchor="middle" math={"-2"} />
-
-            {/* Закрашенная точка числителя 3/13 */}
-            <circle cx="195" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="155" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\frac{3}{13}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка ОДЗ 3 */}
-            <circle cx="265" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={265.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* Выколотая точка ОДЗ 4 */}
-            <circle cx="335" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={335.0} y={80.0} anchor="middle" math={"4"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части */}
-            <path d="M 15 35 L 105 35 A 10 10 0 0 1 115 45 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 195 60 L 195 45 A 10 10 0 0 1 205 35 L 375 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифма */}
-            <path d="M 45 60 L 45 25 A 10 10 0 0 1 55 15 L 105 15 A 10 10 0 0 1 115 25 L 115 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 115 60 L 115 25 A 10 10 0 0 1 125 15 L 255 15 A 10 10 0 0 1 265 25 L 265 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 335 60 L 335 25 A 10 10 0 0 1 345 15 L 375 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Интервал (-3; -2) */}
-            <line x1="49" y1="58" x2="55" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="57" y1="58" x2="63" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="65" y1="58" x2="71" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="73" y1="58" x2="79" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="81" y1="58" x2="87" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="89" y1="58" x2="95" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="97" y1="58" x2="103" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="105" y1="58" x2="111" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="111" y1="58" x2="113" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Полуинтервал [3/13; 3) */}
-            <line x1="199" y1="58" x2="205" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="207" y1="58" x2="213" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="215" y1="58" x2="221" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="223" y1="58" x2="229" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="239" y1="58" x2="245" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="247" y1="58" x2="253" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="255" y1="58" x2="261" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="259" y1="58" x2="261" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Открытый луч (4; +inf) */}
-            <line x1="339" y1="58" x2="345" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="347" y1="58" x2="353" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="355" y1="58" x2="361" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="363" y1="58" x2="369" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="371" y1="58" x2="377" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "-3", closed: false }, { label: "-2", closed: false }, { label: "\\frac{3}{13}", closed: true }, { label: "3", closed: false }, { label: "4", closed: false }]} selected={[[1, 2], [3, 4], [5, 6]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in (-3; \\, -2) \\cup \\left[\\frac{3}{13}; \\, 3\\right) \\cup (4; \\, +\\infty)"}</BlockMath>
@@ -9233,58 +4893,9 @@ export const section15Tasks = [
           Поскольку квадрат любой вещественной величины неотрицателен, условие <InlineMath>{"(x - 4)^2 > 0"}</InlineMath> выполняется при всех значениях, кроме точки его обнуления: <InlineMath>{"x \\neq 4"}</InlineMath>.
         </p>
 
-        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
+        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На числовой прямой выделены области выполнения условий совместной системы:</p>
         {/* 🌌 ЧЕРТЁЖ: К КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка ОДЗ 0 */}
-            <circle cx="75" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={75.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Выколотая точка числителя 4 */}
-            <circle cx="195" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={195.0} y={80.0} anchor="middle" math={"4"} />
-
-            {/* Закрашенная точка ОДЗ 6 */}
-            <circle cx="315" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={315.0} y={80.0} anchor="middle" math={"6"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части числителя (Вся ось, кроме 4) */}
-            <path d="M 15 35 L 185 35 A 10 10 0 0 1 195 45 L 195 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 195 60 L 195 45 A 10 10 0 0 1 205 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифма [0; 6] */}
-            <path d="M 75 60 L 75 25 A 10 10 0 0 1 85 15 L 305 15 A 10 10 0 0 1 315 25 L 315 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Отрезок [0; 4) */}
-            <line x1="79" y1="58" x2="85" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="91" y1="58" x2="97" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="105" y1="58" x2="111" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="119" y1="58" x2="125" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="133" y1="58" x2="139" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="147" y1="58" x2="153" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="161" y1="58" x2="167" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="175" y1="58" x2="181" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="189" y1="58" x2="191" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Полуинтервал (4; 6] */}
-            <line x1="199" y1="58" x2="205" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="213" y1="58" x2="219" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="227" y1="58" x2="233" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="241" y1="58" x2="247" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="255" y1="58" x2="261" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="269" y1="58" x2="275" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="283" y1="58" x2="289" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="297" y1="58" x2="303" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="311" y1="58" x2="313" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: true }, { label: "4", closed: false }, { label: "6", closed: true }]} selected={[[1, 2], [2, 3]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in [0; \\, 4) \\cup (4; \\, 6]"}</BlockMath>
@@ -9335,59 +4946,10 @@ export const section15Tasks = [
         </p>
         <BlockMath>{"\\iff \\begin{cases} 27\\left(x - \\frac{1}{9}\\right)\\left(x - \\frac{2}{3}\\right) \\le 0 \\\\ x > \\frac{1}{3} \\end{cases} \\iff \\begin{cases} \\frac{1}{9} \\le x \\le \\frac{2}{3} \\\\ x > \\frac{1}{3} \\end{cases}"}</BlockMath>
 
-        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
+        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На числовой прямой выделены области выполнения условий совместной системы:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
         {/* Дробные координаты выведены оригинальным KaTeX-шрифтом через foreignObject */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная точка числителя 1/9 */}
-            <circle cx="55" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="15" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\frac{1}{9}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка ОДЗ 1/3 */}
-            <circle cx="155" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="115" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\frac{1}{3}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Закрашенная точка числителя 2/3 */}
-            <circle cx="255" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="215" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\frac{2}{3}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части отрезка */}
-            <path d="M 55 60 L 55 45 A 10 10 0 0 1 65 35 L 245 35 A 10 10 0 0 1 255 45 L 255 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ логарифма x > 1/3 */}
-            <path d="M 155 60 L 155 25 A 10 10 0 0 1 165 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Нижняя граница 1/3 выкалывается по ОДЗ, верхняя 2/3 остается закрашенной */}
-            <line x1="159" y1="58" x2="165" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="171" y1="58" x2="177" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="183" y1="58" x2="189" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="195" y1="58" x2="201" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="207" y1="58" x2="213" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="219" y1="58" x2="225" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="231" y1="58" x2="237" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="243" y1="58" x2="249" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="249" y1="58" x2="251" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "\\frac{1}{3}", closed: false }, { label: "\\frac{2}{3}", closed: true }]} selected={[[1, 2]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in \\left(\\frac{1}{3}; \\, \\frac{2}{3}\\right]"}</BlockMath>
@@ -9463,54 +5025,9 @@ export const section15Tasks = [
           <BlockMath>{"2x - 5 < 1 \\iff 2x < 6 \\iff x < 3"}</BlockMath>
         </div>
 
-        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
+        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На числовой прямой выделены области выполнения условий совместной системы:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 2,5 */}
-            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"2{,}5"} />
-
-            {/* Выколотая точка ОДЗ 3 */}
-            <circle cx="165" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={165.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* Закрашенная изолированная точка решения 4 */}
-            <circle cx="265" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={265.0} y={80.0} anchor="middle" math={"4"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (x < 3 U {4}) */}
-            <path d="M 15 35 L 155 35 A 10 10 0 0 1 165 45 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <circle cx="265" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ (2.5; 3) U (3; +inf) */}
-            <path d="M 65 60 L 65 25 A 10 10 0 0 1 75 15 L 155 15 A 10 10 0 0 1 165 25 L 165 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-            <path d="M 165 60 L 165 25 A 10 10 0 0 1 175 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Интервал (2.5; 3) */}
-            <line x1="69" y1="58" x2="75" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="77" y1="58" x2="83" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="85" y1="58" x2="91" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="93" y1="58" x2="99" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="101" y1="58" x2="107" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="109" y1="58" x2="115" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="117" y1="58" x2="123" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="125" y1="58" x2="131" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="133" y1="58" x2="139" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="141" y1="58" x2="147" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="149" y1="58" x2="155" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="157" y1="58" x2="161" y2="44" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Изолированная закрашенная точка {4} */}
-            <line x1="265" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.5" opacity="0.7" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "2{,}5", closed: false }, { label: "3", closed: false }, { label: "4", closed: true }]} selected={[[1, 2]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in (2{,}5; \\, 3) \\cup \\{4\\}"}</BlockMath>
@@ -9558,65 +5075,9 @@ export const section15Tasks = [
         <p>Выполним обратную замену для переменной х внутри сквозной системы условий:</p>
         <BlockMath>{"\\iff \\begin{cases} \\left[ \\begin{aligned} &\\log_3 x < -2 \\\\ &\\log_3 x > 2 \\end{aligned} \\right. \\\\ x > 0 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &x < 3^{-2} \\\\ &x > 3^2 \\end{aligned} \\right. \\\\ x > 0 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &x < \\frac{1}{9} \\\\ &x > 9 \\end{aligned} \\right. \\\\ x > 0 \\end{cases}"}</BlockMath>
 
-        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
+        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На числовой прямой выделены области выполнения условий совместной системы:</p>
                 {/* 🌌 ЧЕРТЁЖ №2: НАЛОЖЕНИЕ ОДЗ И ИТОГОВОЕ ПЕРЕСЕЧЕНИЕ МНОЖЕСТВ С ВЫВЕРЕННОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Выколотая точка 1/9 */}
-            <circle cx="155" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <foreignObject x="115" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\frac{1}{9}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Выколотая точка 9 */}
-            <circle cx="255" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={255.0} y={80.0} anchor="middle" math={"9"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Промежуточное решение */}
-            <path d="M 15 35 L 145 35 A 10 10 0 0 1 155 45 L 155 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 255 60 L 255 45 A 10 10 0 0 1 265 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > 0 */}
-            <path d="M 65 60 L 65 25 A 10 10 0 0 1 75 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА ЗАПЕРТА СТРОГО В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Выверенный интервал (0; 1/9) */}
-            <line x1="69" y1="58" x2="75" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="77" y1="58" x2="83" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="85" y1="58" x2="91" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="93" y1="58" x2="99" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="101" y1="58" x2="107" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="109" y1="58" x2="115" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="121" y1="58" x2="127" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="129" y1="58" x2="135" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="137" y1="58" x2="143" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="145" y1="58" x2="151" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Выверенный интервал (9; +inf) */}
-            <line x1="259" y1="58" x2="265" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="271" y1="58" x2="277" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="279" y1="58" x2="285" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="287" y1="58" x2="293" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="295" y1="58" x2="301" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="303" y1="58" x2="309" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="311" y1="58" x2="317" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="327" y1="58" x2="333" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="335" y1="58" x2="341" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="343" y1="58" x2="349" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "\\frac{1}{9}", closed: false }, { label: "9", closed: false }]} selected={[[1, 2], [3, 4]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in \\left(0; \\, \\frac{1}{9}\\right) \\cup (9; \\, +\\infty)"}</BlockMath>
@@ -9681,67 +5142,9 @@ export const section15Tasks = [
         <p>Выполним обратную замену для переменной х внутри сквозной системы условий:</p>
         <BlockMath>{"\\iff \\begin{cases} \\left[ \\begin{aligned} &\\log_3 x \\le -2 \\\\ &\\log_3 x \\ge 1 \\end{aligned} \\right. \\\\ x > 0 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &x \\le 3^{-2} \\\\ &x \\ge 3^1 \\end{aligned} \\right. \\\\ x > 0 \\end{cases} \\iff \\begin{cases} \\left[ \\begin{aligned} &x \\le \\frac{1}{9} \\\\ &x \\ge 2 \\end{aligned} \\right. \\\\ x > 0 \\end{cases}"}</BlockMath>
 
-        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На чертеже крышами отмечены области выполнения условий совместной системы:</p>
+        <p>Исследуем знаки полученного выражения методом интервалов на числовой прямой. На числовой прямой выделены области выполнения условий совместной системы:</p>
         {/* 🌌 ЧЕРТЁЖ: КЛАССИЧЕСКОЕ НАЛОЖЕНИЕ КРЫШ РАЦИОНАЛЬНОЙ ЧАСТИ И ОДЗ СИСТЕМЫ С ВЫВЕРЕННОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 0 */}
-            <circle cx="65" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={65.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная точка числителя 1/9 */}
-            <circle cx="155" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <foreignObject x="115" y="66" width="80" height="50" className="overflow-visible">
-              <div className="text-slate-800 dark:text-slate-200 flex justify-center items-start text-xs">
-                <InlineMath>{"\\frac{1}{9}"}</InlineMath>
-              </div>
-            </foreignObject>
-
-            {/* Закрашенная точка числителя 3 */}
-            <circle cx="255" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={255.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части совокупности */}
-            <path d="M 15 35 L 145 35 A 10 10 0 0 1 155 45 L 155 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            <path d="M 255 60 L 255 45 A 10 10 0 0 1 265 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > 0 */}
-            <path d="M 65 60 L 65 25 A 10 10 0 0 1 75 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СИНЯЯ ШТРИХОВКА В ЗОНАХ СОВМЕСТНОГО ПЕРЕСЕЧЕНИЯ КРЫШ */}
-            {/* Идеально запертый отрезок (0; 1/9] */}
-            <line x1="69" y1="58" x2="75" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="77" y1="58" x2="83" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="85" y1="58" x2="91" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="93" y1="58" x2="99" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="101" y1="58" x2="107" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="109" y1="58" x2="115" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="117" y1="58" x2="123" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="125" y1="58" x2="131" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="133" y1="58" x2="139" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="141" y1="58" x2="147" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="149" y1="58" x2="155" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-
-            {/* Идеально запертый луч [3; +inf) */}
-            <line x1="255" y1="58" x2="261" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="263" y1="58" x2="269" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="271" y1="58" x2="277" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="279" y1="58" x2="285" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="287" y1="58" x2="293" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="295" y1="58" x2="301" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="303" y1="58" x2="309" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="311" y1="58" x2="317" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="319" y1="58" x2="325" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="327" y1="58" x2="333" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="335" y1="58" x2="341" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-            <line x1="343" y1="58" x2="349" y2="37" stroke="#328ce6" strokeWidth="1.2" opacity="0.4" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: false }, { label: "\\frac{1}{9}", closed: true }, { label: "3", closed: true }]} selected={[[1, 2], [3, 4]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in \\left(0; \\, \\frac{1}{9}\\right] \\cup [3; \\, +\\infty)"}</BlockMath>
@@ -9774,7 +5177,7 @@ export const section15Tasks = [
         <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
           <p className="font-semibold text-slate-800 dark:text-slate-200">Случай 1. Основание равно единице:</p>
           <BlockMath>{"3x^2 - 3x = 0 \\iff 3x(x - 1) = 0 \\iff x = 0 \\quad \\text{или} \\quad x = 1"}</BlockMath>
-          <p>Оба корня являются изолированными решениями неравенства, так как показатель степени существует при любых вещественных значениях переменной.</p>
+          <p>Оба корня являются решениями неравенства, так как показатель степени существует при любых вещественных значениях переменной.</p>
         </div>
 
         <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
@@ -9784,8 +5187,8 @@ export const section15Tasks = [
 
         <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-800 space-y-2">
           <p className="font-semibold text-slate-800 dark:text-slate-200">Случай 3. Основание меньше единицы:</p>
-          <p>Оценим строго положительные границы квадратного трёхчлена основания:</p>
-          <BlockMath>{"3x^2 - 3x + 1 > 0 \\implies D = 9 - 12 = -3 < 0 \\implies x \\in \\mathbb{R}"}</BlockMath>
+          <p>Докажем, что основание положительно при всех действительных значениях x:</p>
+          <BlockMath>{"D = 9 - 12 = -3 < 0, \\quad 3 > 0 \\implies 3x^2 - 3x + 1 > 0 \\quad \\text{при всех } x \\in \\mathbb{R}"}</BlockMath>
           <p>Тогда система принимает вид:</p>
           <BlockMath>{"\\begin{cases} 3x^2 - 3x < 0 \\\\ x(x - 3) \\ge 0 \\end{cases} \\iff \\begin{cases} x \\in (0; \\, 1) \\\\ x \\in (-\\infty; \\, 0] \\cup [3; \\, +\\infty) \\end{cases} \\iff \\varnothing"}</BlockMath>
           <p>В данном интервале совместных решений нет.</p>
@@ -9795,49 +5198,8 @@ export const section15Tasks = [
         <BlockMath>{"x \\in \\{0\\} \\cup [1; \\, 3]"}</BlockMath>
 
         <p>Визуализируем наложение полученного отрезка и изолированной точки на числовой оси:</p>
-
-        <BlockMath>{"x \\in \\{0\\} \\cup [1; \\, 3]"}</BlockMath>
-
-        <p>Визуализируем наложение полученного отрезка и изолированной точки на числовой оси:</p>
         {/* 🌌 ЧЕРТЁЖ: ИДЕАЛЬНОЕ НАЛОЖЕНИЕ КРЫШ С АВТОМАТИЧЕСКОЙ СЕТОЧНОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="110" viewBox="0 0 400 110" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            <defs>
-              <pattern id="diagonalHatch116" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                <line x1="0" y1="0" x2="0" y2="8" stroke="#328ce6" strokeWidth="1" opacity="0.4" />
-              </pattern>
-            </defs>
-
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Закрашенная изолированная точка решения 0 */}
-            <circle cx="85" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={85.0} y={80.0} anchor="middle" math={"0"} />
-
-            {/* Закрашенная точка числителя 1 */}
-            <circle cx="185" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={185.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* Закрашенная точка числителя 3 */}
-            <circle cx="285" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={285.0} y={80.0} anchor="middle" math={"3"} />
-
-            {/* 📈 КРЫШИ РЕШЕНИЯ В СТИЛЕ СТУПЕНЕЙ */}
-            {/* Изолированная точка 0 */}
-            <circle cx="85" cy="35" r="2.5" fill="currentColor" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-            {/* Отрезок [1; 3] */}
-            <path d="M 185 60 L 185 45 A 10 10 0 0 1 195 35 L 275 35 A 10 10 0 0 1 285 45 L 285 60" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🟦 СЕТОЧНАЯ ШТРИХОВКА ЗАПЕРТАЯ СТРОГО ВНУТРИ ИНТЕРВАЛОВ */}
-            {/* Изолированная точка 0 */}
-            <line x1="85" y1="58" x2="85" y2="37" stroke="#328ce6" strokeWidth="1.5" opacity="0.7" />
-            {/* Отрезок [1; 3] */}
-            <rect x="185" y="35" width="100" height="25" fill="url(#diagonalHatch116)" pointerEvents="none" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "0", closed: true }, { label: "1", closed: true }, { label: "3", closed: true }]} selected={[[2, 3]]} />
 
         <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-slate-200/40">
           <span>Ответ:</span>
@@ -9876,38 +5238,7 @@ export const section15Tasks = [
 
         <p>Пересечёт полученный луч со сквозным интервалом области допустимых значений ОДЗ системы:</p>
         {/* 🌌 ЧЕРТЁЖ: ИДЕАЛЬНОЕ НАЛОЖЕНИЕ КРЫШ С АВТОМАТИЧЕСКОЙ СЕТОЧНОЙ ШТРИХОВКОЙ */}
-        <div className="my-6 flex justify-center w-full select-none">
-          <svg width="400" height="125" viewBox="0 0 400 125" className={`overflow-visible font-sans font-bold text-[13px] ${diagramStyles.diagram}`} >
-            <defs>
-              <pattern id="diagonalHatch117" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                <line x1="0" y1="0" x2="0" y2="8" stroke="#328ce6" strokeWidth="1" opacity="0.4" />
-              </pattern>
-            </defs>
-
-            {/* Главная числовая ось X */}
-            <line x1="10" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <path d="M360 60 l-6 -3 M360 60 l-6 3" stroke="currentColor" strokeWidth="1.2" className="text-slate-900 dark:text-slate-400" />
-            <SvgMathLabel x={368.0} y={64.0} anchor="start" math={"x"} />
-
-            {/* Выколотая точка ОДЗ 1 */}
-            <circle cx="95" cy="60" r="4.5" fill="var(--inequality-open-point)" stroke="currentColor" strokeWidth="1.5" className="text-slate-800 dark:text-slate-200" />
-            <SvgMathLabel x={95.0} y={80.0} anchor="middle" math={"1"} />
-
-            {/* Закрашенная точка числителя 2 */}
-            <circle cx="215" cy="60" r="4.5" fill="currentColor" className="text-slate-900 dark:text-slate-100" />
-            <SvgMathLabel x={215.0} y={80.0} anchor="middle" math={"2"} />
-
-            {/* 📈 ПЕРВЫЙ УРОВЕНЬ КРЫШ (y = 35): Решение рациональной части (x >= 2) */}
-            <path d="M 215 60 L 215 45 A 10 10 0 0 1 225 35 L 345 35" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-400 dark:text-slate-600" opacity="0.4" />
-
-            {/* 🏠 ВТОРОЙ УРОВЕНЬ ВЫШЕ (y = 15): ОДЗ x > 1 */}
-            <path d="M 95 60 L 95 25 A 10 10 0 0 1 105 15 L 345 15" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-slate-500 dark:text-slate-500" opacity="0.6" />
-
-            {/* 🟦 СЕТОЧНАЯ ШТРИХОВКА ЗАПЕРТАЯ СТРОГО ВНУТРИ ИНТЕРВАЛОВ */}
-            {/* Открытый луч [2; +inf) */}
-            <rect x="215" y="35" width="130" height="25" fill="url(#diagonalHatch117)" pointerEvents="none" />
-          </svg>
-        </div>
+        <InequalityNumberLine points={[{ label: "2", closed: true }]} selected={[[1, 2]]} />
 
         <p>В результате пересечения множеств получаем окончательный ответ олимпиадного неравенства ДВИ:</p>
         <BlockMath>{"x \\in [2; \\, +\\infty)"}</BlockMath>
